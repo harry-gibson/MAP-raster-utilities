@@ -2,6 +2,7 @@ Generic MAP raster processing code
 ----------------------------------
 
 Repository contains several ipython notebooks developed and used by Harry Gibson to process raster datasets in line with MAP requirements.
+Mostly just things that you might type at a command line, rather than structured code.
 
 * Aggregate_Rasters.ipynb: Spatially aggregate (resample down) continuous or categorical rasters (to generate 5km cubes, landcover summaries, etc)
 * CalcMeanAndSD.ipynb: Calculate synoptic data from MODIS cubes, including from-daily and from-monthly outputs

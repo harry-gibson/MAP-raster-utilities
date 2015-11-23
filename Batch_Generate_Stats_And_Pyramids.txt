@@ -1,0 +1,27 @@
+The quickest way to generate pyramids (overviews) and statistics for a large number of images is to use the server. It has fast disks and 
+we can run multiple images at once. We use the GDAL toolset.
+
+Step 1:
+Set permission so the directory containing the images is writeable by the logged in user
+
+Step 2:
+Run the following commands. This defines the command needed to add the pyramids as a function that can be called from the shell.
+Alter the command parameters  if necessary e.g. to change levels or compression, select the files we want to run on, and change 
+the number of parallel operations (this will do 10).
+
+f() { gdaladdo -ro --config COMPRESS_OVERVIEW LZW --config USE_RRD NO --config TILED YES $@ 2 4 8 16 32 64 128;}
+export -f f
+ls *Data.tif | x args -P 10 -n 1 -I{} bash -c f\ \{\}
+
+Step 3:
+The same can be done for generating statistics. 
+The GDAL command for doing this is actually the gdalinfo command; asking it to report statistics will generate them 
+if they don't exist. We don't actually want to see them, so just redirect to null.
+
+s() { gdalinfo -stats $@ >/dev.null;}
+export -f s
+ls *Data.tif | xargs -P 10 -n 1 -I{} bash -c f\ \{\}
+
+Step 4:
+Don't forget the restrictions on how much data can be added to the server each day (250Gb). The pyramids generated 
+all count towards this!

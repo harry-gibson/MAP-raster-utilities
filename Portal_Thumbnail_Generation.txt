@@ -1,0 +1,15 @@
+Thumbnail generation
+
+The thumbnails used on the Portal have mostly been generated with the same extent and size, to give a consistent look.
+
+Occasionally you might need to do something fancy in the image which might mean you need to export it from ArcMap.
+
+However in most cases you could just use the image service itself to request an image of the appropriate dimensions. 
+
+This would be an appropriate URL query to do that - append this text to the ImageServer URL:
+
+/exportImage?bbox=-50%2C-45%2C100%2C55&bboxSR=&size=800%2C532&imageSR=&time=1199145600000%2C1199836800000&format=jpgpng&pixelType=F32&noData=&noDataInterpretation=esriNoDataMatchAny&interpolation=+RSP_BilinearInterpolation&compression=&compressionQuality=&bandIds=&mosaicRule=&renderingRule=&f=image
+
+This will generate an image of 800*532 pixels which is a clean multiple of 200*133, the actual required thumbnail size. Requesting the image at this smaller size doesn't work for higher-resolution image services as it seems to be too much of a downscaling for the result to be visible.
+
+The extent includes Africa, and a bit of S America, Europe, and Asia, just to illustrate that these areas are also covered. It selects images for one month in 2008.
