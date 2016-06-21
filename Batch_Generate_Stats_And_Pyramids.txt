@@ -25,3 +25,9 @@ ls *Data.tif | xargs -P 10 -n 1 -I{} bash -c f\ \{\}
 Step 4:
 Don't forget the restrictions on how much data can be added to the server each day (250Gb). The pyramids generated 
 all count towards this!
+
+
+We can also use this approach to translate a large number of tiff files to a different format, for example to translate all uncompressed files in one of Dan's "cubes"
+Note the -I % just tells XArgs to look for a % symbol and replace that with whatever the input from the pipe is
+
+find *.tif | xargs -n 1 -P 6 -I % gdal_translate -co "COMPRESS=LZW" -co "TILED=YES" -co "PREDICTOR=2" -co "BIGTIFF=YES" -co "INTERLEAVE=BAND" -co "SPARSE_OK=TRUE" % /srv/data/hsg/output_dir/%
