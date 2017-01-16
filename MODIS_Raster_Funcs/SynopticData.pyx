@@ -4,6 +4,16 @@ import numpy as np
 from libc.math cimport sqrt
 
 cdef class MonthlyStatCalculator:
+    '''Calculates and maintains a running mean, SD, and count of local values of incoming arrays
+
+    For a given array shape, determined at initialisation, this class creates an array of the local
+    mean, SD, and count from incoming arrays that are supplied sequentially. The variance (and
+    thus SD) are computed using the method of Donald Knuth which is robust against numerical
+    errors that can otherwise occur for large values with small differences.
+
+    Output arrays are generated simultaneously for both all data received, and for all data
+    received since the value of the "month" parameter changed. This enables the class to be
+    used to calculate monthly and overall statistics in a single pass.'''
 
     cdef:
         short[:, ::1] mth_n, tot_n_Days, tot_n_Months
@@ -14,6 +24,10 @@ cdef class MonthlyStatCalculator:
         unsigned char  _startNewMonth
 
     def __cinit__(self, Py_ssize_t height, Py_ssize_t width, double ndv):
+        '''Height and width specify the shape of the arrays to be provided. NDV refers to outputs.
+
+        The class requires approximately 80 bytes RAM per pixel as the outputs are tracked using
+        double precision - choose a size that will be manageable in the RAM available.'''
 
         self.tot_n_Days = np.zeros((height, width), dtype='Int16')
         self.tot_oldM_Days = np.zeros((height, width), dtype='float64')
@@ -44,7 +58,21 @@ cdef class MonthlyStatCalculator:
 
     @cython.boundscheck(False)
     @cython.cdivision(True)
-    cpdef addFile(self, float[:,::1] data, unsigned char month, float thisNdv):
+    cpdef addFile(self, float[:,::1] data, float thisNdv):
+        '''Add a tile of data to the running summaries. Data must be of shape specified in startup.
+
+        Specify the value in the data that should be treated as nodata (does not have to be the same
+        as the output nodata value specified at startup)
+
+        This should be called once for each incoming data file, calling emitMonth when appropriate
+        during the sequential process, and emitTotal when finished.
+
+        At each pixel location, tracks the number of non-nodata values ever seen, and calculates
+        the mean and the variance of those values (which will be converted to SD later)
+
+        Variance is calculated using the numerically-robust method of Donald Knuth as described at
+        http://www.johndcook.com/blog/standard_deviation/
+        '''
         cdef:
             double value
             double test_ndv
@@ -53,7 +81,6 @@ cdef class MonthlyStatCalculator:
 
         assert self.height == data.shape[0]
         assert self.width == data.shape[1]
-        assert 0 < month <= 12
 
         if self._startNewMonth:
             #initialise arrays to track this month
@@ -118,6 +145,7 @@ cdef class MonthlyStatCalculator:
     @cython.boundscheck(False)
     @cython.cdivision(True)
     cpdef emitMonth(self):
+        ''' Return the count, mean, and sd arrays accumulated *since this method was last called* '''
         cdef:
             double variance
             Py_ssize_t x, y
@@ -140,6 +168,7 @@ cdef class MonthlyStatCalculator:
     @cython.boundscheck(False)
     @cython.cdivision(True)
     cpdef emitTotal(self):
+        ''' Return the count, mean, and sd arrays accumulated *since the class was instantiated* '''
         cdef:
             double variance
             Py_ssize_t x, y
