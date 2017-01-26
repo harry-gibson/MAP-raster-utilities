@@ -77,6 +77,7 @@ cdef class RasterAggregator_Categorical:
     cdef:
         float [:,::1] tmpMajorityPropArr
         char[:,::1] _coverageArr
+        short[:,::1] _countArr
 
     def __cinit__(self,
                   Py_ssize_t xSizeIn, Py_ssize_t ySizeIn,
@@ -113,6 +114,7 @@ cdef class RasterAggregator_Categorical:
         self.tmpMajorityPropArr = np.zeros(shape = (self.yShapeOut, self.xShapeOut),
                                            dtype = np.float32)
         self._coverageArr = np.zeros(shape = (self.yShapeOut, self.xShapeOut), dtype = np.byte)
+        self._countArr = np.zeros(shape = (self.yShapeOut, self.xShapeOut), dtype = np.int16)
 
     @cython.boundscheck(False)
     @cython.cdivision(True)
@@ -133,7 +135,7 @@ cdef class RasterAggregator_Categorical:
             float likeAdjProp
             Py_ssize_t xOut, yOut
             # how much of an output cell does each input cell account for
-            float proportion
+            #float proportion
             unsigned char catsOk
             int valuePos
             Py_ssize_t i
@@ -142,7 +144,7 @@ cdef class RasterAggregator_Categorical:
         tileYShapeIn = data.shape[0]
 
         # how much of an output cell does each input cell account for
-        proportion = 1.0 / (self.xFact * self.yFact)
+        #proportion = 1.0 / (self.xFact * self.yFact)
 
         with nogil, parallel():
             for yInTile in prange (tileYShapeIn):
@@ -194,6 +196,13 @@ cdef class RasterAggregator_Categorical:
                     xOut = <int> (xInGlobal / self.xFact)
 
                     localValue = data[yInTile, xInTile]
+
+                    # we will count the number of incoming pixels that count towards each
+                    # output cell. Because if the cell sizes aren't a clean multiple, then the
+                    # number of inputs per output will vary cyclically.
+                    # We count the incoming cells regardless of whether or not they have data.
+                    self._countArr[yOut, xOut] += 1
+
                     if self._hasNDV == 1 and localValue == self._byteNDV:
                         # bit 1 indicates covered by some input grid even if it was nodata
                         self._coverageArr[yOut, xOut] = self._coverageArr[yOut, xOut] | 1
@@ -224,10 +233,11 @@ cdef class RasterAggregator_Categorical:
                     self._coverageArr[yOut, xOut] = self._coverageArr[yOut, xOut] | 2
 
                     # the fraction is straightforward, just the proportion of the output cell
-                    # covered by this one
+                    # covered by this one. Track as a count and convert to a fraction afterwards
+                    # once we know the overall count.
                     # reminder: inplace operator (+=) causes it to be treated as a reduction
                     # (shared) variable by the cython translation
-                    self.outputFracArr[valuePos, yOut, xOut] += proportion
+                    self.outputFracArr[valuePos, yOut, xOut] += 1
 
                     # the like adjacency contribution of a given incoming cell
                     # is less straightforward because it depends on neighbours and at
@@ -252,7 +262,7 @@ cdef class RasterAggregator_Categorical:
                             likeAdjProp += 1
 
                     self.outputLikeAdjArr[valuePos, yOut, xOut] += (
-                        (likeAdjProp / nNeighbours) * proportion)
+                        (likeAdjProp / nNeighbours) )
                 if catsOk == 0:
                     break
 
@@ -266,6 +276,18 @@ cdef class RasterAggregator_Categorical:
         cdef:
             Py_ssize_t xOut, yOut
             float iscomplete = 1
+            float proportion
+
+        for catNum in range(self.nCategories):
+            yOut = -1
+            with nogil, parallel():
+                for yOut in prange(self.yShapeOut):
+                    xOut = -1
+                    for xOut in range(self.xShapeOut):
+                        if self._countArr[yOut, xOut] > 0:
+                            proportion = 1.0 / self._countArr[yOut, xOut]
+                            self.outputFracArr[catNum, yOut, xOut] *= proportion
+                            self.outputLikeAdjArr[catNum, yOut, xOut] *= proportion
 
         # replace output values in fraction and like-adjacency stacks with nodata where appropriate
         for catNum in range (self.nCategories):
@@ -328,7 +350,7 @@ cdef class RasterAggregator_Categorical:
         if not self.finalise():
             return None
         return {
-            "fractions": np.asarray(self.outputFracArr).astype(np.uint8),
+            "fractions": np.asarray(self.outputFracArr).astype(np.int16),
             "likeadjacencies": np.asarray(self.outputLikeAdjArr),
             "majority": np.asarray(self.outputMajorityArr), #.astype(np.uint8)
             "valuemap": np.asarray(self.valueMap)

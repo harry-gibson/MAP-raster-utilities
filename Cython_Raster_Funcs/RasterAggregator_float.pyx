@@ -46,7 +46,6 @@ cdef class RasterAggregator_float:
 
         char[:,::1] _coverageArr
 
-        float proportion
         double variance
         double xFact, yFact
 
@@ -76,9 +75,6 @@ cdef class RasterAggregator_float:
 
         self.xFact = <double>self.xShapeIn / self.xShapeOut
         self.yFact = <double>self.yShapeIn / self.yShapeOut
-
-        # how much of an output cell does each input cell account for
-        self.proportion = 1.0 / (self.xFact * self.yFact)
 
         self._NDV = _NDV
 
