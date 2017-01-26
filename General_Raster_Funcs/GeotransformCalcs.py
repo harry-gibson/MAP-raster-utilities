@@ -3,8 +3,17 @@ def calcAggregatedProperties(method, inShape, inGT,
                              aggFactor=None, outShape=None, outResolution=None):
     ''' Given an input raster, get the post-aggregation geotransform and dimensions
 
-    The aggregation can be specified as either a factor, a desired output shape,
-    or a desired output resolution.
+    method should be a string, either, "factor", "size", or "resolution"; the appropriate one
+    of the other parameters should then also be set to determine either the cell size
+    multiplication factor, a desired output shape, or a desired output resolution.
+
+    For the resolution method, a numeric value can be provided, or a string. A string
+    must be one of "1k", "5k", or "10k" to set the resolution to 30 arcseconds, 2.5
+    arcminutes, or 5 arcminutes respectively (assuming that the geotransform units are in
+    degrees).
+
+    Resolution and size methods may result in a different aspect ratio from the input, meaning
+    that the cell shapes may be changed. Resolution method will always result in square cells.
 
     Returns a 2-tuple where first item is the geotransform (itself a 6-tuple,
     according to the GDAL standard, and the second item is the shape (a 2-tuple,
@@ -58,15 +67,44 @@ def calcAggregatedProperties(method, inShape, inGT,
         outputGT = (inGT[0], outputResX, 0.0, inGT[3], 0.0, -outputResY)
 
     elif method == "resolution":
-        # specify a desired output resolution, implies the same in both directions (square pixels)
-        xFactor = round(1.0 * outResolution / inGT[1], 8)
-        yFactor = round(-1.0 * outResolution / inGT[5], 8)
-        outX_exact = 1.0 * inShape[1] / xFactor
-        outY_exact = 1.0 * inShape[0] / yFactor
-        outXSize = math.ceil(outX_exact)
-        outYSize = math.ceil(outY_exact)
-        if outX_exact != outXSize or outY_exact != outYSize:
-            print "warning, specified resolution was not clean multiple of input, output will have 1 cell greater extent"
+        inResX = inGT[1]
+        inResY = inGT[5]
+        inXSize = inShape[1]
+        inYSize = inShape[0]
+        xOrigin = inGT[0]
+        yOrigin = inGT[3]
+        if not inResY == -inResX:
+            print "warning, input had non-square cells, resolution mode creates square cells so they will change shape"
+        if isinstance(outResolution, str):
+            # use the hardcoded resolutions for the 3 main MAP resolutions to avoid
+            # cocking about with irrational numbers not multiplying / dividing cleanly
+            xExtent = inXSize * inResX
+            yExtent = inYSize * -inResY
+            if outResolution.lower().startswith("1k"):
+                outXSize = int(120 * xExtent)
+                outYSize = int(120 * yExtent)
+                outResolution = 0.008333333333333
+            elif outResolution.lower().startswith("5k"):
+                outXSize = int(24 * xExtent)
+                outYSize = int(24 * yExtent)
+                outResolution = 0.041666666666667
+            elif outResolution.lower().startswith("10k"):
+                outXSize = int(12 * xExtent)
+                outYSize = int(12 * yExtent)
+                outResolution = 0.08333333333333
+            else:
+                print "Unknown string resolution description!"
+                assert False
+        else:
+            # specify a desired output resolution, implies the same in both directions (square pixels)
+            xFactor = round(1.0 * outResolution / inGT[1], 8)
+            yFactor = round(-1.0 * outResolution / inGT[5], 8)
+            outX_exact = 1.0 * inXSize / xFactor
+            outY_exact = 1.0 * inYSize / yFactor
+            outXSize = math.ceil(outX_exact)
+            outYSize = math.ceil(outY_exact)
+            if outX_exact != outXSize or outY_exact != outYSize:
+                print "warning, specified resolution was not clean multiple of input, output will have 1 cell greater extent"
         outputGT = (inGT[0], outResolution, 0.0, inGT[3], 0.0, -outResolution)
     else:
         assert False
