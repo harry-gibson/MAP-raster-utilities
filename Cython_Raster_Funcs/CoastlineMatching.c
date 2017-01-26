@@ -538,21 +538,22 @@ struct __pyx_opt_args_19Cython_Raster_Funcs_17CoastlineMatching_matchToCoastline
   char applyFill;
   int useNearestNPixels;
   int searchPixelRadius;
-  int noLosses;
 };
 
-/* "Cython_Raster_Funcs\CoastlineMatching.pyx":145
+/* "Cython_Raster_Funcs\CoastlineMatching.pyx":153
  * 
  * 
  * cpdef reallocateToUnmasked(float[:,::1] data, char[:,::1] landMask, float _NDV = -9999,             # <<<<<<<<<<<<<<
  *                            char fillLandWithZero = 1,
- *                            char clipZerosAtSea = 1):
+ *                            char clipZerosAtSea = 1,
  */
 struct __pyx_opt_args_19Cython_Raster_Funcs_17CoastlineMatching_reallocateToUnmasked {
   int __pyx_n;
   float _NDV;
   char fillLandWithZero;
   char clipZerosAtSea;
+  int searchPixelRadius;
+  char deleteDespiteFailure;
 };
 
 /* "View.MemoryView":99
@@ -1128,8 +1129,8 @@ static PyObject *__pyx_builtin_TypeError;
 static PyObject *__pyx_builtin_xrange;
 static PyObject *__pyx_builtin_id;
 static PyObject *__pyx_builtin_IndexError;
-static PyObject *__pyx_pf_19Cython_Raster_Funcs_17CoastlineMatching_matchToCoastline(CYTHON_UNUSED PyObject *__pyx_self, __Pyx_memviewslice __pyx_v_data, __Pyx_memviewslice __pyx_v_landMask, PY_LONG_LONG __pyx_v__NDV, char __pyx_v_applyClip, char __pyx_v_applyFill, int __pyx_v_useNearestNPixels, int __pyx_v_searchPixelRadius, int __pyx_v_noLosses); /* proto */
-static PyObject *__pyx_pf_19Cython_Raster_Funcs_17CoastlineMatching_2reallocateToUnmasked(CYTHON_UNUSED PyObject *__pyx_self, __Pyx_memviewslice __pyx_v_data, __Pyx_memviewslice __pyx_v_landMask, float __pyx_v__NDV, char __pyx_v_fillLandWithZero, char __pyx_v_clipZerosAtSea); /* proto */
+static PyObject *__pyx_pf_19Cython_Raster_Funcs_17CoastlineMatching_matchToCoastline(CYTHON_UNUSED PyObject *__pyx_self, __Pyx_memviewslice __pyx_v_data, __Pyx_memviewslice __pyx_v_landMask, PY_LONG_LONG __pyx_v__NDV, char __pyx_v_applyClip, char __pyx_v_applyFill, int __pyx_v_useNearestNPixels, int __pyx_v_searchPixelRadius); /* proto */
+static PyObject *__pyx_pf_19Cython_Raster_Funcs_17CoastlineMatching_2reallocateToUnmasked(CYTHON_UNUSED PyObject *__pyx_self, __Pyx_memviewslice __pyx_v_data, __Pyx_memviewslice __pyx_v_landMask, float __pyx_v__NDV, char __pyx_v_fillLandWithZero, char __pyx_v_clipZerosAtSea, int __pyx_v_searchPixelRadius, char __pyx_v_deleteDespiteFailure); /* proto */
 static int __pyx_array_MemoryView_5array___cinit__(struct __pyx_array_obj *__pyx_v_self, PyObject *__pyx_v_shape, Py_ssize_t __pyx_v_itemsize, PyObject *__pyx_v_format, PyObject *__pyx_v_mode, int __pyx_v_allocate_buffer); /* proto */
 static int __pyx_array_getbuffer_MemoryView_5array_2__getbuffer__(struct __pyx_array_obj *__pyx_v_self, Py_buffer *__pyx_v_info, int __pyx_v_flags); /* proto */
 static void __pyx_array_MemoryView_5array_4__dealloc__(struct __pyx_array_obj *__pyx_v_self); /* proto */
@@ -1219,7 +1220,6 @@ static char __pyx_k_reshape[] = "reshape";
 static char __pyx_k_Ellipsis[] = "Ellipsis";
 static char __pyx_k_itemsize[] = "itemsize";
 static char __pyx_k_landMask[] = "landMask";
-static char __pyx_k_noLosses[] = "noLosses";
 static char __pyx_k_TypeError[] = "TypeError";
 static char __pyx_k_applyClip[] = "applyClip";
 static char __pyx_k_applyFill[] = "applyFill";
@@ -1237,6 +1237,7 @@ static char __pyx_k_fillLandWithZero[] = "fillLandWithZero";
 static char __pyx_k_searchPixelRadius[] = "searchPixelRadius";
 static char __pyx_k_useNearestNPixels[] = "useNearestNPixels";
 static char __pyx_k_strided_and_direct[] = "<strided and direct>";
+static char __pyx_k_deleteDespiteFailure[] = "deleteDespiteFailure";
 static char __pyx_k_strided_and_indirect[] = "<strided and indirect>";
 static char __pyx_k_contiguous_and_direct[] = "<contiguous and direct>";
 static char __pyx_k_MemoryView_of_r_object[] = "<MemoryView of %r object>";
@@ -1309,6 +1310,7 @@ static PyObject *__pyx_kp_s_contiguous_and_direct;
 static PyObject *__pyx_kp_s_contiguous_and_indirect;
 static PyObject *__pyx_n_s_copy;
 static PyObject *__pyx_n_s_data;
+static PyObject *__pyx_n_s_deleteDespiteFailure;
 static PyObject *__pyx_n_s_dtype_is_object;
 static PyObject *__pyx_n_s_end;
 static PyObject *__pyx_n_s_enumerate;
@@ -1334,7 +1336,6 @@ static PyObject *__pyx_n_s_mode;
 static PyObject *__pyx_n_s_name;
 static PyObject *__pyx_n_s_name_2;
 static PyObject *__pyx_n_s_ndim;
-static PyObject *__pyx_n_s_noLosses;
 static PyObject *__pyx_n_s_np;
 static PyObject *__pyx_n_s_numpy;
 static PyObject *__pyx_n_s_obj;
@@ -1369,7 +1370,6 @@ static PyObject *__pyx_n_s_zeros_like;
 static PyObject *__pyx_int_0;
 static PyObject *__pyx_int_1;
 static PyObject *__pyx_int_2;
-static PyObject *__pyx_int_100;
 static PyObject *__pyx_int_neg_1;
 static PyObject *__pyx_tuple_;
 static PyObject *__pyx_slice__2;
@@ -1515,16 +1515,7 @@ static PyObject *__pyx_f_19Cython_Raster_Funcs_17CoastlineMatching_matchToCoastl
     }
   }
 
-  /* "Cython_Raster_Funcs\CoastlineMatching.pyx":54
- *         int filledCells, failedFills, clippedCells
- *         char reallocatedOK
- *         int _MAX_NEIGHBOURS_TO_CHECK = 1000             # <<<<<<<<<<<<<<
- *         int reallocationSum_prv
- *         int reallocationCount_prv
- */
-  __pyx_v__MAX_NEIGHBOURS_TO_CHECK = 1000;
-
-  /* "Cython_Raster_Funcs\CoastlineMatching.pyx":58
+  /* "Cython_Raster_Funcs\CoastlineMatching.pyx":56
  *         int reallocationCount_prv
  * 
  *     yShapeIn = data.shape[0]             # <<<<<<<<<<<<<<
@@ -1533,7 +1524,7 @@ static PyObject *__pyx_f_19Cython_Raster_Funcs_17CoastlineMatching_matchToCoastl
  */
   __pyx_v_yShapeIn = (__pyx_v_data.shape[0]);
 
-  /* "Cython_Raster_Funcs\CoastlineMatching.pyx":59
+  /* "Cython_Raster_Funcs\CoastlineMatching.pyx":57
  * 
  *     yShapeIn = data.shape[0]
  *     xShapeIn = data.shape[1]             # <<<<<<<<<<<<<<
@@ -1542,7 +1533,7 @@ static PyObject *__pyx_f_19Cython_Raster_Funcs_17CoastlineMatching_matchToCoastl
  */
   __pyx_v_xShapeIn = (__pyx_v_data.shape[1]);
 
-  /* "Cython_Raster_Funcs\CoastlineMatching.pyx":60
+  /* "Cython_Raster_Funcs\CoastlineMatching.pyx":58
  *     yShapeIn = data.shape[0]
  *     xShapeIn = data.shape[1]
  *     assert landMask.shape[0] == yShapeIn             # <<<<<<<<<<<<<<
@@ -1553,12 +1544,12 @@ static PyObject *__pyx_f_19Cython_Raster_Funcs_17CoastlineMatching_matchToCoastl
   if (unlikely(!Py_OptimizeFlag)) {
     if (unlikely(!(((__pyx_v_landMask.shape[0]) == __pyx_v_yShapeIn) != 0))) {
       PyErr_SetNone(PyExc_AssertionError);
-      {__pyx_filename = __pyx_f[0]; __pyx_lineno = 60; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      {__pyx_filename = __pyx_f[0]; __pyx_lineno = 58; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     }
   }
   #endif
 
-  /* "Cython_Raster_Funcs\CoastlineMatching.pyx":61
+  /* "Cython_Raster_Funcs\CoastlineMatching.pyx":59
  *     xShapeIn = data.shape[1]
  *     assert landMask.shape[0] == yShapeIn
  *     assert landMask.shape[1] == xShapeIn             # <<<<<<<<<<<<<<
@@ -1569,36 +1560,36 @@ static PyObject *__pyx_f_19Cython_Raster_Funcs_17CoastlineMatching_matchToCoastl
   if (unlikely(!Py_OptimizeFlag)) {
     if (unlikely(!(((__pyx_v_landMask.shape[1]) == __pyx_v_xShapeIn) != 0))) {
       PyErr_SetNone(PyExc_AssertionError);
-      {__pyx_filename = __pyx_f[0]; __pyx_lineno = 61; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      {__pyx_filename = __pyx_f[0]; __pyx_lineno = 59; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     }
   }
   #endif
 
-  /* "Cython_Raster_Funcs\CoastlineMatching.pyx":66
- *     # search pattern. Generate this out to "a bit" further than needed
- *     # searchPixelRadius =  <int> ((sqrt(_MAX_NEIGHBOURS_TO_CHECK / 3.14)) + 5)
+  /* "Cython_Raster_Funcs\CoastlineMatching.pyx":63
+ *     # Generate the table of coordinate pairs which when followed in order specify the offsets for a spiral
+ *     # search pattern.
  *     diam = searchPixelRadius * 2 + 1             # <<<<<<<<<<<<<<
  *     inds = np.indices([diam,diam]) - searchPixelRadius
  *     distTmp = np.sqrt((inds ** 2).sum(0))
  */
-  __pyx_t_1 = __Pyx_PyInt_From_long(((__pyx_v_searchPixelRadius * 2) + 1)); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 66; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __Pyx_PyInt_From_long(((__pyx_v_searchPixelRadius * 2) + 1)); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 63; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_v_diam = __pyx_t_1;
   __pyx_t_1 = 0;
 
-  /* "Cython_Raster_Funcs\CoastlineMatching.pyx":67
- *     # searchPixelRadius =  <int> ((sqrt(_MAX_NEIGHBOURS_TO_CHECK / 3.14)) + 5)
+  /* "Cython_Raster_Funcs\CoastlineMatching.pyx":64
+ *     # search pattern.
  *     diam = searchPixelRadius * 2 + 1
  *     inds = np.indices([diam,diam]) - searchPixelRadius             # <<<<<<<<<<<<<<
  *     distTmp = np.sqrt((inds ** 2).sum(0))
  *     npTmpTable = ((inds.T).reshape(diam**2, 2))
  */
-  __pyx_t_2 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 67; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_2 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 64; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_indices); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 67; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_indices); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 64; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = PyList_New(2); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 67; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_2 = PyList_New(2); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 64; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_INCREF(__pyx_v_diam);
   PyList_SET_ITEM(__pyx_t_2, 0, __pyx_v_diam);
@@ -1617,48 +1608,48 @@ static PyObject *__pyx_f_19Cython_Raster_Funcs_17CoastlineMatching_matchToCoastl
     }
   }
   if (!__pyx_t_4) {
-    __pyx_t_1 = __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_t_2); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 67; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_1 = __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_t_2); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 64; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
     __Pyx_GOTREF(__pyx_t_1);
   } else {
-    __pyx_t_5 = PyTuple_New(1+1); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 67; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_5 = PyTuple_New(1+1); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 64; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_5);
     PyTuple_SET_ITEM(__pyx_t_5, 0, __pyx_t_4); __Pyx_GIVEREF(__pyx_t_4); __pyx_t_4 = NULL;
     PyTuple_SET_ITEM(__pyx_t_5, 0+1, __pyx_t_2);
     __Pyx_GIVEREF(__pyx_t_2);
     __pyx_t_2 = 0;
-    __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_t_5, NULL); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 67; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_t_5, NULL); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 64; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
   }
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  __pyx_t_3 = __Pyx_PyInt_From_int(__pyx_v_searchPixelRadius); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 67; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_3 = __Pyx_PyInt_From_int(__pyx_v_searchPixelRadius); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 64; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_5 = PyNumber_Subtract(__pyx_t_1, __pyx_t_3); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 67; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_5 = PyNumber_Subtract(__pyx_t_1, __pyx_t_3); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 64; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_5);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __pyx_v_inds = __pyx_t_5;
   __pyx_t_5 = 0;
 
-  /* "Cython_Raster_Funcs\CoastlineMatching.pyx":68
+  /* "Cython_Raster_Funcs\CoastlineMatching.pyx":65
  *     diam = searchPixelRadius * 2 + 1
  *     inds = np.indices([diam,diam]) - searchPixelRadius
  *     distTmp = np.sqrt((inds ** 2).sum(0))             # <<<<<<<<<<<<<<
  *     npTmpTable = ((inds.T).reshape(diam**2, 2))
- *     npTmpTable = np.append(npTmpTable, distTmp.ravel()[:,None],axis=1)
+ *     npTmpTable = np.append(npTmpTable, distTmp.ravel()[:,None], axis=1)
  */
-  __pyx_t_3 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 68; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_3 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 65; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_sqrt); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 68; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_sqrt); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 65; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  __pyx_t_3 = PyNumber_Power(__pyx_v_inds, __pyx_int_2, Py_None); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 68; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_3 = PyNumber_Power(__pyx_v_inds, __pyx_int_2, Py_None); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 65; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_sum); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 68; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_sum); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 65; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  __pyx_t_3 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_tuple_, NULL); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 68; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_3 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_tuple_, NULL); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 65; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __pyx_t_2 = NULL;
@@ -1672,17 +1663,17 @@ static PyObject *__pyx_f_19Cython_Raster_Funcs_17CoastlineMatching_matchToCoastl
     }
   }
   if (!__pyx_t_2) {
-    __pyx_t_5 = __Pyx_PyObject_CallOneArg(__pyx_t_1, __pyx_t_3); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 68; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_5 = __Pyx_PyObject_CallOneArg(__pyx_t_1, __pyx_t_3); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 65; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
     __Pyx_GOTREF(__pyx_t_5);
   } else {
-    __pyx_t_4 = PyTuple_New(1+1); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 68; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_4 = PyTuple_New(1+1); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 65; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_4);
     PyTuple_SET_ITEM(__pyx_t_4, 0, __pyx_t_2); __Pyx_GIVEREF(__pyx_t_2); __pyx_t_2 = NULL;
     PyTuple_SET_ITEM(__pyx_t_4, 0+1, __pyx_t_3);
     __Pyx_GIVEREF(__pyx_t_3);
     __pyx_t_3 = 0;
-    __pyx_t_5 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_t_4, NULL); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 68; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_5 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_t_4, NULL); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 65; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_5);
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   }
@@ -1690,19 +1681,19 @@ static PyObject *__pyx_f_19Cython_Raster_Funcs_17CoastlineMatching_matchToCoastl
   __pyx_v_distTmp = __pyx_t_5;
   __pyx_t_5 = 0;
 
-  /* "Cython_Raster_Funcs\CoastlineMatching.pyx":69
+  /* "Cython_Raster_Funcs\CoastlineMatching.pyx":66
  *     inds = np.indices([diam,diam]) - searchPixelRadius
  *     distTmp = np.sqrt((inds ** 2).sum(0))
  *     npTmpTable = ((inds.T).reshape(diam**2, 2))             # <<<<<<<<<<<<<<
- *     npTmpTable = np.append(npTmpTable, distTmp.ravel()[:,None],axis=1)
+ *     npTmpTable = np.append(npTmpTable, distTmp.ravel()[:,None], axis=1)
  *     # sort the table by distance then x then y (the arguments are last-sort-first)
  */
-  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_inds, __pyx_n_s_T); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 69; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_inds, __pyx_n_s_T); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 66; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_reshape); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 69; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_reshape); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 66; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_1 = PyNumber_Power(__pyx_v_diam, __pyx_int_2, Py_None); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 69; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = PyNumber_Power(__pyx_v_diam, __pyx_int_2, Py_None); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 66; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_t_3 = NULL;
   __pyx_t_6 = 0;
@@ -1716,7 +1707,7 @@ static PyObject *__pyx_f_19Cython_Raster_Funcs_17CoastlineMatching_matchToCoastl
       __pyx_t_6 = 1;
     }
   }
-  __pyx_t_2 = PyTuple_New(2+__pyx_t_6); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 69; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_2 = PyTuple_New(2+__pyx_t_6); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 66; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_2);
   if (__pyx_t_3) {
     PyTuple_SET_ITEM(__pyx_t_2, 0, __pyx_t_3); __Pyx_GIVEREF(__pyx_t_3); __pyx_t_3 = NULL;
@@ -1727,26 +1718,26 @@ static PyObject *__pyx_f_19Cython_Raster_Funcs_17CoastlineMatching_matchToCoastl
   PyTuple_SET_ITEM(__pyx_t_2, 1+__pyx_t_6, __pyx_int_2);
   __Pyx_GIVEREF(__pyx_int_2);
   __pyx_t_1 = 0;
-  __pyx_t_5 = __Pyx_PyObject_Call(__pyx_t_4, __pyx_t_2, NULL); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 69; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_5 = __Pyx_PyObject_Call(__pyx_t_4, __pyx_t_2, NULL); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 66; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_5);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   __pyx_v_npTmpTable = __pyx_t_5;
   __pyx_t_5 = 0;
 
-  /* "Cython_Raster_Funcs\CoastlineMatching.pyx":70
+  /* "Cython_Raster_Funcs\CoastlineMatching.pyx":67
  *     distTmp = np.sqrt((inds ** 2).sum(0))
  *     npTmpTable = ((inds.T).reshape(diam**2, 2))
- *     npTmpTable = np.append(npTmpTable, distTmp.ravel()[:,None],axis=1)             # <<<<<<<<<<<<<<
+ *     npTmpTable = np.append(npTmpTable, distTmp.ravel()[:,None], axis=1)             # <<<<<<<<<<<<<<
  *     # sort the table by distance then x then y (the arguments are last-sort-first)
- *     order = np.lexsort((npTmpTable[:,1],npTmpTable[:,0],npTmpTable[:,2]))
+ *     order = np.lexsort((npTmpTable[:,1], npTmpTable[:,0], npTmpTable[:,2]))
  */
-  __pyx_t_5 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 70; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_5 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 67; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_5);
-  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_5, __pyx_n_s_append); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 70; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_5, __pyx_n_s_append); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 67; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_distTmp, __pyx_n_s_ravel); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 70; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_distTmp, __pyx_n_s_ravel); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 67; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_2);
   __pyx_t_1 = NULL;
   if (CYTHON_COMPILING_IN_CPYTHON && likely(PyMethod_Check(__pyx_t_2))) {
@@ -1759,17 +1750,17 @@ static PyObject *__pyx_f_19Cython_Raster_Funcs_17CoastlineMatching_matchToCoastl
     }
   }
   if (__pyx_t_1) {
-    __pyx_t_5 = __Pyx_PyObject_CallOneArg(__pyx_t_2, __pyx_t_1); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 70; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_5 = __Pyx_PyObject_CallOneArg(__pyx_t_2, __pyx_t_1); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 67; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   } else {
-    __pyx_t_5 = __Pyx_PyObject_CallNoArg(__pyx_t_2); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 70; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_5 = __Pyx_PyObject_CallNoArg(__pyx_t_2); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 67; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   }
   __Pyx_GOTREF(__pyx_t_5);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = PyObject_GetItem(__pyx_t_5, __pyx_tuple__3); if (unlikely(__pyx_t_2 == NULL)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 70; __pyx_clineno = __LINE__; goto __pyx_L1_error;};
+  __pyx_t_2 = PyObject_GetItem(__pyx_t_5, __pyx_tuple__3); if (unlikely(__pyx_t_2 == NULL)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 67; __pyx_clineno = __LINE__; goto __pyx_L1_error;};
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-  __pyx_t_5 = PyTuple_New(2); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 70; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_5 = PyTuple_New(2); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 67; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_5);
   __Pyx_INCREF(__pyx_v_npTmpTable);
   PyTuple_SET_ITEM(__pyx_t_5, 0, __pyx_v_npTmpTable);
@@ -1777,10 +1768,10 @@ static PyObject *__pyx_f_19Cython_Raster_Funcs_17CoastlineMatching_matchToCoastl
   PyTuple_SET_ITEM(__pyx_t_5, 1, __pyx_t_2);
   __Pyx_GIVEREF(__pyx_t_2);
   __pyx_t_2 = 0;
-  __pyx_t_2 = PyDict_New(); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 70; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_2 = PyDict_New(); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 67; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_2);
-  if (PyDict_SetItem(__pyx_t_2, __pyx_n_s_axis, __pyx_int_1) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 70; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_4, __pyx_t_5, __pyx_t_2); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 70; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (PyDict_SetItem(__pyx_t_2, __pyx_n_s_axis, __pyx_int_1) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 67; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_4, __pyx_t_5, __pyx_t_2); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 67; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
@@ -1788,25 +1779,25 @@ static PyObject *__pyx_f_19Cython_Raster_Funcs_17CoastlineMatching_matchToCoastl
   __Pyx_DECREF_SET(__pyx_v_npTmpTable, __pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "Cython_Raster_Funcs\CoastlineMatching.pyx":72
- *     npTmpTable = np.append(npTmpTable, distTmp.ravel()[:,None],axis=1)
+  /* "Cython_Raster_Funcs\CoastlineMatching.pyx":69
+ *     npTmpTable = np.append(npTmpTable, distTmp.ravel()[:,None], axis=1)
  *     # sort the table by distance then x then y (the arguments are last-sort-first)
- *     order = np.lexsort((npTmpTable[:,1],npTmpTable[:,0],npTmpTable[:,2]))             # <<<<<<<<<<<<<<
- *     npTmpTable = np.take(npTmpTable,order,axis=0)
+ *     order = np.lexsort((npTmpTable[:,1], npTmpTable[:,0], npTmpTable[:,2]))             # <<<<<<<<<<<<<<
  * 
+ *     # npTmpTable has shape ((radius*2+1)**2, 3) and represents the offset coordinates of all cells in
  */
-  __pyx_t_2 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 72; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_2 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 69; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_lexsort); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 72; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_lexsort); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 69; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_5);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = PyObject_GetItem(__pyx_v_npTmpTable, __pyx_tuple__5); if (unlikely(__pyx_t_2 == NULL)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 72; __pyx_clineno = __LINE__; goto __pyx_L1_error;};
+  __pyx_t_2 = PyObject_GetItem(__pyx_v_npTmpTable, __pyx_tuple__5); if (unlikely(__pyx_t_2 == NULL)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 69; __pyx_clineno = __LINE__; goto __pyx_L1_error;};
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_4 = PyObject_GetItem(__pyx_v_npTmpTable, __pyx_tuple__7); if (unlikely(__pyx_t_4 == NULL)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 72; __pyx_clineno = __LINE__; goto __pyx_L1_error;};
+  __pyx_t_4 = PyObject_GetItem(__pyx_v_npTmpTable, __pyx_tuple__7); if (unlikely(__pyx_t_4 == NULL)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 69; __pyx_clineno = __LINE__; goto __pyx_L1_error;};
   __Pyx_GOTREF(__pyx_t_4);
-  __pyx_t_3 = PyObject_GetItem(__pyx_v_npTmpTable, __pyx_tuple__9); if (unlikely(__pyx_t_3 == NULL)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 72; __pyx_clineno = __LINE__; goto __pyx_L1_error;};
+  __pyx_t_3 = PyObject_GetItem(__pyx_v_npTmpTable, __pyx_tuple__9); if (unlikely(__pyx_t_3 == NULL)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 69; __pyx_clineno = __LINE__; goto __pyx_L1_error;};
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_7 = PyTuple_New(3); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 72; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_7 = PyTuple_New(3); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 69; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_7);
   PyTuple_SET_ITEM(__pyx_t_7, 0, __pyx_t_2);
   __Pyx_GIVEREF(__pyx_t_2);
@@ -1828,17 +1819,17 @@ static PyObject *__pyx_f_19Cython_Raster_Funcs_17CoastlineMatching_matchToCoastl
     }
   }
   if (!__pyx_t_3) {
-    __pyx_t_1 = __Pyx_PyObject_CallOneArg(__pyx_t_5, __pyx_t_7); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 72; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_1 = __Pyx_PyObject_CallOneArg(__pyx_t_5, __pyx_t_7); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 69; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
     __Pyx_GOTREF(__pyx_t_1);
   } else {
-    __pyx_t_4 = PyTuple_New(1+1); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 72; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_4 = PyTuple_New(1+1); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 69; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_4);
     PyTuple_SET_ITEM(__pyx_t_4, 0, __pyx_t_3); __Pyx_GIVEREF(__pyx_t_3); __pyx_t_3 = NULL;
     PyTuple_SET_ITEM(__pyx_t_4, 0+1, __pyx_t_7);
     __Pyx_GIVEREF(__pyx_t_7);
     __pyx_t_7 = 0;
-    __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_5, __pyx_t_4, NULL); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 72; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_5, __pyx_t_4, NULL); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 69; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   }
@@ -1846,19 +1837,19 @@ static PyObject *__pyx_f_19Cython_Raster_Funcs_17CoastlineMatching_matchToCoastl
   __pyx_v_order = __pyx_t_1;
   __pyx_t_1 = 0;
 
-  /* "Cython_Raster_Funcs\CoastlineMatching.pyx":73
- *     # sort the table by distance then x then y (the arguments are last-sort-first)
- *     order = np.lexsort((npTmpTable[:,1],npTmpTable[:,0],npTmpTable[:,2]))
+  /* "Cython_Raster_Funcs\CoastlineMatching.pyx":75
+ *     # npTmpTable[:,0] is x-offsets, npTmpTable[:,1] is y-offsets,
+ *     # npTmpTable[:,2] is distance.
  *     npTmpTable = np.take(npTmpTable,order,axis=0)             # <<<<<<<<<<<<<<
  * 
- *     # transfer to a C-side object transposed to have three rows and many columns and in
+ *     # Transpose this into an array in C-contiguous layout and with three rows and many columns,
  */
-  __pyx_t_1 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 73; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 75; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_take); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 73; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_take); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 75; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_5);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_1 = PyTuple_New(2); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 73; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = PyTuple_New(2); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 75; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_INCREF(__pyx_v_npTmpTable);
   PyTuple_SET_ITEM(__pyx_t_1, 0, __pyx_v_npTmpTable);
@@ -1866,10 +1857,10 @@ static PyObject *__pyx_f_19Cython_Raster_Funcs_17CoastlineMatching_matchToCoastl
   __Pyx_INCREF(__pyx_v_order);
   PyTuple_SET_ITEM(__pyx_t_1, 1, __pyx_v_order);
   __Pyx_GIVEREF(__pyx_v_order);
-  __pyx_t_4 = PyDict_New(); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 73; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_4 = PyDict_New(); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 75; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_4);
-  if (PyDict_SetItem(__pyx_t_4, __pyx_n_s_axis, __pyx_int_0) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 73; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __pyx_t_7 = __Pyx_PyObject_Call(__pyx_t_5, __pyx_t_1, __pyx_t_4); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 73; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (PyDict_SetItem(__pyx_t_4, __pyx_n_s_axis, __pyx_int_0) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 75; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_7 = __Pyx_PyObject_Call(__pyx_t_5, __pyx_t_1, __pyx_t_4); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 75; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_7);
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
@@ -1877,40 +1868,40 @@ static PyObject *__pyx_f_19Cython_Raster_Funcs_17CoastlineMatching_matchToCoastl
   __Pyx_DECREF_SET(__pyx_v_npTmpTable, __pyx_t_7);
   __pyx_t_7 = 0;
 
-  /* "Cython_Raster_Funcs\CoastlineMatching.pyx":77
- *     # transfer to a C-side object transposed to have three rows and many columns and in
- *     # C-contiguous layout, so that cython can access individual nbr coord sets more quickly
+  /* "Cython_Raster_Funcs\CoastlineMatching.pyx":81
+ *     # Only transfer the values relating to the cells within the desired radius (cut the corners
+ *     # off the square to make a circle).
  *     nbrTable = np.copy((npTmpTable[npTmpTable[:,2] <= searchPixelRadius]).T, order='c')             # <<<<<<<<<<<<<<
- *     # cast the columns that will be used as array indices to int type once here, rather
- *     # than casting repeatedly inside the inner loop
+ * 
+ *     # transfer this numpy array to  to a native C object (memoryview)
  */
-  __pyx_t_7 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 77; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_7 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 81; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_7);
-  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_7, __pyx_n_s_copy); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 77; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_7, __pyx_n_s_copy); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 81; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
-  __pyx_t_7 = PyObject_GetItem(__pyx_v_npTmpTable, __pyx_tuple__11); if (unlikely(__pyx_t_7 == NULL)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 77; __pyx_clineno = __LINE__; goto __pyx_L1_error;};
+  __pyx_t_7 = PyObject_GetItem(__pyx_v_npTmpTable, __pyx_tuple__11); if (unlikely(__pyx_t_7 == NULL)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 81; __pyx_clineno = __LINE__; goto __pyx_L1_error;};
   __Pyx_GOTREF(__pyx_t_7);
-  __pyx_t_1 = __Pyx_PyInt_From_int(__pyx_v_searchPixelRadius); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 77; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __Pyx_PyInt_From_int(__pyx_v_searchPixelRadius); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 81; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_5 = PyObject_RichCompare(__pyx_t_7, __pyx_t_1, Py_LE); __Pyx_XGOTREF(__pyx_t_5); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 77; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_5 = PyObject_RichCompare(__pyx_t_7, __pyx_t_1, Py_LE); __Pyx_XGOTREF(__pyx_t_5); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 81; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_1 = PyObject_GetItem(__pyx_v_npTmpTable, __pyx_t_5); if (unlikely(__pyx_t_1 == NULL)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 77; __pyx_clineno = __LINE__; goto __pyx_L1_error;};
+  __pyx_t_1 = PyObject_GetItem(__pyx_v_npTmpTable, __pyx_t_5); if (unlikely(__pyx_t_1 == NULL)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 81; __pyx_clineno = __LINE__; goto __pyx_L1_error;};
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-  __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_T); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 77; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_T); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 81; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_5);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_1 = PyTuple_New(1); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 77; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = PyTuple_New(1); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 81; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
   PyTuple_SET_ITEM(__pyx_t_1, 0, __pyx_t_5);
   __Pyx_GIVEREF(__pyx_t_5);
   __pyx_t_5 = 0;
-  __pyx_t_5 = PyDict_New(); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 77; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_5 = PyDict_New(); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 81; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_5);
-  if (PyDict_SetItem(__pyx_t_5, __pyx_n_s_order, __pyx_n_s_c) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 77; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __pyx_t_7 = __Pyx_PyObject_Call(__pyx_t_4, __pyx_t_1, __pyx_t_5); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 77; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (PyDict_SetItem(__pyx_t_5, __pyx_n_s_order, __pyx_n_s_c) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 81; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_7 = __Pyx_PyObject_Call(__pyx_t_4, __pyx_t_1, __pyx_t_5); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 81; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_7);
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
@@ -1918,19 +1909,19 @@ static PyObject *__pyx_f_19Cython_Raster_Funcs_17CoastlineMatching_matchToCoastl
   __pyx_v_nbrTable = __pyx_t_7;
   __pyx_t_7 = 0;
 
-  /* "Cython_Raster_Funcs\CoastlineMatching.pyx":80
- *     # cast the columns that will be used as array indices to int type once here, rather
- *     # than casting repeatedly inside the inner loop
+  /* "Cython_Raster_Funcs\CoastlineMatching.pyx":87
+ *     # to int type once here. This saves a great deal of time compared to
+ *     # casting repeatedly inside the inner loop
  *     nbrIntCoords = np.asarray(nbrTable[0:2,:]).astype(np.int32)             # <<<<<<<<<<<<<<
+ *     _MAX_NEIGHBOURS_TO_CHECK = nbrIntCoords.shape[1]
  * 
- *     filledCells = 0
  */
-  __pyx_t_1 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 80; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 87; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_asarray); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 80; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_asarray); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 87; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_1 = PyObject_GetItem(__pyx_v_nbrTable, __pyx_tuple__14); if (unlikely(__pyx_t_1 == NULL)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 80; __pyx_clineno = __LINE__; goto __pyx_L1_error;};
+  __pyx_t_1 = PyObject_GetItem(__pyx_v_nbrTable, __pyx_tuple__14); if (unlikely(__pyx_t_1 == NULL)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 87; __pyx_clineno = __LINE__; goto __pyx_L1_error;};
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_t_3 = NULL;
   if (CYTHON_COMPILING_IN_CPYTHON && unlikely(PyMethod_Check(__pyx_t_4))) {
@@ -1943,27 +1934,27 @@ static PyObject *__pyx_f_19Cython_Raster_Funcs_17CoastlineMatching_matchToCoastl
     }
   }
   if (!__pyx_t_3) {
-    __pyx_t_5 = __Pyx_PyObject_CallOneArg(__pyx_t_4, __pyx_t_1); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 80; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_5 = __Pyx_PyObject_CallOneArg(__pyx_t_4, __pyx_t_1); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 87; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
     __Pyx_GOTREF(__pyx_t_5);
   } else {
-    __pyx_t_2 = PyTuple_New(1+1); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 80; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_2 = PyTuple_New(1+1); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 87; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_2);
     PyTuple_SET_ITEM(__pyx_t_2, 0, __pyx_t_3); __Pyx_GIVEREF(__pyx_t_3); __pyx_t_3 = NULL;
     PyTuple_SET_ITEM(__pyx_t_2, 0+1, __pyx_t_1);
     __Pyx_GIVEREF(__pyx_t_1);
     __pyx_t_1 = 0;
-    __pyx_t_5 = __Pyx_PyObject_Call(__pyx_t_4, __pyx_t_2, NULL); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 80; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_5 = __Pyx_PyObject_Call(__pyx_t_4, __pyx_t_2, NULL); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 87; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_5);
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   }
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_5, __pyx_n_s_astype); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 80; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_5, __pyx_n_s_astype); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 87; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-  __pyx_t_5 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 80; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_5 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 87; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_5);
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_5, __pyx_n_s_int32); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 80; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_5, __pyx_n_s_int32); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 87; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
   __pyx_t_5 = NULL;
@@ -1977,30 +1968,39 @@ static PyObject *__pyx_f_19Cython_Raster_Funcs_17CoastlineMatching_matchToCoastl
     }
   }
   if (!__pyx_t_5) {
-    __pyx_t_7 = __Pyx_PyObject_CallOneArg(__pyx_t_4, __pyx_t_2); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 80; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_7 = __Pyx_PyObject_CallOneArg(__pyx_t_4, __pyx_t_2); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 87; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
     __Pyx_GOTREF(__pyx_t_7);
   } else {
-    __pyx_t_1 = PyTuple_New(1+1); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 80; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_1 = PyTuple_New(1+1); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 87; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_1);
     PyTuple_SET_ITEM(__pyx_t_1, 0, __pyx_t_5); __Pyx_GIVEREF(__pyx_t_5); __pyx_t_5 = NULL;
     PyTuple_SET_ITEM(__pyx_t_1, 0+1, __pyx_t_2);
     __Pyx_GIVEREF(__pyx_t_2);
     __pyx_t_2 = 0;
-    __pyx_t_7 = __Pyx_PyObject_Call(__pyx_t_4, __pyx_t_1, NULL); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 80; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_7 = __Pyx_PyObject_Call(__pyx_t_4, __pyx_t_1, NULL); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 87; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_7);
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   }
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   __pyx_t_8 = __Pyx_PyObject_to_MemoryviewSlice_d_dc_int(__pyx_t_7);
-  if (unlikely(!__pyx_t_8.memview)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 80; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (unlikely(!__pyx_t_8.memview)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 87; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
   __pyx_v_nbrIntCoords = __pyx_t_8;
   __pyx_t_8.memview = NULL;
   __pyx_t_8.data = NULL;
 
-  /* "Cython_Raster_Funcs\CoastlineMatching.pyx":82
+  /* "Cython_Raster_Funcs\CoastlineMatching.pyx":88
+ *     # casting repeatedly inside the inner loop
  *     nbrIntCoords = np.asarray(nbrTable[0:2,:]).astype(np.int32)
+ *     _MAX_NEIGHBOURS_TO_CHECK = nbrIntCoords.shape[1]             # <<<<<<<<<<<<<<
+ * 
+ *     filledCells = 0
+ */
+  __pyx_v__MAX_NEIGHBOURS_TO_CHECK = (__pyx_v_nbrIntCoords.shape[1]);
+
+  /* "Cython_Raster_Funcs\CoastlineMatching.pyx":90
+ *     _MAX_NEIGHBOURS_TO_CHECK = nbrIntCoords.shape[1]
  * 
  *     filledCells = 0             # <<<<<<<<<<<<<<
  *     failedFills = 0
@@ -2008,7 +2008,7 @@ static PyObject *__pyx_f_19Cython_Raster_Funcs_17CoastlineMatching_matchToCoastl
  */
   __pyx_v_filledCells = 0;
 
-  /* "Cython_Raster_Funcs\CoastlineMatching.pyx":83
+  /* "Cython_Raster_Funcs\CoastlineMatching.pyx":91
  * 
  *     filledCells = 0
  *     failedFills = 0             # <<<<<<<<<<<<<<
@@ -2017,7 +2017,7 @@ static PyObject *__pyx_f_19Cython_Raster_Funcs_17CoastlineMatching_matchToCoastl
  */
   __pyx_v_failedFills = 0;
 
-  /* "Cython_Raster_Funcs\CoastlineMatching.pyx":84
+  /* "Cython_Raster_Funcs\CoastlineMatching.pyx":92
  *     filledCells = 0
  *     failedFills = 0
  *     clippedCells = 0             # <<<<<<<<<<<<<<
@@ -2026,19 +2026,19 @@ static PyObject *__pyx_f_19Cython_Raster_Funcs_17CoastlineMatching_matchToCoastl
  */
   __pyx_v_clippedCells = 0;
 
-  /* "Cython_Raster_Funcs\CoastlineMatching.pyx":86
+  /* "Cython_Raster_Funcs\CoastlineMatching.pyx":94
  *     clippedCells = 0
  * 
  *     failedLocs = np.zeros_like(landMask)             # <<<<<<<<<<<<<<
  * 
  *     # run the clip step, if required
  */
-  __pyx_t_4 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 86; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_4 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 94; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_4);
-  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_n_s_zeros_like); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 86; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_n_s_zeros_like); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 94; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  __pyx_t_4 = __pyx_memoryview_fromslice(__pyx_v_landMask, 2, (PyObject *(*)(char *)) __pyx_memview_get_char, (int (*)(char *, PyObject *)) __pyx_memview_set_char, 0);; if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 86; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_4 = __pyx_memoryview_fromslice(__pyx_v_landMask, 2, (PyObject *(*)(char *)) __pyx_memview_get_char, (int (*)(char *, PyObject *)) __pyx_memview_set_char, 0);; if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 94; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_4);
   __pyx_t_2 = NULL;
   if (CYTHON_COMPILING_IN_CPYTHON && unlikely(PyMethod_Check(__pyx_t_1))) {
@@ -2051,29 +2051,29 @@ static PyObject *__pyx_f_19Cython_Raster_Funcs_17CoastlineMatching_matchToCoastl
     }
   }
   if (!__pyx_t_2) {
-    __pyx_t_7 = __Pyx_PyObject_CallOneArg(__pyx_t_1, __pyx_t_4); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 86; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_7 = __Pyx_PyObject_CallOneArg(__pyx_t_1, __pyx_t_4); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 94; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
     __Pyx_GOTREF(__pyx_t_7);
   } else {
-    __pyx_t_5 = PyTuple_New(1+1); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 86; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_5 = PyTuple_New(1+1); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 94; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_5);
     PyTuple_SET_ITEM(__pyx_t_5, 0, __pyx_t_2); __Pyx_GIVEREF(__pyx_t_2); __pyx_t_2 = NULL;
     PyTuple_SET_ITEM(__pyx_t_5, 0+1, __pyx_t_4);
     __Pyx_GIVEREF(__pyx_t_4);
     __pyx_t_4 = 0;
-    __pyx_t_7 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_t_5, NULL); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 86; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_7 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_t_5, NULL); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 94; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_7);
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
   }
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_t_9 = __Pyx_PyObject_to_MemoryviewSlice_d_dc_char(__pyx_t_7);
-  if (unlikely(!__pyx_t_9.memview)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 86; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (unlikely(!__pyx_t_9.memview)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 94; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
   __pyx_v_failedLocs = __pyx_t_9;
   __pyx_t_9.memview = NULL;
   __pyx_t_9.data = NULL;
 
-  /* "Cython_Raster_Funcs\CoastlineMatching.pyx":89
+  /* "Cython_Raster_Funcs\CoastlineMatching.pyx":97
  * 
  *     # run the clip step, if required
  *     if applyClip:             # <<<<<<<<<<<<<<
@@ -2083,7 +2083,7 @@ static PyObject *__pyx_f_19Cython_Raster_Funcs_17CoastlineMatching_matchToCoastl
   __pyx_t_10 = (__pyx_v_applyClip != 0);
   if (__pyx_t_10) {
 
-    /* "Cython_Raster_Funcs\CoastlineMatching.pyx":90
+    /* "Cython_Raster_Funcs\CoastlineMatching.pyx":98
  *     # run the clip step, if required
  *     if applyClip:
  *         for yIn in range(yShapeIn):             # <<<<<<<<<<<<<<
@@ -2094,7 +2094,7 @@ static PyObject *__pyx_f_19Cython_Raster_Funcs_17CoastlineMatching_matchToCoastl
     for (__pyx_t_11 = 0; __pyx_t_11 < __pyx_t_6; __pyx_t_11+=1) {
       __pyx_v_yIn = __pyx_t_11;
 
-      /* "Cython_Raster_Funcs\CoastlineMatching.pyx":91
+      /* "Cython_Raster_Funcs\CoastlineMatching.pyx":99
  *     if applyClip:
  *         for yIn in range(yShapeIn):
  *             for xIn in range(xShapeIn):             # <<<<<<<<<<<<<<
@@ -2105,7 +2105,7 @@ static PyObject *__pyx_f_19Cython_Raster_Funcs_17CoastlineMatching_matchToCoastl
       for (__pyx_t_13 = 0; __pyx_t_13 < __pyx_t_12; __pyx_t_13+=1) {
         __pyx_v_xIn = __pyx_t_13;
 
-        /* "Cython_Raster_Funcs\CoastlineMatching.pyx":92
+        /* "Cython_Raster_Funcs\CoastlineMatching.pyx":100
  *         for yIn in range(yShapeIn):
  *             for xIn in range(xShapeIn):
  *                 if landMask[yIn, xIn] == 0:             # <<<<<<<<<<<<<<
@@ -2125,12 +2125,12 @@ static PyObject *__pyx_f_19Cython_Raster_Funcs_17CoastlineMatching_matchToCoastl
         } else if (unlikely(__pyx_t_15 >= __pyx_v_landMask.shape[1])) __pyx_t_16 = 1;
         if (unlikely(__pyx_t_16 != -1)) {
           __Pyx_RaiseBufferIndexError(__pyx_t_16);
-          {__pyx_filename = __pyx_f[0]; __pyx_lineno = 92; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+          {__pyx_filename = __pyx_f[0]; __pyx_lineno = 100; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
         }
         __pyx_t_10 = (((*((char *) ( /* dim=1 */ ((char *) (((char *) ( /* dim=0 */ (__pyx_v_landMask.data + __pyx_t_14 * __pyx_v_landMask.strides[0]) )) + __pyx_t_15)) ))) == 0) != 0);
         if (__pyx_t_10) {
 
-          /* "Cython_Raster_Funcs\CoastlineMatching.pyx":93
+          /* "Cython_Raster_Funcs\CoastlineMatching.pyx":101
  *             for xIn in range(xShapeIn):
  *                 if landMask[yIn, xIn] == 0:
  *                     if data[yIn, xIn] != _NDV:             # <<<<<<<<<<<<<<
@@ -2150,12 +2150,12 @@ static PyObject *__pyx_f_19Cython_Raster_Funcs_17CoastlineMatching_matchToCoastl
           } else if (unlikely(__pyx_t_18 >= __pyx_v_data.shape[1])) __pyx_t_16 = 1;
           if (unlikely(__pyx_t_16 != -1)) {
             __Pyx_RaiseBufferIndexError(__pyx_t_16);
-            {__pyx_filename = __pyx_f[0]; __pyx_lineno = 93; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+            {__pyx_filename = __pyx_f[0]; __pyx_lineno = 101; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
           }
           __pyx_t_10 = (((*((PY_LONG_LONG *) ( /* dim=1 */ ((char *) (((PY_LONG_LONG *) ( /* dim=0 */ (__pyx_v_data.data + __pyx_t_17 * __pyx_v_data.strides[0]) )) + __pyx_t_18)) ))) != __pyx_v__NDV) != 0);
           if (__pyx_t_10) {
 
-            /* "Cython_Raster_Funcs\CoastlineMatching.pyx":94
+            /* "Cython_Raster_Funcs\CoastlineMatching.pyx":102
  *                 if landMask[yIn, xIn] == 0:
  *                     if data[yIn, xIn] != _NDV:
  *                         clippedCells += 1             # <<<<<<<<<<<<<<
@@ -2164,7 +2164,7 @@ static PyObject *__pyx_f_19Cython_Raster_Funcs_17CoastlineMatching_matchToCoastl
  */
             __pyx_v_clippedCells = (__pyx_v_clippedCells + 1);
 
-            /* "Cython_Raster_Funcs\CoastlineMatching.pyx":95
+            /* "Cython_Raster_Funcs\CoastlineMatching.pyx":103
  *                     if data[yIn, xIn] != _NDV:
  *                         clippedCells += 1
  *                         data[yIn, xIn] = _NDV             # <<<<<<<<<<<<<<
@@ -2184,7 +2184,7 @@ static PyObject *__pyx_f_19Cython_Raster_Funcs_17CoastlineMatching_matchToCoastl
             } else if (unlikely(__pyx_t_20 >= __pyx_v_data.shape[1])) __pyx_t_16 = 1;
             if (unlikely(__pyx_t_16 != -1)) {
               __Pyx_RaiseBufferIndexError(__pyx_t_16);
-              {__pyx_filename = __pyx_f[0]; __pyx_lineno = 95; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+              {__pyx_filename = __pyx_f[0]; __pyx_lineno = 103; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
             }
             *((PY_LONG_LONG *) ( /* dim=1 */ ((char *) (((PY_LONG_LONG *) ( /* dim=0 */ (__pyx_v_data.data + __pyx_t_19 * __pyx_v_data.strides[0]) )) + __pyx_t_20)) )) = __pyx_v__NDV;
             goto __pyx_L9;
@@ -2199,7 +2199,7 @@ static PyObject *__pyx_f_19Cython_Raster_Funcs_17CoastlineMatching_matchToCoastl
   }
   __pyx_L3:;
 
-  /* "Cython_Raster_Funcs\CoastlineMatching.pyx":98
+  /* "Cython_Raster_Funcs\CoastlineMatching.pyx":106
  * 
  *     # run the spread-and-fill step, if required
  *     if applyFill:             # <<<<<<<<<<<<<<
@@ -2209,7 +2209,7 @@ static PyObject *__pyx_f_19Cython_Raster_Funcs_17CoastlineMatching_matchToCoastl
   __pyx_t_10 = (__pyx_v_applyFill != 0);
   if (__pyx_t_10) {
 
-    /* "Cython_Raster_Funcs\CoastlineMatching.pyx":99
+    /* "Cython_Raster_Funcs\CoastlineMatching.pyx":107
  *     # run the spread-and-fill step, if required
  *     if applyFill:
  *         for yIn in range(yShapeIn):             # <<<<<<<<<<<<<<
@@ -2220,7 +2220,7 @@ static PyObject *__pyx_f_19Cython_Raster_Funcs_17CoastlineMatching_matchToCoastl
     for (__pyx_t_11 = 0; __pyx_t_11 < __pyx_t_6; __pyx_t_11+=1) {
       __pyx_v_yIn = __pyx_t_11;
 
-      /* "Cython_Raster_Funcs\CoastlineMatching.pyx":100
+      /* "Cython_Raster_Funcs\CoastlineMatching.pyx":108
  *     if applyFill:
  *         for yIn in range(yShapeIn):
  *             for xIn in range(xShapeIn):             # <<<<<<<<<<<<<<
@@ -2231,7 +2231,7 @@ static PyObject *__pyx_f_19Cython_Raster_Funcs_17CoastlineMatching_matchToCoastl
       for (__pyx_t_13 = 0; __pyx_t_13 < __pyx_t_12; __pyx_t_13+=1) {
         __pyx_v_xIn = __pyx_t_13;
 
-        /* "Cython_Raster_Funcs\CoastlineMatching.pyx":101
+        /* "Cython_Raster_Funcs\CoastlineMatching.pyx":109
  *         for yIn in range(yShapeIn):
  *             for xIn in range(xShapeIn):
  *                 if landMask[yIn, xIn] == 0 or data[yIn, xIn] != _NDV:             # <<<<<<<<<<<<<<
@@ -2251,7 +2251,7 @@ static PyObject *__pyx_f_19Cython_Raster_Funcs_17CoastlineMatching_matchToCoastl
         } else if (unlikely(__pyx_t_22 >= __pyx_v_landMask.shape[1])) __pyx_t_16 = 1;
         if (unlikely(__pyx_t_16 != -1)) {
           __Pyx_RaiseBufferIndexError(__pyx_t_16);
-          {__pyx_filename = __pyx_f[0]; __pyx_lineno = 101; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+          {__pyx_filename = __pyx_f[0]; __pyx_lineno = 109; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
         }
         __pyx_t_23 = (((*((char *) ( /* dim=1 */ ((char *) (((char *) ( /* dim=0 */ (__pyx_v_landMask.data + __pyx_t_21 * __pyx_v_landMask.strides[0]) )) + __pyx_t_22)) ))) == 0) != 0);
         if (!__pyx_t_23) {
@@ -2272,14 +2272,14 @@ static PyObject *__pyx_f_19Cython_Raster_Funcs_17CoastlineMatching_matchToCoastl
         } else if (unlikely(__pyx_t_25 >= __pyx_v_data.shape[1])) __pyx_t_16 = 1;
         if (unlikely(__pyx_t_16 != -1)) {
           __Pyx_RaiseBufferIndexError(__pyx_t_16);
-          {__pyx_filename = __pyx_f[0]; __pyx_lineno = 101; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+          {__pyx_filename = __pyx_f[0]; __pyx_lineno = 109; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
         }
         __pyx_t_23 = (((*((PY_LONG_LONG *) ( /* dim=1 */ ((char *) (((PY_LONG_LONG *) ( /* dim=0 */ (__pyx_v_data.data + __pyx_t_24 * __pyx_v_data.strides[0]) )) + __pyx_t_25)) ))) != __pyx_v__NDV) != 0);
         __pyx_t_10 = __pyx_t_23;
         __pyx_L16_bool_binop_done:;
         if (__pyx_t_10) {
 
-          /* "Cython_Raster_Funcs\CoastlineMatching.pyx":105
+          /* "Cython_Raster_Funcs\CoastlineMatching.pyx":113
  *                     # data out of here was optionally done previously), or
  *                     # we are on land with good data
  *                     continue             # <<<<<<<<<<<<<<
@@ -2289,7 +2289,7 @@ static PyObject *__pyx_f_19Cython_Raster_Funcs_17CoastlineMatching_matchToCoastl
           goto __pyx_L13_continue;
         }
 
-        /* "Cython_Raster_Funcs\CoastlineMatching.pyx":107
+        /* "Cython_Raster_Funcs\CoastlineMatching.pyx":115
  *                     continue
  *                 # otherwise, we are on land but have a nodata pixel: we need to fill it
  *                 reallocatedOK = 0             # <<<<<<<<<<<<<<
@@ -2298,7 +2298,7 @@ static PyObject *__pyx_f_19Cython_Raster_Funcs_17CoastlineMatching_matchToCoastl
  */
         __pyx_v_reallocatedOK = 0;
 
-        /* "Cython_Raster_Funcs\CoastlineMatching.pyx":108
+        /* "Cython_Raster_Funcs\CoastlineMatching.pyx":116
  *                 # otherwise, we are on land but have a nodata pixel: we need to fill it
  *                 reallocatedOK = 0
  *                 reallocationCount_prv = 0             # <<<<<<<<<<<<<<
@@ -2307,7 +2307,7 @@ static PyObject *__pyx_f_19Cython_Raster_Funcs_17CoastlineMatching_matchToCoastl
  */
         __pyx_v_reallocationCount_prv = 0;
 
-        /* "Cython_Raster_Funcs\CoastlineMatching.pyx":109
+        /* "Cython_Raster_Funcs\CoastlineMatching.pyx":117
  *                 reallocatedOK = 0
  *                 reallocationCount_prv = 0
  *                 reallocationSum_prv = 0             # <<<<<<<<<<<<<<
@@ -2316,7 +2316,7 @@ static PyObject *__pyx_f_19Cython_Raster_Funcs_17CoastlineMatching_matchToCoastl
  */
         __pyx_v_reallocationSum_prv = 0;
 
-        /* "Cython_Raster_Funcs\CoastlineMatching.pyx":110
+        /* "Cython_Raster_Funcs\CoastlineMatching.pyx":118
  *                 reallocationCount_prv = 0
  *                 reallocationSum_prv = 0
  *                 for nbrIndex_prv in range(1, _MAX_NEIGHBOURS_TO_CHECK):             # <<<<<<<<<<<<<<
@@ -2327,7 +2327,7 @@ static PyObject *__pyx_f_19Cython_Raster_Funcs_17CoastlineMatching_matchToCoastl
         for (__pyx_t_26 = 1; __pyx_t_26 < __pyx_t_16; __pyx_t_26+=1) {
           __pyx_v_nbrIndex_prv = __pyx_t_26;
 
-          /* "Cython_Raster_Funcs\CoastlineMatching.pyx":111
+          /* "Cython_Raster_Funcs\CoastlineMatching.pyx":119
  *                 reallocationSum_prv = 0
  *                 for nbrIndex_prv in range(1, _MAX_NEIGHBOURS_TO_CHECK):
  *                     if reallocationCount_prv == useNearestNPixels:             # <<<<<<<<<<<<<<
@@ -2337,7 +2337,7 @@ static PyObject *__pyx_f_19Cython_Raster_Funcs_17CoastlineMatching_matchToCoastl
           __pyx_t_10 = ((__pyx_v_reallocationCount_prv == __pyx_v_useNearestNPixels) != 0);
           if (__pyx_t_10) {
 
-            /* "Cython_Raster_Funcs\CoastlineMatching.pyx":112
+            /* "Cython_Raster_Funcs\CoastlineMatching.pyx":120
  *                 for nbrIndex_prv in range(1, _MAX_NEIGHBOURS_TO_CHECK):
  *                     if reallocationCount_prv == useNearestNPixels:
  *                         break             # <<<<<<<<<<<<<<
@@ -2347,7 +2347,7 @@ static PyObject *__pyx_f_19Cython_Raster_Funcs_17CoastlineMatching_matchToCoastl
             goto __pyx_L19_break;
           }
 
-          /* "Cython_Raster_Funcs\CoastlineMatching.pyx":115
+          /* "Cython_Raster_Funcs\CoastlineMatching.pyx":123
  * 
  *                     # use int-type coords array to avoid cast op in tight loop: yes this does become significant
  *                     xNbr = xIn + nbrIntCoords[0, nbrIndex_prv]             # <<<<<<<<<<<<<<
@@ -2367,11 +2367,11 @@ static PyObject *__pyx_f_19Cython_Raster_Funcs_17CoastlineMatching_matchToCoastl
           } else if (unlikely(__pyx_t_28 >= __pyx_v_nbrIntCoords.shape[1])) __pyx_t_29 = 1;
           if (unlikely(__pyx_t_29 != -1)) {
             __Pyx_RaiseBufferIndexError(__pyx_t_29);
-            {__pyx_filename = __pyx_f[0]; __pyx_lineno = 115; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+            {__pyx_filename = __pyx_f[0]; __pyx_lineno = 123; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
           }
           __pyx_v_xNbr = (__pyx_v_xIn + (*((int *) ( /* dim=1 */ ((char *) (((int *) ( /* dim=0 */ (__pyx_v_nbrIntCoords.data + __pyx_t_27 * __pyx_v_nbrIntCoords.strides[0]) )) + __pyx_t_28)) ))));
 
-          /* "Cython_Raster_Funcs\CoastlineMatching.pyx":116
+          /* "Cython_Raster_Funcs\CoastlineMatching.pyx":124
  *                     # use int-type coords array to avoid cast op in tight loop: yes this does become significant
  *                     xNbr = xIn + nbrIntCoords[0, nbrIndex_prv]
  *                     yNbr = yIn + nbrIntCoords[1, nbrIndex_prv]             # <<<<<<<<<<<<<<
@@ -2391,11 +2391,11 @@ static PyObject *__pyx_f_19Cython_Raster_Funcs_17CoastlineMatching_matchToCoastl
           } else if (unlikely(__pyx_t_31 >= __pyx_v_nbrIntCoords.shape[1])) __pyx_t_29 = 1;
           if (unlikely(__pyx_t_29 != -1)) {
             __Pyx_RaiseBufferIndexError(__pyx_t_29);
-            {__pyx_filename = __pyx_f[0]; __pyx_lineno = 116; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+            {__pyx_filename = __pyx_f[0]; __pyx_lineno = 124; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
           }
           __pyx_v_yNbr = (__pyx_v_yIn + (*((int *) ( /* dim=1 */ ((char *) (((int *) ( /* dim=0 */ (__pyx_v_nbrIntCoords.data + __pyx_t_30 * __pyx_v_nbrIntCoords.strides[0]) )) + __pyx_t_31)) ))));
 
-          /* "Cython_Raster_Funcs\CoastlineMatching.pyx":117
+          /* "Cython_Raster_Funcs\CoastlineMatching.pyx":125
  *                     xNbr = xIn + nbrIntCoords[0, nbrIndex_prv]
  *                     yNbr = yIn + nbrIntCoords[1, nbrIndex_prv]
  *                     if (xNbr >= 0 and xNbr < xShapeIn and             # <<<<<<<<<<<<<<
@@ -2415,7 +2415,7 @@ static PyObject *__pyx_f_19Cython_Raster_Funcs_17CoastlineMatching_matchToCoastl
             goto __pyx_L22_bool_binop_done;
           }
 
-          /* "Cython_Raster_Funcs\CoastlineMatching.pyx":118
+          /* "Cython_Raster_Funcs\CoastlineMatching.pyx":126
  *                     yNbr = yIn + nbrIntCoords[1, nbrIndex_prv]
  *                     if (xNbr >= 0 and xNbr < xShapeIn and
  *                         yNbr >= 0 and yNbr < yShapeIn and             # <<<<<<<<<<<<<<
@@ -2435,7 +2435,7 @@ static PyObject *__pyx_f_19Cython_Raster_Funcs_17CoastlineMatching_matchToCoastl
             goto __pyx_L22_bool_binop_done;
           }
 
-          /* "Cython_Raster_Funcs\CoastlineMatching.pyx":119
+          /* "Cython_Raster_Funcs\CoastlineMatching.pyx":127
  *                     if (xNbr >= 0 and xNbr < xShapeIn and
  *                         yNbr >= 0 and yNbr < yShapeIn and
  *                         data[yNbr, xNbr] != _NDV):             # <<<<<<<<<<<<<<
@@ -2455,14 +2455,14 @@ static PyObject *__pyx_f_19Cython_Raster_Funcs_17CoastlineMatching_matchToCoastl
           } else if (unlikely(__pyx_t_33 >= __pyx_v_data.shape[1])) __pyx_t_29 = 1;
           if (unlikely(__pyx_t_29 != -1)) {
             __Pyx_RaiseBufferIndexError(__pyx_t_29);
-            {__pyx_filename = __pyx_f[0]; __pyx_lineno = 119; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+            {__pyx_filename = __pyx_f[0]; __pyx_lineno = 127; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
           }
           __pyx_t_23 = (((*((PY_LONG_LONG *) ( /* dim=1 */ ((char *) (((PY_LONG_LONG *) ( /* dim=0 */ (__pyx_v_data.data + __pyx_t_32 * __pyx_v_data.strides[0]) )) + __pyx_t_33)) ))) != __pyx_v__NDV) != 0);
           __pyx_t_10 = __pyx_t_23;
           __pyx_L22_bool_binop_done:;
           if (__pyx_t_10) {
 
-            /* "Cython_Raster_Funcs\CoastlineMatching.pyx":122
+            /* "Cython_Raster_Funcs\CoastlineMatching.pyx":130
  *                         # NB we allow a sea pixel with data to supply a fill value
  *                         # unless they have been clipped out previously
  *                         reallocationSum_prv += data[yNbr, xNbr]             # <<<<<<<<<<<<<<
@@ -2482,11 +2482,11 @@ static PyObject *__pyx_f_19Cython_Raster_Funcs_17CoastlineMatching_matchToCoastl
             } else if (unlikely(__pyx_t_35 >= __pyx_v_data.shape[1])) __pyx_t_29 = 1;
             if (unlikely(__pyx_t_29 != -1)) {
               __Pyx_RaiseBufferIndexError(__pyx_t_29);
-              {__pyx_filename = __pyx_f[0]; __pyx_lineno = 122; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+              {__pyx_filename = __pyx_f[0]; __pyx_lineno = 130; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
             }
             __pyx_v_reallocationSum_prv = (__pyx_v_reallocationSum_prv + (*((PY_LONG_LONG *) ( /* dim=1 */ ((char *) (((PY_LONG_LONG *) ( /* dim=0 */ (__pyx_v_data.data + __pyx_t_34 * __pyx_v_data.strides[0]) )) + __pyx_t_35)) ))));
 
-            /* "Cython_Raster_Funcs\CoastlineMatching.pyx":123
+            /* "Cython_Raster_Funcs\CoastlineMatching.pyx":131
  *                         # unless they have been clipped out previously
  *                         reallocationSum_prv += data[yNbr, xNbr]
  *                         reallocationCount_prv += 1             # <<<<<<<<<<<<<<
@@ -2500,7 +2500,7 @@ static PyObject *__pyx_f_19Cython_Raster_Funcs_17CoastlineMatching_matchToCoastl
         }
         __pyx_L19_break:;
 
-        /* "Cython_Raster_Funcs\CoastlineMatching.pyx":124
+        /* "Cython_Raster_Funcs\CoastlineMatching.pyx":132
  *                         reallocationSum_prv += data[yNbr, xNbr]
  *                         reallocationCount_prv += 1
  *                 if reallocationCount_prv > 0:             # <<<<<<<<<<<<<<
@@ -2510,7 +2510,7 @@ static PyObject *__pyx_f_19Cython_Raster_Funcs_17CoastlineMatching_matchToCoastl
         __pyx_t_10 = ((__pyx_v_reallocationCount_prv > 0) != 0);
         if (__pyx_t_10) {
 
-          /* "Cython_Raster_Funcs\CoastlineMatching.pyx":129
+          /* "Cython_Raster_Funcs\CoastlineMatching.pyx":137
  *                     # to "smearing" of values in an easterly and southerly direction.
  *                     # Hence, not suitable for filling large areas!
  *                     data[yIn, xIn] = reallocationSum_prv / reallocationCount_prv             # <<<<<<<<<<<<<<
@@ -2525,7 +2525,7 @@ static PyObject *__pyx_f_19Cython_Raster_Funcs_17CoastlineMatching_matchToCoastl
             #ifdef WITH_THREAD
             PyGILState_Release(__pyx_gilstate_save);
             #endif
-            {__pyx_filename = __pyx_f[0]; __pyx_lineno = 129; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+            {__pyx_filename = __pyx_f[0]; __pyx_lineno = 137; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
           }
           else if (sizeof(int) == sizeof(long) && (!(((int)-1) > 0)) && unlikely(__pyx_v_reallocationCount_prv == (int)-1)  && unlikely(UNARY_NEG_WOULD_OVERFLOW(__pyx_v_reallocationSum_prv))) {
             #ifdef WITH_THREAD
@@ -2535,7 +2535,7 @@ static PyObject *__pyx_f_19Cython_Raster_Funcs_17CoastlineMatching_matchToCoastl
             #ifdef WITH_THREAD
             PyGILState_Release(__pyx_gilstate_save);
             #endif
-            {__pyx_filename = __pyx_f[0]; __pyx_lineno = 129; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+            {__pyx_filename = __pyx_f[0]; __pyx_lineno = 137; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
           }
           __pyx_t_26 = __pyx_v_yIn;
           __pyx_t_36 = __pyx_v_xIn;
@@ -2550,11 +2550,11 @@ static PyObject *__pyx_f_19Cython_Raster_Funcs_17CoastlineMatching_matchToCoastl
           } else if (unlikely(__pyx_t_36 >= __pyx_v_data.shape[1])) __pyx_t_16 = 1;
           if (unlikely(__pyx_t_16 != -1)) {
             __Pyx_RaiseBufferIndexError(__pyx_t_16);
-            {__pyx_filename = __pyx_f[0]; __pyx_lineno = 129; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+            {__pyx_filename = __pyx_f[0]; __pyx_lineno = 137; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
           }
           *((PY_LONG_LONG *) ( /* dim=1 */ ((char *) (((PY_LONG_LONG *) ( /* dim=0 */ (__pyx_v_data.data + __pyx_t_26 * __pyx_v_data.strides[0]) )) + __pyx_t_36)) )) = __Pyx_div_int(__pyx_v_reallocationSum_prv, __pyx_v_reallocationCount_prv);
 
-          /* "Cython_Raster_Funcs\CoastlineMatching.pyx":130
+          /* "Cython_Raster_Funcs\CoastlineMatching.pyx":138
  *                     # Hence, not suitable for filling large areas!
  *                     data[yIn, xIn] = reallocationSum_prv / reallocationCount_prv
  *                     filledCells += 1             # <<<<<<<<<<<<<<
@@ -2566,7 +2566,7 @@ static PyObject *__pyx_f_19Cython_Raster_Funcs_17CoastlineMatching_matchToCoastl
         }
         /*else*/ {
 
-          /* "Cython_Raster_Funcs\CoastlineMatching.pyx":132
+          /* "Cython_Raster_Funcs\CoastlineMatching.pyx":140
  *                     filledCells += 1
  *                 else:
  *                     failedFills += 1             # <<<<<<<<<<<<<<
@@ -2575,7 +2575,7 @@ static PyObject *__pyx_f_19Cython_Raster_Funcs_17CoastlineMatching_matchToCoastl
  */
           __pyx_v_failedFills = (__pyx_v_failedFills + 1);
 
-          /* "Cython_Raster_Funcs\CoastlineMatching.pyx":133
+          /* "Cython_Raster_Funcs\CoastlineMatching.pyx":141
  *                 else:
  *                     failedFills += 1
  *                     failedLocs[yIn, xIn] = 1             # <<<<<<<<<<<<<<
@@ -2595,7 +2595,7 @@ static PyObject *__pyx_f_19Cython_Raster_Funcs_17CoastlineMatching_matchToCoastl
           } else if (unlikely(__pyx_t_38 >= __pyx_v_failedLocs.shape[1])) __pyx_t_16 = 1;
           if (unlikely(__pyx_t_16 != -1)) {
             __Pyx_RaiseBufferIndexError(__pyx_t_16);
-            {__pyx_filename = __pyx_f[0]; __pyx_lineno = 133; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+            {__pyx_filename = __pyx_f[0]; __pyx_lineno = 141; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
           }
           *((char *) ( /* dim=1 */ ((char *) (((char *) ( /* dim=0 */ (__pyx_v_failedLocs.data + __pyx_t_37 * __pyx_v_failedLocs.strides[0]) )) + __pyx_t_38)) )) = 1;
         }
@@ -2607,24 +2607,24 @@ static PyObject *__pyx_f_19Cython_Raster_Funcs_17CoastlineMatching_matchToCoastl
   }
   __pyx_L10:;
 
-  /* "Cython_Raster_Funcs\CoastlineMatching.pyx":135
+  /* "Cython_Raster_Funcs\CoastlineMatching.pyx":143
  *                     failedLocs[yIn, xIn] = 1
  * 
  *     print ("Clipped {0!s} data cells that were outside provided limits".format(             # <<<<<<<<<<<<<<
  *         clippedCells))
  *     print ("Filled {0!s} total cells within limits from nearby data".format(
  */
-  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_kp_s_Clipped_0_s_data_cells_that_were, __pyx_n_s_format); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 135; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_kp_s_Clipped_0_s_data_cells_that_were, __pyx_n_s_format); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 143; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
 
-  /* "Cython_Raster_Funcs\CoastlineMatching.pyx":136
+  /* "Cython_Raster_Funcs\CoastlineMatching.pyx":144
  * 
  *     print ("Clipped {0!s} data cells that were outside provided limits".format(
  *         clippedCells))             # <<<<<<<<<<<<<<
  *     print ("Filled {0!s} total cells within limits from nearby data".format(
  *         filledCells))
  */
-  __pyx_t_5 = __Pyx_PyInt_From_int(__pyx_v_clippedCells); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 136; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_5 = __Pyx_PyInt_From_int(__pyx_v_clippedCells); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 144; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_5);
   __pyx_t_4 = NULL;
   if (CYTHON_COMPILING_IN_CPYTHON && likely(PyMethod_Check(__pyx_t_1))) {
@@ -2637,42 +2637,42 @@ static PyObject *__pyx_f_19Cython_Raster_Funcs_17CoastlineMatching_matchToCoastl
     }
   }
   if (!__pyx_t_4) {
-    __pyx_t_7 = __Pyx_PyObject_CallOneArg(__pyx_t_1, __pyx_t_5); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 135; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_7 = __Pyx_PyObject_CallOneArg(__pyx_t_1, __pyx_t_5); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 143; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
     __Pyx_GOTREF(__pyx_t_7);
   } else {
-    __pyx_t_2 = PyTuple_New(1+1); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 135; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_2 = PyTuple_New(1+1); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 143; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_2);
     PyTuple_SET_ITEM(__pyx_t_2, 0, __pyx_t_4); __Pyx_GIVEREF(__pyx_t_4); __pyx_t_4 = NULL;
     PyTuple_SET_ITEM(__pyx_t_2, 0+1, __pyx_t_5);
     __Pyx_GIVEREF(__pyx_t_5);
     __pyx_t_5 = 0;
-    __pyx_t_7 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_t_2, NULL); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 135; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_7 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_t_2, NULL); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 143; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_7);
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   }
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  if (__Pyx_PrintOne(0, __pyx_t_7) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 135; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (__Pyx_PrintOne(0, __pyx_t_7) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 143; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
 
-  /* "Cython_Raster_Funcs\CoastlineMatching.pyx":137
+  /* "Cython_Raster_Funcs\CoastlineMatching.pyx":145
  *     print ("Clipped {0!s} data cells that were outside provided limits".format(
  *         clippedCells))
  *     print ("Filled {0!s} total cells within limits from nearby data".format(             # <<<<<<<<<<<<<<
  *         filledCells))
  *     print ("Failed to fill {0!s} total cells within limits due to no data cells in range".format(
  */
-  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_kp_s_Filled_0_s_total_cells_within_li, __pyx_n_s_format); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 137; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_kp_s_Filled_0_s_total_cells_within_li, __pyx_n_s_format); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 145; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
 
-  /* "Cython_Raster_Funcs\CoastlineMatching.pyx":138
+  /* "Cython_Raster_Funcs\CoastlineMatching.pyx":146
  *         clippedCells))
  *     print ("Filled {0!s} total cells within limits from nearby data".format(
  *         filledCells))             # <<<<<<<<<<<<<<
  *     print ("Failed to fill {0!s} total cells within limits due to no data cells in range".format(
  *         failedFills))
  */
-  __pyx_t_2 = __Pyx_PyInt_From_int(__pyx_v_filledCells); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 138; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_2 = __Pyx_PyInt_From_int(__pyx_v_filledCells); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 146; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_2);
   __pyx_t_5 = NULL;
   if (CYTHON_COMPILING_IN_CPYTHON && likely(PyMethod_Check(__pyx_t_1))) {
@@ -2685,42 +2685,42 @@ static PyObject *__pyx_f_19Cython_Raster_Funcs_17CoastlineMatching_matchToCoastl
     }
   }
   if (!__pyx_t_5) {
-    __pyx_t_7 = __Pyx_PyObject_CallOneArg(__pyx_t_1, __pyx_t_2); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 137; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_7 = __Pyx_PyObject_CallOneArg(__pyx_t_1, __pyx_t_2); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 145; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
     __Pyx_GOTREF(__pyx_t_7);
   } else {
-    __pyx_t_4 = PyTuple_New(1+1); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 137; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_4 = PyTuple_New(1+1); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 145; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_4);
     PyTuple_SET_ITEM(__pyx_t_4, 0, __pyx_t_5); __Pyx_GIVEREF(__pyx_t_5); __pyx_t_5 = NULL;
     PyTuple_SET_ITEM(__pyx_t_4, 0+1, __pyx_t_2);
     __Pyx_GIVEREF(__pyx_t_2);
     __pyx_t_2 = 0;
-    __pyx_t_7 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_t_4, NULL); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 137; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_7 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_t_4, NULL); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 145; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_7);
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   }
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  if (__Pyx_PrintOne(0, __pyx_t_7) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 137; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (__Pyx_PrintOne(0, __pyx_t_7) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 145; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
 
-  /* "Cython_Raster_Funcs\CoastlineMatching.pyx":139
+  /* "Cython_Raster_Funcs\CoastlineMatching.pyx":147
  *     print ("Filled {0!s} total cells within limits from nearby data".format(
  *         filledCells))
  *     print ("Failed to fill {0!s} total cells within limits due to no data cells in range".format(             # <<<<<<<<<<<<<<
  *         failedFills))
  *     return failedLocs
  */
-  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_kp_s_Failed_to_fill_0_s_total_cells_w, __pyx_n_s_format); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 139; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_kp_s_Failed_to_fill_0_s_total_cells_w, __pyx_n_s_format); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 147; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
 
-  /* "Cython_Raster_Funcs\CoastlineMatching.pyx":140
+  /* "Cython_Raster_Funcs\CoastlineMatching.pyx":148
  *         filledCells))
  *     print ("Failed to fill {0!s} total cells within limits due to no data cells in range".format(
  *         failedFills))             # <<<<<<<<<<<<<<
  *     return failedLocs
  * 
  */
-  __pyx_t_4 = __Pyx_PyInt_From_int(__pyx_v_failedFills); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 140; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_4 = __Pyx_PyInt_From_int(__pyx_v_failedFills); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 148; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_4);
   __pyx_t_2 = NULL;
   if (CYTHON_COMPILING_IN_CPYTHON && likely(PyMethod_Check(__pyx_t_1))) {
@@ -2733,25 +2733,25 @@ static PyObject *__pyx_f_19Cython_Raster_Funcs_17CoastlineMatching_matchToCoastl
     }
   }
   if (!__pyx_t_2) {
-    __pyx_t_7 = __Pyx_PyObject_CallOneArg(__pyx_t_1, __pyx_t_4); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 139; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_7 = __Pyx_PyObject_CallOneArg(__pyx_t_1, __pyx_t_4); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 147; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
     __Pyx_GOTREF(__pyx_t_7);
   } else {
-    __pyx_t_5 = PyTuple_New(1+1); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 139; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_5 = PyTuple_New(1+1); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 147; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_5);
     PyTuple_SET_ITEM(__pyx_t_5, 0, __pyx_t_2); __Pyx_GIVEREF(__pyx_t_2); __pyx_t_2 = NULL;
     PyTuple_SET_ITEM(__pyx_t_5, 0+1, __pyx_t_4);
     __Pyx_GIVEREF(__pyx_t_4);
     __pyx_t_4 = 0;
-    __pyx_t_7 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_t_5, NULL); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 139; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_7 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_t_5, NULL); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 147; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_7);
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
   }
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  if (__Pyx_PrintOne(0, __pyx_t_7) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 139; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (__Pyx_PrintOne(0, __pyx_t_7) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 147; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
 
-  /* "Cython_Raster_Funcs\CoastlineMatching.pyx":141
+  /* "Cython_Raster_Funcs\CoastlineMatching.pyx":149
  *     print ("Failed to fill {0!s} total cells within limits due to no data cells in range".format(
  *         failedFills))
  *     return failedLocs             # <<<<<<<<<<<<<<
@@ -2759,7 +2759,7 @@ static PyObject *__pyx_f_19Cython_Raster_Funcs_17CoastlineMatching_matchToCoastl
  * 
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_7 = __pyx_memoryview_fromslice(__pyx_v_failedLocs, 2, (PyObject *(*)(char *)) __pyx_memview_get_char, (int (*)(char *, PyObject *)) __pyx_memview_set_char, 0);; if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 141; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_7 = __pyx_memoryview_fromslice(__pyx_v_failedLocs, 2, (PyObject *(*)(char *)) __pyx_memview_get_char, (int (*)(char *, PyObject *)) __pyx_memview_set_char, 0);; if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 149; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_7);
   __pyx_r = __pyx_t_7;
   __pyx_t_7 = 0;
@@ -2801,7 +2801,7 @@ static PyObject *__pyx_f_19Cython_Raster_Funcs_17CoastlineMatching_matchToCoastl
 
 /* Python wrapper */
 static PyObject *__pyx_pw_19Cython_Raster_Funcs_17CoastlineMatching_1matchToCoastline(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
-static char __pyx_doc_19Cython_Raster_Funcs_17CoastlineMatching_matchToCoastline[] = "\n    Matches a data image to a mask image by removing and/or adding pixels from the data.\n\n    Fills in gaps in a data grid, relative to a coastline or other limits layer to create an\n    output dataset that is flush to the coast, and clips (removes) data outside of the coast.\n    Both filling and clipping steps are optional - i.e. either or both can be done.\n\n    For use when an input dataset has been created with a different coastline and now we require\n    a dataset that matches MAP's One True Coastline (TM).\n\n    Clipping, if done, is done before filling so the values removed do not participate in calculating\n    a fill value for missing inland pixels. The clipping step replaces any data pixels that fall\n    outside of the mask's \"land\" area with NoData.\n\n    The function returns an array representing the locations where the fill process failed as no data was\n    found within range. The data array itself is modified in-place (ref parameter).\n\n    Gaps are filled with the mean of the nearest n data-containing pixels,\n    where n is the useNearestNPixels parameter.\n    By default n=1 to use the nearest value, for integer data.\n    (Fewer are used if fewer are found within the specified radius: a fill is created if at least\n    one is found.)\n\n    The fill process is iterative i.e. fill values for one pixel can then be used in generating\n    a fill for adjacent pixels. This will lead to \"smearing\" (down and right) and so this algorithm\n    isn't appropriate for filling large areas, and generally it isn't appropriate for continuous\n    data of any kind. Rather, it's intended for matching things like administrative units to a\n    different coastline template.\n\n    The mask should have value 1 for \"land\" (areas that should have data), and 0 for \"sea\"\n    (areas that should have nodata).\n\n    See also populationReallocator which has a similar, but somewhat different purpose, for population\n    data where totals must be maintaine""d. This version doesn't maintain totals.\n    ";
+static char __pyx_doc_19Cython_Raster_Funcs_17CoastlineMatching_matchToCoastline[] = "\n    Matches a data image to a mask image by removing and/or adding pixels from the data.\n\n    Fills in gaps in a data grid, relative to a coastline or other limits layer to create an\n    output dataset that is flush to the coast, and clips (removes) data outside of the coast.\n    Both filling and clipping steps are optional - i.e. either or both can be done.\n\n    For use when an input dataset has been created with a different coastline and now we require\n    a dataset that matches MAP's One True Coastline (TM).\n\n    Clipping, if done, is done before filling so the values removed do not participate in calculating\n    a fill value for missing inland pixels. The clipping step replaces any data pixels that fall\n    outside of the mask's \"land\" area with NoData.\n\n    The function returns an array representing the locations where the fill process failed as no data was\n    found within range. The data array itself is modified in-place (ref parameter).\n\n    Gaps are filled with the mean of the nearest n data-containing pixels, where n is the\n    useNearestNPixels parameter. By default n=1 to just the nearest value, for integer data.\n    These data pixels must be found within the specified searchPixelRadius. If fewer pixels are\n    found within the specified radius,  a fill is still created if at least one is found.\n\n    The fill process is iterative i.e. fill values for one pixel can then be used in generating\n    a fill for adjacent pixels. This will lead to \"smearing\" (down and right) and so this algorithm\n    isn't appropriate for filling large areas, and generally it isn't appropriate for continuous\n    data of any kind. Rather, it's intended for matching things like administrative units to a\n    different coastline template.\n\n    The mask should have value 1 for \"land\" (areas that should have data), and 0 for \"sea\"\n    (areas that should have nodata). The data and mask arrays must be of the same shape.\n\n    See also populationRea""llocator which has a similar, but somewhat different purpose, for population\n    data where totals must be maintained. This version doesn't maintain totals.\n    ";
 static PyObject *__pyx_pw_19Cython_Raster_Funcs_17CoastlineMatching_1matchToCoastline(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
   __Pyx_memviewslice __pyx_v_data = { 0, 0, { 0 }, { 0 }, { 0 } };
   __Pyx_memviewslice __pyx_v_landMask = { 0, 0, { 0 }, { 0 }, { 0 } };
@@ -2810,7 +2810,6 @@ static PyObject *__pyx_pw_19Cython_Raster_Funcs_17CoastlineMatching_1matchToCoas
   char __pyx_v_applyFill;
   int __pyx_v_useNearestNPixels;
   int __pyx_v_searchPixelRadius;
-  int __pyx_v_noLosses;
   int __pyx_lineno = 0;
   const char *__pyx_filename = NULL;
   int __pyx_clineno = 0;
@@ -2818,13 +2817,12 @@ static PyObject *__pyx_pw_19Cython_Raster_Funcs_17CoastlineMatching_1matchToCoas
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("matchToCoastline (wrapper)", 0);
   {
-    static PyObject **__pyx_pyargnames[] = {&__pyx_n_s_data,&__pyx_n_s_landMask,&__pyx_n_s_NDV,&__pyx_n_s_applyClip,&__pyx_n_s_applyFill,&__pyx_n_s_useNearestNPixels,&__pyx_n_s_searchPixelRadius,&__pyx_n_s_noLosses,0};
-    PyObject* values[8] = {0,0,0,0,0,0,0,0};
+    static PyObject **__pyx_pyargnames[] = {&__pyx_n_s_data,&__pyx_n_s_landMask,&__pyx_n_s_NDV,&__pyx_n_s_applyClip,&__pyx_n_s_applyFill,&__pyx_n_s_useNearestNPixels,&__pyx_n_s_searchPixelRadius,0};
+    PyObject* values[7] = {0,0,0,0,0,0,0};
     if (unlikely(__pyx_kwds)) {
       Py_ssize_t kw_args;
       const Py_ssize_t pos_args = PyTuple_GET_SIZE(__pyx_args);
       switch (pos_args) {
-        case  8: values[7] = PyTuple_GET_ITEM(__pyx_args, 7);
         case  7: values[6] = PyTuple_GET_ITEM(__pyx_args, 6);
         case  6: values[5] = PyTuple_GET_ITEM(__pyx_args, 5);
         case  5: values[4] = PyTuple_GET_ITEM(__pyx_args, 4);
@@ -2843,7 +2841,7 @@ static PyObject *__pyx_pw_19Cython_Raster_Funcs_17CoastlineMatching_1matchToCoas
         case  1:
         if (likely((values[1] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_landMask)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("matchToCoastline", 0, 2, 8, 1); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 5; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+          __Pyx_RaiseArgtupleInvalid("matchToCoastline", 0, 2, 7, 1); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 5; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
         }
         case  2:
         if (kw_args > 0) {
@@ -2870,18 +2868,12 @@ static PyObject *__pyx_pw_19Cython_Raster_Funcs_17CoastlineMatching_1matchToCoas
           PyObject* value = PyDict_GetItem(__pyx_kwds, __pyx_n_s_searchPixelRadius);
           if (value) { values[6] = value; kw_args--; }
         }
-        case  7:
-        if (kw_args > 0) {
-          PyObject* value = PyDict_GetItem(__pyx_kwds, __pyx_n_s_noLosses);
-          if (value) { values[7] = value; kw_args--; }
-        }
       }
       if (unlikely(kw_args > 0)) {
         if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "matchToCoastline") < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 5; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
       }
     } else {
       switch (PyTuple_GET_SIZE(__pyx_args)) {
-        case  8: values[7] = PyTuple_GET_ITEM(__pyx_args, 7);
         case  7: values[6] = PyTuple_GET_ITEM(__pyx_args, 6);
         case  6: values[5] = PyTuple_GET_ITEM(__pyx_args, 5);
         case  5: values[4] = PyTuple_GET_ITEM(__pyx_args, 4);
@@ -2920,28 +2912,23 @@ static PyObject *__pyx_pw_19Cython_Raster_Funcs_17CoastlineMatching_1matchToCoas
     } else {
       __pyx_v_searchPixelRadius = ((int)10);
     }
-    if (values[7]) {
-      __pyx_v_noLosses = __Pyx_PyInt_As_int(values[7]); if (unlikely((__pyx_v_noLosses == (int)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 9; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
-    } else {
-      __pyx_v_noLosses = ((int)0);
-    }
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("matchToCoastline", 0, 2, 8, PyTuple_GET_SIZE(__pyx_args)); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 5; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+  __Pyx_RaiseArgtupleInvalid("matchToCoastline", 0, 2, 7, PyTuple_GET_SIZE(__pyx_args)); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 5; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
   __pyx_L3_error:;
   __Pyx_AddTraceback("Cython_Raster_Funcs.CoastlineMatching.matchToCoastline", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  __pyx_r = __pyx_pf_19Cython_Raster_Funcs_17CoastlineMatching_matchToCoastline(__pyx_self, __pyx_v_data, __pyx_v_landMask, __pyx_v__NDV, __pyx_v_applyClip, __pyx_v_applyFill, __pyx_v_useNearestNPixels, __pyx_v_searchPixelRadius, __pyx_v_noLosses);
+  __pyx_r = __pyx_pf_19Cython_Raster_Funcs_17CoastlineMatching_matchToCoastline(__pyx_self, __pyx_v_data, __pyx_v_landMask, __pyx_v__NDV, __pyx_v_applyClip, __pyx_v_applyFill, __pyx_v_useNearestNPixels, __pyx_v_searchPixelRadius);
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_19Cython_Raster_Funcs_17CoastlineMatching_matchToCoastline(CYTHON_UNUSED PyObject *__pyx_self, __Pyx_memviewslice __pyx_v_data, __Pyx_memviewslice __pyx_v_landMask, PY_LONG_LONG __pyx_v__NDV, char __pyx_v_applyClip, char __pyx_v_applyFill, int __pyx_v_useNearestNPixels, int __pyx_v_searchPixelRadius, int __pyx_v_noLosses) {
+static PyObject *__pyx_pf_19Cython_Raster_Funcs_17CoastlineMatching_matchToCoastline(CYTHON_UNUSED PyObject *__pyx_self, __Pyx_memviewslice __pyx_v_data, __Pyx_memviewslice __pyx_v_landMask, PY_LONG_LONG __pyx_v__NDV, char __pyx_v_applyClip, char __pyx_v_applyFill, int __pyx_v_useNearestNPixels, int __pyx_v_searchPixelRadius) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
@@ -2953,13 +2940,12 @@ static PyObject *__pyx_pf_19Cython_Raster_Funcs_17CoastlineMatching_matchToCoast
   __Pyx_XDECREF(__pyx_r);
   if (unlikely(!__pyx_v_data.memview)) { __Pyx_RaiseUnboundLocalError("data"); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 5; __pyx_clineno = __LINE__; goto __pyx_L1_error;} }
   if (unlikely(!__pyx_v_landMask.memview)) { __Pyx_RaiseUnboundLocalError("landMask"); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 5; __pyx_clineno = __LINE__; goto __pyx_L1_error;} }
-  __pyx_t_2.__pyx_n = 6;
+  __pyx_t_2.__pyx_n = 5;
   __pyx_t_2._NDV = __pyx_v__NDV;
   __pyx_t_2.applyClip = __pyx_v_applyClip;
   __pyx_t_2.applyFill = __pyx_v_applyFill;
   __pyx_t_2.useNearestNPixels = __pyx_v_useNearestNPixels;
   __pyx_t_2.searchPixelRadius = __pyx_v_searchPixelRadius;
-  __pyx_t_2.noLosses = __pyx_v_noLosses;
   __pyx_t_1 = __pyx_f_19Cython_Raster_Funcs_17CoastlineMatching_matchToCoastline(__pyx_v_data, __pyx_v_landMask, 0, &__pyx_t_2); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 5; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
@@ -2979,12 +2965,12 @@ static PyObject *__pyx_pf_19Cython_Raster_Funcs_17CoastlineMatching_matchToCoast
   return __pyx_r;
 }
 
-/* "Cython_Raster_Funcs\CoastlineMatching.pyx":145
+/* "Cython_Raster_Funcs\CoastlineMatching.pyx":153
  * 
  * 
  * cpdef reallocateToUnmasked(float[:,::1] data, char[:,::1] landMask, float _NDV = -9999,             # <<<<<<<<<<<<<<
  *                            char fillLandWithZero = 1,
- *                            char clipZerosAtSea = 1):
+ *                            char clipZerosAtSea = 1,
  */
 
 static PyObject *__pyx_pw_19Cython_Raster_Funcs_17CoastlineMatching_3reallocateToUnmasked(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
@@ -2992,6 +2978,8 @@ static PyObject *__pyx_f_19Cython_Raster_Funcs_17CoastlineMatching_reallocateToU
   float __pyx_v__NDV = ((float)-9999.0);
   char __pyx_v_fillLandWithZero = ((char)1);
   char __pyx_v_clipZerosAtSea = ((char)1);
+  int __pyx_v_searchPixelRadius = ((int)100);
+  char __pyx_v_deleteDespiteFailure = ((char)0);
   Py_ssize_t __pyx_v_xShapeIn;
   Py_ssize_t __pyx_v_yShapeIn;
   Py_ssize_t __pyx_v_xIn;
@@ -3008,7 +2996,6 @@ static PyObject *__pyx_f_19Cython_Raster_Funcs_17CoastlineMatching_reallocateToU
   float __pyx_v_reallocatedTotalPop;
   char __pyx_v_reallocatedOK;
   int __pyx_v__MAX_NEIGHBOURS_TO_CHECK;
-  PyObject *__pyx_v__SEARCH_RADIUS = NULL;
   PyObject *__pyx_v_diam = NULL;
   PyObject *__pyx_v_inds = NULL;
   PyObject *__pyx_v_distTmp = NULL;
@@ -3071,6 +3058,8 @@ static PyObject *__pyx_f_19Cython_Raster_Funcs_17CoastlineMatching_reallocateToU
   Py_ssize_t __pyx_t_52;
   Py_ssize_t __pyx_t_53;
   Py_ssize_t __pyx_t_54;
+  Py_ssize_t __pyx_t_55;
+  Py_ssize_t __pyx_t_56;
   int __pyx_lineno = 0;
   const char *__pyx_filename = NULL;
   int __pyx_clineno = 0;
@@ -3082,22 +3071,19 @@ static PyObject *__pyx_f_19Cython_Raster_Funcs_17CoastlineMatching_reallocateToU
         __pyx_v_fillLandWithZero = __pyx_optional_args->fillLandWithZero;
         if (__pyx_optional_args->__pyx_n > 2) {
           __pyx_v_clipZerosAtSea = __pyx_optional_args->clipZerosAtSea;
+          if (__pyx_optional_args->__pyx_n > 3) {
+            __pyx_v_searchPixelRadius = __pyx_optional_args->searchPixelRadius;
+            if (__pyx_optional_args->__pyx_n > 4) {
+              __pyx_v_deleteDespiteFailure = __pyx_optional_args->deleteDespiteFailure;
+            }
+          }
         }
       }
     }
   }
 
-  /* "Cython_Raster_Funcs\CoastlineMatching.pyx":178
- *         float failedReallocationPop,  reallocatedTotalPop
- *         char reallocatedOK
- *         int _MAX_NEIGHBOURS_TO_CHECK = 31400             # <<<<<<<<<<<<<<
- * 
- *     yShapeIn = data.shape[0]
- */
-  __pyx_v__MAX_NEIGHBOURS_TO_CHECK = 31400;
-
-  /* "Cython_Raster_Funcs\CoastlineMatching.pyx":180
- *         int _MAX_NEIGHBOURS_TO_CHECK = 31400
+  /* "Cython_Raster_Funcs\CoastlineMatching.pyx":190
+ *         int _MAX_NEIGHBOURS_TO_CHECK
  * 
  *     yShapeIn = data.shape[0]             # <<<<<<<<<<<<<<
  *     xShapeIn = data.shape[1]
@@ -3105,7 +3091,7 @@ static PyObject *__pyx_f_19Cython_Raster_Funcs_17CoastlineMatching_reallocateToU
  */
   __pyx_v_yShapeIn = (__pyx_v_data.shape[0]);
 
-  /* "Cython_Raster_Funcs\CoastlineMatching.pyx":181
+  /* "Cython_Raster_Funcs\CoastlineMatching.pyx":191
  * 
  *     yShapeIn = data.shape[0]
  *     xShapeIn = data.shape[1]             # <<<<<<<<<<<<<<
@@ -3114,7 +3100,7 @@ static PyObject *__pyx_f_19Cython_Raster_Funcs_17CoastlineMatching_reallocateToU
  */
   __pyx_v_xShapeIn = (__pyx_v_data.shape[1]);
 
-  /* "Cython_Raster_Funcs\CoastlineMatching.pyx":182
+  /* "Cython_Raster_Funcs\CoastlineMatching.pyx":192
  *     yShapeIn = data.shape[0]
  *     xShapeIn = data.shape[1]
  *     assert landMask.shape[0] == yShapeIn             # <<<<<<<<<<<<<<
@@ -3125,71 +3111,58 @@ static PyObject *__pyx_f_19Cython_Raster_Funcs_17CoastlineMatching_reallocateToU
   if (unlikely(!Py_OptimizeFlag)) {
     if (unlikely(!(((__pyx_v_landMask.shape[0]) == __pyx_v_yShapeIn) != 0))) {
       PyErr_SetNone(PyExc_AssertionError);
-      {__pyx_filename = __pyx_f[0]; __pyx_lineno = 182; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      {__pyx_filename = __pyx_f[0]; __pyx_lineno = 192; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     }
   }
   #endif
 
-  /* "Cython_Raster_Funcs\CoastlineMatching.pyx":183
+  /* "Cython_Raster_Funcs\CoastlineMatching.pyx":193
  *     xShapeIn = data.shape[1]
  *     assert landMask.shape[0] == yShapeIn
  *     assert landMask.shape[1] == xShapeIn             # <<<<<<<<<<<<<<
  * 
- *        # Generate the neighbour spiral search table out to "a bit" further than needed
+ *     # Generate the neighbour spiral search table out to "a bit" further than needed
  */
   #ifndef CYTHON_WITHOUT_ASSERTIONS
   if (unlikely(!Py_OptimizeFlag)) {
     if (unlikely(!(((__pyx_v_landMask.shape[1]) == __pyx_v_xShapeIn) != 0))) {
       PyErr_SetNone(PyExc_AssertionError);
-      {__pyx_filename = __pyx_f[0]; __pyx_lineno = 183; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      {__pyx_filename = __pyx_f[0]; __pyx_lineno = 193; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     }
   }
   #endif
 
-  /* "Cython_Raster_Funcs\CoastlineMatching.pyx":186
+  /* "Cython_Raster_Funcs\CoastlineMatching.pyx":196
  * 
- *        # Generate the neighbour spiral search table out to "a bit" further than needed
- *     _SEARCH_RADIUS = 100 # <int> ((sqrt(_MAX_NEIGHBOURS_TO_CHECK / 3.14)) + 5)             # <<<<<<<<<<<<<<
- *     diam = _SEARCH_RADIUS * 2 + 1
- *     inds = np.indices([diam,diam]) - _SEARCH_RADIUS
- */
-  __Pyx_INCREF(__pyx_int_100);
-  __pyx_v__SEARCH_RADIUS = __pyx_int_100;
-
-  /* "Cython_Raster_Funcs\CoastlineMatching.pyx":187
- *        # Generate the neighbour spiral search table out to "a bit" further than needed
- *     _SEARCH_RADIUS = 100 # <int> ((sqrt(_MAX_NEIGHBOURS_TO_CHECK / 3.14)) + 5)
- *     diam = _SEARCH_RADIUS * 2 + 1             # <<<<<<<<<<<<<<
- *     inds = np.indices([diam,diam]) - _SEARCH_RADIUS
+ *     # Generate the neighbour spiral search table out to "a bit" further than needed
+ *     diam = searchPixelRadius * 2 + 1             # <<<<<<<<<<<<<<
+ *     inds = np.indices([diam,diam]) - searchPixelRadius
  *     distTmp = np.sqrt((inds ** 2).sum(0))
  */
-  __pyx_t_1 = PyNumber_Multiply(__pyx_v__SEARCH_RADIUS, __pyx_int_2); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 187; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __Pyx_PyInt_From_long(((__pyx_v_searchPixelRadius * 2) + 1)); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 196; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = PyNumber_Add(__pyx_t_1, __pyx_int_1); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 187; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_v_diam = __pyx_t_2;
-  __pyx_t_2 = 0;
+  __pyx_v_diam = __pyx_t_1;
+  __pyx_t_1 = 0;
 
-  /* "Cython_Raster_Funcs\CoastlineMatching.pyx":188
- *     _SEARCH_RADIUS = 100 # <int> ((sqrt(_MAX_NEIGHBOURS_TO_CHECK / 3.14)) + 5)
- *     diam = _SEARCH_RADIUS * 2 + 1
- *     inds = np.indices([diam,diam]) - _SEARCH_RADIUS             # <<<<<<<<<<<<<<
+  /* "Cython_Raster_Funcs\CoastlineMatching.pyx":197
+ *     # Generate the neighbour spiral search table out to "a bit" further than needed
+ *     diam = searchPixelRadius * 2 + 1
+ *     inds = np.indices([diam,diam]) - searchPixelRadius             # <<<<<<<<<<<<<<
  *     distTmp = np.sqrt((inds ** 2).sum(0))
  *     npTmpTable = ((inds.T).reshape(diam**2, 2))
  */
-  __pyx_t_1 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 188; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_indices); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 188; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_2 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 197; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_t_2);
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_indices); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 197; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_1 = PyList_New(2); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 188; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __Pyx_GOTREF(__pyx_t_1);
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+  __pyx_t_2 = PyList_New(2); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 197; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_t_2);
   __Pyx_INCREF(__pyx_v_diam);
-  PyList_SET_ITEM(__pyx_t_1, 0, __pyx_v_diam);
+  PyList_SET_ITEM(__pyx_t_2, 0, __pyx_v_diam);
   __Pyx_GIVEREF(__pyx_v_diam);
   __Pyx_INCREF(__pyx_v_diam);
-  PyList_SET_ITEM(__pyx_t_1, 1, __pyx_v_diam);
+  PyList_SET_ITEM(__pyx_t_2, 1, __pyx_v_diam);
   __Pyx_GIVEREF(__pyx_v_diam);
   __pyx_t_4 = NULL;
   if (CYTHON_COMPILING_IN_CPYTHON && unlikely(PyMethod_Check(__pyx_t_3))) {
@@ -3202,348 +3175,354 @@ static PyObject *__pyx_f_19Cython_Raster_Funcs_17CoastlineMatching_reallocateToU
     }
   }
   if (!__pyx_t_4) {
-    __pyx_t_2 = __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_t_1); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 188; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-    __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-    __Pyx_GOTREF(__pyx_t_2);
+    __pyx_t_1 = __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_t_2); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 197; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+    __Pyx_GOTREF(__pyx_t_1);
   } else {
-    __pyx_t_5 = PyTuple_New(1+1); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 188; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_5 = PyTuple_New(1+1); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 197; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_5);
     PyTuple_SET_ITEM(__pyx_t_5, 0, __pyx_t_4); __Pyx_GIVEREF(__pyx_t_4); __pyx_t_4 = NULL;
-    PyTuple_SET_ITEM(__pyx_t_5, 0+1, __pyx_t_1);
-    __Pyx_GIVEREF(__pyx_t_1);
-    __pyx_t_1 = 0;
-    __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_t_5, NULL); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 188; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-    __Pyx_GOTREF(__pyx_t_2);
+    PyTuple_SET_ITEM(__pyx_t_5, 0+1, __pyx_t_2);
+    __Pyx_GIVEREF(__pyx_t_2);
+    __pyx_t_2 = 0;
+    __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_t_5, NULL); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 197; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
   }
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  __pyx_t_3 = PyNumber_Subtract(__pyx_t_2, __pyx_v__SEARCH_RADIUS); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 188; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_3 = __Pyx_PyInt_From_int(__pyx_v_searchPixelRadius); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 197; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_v_inds = __pyx_t_3;
-  __pyx_t_3 = 0;
+  __pyx_t_5 = PyNumber_Subtract(__pyx_t_1, __pyx_t_3); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 197; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_t_5);
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+  __pyx_v_inds = __pyx_t_5;
+  __pyx_t_5 = 0;
 
-  /* "Cython_Raster_Funcs\CoastlineMatching.pyx":189
- *     diam = _SEARCH_RADIUS * 2 + 1
- *     inds = np.indices([diam,diam]) - _SEARCH_RADIUS
+  /* "Cython_Raster_Funcs\CoastlineMatching.pyx":198
+ *     diam = searchPixelRadius * 2 + 1
+ *     inds = np.indices([diam,diam]) - searchPixelRadius
  *     distTmp = np.sqrt((inds ** 2).sum(0))             # <<<<<<<<<<<<<<
  *     npTmpTable = ((inds.T).reshape(diam**2, 2))
- *     npTmpTable = np.append(npTmpTable, distTmp.ravel()[:,None],axis=1)
+ *     npTmpTable = np.append(npTmpTable, distTmp.ravel()[:,None], axis=1)
  */
-  __pyx_t_2 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 189; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_sqrt); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 189; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __Pyx_GOTREF(__pyx_t_5);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = PyNumber_Power(__pyx_v_inds, __pyx_int_2, Py_None); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 189; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_sum); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 189; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_3 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 198; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_t_3);
+  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_sqrt); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 198; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_tuple__15, NULL); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 189; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+  __pyx_t_3 = PyNumber_Power(__pyx_v_inds, __pyx_int_2, Py_None); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 198; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_t_3);
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_sum); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 198; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_1 = NULL;
-  if (CYTHON_COMPILING_IN_CPYTHON && unlikely(PyMethod_Check(__pyx_t_5))) {
-    __pyx_t_1 = PyMethod_GET_SELF(__pyx_t_5);
-    if (likely(__pyx_t_1)) {
-      PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_5);
-      __Pyx_INCREF(__pyx_t_1);
+  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+  __pyx_t_3 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_tuple__15, NULL); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 198; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_t_3);
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+  __pyx_t_2 = NULL;
+  if (CYTHON_COMPILING_IN_CPYTHON && unlikely(PyMethod_Check(__pyx_t_1))) {
+    __pyx_t_2 = PyMethod_GET_SELF(__pyx_t_1);
+    if (likely(__pyx_t_2)) {
+      PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_1);
+      __Pyx_INCREF(__pyx_t_2);
       __Pyx_INCREF(function);
-      __Pyx_DECREF_SET(__pyx_t_5, function);
+      __Pyx_DECREF_SET(__pyx_t_1, function);
     }
   }
-  if (!__pyx_t_1) {
-    __pyx_t_3 = __Pyx_PyObject_CallOneArg(__pyx_t_5, __pyx_t_2); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 189; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-    __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-    __Pyx_GOTREF(__pyx_t_3);
+  if (!__pyx_t_2) {
+    __pyx_t_5 = __Pyx_PyObject_CallOneArg(__pyx_t_1, __pyx_t_3); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 198; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+    __Pyx_GOTREF(__pyx_t_5);
   } else {
-    __pyx_t_4 = PyTuple_New(1+1); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 189; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_4 = PyTuple_New(1+1); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 198; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_4);
-    PyTuple_SET_ITEM(__pyx_t_4, 0, __pyx_t_1); __Pyx_GIVEREF(__pyx_t_1); __pyx_t_1 = NULL;
-    PyTuple_SET_ITEM(__pyx_t_4, 0+1, __pyx_t_2);
-    __Pyx_GIVEREF(__pyx_t_2);
-    __pyx_t_2 = 0;
-    __pyx_t_3 = __Pyx_PyObject_Call(__pyx_t_5, __pyx_t_4, NULL); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 189; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-    __Pyx_GOTREF(__pyx_t_3);
+    PyTuple_SET_ITEM(__pyx_t_4, 0, __pyx_t_2); __Pyx_GIVEREF(__pyx_t_2); __pyx_t_2 = NULL;
+    PyTuple_SET_ITEM(__pyx_t_4, 0+1, __pyx_t_3);
+    __Pyx_GIVEREF(__pyx_t_3);
+    __pyx_t_3 = 0;
+    __pyx_t_5 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_t_4, NULL); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 198; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __Pyx_GOTREF(__pyx_t_5);
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   }
-  __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-  __pyx_v_distTmp = __pyx_t_3;
-  __pyx_t_3 = 0;
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+  __pyx_v_distTmp = __pyx_t_5;
+  __pyx_t_5 = 0;
 
-  /* "Cython_Raster_Funcs\CoastlineMatching.pyx":190
- *     inds = np.indices([diam,diam]) - _SEARCH_RADIUS
+  /* "Cython_Raster_Funcs\CoastlineMatching.pyx":199
+ *     inds = np.indices([diam,diam]) - searchPixelRadius
  *     distTmp = np.sqrt((inds ** 2).sum(0))
  *     npTmpTable = ((inds.T).reshape(diam**2, 2))             # <<<<<<<<<<<<<<
- *     npTmpTable = np.append(npTmpTable, distTmp.ravel()[:,None],axis=1)
+ *     npTmpTable = np.append(npTmpTable, distTmp.ravel()[:,None], axis=1)
  *     # sort the table by distance then x then y (the arguments are last-sort-first)
  */
-  __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_v_inds, __pyx_n_s_T); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 190; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __Pyx_GOTREF(__pyx_t_5);
-  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_5, __pyx_n_s_reshape); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 190; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_inds, __pyx_n_s_T); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 199; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_t_1);
+  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_reshape); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 199; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_4);
-  __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-  __pyx_t_5 = PyNumber_Power(__pyx_v_diam, __pyx_int_2, Py_None); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 190; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __Pyx_GOTREF(__pyx_t_5);
-  __pyx_t_2 = NULL;
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+  __pyx_t_1 = PyNumber_Power(__pyx_v_diam, __pyx_int_2, Py_None); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 199; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_t_1);
+  __pyx_t_3 = NULL;
   __pyx_t_6 = 0;
   if (CYTHON_COMPILING_IN_CPYTHON && likely(PyMethod_Check(__pyx_t_4))) {
-    __pyx_t_2 = PyMethod_GET_SELF(__pyx_t_4);
-    if (likely(__pyx_t_2)) {
+    __pyx_t_3 = PyMethod_GET_SELF(__pyx_t_4);
+    if (likely(__pyx_t_3)) {
       PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_4);
-      __Pyx_INCREF(__pyx_t_2);
+      __Pyx_INCREF(__pyx_t_3);
       __Pyx_INCREF(function);
       __Pyx_DECREF_SET(__pyx_t_4, function);
       __pyx_t_6 = 1;
     }
   }
-  __pyx_t_1 = PyTuple_New(2+__pyx_t_6); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 190; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __Pyx_GOTREF(__pyx_t_1);
-  if (__pyx_t_2) {
-    PyTuple_SET_ITEM(__pyx_t_1, 0, __pyx_t_2); __Pyx_GIVEREF(__pyx_t_2); __pyx_t_2 = NULL;
+  __pyx_t_2 = PyTuple_New(2+__pyx_t_6); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 199; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_t_2);
+  if (__pyx_t_3) {
+    PyTuple_SET_ITEM(__pyx_t_2, 0, __pyx_t_3); __Pyx_GIVEREF(__pyx_t_3); __pyx_t_3 = NULL;
   }
-  PyTuple_SET_ITEM(__pyx_t_1, 0+__pyx_t_6, __pyx_t_5);
-  __Pyx_GIVEREF(__pyx_t_5);
+  PyTuple_SET_ITEM(__pyx_t_2, 0+__pyx_t_6, __pyx_t_1);
+  __Pyx_GIVEREF(__pyx_t_1);
   __Pyx_INCREF(__pyx_int_2);
-  PyTuple_SET_ITEM(__pyx_t_1, 1+__pyx_t_6, __pyx_int_2);
+  PyTuple_SET_ITEM(__pyx_t_2, 1+__pyx_t_6, __pyx_int_2);
   __Pyx_GIVEREF(__pyx_int_2);
-  __pyx_t_5 = 0;
-  __pyx_t_3 = __Pyx_PyObject_Call(__pyx_t_4, __pyx_t_1, NULL); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 190; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+  __pyx_t_1 = 0;
+  __pyx_t_5 = __Pyx_PyObject_Call(__pyx_t_4, __pyx_t_2, NULL); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 199; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_t_5);
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  __pyx_v_npTmpTable = __pyx_t_3;
-  __pyx_t_3 = 0;
+  __pyx_v_npTmpTable = __pyx_t_5;
+  __pyx_t_5 = 0;
 
-  /* "Cython_Raster_Funcs\CoastlineMatching.pyx":191
+  /* "Cython_Raster_Funcs\CoastlineMatching.pyx":200
  *     distTmp = np.sqrt((inds ** 2).sum(0))
  *     npTmpTable = ((inds.T).reshape(diam**2, 2))
- *     npTmpTable = np.append(npTmpTable, distTmp.ravel()[:,None],axis=1)             # <<<<<<<<<<<<<<
+ *     npTmpTable = np.append(npTmpTable, distTmp.ravel()[:,None], axis=1)             # <<<<<<<<<<<<<<
  *     # sort the table by distance then x then y (the arguments are last-sort-first)
  *     order = np.lexsort((npTmpTable[:,1],npTmpTable[:,0],npTmpTable[:,2]))
  */
-  __pyx_t_3 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 191; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_append); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 191; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __Pyx_GOTREF(__pyx_t_4);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_distTmp, __pyx_n_s_ravel); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 191; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_5 = NULL;
-  if (CYTHON_COMPILING_IN_CPYTHON && likely(PyMethod_Check(__pyx_t_1))) {
-    __pyx_t_5 = PyMethod_GET_SELF(__pyx_t_1);
-    if (likely(__pyx_t_5)) {
-      PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_1);
-      __Pyx_INCREF(__pyx_t_5);
-      __Pyx_INCREF(function);
-      __Pyx_DECREF_SET(__pyx_t_1, function);
-    }
-  }
-  if (__pyx_t_5) {
-    __pyx_t_3 = __Pyx_PyObject_CallOneArg(__pyx_t_1, __pyx_t_5); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 191; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-    __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-  } else {
-    __pyx_t_3 = __Pyx_PyObject_CallNoArg(__pyx_t_1); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 191; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  }
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_1 = PyObject_GetItem(__pyx_t_3, __pyx_tuple__17); if (unlikely(__pyx_t_1 == NULL)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 191; __pyx_clineno = __LINE__; goto __pyx_L1_error;};
-  __Pyx_GOTREF(__pyx_t_1);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  __pyx_t_3 = PyTuple_New(2); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 191; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_INCREF(__pyx_v_npTmpTable);
-  PyTuple_SET_ITEM(__pyx_t_3, 0, __pyx_v_npTmpTable);
-  __Pyx_GIVEREF(__pyx_v_npTmpTable);
-  PyTuple_SET_ITEM(__pyx_t_3, 1, __pyx_t_1);
-  __Pyx_GIVEREF(__pyx_t_1);
-  __pyx_t_1 = 0;
-  __pyx_t_1 = PyDict_New(); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 191; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __Pyx_GOTREF(__pyx_t_1);
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_axis, __pyx_int_1) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 191; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __pyx_t_5 = __Pyx_PyObject_Call(__pyx_t_4, __pyx_t_3, __pyx_t_1); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 191; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_5 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 200; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_5);
-  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __Pyx_DECREF_SET(__pyx_v_npTmpTable, __pyx_t_5);
-  __pyx_t_5 = 0;
-
-  /* "Cython_Raster_Funcs\CoastlineMatching.pyx":193
- *     npTmpTable = np.append(npTmpTable, distTmp.ravel()[:,None],axis=1)
- *     # sort the table by distance then x then y (the arguments are last-sort-first)
- *     order = np.lexsort((npTmpTable[:,1],npTmpTable[:,0],npTmpTable[:,2]))             # <<<<<<<<<<<<<<
- *     npTmpTable = np.take(npTmpTable,order,axis=0)
- *     # transfer to a C-side object transposed to have three rows and many columns and in
- */
-  __pyx_t_1 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 193; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_lexsort); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 193; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_1 = PyObject_GetItem(__pyx_v_npTmpTable, __pyx_tuple__19); if (unlikely(__pyx_t_1 == NULL)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 193; __pyx_clineno = __LINE__; goto __pyx_L1_error;};
-  __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_4 = PyObject_GetItem(__pyx_v_npTmpTable, __pyx_tuple__21); if (unlikely(__pyx_t_4 == NULL)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 193; __pyx_clineno = __LINE__; goto __pyx_L1_error;};
+  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_5, __pyx_n_s_append); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 200; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_4);
-  __pyx_t_2 = PyObject_GetItem(__pyx_v_npTmpTable, __pyx_tuple__23); if (unlikely(__pyx_t_2 == NULL)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 193; __pyx_clineno = __LINE__; goto __pyx_L1_error;};
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_7 = PyTuple_New(3); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 193; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __Pyx_GOTREF(__pyx_t_7);
-  PyTuple_SET_ITEM(__pyx_t_7, 0, __pyx_t_1);
-  __Pyx_GIVEREF(__pyx_t_1);
-  PyTuple_SET_ITEM(__pyx_t_7, 1, __pyx_t_4);
-  __Pyx_GIVEREF(__pyx_t_4);
-  PyTuple_SET_ITEM(__pyx_t_7, 2, __pyx_t_2);
-  __Pyx_GIVEREF(__pyx_t_2);
-  __pyx_t_1 = 0;
-  __pyx_t_4 = 0;
-  __pyx_t_2 = 0;
-  __pyx_t_2 = NULL;
-  if (CYTHON_COMPILING_IN_CPYTHON && unlikely(PyMethod_Check(__pyx_t_3))) {
-    __pyx_t_2 = PyMethod_GET_SELF(__pyx_t_3);
-    if (likely(__pyx_t_2)) {
-      PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_3);
-      __Pyx_INCREF(__pyx_t_2);
-      __Pyx_INCREF(function);
-      __Pyx_DECREF_SET(__pyx_t_3, function);
-    }
-  }
-  if (!__pyx_t_2) {
-    __pyx_t_5 = __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_t_7); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 193; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-    __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
-    __Pyx_GOTREF(__pyx_t_5);
-  } else {
-    __pyx_t_4 = PyTuple_New(1+1); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 193; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-    __Pyx_GOTREF(__pyx_t_4);
-    PyTuple_SET_ITEM(__pyx_t_4, 0, __pyx_t_2); __Pyx_GIVEREF(__pyx_t_2); __pyx_t_2 = NULL;
-    PyTuple_SET_ITEM(__pyx_t_4, 0+1, __pyx_t_7);
-    __Pyx_GIVEREF(__pyx_t_7);
-    __pyx_t_7 = 0;
-    __pyx_t_5 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_t_4, NULL); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 193; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-    __Pyx_GOTREF(__pyx_t_5);
-    __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  }
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  __pyx_v_order = __pyx_t_5;
-  __pyx_t_5 = 0;
-
-  /* "Cython_Raster_Funcs\CoastlineMatching.pyx":194
- *     # sort the table by distance then x then y (the arguments are last-sort-first)
- *     order = np.lexsort((npTmpTable[:,1],npTmpTable[:,0],npTmpTable[:,2]))
- *     npTmpTable = np.take(npTmpTable,order,axis=0)             # <<<<<<<<<<<<<<
- *     # transfer to a C-side object transposed to have three rows and many columns and in
- *     # C-contiguous layout, so that cython can access individual nbr coord sets more quickly
- */
-  __pyx_t_5 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 194; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __Pyx_GOTREF(__pyx_t_5);
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_5, __pyx_n_s_take); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 194; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-  __pyx_t_5 = PyTuple_New(2); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 194; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_distTmp, __pyx_n_s_ravel); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 200; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_t_2);
+  __pyx_t_1 = NULL;
+  if (CYTHON_COMPILING_IN_CPYTHON && likely(PyMethod_Check(__pyx_t_2))) {
+    __pyx_t_1 = PyMethod_GET_SELF(__pyx_t_2);
+    if (likely(__pyx_t_1)) {
+      PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_2);
+      __Pyx_INCREF(__pyx_t_1);
+      __Pyx_INCREF(function);
+      __Pyx_DECREF_SET(__pyx_t_2, function);
+    }
+  }
+  if (__pyx_t_1) {
+    __pyx_t_5 = __Pyx_PyObject_CallOneArg(__pyx_t_2, __pyx_t_1); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 200; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+  } else {
+    __pyx_t_5 = __Pyx_PyObject_CallNoArg(__pyx_t_2); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 200; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  }
+  __Pyx_GOTREF(__pyx_t_5);
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+  __pyx_t_2 = PyObject_GetItem(__pyx_t_5, __pyx_tuple__17); if (unlikely(__pyx_t_2 == NULL)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 200; __pyx_clineno = __LINE__; goto __pyx_L1_error;};
+  __Pyx_GOTREF(__pyx_t_2);
+  __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
+  __pyx_t_5 = PyTuple_New(2); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 200; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_5);
   __Pyx_INCREF(__pyx_v_npTmpTable);
   PyTuple_SET_ITEM(__pyx_t_5, 0, __pyx_v_npTmpTable);
   __Pyx_GIVEREF(__pyx_v_npTmpTable);
-  __Pyx_INCREF(__pyx_v_order);
-  PyTuple_SET_ITEM(__pyx_t_5, 1, __pyx_v_order);
-  __Pyx_GIVEREF(__pyx_v_order);
-  __pyx_t_4 = PyDict_New(); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 194; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __Pyx_GOTREF(__pyx_t_4);
-  if (PyDict_SetItem(__pyx_t_4, __pyx_n_s_axis, __pyx_int_0) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 194; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __pyx_t_7 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_t_5, __pyx_t_4); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 194; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __Pyx_GOTREF(__pyx_t_7);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+  PyTuple_SET_ITEM(__pyx_t_5, 1, __pyx_t_2);
+  __Pyx_GIVEREF(__pyx_t_2);
+  __pyx_t_2 = 0;
+  __pyx_t_2 = PyDict_New(); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 200; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_t_2);
+  if (PyDict_SetItem(__pyx_t_2, __pyx_n_s_axis, __pyx_int_1) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 200; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_4, __pyx_t_5, __pyx_t_2); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 200; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_t_1);
+  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+  __Pyx_DECREF_SET(__pyx_v_npTmpTable, __pyx_t_1);
+  __pyx_t_1 = 0;
+
+  /* "Cython_Raster_Funcs\CoastlineMatching.pyx":202
+ *     npTmpTable = np.append(npTmpTable, distTmp.ravel()[:,None], axis=1)
+ *     # sort the table by distance then x then y (the arguments are last-sort-first)
+ *     order = np.lexsort((npTmpTable[:,1],npTmpTable[:,0],npTmpTable[:,2]))             # <<<<<<<<<<<<<<
+ * 
+ *     # npTmpTable has shape ((radius*2+1)**2, 3) and represents the offset coordinates of all cells in
+ */
+  __pyx_t_2 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 202; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_t_2);
+  __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_lexsort); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 202; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_t_5);
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+  __pyx_t_2 = PyObject_GetItem(__pyx_v_npTmpTable, __pyx_tuple__19); if (unlikely(__pyx_t_2 == NULL)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 202; __pyx_clineno = __LINE__; goto __pyx_L1_error;};
+  __Pyx_GOTREF(__pyx_t_2);
+  __pyx_t_4 = PyObject_GetItem(__pyx_v_npTmpTable, __pyx_tuple__21); if (unlikely(__pyx_t_4 == NULL)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 202; __pyx_clineno = __LINE__; goto __pyx_L1_error;};
+  __Pyx_GOTREF(__pyx_t_4);
+  __pyx_t_3 = PyObject_GetItem(__pyx_v_npTmpTable, __pyx_tuple__23); if (unlikely(__pyx_t_3 == NULL)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 202; __pyx_clineno = __LINE__; goto __pyx_L1_error;};
+  __Pyx_GOTREF(__pyx_t_3);
+  __pyx_t_7 = PyTuple_New(3); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 202; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_t_7);
+  PyTuple_SET_ITEM(__pyx_t_7, 0, __pyx_t_2);
+  __Pyx_GIVEREF(__pyx_t_2);
+  PyTuple_SET_ITEM(__pyx_t_7, 1, __pyx_t_4);
+  __Pyx_GIVEREF(__pyx_t_4);
+  PyTuple_SET_ITEM(__pyx_t_7, 2, __pyx_t_3);
+  __Pyx_GIVEREF(__pyx_t_3);
+  __pyx_t_2 = 0;
+  __pyx_t_4 = 0;
+  __pyx_t_3 = 0;
+  __pyx_t_3 = NULL;
+  if (CYTHON_COMPILING_IN_CPYTHON && unlikely(PyMethod_Check(__pyx_t_5))) {
+    __pyx_t_3 = PyMethod_GET_SELF(__pyx_t_5);
+    if (likely(__pyx_t_3)) {
+      PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_5);
+      __Pyx_INCREF(__pyx_t_3);
+      __Pyx_INCREF(function);
+      __Pyx_DECREF_SET(__pyx_t_5, function);
+    }
+  }
+  if (!__pyx_t_3) {
+    __pyx_t_1 = __Pyx_PyObject_CallOneArg(__pyx_t_5, __pyx_t_7); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 202; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
+    __Pyx_GOTREF(__pyx_t_1);
+  } else {
+    __pyx_t_4 = PyTuple_New(1+1); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 202; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __Pyx_GOTREF(__pyx_t_4);
+    PyTuple_SET_ITEM(__pyx_t_4, 0, __pyx_t_3); __Pyx_GIVEREF(__pyx_t_3); __pyx_t_3 = NULL;
+    PyTuple_SET_ITEM(__pyx_t_4, 0+1, __pyx_t_7);
+    __Pyx_GIVEREF(__pyx_t_7);
+    __pyx_t_7 = 0;
+    __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_5, __pyx_t_4, NULL); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 202; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __Pyx_GOTREF(__pyx_t_1);
+    __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+  }
+  __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
+  __pyx_v_order = __pyx_t_1;
+  __pyx_t_1 = 0;
+
+  /* "Cython_Raster_Funcs\CoastlineMatching.pyx":208
+ *     # npTmpTable[:,0] is x-offsets, npTmpTable[:,1] is y-offsets,
+ *     # npTmpTable[:,2] is distance.
+ *     npTmpTable = np.take(npTmpTable,order,axis=0)             # <<<<<<<<<<<<<<
+ * 
+ *      # Transpose this into an array in C-contiguous layout and with three rows and many columns,
+ */
+  __pyx_t_1 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 208; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_t_1);
+  __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_take); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 208; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_t_5);
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+  __pyx_t_1 = PyTuple_New(2); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 208; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_t_1);
+  __Pyx_INCREF(__pyx_v_npTmpTable);
+  PyTuple_SET_ITEM(__pyx_t_1, 0, __pyx_v_npTmpTable);
+  __Pyx_GIVEREF(__pyx_v_npTmpTable);
+  __Pyx_INCREF(__pyx_v_order);
+  PyTuple_SET_ITEM(__pyx_t_1, 1, __pyx_v_order);
+  __Pyx_GIVEREF(__pyx_v_order);
+  __pyx_t_4 = PyDict_New(); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 208; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_t_4);
+  if (PyDict_SetItem(__pyx_t_4, __pyx_n_s_axis, __pyx_int_0) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 208; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_7 = __Pyx_PyObject_Call(__pyx_t_5, __pyx_t_1, __pyx_t_4); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 208; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_t_7);
+  __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   __Pyx_DECREF_SET(__pyx_v_npTmpTable, __pyx_t_7);
   __pyx_t_7 = 0;
 
-  /* "Cython_Raster_Funcs\CoastlineMatching.pyx":197
- *     # transfer to a C-side object transposed to have three rows and many columns and in
- *     # C-contiguous layout, so that cython can access individual nbr coord sets more quickly
- *     nbrTable = np.copy((npTmpTable[npTmpTable[:,2] <= _SEARCH_RADIUS]).T,order='c')             # <<<<<<<<<<<<<<
- *     # cast the columns that will be used as array indices to int type once here, rather
- *     # than casting repeatedly inside the inner loop
+  /* "Cython_Raster_Funcs\CoastlineMatching.pyx":214
+ *     # Only transfer the values relating to the cells within the desired radius (cut the corners
+ *     # off the square to make a circle).
+ *     nbrTable = np.copy((npTmpTable[npTmpTable[:,2] <= searchPixelRadius]).T,order='c')             # <<<<<<<<<<<<<<
+ * 
+ *     # transfer this numpy array to  to a native C object (memoryview)
  */
-  __pyx_t_7 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 197; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_7 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 214; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_7);
-  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_7, __pyx_n_s_copy); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 197; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_7, __pyx_n_s_copy); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 214; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
-  __pyx_t_7 = PyObject_GetItem(__pyx_v_npTmpTable, __pyx_tuple__25); if (unlikely(__pyx_t_7 == NULL)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 197; __pyx_clineno = __LINE__; goto __pyx_L1_error;};
+  __pyx_t_7 = PyObject_GetItem(__pyx_v_npTmpTable, __pyx_tuple__25); if (unlikely(__pyx_t_7 == NULL)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 214; __pyx_clineno = __LINE__; goto __pyx_L1_error;};
   __Pyx_GOTREF(__pyx_t_7);
-  __pyx_t_5 = PyObject_RichCompare(__pyx_t_7, __pyx_v__SEARCH_RADIUS, Py_LE); __Pyx_XGOTREF(__pyx_t_5); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 197; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __Pyx_PyInt_From_int(__pyx_v_searchPixelRadius); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 214; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_t_1);
+  __pyx_t_5 = PyObject_RichCompare(__pyx_t_7, __pyx_t_1, Py_LE); __Pyx_XGOTREF(__pyx_t_5); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 214; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
-  __pyx_t_7 = PyObject_GetItem(__pyx_v_npTmpTable, __pyx_t_5); if (unlikely(__pyx_t_7 == NULL)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 197; __pyx_clineno = __LINE__; goto __pyx_L1_error;};
-  __Pyx_GOTREF(__pyx_t_7);
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+  __pyx_t_1 = PyObject_GetItem(__pyx_v_npTmpTable, __pyx_t_5); if (unlikely(__pyx_t_1 == NULL)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 214; __pyx_clineno = __LINE__; goto __pyx_L1_error;};
+  __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-  __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_t_7, __pyx_n_s_T); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 197; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_T); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 214; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_5);
-  __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
-  __pyx_t_7 = PyTuple_New(1); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 197; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __Pyx_GOTREF(__pyx_t_7);
-  PyTuple_SET_ITEM(__pyx_t_7, 0, __pyx_t_5);
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+  __pyx_t_1 = PyTuple_New(1); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 214; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_t_1);
+  PyTuple_SET_ITEM(__pyx_t_1, 0, __pyx_t_5);
   __Pyx_GIVEREF(__pyx_t_5);
   __pyx_t_5 = 0;
-  __pyx_t_5 = PyDict_New(); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 197; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_5 = PyDict_New(); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 214; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_5);
-  if (PyDict_SetItem(__pyx_t_5, __pyx_n_s_order, __pyx_n_s_c) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 197; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __pyx_t_3 = __Pyx_PyObject_Call(__pyx_t_4, __pyx_t_7, __pyx_t_5); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 197; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __Pyx_GOTREF(__pyx_t_3);
+  if (PyDict_SetItem(__pyx_t_5, __pyx_n_s_order, __pyx_n_s_c) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 214; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_7 = __Pyx_PyObject_Call(__pyx_t_4, __pyx_t_1, __pyx_t_5); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 214; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_t_7);
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-  __pyx_v_nbrTable = __pyx_t_3;
-  __pyx_t_3 = 0;
+  __pyx_v_nbrTable = __pyx_t_7;
+  __pyx_t_7 = 0;
 
-  /* "Cython_Raster_Funcs\CoastlineMatching.pyx":200
- *     # cast the columns that will be used as array indices to int type once here, rather
- *     # than casting repeatedly inside the inner loop
+  /* "Cython_Raster_Funcs\CoastlineMatching.pyx":220
+ *     # to int type once here. This saves a great deal of time compared to
+ *     # casting repeatedly inside the inner loop
  *     nbrIntCoords = np.asarray(nbrTable[0:2,:]).astype(np.int32)             # <<<<<<<<<<<<<<
+ *     _MAX_NEIGHBOURS_TO_CHECK = nbrIntCoords.shape[1]
  * 
- *     reallocatedCells = 0
  */
-  __pyx_t_7 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 200; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __Pyx_GOTREF(__pyx_t_7);
-  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_7, __pyx_n_s_asarray); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 200; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 220; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_t_1);
+  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_asarray); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 220; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_4);
-  __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
-  __pyx_t_7 = PyObject_GetItem(__pyx_v_nbrTable, __pyx_tuple__28); if (unlikely(__pyx_t_7 == NULL)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 200; __pyx_clineno = __LINE__; goto __pyx_L1_error;};
-  __Pyx_GOTREF(__pyx_t_7);
-  __pyx_t_2 = NULL;
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+  __pyx_t_1 = PyObject_GetItem(__pyx_v_nbrTable, __pyx_tuple__28); if (unlikely(__pyx_t_1 == NULL)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 220; __pyx_clineno = __LINE__; goto __pyx_L1_error;};
+  __Pyx_GOTREF(__pyx_t_1);
+  __pyx_t_3 = NULL;
   if (CYTHON_COMPILING_IN_CPYTHON && unlikely(PyMethod_Check(__pyx_t_4))) {
-    __pyx_t_2 = PyMethod_GET_SELF(__pyx_t_4);
-    if (likely(__pyx_t_2)) {
+    __pyx_t_3 = PyMethod_GET_SELF(__pyx_t_4);
+    if (likely(__pyx_t_3)) {
       PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_4);
-      __Pyx_INCREF(__pyx_t_2);
+      __Pyx_INCREF(__pyx_t_3);
       __Pyx_INCREF(function);
       __Pyx_DECREF_SET(__pyx_t_4, function);
     }
   }
-  if (!__pyx_t_2) {
-    __pyx_t_5 = __Pyx_PyObject_CallOneArg(__pyx_t_4, __pyx_t_7); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 200; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-    __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
+  if (!__pyx_t_3) {
+    __pyx_t_5 = __Pyx_PyObject_CallOneArg(__pyx_t_4, __pyx_t_1); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 220; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
     __Pyx_GOTREF(__pyx_t_5);
   } else {
-    __pyx_t_1 = PyTuple_New(1+1); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 200; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-    __Pyx_GOTREF(__pyx_t_1);
-    PyTuple_SET_ITEM(__pyx_t_1, 0, __pyx_t_2); __Pyx_GIVEREF(__pyx_t_2); __pyx_t_2 = NULL;
-    PyTuple_SET_ITEM(__pyx_t_1, 0+1, __pyx_t_7);
-    __Pyx_GIVEREF(__pyx_t_7);
-    __pyx_t_7 = 0;
-    __pyx_t_5 = __Pyx_PyObject_Call(__pyx_t_4, __pyx_t_1, NULL); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 200; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_2 = PyTuple_New(1+1); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 220; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __Pyx_GOTREF(__pyx_t_2);
+    PyTuple_SET_ITEM(__pyx_t_2, 0, __pyx_t_3); __Pyx_GIVEREF(__pyx_t_3); __pyx_t_3 = NULL;
+    PyTuple_SET_ITEM(__pyx_t_2, 0+1, __pyx_t_1);
+    __Pyx_GIVEREF(__pyx_t_1);
+    __pyx_t_1 = 0;
+    __pyx_t_5 = __Pyx_PyObject_Call(__pyx_t_4, __pyx_t_2, NULL); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 220; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_5);
-    __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+    __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   }
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_5, __pyx_n_s_astype); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 200; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_5, __pyx_n_s_astype); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 220; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-  __pyx_t_5 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 200; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_5 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 220; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_5);
-  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_t_5, __pyx_n_s_int32); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 200; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __Pyx_GOTREF(__pyx_t_1);
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_5, __pyx_n_s_int32); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 220; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
   __pyx_t_5 = NULL;
   if (CYTHON_COMPILING_IN_CPYTHON && likely(PyMethod_Check(__pyx_t_4))) {
@@ -3556,30 +3535,39 @@ static PyObject *__pyx_f_19Cython_Raster_Funcs_17CoastlineMatching_reallocateToU
     }
   }
   if (!__pyx_t_5) {
-    __pyx_t_3 = __Pyx_PyObject_CallOneArg(__pyx_t_4, __pyx_t_1); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 200; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-    __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-    __Pyx_GOTREF(__pyx_t_3);
-  } else {
-    __pyx_t_7 = PyTuple_New(1+1); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 200; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_7 = __Pyx_PyObject_CallOneArg(__pyx_t_4, __pyx_t_2); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 220; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
     __Pyx_GOTREF(__pyx_t_7);
-    PyTuple_SET_ITEM(__pyx_t_7, 0, __pyx_t_5); __Pyx_GIVEREF(__pyx_t_5); __pyx_t_5 = NULL;
-    PyTuple_SET_ITEM(__pyx_t_7, 0+1, __pyx_t_1);
-    __Pyx_GIVEREF(__pyx_t_1);
-    __pyx_t_1 = 0;
-    __pyx_t_3 = __Pyx_PyObject_Call(__pyx_t_4, __pyx_t_7, NULL); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 200; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-    __Pyx_GOTREF(__pyx_t_3);
-    __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
+  } else {
+    __pyx_t_1 = PyTuple_New(1+1); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 220; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __Pyx_GOTREF(__pyx_t_1);
+    PyTuple_SET_ITEM(__pyx_t_1, 0, __pyx_t_5); __Pyx_GIVEREF(__pyx_t_5); __pyx_t_5 = NULL;
+    PyTuple_SET_ITEM(__pyx_t_1, 0+1, __pyx_t_2);
+    __Pyx_GIVEREF(__pyx_t_2);
+    __pyx_t_2 = 0;
+    __pyx_t_7 = __Pyx_PyObject_Call(__pyx_t_4, __pyx_t_1, NULL); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 220; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __Pyx_GOTREF(__pyx_t_7);
+    __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   }
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  __pyx_t_8 = __Pyx_PyObject_to_MemoryviewSlice_d_dc_int(__pyx_t_3);
-  if (unlikely(!__pyx_t_8.memview)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 200; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+  __pyx_t_8 = __Pyx_PyObject_to_MemoryviewSlice_d_dc_int(__pyx_t_7);
+  if (unlikely(!__pyx_t_8.memview)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 220; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
   __pyx_v_nbrIntCoords = __pyx_t_8;
   __pyx_t_8.memview = NULL;
   __pyx_t_8.data = NULL;
 
-  /* "Cython_Raster_Funcs\CoastlineMatching.pyx":202
+  /* "Cython_Raster_Funcs\CoastlineMatching.pyx":221
+ *     # casting repeatedly inside the inner loop
  *     nbrIntCoords = np.asarray(nbrTable[0:2,:]).astype(np.int32)
+ *     _MAX_NEIGHBOURS_TO_CHECK = nbrIntCoords.shape[1]             # <<<<<<<<<<<<<<
+ * 
+ *     reallocatedCells = 0
+ */
+  __pyx_v__MAX_NEIGHBOURS_TO_CHECK = (__pyx_v_nbrIntCoords.shape[1]);
+
+  /* "Cython_Raster_Funcs\CoastlineMatching.pyx":223
+ *     _MAX_NEIGHBOURS_TO_CHECK = nbrIntCoords.shape[1]
  * 
  *     reallocatedCells = 0             # <<<<<<<<<<<<<<
  *     clippedZeros = 0
@@ -3587,7 +3575,7 @@ static PyObject *__pyx_f_19Cython_Raster_Funcs_17CoastlineMatching_reallocateToU
  */
   __pyx_v_reallocatedCells = 0;
 
-  /* "Cython_Raster_Funcs\CoastlineMatching.pyx":203
+  /* "Cython_Raster_Funcs\CoastlineMatching.pyx":224
  * 
  *     reallocatedCells = 0
  *     clippedZeros = 0             # <<<<<<<<<<<<<<
@@ -3596,7 +3584,7 @@ static PyObject *__pyx_f_19Cython_Raster_Funcs_17CoastlineMatching_reallocateToU
  */
   __pyx_v_clippedZeros = 0;
 
-  /* "Cython_Raster_Funcs\CoastlineMatching.pyx":204
+  /* "Cython_Raster_Funcs\CoastlineMatching.pyx":225
  *     reallocatedCells = 0
  *     clippedZeros = 0
  *     reallocatedTotalPop = 0             # <<<<<<<<<<<<<<
@@ -3605,7 +3593,7 @@ static PyObject *__pyx_f_19Cython_Raster_Funcs_17CoastlineMatching_reallocateToU
  */
   __pyx_v_reallocatedTotalPop = 0.0;
 
-  /* "Cython_Raster_Funcs\CoastlineMatching.pyx":205
+  /* "Cython_Raster_Funcs\CoastlineMatching.pyx":226
  *     clippedZeros = 0
  *     reallocatedTotalPop = 0
  *     failedReallocations = 0             # <<<<<<<<<<<<<<
@@ -3614,7 +3602,7 @@ static PyObject *__pyx_f_19Cython_Raster_Funcs_17CoastlineMatching_reallocateToU
  */
   __pyx_v_failedReallocations = 0;
 
-  /* "Cython_Raster_Funcs\CoastlineMatching.pyx":206
+  /* "Cython_Raster_Funcs\CoastlineMatching.pyx":227
  *     reallocatedTotalPop = 0
  *     failedReallocations = 0
  *     failedReallocationPop = 0             # <<<<<<<<<<<<<<
@@ -3623,54 +3611,54 @@ static PyObject *__pyx_f_19Cython_Raster_Funcs_17CoastlineMatching_reallocateToU
  */
   __pyx_v_failedReallocationPop = 0.0;
 
-  /* "Cython_Raster_Funcs\CoastlineMatching.pyx":208
+  /* "Cython_Raster_Funcs\CoastlineMatching.pyx":229
  *     failedReallocationPop = 0
  * 
  *     failedLocs = np.zeros_like(landMask)             # <<<<<<<<<<<<<<
  * 
  *     for yIn in range (yShapeIn):
  */
-  __pyx_t_4 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 208; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_4 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 229; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_4);
-  __pyx_t_7 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_n_s_zeros_like); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 208; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __Pyx_GOTREF(__pyx_t_7);
+  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_n_s_zeros_like); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 229; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  __pyx_t_4 = __pyx_memoryview_fromslice(__pyx_v_landMask, 2, (PyObject *(*)(char *)) __pyx_memview_get_char, (int (*)(char *, PyObject *)) __pyx_memview_set_char, 0);; if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 208; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_4 = __pyx_memoryview_fromslice(__pyx_v_landMask, 2, (PyObject *(*)(char *)) __pyx_memview_get_char, (int (*)(char *, PyObject *)) __pyx_memview_set_char, 0);; if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 229; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_4);
-  __pyx_t_1 = NULL;
-  if (CYTHON_COMPILING_IN_CPYTHON && unlikely(PyMethod_Check(__pyx_t_7))) {
-    __pyx_t_1 = PyMethod_GET_SELF(__pyx_t_7);
-    if (likely(__pyx_t_1)) {
-      PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_7);
-      __Pyx_INCREF(__pyx_t_1);
+  __pyx_t_2 = NULL;
+  if (CYTHON_COMPILING_IN_CPYTHON && unlikely(PyMethod_Check(__pyx_t_1))) {
+    __pyx_t_2 = PyMethod_GET_SELF(__pyx_t_1);
+    if (likely(__pyx_t_2)) {
+      PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_1);
+      __Pyx_INCREF(__pyx_t_2);
       __Pyx_INCREF(function);
-      __Pyx_DECREF_SET(__pyx_t_7, function);
+      __Pyx_DECREF_SET(__pyx_t_1, function);
     }
   }
-  if (!__pyx_t_1) {
-    __pyx_t_3 = __Pyx_PyObject_CallOneArg(__pyx_t_7, __pyx_t_4); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 208; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (!__pyx_t_2) {
+    __pyx_t_7 = __Pyx_PyObject_CallOneArg(__pyx_t_1, __pyx_t_4); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 229; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-    __Pyx_GOTREF(__pyx_t_3);
+    __Pyx_GOTREF(__pyx_t_7);
   } else {
-    __pyx_t_5 = PyTuple_New(1+1); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 208; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_5 = PyTuple_New(1+1); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 229; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_5);
-    PyTuple_SET_ITEM(__pyx_t_5, 0, __pyx_t_1); __Pyx_GIVEREF(__pyx_t_1); __pyx_t_1 = NULL;
+    PyTuple_SET_ITEM(__pyx_t_5, 0, __pyx_t_2); __Pyx_GIVEREF(__pyx_t_2); __pyx_t_2 = NULL;
     PyTuple_SET_ITEM(__pyx_t_5, 0+1, __pyx_t_4);
     __Pyx_GIVEREF(__pyx_t_4);
     __pyx_t_4 = 0;
-    __pyx_t_3 = __Pyx_PyObject_Call(__pyx_t_7, __pyx_t_5, NULL); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 208; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-    __Pyx_GOTREF(__pyx_t_3);
+    __pyx_t_7 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_t_5, NULL); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 229; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __Pyx_GOTREF(__pyx_t_7);
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
   }
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+  __pyx_t_9 = __Pyx_PyObject_to_MemoryviewSlice_d_dc_char(__pyx_t_7);
+  if (unlikely(!__pyx_t_9.memview)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 229; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
-  __pyx_t_9 = __Pyx_PyObject_to_MemoryviewSlice_d_dc_char(__pyx_t_3);
-  if (unlikely(!__pyx_t_9.memview)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 208; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __pyx_v_failedLocs = __pyx_t_9;
   __pyx_t_9.memview = NULL;
   __pyx_t_9.data = NULL;
 
-  /* "Cython_Raster_Funcs\CoastlineMatching.pyx":210
+  /* "Cython_Raster_Funcs\CoastlineMatching.pyx":231
  *     failedLocs = np.zeros_like(landMask)
  * 
  *     for yIn in range (yShapeIn):             # <<<<<<<<<<<<<<
@@ -3681,7 +3669,7 @@ static PyObject *__pyx_f_19Cython_Raster_Funcs_17CoastlineMatching_reallocateToU
   for (__pyx_t_10 = 0; __pyx_t_10 < __pyx_t_6; __pyx_t_10+=1) {
     __pyx_v_yIn = __pyx_t_10;
 
-    /* "Cython_Raster_Funcs\CoastlineMatching.pyx":211
+    /* "Cython_Raster_Funcs\CoastlineMatching.pyx":232
  * 
  *     for yIn in range (yShapeIn):
  *         for xIn in range(xShapeIn):             # <<<<<<<<<<<<<<
@@ -3692,7 +3680,7 @@ static PyObject *__pyx_f_19Cython_Raster_Funcs_17CoastlineMatching_reallocateToU
     for (__pyx_t_12 = 0; __pyx_t_12 < __pyx_t_11; __pyx_t_12+=1) {
       __pyx_v_xIn = __pyx_t_12;
 
-      /* "Cython_Raster_Funcs\CoastlineMatching.pyx":212
+      /* "Cython_Raster_Funcs\CoastlineMatching.pyx":233
  *     for yIn in range (yShapeIn):
  *         for xIn in range(xShapeIn):
  *             if landMask[yIn, xIn] == 1:             # <<<<<<<<<<<<<<
@@ -3712,12 +3700,12 @@ static PyObject *__pyx_f_19Cython_Raster_Funcs_17CoastlineMatching_reallocateToU
       } else if (unlikely(__pyx_t_14 >= __pyx_v_landMask.shape[1])) __pyx_t_15 = 1;
       if (unlikely(__pyx_t_15 != -1)) {
         __Pyx_RaiseBufferIndexError(__pyx_t_15);
-        {__pyx_filename = __pyx_f[0]; __pyx_lineno = 212; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+        {__pyx_filename = __pyx_f[0]; __pyx_lineno = 233; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       }
       __pyx_t_16 = (((*((char *) ( /* dim=1 */ ((char *) (((char *) ( /* dim=0 */ (__pyx_v_landMask.data + __pyx_t_13 * __pyx_v_landMask.strides[0]) )) + __pyx_t_14)) ))) == 1) != 0);
       if (__pyx_t_16) {
 
-        /* "Cython_Raster_Funcs\CoastlineMatching.pyx":216
+        /* "Cython_Raster_Funcs\CoastlineMatching.pyx":237
  *                 # however we might want to set it to zero to stop the R-boys getting
  *                 # stressed about seeing nodata inland
  *                 if data[yIn, xIn] == _NDV and fillLandWithZero:             # <<<<<<<<<<<<<<
@@ -3737,7 +3725,7 @@ static PyObject *__pyx_f_19Cython_Raster_Funcs_17CoastlineMatching_reallocateToU
         } else if (unlikely(__pyx_t_18 >= __pyx_v_data.shape[1])) __pyx_t_15 = 1;
         if (unlikely(__pyx_t_15 != -1)) {
           __Pyx_RaiseBufferIndexError(__pyx_t_15);
-          {__pyx_filename = __pyx_f[0]; __pyx_lineno = 216; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+          {__pyx_filename = __pyx_f[0]; __pyx_lineno = 237; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
         }
         __pyx_t_19 = (((*((float *) ( /* dim=1 */ ((char *) (((float *) ( /* dim=0 */ (__pyx_v_data.data + __pyx_t_17 * __pyx_v_data.strides[0]) )) + __pyx_t_18)) ))) == __pyx_v__NDV) != 0);
         if (__pyx_t_19) {
@@ -3750,7 +3738,7 @@ static PyObject *__pyx_f_19Cython_Raster_Funcs_17CoastlineMatching_reallocateToU
         __pyx_L9_bool_binop_done:;
         if (__pyx_t_16) {
 
-          /* "Cython_Raster_Funcs\CoastlineMatching.pyx":217
+          /* "Cython_Raster_Funcs\CoastlineMatching.pyx":238
  *                 # stressed about seeing nodata inland
  *                 if data[yIn, xIn] == _NDV and fillLandWithZero:
  *                     data[yIn, xIn] = 0             # <<<<<<<<<<<<<<
@@ -3770,14 +3758,14 @@ static PyObject *__pyx_f_19Cython_Raster_Funcs_17CoastlineMatching_reallocateToU
           } else if (unlikely(__pyx_t_21 >= __pyx_v_data.shape[1])) __pyx_t_15 = 1;
           if (unlikely(__pyx_t_15 != -1)) {
             __Pyx_RaiseBufferIndexError(__pyx_t_15);
-            {__pyx_filename = __pyx_f[0]; __pyx_lineno = 217; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+            {__pyx_filename = __pyx_f[0]; __pyx_lineno = 238; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
           }
           *((float *) ( /* dim=1 */ ((char *) (((float *) ( /* dim=0 */ (__pyx_v_data.data + __pyx_t_20 * __pyx_v_data.strides[0]) )) + __pyx_t_21)) )) = 0.0;
           goto __pyx_L8;
         }
         __pyx_L8:;
 
-        /* "Cython_Raster_Funcs\CoastlineMatching.pyx":218
+        /* "Cython_Raster_Funcs\CoastlineMatching.pyx":239
  *                 if data[yIn, xIn] == _NDV and fillLandWithZero:
  *                     data[yIn, xIn] = 0
  *                 continue             # <<<<<<<<<<<<<<
@@ -3787,7 +3775,7 @@ static PyObject *__pyx_f_19Cython_Raster_Funcs_17CoastlineMatching_reallocateToU
         goto __pyx_L5_continue;
       }
 
-      /* "Cython_Raster_Funcs\CoastlineMatching.pyx":219
+      /* "Cython_Raster_Funcs\CoastlineMatching.pyx":240
  *                     data[yIn, xIn] = 0
  *                 continue
  *             if data[yIn, xIn] == _NDV:             # <<<<<<<<<<<<<<
@@ -3807,12 +3795,12 @@ static PyObject *__pyx_f_19Cython_Raster_Funcs_17CoastlineMatching_reallocateToU
       } else if (unlikely(__pyx_t_23 >= __pyx_v_data.shape[1])) __pyx_t_15 = 1;
       if (unlikely(__pyx_t_15 != -1)) {
         __Pyx_RaiseBufferIndexError(__pyx_t_15);
-        {__pyx_filename = __pyx_f[0]; __pyx_lineno = 219; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+        {__pyx_filename = __pyx_f[0]; __pyx_lineno = 240; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       }
       __pyx_t_16 = (((*((float *) ( /* dim=1 */ ((char *) (((float *) ( /* dim=0 */ (__pyx_v_data.data + __pyx_t_22 * __pyx_v_data.strides[0]) )) + __pyx_t_23)) ))) == __pyx_v__NDV) != 0);
       if (__pyx_t_16) {
 
-        /* "Cython_Raster_Funcs\CoastlineMatching.pyx":221
+        /* "Cython_Raster_Funcs\CoastlineMatching.pyx":242
  *             if data[yIn, xIn] == _NDV:
  *                 # we're in the sea, but there's nothing to reallocate
  *                 continue             # <<<<<<<<<<<<<<
@@ -3822,7 +3810,7 @@ static PyObject *__pyx_f_19Cython_Raster_Funcs_17CoastlineMatching_reallocateToU
         goto __pyx_L5_continue;
       }
 
-      /* "Cython_Raster_Funcs\CoastlineMatching.pyx":222
+      /* "Cython_Raster_Funcs\CoastlineMatching.pyx":243
  *                 # we're in the sea, but there's nothing to reallocate
  *                 continue
  *             if data[yIn, xIn] == 0:             # <<<<<<<<<<<<<<
@@ -3842,12 +3830,12 @@ static PyObject *__pyx_f_19Cython_Raster_Funcs_17CoastlineMatching_reallocateToU
       } else if (unlikely(__pyx_t_25 >= __pyx_v_data.shape[1])) __pyx_t_15 = 1;
       if (unlikely(__pyx_t_15 != -1)) {
         __Pyx_RaiseBufferIndexError(__pyx_t_15);
-        {__pyx_filename = __pyx_f[0]; __pyx_lineno = 222; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+        {__pyx_filename = __pyx_f[0]; __pyx_lineno = 243; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       }
       __pyx_t_16 = (((*((float *) ( /* dim=1 */ ((char *) (((float *) ( /* dim=0 */ (__pyx_v_data.data + __pyx_t_24 * __pyx_v_data.strides[0]) )) + __pyx_t_25)) ))) == 0.0) != 0);
       if (__pyx_t_16) {
 
-        /* "Cython_Raster_Funcs\CoastlineMatching.pyx":224
+        /* "Cython_Raster_Funcs\CoastlineMatching.pyx":245
  *             if data[yIn, xIn] == 0:
  *                 # we're in the sea, and there's nothing to reallocate but...
  *                 if clipZerosAtSea:             # <<<<<<<<<<<<<<
@@ -3857,7 +3845,7 @@ static PyObject *__pyx_f_19Cython_Raster_Funcs_17CoastlineMatching_reallocateToU
         __pyx_t_16 = (__pyx_v_clipZerosAtSea != 0);
         if (__pyx_t_16) {
 
-          /* "Cython_Raster_Funcs\CoastlineMatching.pyx":228
+          /* "Cython_Raster_Funcs\CoastlineMatching.pyx":249
  *                     # getting stressed about seeing people at sea even though the number of
  *                     # people in question is zero
  *                     data[yIn, xIn] = _NDV             # <<<<<<<<<<<<<<
@@ -3877,11 +3865,11 @@ static PyObject *__pyx_f_19Cython_Raster_Funcs_17CoastlineMatching_reallocateToU
           } else if (unlikely(__pyx_t_27 >= __pyx_v_data.shape[1])) __pyx_t_15 = 1;
           if (unlikely(__pyx_t_15 != -1)) {
             __Pyx_RaiseBufferIndexError(__pyx_t_15);
-            {__pyx_filename = __pyx_f[0]; __pyx_lineno = 228; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+            {__pyx_filename = __pyx_f[0]; __pyx_lineno = 249; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
           }
           *((float *) ( /* dim=1 */ ((char *) (((float *) ( /* dim=0 */ (__pyx_v_data.data + __pyx_t_26 * __pyx_v_data.strides[0]) )) + __pyx_t_27)) )) = __pyx_v__NDV;
 
-          /* "Cython_Raster_Funcs\CoastlineMatching.pyx":229
+          /* "Cython_Raster_Funcs\CoastlineMatching.pyx":250
  *                     # people in question is zero
  *                     data[yIn, xIn] = _NDV
  *                     clippedZeros += 1             # <<<<<<<<<<<<<<
@@ -3893,7 +3881,7 @@ static PyObject *__pyx_f_19Cython_Raster_Funcs_17CoastlineMatching_reallocateToU
         }
         __pyx_L13:;
 
-        /* "Cython_Raster_Funcs\CoastlineMatching.pyx":230
+        /* "Cython_Raster_Funcs\CoastlineMatching.pyx":251
  *                     data[yIn, xIn] = _NDV
  *                     clippedZeros += 1
  *                 continue             # <<<<<<<<<<<<<<
@@ -3903,7 +3891,7 @@ static PyObject *__pyx_f_19Cython_Raster_Funcs_17CoastlineMatching_reallocateToU
         goto __pyx_L5_continue;
       }
 
-      /* "Cython_Raster_Funcs\CoastlineMatching.pyx":232
+      /* "Cython_Raster_Funcs\CoastlineMatching.pyx":253
  *                 continue
  *             # otherwise, we're at sea but have non-zero data. Find nearest land pixel to reallocate it to.
  *             reallocatedOK = 0             # <<<<<<<<<<<<<<
@@ -3912,7 +3900,7 @@ static PyObject *__pyx_f_19Cython_Raster_Funcs_17CoastlineMatching_reallocateToU
  */
       __pyx_v_reallocatedOK = 0;
 
-      /* "Cython_Raster_Funcs\CoastlineMatching.pyx":233
+      /* "Cython_Raster_Funcs\CoastlineMatching.pyx":254
  *             # otherwise, we're at sea but have non-zero data. Find nearest land pixel to reallocate it to.
  *             reallocatedOK = 0
  *             for nbrIndex_prv in range(1, _MAX_NEIGHBOURS_TO_CHECK):             # <<<<<<<<<<<<<<
@@ -3923,7 +3911,7 @@ static PyObject *__pyx_f_19Cython_Raster_Funcs_17CoastlineMatching_reallocateToU
       for (__pyx_t_28 = 1; __pyx_t_28 < __pyx_t_15; __pyx_t_28+=1) {
         __pyx_v_nbrIndex_prv = __pyx_t_28;
 
-        /* "Cython_Raster_Funcs\CoastlineMatching.pyx":235
+        /* "Cython_Raster_Funcs\CoastlineMatching.pyx":256
  *             for nbrIndex_prv in range(1, _MAX_NEIGHBOURS_TO_CHECK):
  *                 # use int-type coords array to avoid cast op in tight loop
  *                 xNbr = xIn + nbrIntCoords[0, nbrIndex_prv]             # <<<<<<<<<<<<<<
@@ -3943,11 +3931,11 @@ static PyObject *__pyx_f_19Cython_Raster_Funcs_17CoastlineMatching_reallocateToU
         } else if (unlikely(__pyx_t_30 >= __pyx_v_nbrIntCoords.shape[1])) __pyx_t_31 = 1;
         if (unlikely(__pyx_t_31 != -1)) {
           __Pyx_RaiseBufferIndexError(__pyx_t_31);
-          {__pyx_filename = __pyx_f[0]; __pyx_lineno = 235; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+          {__pyx_filename = __pyx_f[0]; __pyx_lineno = 256; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
         }
         __pyx_v_xNbr = (__pyx_v_xIn + (*((int *) ( /* dim=1 */ ((char *) (((int *) ( /* dim=0 */ (__pyx_v_nbrIntCoords.data + __pyx_t_29 * __pyx_v_nbrIntCoords.strides[0]) )) + __pyx_t_30)) ))));
 
-        /* "Cython_Raster_Funcs\CoastlineMatching.pyx":236
+        /* "Cython_Raster_Funcs\CoastlineMatching.pyx":257
  *                 # use int-type coords array to avoid cast op in tight loop
  *                 xNbr = xIn + nbrIntCoords[0, nbrIndex_prv]
  *                 yNbr = yIn + nbrIntCoords[1, nbrIndex_prv]             # <<<<<<<<<<<<<<
@@ -3967,11 +3955,11 @@ static PyObject *__pyx_f_19Cython_Raster_Funcs_17CoastlineMatching_reallocateToU
         } else if (unlikely(__pyx_t_33 >= __pyx_v_nbrIntCoords.shape[1])) __pyx_t_31 = 1;
         if (unlikely(__pyx_t_31 != -1)) {
           __Pyx_RaiseBufferIndexError(__pyx_t_31);
-          {__pyx_filename = __pyx_f[0]; __pyx_lineno = 236; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+          {__pyx_filename = __pyx_f[0]; __pyx_lineno = 257; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
         }
         __pyx_v_yNbr = (__pyx_v_yIn + (*((int *) ( /* dim=1 */ ((char *) (((int *) ( /* dim=0 */ (__pyx_v_nbrIntCoords.data + __pyx_t_32 * __pyx_v_nbrIntCoords.strides[0]) )) + __pyx_t_33)) ))));
 
-        /* "Cython_Raster_Funcs\CoastlineMatching.pyx":237
+        /* "Cython_Raster_Funcs\CoastlineMatching.pyx":258
  *                 xNbr = xIn + nbrIntCoords[0, nbrIndex_prv]
  *                 yNbr = yIn + nbrIntCoords[1, nbrIndex_prv]
  *                 if (xNbr >= 0 and xNbr < xShapeIn and             # <<<<<<<<<<<<<<
@@ -3991,7 +3979,7 @@ static PyObject *__pyx_f_19Cython_Raster_Funcs_17CoastlineMatching_reallocateToU
           goto __pyx_L17_bool_binop_done;
         }
 
-        /* "Cython_Raster_Funcs\CoastlineMatching.pyx":238
+        /* "Cython_Raster_Funcs\CoastlineMatching.pyx":259
  *                 yNbr = yIn + nbrIntCoords[1, nbrIndex_prv]
  *                 if (xNbr >= 0 and xNbr < xShapeIn and
  *                     yNbr >= 0 and yNbr < yShapeIn and             # <<<<<<<<<<<<<<
@@ -4011,7 +3999,7 @@ static PyObject *__pyx_f_19Cython_Raster_Funcs_17CoastlineMatching_reallocateToU
           goto __pyx_L17_bool_binop_done;
         }
 
-        /* "Cython_Raster_Funcs\CoastlineMatching.pyx":239
+        /* "Cython_Raster_Funcs\CoastlineMatching.pyx":260
  *                 if (xNbr >= 0 and xNbr < xShapeIn and
  *                     yNbr >= 0 and yNbr < yShapeIn and
  *                     landMask[yNbr, xNbr] == 1):             # <<<<<<<<<<<<<<
@@ -4031,14 +4019,14 @@ static PyObject *__pyx_f_19Cython_Raster_Funcs_17CoastlineMatching_reallocateToU
         } else if (unlikely(__pyx_t_35 >= __pyx_v_landMask.shape[1])) __pyx_t_31 = 1;
         if (unlikely(__pyx_t_31 != -1)) {
           __Pyx_RaiseBufferIndexError(__pyx_t_31);
-          {__pyx_filename = __pyx_f[0]; __pyx_lineno = 239; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+          {__pyx_filename = __pyx_f[0]; __pyx_lineno = 260; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
         }
         __pyx_t_19 = (((*((char *) ( /* dim=1 */ ((char *) (((char *) ( /* dim=0 */ (__pyx_v_landMask.data + __pyx_t_34 * __pyx_v_landMask.strides[0]) )) + __pyx_t_35)) ))) == 1) != 0);
         __pyx_t_16 = __pyx_t_19;
         __pyx_L17_bool_binop_done:;
         if (__pyx_t_16) {
 
-          /* "Cython_Raster_Funcs\CoastlineMatching.pyx":241
+          /* "Cython_Raster_Funcs\CoastlineMatching.pyx":262
  *                     landMask[yNbr, xNbr] == 1):
  *                     # we've found a land pixel, move the value from here to there
  *                     if data[yNbr, xNbr] == _NDV or data[yNbr, xNbr] < 0:             # <<<<<<<<<<<<<<
@@ -4058,7 +4046,7 @@ static PyObject *__pyx_f_19Cython_Raster_Funcs_17CoastlineMatching_reallocateToU
           } else if (unlikely(__pyx_t_37 >= __pyx_v_data.shape[1])) __pyx_t_31 = 1;
           if (unlikely(__pyx_t_31 != -1)) {
             __Pyx_RaiseBufferIndexError(__pyx_t_31);
-            {__pyx_filename = __pyx_f[0]; __pyx_lineno = 241; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+            {__pyx_filename = __pyx_f[0]; __pyx_lineno = 262; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
           }
           __pyx_t_19 = (((*((float *) ( /* dim=1 */ ((char *) (((float *) ( /* dim=0 */ (__pyx_v_data.data + __pyx_t_36 * __pyx_v_data.strides[0]) )) + __pyx_t_37)) ))) == __pyx_v__NDV) != 0);
           if (!__pyx_t_19) {
@@ -4079,14 +4067,14 @@ static PyObject *__pyx_f_19Cython_Raster_Funcs_17CoastlineMatching_reallocateToU
           } else if (unlikely(__pyx_t_39 >= __pyx_v_data.shape[1])) __pyx_t_31 = 1;
           if (unlikely(__pyx_t_31 != -1)) {
             __Pyx_RaiseBufferIndexError(__pyx_t_31);
-            {__pyx_filename = __pyx_f[0]; __pyx_lineno = 241; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+            {__pyx_filename = __pyx_f[0]; __pyx_lineno = 262; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
           }
           __pyx_t_19 = (((*((float *) ( /* dim=1 */ ((char *) (((float *) ( /* dim=0 */ (__pyx_v_data.data + __pyx_t_38 * __pyx_v_data.strides[0]) )) + __pyx_t_39)) ))) < 0.0) != 0);
           __pyx_t_16 = __pyx_t_19;
           __pyx_L23_bool_binop_done:;
           if (__pyx_t_16) {
 
-            /* "Cython_Raster_Funcs\CoastlineMatching.pyx":242
+            /* "Cython_Raster_Funcs\CoastlineMatching.pyx":263
  *                     # we've found a land pixel, move the value from here to there
  *                     if data[yNbr, xNbr] == _NDV or data[yNbr, xNbr] < 0:
  *                         data[yNbr, xNbr] = data[yIn, xIn]             # <<<<<<<<<<<<<<
@@ -4106,7 +4094,7 @@ static PyObject *__pyx_f_19Cython_Raster_Funcs_17CoastlineMatching_reallocateToU
             } else if (unlikely(__pyx_t_41 >= __pyx_v_data.shape[1])) __pyx_t_31 = 1;
             if (unlikely(__pyx_t_31 != -1)) {
               __Pyx_RaiseBufferIndexError(__pyx_t_31);
-              {__pyx_filename = __pyx_f[0]; __pyx_lineno = 242; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+              {__pyx_filename = __pyx_f[0]; __pyx_lineno = 263; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
             }
             __pyx_t_42 = __pyx_v_yNbr;
             __pyx_t_43 = __pyx_v_xNbr;
@@ -4121,14 +4109,14 @@ static PyObject *__pyx_f_19Cython_Raster_Funcs_17CoastlineMatching_reallocateToU
             } else if (unlikely(__pyx_t_43 >= __pyx_v_data.shape[1])) __pyx_t_31 = 1;
             if (unlikely(__pyx_t_31 != -1)) {
               __Pyx_RaiseBufferIndexError(__pyx_t_31);
-              {__pyx_filename = __pyx_f[0]; __pyx_lineno = 242; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+              {__pyx_filename = __pyx_f[0]; __pyx_lineno = 263; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
             }
             *((float *) ( /* dim=1 */ ((char *) (((float *) ( /* dim=0 */ (__pyx_v_data.data + __pyx_t_42 * __pyx_v_data.strides[0]) )) + __pyx_t_43)) )) = (*((float *) ( /* dim=1 */ ((char *) (((float *) ( /* dim=0 */ (__pyx_v_data.data + __pyx_t_40 * __pyx_v_data.strides[0]) )) + __pyx_t_41)) )));
             goto __pyx_L22;
           }
           /*else*/ {
 
-            /* "Cython_Raster_Funcs\CoastlineMatching.pyx":244
+            /* "Cython_Raster_Funcs\CoastlineMatching.pyx":265
  *                         data[yNbr, xNbr] = data[yIn, xIn]
  *                     else:
  *                         data[yNbr, xNbr] += data[yIn, xIn]             # <<<<<<<<<<<<<<
@@ -4148,7 +4136,7 @@ static PyObject *__pyx_f_19Cython_Raster_Funcs_17CoastlineMatching_reallocateToU
             } else if (unlikely(__pyx_t_45 >= __pyx_v_data.shape[1])) __pyx_t_31 = 1;
             if (unlikely(__pyx_t_31 != -1)) {
               __Pyx_RaiseBufferIndexError(__pyx_t_31);
-              {__pyx_filename = __pyx_f[0]; __pyx_lineno = 244; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+              {__pyx_filename = __pyx_f[0]; __pyx_lineno = 265; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
             }
             __pyx_t_46 = __pyx_v_yNbr;
             __pyx_t_47 = __pyx_v_xNbr;
@@ -4163,13 +4151,13 @@ static PyObject *__pyx_f_19Cython_Raster_Funcs_17CoastlineMatching_reallocateToU
             } else if (unlikely(__pyx_t_47 >= __pyx_v_data.shape[1])) __pyx_t_31 = 1;
             if (unlikely(__pyx_t_31 != -1)) {
               __Pyx_RaiseBufferIndexError(__pyx_t_31);
-              {__pyx_filename = __pyx_f[0]; __pyx_lineno = 244; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+              {__pyx_filename = __pyx_f[0]; __pyx_lineno = 265; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
             }
             *((float *) ( /* dim=1 */ ((char *) (((float *) ( /* dim=0 */ (__pyx_v_data.data + __pyx_t_46 * __pyx_v_data.strides[0]) )) + __pyx_t_47)) )) += (*((float *) ( /* dim=1 */ ((char *) (((float *) ( /* dim=0 */ (__pyx_v_data.data + __pyx_t_44 * __pyx_v_data.strides[0]) )) + __pyx_t_45)) )));
           }
           __pyx_L22:;
 
-          /* "Cython_Raster_Funcs\CoastlineMatching.pyx":245
+          /* "Cython_Raster_Funcs\CoastlineMatching.pyx":266
  *                     else:
  *                         data[yNbr, xNbr] += data[yIn, xIn]
  *                     data[yIn, xIn] = _NDV             # <<<<<<<<<<<<<<
@@ -4189,11 +4177,11 @@ static PyObject *__pyx_f_19Cython_Raster_Funcs_17CoastlineMatching_reallocateToU
           } else if (unlikely(__pyx_t_49 >= __pyx_v_data.shape[1])) __pyx_t_31 = 1;
           if (unlikely(__pyx_t_31 != -1)) {
             __Pyx_RaiseBufferIndexError(__pyx_t_31);
-            {__pyx_filename = __pyx_f[0]; __pyx_lineno = 245; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+            {__pyx_filename = __pyx_f[0]; __pyx_lineno = 266; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
           }
           *((float *) ( /* dim=1 */ ((char *) (((float *) ( /* dim=0 */ (__pyx_v_data.data + __pyx_t_48 * __pyx_v_data.strides[0]) )) + __pyx_t_49)) )) = __pyx_v__NDV;
 
-          /* "Cython_Raster_Funcs\CoastlineMatching.pyx":246
+          /* "Cython_Raster_Funcs\CoastlineMatching.pyx":267
  *                         data[yNbr, xNbr] += data[yIn, xIn]
  *                     data[yIn, xIn] = _NDV
  *                     reallocatedOK = 1             # <<<<<<<<<<<<<<
@@ -4202,7 +4190,7 @@ static PyObject *__pyx_f_19Cython_Raster_Funcs_17CoastlineMatching_reallocateToU
  */
           __pyx_v_reallocatedOK = 1;
 
-          /* "Cython_Raster_Funcs\CoastlineMatching.pyx":247
+          /* "Cython_Raster_Funcs\CoastlineMatching.pyx":268
  *                     data[yIn, xIn] = _NDV
  *                     reallocatedOK = 1
  *                     reallocatedCells += 1             # <<<<<<<<<<<<<<
@@ -4211,7 +4199,7 @@ static PyObject *__pyx_f_19Cython_Raster_Funcs_17CoastlineMatching_reallocateToU
  */
           __pyx_v_reallocatedCells = (__pyx_v_reallocatedCells + 1);
 
-          /* "Cython_Raster_Funcs\CoastlineMatching.pyx":248
+          /* "Cython_Raster_Funcs\CoastlineMatching.pyx":269
  *                     reallocatedOK = 1
  *                     reallocatedCells += 1
  *                     reallocatedTotalPop += data[yNbr, xNbr]             # <<<<<<<<<<<<<<
@@ -4231,11 +4219,11 @@ static PyObject *__pyx_f_19Cython_Raster_Funcs_17CoastlineMatching_reallocateToU
           } else if (unlikely(__pyx_t_51 >= __pyx_v_data.shape[1])) __pyx_t_31 = 1;
           if (unlikely(__pyx_t_31 != -1)) {
             __Pyx_RaiseBufferIndexError(__pyx_t_31);
-            {__pyx_filename = __pyx_f[0]; __pyx_lineno = 248; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+            {__pyx_filename = __pyx_f[0]; __pyx_lineno = 269; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
           }
           __pyx_v_reallocatedTotalPop = (__pyx_v_reallocatedTotalPop + (*((float *) ( /* dim=1 */ ((char *) (((float *) ( /* dim=0 */ (__pyx_v_data.data + __pyx_t_50 * __pyx_v_data.strides[0]) )) + __pyx_t_51)) ))));
 
-          /* "Cython_Raster_Funcs\CoastlineMatching.pyx":249
+          /* "Cython_Raster_Funcs\CoastlineMatching.pyx":270
  *                     reallocatedCells += 1
  *                     reallocatedTotalPop += data[yNbr, xNbr]
  *                     break             # <<<<<<<<<<<<<<
@@ -4247,7 +4235,7 @@ static PyObject *__pyx_f_19Cython_Raster_Funcs_17CoastlineMatching_reallocateToU
       }
       __pyx_L15_break:;
 
-      /* "Cython_Raster_Funcs\CoastlineMatching.pyx":250
+      /* "Cython_Raster_Funcs\CoastlineMatching.pyx":271
  *                     reallocatedTotalPop += data[yNbr, xNbr]
  *                     break
  *             if reallocatedOK == 0:             # <<<<<<<<<<<<<<
@@ -4257,21 +4245,21 @@ static PyObject *__pyx_f_19Cython_Raster_Funcs_17CoastlineMatching_reallocateToU
       __pyx_t_16 = ((__pyx_v_reallocatedOK == 0) != 0);
       if (__pyx_t_16) {
 
-        /* "Cython_Raster_Funcs\CoastlineMatching.pyx":251
+        /* "Cython_Raster_Funcs\CoastlineMatching.pyx":272
  *                     break
  *             if reallocatedOK == 0:
  *                 failedReallocations += 1             # <<<<<<<<<<<<<<
  *                 failedReallocationPop += data[yIn, xIn]
- *                 failedLocs[yIn, xIn] = 1
+ *                 if deleteDespiteFailure:
  */
         __pyx_v_failedReallocations = (__pyx_v_failedReallocations + 1);
 
-        /* "Cython_Raster_Funcs\CoastlineMatching.pyx":252
+        /* "Cython_Raster_Funcs\CoastlineMatching.pyx":273
  *             if reallocatedOK == 0:
  *                 failedReallocations += 1
  *                 failedReallocationPop += data[yIn, xIn]             # <<<<<<<<<<<<<<
- *                 failedLocs[yIn, xIn] = 1
- * 
+ *                 if deleteDespiteFailure:
+ *                     data[yIn, xIn] = _NDV
  */
         __pyx_t_28 = __pyx_v_yIn;
         __pyx_t_52 = __pyx_v_xIn;
@@ -4286,33 +4274,70 @@ static PyObject *__pyx_f_19Cython_Raster_Funcs_17CoastlineMatching_reallocateToU
         } else if (unlikely(__pyx_t_52 >= __pyx_v_data.shape[1])) __pyx_t_15 = 1;
         if (unlikely(__pyx_t_15 != -1)) {
           __Pyx_RaiseBufferIndexError(__pyx_t_15);
-          {__pyx_filename = __pyx_f[0]; __pyx_lineno = 252; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+          {__pyx_filename = __pyx_f[0]; __pyx_lineno = 273; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
         }
         __pyx_v_failedReallocationPop = (__pyx_v_failedReallocationPop + (*((float *) ( /* dim=1 */ ((char *) (((float *) ( /* dim=0 */ (__pyx_v_data.data + __pyx_t_28 * __pyx_v_data.strides[0]) )) + __pyx_t_52)) ))));
 
-        /* "Cython_Raster_Funcs\CoastlineMatching.pyx":253
+        /* "Cython_Raster_Funcs\CoastlineMatching.pyx":274
  *                 failedReallocations += 1
  *                 failedReallocationPop += data[yIn, xIn]
+ *                 if deleteDespiteFailure:             # <<<<<<<<<<<<<<
+ *                     data[yIn, xIn] = _NDV
+ *                 failedLocs[yIn, xIn] = 1
+ */
+        __pyx_t_16 = (__pyx_v_deleteDespiteFailure != 0);
+        if (__pyx_t_16) {
+
+          /* "Cython_Raster_Funcs\CoastlineMatching.pyx":275
+ *                 failedReallocationPop += data[yIn, xIn]
+ *                 if deleteDespiteFailure:
+ *                     data[yIn, xIn] = _NDV             # <<<<<<<<<<<<<<
+ *                 failedLocs[yIn, xIn] = 1
+ * 
+ */
+          __pyx_t_53 = __pyx_v_yIn;
+          __pyx_t_54 = __pyx_v_xIn;
+          __pyx_t_15 = -1;
+          if (__pyx_t_53 < 0) {
+            __pyx_t_53 += __pyx_v_data.shape[0];
+            if (unlikely(__pyx_t_53 < 0)) __pyx_t_15 = 0;
+          } else if (unlikely(__pyx_t_53 >= __pyx_v_data.shape[0])) __pyx_t_15 = 0;
+          if (__pyx_t_54 < 0) {
+            __pyx_t_54 += __pyx_v_data.shape[1];
+            if (unlikely(__pyx_t_54 < 0)) __pyx_t_15 = 1;
+          } else if (unlikely(__pyx_t_54 >= __pyx_v_data.shape[1])) __pyx_t_15 = 1;
+          if (unlikely(__pyx_t_15 != -1)) {
+            __Pyx_RaiseBufferIndexError(__pyx_t_15);
+            {__pyx_filename = __pyx_f[0]; __pyx_lineno = 275; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+          }
+          *((float *) ( /* dim=1 */ ((char *) (((float *) ( /* dim=0 */ (__pyx_v_data.data + __pyx_t_53 * __pyx_v_data.strides[0]) )) + __pyx_t_54)) )) = __pyx_v__NDV;
+          goto __pyx_L26;
+        }
+        __pyx_L26:;
+
+        /* "Cython_Raster_Funcs\CoastlineMatching.pyx":276
+ *                 if deleteDespiteFailure:
+ *                     data[yIn, xIn] = _NDV
  *                 failedLocs[yIn, xIn] = 1             # <<<<<<<<<<<<<<
  * 
  *     print ("Reallocated {0!s} total pop from {1!s} cells to nearby land cell".format(
  */
-        __pyx_t_53 = __pyx_v_yIn;
-        __pyx_t_54 = __pyx_v_xIn;
+        __pyx_t_55 = __pyx_v_yIn;
+        __pyx_t_56 = __pyx_v_xIn;
         __pyx_t_15 = -1;
-        if (__pyx_t_53 < 0) {
-          __pyx_t_53 += __pyx_v_failedLocs.shape[0];
-          if (unlikely(__pyx_t_53 < 0)) __pyx_t_15 = 0;
-        } else if (unlikely(__pyx_t_53 >= __pyx_v_failedLocs.shape[0])) __pyx_t_15 = 0;
-        if (__pyx_t_54 < 0) {
-          __pyx_t_54 += __pyx_v_failedLocs.shape[1];
-          if (unlikely(__pyx_t_54 < 0)) __pyx_t_15 = 1;
-        } else if (unlikely(__pyx_t_54 >= __pyx_v_failedLocs.shape[1])) __pyx_t_15 = 1;
+        if (__pyx_t_55 < 0) {
+          __pyx_t_55 += __pyx_v_failedLocs.shape[0];
+          if (unlikely(__pyx_t_55 < 0)) __pyx_t_15 = 0;
+        } else if (unlikely(__pyx_t_55 >= __pyx_v_failedLocs.shape[0])) __pyx_t_15 = 0;
+        if (__pyx_t_56 < 0) {
+          __pyx_t_56 += __pyx_v_failedLocs.shape[1];
+          if (unlikely(__pyx_t_56 < 0)) __pyx_t_15 = 1;
+        } else if (unlikely(__pyx_t_56 >= __pyx_v_failedLocs.shape[1])) __pyx_t_15 = 1;
         if (unlikely(__pyx_t_15 != -1)) {
           __Pyx_RaiseBufferIndexError(__pyx_t_15);
-          {__pyx_filename = __pyx_f[0]; __pyx_lineno = 253; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+          {__pyx_filename = __pyx_f[0]; __pyx_lineno = 276; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
         }
-        *((char *) ( /* dim=1 */ ((char *) (((char *) ( /* dim=0 */ (__pyx_v_failedLocs.data + __pyx_t_53 * __pyx_v_failedLocs.strides[0]) )) + __pyx_t_54)) )) = 1;
+        *((char *) ( /* dim=1 */ ((char *) (((char *) ( /* dim=0 */ (__pyx_v_failedLocs.data + __pyx_t_55 * __pyx_v_failedLocs.strides[0]) )) + __pyx_t_56)) )) = 1;
         goto __pyx_L25;
       }
       __pyx_L25:;
@@ -4320,149 +4345,149 @@ static PyObject *__pyx_f_19Cython_Raster_Funcs_17CoastlineMatching_reallocateToU
     }
   }
 
-  /* "Cython_Raster_Funcs\CoastlineMatching.pyx":255
+  /* "Cython_Raster_Funcs\CoastlineMatching.pyx":278
  *                 failedLocs[yIn, xIn] = 1
  * 
  *     print ("Reallocated {0!s} total pop from {1!s} cells to nearby land cell".format(             # <<<<<<<<<<<<<<
  *         reallocatedTotalPop,reallocatedCells))
  *     print ("Clipped (set to nodata) {0!s} zero-value cells in the sea".format(clippedZeros))
  */
-  __pyx_t_7 = __Pyx_PyObject_GetAttrStr(__pyx_kp_s_Reallocated_0_s_total_pop_from_1, __pyx_n_s_format); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 255; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __Pyx_GOTREF(__pyx_t_7);
+  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_kp_s_Reallocated_0_s_total_pop_from_1, __pyx_n_s_format); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 278; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_t_1);
 
-  /* "Cython_Raster_Funcs\CoastlineMatching.pyx":256
+  /* "Cython_Raster_Funcs\CoastlineMatching.pyx":279
  * 
  *     print ("Reallocated {0!s} total pop from {1!s} cells to nearby land cell".format(
  *         reallocatedTotalPop,reallocatedCells))             # <<<<<<<<<<<<<<
  *     print ("Clipped (set to nodata) {0!s} zero-value cells in the sea".format(clippedZeros))
  *     print ("Failed to reallocate {0!s} total pop from {1!s} cells to nearby land cell".format(
  */
-  __pyx_t_5 = PyFloat_FromDouble(__pyx_v_reallocatedTotalPop); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 256; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_5 = PyFloat_FromDouble(__pyx_v_reallocatedTotalPop); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 279; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_5);
-  __pyx_t_4 = __Pyx_PyInt_From_int(__pyx_v_reallocatedCells); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 256; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_4 = __Pyx_PyInt_From_int(__pyx_v_reallocatedCells); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 279; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_4);
-  __pyx_t_1 = NULL;
+  __pyx_t_2 = NULL;
   __pyx_t_6 = 0;
-  if (CYTHON_COMPILING_IN_CPYTHON && likely(PyMethod_Check(__pyx_t_7))) {
-    __pyx_t_1 = PyMethod_GET_SELF(__pyx_t_7);
-    if (likely(__pyx_t_1)) {
-      PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_7);
-      __Pyx_INCREF(__pyx_t_1);
+  if (CYTHON_COMPILING_IN_CPYTHON && likely(PyMethod_Check(__pyx_t_1))) {
+    __pyx_t_2 = PyMethod_GET_SELF(__pyx_t_1);
+    if (likely(__pyx_t_2)) {
+      PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_1);
+      __Pyx_INCREF(__pyx_t_2);
       __Pyx_INCREF(function);
-      __Pyx_DECREF_SET(__pyx_t_7, function);
+      __Pyx_DECREF_SET(__pyx_t_1, function);
       __pyx_t_6 = 1;
     }
   }
-  __pyx_t_2 = PyTuple_New(2+__pyx_t_6); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 255; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __Pyx_GOTREF(__pyx_t_2);
-  if (__pyx_t_1) {
-    PyTuple_SET_ITEM(__pyx_t_2, 0, __pyx_t_1); __Pyx_GIVEREF(__pyx_t_1); __pyx_t_1 = NULL;
+  __pyx_t_3 = PyTuple_New(2+__pyx_t_6); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 278; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_t_3);
+  if (__pyx_t_2) {
+    PyTuple_SET_ITEM(__pyx_t_3, 0, __pyx_t_2); __Pyx_GIVEREF(__pyx_t_2); __pyx_t_2 = NULL;
   }
-  PyTuple_SET_ITEM(__pyx_t_2, 0+__pyx_t_6, __pyx_t_5);
+  PyTuple_SET_ITEM(__pyx_t_3, 0+__pyx_t_6, __pyx_t_5);
   __Pyx_GIVEREF(__pyx_t_5);
-  PyTuple_SET_ITEM(__pyx_t_2, 1+__pyx_t_6, __pyx_t_4);
+  PyTuple_SET_ITEM(__pyx_t_3, 1+__pyx_t_6, __pyx_t_4);
   __Pyx_GIVEREF(__pyx_t_4);
   __pyx_t_5 = 0;
   __pyx_t_4 = 0;
-  __pyx_t_3 = __Pyx_PyObject_Call(__pyx_t_7, __pyx_t_2, NULL); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 255; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
-  if (__Pyx_PrintOne(0, __pyx_t_3) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 255; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_7 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_t_3, NULL); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 278; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_t_7);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+  if (__Pyx_PrintOne(0, __pyx_t_7) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 278; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
 
-  /* "Cython_Raster_Funcs\CoastlineMatching.pyx":257
+  /* "Cython_Raster_Funcs\CoastlineMatching.pyx":280
  *     print ("Reallocated {0!s} total pop from {1!s} cells to nearby land cell".format(
  *         reallocatedTotalPop,reallocatedCells))
  *     print ("Clipped (set to nodata) {0!s} zero-value cells in the sea".format(clippedZeros))             # <<<<<<<<<<<<<<
  *     print ("Failed to reallocate {0!s} total pop from {1!s} cells to nearby land cell".format(
  *         failedReallocationPop, failedReallocations))
  */
-  __pyx_t_7 = __Pyx_PyObject_GetAttrStr(__pyx_kp_s_Clipped_set_to_nodata_0_s_zero_v, __pyx_n_s_format); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 257; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __Pyx_GOTREF(__pyx_t_7);
-  __pyx_t_2 = __Pyx_PyInt_From_int(__pyx_v_clippedZeros); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 257; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __Pyx_GOTREF(__pyx_t_2);
+  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_kp_s_Clipped_set_to_nodata_0_s_zero_v, __pyx_n_s_format); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 280; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_t_1);
+  __pyx_t_3 = __Pyx_PyInt_From_int(__pyx_v_clippedZeros); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 280; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_t_3);
   __pyx_t_4 = NULL;
-  if (CYTHON_COMPILING_IN_CPYTHON && likely(PyMethod_Check(__pyx_t_7))) {
-    __pyx_t_4 = PyMethod_GET_SELF(__pyx_t_7);
+  if (CYTHON_COMPILING_IN_CPYTHON && likely(PyMethod_Check(__pyx_t_1))) {
+    __pyx_t_4 = PyMethod_GET_SELF(__pyx_t_1);
     if (likely(__pyx_t_4)) {
-      PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_7);
+      PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_1);
       __Pyx_INCREF(__pyx_t_4);
       __Pyx_INCREF(function);
-      __Pyx_DECREF_SET(__pyx_t_7, function);
+      __Pyx_DECREF_SET(__pyx_t_1, function);
     }
   }
   if (!__pyx_t_4) {
-    __pyx_t_3 = __Pyx_PyObject_CallOneArg(__pyx_t_7, __pyx_t_2); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 257; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-    __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-    __Pyx_GOTREF(__pyx_t_3);
+    __pyx_t_7 = __Pyx_PyObject_CallOneArg(__pyx_t_1, __pyx_t_3); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 280; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+    __Pyx_GOTREF(__pyx_t_7);
   } else {
-    __pyx_t_5 = PyTuple_New(1+1); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 257; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_5 = PyTuple_New(1+1); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 280; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_5);
     PyTuple_SET_ITEM(__pyx_t_5, 0, __pyx_t_4); __Pyx_GIVEREF(__pyx_t_4); __pyx_t_4 = NULL;
-    PyTuple_SET_ITEM(__pyx_t_5, 0+1, __pyx_t_2);
-    __Pyx_GIVEREF(__pyx_t_2);
-    __pyx_t_2 = 0;
-    __pyx_t_3 = __Pyx_PyObject_Call(__pyx_t_7, __pyx_t_5, NULL); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 257; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-    __Pyx_GOTREF(__pyx_t_3);
+    PyTuple_SET_ITEM(__pyx_t_5, 0+1, __pyx_t_3);
+    __Pyx_GIVEREF(__pyx_t_3);
+    __pyx_t_3 = 0;
+    __pyx_t_7 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_t_5, NULL); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 280; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __Pyx_GOTREF(__pyx_t_7);
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
   }
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+  if (__Pyx_PrintOne(0, __pyx_t_7) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 280; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
-  if (__Pyx_PrintOne(0, __pyx_t_3) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 257; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-  /* "Cython_Raster_Funcs\CoastlineMatching.pyx":258
+  /* "Cython_Raster_Funcs\CoastlineMatching.pyx":281
  *         reallocatedTotalPop,reallocatedCells))
  *     print ("Clipped (set to nodata) {0!s} zero-value cells in the sea".format(clippedZeros))
  *     print ("Failed to reallocate {0!s} total pop from {1!s} cells to nearby land cell".format(             # <<<<<<<<<<<<<<
  *         failedReallocationPop, failedReallocations))
  *     return np.asarray(failedLocs)
  */
-  __pyx_t_7 = __Pyx_PyObject_GetAttrStr(__pyx_kp_s_Failed_to_reallocate_0_s_total_p, __pyx_n_s_format); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 258; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __Pyx_GOTREF(__pyx_t_7);
+  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_kp_s_Failed_to_reallocate_0_s_total_p, __pyx_n_s_format); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 281; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_t_1);
 
-  /* "Cython_Raster_Funcs\CoastlineMatching.pyx":259
+  /* "Cython_Raster_Funcs\CoastlineMatching.pyx":282
  *     print ("Clipped (set to nodata) {0!s} zero-value cells in the sea".format(clippedZeros))
  *     print ("Failed to reallocate {0!s} total pop from {1!s} cells to nearby land cell".format(
  *         failedReallocationPop, failedReallocations))             # <<<<<<<<<<<<<<
  *     return np.asarray(failedLocs)
  * 
  */
-  __pyx_t_5 = PyFloat_FromDouble(__pyx_v_failedReallocationPop); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 259; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_5 = PyFloat_FromDouble(__pyx_v_failedReallocationPop); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 282; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_5);
-  __pyx_t_2 = __Pyx_PyInt_From_int(__pyx_v_failedReallocations); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 259; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __Pyx_GOTREF(__pyx_t_2);
+  __pyx_t_3 = __Pyx_PyInt_From_int(__pyx_v_failedReallocations); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 282; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_t_3);
   __pyx_t_4 = NULL;
   __pyx_t_6 = 0;
-  if (CYTHON_COMPILING_IN_CPYTHON && likely(PyMethod_Check(__pyx_t_7))) {
-    __pyx_t_4 = PyMethod_GET_SELF(__pyx_t_7);
+  if (CYTHON_COMPILING_IN_CPYTHON && likely(PyMethod_Check(__pyx_t_1))) {
+    __pyx_t_4 = PyMethod_GET_SELF(__pyx_t_1);
     if (likely(__pyx_t_4)) {
-      PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_7);
+      PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_1);
       __Pyx_INCREF(__pyx_t_4);
       __Pyx_INCREF(function);
-      __Pyx_DECREF_SET(__pyx_t_7, function);
+      __Pyx_DECREF_SET(__pyx_t_1, function);
       __pyx_t_6 = 1;
     }
   }
-  __pyx_t_1 = PyTuple_New(2+__pyx_t_6); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 258; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __Pyx_GOTREF(__pyx_t_1);
+  __pyx_t_2 = PyTuple_New(2+__pyx_t_6); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 281; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_t_2);
   if (__pyx_t_4) {
-    PyTuple_SET_ITEM(__pyx_t_1, 0, __pyx_t_4); __Pyx_GIVEREF(__pyx_t_4); __pyx_t_4 = NULL;
+    PyTuple_SET_ITEM(__pyx_t_2, 0, __pyx_t_4); __Pyx_GIVEREF(__pyx_t_4); __pyx_t_4 = NULL;
   }
-  PyTuple_SET_ITEM(__pyx_t_1, 0+__pyx_t_6, __pyx_t_5);
+  PyTuple_SET_ITEM(__pyx_t_2, 0+__pyx_t_6, __pyx_t_5);
   __Pyx_GIVEREF(__pyx_t_5);
-  PyTuple_SET_ITEM(__pyx_t_1, 1+__pyx_t_6, __pyx_t_2);
-  __Pyx_GIVEREF(__pyx_t_2);
+  PyTuple_SET_ITEM(__pyx_t_2, 1+__pyx_t_6, __pyx_t_3);
+  __Pyx_GIVEREF(__pyx_t_3);
   __pyx_t_5 = 0;
-  __pyx_t_2 = 0;
-  __pyx_t_3 = __Pyx_PyObject_Call(__pyx_t_7, __pyx_t_1, NULL); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 258; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __Pyx_GOTREF(__pyx_t_3);
+  __pyx_t_3 = 0;
+  __pyx_t_7 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_t_2, NULL); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 281; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_t_7);
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+  if (__Pyx_PrintOne(0, __pyx_t_7) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 281; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
-  if (__Pyx_PrintOne(0, __pyx_t_3) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 258; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-  /* "Cython_Raster_Funcs\CoastlineMatching.pyx":260
+  /* "Cython_Raster_Funcs\CoastlineMatching.pyx":283
  *     print ("Failed to reallocate {0!s} total pop from {1!s} cells to nearby land cell".format(
  *         failedReallocationPop, failedReallocations))
  *     return np.asarray(failedLocs)             # <<<<<<<<<<<<<<
@@ -4470,49 +4495,49 @@ static PyObject *__pyx_f_19Cython_Raster_Funcs_17CoastlineMatching_reallocateToU
  * 
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_7 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 260; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __Pyx_GOTREF(__pyx_t_7);
-  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_t_7, __pyx_n_s_asarray); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 260; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 283; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
-  __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
-  __pyx_t_7 = __pyx_memoryview_fromslice(__pyx_v_failedLocs, 2, (PyObject *(*)(char *)) __pyx_memview_get_char, (int (*)(char *, PyObject *)) __pyx_memview_set_char, 0);; if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 260; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __Pyx_GOTREF(__pyx_t_7);
-  __pyx_t_2 = NULL;
-  if (CYTHON_COMPILING_IN_CPYTHON && unlikely(PyMethod_Check(__pyx_t_1))) {
-    __pyx_t_2 = PyMethod_GET_SELF(__pyx_t_1);
-    if (likely(__pyx_t_2)) {
-      PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_1);
-      __Pyx_INCREF(__pyx_t_2);
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_asarray); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 283; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_t_2);
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+  __pyx_t_1 = __pyx_memoryview_fromslice(__pyx_v_failedLocs, 2, (PyObject *(*)(char *)) __pyx_memview_get_char, (int (*)(char *, PyObject *)) __pyx_memview_set_char, 0);; if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 283; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_t_1);
+  __pyx_t_3 = NULL;
+  if (CYTHON_COMPILING_IN_CPYTHON && unlikely(PyMethod_Check(__pyx_t_2))) {
+    __pyx_t_3 = PyMethod_GET_SELF(__pyx_t_2);
+    if (likely(__pyx_t_3)) {
+      PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_2);
+      __Pyx_INCREF(__pyx_t_3);
       __Pyx_INCREF(function);
-      __Pyx_DECREF_SET(__pyx_t_1, function);
+      __Pyx_DECREF_SET(__pyx_t_2, function);
     }
   }
-  if (!__pyx_t_2) {
-    __pyx_t_3 = __Pyx_PyObject_CallOneArg(__pyx_t_1, __pyx_t_7); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 260; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-    __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
-    __Pyx_GOTREF(__pyx_t_3);
+  if (!__pyx_t_3) {
+    __pyx_t_7 = __Pyx_PyObject_CallOneArg(__pyx_t_2, __pyx_t_1); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 283; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+    __Pyx_GOTREF(__pyx_t_7);
   } else {
-    __pyx_t_5 = PyTuple_New(1+1); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 260; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_5 = PyTuple_New(1+1); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 283; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_5);
-    PyTuple_SET_ITEM(__pyx_t_5, 0, __pyx_t_2); __Pyx_GIVEREF(__pyx_t_2); __pyx_t_2 = NULL;
-    PyTuple_SET_ITEM(__pyx_t_5, 0+1, __pyx_t_7);
-    __Pyx_GIVEREF(__pyx_t_7);
-    __pyx_t_7 = 0;
-    __pyx_t_3 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_t_5, NULL); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 260; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-    __Pyx_GOTREF(__pyx_t_3);
+    PyTuple_SET_ITEM(__pyx_t_5, 0, __pyx_t_3); __Pyx_GIVEREF(__pyx_t_3); __pyx_t_3 = NULL;
+    PyTuple_SET_ITEM(__pyx_t_5, 0+1, __pyx_t_1);
+    __Pyx_GIVEREF(__pyx_t_1);
+    __pyx_t_1 = 0;
+    __pyx_t_7 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_t_5, NULL); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 283; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __Pyx_GOTREF(__pyx_t_7);
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
   }
-  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_r = __pyx_t_3;
-  __pyx_t_3 = 0;
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+  __pyx_r = __pyx_t_7;
+  __pyx_t_7 = 0;
   goto __pyx_L0;
 
-  /* "Cython_Raster_Funcs\CoastlineMatching.pyx":145
+  /* "Cython_Raster_Funcs\CoastlineMatching.pyx":153
  * 
  * 
  * cpdef reallocateToUnmasked(float[:,::1] data, char[:,::1] landMask, float _NDV = -9999,             # <<<<<<<<<<<<<<
  *                            char fillLandWithZero = 1,
- *                            char clipZerosAtSea = 1):
+ *                            char clipZerosAtSea = 1,
  */
 
   /* function exit code */
@@ -4530,7 +4555,6 @@ static PyObject *__pyx_f_19Cython_Raster_Funcs_17CoastlineMatching_reallocateToU
   __pyx_L0:;
   __PYX_XDEC_MEMVIEW(&__pyx_v_nbrIntCoords, 1);
   __PYX_XDEC_MEMVIEW(&__pyx_v_failedLocs, 1);
-  __Pyx_XDECREF(__pyx_v__SEARCH_RADIUS);
   __Pyx_XDECREF(__pyx_v_diam);
   __Pyx_XDECREF(__pyx_v_inds);
   __Pyx_XDECREF(__pyx_v_distTmp);
@@ -4551,6 +4575,8 @@ static PyObject *__pyx_pw_19Cython_Raster_Funcs_17CoastlineMatching_3reallocateT
   float __pyx_v__NDV;
   char __pyx_v_fillLandWithZero;
   char __pyx_v_clipZerosAtSea;
+  int __pyx_v_searchPixelRadius;
+  char __pyx_v_deleteDespiteFailure;
   int __pyx_lineno = 0;
   const char *__pyx_filename = NULL;
   int __pyx_clineno = 0;
@@ -4558,12 +4584,14 @@ static PyObject *__pyx_pw_19Cython_Raster_Funcs_17CoastlineMatching_3reallocateT
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("reallocateToUnmasked (wrapper)", 0);
   {
-    static PyObject **__pyx_pyargnames[] = {&__pyx_n_s_data,&__pyx_n_s_landMask,&__pyx_n_s_NDV,&__pyx_n_s_fillLandWithZero,&__pyx_n_s_clipZerosAtSea,0};
-    PyObject* values[5] = {0,0,0,0,0};
+    static PyObject **__pyx_pyargnames[] = {&__pyx_n_s_data,&__pyx_n_s_landMask,&__pyx_n_s_NDV,&__pyx_n_s_fillLandWithZero,&__pyx_n_s_clipZerosAtSea,&__pyx_n_s_searchPixelRadius,&__pyx_n_s_deleteDespiteFailure,0};
+    PyObject* values[7] = {0,0,0,0,0,0,0};
     if (unlikely(__pyx_kwds)) {
       Py_ssize_t kw_args;
       const Py_ssize_t pos_args = PyTuple_GET_SIZE(__pyx_args);
       switch (pos_args) {
+        case  7: values[6] = PyTuple_GET_ITEM(__pyx_args, 6);
+        case  6: values[5] = PyTuple_GET_ITEM(__pyx_args, 5);
         case  5: values[4] = PyTuple_GET_ITEM(__pyx_args, 4);
         case  4: values[3] = PyTuple_GET_ITEM(__pyx_args, 3);
         case  3: values[2] = PyTuple_GET_ITEM(__pyx_args, 2);
@@ -4580,7 +4608,7 @@ static PyObject *__pyx_pw_19Cython_Raster_Funcs_17CoastlineMatching_3reallocateT
         case  1:
         if (likely((values[1] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_landMask)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("reallocateToUnmasked", 0, 2, 5, 1); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 145; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+          __Pyx_RaiseArgtupleInvalid("reallocateToUnmasked", 0, 2, 7, 1); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 153; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
         }
         case  2:
         if (kw_args > 0) {
@@ -4597,12 +4625,24 @@ static PyObject *__pyx_pw_19Cython_Raster_Funcs_17CoastlineMatching_3reallocateT
           PyObject* value = PyDict_GetItem(__pyx_kwds, __pyx_n_s_clipZerosAtSea);
           if (value) { values[4] = value; kw_args--; }
         }
+        case  5:
+        if (kw_args > 0) {
+          PyObject* value = PyDict_GetItem(__pyx_kwds, __pyx_n_s_searchPixelRadius);
+          if (value) { values[5] = value; kw_args--; }
+        }
+        case  6:
+        if (kw_args > 0) {
+          PyObject* value = PyDict_GetItem(__pyx_kwds, __pyx_n_s_deleteDespiteFailure);
+          if (value) { values[6] = value; kw_args--; }
+        }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "reallocateToUnmasked") < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 145; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "reallocateToUnmasked") < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 153; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
       }
     } else {
       switch (PyTuple_GET_SIZE(__pyx_args)) {
+        case  7: values[6] = PyTuple_GET_ITEM(__pyx_args, 6);
+        case  6: values[5] = PyTuple_GET_ITEM(__pyx_args, 5);
         case  5: values[4] = PyTuple_GET_ITEM(__pyx_args, 4);
         case  4: values[3] = PyTuple_GET_ITEM(__pyx_args, 3);
         case  3: values[2] = PyTuple_GET_ITEM(__pyx_args, 2);
@@ -4612,40 +4652,50 @@ static PyObject *__pyx_pw_19Cython_Raster_Funcs_17CoastlineMatching_3reallocateT
         default: goto __pyx_L5_argtuple_error;
       }
     }
-    __pyx_v_data = __Pyx_PyObject_to_MemoryviewSlice_d_dc_float(values[0]); if (unlikely(!__pyx_v_data.memview)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 145; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
-    __pyx_v_landMask = __Pyx_PyObject_to_MemoryviewSlice_d_dc_char(values[1]); if (unlikely(!__pyx_v_landMask.memview)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 145; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+    __pyx_v_data = __Pyx_PyObject_to_MemoryviewSlice_d_dc_float(values[0]); if (unlikely(!__pyx_v_data.memview)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 153; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+    __pyx_v_landMask = __Pyx_PyObject_to_MemoryviewSlice_d_dc_char(values[1]); if (unlikely(!__pyx_v_landMask.memview)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 153; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
     if (values[2]) {
-      __pyx_v__NDV = __pyx_PyFloat_AsFloat(values[2]); if (unlikely((__pyx_v__NDV == (float)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 145; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+      __pyx_v__NDV = __pyx_PyFloat_AsFloat(values[2]); if (unlikely((__pyx_v__NDV == (float)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 153; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
     } else {
       __pyx_v__NDV = ((float)-9999.0);
     }
     if (values[3]) {
-      __pyx_v_fillLandWithZero = __Pyx_PyInt_As_char(values[3]); if (unlikely((__pyx_v_fillLandWithZero == (char)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 146; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+      __pyx_v_fillLandWithZero = __Pyx_PyInt_As_char(values[3]); if (unlikely((__pyx_v_fillLandWithZero == (char)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 154; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
     } else {
       __pyx_v_fillLandWithZero = ((char)1);
     }
     if (values[4]) {
-      __pyx_v_clipZerosAtSea = __Pyx_PyInt_As_char(values[4]); if (unlikely((__pyx_v_clipZerosAtSea == (char)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 147; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+      __pyx_v_clipZerosAtSea = __Pyx_PyInt_As_char(values[4]); if (unlikely((__pyx_v_clipZerosAtSea == (char)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 155; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
     } else {
       __pyx_v_clipZerosAtSea = ((char)1);
+    }
+    if (values[5]) {
+      __pyx_v_searchPixelRadius = __Pyx_PyInt_As_int(values[5]); if (unlikely((__pyx_v_searchPixelRadius == (int)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 156; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+    } else {
+      __pyx_v_searchPixelRadius = ((int)100);
+    }
+    if (values[6]) {
+      __pyx_v_deleteDespiteFailure = __Pyx_PyInt_As_char(values[6]); if (unlikely((__pyx_v_deleteDespiteFailure == (char)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 157; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+    } else {
+      __pyx_v_deleteDespiteFailure = ((char)0);
     }
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("reallocateToUnmasked", 0, 2, 5, PyTuple_GET_SIZE(__pyx_args)); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 145; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+  __Pyx_RaiseArgtupleInvalid("reallocateToUnmasked", 0, 2, 7, PyTuple_GET_SIZE(__pyx_args)); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 153; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
   __pyx_L3_error:;
   __Pyx_AddTraceback("Cython_Raster_Funcs.CoastlineMatching.reallocateToUnmasked", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  __pyx_r = __pyx_pf_19Cython_Raster_Funcs_17CoastlineMatching_2reallocateToUnmasked(__pyx_self, __pyx_v_data, __pyx_v_landMask, __pyx_v__NDV, __pyx_v_fillLandWithZero, __pyx_v_clipZerosAtSea);
+  __pyx_r = __pyx_pf_19Cython_Raster_Funcs_17CoastlineMatching_2reallocateToUnmasked(__pyx_self, __pyx_v_data, __pyx_v_landMask, __pyx_v__NDV, __pyx_v_fillLandWithZero, __pyx_v_clipZerosAtSea, __pyx_v_searchPixelRadius, __pyx_v_deleteDespiteFailure);
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_19Cython_Raster_Funcs_17CoastlineMatching_2reallocateToUnmasked(CYTHON_UNUSED PyObject *__pyx_self, __Pyx_memviewslice __pyx_v_data, __Pyx_memviewslice __pyx_v_landMask, float __pyx_v__NDV, char __pyx_v_fillLandWithZero, char __pyx_v_clipZerosAtSea) {
+static PyObject *__pyx_pf_19Cython_Raster_Funcs_17CoastlineMatching_2reallocateToUnmasked(CYTHON_UNUSED PyObject *__pyx_self, __Pyx_memviewslice __pyx_v_data, __Pyx_memviewslice __pyx_v_landMask, float __pyx_v__NDV, char __pyx_v_fillLandWithZero, char __pyx_v_clipZerosAtSea, int __pyx_v_searchPixelRadius, char __pyx_v_deleteDespiteFailure) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
@@ -4655,13 +4705,15 @@ static PyObject *__pyx_pf_19Cython_Raster_Funcs_17CoastlineMatching_2reallocateT
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("reallocateToUnmasked", 0);
   __Pyx_XDECREF(__pyx_r);
-  if (unlikely(!__pyx_v_data.memview)) { __Pyx_RaiseUnboundLocalError("data"); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 145; __pyx_clineno = __LINE__; goto __pyx_L1_error;} }
-  if (unlikely(!__pyx_v_landMask.memview)) { __Pyx_RaiseUnboundLocalError("landMask"); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 145; __pyx_clineno = __LINE__; goto __pyx_L1_error;} }
-  __pyx_t_2.__pyx_n = 3;
+  if (unlikely(!__pyx_v_data.memview)) { __Pyx_RaiseUnboundLocalError("data"); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 153; __pyx_clineno = __LINE__; goto __pyx_L1_error;} }
+  if (unlikely(!__pyx_v_landMask.memview)) { __Pyx_RaiseUnboundLocalError("landMask"); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 153; __pyx_clineno = __LINE__; goto __pyx_L1_error;} }
+  __pyx_t_2.__pyx_n = 5;
   __pyx_t_2._NDV = __pyx_v__NDV;
   __pyx_t_2.fillLandWithZero = __pyx_v_fillLandWithZero;
   __pyx_t_2.clipZerosAtSea = __pyx_v_clipZerosAtSea;
-  __pyx_t_1 = __pyx_f_19Cython_Raster_Funcs_17CoastlineMatching_reallocateToUnmasked(__pyx_v_data, __pyx_v_landMask, 0, &__pyx_t_2); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 145; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_2.searchPixelRadius = __pyx_v_searchPixelRadius;
+  __pyx_t_2.deleteDespiteFailure = __pyx_v_deleteDespiteFailure;
+  __pyx_t_1 = __pyx_f_19Cython_Raster_Funcs_17CoastlineMatching_reallocateToUnmasked(__pyx_v_data, __pyx_v_landMask, 0, &__pyx_t_2); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 153; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -16035,6 +16087,7 @@ static __Pyx_StringTabEntry __pyx_string_tab[] = {
   {&__pyx_kp_s_contiguous_and_indirect, __pyx_k_contiguous_and_indirect, sizeof(__pyx_k_contiguous_and_indirect), 0, 0, 1, 0},
   {&__pyx_n_s_copy, __pyx_k_copy, sizeof(__pyx_k_copy), 0, 0, 1, 1},
   {&__pyx_n_s_data, __pyx_k_data, sizeof(__pyx_k_data), 0, 0, 1, 1},
+  {&__pyx_n_s_deleteDespiteFailure, __pyx_k_deleteDespiteFailure, sizeof(__pyx_k_deleteDespiteFailure), 0, 0, 1, 1},
   {&__pyx_n_s_dtype_is_object, __pyx_k_dtype_is_object, sizeof(__pyx_k_dtype_is_object), 0, 0, 1, 1},
   {&__pyx_n_s_end, __pyx_k_end, sizeof(__pyx_k_end), 0, 0, 1, 1},
   {&__pyx_n_s_enumerate, __pyx_k_enumerate, sizeof(__pyx_k_enumerate), 0, 0, 1, 1},
@@ -16060,7 +16113,6 @@ static __Pyx_StringTabEntry __pyx_string_tab[] = {
   {&__pyx_n_s_name, __pyx_k_name, sizeof(__pyx_k_name), 0, 0, 1, 1},
   {&__pyx_n_s_name_2, __pyx_k_name_2, sizeof(__pyx_k_name_2), 0, 0, 1, 1},
   {&__pyx_n_s_ndim, __pyx_k_ndim, sizeof(__pyx_k_ndim), 0, 0, 1, 1},
-  {&__pyx_n_s_noLosses, __pyx_k_noLosses, sizeof(__pyx_k_noLosses), 0, 0, 1, 1},
   {&__pyx_n_s_np, __pyx_k_np, sizeof(__pyx_k_np), 0, 0, 1, 1},
   {&__pyx_n_s_numpy, __pyx_k_numpy, sizeof(__pyx_k_numpy), 0, 0, 1, 1},
   {&__pyx_n_s_obj, __pyx_k_obj, sizeof(__pyx_k_obj), 0, 0, 1, 1},
@@ -16095,7 +16147,7 @@ static __Pyx_StringTabEntry __pyx_string_tab[] = {
   {0, 0, 0, 0, 0, 0, 0}
 };
 static int __Pyx_InitCachedBuiltins(void) {
-  __pyx_builtin_range = __Pyx_GetBuiltinName(__pyx_n_s_range); if (!__pyx_builtin_range) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 90; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_builtin_range = __Pyx_GetBuiltinName(__pyx_n_s_range); if (!__pyx_builtin_range) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 98; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __pyx_builtin_ValueError = __Pyx_GetBuiltinName(__pyx_n_s_ValueError); if (!__pyx_builtin_ValueError) {__pyx_filename = __pyx_f[1]; __pyx_lineno = 127; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __pyx_builtin_MemoryError = __Pyx_GetBuiltinName(__pyx_n_s_MemoryError); if (!__pyx_builtin_MemoryError) {__pyx_filename = __pyx_f[1]; __pyx_lineno = 142; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __pyx_builtin_enumerate = __Pyx_GetBuiltinName(__pyx_n_s_enumerate); if (!__pyx_builtin_enumerate) {__pyx_filename = __pyx_f[1]; __pyx_lineno = 145; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
@@ -16117,167 +16169,167 @@ static int __Pyx_InitCachedConstants(void) {
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("__Pyx_InitCachedConstants", 0);
 
-  /* "Cython_Raster_Funcs\CoastlineMatching.pyx":68
+  /* "Cython_Raster_Funcs\CoastlineMatching.pyx":65
  *     diam = searchPixelRadius * 2 + 1
  *     inds = np.indices([diam,diam]) - searchPixelRadius
  *     distTmp = np.sqrt((inds ** 2).sum(0))             # <<<<<<<<<<<<<<
  *     npTmpTable = ((inds.T).reshape(diam**2, 2))
- *     npTmpTable = np.append(npTmpTable, distTmp.ravel()[:,None],axis=1)
+ *     npTmpTable = np.append(npTmpTable, distTmp.ravel()[:,None], axis=1)
  */
-  __pyx_tuple_ = PyTuple_Pack(1, __pyx_int_0); if (unlikely(!__pyx_tuple_)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 68; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_tuple_ = PyTuple_Pack(1, __pyx_int_0); if (unlikely(!__pyx_tuple_)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 65; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_tuple_);
   __Pyx_GIVEREF(__pyx_tuple_);
 
-  /* "Cython_Raster_Funcs\CoastlineMatching.pyx":70
+  /* "Cython_Raster_Funcs\CoastlineMatching.pyx":67
  *     distTmp = np.sqrt((inds ** 2).sum(0))
  *     npTmpTable = ((inds.T).reshape(diam**2, 2))
- *     npTmpTable = np.append(npTmpTable, distTmp.ravel()[:,None],axis=1)             # <<<<<<<<<<<<<<
+ *     npTmpTable = np.append(npTmpTable, distTmp.ravel()[:,None], axis=1)             # <<<<<<<<<<<<<<
  *     # sort the table by distance then x then y (the arguments are last-sort-first)
- *     order = np.lexsort((npTmpTable[:,1],npTmpTable[:,0],npTmpTable[:,2]))
+ *     order = np.lexsort((npTmpTable[:,1], npTmpTable[:,0], npTmpTable[:,2]))
  */
-  __pyx_slice__2 = PySlice_New(Py_None, Py_None, Py_None); if (unlikely(!__pyx_slice__2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 70; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_slice__2 = PySlice_New(Py_None, Py_None, Py_None); if (unlikely(!__pyx_slice__2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 67; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_slice__2);
   __Pyx_GIVEREF(__pyx_slice__2);
-  __pyx_tuple__3 = PyTuple_Pack(2, __pyx_slice__2, Py_None); if (unlikely(!__pyx_tuple__3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 70; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_tuple__3 = PyTuple_Pack(2, __pyx_slice__2, Py_None); if (unlikely(!__pyx_tuple__3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 67; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_tuple__3);
   __Pyx_GIVEREF(__pyx_tuple__3);
 
-  /* "Cython_Raster_Funcs\CoastlineMatching.pyx":72
- *     npTmpTable = np.append(npTmpTable, distTmp.ravel()[:,None],axis=1)
+  /* "Cython_Raster_Funcs\CoastlineMatching.pyx":69
+ *     npTmpTable = np.append(npTmpTable, distTmp.ravel()[:,None], axis=1)
  *     # sort the table by distance then x then y (the arguments are last-sort-first)
- *     order = np.lexsort((npTmpTable[:,1],npTmpTable[:,0],npTmpTable[:,2]))             # <<<<<<<<<<<<<<
- *     npTmpTable = np.take(npTmpTable,order,axis=0)
+ *     order = np.lexsort((npTmpTable[:,1], npTmpTable[:,0], npTmpTable[:,2]))             # <<<<<<<<<<<<<<
  * 
+ *     # npTmpTable has shape ((radius*2+1)**2, 3) and represents the offset coordinates of all cells in
  */
-  __pyx_slice__4 = PySlice_New(Py_None, Py_None, Py_None); if (unlikely(!__pyx_slice__4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 72; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_slice__4 = PySlice_New(Py_None, Py_None, Py_None); if (unlikely(!__pyx_slice__4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 69; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_slice__4);
   __Pyx_GIVEREF(__pyx_slice__4);
-  __pyx_tuple__5 = PyTuple_Pack(2, __pyx_slice__4, __pyx_int_1); if (unlikely(!__pyx_tuple__5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 72; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_tuple__5 = PyTuple_Pack(2, __pyx_slice__4, __pyx_int_1); if (unlikely(!__pyx_tuple__5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 69; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_tuple__5);
   __Pyx_GIVEREF(__pyx_tuple__5);
-  __pyx_slice__6 = PySlice_New(Py_None, Py_None, Py_None); if (unlikely(!__pyx_slice__6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 72; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_slice__6 = PySlice_New(Py_None, Py_None, Py_None); if (unlikely(!__pyx_slice__6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 69; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_slice__6);
   __Pyx_GIVEREF(__pyx_slice__6);
-  __pyx_tuple__7 = PyTuple_Pack(2, __pyx_slice__6, __pyx_int_0); if (unlikely(!__pyx_tuple__7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 72; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_tuple__7 = PyTuple_Pack(2, __pyx_slice__6, __pyx_int_0); if (unlikely(!__pyx_tuple__7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 69; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_tuple__7);
   __Pyx_GIVEREF(__pyx_tuple__7);
-  __pyx_slice__8 = PySlice_New(Py_None, Py_None, Py_None); if (unlikely(!__pyx_slice__8)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 72; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_slice__8 = PySlice_New(Py_None, Py_None, Py_None); if (unlikely(!__pyx_slice__8)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 69; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_slice__8);
   __Pyx_GIVEREF(__pyx_slice__8);
-  __pyx_tuple__9 = PyTuple_Pack(2, __pyx_slice__8, __pyx_int_2); if (unlikely(!__pyx_tuple__9)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 72; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_tuple__9 = PyTuple_Pack(2, __pyx_slice__8, __pyx_int_2); if (unlikely(!__pyx_tuple__9)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 69; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_tuple__9);
   __Pyx_GIVEREF(__pyx_tuple__9);
 
-  /* "Cython_Raster_Funcs\CoastlineMatching.pyx":77
- *     # transfer to a C-side object transposed to have three rows and many columns and in
- *     # C-contiguous layout, so that cython can access individual nbr coord sets more quickly
+  /* "Cython_Raster_Funcs\CoastlineMatching.pyx":81
+ *     # Only transfer the values relating to the cells within the desired radius (cut the corners
+ *     # off the square to make a circle).
  *     nbrTable = np.copy((npTmpTable[npTmpTable[:,2] <= searchPixelRadius]).T, order='c')             # <<<<<<<<<<<<<<
- *     # cast the columns that will be used as array indices to int type once here, rather
- *     # than casting repeatedly inside the inner loop
+ * 
+ *     # transfer this numpy array to  to a native C object (memoryview)
  */
-  __pyx_slice__10 = PySlice_New(Py_None, Py_None, Py_None); if (unlikely(!__pyx_slice__10)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 77; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_slice__10 = PySlice_New(Py_None, Py_None, Py_None); if (unlikely(!__pyx_slice__10)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 81; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_slice__10);
   __Pyx_GIVEREF(__pyx_slice__10);
-  __pyx_tuple__11 = PyTuple_Pack(2, __pyx_slice__10, __pyx_int_2); if (unlikely(!__pyx_tuple__11)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 77; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_tuple__11 = PyTuple_Pack(2, __pyx_slice__10, __pyx_int_2); if (unlikely(!__pyx_tuple__11)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 81; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_tuple__11);
   __Pyx_GIVEREF(__pyx_tuple__11);
 
-  /* "Cython_Raster_Funcs\CoastlineMatching.pyx":80
- *     # cast the columns that will be used as array indices to int type once here, rather
- *     # than casting repeatedly inside the inner loop
+  /* "Cython_Raster_Funcs\CoastlineMatching.pyx":87
+ *     # to int type once here. This saves a great deal of time compared to
+ *     # casting repeatedly inside the inner loop
  *     nbrIntCoords = np.asarray(nbrTable[0:2,:]).astype(np.int32)             # <<<<<<<<<<<<<<
+ *     _MAX_NEIGHBOURS_TO_CHECK = nbrIntCoords.shape[1]
  * 
- *     filledCells = 0
  */
-  __pyx_slice__12 = PySlice_New(__pyx_int_0, __pyx_int_2, Py_None); if (unlikely(!__pyx_slice__12)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 80; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_slice__12 = PySlice_New(__pyx_int_0, __pyx_int_2, Py_None); if (unlikely(!__pyx_slice__12)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 87; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_slice__12);
   __Pyx_GIVEREF(__pyx_slice__12);
-  __pyx_slice__13 = PySlice_New(Py_None, Py_None, Py_None); if (unlikely(!__pyx_slice__13)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 80; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_slice__13 = PySlice_New(Py_None, Py_None, Py_None); if (unlikely(!__pyx_slice__13)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 87; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_slice__13);
   __Pyx_GIVEREF(__pyx_slice__13);
-  __pyx_tuple__14 = PyTuple_Pack(2, __pyx_slice__12, __pyx_slice__13); if (unlikely(!__pyx_tuple__14)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 80; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_tuple__14 = PyTuple_Pack(2, __pyx_slice__12, __pyx_slice__13); if (unlikely(!__pyx_tuple__14)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 87; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_tuple__14);
   __Pyx_GIVEREF(__pyx_tuple__14);
 
-  /* "Cython_Raster_Funcs\CoastlineMatching.pyx":189
- *     diam = _SEARCH_RADIUS * 2 + 1
- *     inds = np.indices([diam,diam]) - _SEARCH_RADIUS
+  /* "Cython_Raster_Funcs\CoastlineMatching.pyx":198
+ *     diam = searchPixelRadius * 2 + 1
+ *     inds = np.indices([diam,diam]) - searchPixelRadius
  *     distTmp = np.sqrt((inds ** 2).sum(0))             # <<<<<<<<<<<<<<
  *     npTmpTable = ((inds.T).reshape(diam**2, 2))
- *     npTmpTable = np.append(npTmpTable, distTmp.ravel()[:,None],axis=1)
+ *     npTmpTable = np.append(npTmpTable, distTmp.ravel()[:,None], axis=1)
  */
-  __pyx_tuple__15 = PyTuple_Pack(1, __pyx_int_0); if (unlikely(!__pyx_tuple__15)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 189; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_tuple__15 = PyTuple_Pack(1, __pyx_int_0); if (unlikely(!__pyx_tuple__15)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 198; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_tuple__15);
   __Pyx_GIVEREF(__pyx_tuple__15);
 
-  /* "Cython_Raster_Funcs\CoastlineMatching.pyx":191
+  /* "Cython_Raster_Funcs\CoastlineMatching.pyx":200
  *     distTmp = np.sqrt((inds ** 2).sum(0))
  *     npTmpTable = ((inds.T).reshape(diam**2, 2))
- *     npTmpTable = np.append(npTmpTable, distTmp.ravel()[:,None],axis=1)             # <<<<<<<<<<<<<<
+ *     npTmpTable = np.append(npTmpTable, distTmp.ravel()[:,None], axis=1)             # <<<<<<<<<<<<<<
  *     # sort the table by distance then x then y (the arguments are last-sort-first)
  *     order = np.lexsort((npTmpTable[:,1],npTmpTable[:,0],npTmpTable[:,2]))
  */
-  __pyx_slice__16 = PySlice_New(Py_None, Py_None, Py_None); if (unlikely(!__pyx_slice__16)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 191; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_slice__16 = PySlice_New(Py_None, Py_None, Py_None); if (unlikely(!__pyx_slice__16)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 200; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_slice__16);
   __Pyx_GIVEREF(__pyx_slice__16);
-  __pyx_tuple__17 = PyTuple_Pack(2, __pyx_slice__16, Py_None); if (unlikely(!__pyx_tuple__17)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 191; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_tuple__17 = PyTuple_Pack(2, __pyx_slice__16, Py_None); if (unlikely(!__pyx_tuple__17)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 200; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_tuple__17);
   __Pyx_GIVEREF(__pyx_tuple__17);
 
-  /* "Cython_Raster_Funcs\CoastlineMatching.pyx":193
- *     npTmpTable = np.append(npTmpTable, distTmp.ravel()[:,None],axis=1)
+  /* "Cython_Raster_Funcs\CoastlineMatching.pyx":202
+ *     npTmpTable = np.append(npTmpTable, distTmp.ravel()[:,None], axis=1)
  *     # sort the table by distance then x then y (the arguments are last-sort-first)
  *     order = np.lexsort((npTmpTable[:,1],npTmpTable[:,0],npTmpTable[:,2]))             # <<<<<<<<<<<<<<
- *     npTmpTable = np.take(npTmpTable,order,axis=0)
- *     # transfer to a C-side object transposed to have three rows and many columns and in
+ * 
+ *     # npTmpTable has shape ((radius*2+1)**2, 3) and represents the offset coordinates of all cells in
  */
-  __pyx_slice__18 = PySlice_New(Py_None, Py_None, Py_None); if (unlikely(!__pyx_slice__18)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 193; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_slice__18 = PySlice_New(Py_None, Py_None, Py_None); if (unlikely(!__pyx_slice__18)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 202; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_slice__18);
   __Pyx_GIVEREF(__pyx_slice__18);
-  __pyx_tuple__19 = PyTuple_Pack(2, __pyx_slice__18, __pyx_int_1); if (unlikely(!__pyx_tuple__19)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 193; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_tuple__19 = PyTuple_Pack(2, __pyx_slice__18, __pyx_int_1); if (unlikely(!__pyx_tuple__19)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 202; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_tuple__19);
   __Pyx_GIVEREF(__pyx_tuple__19);
-  __pyx_slice__20 = PySlice_New(Py_None, Py_None, Py_None); if (unlikely(!__pyx_slice__20)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 193; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_slice__20 = PySlice_New(Py_None, Py_None, Py_None); if (unlikely(!__pyx_slice__20)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 202; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_slice__20);
   __Pyx_GIVEREF(__pyx_slice__20);
-  __pyx_tuple__21 = PyTuple_Pack(2, __pyx_slice__20, __pyx_int_0); if (unlikely(!__pyx_tuple__21)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 193; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_tuple__21 = PyTuple_Pack(2, __pyx_slice__20, __pyx_int_0); if (unlikely(!__pyx_tuple__21)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 202; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_tuple__21);
   __Pyx_GIVEREF(__pyx_tuple__21);
-  __pyx_slice__22 = PySlice_New(Py_None, Py_None, Py_None); if (unlikely(!__pyx_slice__22)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 193; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_slice__22 = PySlice_New(Py_None, Py_None, Py_None); if (unlikely(!__pyx_slice__22)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 202; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_slice__22);
   __Pyx_GIVEREF(__pyx_slice__22);
-  __pyx_tuple__23 = PyTuple_Pack(2, __pyx_slice__22, __pyx_int_2); if (unlikely(!__pyx_tuple__23)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 193; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_tuple__23 = PyTuple_Pack(2, __pyx_slice__22, __pyx_int_2); if (unlikely(!__pyx_tuple__23)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 202; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_tuple__23);
   __Pyx_GIVEREF(__pyx_tuple__23);
 
-  /* "Cython_Raster_Funcs\CoastlineMatching.pyx":197
- *     # transfer to a C-side object transposed to have three rows and many columns and in
- *     # C-contiguous layout, so that cython can access individual nbr coord sets more quickly
- *     nbrTable = np.copy((npTmpTable[npTmpTable[:,2] <= _SEARCH_RADIUS]).T,order='c')             # <<<<<<<<<<<<<<
- *     # cast the columns that will be used as array indices to int type once here, rather
- *     # than casting repeatedly inside the inner loop
+  /* "Cython_Raster_Funcs\CoastlineMatching.pyx":214
+ *     # Only transfer the values relating to the cells within the desired radius (cut the corners
+ *     # off the square to make a circle).
+ *     nbrTable = np.copy((npTmpTable[npTmpTable[:,2] <= searchPixelRadius]).T,order='c')             # <<<<<<<<<<<<<<
+ * 
+ *     # transfer this numpy array to  to a native C object (memoryview)
  */
-  __pyx_slice__24 = PySlice_New(Py_None, Py_None, Py_None); if (unlikely(!__pyx_slice__24)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 197; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_slice__24 = PySlice_New(Py_None, Py_None, Py_None); if (unlikely(!__pyx_slice__24)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 214; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_slice__24);
   __Pyx_GIVEREF(__pyx_slice__24);
-  __pyx_tuple__25 = PyTuple_Pack(2, __pyx_slice__24, __pyx_int_2); if (unlikely(!__pyx_tuple__25)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 197; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_tuple__25 = PyTuple_Pack(2, __pyx_slice__24, __pyx_int_2); if (unlikely(!__pyx_tuple__25)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 214; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_tuple__25);
   __Pyx_GIVEREF(__pyx_tuple__25);
 
-  /* "Cython_Raster_Funcs\CoastlineMatching.pyx":200
- *     # cast the columns that will be used as array indices to int type once here, rather
- *     # than casting repeatedly inside the inner loop
+  /* "Cython_Raster_Funcs\CoastlineMatching.pyx":220
+ *     # to int type once here. This saves a great deal of time compared to
+ *     # casting repeatedly inside the inner loop
  *     nbrIntCoords = np.asarray(nbrTable[0:2,:]).astype(np.int32)             # <<<<<<<<<<<<<<
+ *     _MAX_NEIGHBOURS_TO_CHECK = nbrIntCoords.shape[1]
  * 
- *     reallocatedCells = 0
  */
-  __pyx_slice__26 = PySlice_New(__pyx_int_0, __pyx_int_2, Py_None); if (unlikely(!__pyx_slice__26)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 200; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_slice__26 = PySlice_New(__pyx_int_0, __pyx_int_2, Py_None); if (unlikely(!__pyx_slice__26)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 220; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_slice__26);
   __Pyx_GIVEREF(__pyx_slice__26);
-  __pyx_slice__27 = PySlice_New(Py_None, Py_None, Py_None); if (unlikely(!__pyx_slice__27)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 200; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_slice__27 = PySlice_New(Py_None, Py_None, Py_None); if (unlikely(!__pyx_slice__27)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 220; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_slice__27);
   __Pyx_GIVEREF(__pyx_slice__27);
-  __pyx_tuple__28 = PyTuple_Pack(2, __pyx_slice__26, __pyx_slice__27); if (unlikely(!__pyx_tuple__28)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 200; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_tuple__28 = PyTuple_Pack(2, __pyx_slice__26, __pyx_slice__27); if (unlikely(!__pyx_tuple__28)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 220; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_tuple__28);
   __Pyx_GIVEREF(__pyx_tuple__28);
 
@@ -16468,7 +16520,6 @@ static int __Pyx_InitGlobals(void) {
   __pyx_int_0 = PyInt_FromLong(0); if (unlikely(!__pyx_int_0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __pyx_int_1 = PyInt_FromLong(1); if (unlikely(!__pyx_int_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __pyx_int_2 = PyInt_FromLong(2); if (unlikely(!__pyx_int_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __pyx_int_100 = PyInt_FromLong(100); if (unlikely(!__pyx_int_100)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __pyx_int_neg_1 = PyInt_FromLong(-1); if (unlikely(!__pyx_int_neg_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   return 0;
   __pyx_L1_error:;
@@ -16602,12 +16653,12 @@ PyMODINIT_FUNC PyInit_CoastlineMatching(void)
   if (PyDict_SetItem(__pyx_d, __pyx_n_s_np, __pyx_t_1) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "Cython_Raster_Funcs\CoastlineMatching.pyx":145
+  /* "Cython_Raster_Funcs\CoastlineMatching.pyx":153
  * 
  * 
  * cpdef reallocateToUnmasked(float[:,::1] data, char[:,::1] landMask, float _NDV = -9999,             # <<<<<<<<<<<<<<
  *                            char fillLandWithZero = 1,
- *                            char clipZerosAtSea = 1):
+ *                            char clipZerosAtSea = 1,
  */
   __pyx_t_1 = PyDict_New(); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);

@@ -64,9 +64,9 @@ cpdef matchToCoastline(long long[:,::1] data, char[:,::1] landMask, long long _N
     inds = np.indices([diam,diam]) - searchPixelRadius
     distTmp = np.sqrt((inds ** 2).sum(0))
     npTmpTable = ((inds.T).reshape(diam**2, 2))
-    npTmpTable = np.append(npTmpTable, distTmp.ravel()[:,None],axis=1)
+    npTmpTable = np.append(npTmpTable, distTmp.ravel()[:,None], axis=1)
     # sort the table by distance then x then y (the arguments are last-sort-first)
-    order = np.lexsort((npTmpTable[:,1],npTmpTable[:,0],npTmpTable[:,2]))
+    order = np.lexsort((npTmpTable[:,1], npTmpTable[:,0], npTmpTable[:,2]))
 
     # npTmpTable has shape ((radius*2+1)**2, 3) and represents the offset coordinates of all cells in
     # a square of size radius*2+1 around a central point, sorted by increasing distance from the centre.
@@ -153,7 +153,8 @@ cpdef matchToCoastline(long long[:,::1] data, char[:,::1] landMask, long long _N
 cpdef reallocateToUnmasked(float[:,::1] data, char[:,::1] landMask, float _NDV = -9999,
                            char fillLandWithZero = 1,
                            char clipZerosAtSea = 1,
-                           int searchPixelRadius = 100):
+                           int searchPixelRadius = 100,
+                           char deleteDespiteFailure = 0):
     '''
     Reallocates data falling in masked area to nearest non-masked pixel
 
@@ -270,6 +271,8 @@ cpdef reallocateToUnmasked(float[:,::1] data, char[:,::1] landMask, float _NDV =
             if reallocatedOK == 0:
                 failedReallocations += 1
                 failedReallocationPop += data[yIn, xIn]
+                if deleteDespiteFailure:
+                    data[yIn, xIn] = _NDV
                 failedLocs[yIn, xIn] = 1
 
     print ("Reallocated {0!s} total pop from {1!s} cells to nearby land cell".format(
