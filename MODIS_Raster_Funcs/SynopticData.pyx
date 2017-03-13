@@ -4,16 +4,25 @@ import numpy as np
 from libc.math cimport sqrt
 
 cdef class MonthlyStatCalculator:
-    '''Calculates and maintains a running mean, SD, and count of local values of incoming arrays
+    '''Calculates a running mean, SD, and count of local values of a series of incoming arrays
 
     For a given array shape, determined at initialisation, this class creates an array of the local
-    mean, SD, and count from incoming arrays that are supplied sequentially. The variance (and
-    thus SD) are computed using the method of Donald Knuth which is robust against numerical
-    errors that can otherwise occur for large values with small differences.
+    mean, SD, and count of the values in the incoming arrays, which will then be supplied sequentially.
+
+    The variance (and thus SD) are computed using the method of Donald Knuth which is robust against
+    numerical errors that can otherwise occur for large values with small differences.
 
     Output arrays are generated simultaneously for both all data received, and for all data
     received since the value of the "month" parameter changed. This enables the class to be
-    used to calculate monthly and overall statistics in a single pass.'''
+    used to calculate monthly and overall statistics in a single pass.
+
+    The calculation is implemented in optimised multithreaded C code generated using Cython. By
+    default this will use 6 threads although this can be changed in the code.
+
+    This class has been used to generate "synoptic" outputs from the MODIS variables used in MAP
+    but of course can be used for any other suitable series of arrays where efficient flattening to
+    mean/sd/count is required.
+    '''
 
     cdef:
         short[:, ::1] mth_n, tot_n_Days, tot_n_Months
@@ -59,16 +68,20 @@ cdef class MonthlyStatCalculator:
     @cython.boundscheck(False)
     @cython.cdivision(True)
     cpdef addFile(self, float[:,::1] data, float thisNdv):
-        '''Add a tile of data to the running summaries. Data must be of shape specified in startup.
+        '''Add a tile of data to the running summaries. Data array must be of shape specified in startup.
 
         Specify the value in the data that should be treated as nodata (does not have to be the same
         as the output nodata value specified at startup)
 
         This should be called once for each incoming data file, calling emitMonth when appropriate
-        during the sequential process, and emitTotal when finished.
+        during the sequential process, and emitTotal when finished. E.g. add each file representing
+        a "January" in turn, call emitMonth to get the synoptic January results, then continue for
+        each of the other calendar months, and call emitTotal to get the overall synoptic total when
+        finished.
 
-        At each pixel location, tracks the number of non-nodata values ever seen, and calculates
-        the mean and the variance of those values (which will be converted to SD later)
+        At each pixel location (and for each of the month and total outputs), tracks the count
+        of non-nodata values ever seen, and calculates the mean and the variance of those values
+        (which will be converted to SD later).
 
         Variance is calculated using the numerically-robust method of Donald Knuth as described at
         http://www.johndcook.com/blog/standard_deviation/
