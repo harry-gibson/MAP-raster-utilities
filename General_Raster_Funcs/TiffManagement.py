@@ -22,7 +22,7 @@ def SaveLZWTiff(data, _NDV, geotransform, projection, outDir, outName, cOpts=Non
 
     outRasterName = os.path.join(outDir, outName)
     if cOpts is None:
-        cOpts = ["TILED=YES", "SPARSE_OK=TRUE", "BIGTIFF=YES", "COMPRESS=LZW", "PREDICTOR=2"]
+        cOpts = ["TILED=YES", "SPARSE_OK=FALSE", "BIGTIFF=YES", "COMPRESS=LZW", "PREDICTOR=2"]
     outRaster = outDrv.Create(outRasterName, data.shape[1], data.shape[0], 1, gdType,
                               cOpts)
     outRaster.SetGeoTransform(geotransform)
