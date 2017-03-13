@@ -31,3 +31,5 @@ We can also use this approach to translate a large number of tiff files to a dif
 Note the -I % just tells XArgs to look for a % symbol and replace that with whatever the input from the pipe is
 
 find *.tif | xargs -n 1 -P 6 -I % gdal_translate -co "COMPRESS=LZW" -co "TILED=YES" -co "PREDICTOR=2" -co "BIGTIFF=YES" -co "INTERLEAVE=BAND" -co "SPARSE_OK=TRUE" % /srv/data/hsg/output_dir/%
+
+

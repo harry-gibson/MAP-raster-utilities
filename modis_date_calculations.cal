@@ -1,0 +1,16 @@
+# field calculator function for calculating dates of MODIS monthly files where the yr and mth are already there
+def get(d):
+    parts = d.split('.')
+    yr = parts[1]
+    mth = parts[2]
+    return yr + "-" + mth + "-01"
+    
+# field calculator function for calculating dates of MODIS 8-day files (where the name contains text like A2015009)    
+from datetime import date
+from dateutil.relativedelta import relativedelta
+def get(d):
+    yr = int(d[1:5])
+    daynum = int(d[5:8])
+    jan1 = date(yr,1,1)
+    thisdate = jan1 + relativedelta(days = daynum-1)
+    return str(thisdate)
