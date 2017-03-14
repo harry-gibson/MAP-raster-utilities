@@ -528,8 +528,8 @@ struct __pyx_memoryviewslice_obj;
  * from libc.math cimport sqrt
  * 
  * cdef class MonthlyStatCalculator:             # <<<<<<<<<<<<<<
+ *     '''Calculates a running mean, SD, and count of local values of a series of incoming arrays
  * 
- *     cdef:
  */
 struct __pyx_obj_18MODIS_Raster_Funcs_12SynopticData_MonthlyStatCalculator {
   PyObject_HEAD
@@ -633,12 +633,12 @@ struct __pyx_memoryviewslice_obj {
  * from libc.math cimport sqrt
  * 
  * cdef class MonthlyStatCalculator:             # <<<<<<<<<<<<<<
+ *     '''Calculates a running mean, SD, and count of local values of a series of incoming arrays
  * 
- *     cdef:
  */
 
 struct __pyx_vtabstruct_18MODIS_Raster_Funcs_12SynopticData_MonthlyStatCalculator {
-  PyObject *(*addFile)(struct __pyx_obj_18MODIS_Raster_Funcs_12SynopticData_MonthlyStatCalculator *, __Pyx_memviewslice, unsigned char, float, int __pyx_skip_dispatch);
+  PyObject *(*addFile)(struct __pyx_obj_18MODIS_Raster_Funcs_12SynopticData_MonthlyStatCalculator *, __Pyx_memviewslice, float, int __pyx_skip_dispatch);
   PyObject *(*emitMonth)(struct __pyx_obj_18MODIS_Raster_Funcs_12SynopticData_MonthlyStatCalculator *, int __pyx_skip_dispatch);
   PyObject *(*emitTotal)(struct __pyx_obj_18MODIS_Raster_Funcs_12SynopticData_MonthlyStatCalculator *, int __pyx_skip_dispatch);
 };
@@ -1010,12 +1010,8 @@ static int __Pyx_ValidateAndInit_memviewslice(
 
 static CYTHON_INLINE __Pyx_memviewslice __Pyx_PyObject_to_MemoryviewSlice_d_dc_float(PyObject *);
 
-static CYTHON_INLINE unsigned char __Pyx_PyInt_As_unsigned_char(PyObject *);
-
 static PyObject *__pyx_memview_get_float(const char *itemp);
 static int __pyx_memview_set_float(const char *itemp, PyObject *obj);
-
-static CYTHON_INLINE PyObject* __Pyx_PyInt_From_unsigned_char(unsigned char value);
 
 static CYTHON_INLINE PyObject* __Pyx_PyInt_From_short(short value);
 
@@ -1060,7 +1056,7 @@ static int __Pyx_check_binary_version(void);
 
 static int __Pyx_InitStrings(__Pyx_StringTabEntry *t);
 
-static PyObject *__pyx_f_18MODIS_Raster_Funcs_12SynopticData_21MonthlyStatCalculator_addFile(struct __pyx_obj_18MODIS_Raster_Funcs_12SynopticData_MonthlyStatCalculator *__pyx_v_self, __Pyx_memviewslice __pyx_v_data, unsigned char __pyx_v_month, float __pyx_v_thisNdv, int __pyx_skip_dispatch); /* proto*/
+static PyObject *__pyx_f_18MODIS_Raster_Funcs_12SynopticData_21MonthlyStatCalculator_addFile(struct __pyx_obj_18MODIS_Raster_Funcs_12SynopticData_MonthlyStatCalculator *__pyx_v_self, __Pyx_memviewslice __pyx_v_data, float __pyx_v_thisNdv, int __pyx_skip_dispatch); /* proto*/
 static PyObject *__pyx_f_18MODIS_Raster_Funcs_12SynopticData_21MonthlyStatCalculator_emitMonth(struct __pyx_obj_18MODIS_Raster_Funcs_12SynopticData_MonthlyStatCalculator *__pyx_v_self, int __pyx_skip_dispatch); /* proto*/
 static PyObject *__pyx_f_18MODIS_Raster_Funcs_12SynopticData_21MonthlyStatCalculator_emitTotal(struct __pyx_obj_18MODIS_Raster_Funcs_12SynopticData_MonthlyStatCalculator *__pyx_v_self, int __pyx_skip_dispatch); /* proto*/
 static char *__pyx_memoryview_get_item_pointer(struct __pyx_memoryview_obj *__pyx_v_self, PyObject *__pyx_v_index); /* proto*/
@@ -1141,7 +1137,7 @@ static PyObject *__pyx_builtin_xrange;
 static PyObject *__pyx_builtin_id;
 static PyObject *__pyx_builtin_IndexError;
 static int __pyx_pf_18MODIS_Raster_Funcs_12SynopticData_21MonthlyStatCalculator___cinit__(struct __pyx_obj_18MODIS_Raster_Funcs_12SynopticData_MonthlyStatCalculator *__pyx_v_self, Py_ssize_t __pyx_v_height, Py_ssize_t __pyx_v_width, double __pyx_v_ndv); /* proto */
-static PyObject *__pyx_pf_18MODIS_Raster_Funcs_12SynopticData_21MonthlyStatCalculator_2addFile(struct __pyx_obj_18MODIS_Raster_Funcs_12SynopticData_MonthlyStatCalculator *__pyx_v_self, __Pyx_memviewslice __pyx_v_data, unsigned char __pyx_v_month, float __pyx_v_thisNdv); /* proto */
+static PyObject *__pyx_pf_18MODIS_Raster_Funcs_12SynopticData_21MonthlyStatCalculator_2addFile(struct __pyx_obj_18MODIS_Raster_Funcs_12SynopticData_MonthlyStatCalculator *__pyx_v_self, __Pyx_memviewslice __pyx_v_data, float __pyx_v_thisNdv); /* proto */
 static PyObject *__pyx_pf_18MODIS_Raster_Funcs_12SynopticData_21MonthlyStatCalculator_4emitMonth(struct __pyx_obj_18MODIS_Raster_Funcs_12SynopticData_MonthlyStatCalculator *__pyx_v_self); /* proto */
 static PyObject *__pyx_pf_18MODIS_Raster_Funcs_12SynopticData_21MonthlyStatCalculator_6emitTotal(struct __pyx_obj_18MODIS_Raster_Funcs_12SynopticData_MonthlyStatCalculator *__pyx_v_self); /* proto */
 static int __pyx_array_MemoryView_5array___cinit__(struct __pyx_array_obj *__pyx_v_self, PyObject *__pyx_v_shape, Py_ssize_t __pyx_v_itemsize, PyObject *__pyx_v_format, PyObject *__pyx_v_mode, int __pyx_v_allocate_buffer); /* proto */
@@ -1206,7 +1202,6 @@ static char __pyx_k_count[] = "count";
 static char __pyx_k_dtype[] = "dtype";
 static char __pyx_k_error[] = "error";
 static char __pyx_k_flags[] = "flags";
-static char __pyx_k_month[] = "month";
 static char __pyx_k_numpy[] = "numpy";
 static char __pyx_k_range[] = "range";
 static char __pyx_k_shape[] = "shape";
@@ -1319,7 +1314,6 @@ static PyObject *__pyx_n_s_main;
 static PyObject *__pyx_n_s_mean;
 static PyObject *__pyx_n_s_memview;
 static PyObject *__pyx_n_s_mode;
-static PyObject *__pyx_n_s_month;
 static PyObject *__pyx_n_s_name;
 static PyObject *__pyx_n_s_name_2;
 static PyObject *__pyx_n_s_ndim;
@@ -1373,12 +1367,12 @@ static PyObject *__pyx_tuple__18;
 static PyObject *__pyx_tuple__19;
 static PyObject *__pyx_tuple__20;
 
-/* "MODIS_Raster_Funcs\SynopticData.pyx":16
+/* "MODIS_Raster_Funcs\SynopticData.pyx":35
  *         unsigned char  _startNewMonth
  * 
  *     def __cinit__(self, Py_ssize_t height, Py_ssize_t width, double ndv):             # <<<<<<<<<<<<<<
+ *         '''Height and width specify the shape of the arrays to be provided. NDV refers to outputs.
  * 
- *         self.tot_n_Days = np.zeros((height, width), dtype='Int16')
  */
 
 /* Python wrapper */
@@ -1414,16 +1408,16 @@ static int __pyx_pw_18MODIS_Raster_Funcs_12SynopticData_21MonthlyStatCalculator_
         case  1:
         if (likely((values[1] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_width)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("__cinit__", 1, 3, 3, 1); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 16; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+          __Pyx_RaiseArgtupleInvalid("__cinit__", 1, 3, 3, 1); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 35; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
         }
         case  2:
         if (likely((values[2] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_ndv)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("__cinit__", 1, 3, 3, 2); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 16; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+          __Pyx_RaiseArgtupleInvalid("__cinit__", 1, 3, 3, 2); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 35; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "__cinit__") < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 16; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "__cinit__") < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 35; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
       }
     } else if (PyTuple_GET_SIZE(__pyx_args) != 3) {
       goto __pyx_L5_argtuple_error;
@@ -1432,13 +1426,13 @@ static int __pyx_pw_18MODIS_Raster_Funcs_12SynopticData_21MonthlyStatCalculator_
       values[1] = PyTuple_GET_ITEM(__pyx_args, 1);
       values[2] = PyTuple_GET_ITEM(__pyx_args, 2);
     }
-    __pyx_v_height = __Pyx_PyIndex_AsSsize_t(values[0]); if (unlikely((__pyx_v_height == (Py_ssize_t)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 16; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
-    __pyx_v_width = __Pyx_PyIndex_AsSsize_t(values[1]); if (unlikely((__pyx_v_width == (Py_ssize_t)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 16; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
-    __pyx_v_ndv = __pyx_PyFloat_AsDouble(values[2]); if (unlikely((__pyx_v_ndv == (double)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 16; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+    __pyx_v_height = __Pyx_PyIndex_AsSsize_t(values[0]); if (unlikely((__pyx_v_height == (Py_ssize_t)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 35; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+    __pyx_v_width = __Pyx_PyIndex_AsSsize_t(values[1]); if (unlikely((__pyx_v_width == (Py_ssize_t)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 35; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+    __pyx_v_ndv = __pyx_PyFloat_AsDouble(values[2]); if (unlikely((__pyx_v_ndv == (double)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 35; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("__cinit__", 1, 3, 3, PyTuple_GET_SIZE(__pyx_args)); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 16; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+  __Pyx_RaiseArgtupleInvalid("__cinit__", 1, 3, 3, PyTuple_GET_SIZE(__pyx_args)); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 35; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
   __pyx_L3_error:;
   __Pyx_AddTraceback("MODIS_Raster_Funcs.SynopticData.MonthlyStatCalculator.__cinit__", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
@@ -1475,23 +1469,23 @@ static int __pyx_pf_18MODIS_Raster_Funcs_12SynopticData_21MonthlyStatCalculator_
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__cinit__", 0);
 
-  /* "MODIS_Raster_Funcs\SynopticData.pyx":18
- *     def __cinit__(self, Py_ssize_t height, Py_ssize_t width, double ndv):
+  /* "MODIS_Raster_Funcs\SynopticData.pyx":41
+ *         double precision - choose a size that will be manageable in the RAM available.'''
  * 
  *         self.tot_n_Days = np.zeros((height, width), dtype='Int16')             # <<<<<<<<<<<<<<
  *         self.tot_oldM_Days = np.zeros((height, width), dtype='float64')
  *         self.tot_newM_Days = np.zeros((height, width), dtype='float64')
  */
-  __pyx_t_1 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 18; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 41; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_zeros); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 18; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_zeros); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 41; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_1 = PyInt_FromSsize_t(__pyx_v_height); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 18; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = PyInt_FromSsize_t(__pyx_v_height); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 41; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_3 = PyInt_FromSsize_t(__pyx_v_width); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 18; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_3 = PyInt_FromSsize_t(__pyx_v_width); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 41; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_4 = PyTuple_New(2); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 18; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_4 = PyTuple_New(2); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 41; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_4);
   PyTuple_SET_ITEM(__pyx_t_4, 0, __pyx_t_1);
   __Pyx_GIVEREF(__pyx_t_1);
@@ -1499,44 +1493,44 @@ static int __pyx_pf_18MODIS_Raster_Funcs_12SynopticData_21MonthlyStatCalculator_
   __Pyx_GIVEREF(__pyx_t_3);
   __pyx_t_1 = 0;
   __pyx_t_3 = 0;
-  __pyx_t_3 = PyTuple_New(1); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 18; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_3 = PyTuple_New(1); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 41; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_3);
   PyTuple_SET_ITEM(__pyx_t_3, 0, __pyx_t_4);
   __Pyx_GIVEREF(__pyx_t_4);
   __pyx_t_4 = 0;
-  __pyx_t_4 = PyDict_New(); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 18; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_4 = PyDict_New(); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 41; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_4);
-  if (PyDict_SetItem(__pyx_t_4, __pyx_n_s_dtype, __pyx_n_s_Int16) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 18; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_t_3, __pyx_t_4); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 18; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (PyDict_SetItem(__pyx_t_4, __pyx_n_s_dtype, __pyx_n_s_Int16) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 41; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_t_3, __pyx_t_4); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 41; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   __pyx_t_5 = __Pyx_PyObject_to_MemoryviewSlice_d_dc_short(__pyx_t_1);
-  if (unlikely(!__pyx_t_5.memview)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 18; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (unlikely(!__pyx_t_5.memview)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 41; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __PYX_XDEC_MEMVIEW(&__pyx_v_self->tot_n_Days, 0);
   __pyx_v_self->tot_n_Days = __pyx_t_5;
   __pyx_t_5.memview = NULL;
   __pyx_t_5.data = NULL;
 
-  /* "MODIS_Raster_Funcs\SynopticData.pyx":19
+  /* "MODIS_Raster_Funcs\SynopticData.pyx":42
  * 
  *         self.tot_n_Days = np.zeros((height, width), dtype='Int16')
  *         self.tot_oldM_Days = np.zeros((height, width), dtype='float64')             # <<<<<<<<<<<<<<
  *         self.tot_newM_Days = np.zeros((height, width), dtype='float64')
  *         self.tot_oldS_Days = np.zeros((height, width), dtype='float64')
  */
-  __pyx_t_1 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 19; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 42; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_zeros); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 19; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_zeros); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 42; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_1 = PyInt_FromSsize_t(__pyx_v_height); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 19; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = PyInt_FromSsize_t(__pyx_v_height); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 42; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_3 = PyInt_FromSsize_t(__pyx_v_width); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 19; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_3 = PyInt_FromSsize_t(__pyx_v_width); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 42; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_2 = PyTuple_New(2); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 19; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_2 = PyTuple_New(2); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 42; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_2);
   PyTuple_SET_ITEM(__pyx_t_2, 0, __pyx_t_1);
   __Pyx_GIVEREF(__pyx_t_1);
@@ -1544,44 +1538,44 @@ static int __pyx_pf_18MODIS_Raster_Funcs_12SynopticData_21MonthlyStatCalculator_
   __Pyx_GIVEREF(__pyx_t_3);
   __pyx_t_1 = 0;
   __pyx_t_3 = 0;
-  __pyx_t_3 = PyTuple_New(1); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 19; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_3 = PyTuple_New(1); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 42; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_3);
   PyTuple_SET_ITEM(__pyx_t_3, 0, __pyx_t_2);
   __Pyx_GIVEREF(__pyx_t_2);
   __pyx_t_2 = 0;
-  __pyx_t_2 = PyDict_New(); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 19; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_2 = PyDict_New(); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 42; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_2);
-  if (PyDict_SetItem(__pyx_t_2, __pyx_n_s_dtype, __pyx_n_s_float64) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 19; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_4, __pyx_t_3, __pyx_t_2); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 19; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (PyDict_SetItem(__pyx_t_2, __pyx_n_s_dtype, __pyx_n_s_float64) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 42; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_4, __pyx_t_3, __pyx_t_2); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 42; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __pyx_t_6 = __Pyx_PyObject_to_MemoryviewSlice_d_dc_double(__pyx_t_1);
-  if (unlikely(!__pyx_t_6.memview)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 19; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (unlikely(!__pyx_t_6.memview)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 42; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __PYX_XDEC_MEMVIEW(&__pyx_v_self->tot_oldM_Days, 0);
   __pyx_v_self->tot_oldM_Days = __pyx_t_6;
   __pyx_t_6.memview = NULL;
   __pyx_t_6.data = NULL;
 
-  /* "MODIS_Raster_Funcs\SynopticData.pyx":20
+  /* "MODIS_Raster_Funcs\SynopticData.pyx":43
  *         self.tot_n_Days = np.zeros((height, width), dtype='Int16')
  *         self.tot_oldM_Days = np.zeros((height, width), dtype='float64')
  *         self.tot_newM_Days = np.zeros((height, width), dtype='float64')             # <<<<<<<<<<<<<<
  *         self.tot_oldS_Days = np.zeros((height, width), dtype='float64')
  *         self.tot_newS_Days = np.zeros((height, width), dtype='float64')
  */
-  __pyx_t_1 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 20; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 43; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_zeros); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 20; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_zeros); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 43; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_1 = PyInt_FromSsize_t(__pyx_v_height); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 20; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = PyInt_FromSsize_t(__pyx_v_height); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 43; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_3 = PyInt_FromSsize_t(__pyx_v_width); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 20; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_3 = PyInt_FromSsize_t(__pyx_v_width); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 43; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_4 = PyTuple_New(2); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 20; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_4 = PyTuple_New(2); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 43; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_4);
   PyTuple_SET_ITEM(__pyx_t_4, 0, __pyx_t_1);
   __Pyx_GIVEREF(__pyx_t_1);
@@ -1589,44 +1583,44 @@ static int __pyx_pf_18MODIS_Raster_Funcs_12SynopticData_21MonthlyStatCalculator_
   __Pyx_GIVEREF(__pyx_t_3);
   __pyx_t_1 = 0;
   __pyx_t_3 = 0;
-  __pyx_t_3 = PyTuple_New(1); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 20; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_3 = PyTuple_New(1); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 43; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_3);
   PyTuple_SET_ITEM(__pyx_t_3, 0, __pyx_t_4);
   __Pyx_GIVEREF(__pyx_t_4);
   __pyx_t_4 = 0;
-  __pyx_t_4 = PyDict_New(); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 20; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_4 = PyDict_New(); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 43; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_4);
-  if (PyDict_SetItem(__pyx_t_4, __pyx_n_s_dtype, __pyx_n_s_float64) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 20; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_t_3, __pyx_t_4); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 20; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (PyDict_SetItem(__pyx_t_4, __pyx_n_s_dtype, __pyx_n_s_float64) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 43; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_t_3, __pyx_t_4); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 43; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   __pyx_t_6 = __Pyx_PyObject_to_MemoryviewSlice_d_dc_double(__pyx_t_1);
-  if (unlikely(!__pyx_t_6.memview)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 20; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (unlikely(!__pyx_t_6.memview)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 43; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __PYX_XDEC_MEMVIEW(&__pyx_v_self->tot_newM_Days, 0);
   __pyx_v_self->tot_newM_Days = __pyx_t_6;
   __pyx_t_6.memview = NULL;
   __pyx_t_6.data = NULL;
 
-  /* "MODIS_Raster_Funcs\SynopticData.pyx":21
+  /* "MODIS_Raster_Funcs\SynopticData.pyx":44
  *         self.tot_oldM_Days = np.zeros((height, width), dtype='float64')
  *         self.tot_newM_Days = np.zeros((height, width), dtype='float64')
  *         self.tot_oldS_Days = np.zeros((height, width), dtype='float64')             # <<<<<<<<<<<<<<
  *         self.tot_newS_Days = np.zeros((height, width), dtype='float64')
  *         self.tot_oldM_Days[:] = ndv
  */
-  __pyx_t_1 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 21; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 44; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_zeros); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 21; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_zeros); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 44; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_1 = PyInt_FromSsize_t(__pyx_v_height); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 21; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = PyInt_FromSsize_t(__pyx_v_height); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 44; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_3 = PyInt_FromSsize_t(__pyx_v_width); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 21; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_3 = PyInt_FromSsize_t(__pyx_v_width); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 44; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_2 = PyTuple_New(2); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 21; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_2 = PyTuple_New(2); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 44; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_2);
   PyTuple_SET_ITEM(__pyx_t_2, 0, __pyx_t_1);
   __Pyx_GIVEREF(__pyx_t_1);
@@ -1634,44 +1628,44 @@ static int __pyx_pf_18MODIS_Raster_Funcs_12SynopticData_21MonthlyStatCalculator_
   __Pyx_GIVEREF(__pyx_t_3);
   __pyx_t_1 = 0;
   __pyx_t_3 = 0;
-  __pyx_t_3 = PyTuple_New(1); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 21; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_3 = PyTuple_New(1); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 44; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_3);
   PyTuple_SET_ITEM(__pyx_t_3, 0, __pyx_t_2);
   __Pyx_GIVEREF(__pyx_t_2);
   __pyx_t_2 = 0;
-  __pyx_t_2 = PyDict_New(); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 21; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_2 = PyDict_New(); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 44; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_2);
-  if (PyDict_SetItem(__pyx_t_2, __pyx_n_s_dtype, __pyx_n_s_float64) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 21; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_4, __pyx_t_3, __pyx_t_2); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 21; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (PyDict_SetItem(__pyx_t_2, __pyx_n_s_dtype, __pyx_n_s_float64) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 44; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_4, __pyx_t_3, __pyx_t_2); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 44; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __pyx_t_6 = __Pyx_PyObject_to_MemoryviewSlice_d_dc_double(__pyx_t_1);
-  if (unlikely(!__pyx_t_6.memview)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 21; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (unlikely(!__pyx_t_6.memview)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 44; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __PYX_XDEC_MEMVIEW(&__pyx_v_self->tot_oldS_Days, 0);
   __pyx_v_self->tot_oldS_Days = __pyx_t_6;
   __pyx_t_6.memview = NULL;
   __pyx_t_6.data = NULL;
 
-  /* "MODIS_Raster_Funcs\SynopticData.pyx":22
+  /* "MODIS_Raster_Funcs\SynopticData.pyx":45
  *         self.tot_newM_Days = np.zeros((height, width), dtype='float64')
  *         self.tot_oldS_Days = np.zeros((height, width), dtype='float64')
  *         self.tot_newS_Days = np.zeros((height, width), dtype='float64')             # <<<<<<<<<<<<<<
  *         self.tot_oldM_Days[:] = ndv
  *         self.tot_newM_Days[:] = ndv
  */
-  __pyx_t_1 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 22; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 45; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_zeros); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 22; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_zeros); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 45; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_1 = PyInt_FromSsize_t(__pyx_v_height); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 22; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = PyInt_FromSsize_t(__pyx_v_height); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 45; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_3 = PyInt_FromSsize_t(__pyx_v_width); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 22; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_3 = PyInt_FromSsize_t(__pyx_v_width); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 45; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_4 = PyTuple_New(2); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 22; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_4 = PyTuple_New(2); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 45; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_4);
   PyTuple_SET_ITEM(__pyx_t_4, 0, __pyx_t_1);
   __Pyx_GIVEREF(__pyx_t_1);
@@ -1679,35 +1673,35 @@ static int __pyx_pf_18MODIS_Raster_Funcs_12SynopticData_21MonthlyStatCalculator_
   __Pyx_GIVEREF(__pyx_t_3);
   __pyx_t_1 = 0;
   __pyx_t_3 = 0;
-  __pyx_t_3 = PyTuple_New(1); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 22; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_3 = PyTuple_New(1); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 45; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_3);
   PyTuple_SET_ITEM(__pyx_t_3, 0, __pyx_t_4);
   __Pyx_GIVEREF(__pyx_t_4);
   __pyx_t_4 = 0;
-  __pyx_t_4 = PyDict_New(); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 22; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_4 = PyDict_New(); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 45; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_4);
-  if (PyDict_SetItem(__pyx_t_4, __pyx_n_s_dtype, __pyx_n_s_float64) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 22; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_t_3, __pyx_t_4); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 22; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (PyDict_SetItem(__pyx_t_4, __pyx_n_s_dtype, __pyx_n_s_float64) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 45; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_t_3, __pyx_t_4); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 45; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   __pyx_t_6 = __Pyx_PyObject_to_MemoryviewSlice_d_dc_double(__pyx_t_1);
-  if (unlikely(!__pyx_t_6.memview)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 22; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (unlikely(!__pyx_t_6.memview)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 45; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __PYX_XDEC_MEMVIEW(&__pyx_v_self->tot_newS_Days, 0);
   __pyx_v_self->tot_newS_Days = __pyx_t_6;
   __pyx_t_6.memview = NULL;
   __pyx_t_6.data = NULL;
 
-  /* "MODIS_Raster_Funcs\SynopticData.pyx":23
+  /* "MODIS_Raster_Funcs\SynopticData.pyx":46
  *         self.tot_oldS_Days = np.zeros((height, width), dtype='float64')
  *         self.tot_newS_Days = np.zeros((height, width), dtype='float64')
  *         self.tot_oldM_Days[:] = ndv             # <<<<<<<<<<<<<<
  *         self.tot_newM_Days[:] = ndv
  *         self.tot_oldS_Days[:] = ndv
  */
-  if (unlikely(!__pyx_v_self->tot_oldM_Days.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 23; __pyx_clineno = __LINE__; goto __pyx_L1_error;}}
+  if (unlikely(!__pyx_v_self->tot_oldM_Days.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 46; __pyx_clineno = __LINE__; goto __pyx_L1_error;}}
   __pyx_t_6 = __pyx_v_self->tot_oldM_Days;
   __PYX_INC_MEMVIEW(&__pyx_t_6, 1);
   __pyx_t_8 = -1;
@@ -1737,14 +1731,14 @@ __PYX_XDEC_MEMVIEW(&__pyx_t_6, 1);
   }
   __PYX_XDEC_MEMVIEW(&__pyx_t_7, 1);
 
-  /* "MODIS_Raster_Funcs\SynopticData.pyx":24
+  /* "MODIS_Raster_Funcs\SynopticData.pyx":47
  *         self.tot_newS_Days = np.zeros((height, width), dtype='float64')
  *         self.tot_oldM_Days[:] = ndv
  *         self.tot_newM_Days[:] = ndv             # <<<<<<<<<<<<<<
  *         self.tot_oldS_Days[:] = ndv
  *         self.tot_newS_Days[:] = ndv
  */
-  if (unlikely(!__pyx_v_self->tot_newM_Days.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 24; __pyx_clineno = __LINE__; goto __pyx_L1_error;}}
+  if (unlikely(!__pyx_v_self->tot_newM_Days.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 47; __pyx_clineno = __LINE__; goto __pyx_L1_error;}}
   __pyx_t_6 = __pyx_v_self->tot_newM_Days;
   __PYX_INC_MEMVIEW(&__pyx_t_6, 1);
   __pyx_t_8 = -1;
@@ -1774,14 +1768,14 @@ __PYX_XDEC_MEMVIEW(&__pyx_t_6, 1);
   }
   __PYX_XDEC_MEMVIEW(&__pyx_t_9, 1);
 
-  /* "MODIS_Raster_Funcs\SynopticData.pyx":25
+  /* "MODIS_Raster_Funcs\SynopticData.pyx":48
  *         self.tot_oldM_Days[:] = ndv
  *         self.tot_newM_Days[:] = ndv
  *         self.tot_oldS_Days[:] = ndv             # <<<<<<<<<<<<<<
  *         self.tot_newS_Days[:] = ndv
  * 
  */
-  if (unlikely(!__pyx_v_self->tot_oldS_Days.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 25; __pyx_clineno = __LINE__; goto __pyx_L1_error;}}
+  if (unlikely(!__pyx_v_self->tot_oldS_Days.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 48; __pyx_clineno = __LINE__; goto __pyx_L1_error;}}
   __pyx_t_6 = __pyx_v_self->tot_oldS_Days;
   __PYX_INC_MEMVIEW(&__pyx_t_6, 1);
   __pyx_t_8 = -1;
@@ -1811,14 +1805,14 @@ __PYX_XDEC_MEMVIEW(&__pyx_t_6, 1);
   }
   __PYX_XDEC_MEMVIEW(&__pyx_t_10, 1);
 
-  /* "MODIS_Raster_Funcs\SynopticData.pyx":26
+  /* "MODIS_Raster_Funcs\SynopticData.pyx":49
  *         self.tot_newM_Days[:] = ndv
  *         self.tot_oldS_Days[:] = ndv
  *         self.tot_newS_Days[:] = ndv             # <<<<<<<<<<<<<<
  * 
  *         #initialise arrays to track this month
  */
-  if (unlikely(!__pyx_v_self->tot_newS_Days.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 26; __pyx_clineno = __LINE__; goto __pyx_L1_error;}}
+  if (unlikely(!__pyx_v_self->tot_newS_Days.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 49; __pyx_clineno = __LINE__; goto __pyx_L1_error;}}
   __pyx_t_6 = __pyx_v_self->tot_newS_Days;
   __PYX_INC_MEMVIEW(&__pyx_t_6, 1);
   __pyx_t_8 = -1;
@@ -1848,23 +1842,23 @@ __PYX_XDEC_MEMVIEW(&__pyx_t_6, 1);
   }
   __PYX_XDEC_MEMVIEW(&__pyx_t_11, 1);
 
-  /* "MODIS_Raster_Funcs\SynopticData.pyx":29
+  /* "MODIS_Raster_Funcs\SynopticData.pyx":52
  * 
  *         #initialise arrays to track this month
  *         self.mth_n = np.zeros((height, width),dtype='Int16')             # <<<<<<<<<<<<<<
  *         self.mth_oldM = np.zeros((height, width),dtype='float64')
  *         self.mth_newM = np.zeros((height, width),dtype='float64')
  */
-  __pyx_t_1 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 29; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 52; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_zeros); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 29; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_zeros); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 52; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_1 = PyInt_FromSsize_t(__pyx_v_height); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 29; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = PyInt_FromSsize_t(__pyx_v_height); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 52; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_3 = PyInt_FromSsize_t(__pyx_v_width); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 29; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_3 = PyInt_FromSsize_t(__pyx_v_width); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 52; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_2 = PyTuple_New(2); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 29; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_2 = PyTuple_New(2); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 52; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_2);
   PyTuple_SET_ITEM(__pyx_t_2, 0, __pyx_t_1);
   __Pyx_GIVEREF(__pyx_t_1);
@@ -1872,44 +1866,44 @@ __PYX_XDEC_MEMVIEW(&__pyx_t_6, 1);
   __Pyx_GIVEREF(__pyx_t_3);
   __pyx_t_1 = 0;
   __pyx_t_3 = 0;
-  __pyx_t_3 = PyTuple_New(1); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 29; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_3 = PyTuple_New(1); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 52; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_3);
   PyTuple_SET_ITEM(__pyx_t_3, 0, __pyx_t_2);
   __Pyx_GIVEREF(__pyx_t_2);
   __pyx_t_2 = 0;
-  __pyx_t_2 = PyDict_New(); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 29; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_2 = PyDict_New(); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 52; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_2);
-  if (PyDict_SetItem(__pyx_t_2, __pyx_n_s_dtype, __pyx_n_s_Int16) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 29; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_4, __pyx_t_3, __pyx_t_2); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 29; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (PyDict_SetItem(__pyx_t_2, __pyx_n_s_dtype, __pyx_n_s_Int16) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 52; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_4, __pyx_t_3, __pyx_t_2); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 52; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __pyx_t_5 = __Pyx_PyObject_to_MemoryviewSlice_d_dc_short(__pyx_t_1);
-  if (unlikely(!__pyx_t_5.memview)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 29; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (unlikely(!__pyx_t_5.memview)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 52; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __PYX_XDEC_MEMVIEW(&__pyx_v_self->mth_n, 0);
   __pyx_v_self->mth_n = __pyx_t_5;
   __pyx_t_5.memview = NULL;
   __pyx_t_5.data = NULL;
 
-  /* "MODIS_Raster_Funcs\SynopticData.pyx":30
+  /* "MODIS_Raster_Funcs\SynopticData.pyx":53
  *         #initialise arrays to track this month
  *         self.mth_n = np.zeros((height, width),dtype='Int16')
  *         self.mth_oldM = np.zeros((height, width),dtype='float64')             # <<<<<<<<<<<<<<
  *         self.mth_newM = np.zeros((height, width),dtype='float64')
  *         self.mth_oldS = np.zeros((height, width),dtype='float64')
  */
-  __pyx_t_1 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 30; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 53; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_zeros); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 30; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_zeros); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 53; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_1 = PyInt_FromSsize_t(__pyx_v_height); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 30; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = PyInt_FromSsize_t(__pyx_v_height); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 53; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_3 = PyInt_FromSsize_t(__pyx_v_width); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 30; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_3 = PyInt_FromSsize_t(__pyx_v_width); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 53; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_4 = PyTuple_New(2); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 30; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_4 = PyTuple_New(2); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 53; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_4);
   PyTuple_SET_ITEM(__pyx_t_4, 0, __pyx_t_1);
   __Pyx_GIVEREF(__pyx_t_1);
@@ -1917,44 +1911,44 @@ __PYX_XDEC_MEMVIEW(&__pyx_t_6, 1);
   __Pyx_GIVEREF(__pyx_t_3);
   __pyx_t_1 = 0;
   __pyx_t_3 = 0;
-  __pyx_t_3 = PyTuple_New(1); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 30; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_3 = PyTuple_New(1); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 53; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_3);
   PyTuple_SET_ITEM(__pyx_t_3, 0, __pyx_t_4);
   __Pyx_GIVEREF(__pyx_t_4);
   __pyx_t_4 = 0;
-  __pyx_t_4 = PyDict_New(); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 30; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_4 = PyDict_New(); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 53; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_4);
-  if (PyDict_SetItem(__pyx_t_4, __pyx_n_s_dtype, __pyx_n_s_float64) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 30; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_t_3, __pyx_t_4); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 30; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (PyDict_SetItem(__pyx_t_4, __pyx_n_s_dtype, __pyx_n_s_float64) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 53; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_t_3, __pyx_t_4); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 53; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   __pyx_t_12 = __Pyx_PyObject_to_MemoryviewSlice_d_dc_double(__pyx_t_1);
-  if (unlikely(!__pyx_t_12.memview)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 30; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (unlikely(!__pyx_t_12.memview)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 53; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __PYX_XDEC_MEMVIEW(&__pyx_v_self->mth_oldM, 0);
   __pyx_v_self->mth_oldM = __pyx_t_12;
   __pyx_t_12.memview = NULL;
   __pyx_t_12.data = NULL;
 
-  /* "MODIS_Raster_Funcs\SynopticData.pyx":31
+  /* "MODIS_Raster_Funcs\SynopticData.pyx":54
  *         self.mth_n = np.zeros((height, width),dtype='Int16')
  *         self.mth_oldM = np.zeros((height, width),dtype='float64')
  *         self.mth_newM = np.zeros((height, width),dtype='float64')             # <<<<<<<<<<<<<<
  *         self.mth_oldS = np.zeros((height, width),dtype='float64')
  *         self.mth_newS = np.zeros((height, width),dtype='float64')
  */
-  __pyx_t_1 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 31; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 54; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_zeros); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 31; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_zeros); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 54; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_1 = PyInt_FromSsize_t(__pyx_v_height); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 31; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = PyInt_FromSsize_t(__pyx_v_height); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 54; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_3 = PyInt_FromSsize_t(__pyx_v_width); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 31; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_3 = PyInt_FromSsize_t(__pyx_v_width); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 54; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_2 = PyTuple_New(2); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 31; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_2 = PyTuple_New(2); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 54; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_2);
   PyTuple_SET_ITEM(__pyx_t_2, 0, __pyx_t_1);
   __Pyx_GIVEREF(__pyx_t_1);
@@ -1962,44 +1956,44 @@ __PYX_XDEC_MEMVIEW(&__pyx_t_6, 1);
   __Pyx_GIVEREF(__pyx_t_3);
   __pyx_t_1 = 0;
   __pyx_t_3 = 0;
-  __pyx_t_3 = PyTuple_New(1); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 31; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_3 = PyTuple_New(1); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 54; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_3);
   PyTuple_SET_ITEM(__pyx_t_3, 0, __pyx_t_2);
   __Pyx_GIVEREF(__pyx_t_2);
   __pyx_t_2 = 0;
-  __pyx_t_2 = PyDict_New(); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 31; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_2 = PyDict_New(); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 54; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_2);
-  if (PyDict_SetItem(__pyx_t_2, __pyx_n_s_dtype, __pyx_n_s_float64) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 31; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_4, __pyx_t_3, __pyx_t_2); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 31; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (PyDict_SetItem(__pyx_t_2, __pyx_n_s_dtype, __pyx_n_s_float64) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 54; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_4, __pyx_t_3, __pyx_t_2); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 54; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __pyx_t_12 = __Pyx_PyObject_to_MemoryviewSlice_d_dc_double(__pyx_t_1);
-  if (unlikely(!__pyx_t_12.memview)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 31; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (unlikely(!__pyx_t_12.memview)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 54; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __PYX_XDEC_MEMVIEW(&__pyx_v_self->mth_newM, 0);
   __pyx_v_self->mth_newM = __pyx_t_12;
   __pyx_t_12.memview = NULL;
   __pyx_t_12.data = NULL;
 
-  /* "MODIS_Raster_Funcs\SynopticData.pyx":32
+  /* "MODIS_Raster_Funcs\SynopticData.pyx":55
  *         self.mth_oldM = np.zeros((height, width),dtype='float64')
  *         self.mth_newM = np.zeros((height, width),dtype='float64')
  *         self.mth_oldS = np.zeros((height, width),dtype='float64')             # <<<<<<<<<<<<<<
  *         self.mth_newS = np.zeros((height, width),dtype='float64')
  *         # don't have zero but no data instead because zero is valid. Counts remain at zero.
  */
-  __pyx_t_1 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 32; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 55; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_zeros); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 32; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_zeros); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 55; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_1 = PyInt_FromSsize_t(__pyx_v_height); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 32; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = PyInt_FromSsize_t(__pyx_v_height); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 55; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_3 = PyInt_FromSsize_t(__pyx_v_width); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 32; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_3 = PyInt_FromSsize_t(__pyx_v_width); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 55; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_4 = PyTuple_New(2); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 32; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_4 = PyTuple_New(2); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 55; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_4);
   PyTuple_SET_ITEM(__pyx_t_4, 0, __pyx_t_1);
   __Pyx_GIVEREF(__pyx_t_1);
@@ -2007,44 +2001,44 @@ __PYX_XDEC_MEMVIEW(&__pyx_t_6, 1);
   __Pyx_GIVEREF(__pyx_t_3);
   __pyx_t_1 = 0;
   __pyx_t_3 = 0;
-  __pyx_t_3 = PyTuple_New(1); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 32; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_3 = PyTuple_New(1); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 55; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_3);
   PyTuple_SET_ITEM(__pyx_t_3, 0, __pyx_t_4);
   __Pyx_GIVEREF(__pyx_t_4);
   __pyx_t_4 = 0;
-  __pyx_t_4 = PyDict_New(); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 32; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_4 = PyDict_New(); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 55; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_4);
-  if (PyDict_SetItem(__pyx_t_4, __pyx_n_s_dtype, __pyx_n_s_float64) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 32; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_t_3, __pyx_t_4); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 32; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (PyDict_SetItem(__pyx_t_4, __pyx_n_s_dtype, __pyx_n_s_float64) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 55; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_t_3, __pyx_t_4); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 55; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   __pyx_t_12 = __Pyx_PyObject_to_MemoryviewSlice_d_dc_double(__pyx_t_1);
-  if (unlikely(!__pyx_t_12.memview)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 32; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (unlikely(!__pyx_t_12.memview)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 55; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __PYX_XDEC_MEMVIEW(&__pyx_v_self->mth_oldS, 0);
   __pyx_v_self->mth_oldS = __pyx_t_12;
   __pyx_t_12.memview = NULL;
   __pyx_t_12.data = NULL;
 
-  /* "MODIS_Raster_Funcs\SynopticData.pyx":33
+  /* "MODIS_Raster_Funcs\SynopticData.pyx":56
  *         self.mth_newM = np.zeros((height, width),dtype='float64')
  *         self.mth_oldS = np.zeros((height, width),dtype='float64')
  *         self.mth_newS = np.zeros((height, width),dtype='float64')             # <<<<<<<<<<<<<<
  *         # don't have zero but no data instead because zero is valid. Counts remain at zero.
  *         self.mth_oldM[:] = ndv
  */
-  __pyx_t_1 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 33; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 56; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_zeros); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 33; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_zeros); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 56; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_1 = PyInt_FromSsize_t(__pyx_v_height); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 33; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = PyInt_FromSsize_t(__pyx_v_height); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 56; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_3 = PyInt_FromSsize_t(__pyx_v_width); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 33; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_3 = PyInt_FromSsize_t(__pyx_v_width); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 56; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_2 = PyTuple_New(2); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 33; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_2 = PyTuple_New(2); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 56; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_2);
   PyTuple_SET_ITEM(__pyx_t_2, 0, __pyx_t_1);
   __Pyx_GIVEREF(__pyx_t_1);
@@ -2052,35 +2046,35 @@ __PYX_XDEC_MEMVIEW(&__pyx_t_6, 1);
   __Pyx_GIVEREF(__pyx_t_3);
   __pyx_t_1 = 0;
   __pyx_t_3 = 0;
-  __pyx_t_3 = PyTuple_New(1); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 33; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_3 = PyTuple_New(1); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 56; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_3);
   PyTuple_SET_ITEM(__pyx_t_3, 0, __pyx_t_2);
   __Pyx_GIVEREF(__pyx_t_2);
   __pyx_t_2 = 0;
-  __pyx_t_2 = PyDict_New(); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 33; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_2 = PyDict_New(); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 56; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_2);
-  if (PyDict_SetItem(__pyx_t_2, __pyx_n_s_dtype, __pyx_n_s_float64) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 33; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_4, __pyx_t_3, __pyx_t_2); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 33; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (PyDict_SetItem(__pyx_t_2, __pyx_n_s_dtype, __pyx_n_s_float64) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 56; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_4, __pyx_t_3, __pyx_t_2); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 56; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __pyx_t_12 = __Pyx_PyObject_to_MemoryviewSlice_d_dc_double(__pyx_t_1);
-  if (unlikely(!__pyx_t_12.memview)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 33; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (unlikely(!__pyx_t_12.memview)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 56; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __PYX_XDEC_MEMVIEW(&__pyx_v_self->mth_newS, 0);
   __pyx_v_self->mth_newS = __pyx_t_12;
   __pyx_t_12.memview = NULL;
   __pyx_t_12.data = NULL;
 
-  /* "MODIS_Raster_Funcs\SynopticData.pyx":35
+  /* "MODIS_Raster_Funcs\SynopticData.pyx":58
  *         self.mth_newS = np.zeros((height, width),dtype='float64')
  *         # don't have zero but no data instead because zero is valid. Counts remain at zero.
  *         self.mth_oldM[:] = ndv             # <<<<<<<<<<<<<<
  *         self.mth_newM[:] = ndv
  *         self.mth_oldS[:] = ndv
  */
-  if (unlikely(!__pyx_v_self->mth_oldM.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 35; __pyx_clineno = __LINE__; goto __pyx_L1_error;}}
+  if (unlikely(!__pyx_v_self->mth_oldM.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 58; __pyx_clineno = __LINE__; goto __pyx_L1_error;}}
   __pyx_t_12 = __pyx_v_self->mth_oldM;
   __PYX_INC_MEMVIEW(&__pyx_t_12, 1);
   __pyx_t_8 = -1;
@@ -2110,14 +2104,14 @@ __PYX_XDEC_MEMVIEW(&__pyx_t_12, 1);
   }
   __PYX_XDEC_MEMVIEW(&__pyx_t_13, 1);
 
-  /* "MODIS_Raster_Funcs\SynopticData.pyx":36
+  /* "MODIS_Raster_Funcs\SynopticData.pyx":59
  *         # don't have zero but no data instead because zero is valid. Counts remain at zero.
  *         self.mth_oldM[:] = ndv
  *         self.mth_newM[:] = ndv             # <<<<<<<<<<<<<<
  *         self.mth_oldS[:] = ndv
  *         self.mth_newS[:] = ndv
  */
-  if (unlikely(!__pyx_v_self->mth_newM.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 36; __pyx_clineno = __LINE__; goto __pyx_L1_error;}}
+  if (unlikely(!__pyx_v_self->mth_newM.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 59; __pyx_clineno = __LINE__; goto __pyx_L1_error;}}
   __pyx_t_12 = __pyx_v_self->mth_newM;
   __PYX_INC_MEMVIEW(&__pyx_t_12, 1);
   __pyx_t_8 = -1;
@@ -2147,14 +2141,14 @@ __PYX_XDEC_MEMVIEW(&__pyx_t_12, 1);
   }
   __PYX_XDEC_MEMVIEW(&__pyx_t_14, 1);
 
-  /* "MODIS_Raster_Funcs\SynopticData.pyx":37
+  /* "MODIS_Raster_Funcs\SynopticData.pyx":60
  *         self.mth_oldM[:] = ndv
  *         self.mth_newM[:] = ndv
  *         self.mth_oldS[:] = ndv             # <<<<<<<<<<<<<<
  *         self.mth_newS[:] = ndv
  * 
  */
-  if (unlikely(!__pyx_v_self->mth_oldS.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 37; __pyx_clineno = __LINE__; goto __pyx_L1_error;}}
+  if (unlikely(!__pyx_v_self->mth_oldS.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 60; __pyx_clineno = __LINE__; goto __pyx_L1_error;}}
   __pyx_t_12 = __pyx_v_self->mth_oldS;
   __PYX_INC_MEMVIEW(&__pyx_t_12, 1);
   __pyx_t_8 = -1;
@@ -2184,14 +2178,14 @@ __PYX_XDEC_MEMVIEW(&__pyx_t_12, 1);
   }
   __PYX_XDEC_MEMVIEW(&__pyx_t_15, 1);
 
-  /* "MODIS_Raster_Funcs\SynopticData.pyx":38
+  /* "MODIS_Raster_Funcs\SynopticData.pyx":61
  *         self.mth_newM[:] = ndv
  *         self.mth_oldS[:] = ndv
  *         self.mth_newS[:] = ndv             # <<<<<<<<<<<<<<
  * 
  *         self.ndv = ndv
  */
-  if (unlikely(!__pyx_v_self->mth_newS.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 38; __pyx_clineno = __LINE__; goto __pyx_L1_error;}}
+  if (unlikely(!__pyx_v_self->mth_newS.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 61; __pyx_clineno = __LINE__; goto __pyx_L1_error;}}
   __pyx_t_12 = __pyx_v_self->mth_newS;
   __PYX_INC_MEMVIEW(&__pyx_t_12, 1);
   __pyx_t_8 = -1;
@@ -2221,7 +2215,7 @@ __PYX_XDEC_MEMVIEW(&__pyx_t_12, 1);
   }
   __PYX_XDEC_MEMVIEW(&__pyx_t_16, 1);
 
-  /* "MODIS_Raster_Funcs\SynopticData.pyx":40
+  /* "MODIS_Raster_Funcs\SynopticData.pyx":63
  *         self.mth_newS[:] = ndv
  * 
  *         self.ndv = ndv             # <<<<<<<<<<<<<<
@@ -2230,7 +2224,7 @@ __PYX_XDEC_MEMVIEW(&__pyx_t_12, 1);
  */
   __pyx_v_self->ndv = __pyx_v_ndv;
 
-  /* "MODIS_Raster_Funcs\SynopticData.pyx":41
+  /* "MODIS_Raster_Funcs\SynopticData.pyx":64
  * 
  *         self.ndv = ndv
  *         self.height = height             # <<<<<<<<<<<<<<
@@ -2239,7 +2233,7 @@ __PYX_XDEC_MEMVIEW(&__pyx_t_12, 1);
  */
   __pyx_v_self->height = __pyx_v_height;
 
-  /* "MODIS_Raster_Funcs\SynopticData.pyx":42
+  /* "MODIS_Raster_Funcs\SynopticData.pyx":65
  *         self.ndv = ndv
  *         self.height = height
  *         self.width = width             # <<<<<<<<<<<<<<
@@ -2248,7 +2242,7 @@ __PYX_XDEC_MEMVIEW(&__pyx_t_12, 1);
  */
   __pyx_v_self->width = __pyx_v_width;
 
-  /* "MODIS_Raster_Funcs\SynopticData.pyx":43
+  /* "MODIS_Raster_Funcs\SynopticData.pyx":66
  *         self.height = height
  *         self.width = width
  *         self._startNewMonth = 1             # <<<<<<<<<<<<<<
@@ -2257,12 +2251,12 @@ __PYX_XDEC_MEMVIEW(&__pyx_t_12, 1);
  */
   __pyx_v_self->_startNewMonth = 1;
 
-  /* "MODIS_Raster_Funcs\SynopticData.pyx":16
+  /* "MODIS_Raster_Funcs\SynopticData.pyx":35
  *         unsigned char  _startNewMonth
  * 
  *     def __cinit__(self, Py_ssize_t height, Py_ssize_t width, double ndv):             # <<<<<<<<<<<<<<
+ *         '''Height and width specify the shape of the arrays to be provided. NDV refers to outputs.
  * 
- *         self.tot_n_Days = np.zeros((height, width), dtype='Int16')
  */
 
   /* function exit code */
@@ -2291,16 +2285,16 @@ __PYX_XDEC_MEMVIEW(&__pyx_t_12, 1);
   return __pyx_r;
 }
 
-/* "MODIS_Raster_Funcs\SynopticData.pyx":47
+/* "MODIS_Raster_Funcs\SynopticData.pyx":70
  *     @cython.boundscheck(False)
  *     @cython.cdivision(True)
- *     cpdef addFile(self, float[:,::1] data, unsigned char month, float thisNdv):             # <<<<<<<<<<<<<<
- *         cdef:
- *             double value
+ *     cpdef addFile(self, float[:,::1] data, float thisNdv):             # <<<<<<<<<<<<<<
+ *         '''Add a tile of data to the running summaries. Data array must be of shape specified in startup.
+ * 
  */
 
 static PyObject *__pyx_pw_18MODIS_Raster_Funcs_12SynopticData_21MonthlyStatCalculator_3addFile(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
-static PyObject *__pyx_f_18MODIS_Raster_Funcs_12SynopticData_21MonthlyStatCalculator_addFile(struct __pyx_obj_18MODIS_Raster_Funcs_12SynopticData_MonthlyStatCalculator *__pyx_v_self, __Pyx_memviewslice __pyx_v_data, unsigned char __pyx_v_month, float __pyx_v_thisNdv, int __pyx_skip_dispatch) {
+static PyObject *__pyx_f_18MODIS_Raster_Funcs_12SynopticData_21MonthlyStatCalculator_addFile(struct __pyx_obj_18MODIS_Raster_Funcs_12SynopticData_MonthlyStatCalculator *__pyx_v_self, __Pyx_memviewslice __pyx_v_data, float __pyx_v_thisNdv, int __pyx_skip_dispatch) {
   double __pyx_v_value;
   Py_ssize_t __pyx_v_y;
   Py_ssize_t __pyx_v_x;
@@ -2312,18 +2306,18 @@ static PyObject *__pyx_f_18MODIS_Raster_Funcs_12SynopticData_21MonthlyStatCalcul
   PyObject *__pyx_t_4 = NULL;
   PyObject *__pyx_t_5 = NULL;
   PyObject *__pyx_t_6 = NULL;
-  PyObject *__pyx_t_7 = NULL;
-  Py_ssize_t __pyx_t_8;
-  PyObject *__pyx_t_9 = NULL;
-  int __pyx_t_10;
+  Py_ssize_t __pyx_t_7;
+  PyObject *__pyx_t_8 = NULL;
+  int __pyx_t_9;
+  __Pyx_memviewslice __pyx_t_10 = { 0, 0, { 0 }, { 0 }, { 0 } };
   __Pyx_memviewslice __pyx_t_11 = { 0, 0, { 0 }, { 0 }, { 0 } };
-  __Pyx_memviewslice __pyx_t_12 = { 0, 0, { 0 }, { 0 }, { 0 } };
-  double __pyx_t_13;
-  __Pyx_memviewslice __pyx_t_14 = { 0, 0, { 0 }, { 0 }, { 0 } };
-  int __pyx_t_15;
+  double __pyx_t_12;
+  __Pyx_memviewslice __pyx_t_13 = { 0, 0, { 0 }, { 0 }, { 0 } };
+  int __pyx_t_14;
+  __Pyx_memviewslice __pyx_t_15 = { 0, 0, { 0 }, { 0 }, { 0 } };
   __Pyx_memviewslice __pyx_t_16 = { 0, 0, { 0 }, { 0 }, { 0 } };
   __Pyx_memviewslice __pyx_t_17 = { 0, 0, { 0 }, { 0 }, { 0 } };
-  __Pyx_memviewslice __pyx_t_18 = { 0, 0, { 0 }, { 0 }, { 0 } };
+  Py_ssize_t __pyx_t_18;
   Py_ssize_t __pyx_t_19;
   Py_ssize_t __pyx_t_20;
   Py_ssize_t __pyx_t_21;
@@ -2401,7 +2395,6 @@ static PyObject *__pyx_f_18MODIS_Raster_Funcs_12SynopticData_21MonthlyStatCalcul
   Py_ssize_t __pyx_t_93;
   Py_ssize_t __pyx_t_94;
   Py_ssize_t __pyx_t_95;
-  Py_ssize_t __pyx_t_96;
   int __pyx_lineno = 0;
   const char *__pyx_filename = NULL;
   int __pyx_clineno = 0;
@@ -2410,48 +2403,43 @@ static PyObject *__pyx_f_18MODIS_Raster_Funcs_12SynopticData_21MonthlyStatCalcul
   if (unlikely(__pyx_skip_dispatch)) ;
   /* Check if overridden in Python */
   else if (unlikely(Py_TYPE(((PyObject *)__pyx_v_self))->tp_dictoffset != 0)) {
-    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_addFile); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 47; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_addFile); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 70; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_1);
     if (!PyCFunction_Check(__pyx_t_1) || (PyCFunction_GET_FUNCTION(__pyx_t_1) != (PyCFunction)__pyx_pw_18MODIS_Raster_Funcs_12SynopticData_21MonthlyStatCalculator_3addFile)) {
       __Pyx_XDECREF(__pyx_r);
-      if (unlikely(!__pyx_v_data.memview)) { __Pyx_RaiseUnboundLocalError("data"); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 47; __pyx_clineno = __LINE__; goto __pyx_L1_error;} }
-      __pyx_t_3 = __pyx_memoryview_fromslice(__pyx_v_data, 2, (PyObject *(*)(char *)) __pyx_memview_get_float, (int (*)(char *, PyObject *)) __pyx_memview_set_float, 0);; if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 47; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      if (unlikely(!__pyx_v_data.memview)) { __Pyx_RaiseUnboundLocalError("data"); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 70; __pyx_clineno = __LINE__; goto __pyx_L1_error;} }
+      __pyx_t_3 = __pyx_memoryview_fromslice(__pyx_v_data, 2, (PyObject *(*)(char *)) __pyx_memview_get_float, (int (*)(char *, PyObject *)) __pyx_memview_set_float, 0);; if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 70; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_3);
-      __pyx_t_4 = __Pyx_PyInt_From_unsigned_char(__pyx_v_month); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 47; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_4 = PyFloat_FromDouble(__pyx_v_thisNdv); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 70; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_4);
-      __pyx_t_5 = PyFloat_FromDouble(__pyx_v_thisNdv); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 47; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-      __Pyx_GOTREF(__pyx_t_5);
       __Pyx_INCREF(__pyx_t_1);
-      __pyx_t_6 = __pyx_t_1; __pyx_t_7 = NULL;
-      __pyx_t_8 = 0;
-      if (CYTHON_COMPILING_IN_CPYTHON && unlikely(PyMethod_Check(__pyx_t_6))) {
-        __pyx_t_7 = PyMethod_GET_SELF(__pyx_t_6);
-        if (likely(__pyx_t_7)) {
-          PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_6);
-          __Pyx_INCREF(__pyx_t_7);
+      __pyx_t_5 = __pyx_t_1; __pyx_t_6 = NULL;
+      __pyx_t_7 = 0;
+      if (CYTHON_COMPILING_IN_CPYTHON && unlikely(PyMethod_Check(__pyx_t_5))) {
+        __pyx_t_6 = PyMethod_GET_SELF(__pyx_t_5);
+        if (likely(__pyx_t_6)) {
+          PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_5);
+          __Pyx_INCREF(__pyx_t_6);
           __Pyx_INCREF(function);
-          __Pyx_DECREF_SET(__pyx_t_6, function);
-          __pyx_t_8 = 1;
+          __Pyx_DECREF_SET(__pyx_t_5, function);
+          __pyx_t_7 = 1;
         }
       }
-      __pyx_t_9 = PyTuple_New(3+__pyx_t_8); if (unlikely(!__pyx_t_9)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 47; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-      __Pyx_GOTREF(__pyx_t_9);
-      if (__pyx_t_7) {
-        PyTuple_SET_ITEM(__pyx_t_9, 0, __pyx_t_7); __Pyx_GIVEREF(__pyx_t_7); __pyx_t_7 = NULL;
+      __pyx_t_8 = PyTuple_New(2+__pyx_t_7); if (unlikely(!__pyx_t_8)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 70; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __Pyx_GOTREF(__pyx_t_8);
+      if (__pyx_t_6) {
+        PyTuple_SET_ITEM(__pyx_t_8, 0, __pyx_t_6); __Pyx_GIVEREF(__pyx_t_6); __pyx_t_6 = NULL;
       }
-      PyTuple_SET_ITEM(__pyx_t_9, 0+__pyx_t_8, __pyx_t_3);
+      PyTuple_SET_ITEM(__pyx_t_8, 0+__pyx_t_7, __pyx_t_3);
       __Pyx_GIVEREF(__pyx_t_3);
-      PyTuple_SET_ITEM(__pyx_t_9, 1+__pyx_t_8, __pyx_t_4);
+      PyTuple_SET_ITEM(__pyx_t_8, 1+__pyx_t_7, __pyx_t_4);
       __Pyx_GIVEREF(__pyx_t_4);
-      PyTuple_SET_ITEM(__pyx_t_9, 2+__pyx_t_8, __pyx_t_5);
-      __Pyx_GIVEREF(__pyx_t_5);
       __pyx_t_3 = 0;
       __pyx_t_4 = 0;
-      __pyx_t_5 = 0;
-      __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_6, __pyx_t_9, NULL); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 47; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_5, __pyx_t_8, NULL); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 70; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_2);
-      __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
-      __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
+      __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
+      __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
       __pyx_r = __pyx_t_2;
       __pyx_t_2 = 0;
       __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
@@ -2460,357 +2448,375 @@ static PyObject *__pyx_f_18MODIS_Raster_Funcs_12SynopticData_21MonthlyStatCalcul
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   }
 
-  /* "MODIS_Raster_Funcs\SynopticData.pyx":54
+  /* "MODIS_Raster_Funcs\SynopticData.pyx":95
  *             Py_ssize_t y, x, yShape, xShape, t, b
  * 
  *         assert self.height == data.shape[0]             # <<<<<<<<<<<<<<
  *         assert self.width == data.shape[1]
- *         assert 0 < month <= 12
+ * 
  */
   #ifndef CYTHON_WITHOUT_ASSERTIONS
   if (unlikely(!Py_OptimizeFlag)) {
     if (unlikely(!((__pyx_v_self->height == (__pyx_v_data.shape[0])) != 0))) {
       PyErr_SetNone(PyExc_AssertionError);
-      {__pyx_filename = __pyx_f[0]; __pyx_lineno = 54; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      {__pyx_filename = __pyx_f[0]; __pyx_lineno = 95; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     }
   }
   #endif
 
-  /* "MODIS_Raster_Funcs\SynopticData.pyx":55
+  /* "MODIS_Raster_Funcs\SynopticData.pyx":96
  * 
  *         assert self.height == data.shape[0]
  *         assert self.width == data.shape[1]             # <<<<<<<<<<<<<<
- *         assert 0 < month <= 12
- * 
- */
-  #ifndef CYTHON_WITHOUT_ASSERTIONS
-  if (unlikely(!Py_OptimizeFlag)) {
-    if (unlikely(!((__pyx_v_self->width == (__pyx_v_data.shape[1])) != 0))) {
-      PyErr_SetNone(PyExc_AssertionError);
-      {__pyx_filename = __pyx_f[0]; __pyx_lineno = 55; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-    }
-  }
-  #endif
-
-  /* "MODIS_Raster_Funcs\SynopticData.pyx":56
- *         assert self.height == data.shape[0]
- *         assert self.width == data.shape[1]
- *         assert 0 < month <= 12             # <<<<<<<<<<<<<<
  * 
  *         if self._startNewMonth:
  */
   #ifndef CYTHON_WITHOUT_ASSERTIONS
   if (unlikely(!Py_OptimizeFlag)) {
-    __pyx_t_10 = (0 < __pyx_v_month);
-    if (__pyx_t_10) {
-      __pyx_t_10 = (__pyx_v_month <= 12);
-    }
-    if (unlikely(!(__pyx_t_10 != 0))) {
+    if (unlikely(!((__pyx_v_self->width == (__pyx_v_data.shape[1])) != 0))) {
       PyErr_SetNone(PyExc_AssertionError);
-      {__pyx_filename = __pyx_f[0]; __pyx_lineno = 56; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      {__pyx_filename = __pyx_f[0]; __pyx_lineno = 96; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     }
   }
   #endif
 
-  /* "MODIS_Raster_Funcs\SynopticData.pyx":58
- *         assert 0 < month <= 12
+  /* "MODIS_Raster_Funcs\SynopticData.pyx":98
+ *         assert self.width == data.shape[1]
  * 
  *         if self._startNewMonth:             # <<<<<<<<<<<<<<
  *             #initialise arrays to track this month
  *             self.mth_n = np.zeros((self.height, self.width),dtype='Int16')
  */
-  __pyx_t_10 = (__pyx_v_self->_startNewMonth != 0);
-  if (__pyx_t_10) {
+  __pyx_t_9 = (__pyx_v_self->_startNewMonth != 0);
+  if (__pyx_t_9) {
 
-    /* "MODIS_Raster_Funcs\SynopticData.pyx":60
+    /* "MODIS_Raster_Funcs\SynopticData.pyx":100
  *         if self._startNewMonth:
  *             #initialise arrays to track this month
  *             self.mth_n = np.zeros((self.height, self.width),dtype='Int16')             # <<<<<<<<<<<<<<
  *             self.mth_oldM = np.zeros((self.height, self.width),dtype='float64')
  *             self.mth_newM = np.zeros((self.height, self.width),dtype='float64')
  */
-    __pyx_t_1 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 60; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_1 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 100; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_1);
-    __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_zeros); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 60; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_zeros); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 100; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_2);
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-    __pyx_t_1 = PyInt_FromSsize_t(__pyx_v_self->height); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 60; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_1 = PyInt_FromSsize_t(__pyx_v_self->height); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 100; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_1);
-    __pyx_t_6 = PyInt_FromSsize_t(__pyx_v_self->width); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 60; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-    __Pyx_GOTREF(__pyx_t_6);
-    __pyx_t_9 = PyTuple_New(2); if (unlikely(!__pyx_t_9)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 60; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-    __Pyx_GOTREF(__pyx_t_9);
-    PyTuple_SET_ITEM(__pyx_t_9, 0, __pyx_t_1);
+    __pyx_t_5 = PyInt_FromSsize_t(__pyx_v_self->width); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 100; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __Pyx_GOTREF(__pyx_t_5);
+    __pyx_t_8 = PyTuple_New(2); if (unlikely(!__pyx_t_8)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 100; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __Pyx_GOTREF(__pyx_t_8);
+    PyTuple_SET_ITEM(__pyx_t_8, 0, __pyx_t_1);
     __Pyx_GIVEREF(__pyx_t_1);
-    PyTuple_SET_ITEM(__pyx_t_9, 1, __pyx_t_6);
-    __Pyx_GIVEREF(__pyx_t_6);
+    PyTuple_SET_ITEM(__pyx_t_8, 1, __pyx_t_5);
+    __Pyx_GIVEREF(__pyx_t_5);
     __pyx_t_1 = 0;
-    __pyx_t_6 = 0;
-    __pyx_t_6 = PyTuple_New(1); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 60; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-    __Pyx_GOTREF(__pyx_t_6);
-    PyTuple_SET_ITEM(__pyx_t_6, 0, __pyx_t_9);
-    __Pyx_GIVEREF(__pyx_t_9);
-    __pyx_t_9 = 0;
-    __pyx_t_9 = PyDict_New(); if (unlikely(!__pyx_t_9)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 60; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-    __Pyx_GOTREF(__pyx_t_9);
-    if (PyDict_SetItem(__pyx_t_9, __pyx_n_s_dtype, __pyx_n_s_Int16) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 60; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-    __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_t_6, __pyx_t_9); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 60; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_5 = 0;
+    __pyx_t_5 = PyTuple_New(1); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 100; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __Pyx_GOTREF(__pyx_t_5);
+    PyTuple_SET_ITEM(__pyx_t_5, 0, __pyx_t_8);
+    __Pyx_GIVEREF(__pyx_t_8);
+    __pyx_t_8 = 0;
+    __pyx_t_8 = PyDict_New(); if (unlikely(!__pyx_t_8)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 100; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __Pyx_GOTREF(__pyx_t_8);
+    if (PyDict_SetItem(__pyx_t_8, __pyx_n_s_dtype, __pyx_n_s_Int16) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 100; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_t_5, __pyx_t_8); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 100; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-    __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-    __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
-    __pyx_t_11 = __Pyx_PyObject_to_MemoryviewSlice_d_dc_short(__pyx_t_1);
-    if (unlikely(!__pyx_t_11.memview)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 60; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
+    __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
+    __pyx_t_10 = __Pyx_PyObject_to_MemoryviewSlice_d_dc_short(__pyx_t_1);
+    if (unlikely(!__pyx_t_10.memview)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 100; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
     __PYX_XDEC_MEMVIEW(&__pyx_v_self->mth_n, 0);
-    __pyx_v_self->mth_n = __pyx_t_11;
-    __pyx_t_11.memview = NULL;
-    __pyx_t_11.data = NULL;
+    __pyx_v_self->mth_n = __pyx_t_10;
+    __pyx_t_10.memview = NULL;
+    __pyx_t_10.data = NULL;
 
-    /* "MODIS_Raster_Funcs\SynopticData.pyx":61
+    /* "MODIS_Raster_Funcs\SynopticData.pyx":101
  *             #initialise arrays to track this month
  *             self.mth_n = np.zeros((self.height, self.width),dtype='Int16')
  *             self.mth_oldM = np.zeros((self.height, self.width),dtype='float64')             # <<<<<<<<<<<<<<
  *             self.mth_newM = np.zeros((self.height, self.width),dtype='float64')
  *             self.mth_oldS = np.zeros((self.height, self.width),dtype='float64')
  */
-    __pyx_t_1 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 61; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_1 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 101; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_1);
-    __pyx_t_9 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_zeros); if (unlikely(!__pyx_t_9)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 61; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-    __Pyx_GOTREF(__pyx_t_9);
+    __pyx_t_8 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_zeros); if (unlikely(!__pyx_t_8)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 101; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __Pyx_GOTREF(__pyx_t_8);
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-    __pyx_t_1 = PyInt_FromSsize_t(__pyx_v_self->height); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 61; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_1 = PyInt_FromSsize_t(__pyx_v_self->height); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 101; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_1);
-    __pyx_t_6 = PyInt_FromSsize_t(__pyx_v_self->width); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 61; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-    __Pyx_GOTREF(__pyx_t_6);
-    __pyx_t_2 = PyTuple_New(2); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 61; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_5 = PyInt_FromSsize_t(__pyx_v_self->width); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 101; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __Pyx_GOTREF(__pyx_t_5);
+    __pyx_t_2 = PyTuple_New(2); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 101; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_2);
     PyTuple_SET_ITEM(__pyx_t_2, 0, __pyx_t_1);
     __Pyx_GIVEREF(__pyx_t_1);
-    PyTuple_SET_ITEM(__pyx_t_2, 1, __pyx_t_6);
-    __Pyx_GIVEREF(__pyx_t_6);
+    PyTuple_SET_ITEM(__pyx_t_2, 1, __pyx_t_5);
+    __Pyx_GIVEREF(__pyx_t_5);
     __pyx_t_1 = 0;
-    __pyx_t_6 = 0;
-    __pyx_t_6 = PyTuple_New(1); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 61; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-    __Pyx_GOTREF(__pyx_t_6);
-    PyTuple_SET_ITEM(__pyx_t_6, 0, __pyx_t_2);
+    __pyx_t_5 = 0;
+    __pyx_t_5 = PyTuple_New(1); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 101; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __Pyx_GOTREF(__pyx_t_5);
+    PyTuple_SET_ITEM(__pyx_t_5, 0, __pyx_t_2);
     __Pyx_GIVEREF(__pyx_t_2);
     __pyx_t_2 = 0;
-    __pyx_t_2 = PyDict_New(); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 61; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_2 = PyDict_New(); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 101; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_2);
-    if (PyDict_SetItem(__pyx_t_2, __pyx_n_s_dtype, __pyx_n_s_float64) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 61; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-    __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_9, __pyx_t_6, __pyx_t_2); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 61; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    if (PyDict_SetItem(__pyx_t_2, __pyx_n_s_dtype, __pyx_n_s_float64) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 101; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_8, __pyx_t_5, __pyx_t_2); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 101; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_1);
-    __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
-    __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
+    __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
+    __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-    __pyx_t_12 = __Pyx_PyObject_to_MemoryviewSlice_d_dc_double(__pyx_t_1);
-    if (unlikely(!__pyx_t_12.memview)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 61; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_11 = __Pyx_PyObject_to_MemoryviewSlice_d_dc_double(__pyx_t_1);
+    if (unlikely(!__pyx_t_11.memview)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 101; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
     __PYX_XDEC_MEMVIEW(&__pyx_v_self->mth_oldM, 0);
-    __pyx_v_self->mth_oldM = __pyx_t_12;
-    __pyx_t_12.memview = NULL;
-    __pyx_t_12.data = NULL;
+    __pyx_v_self->mth_oldM = __pyx_t_11;
+    __pyx_t_11.memview = NULL;
+    __pyx_t_11.data = NULL;
 
-    /* "MODIS_Raster_Funcs\SynopticData.pyx":62
+    /* "MODIS_Raster_Funcs\SynopticData.pyx":102
  *             self.mth_n = np.zeros((self.height, self.width),dtype='Int16')
  *             self.mth_oldM = np.zeros((self.height, self.width),dtype='float64')
  *             self.mth_newM = np.zeros((self.height, self.width),dtype='float64')             # <<<<<<<<<<<<<<
  *             self.mth_oldS = np.zeros((self.height, self.width),dtype='float64')
  *             self.mth_newS = np.zeros((self.height, self.width),dtype='float64')
  */
-    __pyx_t_1 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 62; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_1 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 102; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_1);
-    __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_zeros); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 62; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_zeros); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 102; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_2);
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-    __pyx_t_1 = PyInt_FromSsize_t(__pyx_v_self->height); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 62; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_1 = PyInt_FromSsize_t(__pyx_v_self->height); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 102; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_1);
-    __pyx_t_6 = PyInt_FromSsize_t(__pyx_v_self->width); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 62; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-    __Pyx_GOTREF(__pyx_t_6);
-    __pyx_t_9 = PyTuple_New(2); if (unlikely(!__pyx_t_9)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 62; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-    __Pyx_GOTREF(__pyx_t_9);
-    PyTuple_SET_ITEM(__pyx_t_9, 0, __pyx_t_1);
+    __pyx_t_5 = PyInt_FromSsize_t(__pyx_v_self->width); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 102; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __Pyx_GOTREF(__pyx_t_5);
+    __pyx_t_8 = PyTuple_New(2); if (unlikely(!__pyx_t_8)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 102; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __Pyx_GOTREF(__pyx_t_8);
+    PyTuple_SET_ITEM(__pyx_t_8, 0, __pyx_t_1);
     __Pyx_GIVEREF(__pyx_t_1);
-    PyTuple_SET_ITEM(__pyx_t_9, 1, __pyx_t_6);
-    __Pyx_GIVEREF(__pyx_t_6);
+    PyTuple_SET_ITEM(__pyx_t_8, 1, __pyx_t_5);
+    __Pyx_GIVEREF(__pyx_t_5);
     __pyx_t_1 = 0;
-    __pyx_t_6 = 0;
-    __pyx_t_6 = PyTuple_New(1); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 62; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-    __Pyx_GOTREF(__pyx_t_6);
-    PyTuple_SET_ITEM(__pyx_t_6, 0, __pyx_t_9);
-    __Pyx_GIVEREF(__pyx_t_9);
-    __pyx_t_9 = 0;
-    __pyx_t_9 = PyDict_New(); if (unlikely(!__pyx_t_9)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 62; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-    __Pyx_GOTREF(__pyx_t_9);
-    if (PyDict_SetItem(__pyx_t_9, __pyx_n_s_dtype, __pyx_n_s_float64) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 62; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-    __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_t_6, __pyx_t_9); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 62; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_5 = 0;
+    __pyx_t_5 = PyTuple_New(1); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 102; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __Pyx_GOTREF(__pyx_t_5);
+    PyTuple_SET_ITEM(__pyx_t_5, 0, __pyx_t_8);
+    __Pyx_GIVEREF(__pyx_t_8);
+    __pyx_t_8 = 0;
+    __pyx_t_8 = PyDict_New(); if (unlikely(!__pyx_t_8)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 102; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __Pyx_GOTREF(__pyx_t_8);
+    if (PyDict_SetItem(__pyx_t_8, __pyx_n_s_dtype, __pyx_n_s_float64) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 102; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_t_5, __pyx_t_8); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 102; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-    __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-    __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
-    __pyx_t_12 = __Pyx_PyObject_to_MemoryviewSlice_d_dc_double(__pyx_t_1);
-    if (unlikely(!__pyx_t_12.memview)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 62; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
+    __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
+    __pyx_t_11 = __Pyx_PyObject_to_MemoryviewSlice_d_dc_double(__pyx_t_1);
+    if (unlikely(!__pyx_t_11.memview)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 102; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
     __PYX_XDEC_MEMVIEW(&__pyx_v_self->mth_newM, 0);
-    __pyx_v_self->mth_newM = __pyx_t_12;
-    __pyx_t_12.memview = NULL;
-    __pyx_t_12.data = NULL;
+    __pyx_v_self->mth_newM = __pyx_t_11;
+    __pyx_t_11.memview = NULL;
+    __pyx_t_11.data = NULL;
 
-    /* "MODIS_Raster_Funcs\SynopticData.pyx":63
+    /* "MODIS_Raster_Funcs\SynopticData.pyx":103
  *             self.mth_oldM = np.zeros((self.height, self.width),dtype='float64')
  *             self.mth_newM = np.zeros((self.height, self.width),dtype='float64')
  *             self.mth_oldS = np.zeros((self.height, self.width),dtype='float64')             # <<<<<<<<<<<<<<
  *             self.mth_newS = np.zeros((self.height, self.width),dtype='float64')
  *             # don't have zero but no data instead because zero is valid. Counts remain at zero.
  */
-    __pyx_t_1 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 63; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_1 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 103; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_1);
-    __pyx_t_9 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_zeros); if (unlikely(!__pyx_t_9)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 63; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-    __Pyx_GOTREF(__pyx_t_9);
+    __pyx_t_8 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_zeros); if (unlikely(!__pyx_t_8)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 103; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __Pyx_GOTREF(__pyx_t_8);
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-    __pyx_t_1 = PyInt_FromSsize_t(__pyx_v_self->height); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 63; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_1 = PyInt_FromSsize_t(__pyx_v_self->height); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 103; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_1);
-    __pyx_t_6 = PyInt_FromSsize_t(__pyx_v_self->width); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 63; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-    __Pyx_GOTREF(__pyx_t_6);
-    __pyx_t_2 = PyTuple_New(2); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 63; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_5 = PyInt_FromSsize_t(__pyx_v_self->width); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 103; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __Pyx_GOTREF(__pyx_t_5);
+    __pyx_t_2 = PyTuple_New(2); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 103; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_2);
     PyTuple_SET_ITEM(__pyx_t_2, 0, __pyx_t_1);
     __Pyx_GIVEREF(__pyx_t_1);
-    PyTuple_SET_ITEM(__pyx_t_2, 1, __pyx_t_6);
-    __Pyx_GIVEREF(__pyx_t_6);
+    PyTuple_SET_ITEM(__pyx_t_2, 1, __pyx_t_5);
+    __Pyx_GIVEREF(__pyx_t_5);
     __pyx_t_1 = 0;
-    __pyx_t_6 = 0;
-    __pyx_t_6 = PyTuple_New(1); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 63; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-    __Pyx_GOTREF(__pyx_t_6);
-    PyTuple_SET_ITEM(__pyx_t_6, 0, __pyx_t_2);
+    __pyx_t_5 = 0;
+    __pyx_t_5 = PyTuple_New(1); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 103; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __Pyx_GOTREF(__pyx_t_5);
+    PyTuple_SET_ITEM(__pyx_t_5, 0, __pyx_t_2);
     __Pyx_GIVEREF(__pyx_t_2);
     __pyx_t_2 = 0;
-    __pyx_t_2 = PyDict_New(); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 63; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_2 = PyDict_New(); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 103; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_2);
-    if (PyDict_SetItem(__pyx_t_2, __pyx_n_s_dtype, __pyx_n_s_float64) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 63; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-    __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_9, __pyx_t_6, __pyx_t_2); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 63; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    if (PyDict_SetItem(__pyx_t_2, __pyx_n_s_dtype, __pyx_n_s_float64) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 103; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_8, __pyx_t_5, __pyx_t_2); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 103; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_1);
-    __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
-    __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
+    __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
+    __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-    __pyx_t_12 = __Pyx_PyObject_to_MemoryviewSlice_d_dc_double(__pyx_t_1);
-    if (unlikely(!__pyx_t_12.memview)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 63; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_11 = __Pyx_PyObject_to_MemoryviewSlice_d_dc_double(__pyx_t_1);
+    if (unlikely(!__pyx_t_11.memview)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 103; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
     __PYX_XDEC_MEMVIEW(&__pyx_v_self->mth_oldS, 0);
-    __pyx_v_self->mth_oldS = __pyx_t_12;
-    __pyx_t_12.memview = NULL;
-    __pyx_t_12.data = NULL;
+    __pyx_v_self->mth_oldS = __pyx_t_11;
+    __pyx_t_11.memview = NULL;
+    __pyx_t_11.data = NULL;
 
-    /* "MODIS_Raster_Funcs\SynopticData.pyx":64
+    /* "MODIS_Raster_Funcs\SynopticData.pyx":104
  *             self.mth_newM = np.zeros((self.height, self.width),dtype='float64')
  *             self.mth_oldS = np.zeros((self.height, self.width),dtype='float64')
  *             self.mth_newS = np.zeros((self.height, self.width),dtype='float64')             # <<<<<<<<<<<<<<
  *             # don't have zero but no data instead because zero is valid. Counts remain at zero.
  *             self.mth_oldM[:] = self.ndv
  */
-    __pyx_t_1 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 64; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_1 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 104; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_1);
-    __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_zeros); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 64; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_zeros); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 104; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_2);
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-    __pyx_t_1 = PyInt_FromSsize_t(__pyx_v_self->height); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 64; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_1 = PyInt_FromSsize_t(__pyx_v_self->height); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 104; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_1);
-    __pyx_t_6 = PyInt_FromSsize_t(__pyx_v_self->width); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 64; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-    __Pyx_GOTREF(__pyx_t_6);
-    __pyx_t_9 = PyTuple_New(2); if (unlikely(!__pyx_t_9)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 64; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-    __Pyx_GOTREF(__pyx_t_9);
-    PyTuple_SET_ITEM(__pyx_t_9, 0, __pyx_t_1);
+    __pyx_t_5 = PyInt_FromSsize_t(__pyx_v_self->width); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 104; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __Pyx_GOTREF(__pyx_t_5);
+    __pyx_t_8 = PyTuple_New(2); if (unlikely(!__pyx_t_8)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 104; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __Pyx_GOTREF(__pyx_t_8);
+    PyTuple_SET_ITEM(__pyx_t_8, 0, __pyx_t_1);
     __Pyx_GIVEREF(__pyx_t_1);
-    PyTuple_SET_ITEM(__pyx_t_9, 1, __pyx_t_6);
-    __Pyx_GIVEREF(__pyx_t_6);
+    PyTuple_SET_ITEM(__pyx_t_8, 1, __pyx_t_5);
+    __Pyx_GIVEREF(__pyx_t_5);
     __pyx_t_1 = 0;
-    __pyx_t_6 = 0;
-    __pyx_t_6 = PyTuple_New(1); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 64; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-    __Pyx_GOTREF(__pyx_t_6);
-    PyTuple_SET_ITEM(__pyx_t_6, 0, __pyx_t_9);
-    __Pyx_GIVEREF(__pyx_t_9);
-    __pyx_t_9 = 0;
-    __pyx_t_9 = PyDict_New(); if (unlikely(!__pyx_t_9)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 64; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-    __Pyx_GOTREF(__pyx_t_9);
-    if (PyDict_SetItem(__pyx_t_9, __pyx_n_s_dtype, __pyx_n_s_float64) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 64; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-    __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_t_6, __pyx_t_9); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 64; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_5 = 0;
+    __pyx_t_5 = PyTuple_New(1); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 104; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __Pyx_GOTREF(__pyx_t_5);
+    PyTuple_SET_ITEM(__pyx_t_5, 0, __pyx_t_8);
+    __Pyx_GIVEREF(__pyx_t_8);
+    __pyx_t_8 = 0;
+    __pyx_t_8 = PyDict_New(); if (unlikely(!__pyx_t_8)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 104; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __Pyx_GOTREF(__pyx_t_8);
+    if (PyDict_SetItem(__pyx_t_8, __pyx_n_s_dtype, __pyx_n_s_float64) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 104; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_t_5, __pyx_t_8); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 104; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-    __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-    __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
-    __pyx_t_12 = __Pyx_PyObject_to_MemoryviewSlice_d_dc_double(__pyx_t_1);
-    if (unlikely(!__pyx_t_12.memview)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 64; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
+    __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
+    __pyx_t_11 = __Pyx_PyObject_to_MemoryviewSlice_d_dc_double(__pyx_t_1);
+    if (unlikely(!__pyx_t_11.memview)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 104; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
     __PYX_XDEC_MEMVIEW(&__pyx_v_self->mth_newS, 0);
-    __pyx_v_self->mth_newS = __pyx_t_12;
-    __pyx_t_12.memview = NULL;
-    __pyx_t_12.data = NULL;
+    __pyx_v_self->mth_newS = __pyx_t_11;
+    __pyx_t_11.memview = NULL;
+    __pyx_t_11.data = NULL;
 
-    /* "MODIS_Raster_Funcs\SynopticData.pyx":66
+    /* "MODIS_Raster_Funcs\SynopticData.pyx":106
  *             self.mth_newS = np.zeros((self.height, self.width),dtype='float64')
  *             # don't have zero but no data instead because zero is valid. Counts remain at zero.
  *             self.mth_oldM[:] = self.ndv             # <<<<<<<<<<<<<<
  *             self.mth_newM[:] = self.ndv
  *             self.mth_oldS[:] = self.ndv
  */
-    __pyx_t_13 = __pyx_v_self->ndv;
-    if (unlikely(!__pyx_v_self->mth_oldM.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 66; __pyx_clineno = __LINE__; goto __pyx_L1_error;}}
-    __pyx_t_12 = __pyx_v_self->mth_oldM;
-    __PYX_INC_MEMVIEW(&__pyx_t_12, 1);
-    __pyx_t_15 = -1;
-    __pyx_t_14.data = __pyx_t_12.data;
-    __pyx_t_14.memview = __pyx_t_12.memview;
-    __PYX_INC_MEMVIEW(&__pyx_t_14, 0);
-    __pyx_t_14.shape[0] = __pyx_t_12.shape[0];
-__pyx_t_14.strides[0] = __pyx_t_12.strides[0];
-    __pyx_t_14.suboffsets[0] = -1;
+    __pyx_t_12 = __pyx_v_self->ndv;
+    if (unlikely(!__pyx_v_self->mth_oldM.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 106; __pyx_clineno = __LINE__; goto __pyx_L1_error;}}
+    __pyx_t_11 = __pyx_v_self->mth_oldM;
+    __PYX_INC_MEMVIEW(&__pyx_t_11, 1);
+    __pyx_t_14 = -1;
+    __pyx_t_13.data = __pyx_t_11.data;
+    __pyx_t_13.memview = __pyx_t_11.memview;
+    __PYX_INC_MEMVIEW(&__pyx_t_13, 0);
+    __pyx_t_13.shape[0] = __pyx_t_11.shape[0];
+__pyx_t_13.strides[0] = __pyx_t_11.strides[0];
+    __pyx_t_13.suboffsets[0] = -1;
 
-__pyx_t_14.shape[1] = __pyx_t_12.shape[1];
-__pyx_t_14.strides[1] = __pyx_t_12.strides[1];
-    __pyx_t_14.suboffsets[1] = -1;
+__pyx_t_13.shape[1] = __pyx_t_11.shape[1];
+__pyx_t_13.strides[1] = __pyx_t_11.strides[1];
+    __pyx_t_13.suboffsets[1] = -1;
 
-__PYX_XDEC_MEMVIEW(&__pyx_t_12, 1);
+__PYX_XDEC_MEMVIEW(&__pyx_t_11, 1);
     {
-        double __pyx_temp_scalar = __pyx_t_13;
+        double __pyx_temp_scalar = __pyx_t_12;
         {
-            Py_ssize_t __pyx_temp_extent = __pyx_t_14.shape[0] * __pyx_t_14.shape[1];
+            Py_ssize_t __pyx_temp_extent = __pyx_t_13.shape[0] * __pyx_t_13.shape[1];
             Py_ssize_t __pyx_temp_idx;
-            double *__pyx_temp_pointer = (double *) __pyx_t_14.data;
+            double *__pyx_temp_pointer = (double *) __pyx_t_13.data;
             for (__pyx_temp_idx = 0; __pyx_temp_idx < __pyx_temp_extent; __pyx_temp_idx++) {
               *((double *) __pyx_temp_pointer) = __pyx_temp_scalar;
               __pyx_temp_pointer += 1;
             }
         }
     }
-    __PYX_XDEC_MEMVIEW(&__pyx_t_14, 1);
+    __PYX_XDEC_MEMVIEW(&__pyx_t_13, 1);
 
-    /* "MODIS_Raster_Funcs\SynopticData.pyx":67
+    /* "MODIS_Raster_Funcs\SynopticData.pyx":107
  *             # don't have zero but no data instead because zero is valid. Counts remain at zero.
  *             self.mth_oldM[:] = self.ndv
  *             self.mth_newM[:] = self.ndv             # <<<<<<<<<<<<<<
  *             self.mth_oldS[:] = self.ndv
  *             self.mth_newS[:] = self.ndv
  */
-    __pyx_t_13 = __pyx_v_self->ndv;
-    if (unlikely(!__pyx_v_self->mth_newM.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 67; __pyx_clineno = __LINE__; goto __pyx_L1_error;}}
-    __pyx_t_12 = __pyx_v_self->mth_newM;
-    __PYX_INC_MEMVIEW(&__pyx_t_12, 1);
-    __pyx_t_15 = -1;
-    __pyx_t_16.data = __pyx_t_12.data;
-    __pyx_t_16.memview = __pyx_t_12.memview;
+    __pyx_t_12 = __pyx_v_self->ndv;
+    if (unlikely(!__pyx_v_self->mth_newM.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 107; __pyx_clineno = __LINE__; goto __pyx_L1_error;}}
+    __pyx_t_11 = __pyx_v_self->mth_newM;
+    __PYX_INC_MEMVIEW(&__pyx_t_11, 1);
+    __pyx_t_14 = -1;
+    __pyx_t_15.data = __pyx_t_11.data;
+    __pyx_t_15.memview = __pyx_t_11.memview;
+    __PYX_INC_MEMVIEW(&__pyx_t_15, 0);
+    __pyx_t_15.shape[0] = __pyx_t_11.shape[0];
+__pyx_t_15.strides[0] = __pyx_t_11.strides[0];
+    __pyx_t_15.suboffsets[0] = -1;
+
+__pyx_t_15.shape[1] = __pyx_t_11.shape[1];
+__pyx_t_15.strides[1] = __pyx_t_11.strides[1];
+    __pyx_t_15.suboffsets[1] = -1;
+
+__PYX_XDEC_MEMVIEW(&__pyx_t_11, 1);
+    {
+        double __pyx_temp_scalar = __pyx_t_12;
+        {
+            Py_ssize_t __pyx_temp_extent = __pyx_t_15.shape[0] * __pyx_t_15.shape[1];
+            Py_ssize_t __pyx_temp_idx;
+            double *__pyx_temp_pointer = (double *) __pyx_t_15.data;
+            for (__pyx_temp_idx = 0; __pyx_temp_idx < __pyx_temp_extent; __pyx_temp_idx++) {
+              *((double *) __pyx_temp_pointer) = __pyx_temp_scalar;
+              __pyx_temp_pointer += 1;
+            }
+        }
+    }
+    __PYX_XDEC_MEMVIEW(&__pyx_t_15, 1);
+
+    /* "MODIS_Raster_Funcs\SynopticData.pyx":108
+ *             self.mth_oldM[:] = self.ndv
+ *             self.mth_newM[:] = self.ndv
+ *             self.mth_oldS[:] = self.ndv             # <<<<<<<<<<<<<<
+ *             self.mth_newS[:] = self.ndv
+ * 
+ */
+    __pyx_t_12 = __pyx_v_self->ndv;
+    if (unlikely(!__pyx_v_self->mth_oldS.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 108; __pyx_clineno = __LINE__; goto __pyx_L1_error;}}
+    __pyx_t_11 = __pyx_v_self->mth_oldS;
+    __PYX_INC_MEMVIEW(&__pyx_t_11, 1);
+    __pyx_t_14 = -1;
+    __pyx_t_16.data = __pyx_t_11.data;
+    __pyx_t_16.memview = __pyx_t_11.memview;
     __PYX_INC_MEMVIEW(&__pyx_t_16, 0);
-    __pyx_t_16.shape[0] = __pyx_t_12.shape[0];
-__pyx_t_16.strides[0] = __pyx_t_12.strides[0];
+    __pyx_t_16.shape[0] = __pyx_t_11.shape[0];
+__pyx_t_16.strides[0] = __pyx_t_11.strides[0];
     __pyx_t_16.suboffsets[0] = -1;
 
-__pyx_t_16.shape[1] = __pyx_t_12.shape[1];
-__pyx_t_16.strides[1] = __pyx_t_12.strides[1];
+__pyx_t_16.shape[1] = __pyx_t_11.shape[1];
+__pyx_t_16.strides[1] = __pyx_t_11.strides[1];
     __pyx_t_16.suboffsets[1] = -1;
 
-__PYX_XDEC_MEMVIEW(&__pyx_t_12, 1);
+__PYX_XDEC_MEMVIEW(&__pyx_t_11, 1);
     {
-        double __pyx_temp_scalar = __pyx_t_13;
+        double __pyx_temp_scalar = __pyx_t_12;
         {
             Py_ssize_t __pyx_temp_extent = __pyx_t_16.shape[0] * __pyx_t_16.shape[1];
             Py_ssize_t __pyx_temp_idx;
@@ -2823,32 +2829,32 @@ __PYX_XDEC_MEMVIEW(&__pyx_t_12, 1);
     }
     __PYX_XDEC_MEMVIEW(&__pyx_t_16, 1);
 
-    /* "MODIS_Raster_Funcs\SynopticData.pyx":68
- *             self.mth_oldM[:] = self.ndv
+    /* "MODIS_Raster_Funcs\SynopticData.pyx":109
  *             self.mth_newM[:] = self.ndv
- *             self.mth_oldS[:] = self.ndv             # <<<<<<<<<<<<<<
- *             self.mth_newS[:] = self.ndv
+ *             self.mth_oldS[:] = self.ndv
+ *             self.mth_newS[:] = self.ndv             # <<<<<<<<<<<<<<
  * 
+ *             self._startNewMonth = 0
  */
-    __pyx_t_13 = __pyx_v_self->ndv;
-    if (unlikely(!__pyx_v_self->mth_oldS.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 68; __pyx_clineno = __LINE__; goto __pyx_L1_error;}}
-    __pyx_t_12 = __pyx_v_self->mth_oldS;
-    __PYX_INC_MEMVIEW(&__pyx_t_12, 1);
-    __pyx_t_15 = -1;
-    __pyx_t_17.data = __pyx_t_12.data;
-    __pyx_t_17.memview = __pyx_t_12.memview;
+    __pyx_t_12 = __pyx_v_self->ndv;
+    if (unlikely(!__pyx_v_self->mth_newS.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 109; __pyx_clineno = __LINE__; goto __pyx_L1_error;}}
+    __pyx_t_11 = __pyx_v_self->mth_newS;
+    __PYX_INC_MEMVIEW(&__pyx_t_11, 1);
+    __pyx_t_14 = -1;
+    __pyx_t_17.data = __pyx_t_11.data;
+    __pyx_t_17.memview = __pyx_t_11.memview;
     __PYX_INC_MEMVIEW(&__pyx_t_17, 0);
-    __pyx_t_17.shape[0] = __pyx_t_12.shape[0];
-__pyx_t_17.strides[0] = __pyx_t_12.strides[0];
+    __pyx_t_17.shape[0] = __pyx_t_11.shape[0];
+__pyx_t_17.strides[0] = __pyx_t_11.strides[0];
     __pyx_t_17.suboffsets[0] = -1;
 
-__pyx_t_17.shape[1] = __pyx_t_12.shape[1];
-__pyx_t_17.strides[1] = __pyx_t_12.strides[1];
+__pyx_t_17.shape[1] = __pyx_t_11.shape[1];
+__pyx_t_17.strides[1] = __pyx_t_11.strides[1];
     __pyx_t_17.suboffsets[1] = -1;
 
-__PYX_XDEC_MEMVIEW(&__pyx_t_12, 1);
+__PYX_XDEC_MEMVIEW(&__pyx_t_11, 1);
     {
-        double __pyx_temp_scalar = __pyx_t_13;
+        double __pyx_temp_scalar = __pyx_t_12;
         {
             Py_ssize_t __pyx_temp_extent = __pyx_t_17.shape[0] * __pyx_t_17.shape[1];
             Py_ssize_t __pyx_temp_idx;
@@ -2861,45 +2867,7 @@ __PYX_XDEC_MEMVIEW(&__pyx_t_12, 1);
     }
     __PYX_XDEC_MEMVIEW(&__pyx_t_17, 1);
 
-    /* "MODIS_Raster_Funcs\SynopticData.pyx":69
- *             self.mth_newM[:] = self.ndv
- *             self.mth_oldS[:] = self.ndv
- *             self.mth_newS[:] = self.ndv             # <<<<<<<<<<<<<<
- * 
- *             self._startNewMonth = 0
- */
-    __pyx_t_13 = __pyx_v_self->ndv;
-    if (unlikely(!__pyx_v_self->mth_newS.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 69; __pyx_clineno = __LINE__; goto __pyx_L1_error;}}
-    __pyx_t_12 = __pyx_v_self->mth_newS;
-    __PYX_INC_MEMVIEW(&__pyx_t_12, 1);
-    __pyx_t_15 = -1;
-    __pyx_t_18.data = __pyx_t_12.data;
-    __pyx_t_18.memview = __pyx_t_12.memview;
-    __PYX_INC_MEMVIEW(&__pyx_t_18, 0);
-    __pyx_t_18.shape[0] = __pyx_t_12.shape[0];
-__pyx_t_18.strides[0] = __pyx_t_12.strides[0];
-    __pyx_t_18.suboffsets[0] = -1;
-
-__pyx_t_18.shape[1] = __pyx_t_12.shape[1];
-__pyx_t_18.strides[1] = __pyx_t_12.strides[1];
-    __pyx_t_18.suboffsets[1] = -1;
-
-__PYX_XDEC_MEMVIEW(&__pyx_t_12, 1);
-    {
-        double __pyx_temp_scalar = __pyx_t_13;
-        {
-            Py_ssize_t __pyx_temp_extent = __pyx_t_18.shape[0] * __pyx_t_18.shape[1];
-            Py_ssize_t __pyx_temp_idx;
-            double *__pyx_temp_pointer = (double *) __pyx_t_18.data;
-            for (__pyx_temp_idx = 0; __pyx_temp_idx < __pyx_temp_extent; __pyx_temp_idx++) {
-              *((double *) __pyx_temp_pointer) = __pyx_temp_scalar;
-              __pyx_temp_pointer += 1;
-            }
-        }
-    }
-    __PYX_XDEC_MEMVIEW(&__pyx_t_18, 1);
-
-    /* "MODIS_Raster_Funcs\SynopticData.pyx":71
+    /* "MODIS_Raster_Funcs\SynopticData.pyx":111
  *             self.mth_newS[:] = self.ndv
  * 
  *             self._startNewMonth = 0             # <<<<<<<<<<<<<<
@@ -2911,7 +2879,7 @@ __PYX_XDEC_MEMVIEW(&__pyx_t_12, 1);
   }
   __pyx_L3:;
 
-  /* "MODIS_Raster_Funcs\SynopticData.pyx":74
+  /* "MODIS_Raster_Funcs\SynopticData.pyx":114
  * 
  * 
  *         with nogil, cython.wraparound(False), parallel(num_threads=6):             # <<<<<<<<<<<<<<
@@ -2936,7 +2904,7 @@ __PYX_XDEC_MEMVIEW(&__pyx_t_12, 1);
                 #define unlikely(x) (x)
             #endif
             #ifdef _OPENMP
-            #pragma omp parallel  private(__pyx_t_44, __pyx_t_49, __pyx_t_46, __pyx_t_8, __pyx_t_29, __pyx_t_85, __pyx_t_32, __pyx_t_40, __pyx_t_55, __pyx_t_95, __pyx_t_22, __pyx_t_74, __pyx_t_20, __pyx_t_58, __pyx_t_70, __pyx_t_68, __pyx_t_88, __pyx_t_64, __pyx_t_94, __pyx_t_26, __pyx_t_56, __pyx_t_54, __pyx_t_80, __pyx_t_82, __pyx_t_87, __pyx_t_48, __pyx_t_60, __pyx_t_52, __pyx_t_28, __pyx_t_83, __pyx_t_84, __pyx_t_34, __pyx_t_42, __pyx_t_36, __pyx_t_77, __pyx_t_96, __pyx_t_76, __pyx_t_30, __pyx_t_43, __pyx_t_92, __pyx_t_24, __pyx_t_90, __pyx_t_57, __pyx_t_19, __pyx_t_63, __pyx_t_75, __pyx_t_25, __pyx_t_53, __pyx_t_86, __pyx_t_35, __pyx_t_38, __pyx_t_37, __pyx_t_61, __pyx_t_67, __pyx_t_62, __pyx_t_71, __pyx_t_79, __pyx_t_31, __pyx_t_45, __pyx_t_47, __pyx_t_93, __pyx_t_91, __pyx_t_69, __pyx_t_10, __pyx_t_59, __pyx_t_41, __pyx_t_23, __pyx_t_51, __pyx_t_21, __pyx_t_72, __pyx_t_39, __pyx_t_89, __pyx_t_65, __pyx_t_66, __pyx_t_27, __pyx_t_50, __pyx_t_73, __pyx_t_81, __pyx_t_33, __pyx_t_78) private(__pyx_filename, __pyx_lineno, __pyx_clineno) shared(__pyx_parallel_why, __pyx_parallel_exc_type, __pyx_parallel_exc_value, __pyx_parallel_exc_tb) num_threads(6)
+            #pragma omp parallel  private(__pyx_t_44, __pyx_t_49, __pyx_t_46, __pyx_t_29, __pyx_t_84, __pyx_t_32, __pyx_t_40, __pyx_t_55, __pyx_t_95, __pyx_t_22, __pyx_t_74, __pyx_t_20, __pyx_t_58, __pyx_t_70, __pyx_t_51, __pyx_t_71, __pyx_t_88, __pyx_t_64, __pyx_t_94, __pyx_t_26, __pyx_t_56, __pyx_t_18, __pyx_t_80, __pyx_t_82, __pyx_t_48, __pyx_t_60, __pyx_t_52, __pyx_t_28, __pyx_t_83, __pyx_t_76, __pyx_t_34, __pyx_t_42, __pyx_t_36, __pyx_t_77, __pyx_t_85, __pyx_t_79, __pyx_t_30, __pyx_t_43, __pyx_t_92, __pyx_t_24, __pyx_t_90, __pyx_t_57, __pyx_t_19, __pyx_t_63, __pyx_t_75, __pyx_t_25, __pyx_t_53, __pyx_t_86, __pyx_t_35, __pyx_t_38, __pyx_t_37, __pyx_t_61, __pyx_t_67, __pyx_t_62, __pyx_t_87, __pyx_t_31, __pyx_t_45, __pyx_t_7, __pyx_t_47, __pyx_t_93, __pyx_t_91, __pyx_t_69, __pyx_t_59, __pyx_t_41, __pyx_t_54, __pyx_t_23, __pyx_t_9, __pyx_t_21, __pyx_t_72, __pyx_t_68, __pyx_t_39, __pyx_t_89, __pyx_t_65, __pyx_t_66, __pyx_t_27, __pyx_t_50, __pyx_t_73, __pyx_t_81, __pyx_t_33, __pyx_t_78) private(__pyx_filename, __pyx_lineno, __pyx_clineno) shared(__pyx_parallel_why, __pyx_parallel_exc_type, __pyx_parallel_exc_value, __pyx_parallel_exc_tb) num_threads(6)
             #endif /* _OPENMP */
             {
                 #ifdef _OPENMP
@@ -2946,38 +2914,38 @@ __PYX_XDEC_MEMVIEW(&__pyx_t_12, 1);
                 Py_BEGIN_ALLOW_THREADS
                 #endif /* _OPENMP */
 
-                /* "MODIS_Raster_Funcs\SynopticData.pyx":75
+                /* "MODIS_Raster_Funcs\SynopticData.pyx":115
  * 
  *         with nogil, cython.wraparound(False), parallel(num_threads=6):
  *             for y in prange (self.height, schedule='static'):             # <<<<<<<<<<<<<<
  *                 value = thisNdv
  *                 x = -1
  */
-                __pyx_t_8 = __pyx_v_self->height;
+                __pyx_t_7 = __pyx_v_self->height;
                 if (1 == 0) abort();
                 {
-                    double __pyx_parallel_temp0 = __PYX_NAN();
-                    Py_ssize_t __pyx_parallel_temp1 = 0xbad0bad0;
+                    Py_ssize_t __pyx_parallel_temp0 = 0xbad0bad0;
+                    double __pyx_parallel_temp1 = __PYX_NAN();
                     Py_ssize_t __pyx_parallel_temp2 = 0xbad0bad0;
                     const char *__pyx_parallel_filename = NULL; int __pyx_parallel_lineno = 0, __pyx_parallel_clineno = 0;
                     PyObject *__pyx_parallel_exc_type = NULL, *__pyx_parallel_exc_value = NULL, *__pyx_parallel_exc_tb = NULL;
                     int __pyx_parallel_why;
                     __pyx_parallel_why = 0;
-                    __pyx_t_20 = (__pyx_t_8 - 0) / 1;
-                    if (__pyx_t_20 > 0)
+                    __pyx_t_19 = (__pyx_t_7 - 0) / 1;
+                    if (__pyx_t_19 > 0)
                     {
                         #ifdef _OPENMP
-                        #pragma omp for lastprivate(__pyx_v_value) lastprivate(__pyx_v_x) firstprivate(__pyx_v_y) lastprivate(__pyx_v_y) schedule(static)
+                        #pragma omp for firstprivate(__pyx_v_y) lastprivate(__pyx_v_y) lastprivate(__pyx_v_value) lastprivate(__pyx_v_x) schedule(static)
                         #endif /* _OPENMP */
-                        for (__pyx_t_19 = 0; __pyx_t_19 < __pyx_t_20; __pyx_t_19++){
+                        for (__pyx_t_18 = 0; __pyx_t_18 < __pyx_t_19; __pyx_t_18++){
                             if (__pyx_parallel_why < 2)
                             {
-                                __pyx_v_y = 0 + 1 * __pyx_t_19;
+                                __pyx_v_y = 0 + 1 * __pyx_t_18;
                                 /* Initialize private variables to invalid values */
                                 __pyx_v_value = ((double)__PYX_NAN());
                                 __pyx_v_x = ((Py_ssize_t)0xbad0bad0);
 
-                                /* "MODIS_Raster_Funcs\SynopticData.pyx":76
+                                /* "MODIS_Raster_Funcs\SynopticData.pyx":116
  *         with nogil, cython.wraparound(False), parallel(num_threads=6):
  *             for y in prange (self.height, schedule='static'):
  *                 value = thisNdv             # <<<<<<<<<<<<<<
@@ -2986,7 +2954,7 @@ __PYX_XDEC_MEMVIEW(&__pyx_t_12, 1);
  */
                                 __pyx_v_value = __pyx_v_thisNdv;
 
-                                /* "MODIS_Raster_Funcs\SynopticData.pyx":77
+                                /* "MODIS_Raster_Funcs\SynopticData.pyx":117
  *             for y in prange (self.height, schedule='static'):
  *                 value = thisNdv
  *                 x = -1             # <<<<<<<<<<<<<<
@@ -2995,39 +2963,39 @@ __PYX_XDEC_MEMVIEW(&__pyx_t_12, 1);
  */
                                 __pyx_v_x = -1;
 
-                                /* "MODIS_Raster_Funcs\SynopticData.pyx":78
+                                /* "MODIS_Raster_Funcs\SynopticData.pyx":118
  *                 value = thisNdv
  *                 x = -1
  *                 for x in range(0, self.width):             # <<<<<<<<<<<<<<
  *                     value = data[y, x]
  *                     if value == thisNdv:
  */
-                                __pyx_t_21 = __pyx_v_self->width;
-                                for (__pyx_t_22 = 0; __pyx_t_22 < __pyx_t_21; __pyx_t_22+=1) {
-                                  __pyx_v_x = __pyx_t_22;
+                                __pyx_t_20 = __pyx_v_self->width;
+                                for (__pyx_t_21 = 0; __pyx_t_21 < __pyx_t_20; __pyx_t_21+=1) {
+                                  __pyx_v_x = __pyx_t_21;
 
-                                  /* "MODIS_Raster_Funcs\SynopticData.pyx":79
+                                  /* "MODIS_Raster_Funcs\SynopticData.pyx":119
  *                 x = -1
  *                 for x in range(0, self.width):
  *                     value = data[y, x]             # <<<<<<<<<<<<<<
  *                     if value == thisNdv:
  *                         continue
  */
-                                  __pyx_t_23 = __pyx_v_y;
-                                  __pyx_t_24 = __pyx_v_x;
-                                  __pyx_v_value = (*((float *) ( /* dim=1 */ ((char *) (((float *) ( /* dim=0 */ (__pyx_v_data.data + __pyx_t_23 * __pyx_v_data.strides[0]) )) + __pyx_t_24)) )));
+                                  __pyx_t_22 = __pyx_v_y;
+                                  __pyx_t_23 = __pyx_v_x;
+                                  __pyx_v_value = (*((float *) ( /* dim=1 */ ((char *) (((float *) ( /* dim=0 */ (__pyx_v_data.data + __pyx_t_22 * __pyx_v_data.strides[0]) )) + __pyx_t_23)) )));
 
-                                  /* "MODIS_Raster_Funcs\SynopticData.pyx":80
+                                  /* "MODIS_Raster_Funcs\SynopticData.pyx":120
  *                 for x in range(0, self.width):
  *                     value = data[y, x]
  *                     if value == thisNdv:             # <<<<<<<<<<<<<<
  *                         continue
  *                     self.tot_n_Days[y, x] +=1
  */
-                                  __pyx_t_10 = ((__pyx_v_value == __pyx_v_thisNdv) != 0);
-                                  if (__pyx_t_10) {
+                                  __pyx_t_9 = ((__pyx_v_value == __pyx_v_thisNdv) != 0);
+                                  if (__pyx_t_9) {
 
-                                    /* "MODIS_Raster_Funcs\SynopticData.pyx":81
+                                    /* "MODIS_Raster_Funcs\SynopticData.pyx":121
  *                     value = data[y, x]
  *                     if value == thisNdv:
  *                         continue             # <<<<<<<<<<<<<<
@@ -3037,383 +3005,383 @@ __PYX_XDEC_MEMVIEW(&__pyx_t_12, 1);
                                     goto __pyx_L15_continue;
                                   }
 
-                                  /* "MODIS_Raster_Funcs\SynopticData.pyx":82
+                                  /* "MODIS_Raster_Funcs\SynopticData.pyx":122
  *                     if value == thisNdv:
  *                         continue
  *                     self.tot_n_Days[y, x] +=1             # <<<<<<<<<<<<<<
  *                     self.mth_n[y, x] += 1
  * 
  */
-                                  if (unlikely(!__pyx_v_self->tot_n_Days.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 82; __pyx_clineno = __LINE__; goto __pyx_L13_error;}}
-                                  __pyx_t_25 = __pyx_v_y;
-                                  __pyx_t_26 = __pyx_v_x;
-                                  *((short *) ( /* dim=1 */ ((char *) (((short *) ( /* dim=0 */ (__pyx_v_self->tot_n_Days.data + __pyx_t_25 * __pyx_v_self->tot_n_Days.strides[0]) )) + __pyx_t_26)) )) += 1;
+                                  if (unlikely(!__pyx_v_self->tot_n_Days.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 122; __pyx_clineno = __LINE__; goto __pyx_L13_error;}}
+                                  __pyx_t_24 = __pyx_v_y;
+                                  __pyx_t_25 = __pyx_v_x;
+                                  *((short *) ( /* dim=1 */ ((char *) (((short *) ( /* dim=0 */ (__pyx_v_self->tot_n_Days.data + __pyx_t_24 * __pyx_v_self->tot_n_Days.strides[0]) )) + __pyx_t_25)) )) += 1;
 
-                                  /* "MODIS_Raster_Funcs\SynopticData.pyx":83
+                                  /* "MODIS_Raster_Funcs\SynopticData.pyx":123
  *                         continue
  *                     self.tot_n_Days[y, x] +=1
  *                     self.mth_n[y, x] += 1             # <<<<<<<<<<<<<<
  * 
  *                     if self.tot_n_Days[y, x] == 1:
  */
-                                  if (unlikely(!__pyx_v_self->mth_n.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 83; __pyx_clineno = __LINE__; goto __pyx_L13_error;}}
-                                  __pyx_t_27 = __pyx_v_y;
-                                  __pyx_t_28 = __pyx_v_x;
-                                  *((short *) ( /* dim=1 */ ((char *) (((short *) ( /* dim=0 */ (__pyx_v_self->mth_n.data + __pyx_t_27 * __pyx_v_self->mth_n.strides[0]) )) + __pyx_t_28)) )) += 1;
+                                  if (unlikely(!__pyx_v_self->mth_n.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 123; __pyx_clineno = __LINE__; goto __pyx_L13_error;}}
+                                  __pyx_t_26 = __pyx_v_y;
+                                  __pyx_t_27 = __pyx_v_x;
+                                  *((short *) ( /* dim=1 */ ((char *) (((short *) ( /* dim=0 */ (__pyx_v_self->mth_n.data + __pyx_t_26 * __pyx_v_self->mth_n.strides[0]) )) + __pyx_t_27)) )) += 1;
 
-                                  /* "MODIS_Raster_Funcs\SynopticData.pyx":85
+                                  /* "MODIS_Raster_Funcs\SynopticData.pyx":125
  *                     self.mth_n[y, x] += 1
  * 
  *                     if self.tot_n_Days[y, x] == 1:             # <<<<<<<<<<<<<<
  *                         self.tot_oldM_Days[y, x] = value
  *                         self.tot_newM_Days[y, x] = value
  */
-                                  if (unlikely(!__pyx_v_self->tot_n_Days.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 85; __pyx_clineno = __LINE__; goto __pyx_L13_error;}}
-                                  __pyx_t_29 = __pyx_v_y;
-                                  __pyx_t_30 = __pyx_v_x;
-                                  __pyx_t_10 = (((*((short *) ( /* dim=1 */ ((char *) (((short *) ( /* dim=0 */ (__pyx_v_self->tot_n_Days.data + __pyx_t_29 * __pyx_v_self->tot_n_Days.strides[0]) )) + __pyx_t_30)) ))) == 1) != 0);
-                                  if (__pyx_t_10) {
+                                  if (unlikely(!__pyx_v_self->tot_n_Days.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 125; __pyx_clineno = __LINE__; goto __pyx_L13_error;}}
+                                  __pyx_t_28 = __pyx_v_y;
+                                  __pyx_t_29 = __pyx_v_x;
+                                  __pyx_t_9 = (((*((short *) ( /* dim=1 */ ((char *) (((short *) ( /* dim=0 */ (__pyx_v_self->tot_n_Days.data + __pyx_t_28 * __pyx_v_self->tot_n_Days.strides[0]) )) + __pyx_t_29)) ))) == 1) != 0);
+                                  if (__pyx_t_9) {
 
-                                    /* "MODIS_Raster_Funcs\SynopticData.pyx":86
+                                    /* "MODIS_Raster_Funcs\SynopticData.pyx":126
  * 
  *                     if self.tot_n_Days[y, x] == 1:
  *                         self.tot_oldM_Days[y, x] = value             # <<<<<<<<<<<<<<
  *                         self.tot_newM_Days[y, x] = value
  *                         self.tot_oldS_Days[y, x] = 0
  */
-                                    if (unlikely(!__pyx_v_self->tot_oldM_Days.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 86; __pyx_clineno = __LINE__; goto __pyx_L13_error;}}
-                                    __pyx_t_31 = __pyx_v_y;
-                                    __pyx_t_32 = __pyx_v_x;
-                                    *((double *) ( /* dim=1 */ ((char *) (((double *) ( /* dim=0 */ (__pyx_v_self->tot_oldM_Days.data + __pyx_t_31 * __pyx_v_self->tot_oldM_Days.strides[0]) )) + __pyx_t_32)) )) = __pyx_v_value;
+                                    if (unlikely(!__pyx_v_self->tot_oldM_Days.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 126; __pyx_clineno = __LINE__; goto __pyx_L13_error;}}
+                                    __pyx_t_30 = __pyx_v_y;
+                                    __pyx_t_31 = __pyx_v_x;
+                                    *((double *) ( /* dim=1 */ ((char *) (((double *) ( /* dim=0 */ (__pyx_v_self->tot_oldM_Days.data + __pyx_t_30 * __pyx_v_self->tot_oldM_Days.strides[0]) )) + __pyx_t_31)) )) = __pyx_v_value;
 
-                                    /* "MODIS_Raster_Funcs\SynopticData.pyx":87
+                                    /* "MODIS_Raster_Funcs\SynopticData.pyx":127
  *                     if self.tot_n_Days[y, x] == 1:
  *                         self.tot_oldM_Days[y, x] = value
  *                         self.tot_newM_Days[y, x] = value             # <<<<<<<<<<<<<<
  *                         self.tot_oldS_Days[y, x] = 0
  *                         self.tot_newS_Days[y, x] = 0
  */
-                                    if (unlikely(!__pyx_v_self->tot_newM_Days.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 87; __pyx_clineno = __LINE__; goto __pyx_L13_error;}}
-                                    __pyx_t_33 = __pyx_v_y;
-                                    __pyx_t_34 = __pyx_v_x;
-                                    *((double *) ( /* dim=1 */ ((char *) (((double *) ( /* dim=0 */ (__pyx_v_self->tot_newM_Days.data + __pyx_t_33 * __pyx_v_self->tot_newM_Days.strides[0]) )) + __pyx_t_34)) )) = __pyx_v_value;
+                                    if (unlikely(!__pyx_v_self->tot_newM_Days.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 127; __pyx_clineno = __LINE__; goto __pyx_L13_error;}}
+                                    __pyx_t_32 = __pyx_v_y;
+                                    __pyx_t_33 = __pyx_v_x;
+                                    *((double *) ( /* dim=1 */ ((char *) (((double *) ( /* dim=0 */ (__pyx_v_self->tot_newM_Days.data + __pyx_t_32 * __pyx_v_self->tot_newM_Days.strides[0]) )) + __pyx_t_33)) )) = __pyx_v_value;
 
-                                    /* "MODIS_Raster_Funcs\SynopticData.pyx":88
+                                    /* "MODIS_Raster_Funcs\SynopticData.pyx":128
  *                         self.tot_oldM_Days[y, x] = value
  *                         self.tot_newM_Days[y, x] = value
  *                         self.tot_oldS_Days[y, x] = 0             # <<<<<<<<<<<<<<
  *                         self.tot_newS_Days[y, x] = 0
  *                     else:
  */
-                                    if (unlikely(!__pyx_v_self->tot_oldS_Days.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 88; __pyx_clineno = __LINE__; goto __pyx_L13_error;}}
-                                    __pyx_t_35 = __pyx_v_y;
-                                    __pyx_t_36 = __pyx_v_x;
-                                    *((double *) ( /* dim=1 */ ((char *) (((double *) ( /* dim=0 */ (__pyx_v_self->tot_oldS_Days.data + __pyx_t_35 * __pyx_v_self->tot_oldS_Days.strides[0]) )) + __pyx_t_36)) )) = 0.0;
+                                    if (unlikely(!__pyx_v_self->tot_oldS_Days.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 128; __pyx_clineno = __LINE__; goto __pyx_L13_error;}}
+                                    __pyx_t_34 = __pyx_v_y;
+                                    __pyx_t_35 = __pyx_v_x;
+                                    *((double *) ( /* dim=1 */ ((char *) (((double *) ( /* dim=0 */ (__pyx_v_self->tot_oldS_Days.data + __pyx_t_34 * __pyx_v_self->tot_oldS_Days.strides[0]) )) + __pyx_t_35)) )) = 0.0;
 
-                                    /* "MODIS_Raster_Funcs\SynopticData.pyx":89
+                                    /* "MODIS_Raster_Funcs\SynopticData.pyx":129
  *                         self.tot_newM_Days[y, x] = value
  *                         self.tot_oldS_Days[y, x] = 0
  *                         self.tot_newS_Days[y, x] = 0             # <<<<<<<<<<<<<<
  *                     else:
  *                         self.tot_newM_Days[y,x] = (self.tot_oldM_Days[y,x] +
  */
-                                    if (unlikely(!__pyx_v_self->tot_newS_Days.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 89; __pyx_clineno = __LINE__; goto __pyx_L13_error;}}
-                                    __pyx_t_37 = __pyx_v_y;
-                                    __pyx_t_38 = __pyx_v_x;
-                                    *((double *) ( /* dim=1 */ ((char *) (((double *) ( /* dim=0 */ (__pyx_v_self->tot_newS_Days.data + __pyx_t_37 * __pyx_v_self->tot_newS_Days.strides[0]) )) + __pyx_t_38)) )) = 0.0;
+                                    if (unlikely(!__pyx_v_self->tot_newS_Days.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 129; __pyx_clineno = __LINE__; goto __pyx_L13_error;}}
+                                    __pyx_t_36 = __pyx_v_y;
+                                    __pyx_t_37 = __pyx_v_x;
+                                    *((double *) ( /* dim=1 */ ((char *) (((double *) ( /* dim=0 */ (__pyx_v_self->tot_newS_Days.data + __pyx_t_36 * __pyx_v_self->tot_newS_Days.strides[0]) )) + __pyx_t_37)) )) = 0.0;
                                     goto __pyx_L18;
                                   }
                                   /*else*/ {
 
-                                    /* "MODIS_Raster_Funcs\SynopticData.pyx":91
+                                    /* "MODIS_Raster_Funcs\SynopticData.pyx":131
  *                         self.tot_newS_Days[y, x] = 0
  *                     else:
  *                         self.tot_newM_Days[y,x] = (self.tot_oldM_Days[y,x] +             # <<<<<<<<<<<<<<
  *                                 ((value - self.tot_oldM_Days[y,x]) / self.tot_n_Days[y,x]))
  *                         self.tot_newS_Days[y,x] = (self.tot_oldS_Days[y,x] +
  */
-                                    if (unlikely(!__pyx_v_self->tot_oldM_Days.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 91; __pyx_clineno = __LINE__; goto __pyx_L13_error;}}
-                                    __pyx_t_39 = __pyx_v_y;
-                                    __pyx_t_40 = __pyx_v_x;
+                                    if (unlikely(!__pyx_v_self->tot_oldM_Days.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 131; __pyx_clineno = __LINE__; goto __pyx_L13_error;}}
+                                    __pyx_t_38 = __pyx_v_y;
+                                    __pyx_t_39 = __pyx_v_x;
 
-                                    /* "MODIS_Raster_Funcs\SynopticData.pyx":92
+                                    /* "MODIS_Raster_Funcs\SynopticData.pyx":132
  *                     else:
  *                         self.tot_newM_Days[y,x] = (self.tot_oldM_Days[y,x] +
  *                                 ((value - self.tot_oldM_Days[y,x]) / self.tot_n_Days[y,x]))             # <<<<<<<<<<<<<<
  *                         self.tot_newS_Days[y,x] = (self.tot_oldS_Days[y,x] +
  *                                 ((value - self.tot_oldM_Days[y,x]) *
  */
-                                    if (unlikely(!__pyx_v_self->tot_oldM_Days.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 92; __pyx_clineno = __LINE__; goto __pyx_L13_error;}}
-                                    __pyx_t_41 = __pyx_v_y;
-                                    __pyx_t_42 = __pyx_v_x;
-                                    if (unlikely(!__pyx_v_self->tot_n_Days.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 92; __pyx_clineno = __LINE__; goto __pyx_L13_error;}}
-                                    __pyx_t_43 = __pyx_v_y;
-                                    __pyx_t_44 = __pyx_v_x;
+                                    if (unlikely(!__pyx_v_self->tot_oldM_Days.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 132; __pyx_clineno = __LINE__; goto __pyx_L13_error;}}
+                                    __pyx_t_40 = __pyx_v_y;
+                                    __pyx_t_41 = __pyx_v_x;
+                                    if (unlikely(!__pyx_v_self->tot_n_Days.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 132; __pyx_clineno = __LINE__; goto __pyx_L13_error;}}
+                                    __pyx_t_42 = __pyx_v_y;
+                                    __pyx_t_43 = __pyx_v_x;
 
-                                    /* "MODIS_Raster_Funcs\SynopticData.pyx":91
+                                    /* "MODIS_Raster_Funcs\SynopticData.pyx":131
  *                         self.tot_newS_Days[y, x] = 0
  *                     else:
  *                         self.tot_newM_Days[y,x] = (self.tot_oldM_Days[y,x] +             # <<<<<<<<<<<<<<
  *                                 ((value - self.tot_oldM_Days[y,x]) / self.tot_n_Days[y,x]))
  *                         self.tot_newS_Days[y,x] = (self.tot_oldS_Days[y,x] +
  */
-                                    if (unlikely(!__pyx_v_self->tot_newM_Days.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 91; __pyx_clineno = __LINE__; goto __pyx_L13_error;}}
-                                    __pyx_t_45 = __pyx_v_y;
-                                    __pyx_t_46 = __pyx_v_x;
-                                    *((double *) ( /* dim=1 */ ((char *) (((double *) ( /* dim=0 */ (__pyx_v_self->tot_newM_Days.data + __pyx_t_45 * __pyx_v_self->tot_newM_Days.strides[0]) )) + __pyx_t_46)) )) = ((*((double *) ( /* dim=1 */ ((char *) (((double *) ( /* dim=0 */ (__pyx_v_self->tot_oldM_Days.data + __pyx_t_39 * __pyx_v_self->tot_oldM_Days.strides[0]) )) + __pyx_t_40)) ))) + ((__pyx_v_value - (*((double *) ( /* dim=1 */ ((char *) (((double *) ( /* dim=0 */ (__pyx_v_self->tot_oldM_Days.data + __pyx_t_41 * __pyx_v_self->tot_oldM_Days.strides[0]) )) + __pyx_t_42)) )))) / (*((short *) ( /* dim=1 */ ((char *) (((short *) ( /* dim=0 */ (__pyx_v_self->tot_n_Days.data + __pyx_t_43 * __pyx_v_self->tot_n_Days.strides[0]) )) + __pyx_t_44)) )))));
+                                    if (unlikely(!__pyx_v_self->tot_newM_Days.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 131; __pyx_clineno = __LINE__; goto __pyx_L13_error;}}
+                                    __pyx_t_44 = __pyx_v_y;
+                                    __pyx_t_45 = __pyx_v_x;
+                                    *((double *) ( /* dim=1 */ ((char *) (((double *) ( /* dim=0 */ (__pyx_v_self->tot_newM_Days.data + __pyx_t_44 * __pyx_v_self->tot_newM_Days.strides[0]) )) + __pyx_t_45)) )) = ((*((double *) ( /* dim=1 */ ((char *) (((double *) ( /* dim=0 */ (__pyx_v_self->tot_oldM_Days.data + __pyx_t_38 * __pyx_v_self->tot_oldM_Days.strides[0]) )) + __pyx_t_39)) ))) + ((__pyx_v_value - (*((double *) ( /* dim=1 */ ((char *) (((double *) ( /* dim=0 */ (__pyx_v_self->tot_oldM_Days.data + __pyx_t_40 * __pyx_v_self->tot_oldM_Days.strides[0]) )) + __pyx_t_41)) )))) / (*((short *) ( /* dim=1 */ ((char *) (((short *) ( /* dim=0 */ (__pyx_v_self->tot_n_Days.data + __pyx_t_42 * __pyx_v_self->tot_n_Days.strides[0]) )) + __pyx_t_43)) )))));
 
-                                    /* "MODIS_Raster_Funcs\SynopticData.pyx":93
+                                    /* "MODIS_Raster_Funcs\SynopticData.pyx":133
  *                         self.tot_newM_Days[y,x] = (self.tot_oldM_Days[y,x] +
  *                                 ((value - self.tot_oldM_Days[y,x]) / self.tot_n_Days[y,x]))
  *                         self.tot_newS_Days[y,x] = (self.tot_oldS_Days[y,x] +             # <<<<<<<<<<<<<<
  *                                 ((value - self.tot_oldM_Days[y,x]) *
  *                                  (value - self.tot_newM_Days[y,x])
  */
-                                    if (unlikely(!__pyx_v_self->tot_oldS_Days.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 93; __pyx_clineno = __LINE__; goto __pyx_L13_error;}}
-                                    __pyx_t_47 = __pyx_v_y;
-                                    __pyx_t_48 = __pyx_v_x;
+                                    if (unlikely(!__pyx_v_self->tot_oldS_Days.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 133; __pyx_clineno = __LINE__; goto __pyx_L13_error;}}
+                                    __pyx_t_46 = __pyx_v_y;
+                                    __pyx_t_47 = __pyx_v_x;
 
-                                    /* "MODIS_Raster_Funcs\SynopticData.pyx":94
+                                    /* "MODIS_Raster_Funcs\SynopticData.pyx":134
  *                                 ((value - self.tot_oldM_Days[y,x]) / self.tot_n_Days[y,x]))
  *                         self.tot_newS_Days[y,x] = (self.tot_oldS_Days[y,x] +
  *                                 ((value - self.tot_oldM_Days[y,x]) *             # <<<<<<<<<<<<<<
  *                                  (value - self.tot_newM_Days[y,x])
  *                                   ))
  */
-                                    if (unlikely(!__pyx_v_self->tot_oldM_Days.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 94; __pyx_clineno = __LINE__; goto __pyx_L13_error;}}
-                                    __pyx_t_49 = __pyx_v_y;
-                                    __pyx_t_50 = __pyx_v_x;
+                                    if (unlikely(!__pyx_v_self->tot_oldM_Days.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 134; __pyx_clineno = __LINE__; goto __pyx_L13_error;}}
+                                    __pyx_t_48 = __pyx_v_y;
+                                    __pyx_t_49 = __pyx_v_x;
 
-                                    /* "MODIS_Raster_Funcs\SynopticData.pyx":95
+                                    /* "MODIS_Raster_Funcs\SynopticData.pyx":135
  *                         self.tot_newS_Days[y,x] = (self.tot_oldS_Days[y,x] +
  *                                 ((value - self.tot_oldM_Days[y,x]) *
  *                                  (value - self.tot_newM_Days[y,x])             # <<<<<<<<<<<<<<
  *                                   ))
  *                         self.tot_oldM_Days[y,x] = self.tot_newM_Days[y,x]
  */
-                                    if (unlikely(!__pyx_v_self->tot_newM_Days.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 95; __pyx_clineno = __LINE__; goto __pyx_L13_error;}}
-                                    __pyx_t_51 = __pyx_v_y;
-                                    __pyx_t_52 = __pyx_v_x;
+                                    if (unlikely(!__pyx_v_self->tot_newM_Days.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 135; __pyx_clineno = __LINE__; goto __pyx_L13_error;}}
+                                    __pyx_t_50 = __pyx_v_y;
+                                    __pyx_t_51 = __pyx_v_x;
 
-                                    /* "MODIS_Raster_Funcs\SynopticData.pyx":93
+                                    /* "MODIS_Raster_Funcs\SynopticData.pyx":133
  *                         self.tot_newM_Days[y,x] = (self.tot_oldM_Days[y,x] +
  *                                 ((value - self.tot_oldM_Days[y,x]) / self.tot_n_Days[y,x]))
  *                         self.tot_newS_Days[y,x] = (self.tot_oldS_Days[y,x] +             # <<<<<<<<<<<<<<
  *                                 ((value - self.tot_oldM_Days[y,x]) *
  *                                  (value - self.tot_newM_Days[y,x])
  */
-                                    if (unlikely(!__pyx_v_self->tot_newS_Days.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 93; __pyx_clineno = __LINE__; goto __pyx_L13_error;}}
-                                    __pyx_t_53 = __pyx_v_y;
-                                    __pyx_t_54 = __pyx_v_x;
-                                    *((double *) ( /* dim=1 */ ((char *) (((double *) ( /* dim=0 */ (__pyx_v_self->tot_newS_Days.data + __pyx_t_53 * __pyx_v_self->tot_newS_Days.strides[0]) )) + __pyx_t_54)) )) = ((*((double *) ( /* dim=1 */ ((char *) (((double *) ( /* dim=0 */ (__pyx_v_self->tot_oldS_Days.data + __pyx_t_47 * __pyx_v_self->tot_oldS_Days.strides[0]) )) + __pyx_t_48)) ))) + ((__pyx_v_value - (*((double *) ( /* dim=1 */ ((char *) (((double *) ( /* dim=0 */ (__pyx_v_self->tot_oldM_Days.data + __pyx_t_49 * __pyx_v_self->tot_oldM_Days.strides[0]) )) + __pyx_t_50)) )))) * (__pyx_v_value - (*((double *) ( /* dim=1 */ ((char *) (((double *) ( /* dim=0 */ (__pyx_v_self->tot_newM_Days.data + __pyx_t_51 * __pyx_v_self->tot_newM_Days.strides[0]) )) + __pyx_t_52)) ))))));
+                                    if (unlikely(!__pyx_v_self->tot_newS_Days.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 133; __pyx_clineno = __LINE__; goto __pyx_L13_error;}}
+                                    __pyx_t_52 = __pyx_v_y;
+                                    __pyx_t_53 = __pyx_v_x;
+                                    *((double *) ( /* dim=1 */ ((char *) (((double *) ( /* dim=0 */ (__pyx_v_self->tot_newS_Days.data + __pyx_t_52 * __pyx_v_self->tot_newS_Days.strides[0]) )) + __pyx_t_53)) )) = ((*((double *) ( /* dim=1 */ ((char *) (((double *) ( /* dim=0 */ (__pyx_v_self->tot_oldS_Days.data + __pyx_t_46 * __pyx_v_self->tot_oldS_Days.strides[0]) )) + __pyx_t_47)) ))) + ((__pyx_v_value - (*((double *) ( /* dim=1 */ ((char *) (((double *) ( /* dim=0 */ (__pyx_v_self->tot_oldM_Days.data + __pyx_t_48 * __pyx_v_self->tot_oldM_Days.strides[0]) )) + __pyx_t_49)) )))) * (__pyx_v_value - (*((double *) ( /* dim=1 */ ((char *) (((double *) ( /* dim=0 */ (__pyx_v_self->tot_newM_Days.data + __pyx_t_50 * __pyx_v_self->tot_newM_Days.strides[0]) )) + __pyx_t_51)) ))))));
 
-                                    /* "MODIS_Raster_Funcs\SynopticData.pyx":97
+                                    /* "MODIS_Raster_Funcs\SynopticData.pyx":137
  *                                  (value - self.tot_newM_Days[y,x])
  *                                   ))
  *                         self.tot_oldM_Days[y,x] = self.tot_newM_Days[y,x]             # <<<<<<<<<<<<<<
  *                         self.tot_oldS_Days[y,x] = self.tot_newS_Days[y,x]
  * 
  */
-                                    if (unlikely(!__pyx_v_self->tot_newM_Days.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 97; __pyx_clineno = __LINE__; goto __pyx_L13_error;}}
-                                    __pyx_t_55 = __pyx_v_y;
-                                    __pyx_t_56 = __pyx_v_x;
-                                    if (unlikely(!__pyx_v_self->tot_oldM_Days.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 97; __pyx_clineno = __LINE__; goto __pyx_L13_error;}}
-                                    __pyx_t_57 = __pyx_v_y;
-                                    __pyx_t_58 = __pyx_v_x;
-                                    *((double *) ( /* dim=1 */ ((char *) (((double *) ( /* dim=0 */ (__pyx_v_self->tot_oldM_Days.data + __pyx_t_57 * __pyx_v_self->tot_oldM_Days.strides[0]) )) + __pyx_t_58)) )) = (*((double *) ( /* dim=1 */ ((char *) (((double *) ( /* dim=0 */ (__pyx_v_self->tot_newM_Days.data + __pyx_t_55 * __pyx_v_self->tot_newM_Days.strides[0]) )) + __pyx_t_56)) )));
+                                    if (unlikely(!__pyx_v_self->tot_newM_Days.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 137; __pyx_clineno = __LINE__; goto __pyx_L13_error;}}
+                                    __pyx_t_54 = __pyx_v_y;
+                                    __pyx_t_55 = __pyx_v_x;
+                                    if (unlikely(!__pyx_v_self->tot_oldM_Days.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 137; __pyx_clineno = __LINE__; goto __pyx_L13_error;}}
+                                    __pyx_t_56 = __pyx_v_y;
+                                    __pyx_t_57 = __pyx_v_x;
+                                    *((double *) ( /* dim=1 */ ((char *) (((double *) ( /* dim=0 */ (__pyx_v_self->tot_oldM_Days.data + __pyx_t_56 * __pyx_v_self->tot_oldM_Days.strides[0]) )) + __pyx_t_57)) )) = (*((double *) ( /* dim=1 */ ((char *) (((double *) ( /* dim=0 */ (__pyx_v_self->tot_newM_Days.data + __pyx_t_54 * __pyx_v_self->tot_newM_Days.strides[0]) )) + __pyx_t_55)) )));
 
-                                    /* "MODIS_Raster_Funcs\SynopticData.pyx":98
+                                    /* "MODIS_Raster_Funcs\SynopticData.pyx":138
  *                                   ))
  *                         self.tot_oldM_Days[y,x] = self.tot_newM_Days[y,x]
  *                         self.tot_oldS_Days[y,x] = self.tot_newS_Days[y,x]             # <<<<<<<<<<<<<<
  * 
  *                     if self.mth_n[y, x] == 1:
  */
-                                    if (unlikely(!__pyx_v_self->tot_newS_Days.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 98; __pyx_clineno = __LINE__; goto __pyx_L13_error;}}
-                                    __pyx_t_59 = __pyx_v_y;
-                                    __pyx_t_60 = __pyx_v_x;
-                                    if (unlikely(!__pyx_v_self->tot_oldS_Days.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 98; __pyx_clineno = __LINE__; goto __pyx_L13_error;}}
-                                    __pyx_t_61 = __pyx_v_y;
-                                    __pyx_t_62 = __pyx_v_x;
-                                    *((double *) ( /* dim=1 */ ((char *) (((double *) ( /* dim=0 */ (__pyx_v_self->tot_oldS_Days.data + __pyx_t_61 * __pyx_v_self->tot_oldS_Days.strides[0]) )) + __pyx_t_62)) )) = (*((double *) ( /* dim=1 */ ((char *) (((double *) ( /* dim=0 */ (__pyx_v_self->tot_newS_Days.data + __pyx_t_59 * __pyx_v_self->tot_newS_Days.strides[0]) )) + __pyx_t_60)) )));
+                                    if (unlikely(!__pyx_v_self->tot_newS_Days.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 138; __pyx_clineno = __LINE__; goto __pyx_L13_error;}}
+                                    __pyx_t_58 = __pyx_v_y;
+                                    __pyx_t_59 = __pyx_v_x;
+                                    if (unlikely(!__pyx_v_self->tot_oldS_Days.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 138; __pyx_clineno = __LINE__; goto __pyx_L13_error;}}
+                                    __pyx_t_60 = __pyx_v_y;
+                                    __pyx_t_61 = __pyx_v_x;
+                                    *((double *) ( /* dim=1 */ ((char *) (((double *) ( /* dim=0 */ (__pyx_v_self->tot_oldS_Days.data + __pyx_t_60 * __pyx_v_self->tot_oldS_Days.strides[0]) )) + __pyx_t_61)) )) = (*((double *) ( /* dim=1 */ ((char *) (((double *) ( /* dim=0 */ (__pyx_v_self->tot_newS_Days.data + __pyx_t_58 * __pyx_v_self->tot_newS_Days.strides[0]) )) + __pyx_t_59)) )));
                                   }
                                   __pyx_L18:;
 
-                                  /* "MODIS_Raster_Funcs\SynopticData.pyx":100
+                                  /* "MODIS_Raster_Funcs\SynopticData.pyx":140
  *                         self.tot_oldS_Days[y,x] = self.tot_newS_Days[y,x]
  * 
  *                     if self.mth_n[y, x] == 1:             # <<<<<<<<<<<<<<
  *                         self.mth_oldM[y, x] = value
  *                         self.mth_newM[y, x] = value
  */
-                                  if (unlikely(!__pyx_v_self->mth_n.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 100; __pyx_clineno = __LINE__; goto __pyx_L13_error;}}
-                                  __pyx_t_63 = __pyx_v_y;
-                                  __pyx_t_64 = __pyx_v_x;
-                                  __pyx_t_10 = (((*((short *) ( /* dim=1 */ ((char *) (((short *) ( /* dim=0 */ (__pyx_v_self->mth_n.data + __pyx_t_63 * __pyx_v_self->mth_n.strides[0]) )) + __pyx_t_64)) ))) == 1) != 0);
-                                  if (__pyx_t_10) {
+                                  if (unlikely(!__pyx_v_self->mth_n.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 140; __pyx_clineno = __LINE__; goto __pyx_L13_error;}}
+                                  __pyx_t_62 = __pyx_v_y;
+                                  __pyx_t_63 = __pyx_v_x;
+                                  __pyx_t_9 = (((*((short *) ( /* dim=1 */ ((char *) (((short *) ( /* dim=0 */ (__pyx_v_self->mth_n.data + __pyx_t_62 * __pyx_v_self->mth_n.strides[0]) )) + __pyx_t_63)) ))) == 1) != 0);
+                                  if (__pyx_t_9) {
 
-                                    /* "MODIS_Raster_Funcs\SynopticData.pyx":101
+                                    /* "MODIS_Raster_Funcs\SynopticData.pyx":141
  * 
  *                     if self.mth_n[y, x] == 1:
  *                         self.mth_oldM[y, x] = value             # <<<<<<<<<<<<<<
  *                         self.mth_newM[y, x] = value
  *                         self.mth_oldS[y, x] = 0
  */
-                                    if (unlikely(!__pyx_v_self->mth_oldM.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 101; __pyx_clineno = __LINE__; goto __pyx_L13_error;}}
-                                    __pyx_t_65 = __pyx_v_y;
-                                    __pyx_t_66 = __pyx_v_x;
-                                    *((double *) ( /* dim=1 */ ((char *) (((double *) ( /* dim=0 */ (__pyx_v_self->mth_oldM.data + __pyx_t_65 * __pyx_v_self->mth_oldM.strides[0]) )) + __pyx_t_66)) )) = __pyx_v_value;
+                                    if (unlikely(!__pyx_v_self->mth_oldM.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 141; __pyx_clineno = __LINE__; goto __pyx_L13_error;}}
+                                    __pyx_t_64 = __pyx_v_y;
+                                    __pyx_t_65 = __pyx_v_x;
+                                    *((double *) ( /* dim=1 */ ((char *) (((double *) ( /* dim=0 */ (__pyx_v_self->mth_oldM.data + __pyx_t_64 * __pyx_v_self->mth_oldM.strides[0]) )) + __pyx_t_65)) )) = __pyx_v_value;
 
-                                    /* "MODIS_Raster_Funcs\SynopticData.pyx":102
+                                    /* "MODIS_Raster_Funcs\SynopticData.pyx":142
  *                     if self.mth_n[y, x] == 1:
  *                         self.mth_oldM[y, x] = value
  *                         self.mth_newM[y, x] = value             # <<<<<<<<<<<<<<
  *                         self.mth_oldS[y, x] = 0
  *                         self.mth_newS[y, x] = 0
  */
-                                    if (unlikely(!__pyx_v_self->mth_newM.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 102; __pyx_clineno = __LINE__; goto __pyx_L13_error;}}
-                                    __pyx_t_67 = __pyx_v_y;
-                                    __pyx_t_68 = __pyx_v_x;
-                                    *((double *) ( /* dim=1 */ ((char *) (((double *) ( /* dim=0 */ (__pyx_v_self->mth_newM.data + __pyx_t_67 * __pyx_v_self->mth_newM.strides[0]) )) + __pyx_t_68)) )) = __pyx_v_value;
+                                    if (unlikely(!__pyx_v_self->mth_newM.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 142; __pyx_clineno = __LINE__; goto __pyx_L13_error;}}
+                                    __pyx_t_66 = __pyx_v_y;
+                                    __pyx_t_67 = __pyx_v_x;
+                                    *((double *) ( /* dim=1 */ ((char *) (((double *) ( /* dim=0 */ (__pyx_v_self->mth_newM.data + __pyx_t_66 * __pyx_v_self->mth_newM.strides[0]) )) + __pyx_t_67)) )) = __pyx_v_value;
 
-                                    /* "MODIS_Raster_Funcs\SynopticData.pyx":103
+                                    /* "MODIS_Raster_Funcs\SynopticData.pyx":143
  *                         self.mth_oldM[y, x] = value
  *                         self.mth_newM[y, x] = value
  *                         self.mth_oldS[y, x] = 0             # <<<<<<<<<<<<<<
  *                         self.mth_newS[y, x] = 0
  *                     else:
  */
-                                    if (unlikely(!__pyx_v_self->mth_oldS.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 103; __pyx_clineno = __LINE__; goto __pyx_L13_error;}}
-                                    __pyx_t_69 = __pyx_v_y;
-                                    __pyx_t_70 = __pyx_v_x;
-                                    *((double *) ( /* dim=1 */ ((char *) (((double *) ( /* dim=0 */ (__pyx_v_self->mth_oldS.data + __pyx_t_69 * __pyx_v_self->mth_oldS.strides[0]) )) + __pyx_t_70)) )) = 0.0;
+                                    if (unlikely(!__pyx_v_self->mth_oldS.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 143; __pyx_clineno = __LINE__; goto __pyx_L13_error;}}
+                                    __pyx_t_68 = __pyx_v_y;
+                                    __pyx_t_69 = __pyx_v_x;
+                                    *((double *) ( /* dim=1 */ ((char *) (((double *) ( /* dim=0 */ (__pyx_v_self->mth_oldS.data + __pyx_t_68 * __pyx_v_self->mth_oldS.strides[0]) )) + __pyx_t_69)) )) = 0.0;
 
-                                    /* "MODIS_Raster_Funcs\SynopticData.pyx":104
+                                    /* "MODIS_Raster_Funcs\SynopticData.pyx":144
  *                         self.mth_newM[y, x] = value
  *                         self.mth_oldS[y, x] = 0
  *                         self.mth_newS[y, x] = 0             # <<<<<<<<<<<<<<
  *                     else:
  *                         #update monthly stats
  */
-                                    if (unlikely(!__pyx_v_self->mth_newS.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 104; __pyx_clineno = __LINE__; goto __pyx_L13_error;}}
-                                    __pyx_t_71 = __pyx_v_y;
-                                    __pyx_t_72 = __pyx_v_x;
-                                    *((double *) ( /* dim=1 */ ((char *) (((double *) ( /* dim=0 */ (__pyx_v_self->mth_newS.data + __pyx_t_71 * __pyx_v_self->mth_newS.strides[0]) )) + __pyx_t_72)) )) = 0.0;
+                                    if (unlikely(!__pyx_v_self->mth_newS.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 144; __pyx_clineno = __LINE__; goto __pyx_L13_error;}}
+                                    __pyx_t_70 = __pyx_v_y;
+                                    __pyx_t_71 = __pyx_v_x;
+                                    *((double *) ( /* dim=1 */ ((char *) (((double *) ( /* dim=0 */ (__pyx_v_self->mth_newS.data + __pyx_t_70 * __pyx_v_self->mth_newS.strides[0]) )) + __pyx_t_71)) )) = 0.0;
                                     goto __pyx_L19;
                                   }
                                   /*else*/ {
 
-                                    /* "MODIS_Raster_Funcs\SynopticData.pyx":107
+                                    /* "MODIS_Raster_Funcs\SynopticData.pyx":147
  *                     else:
  *                         #update monthly stats
  *                         self.mth_newM[y, x] = (self.mth_oldM[y, x] +             # <<<<<<<<<<<<<<
  *                                          ((value - self.mth_oldM[y, x]) / self.mth_n[y, x]))
  *                         self.mth_newS[y, x] = (self.mth_oldS[y, x] +
  */
-                                    if (unlikely(!__pyx_v_self->mth_oldM.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 107; __pyx_clineno = __LINE__; goto __pyx_L13_error;}}
-                                    __pyx_t_73 = __pyx_v_y;
-                                    __pyx_t_74 = __pyx_v_x;
+                                    if (unlikely(!__pyx_v_self->mth_oldM.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 147; __pyx_clineno = __LINE__; goto __pyx_L13_error;}}
+                                    __pyx_t_72 = __pyx_v_y;
+                                    __pyx_t_73 = __pyx_v_x;
 
-                                    /* "MODIS_Raster_Funcs\SynopticData.pyx":108
+                                    /* "MODIS_Raster_Funcs\SynopticData.pyx":148
  *                         #update monthly stats
  *                         self.mth_newM[y, x] = (self.mth_oldM[y, x] +
  *                                          ((value - self.mth_oldM[y, x]) / self.mth_n[y, x]))             # <<<<<<<<<<<<<<
  *                         self.mth_newS[y, x] = (self.mth_oldS[y, x] +
  *                                          ((value - self.mth_oldM[y, x]) *
  */
-                                    if (unlikely(!__pyx_v_self->mth_oldM.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 108; __pyx_clineno = __LINE__; goto __pyx_L13_error;}}
-                                    __pyx_t_75 = __pyx_v_y;
-                                    __pyx_t_76 = __pyx_v_x;
-                                    if (unlikely(!__pyx_v_self->mth_n.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 108; __pyx_clineno = __LINE__; goto __pyx_L13_error;}}
-                                    __pyx_t_77 = __pyx_v_y;
-                                    __pyx_t_78 = __pyx_v_x;
+                                    if (unlikely(!__pyx_v_self->mth_oldM.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 148; __pyx_clineno = __LINE__; goto __pyx_L13_error;}}
+                                    __pyx_t_74 = __pyx_v_y;
+                                    __pyx_t_75 = __pyx_v_x;
+                                    if (unlikely(!__pyx_v_self->mth_n.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 148; __pyx_clineno = __LINE__; goto __pyx_L13_error;}}
+                                    __pyx_t_76 = __pyx_v_y;
+                                    __pyx_t_77 = __pyx_v_x;
 
-                                    /* "MODIS_Raster_Funcs\SynopticData.pyx":107
+                                    /* "MODIS_Raster_Funcs\SynopticData.pyx":147
  *                     else:
  *                         #update monthly stats
  *                         self.mth_newM[y, x] = (self.mth_oldM[y, x] +             # <<<<<<<<<<<<<<
  *                                          ((value - self.mth_oldM[y, x]) / self.mth_n[y, x]))
  *                         self.mth_newS[y, x] = (self.mth_oldS[y, x] +
  */
-                                    if (unlikely(!__pyx_v_self->mth_newM.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 107; __pyx_clineno = __LINE__; goto __pyx_L13_error;}}
-                                    __pyx_t_79 = __pyx_v_y;
-                                    __pyx_t_80 = __pyx_v_x;
-                                    *((double *) ( /* dim=1 */ ((char *) (((double *) ( /* dim=0 */ (__pyx_v_self->mth_newM.data + __pyx_t_79 * __pyx_v_self->mth_newM.strides[0]) )) + __pyx_t_80)) )) = ((*((double *) ( /* dim=1 */ ((char *) (((double *) ( /* dim=0 */ (__pyx_v_self->mth_oldM.data + __pyx_t_73 * __pyx_v_self->mth_oldM.strides[0]) )) + __pyx_t_74)) ))) + ((__pyx_v_value - (*((double *) ( /* dim=1 */ ((char *) (((double *) ( /* dim=0 */ (__pyx_v_self->mth_oldM.data + __pyx_t_75 * __pyx_v_self->mth_oldM.strides[0]) )) + __pyx_t_76)) )))) / (*((short *) ( /* dim=1 */ ((char *) (((short *) ( /* dim=0 */ (__pyx_v_self->mth_n.data + __pyx_t_77 * __pyx_v_self->mth_n.strides[0]) )) + __pyx_t_78)) )))));
+                                    if (unlikely(!__pyx_v_self->mth_newM.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 147; __pyx_clineno = __LINE__; goto __pyx_L13_error;}}
+                                    __pyx_t_78 = __pyx_v_y;
+                                    __pyx_t_79 = __pyx_v_x;
+                                    *((double *) ( /* dim=1 */ ((char *) (((double *) ( /* dim=0 */ (__pyx_v_self->mth_newM.data + __pyx_t_78 * __pyx_v_self->mth_newM.strides[0]) )) + __pyx_t_79)) )) = ((*((double *) ( /* dim=1 */ ((char *) (((double *) ( /* dim=0 */ (__pyx_v_self->mth_oldM.data + __pyx_t_72 * __pyx_v_self->mth_oldM.strides[0]) )) + __pyx_t_73)) ))) + ((__pyx_v_value - (*((double *) ( /* dim=1 */ ((char *) (((double *) ( /* dim=0 */ (__pyx_v_self->mth_oldM.data + __pyx_t_74 * __pyx_v_self->mth_oldM.strides[0]) )) + __pyx_t_75)) )))) / (*((short *) ( /* dim=1 */ ((char *) (((short *) ( /* dim=0 */ (__pyx_v_self->mth_n.data + __pyx_t_76 * __pyx_v_self->mth_n.strides[0]) )) + __pyx_t_77)) )))));
 
-                                    /* "MODIS_Raster_Funcs\SynopticData.pyx":109
+                                    /* "MODIS_Raster_Funcs\SynopticData.pyx":149
  *                         self.mth_newM[y, x] = (self.mth_oldM[y, x] +
  *                                          ((value - self.mth_oldM[y, x]) / self.mth_n[y, x]))
  *                         self.mth_newS[y, x] = (self.mth_oldS[y, x] +             # <<<<<<<<<<<<<<
  *                                          ((value - self.mth_oldM[y, x]) *
  *                                           (value - self.mth_newM[y, x])
  */
-                                    if (unlikely(!__pyx_v_self->mth_oldS.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 109; __pyx_clineno = __LINE__; goto __pyx_L13_error;}}
-                                    __pyx_t_81 = __pyx_v_y;
-                                    __pyx_t_82 = __pyx_v_x;
+                                    if (unlikely(!__pyx_v_self->mth_oldS.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 149; __pyx_clineno = __LINE__; goto __pyx_L13_error;}}
+                                    __pyx_t_80 = __pyx_v_y;
+                                    __pyx_t_81 = __pyx_v_x;
 
-                                    /* "MODIS_Raster_Funcs\SynopticData.pyx":110
+                                    /* "MODIS_Raster_Funcs\SynopticData.pyx":150
  *                                          ((value - self.mth_oldM[y, x]) / self.mth_n[y, x]))
  *                         self.mth_newS[y, x] = (self.mth_oldS[y, x] +
  *                                          ((value - self.mth_oldM[y, x]) *             # <<<<<<<<<<<<<<
  *                                           (value - self.mth_newM[y, x])
  *                                           ))
  */
-                                    if (unlikely(!__pyx_v_self->mth_oldM.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 110; __pyx_clineno = __LINE__; goto __pyx_L13_error;}}
-                                    __pyx_t_83 = __pyx_v_y;
-                                    __pyx_t_84 = __pyx_v_x;
+                                    if (unlikely(!__pyx_v_self->mth_oldM.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 150; __pyx_clineno = __LINE__; goto __pyx_L13_error;}}
+                                    __pyx_t_82 = __pyx_v_y;
+                                    __pyx_t_83 = __pyx_v_x;
 
-                                    /* "MODIS_Raster_Funcs\SynopticData.pyx":111
+                                    /* "MODIS_Raster_Funcs\SynopticData.pyx":151
  *                         self.mth_newS[y, x] = (self.mth_oldS[y, x] +
  *                                          ((value - self.mth_oldM[y, x]) *
  *                                           (value - self.mth_newM[y, x])             # <<<<<<<<<<<<<<
  *                                           ))
  *                         self.mth_oldM[y, x] = self.mth_newM[y, x]
  */
-                                    if (unlikely(!__pyx_v_self->mth_newM.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 111; __pyx_clineno = __LINE__; goto __pyx_L13_error;}}
-                                    __pyx_t_85 = __pyx_v_y;
-                                    __pyx_t_86 = __pyx_v_x;
+                                    if (unlikely(!__pyx_v_self->mth_newM.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 151; __pyx_clineno = __LINE__; goto __pyx_L13_error;}}
+                                    __pyx_t_84 = __pyx_v_y;
+                                    __pyx_t_85 = __pyx_v_x;
 
-                                    /* "MODIS_Raster_Funcs\SynopticData.pyx":109
+                                    /* "MODIS_Raster_Funcs\SynopticData.pyx":149
  *                         self.mth_newM[y, x] = (self.mth_oldM[y, x] +
  *                                          ((value - self.mth_oldM[y, x]) / self.mth_n[y, x]))
  *                         self.mth_newS[y, x] = (self.mth_oldS[y, x] +             # <<<<<<<<<<<<<<
  *                                          ((value - self.mth_oldM[y, x]) *
  *                                           (value - self.mth_newM[y, x])
  */
-                                    if (unlikely(!__pyx_v_self->mth_newS.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 109; __pyx_clineno = __LINE__; goto __pyx_L13_error;}}
-                                    __pyx_t_87 = __pyx_v_y;
-                                    __pyx_t_88 = __pyx_v_x;
-                                    *((double *) ( /* dim=1 */ ((char *) (((double *) ( /* dim=0 */ (__pyx_v_self->mth_newS.data + __pyx_t_87 * __pyx_v_self->mth_newS.strides[0]) )) + __pyx_t_88)) )) = ((*((double *) ( /* dim=1 */ ((char *) (((double *) ( /* dim=0 */ (__pyx_v_self->mth_oldS.data + __pyx_t_81 * __pyx_v_self->mth_oldS.strides[0]) )) + __pyx_t_82)) ))) + ((__pyx_v_value - (*((double *) ( /* dim=1 */ ((char *) (((double *) ( /* dim=0 */ (__pyx_v_self->mth_oldM.data + __pyx_t_83 * __pyx_v_self->mth_oldM.strides[0]) )) + __pyx_t_84)) )))) * (__pyx_v_value - (*((double *) ( /* dim=1 */ ((char *) (((double *) ( /* dim=0 */ (__pyx_v_self->mth_newM.data + __pyx_t_85 * __pyx_v_self->mth_newM.strides[0]) )) + __pyx_t_86)) ))))));
+                                    if (unlikely(!__pyx_v_self->mth_newS.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 149; __pyx_clineno = __LINE__; goto __pyx_L13_error;}}
+                                    __pyx_t_86 = __pyx_v_y;
+                                    __pyx_t_87 = __pyx_v_x;
+                                    *((double *) ( /* dim=1 */ ((char *) (((double *) ( /* dim=0 */ (__pyx_v_self->mth_newS.data + __pyx_t_86 * __pyx_v_self->mth_newS.strides[0]) )) + __pyx_t_87)) )) = ((*((double *) ( /* dim=1 */ ((char *) (((double *) ( /* dim=0 */ (__pyx_v_self->mth_oldS.data + __pyx_t_80 * __pyx_v_self->mth_oldS.strides[0]) )) + __pyx_t_81)) ))) + ((__pyx_v_value - (*((double *) ( /* dim=1 */ ((char *) (((double *) ( /* dim=0 */ (__pyx_v_self->mth_oldM.data + __pyx_t_82 * __pyx_v_self->mth_oldM.strides[0]) )) + __pyx_t_83)) )))) * (__pyx_v_value - (*((double *) ( /* dim=1 */ ((char *) (((double *) ( /* dim=0 */ (__pyx_v_self->mth_newM.data + __pyx_t_84 * __pyx_v_self->mth_newM.strides[0]) )) + __pyx_t_85)) ))))));
 
-                                    /* "MODIS_Raster_Funcs\SynopticData.pyx":113
+                                    /* "MODIS_Raster_Funcs\SynopticData.pyx":153
  *                                           (value - self.mth_newM[y, x])
  *                                           ))
  *                         self.mth_oldM[y, x] = self.mth_newM[y, x]             # <<<<<<<<<<<<<<
  *                         self.mth_oldS[y, x] = self.mth_newS[y, x]
  * 
  */
-                                    if (unlikely(!__pyx_v_self->mth_newM.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 113; __pyx_clineno = __LINE__; goto __pyx_L13_error;}}
-                                    __pyx_t_89 = __pyx_v_y;
-                                    __pyx_t_90 = __pyx_v_x;
-                                    if (unlikely(!__pyx_v_self->mth_oldM.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 113; __pyx_clineno = __LINE__; goto __pyx_L13_error;}}
-                                    __pyx_t_91 = __pyx_v_y;
-                                    __pyx_t_92 = __pyx_v_x;
-                                    *((double *) ( /* dim=1 */ ((char *) (((double *) ( /* dim=0 */ (__pyx_v_self->mth_oldM.data + __pyx_t_91 * __pyx_v_self->mth_oldM.strides[0]) )) + __pyx_t_92)) )) = (*((double *) ( /* dim=1 */ ((char *) (((double *) ( /* dim=0 */ (__pyx_v_self->mth_newM.data + __pyx_t_89 * __pyx_v_self->mth_newM.strides[0]) )) + __pyx_t_90)) )));
+                                    if (unlikely(!__pyx_v_self->mth_newM.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 153; __pyx_clineno = __LINE__; goto __pyx_L13_error;}}
+                                    __pyx_t_88 = __pyx_v_y;
+                                    __pyx_t_89 = __pyx_v_x;
+                                    if (unlikely(!__pyx_v_self->mth_oldM.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 153; __pyx_clineno = __LINE__; goto __pyx_L13_error;}}
+                                    __pyx_t_90 = __pyx_v_y;
+                                    __pyx_t_91 = __pyx_v_x;
+                                    *((double *) ( /* dim=1 */ ((char *) (((double *) ( /* dim=0 */ (__pyx_v_self->mth_oldM.data + __pyx_t_90 * __pyx_v_self->mth_oldM.strides[0]) )) + __pyx_t_91)) )) = (*((double *) ( /* dim=1 */ ((char *) (((double *) ( /* dim=0 */ (__pyx_v_self->mth_newM.data + __pyx_t_88 * __pyx_v_self->mth_newM.strides[0]) )) + __pyx_t_89)) )));
 
-                                    /* "MODIS_Raster_Funcs\SynopticData.pyx":114
+                                    /* "MODIS_Raster_Funcs\SynopticData.pyx":154
  *                                           ))
  *                         self.mth_oldM[y, x] = self.mth_newM[y, x]
  *                         self.mth_oldS[y, x] = self.mth_newS[y, x]             # <<<<<<<<<<<<<<
  * 
  * 
  */
-                                    if (unlikely(!__pyx_v_self->mth_newS.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 114; __pyx_clineno = __LINE__; goto __pyx_L13_error;}}
-                                    __pyx_t_93 = __pyx_v_y;
-                                    __pyx_t_94 = __pyx_v_x;
-                                    if (unlikely(!__pyx_v_self->mth_oldS.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 114; __pyx_clineno = __LINE__; goto __pyx_L13_error;}}
-                                    __pyx_t_95 = __pyx_v_y;
-                                    __pyx_t_96 = __pyx_v_x;
-                                    *((double *) ( /* dim=1 */ ((char *) (((double *) ( /* dim=0 */ (__pyx_v_self->mth_oldS.data + __pyx_t_95 * __pyx_v_self->mth_oldS.strides[0]) )) + __pyx_t_96)) )) = (*((double *) ( /* dim=1 */ ((char *) (((double *) ( /* dim=0 */ (__pyx_v_self->mth_newS.data + __pyx_t_93 * __pyx_v_self->mth_newS.strides[0]) )) + __pyx_t_94)) )));
+                                    if (unlikely(!__pyx_v_self->mth_newS.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 154; __pyx_clineno = __LINE__; goto __pyx_L13_error;}}
+                                    __pyx_t_92 = __pyx_v_y;
+                                    __pyx_t_93 = __pyx_v_x;
+                                    if (unlikely(!__pyx_v_self->mth_oldS.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 154; __pyx_clineno = __LINE__; goto __pyx_L13_error;}}
+                                    __pyx_t_94 = __pyx_v_y;
+                                    __pyx_t_95 = __pyx_v_x;
+                                    *((double *) ( /* dim=1 */ ((char *) (((double *) ( /* dim=0 */ (__pyx_v_self->mth_oldS.data + __pyx_t_94 * __pyx_v_self->mth_oldS.strides[0]) )) + __pyx_t_95)) )) = (*((double *) ( /* dim=1 */ ((char *) (((double *) ( /* dim=0 */ (__pyx_v_self->mth_newS.data + __pyx_t_92 * __pyx_v_self->mth_newS.strides[0]) )) + __pyx_t_93)) )));
                                   }
                                   __pyx_L19:;
                                   __pyx_L15_continue:;
@@ -3443,9 +3411,9 @@ __PYX_XDEC_MEMVIEW(&__pyx_t_12, 1);
                                 #pragma omp critical(__pyx_parallel_lastprivates0)
                                 #endif /* _OPENMP */
                                 {
-                                    __pyx_parallel_temp0 = __pyx_v_value;
-                                    __pyx_parallel_temp1 = __pyx_v_x;
-                                    __pyx_parallel_temp2 = __pyx_v_y;
+                                    __pyx_parallel_temp0 = __pyx_v_y;
+                                    __pyx_parallel_temp1 = __pyx_v_value;
+                                    __pyx_parallel_temp2 = __pyx_v_x;
                                 }
                                 __pyx_L21:;
                                 #ifdef _OPENMP
@@ -3459,9 +3427,9 @@ __PYX_XDEC_MEMVIEW(&__pyx_t_12, 1);
                       __pyx_parallel_why = 4;
                     }
                     if (__pyx_parallel_why) {
-                      __pyx_v_value = __pyx_parallel_temp0;
-                      __pyx_v_x = __pyx_parallel_temp1;
-                      __pyx_v_y = __pyx_parallel_temp2;
+                      __pyx_v_y = __pyx_parallel_temp0;
+                      __pyx_v_value = __pyx_parallel_temp1;
+                      __pyx_v_x = __pyx_parallel_temp2;
                       switch (__pyx_parallel_why) {
                             case 3: goto __pyx_L10_return;
                             case 4:
@@ -3551,7 +3519,7 @@ __PYX_XDEC_MEMVIEW(&__pyx_t_12, 1);
         #endif
       }
 
-      /* "MODIS_Raster_Funcs\SynopticData.pyx":74
+      /* "MODIS_Raster_Funcs\SynopticData.pyx":114
  * 
  * 
  *         with nogil, cython.wraparound(False), parallel(num_threads=6):             # <<<<<<<<<<<<<<
@@ -3581,12 +3549,12 @@ __PYX_XDEC_MEMVIEW(&__pyx_t_12, 1);
       }
   }
 
-  /* "MODIS_Raster_Funcs\SynopticData.pyx":47
+  /* "MODIS_Raster_Funcs\SynopticData.pyx":70
  *     @cython.boundscheck(False)
  *     @cython.cdivision(True)
- *     cpdef addFile(self, float[:,::1] data, unsigned char month, float thisNdv):             # <<<<<<<<<<<<<<
- *         cdef:
- *             double value
+ *     cpdef addFile(self, float[:,::1] data, float thisNdv):             # <<<<<<<<<<<<<<
+ *         '''Add a tile of data to the running summaries. Data array must be of shape specified in startup.
+ * 
  */
 
   /* function exit code */
@@ -3599,14 +3567,13 @@ __PYX_XDEC_MEMVIEW(&__pyx_t_12, 1);
   __Pyx_XDECREF(__pyx_t_4);
   __Pyx_XDECREF(__pyx_t_5);
   __Pyx_XDECREF(__pyx_t_6);
-  __Pyx_XDECREF(__pyx_t_7);
-  __Pyx_XDECREF(__pyx_t_9);
+  __Pyx_XDECREF(__pyx_t_8);
+  __PYX_XDEC_MEMVIEW(&__pyx_t_10, 1);
   __PYX_XDEC_MEMVIEW(&__pyx_t_11, 1);
-  __PYX_XDEC_MEMVIEW(&__pyx_t_12, 1);
-  __PYX_XDEC_MEMVIEW(&__pyx_t_14, 1);
+  __PYX_XDEC_MEMVIEW(&__pyx_t_13, 1);
+  __PYX_XDEC_MEMVIEW(&__pyx_t_15, 1);
   __PYX_XDEC_MEMVIEW(&__pyx_t_16, 1);
   __PYX_XDEC_MEMVIEW(&__pyx_t_17, 1);
-  __PYX_XDEC_MEMVIEW(&__pyx_t_18, 1);
   __Pyx_AddTraceback("MODIS_Raster_Funcs.SynopticData.MonthlyStatCalculator.addFile", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = 0;
   __pyx_L0:;
@@ -3617,9 +3584,9 @@ __PYX_XDEC_MEMVIEW(&__pyx_t_12, 1);
 
 /* Python wrapper */
 static PyObject *__pyx_pw_18MODIS_Raster_Funcs_12SynopticData_21MonthlyStatCalculator_3addFile(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
+static char __pyx_doc_18MODIS_Raster_Funcs_12SynopticData_21MonthlyStatCalculator_2addFile[] = "Add a tile of data to the running summaries. Data array must be of shape specified in startup.\n\n        Specify the value in the data that should be treated as nodata (does not have to be the same\n        as the output nodata value specified at startup)\n\n        This should be called once for each incoming data file, calling emitMonth when appropriate\n        during the sequential process, and emitTotal when finished. E.g. add each file representing\n        a \"January\" in turn, call emitMonth to get the synoptic January results, then continue for\n        each of the other calendar months, and call emitTotal to get the overall synoptic total when\n        finished.\n\n        At each pixel location (and for each of the month and total outputs), tracks the count\n        of non-nodata values ever seen, and calculates the mean and the variance of those values\n        (which will be converted to SD later).\n\n        Variance is calculated using the numerically-robust method of Donald Knuth as described at\n        http://www.johndcook.com/blog/standard_deviation/\n        ";
 static PyObject *__pyx_pw_18MODIS_Raster_Funcs_12SynopticData_21MonthlyStatCalculator_3addFile(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
   __Pyx_memviewslice __pyx_v_data = { 0, 0, { 0 }, { 0 }, { 0 } };
-  unsigned char __pyx_v_month;
   float __pyx_v_thisNdv;
   int __pyx_lineno = 0;
   const char *__pyx_filename = NULL;
@@ -3628,13 +3595,12 @@ static PyObject *__pyx_pw_18MODIS_Raster_Funcs_12SynopticData_21MonthlyStatCalcu
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("addFile (wrapper)", 0);
   {
-    static PyObject **__pyx_pyargnames[] = {&__pyx_n_s_data,&__pyx_n_s_month,&__pyx_n_s_thisNdv,0};
-    PyObject* values[3] = {0,0,0};
+    static PyObject **__pyx_pyargnames[] = {&__pyx_n_s_data,&__pyx_n_s_thisNdv,0};
+    PyObject* values[2] = {0,0};
     if (unlikely(__pyx_kwds)) {
       Py_ssize_t kw_args;
       const Py_ssize_t pos_args = PyTuple_GET_SIZE(__pyx_args);
       switch (pos_args) {
-        case  3: values[2] = PyTuple_GET_ITEM(__pyx_args, 2);
         case  2: values[1] = PyTuple_GET_ITEM(__pyx_args, 1);
         case  1: values[0] = PyTuple_GET_ITEM(__pyx_args, 0);
         case  0: break;
@@ -3646,46 +3612,39 @@ static PyObject *__pyx_pw_18MODIS_Raster_Funcs_12SynopticData_21MonthlyStatCalcu
         if (likely((values[0] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_data)) != 0)) kw_args--;
         else goto __pyx_L5_argtuple_error;
         case  1:
-        if (likely((values[1] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_month)) != 0)) kw_args--;
+        if (likely((values[1] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_thisNdv)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("addFile", 1, 3, 3, 1); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 47; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
-        }
-        case  2:
-        if (likely((values[2] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_thisNdv)) != 0)) kw_args--;
-        else {
-          __Pyx_RaiseArgtupleInvalid("addFile", 1, 3, 3, 2); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 47; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+          __Pyx_RaiseArgtupleInvalid("addFile", 1, 2, 2, 1); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 70; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "addFile") < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 47; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "addFile") < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 70; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
       }
-    } else if (PyTuple_GET_SIZE(__pyx_args) != 3) {
+    } else if (PyTuple_GET_SIZE(__pyx_args) != 2) {
       goto __pyx_L5_argtuple_error;
     } else {
       values[0] = PyTuple_GET_ITEM(__pyx_args, 0);
       values[1] = PyTuple_GET_ITEM(__pyx_args, 1);
-      values[2] = PyTuple_GET_ITEM(__pyx_args, 2);
     }
-    __pyx_v_data = __Pyx_PyObject_to_MemoryviewSlice_d_dc_float(values[0]); if (unlikely(!__pyx_v_data.memview)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 47; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
-    __pyx_v_month = __Pyx_PyInt_As_unsigned_char(values[1]); if (unlikely((__pyx_v_month == (unsigned char)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 47; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
-    __pyx_v_thisNdv = __pyx_PyFloat_AsFloat(values[2]); if (unlikely((__pyx_v_thisNdv == (float)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 47; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+    __pyx_v_data = __Pyx_PyObject_to_MemoryviewSlice_d_dc_float(values[0]); if (unlikely(!__pyx_v_data.memview)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 70; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+    __pyx_v_thisNdv = __pyx_PyFloat_AsFloat(values[1]); if (unlikely((__pyx_v_thisNdv == (float)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 70; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("addFile", 1, 3, 3, PyTuple_GET_SIZE(__pyx_args)); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 47; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+  __Pyx_RaiseArgtupleInvalid("addFile", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 70; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
   __pyx_L3_error:;
   __Pyx_AddTraceback("MODIS_Raster_Funcs.SynopticData.MonthlyStatCalculator.addFile", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  __pyx_r = __pyx_pf_18MODIS_Raster_Funcs_12SynopticData_21MonthlyStatCalculator_2addFile(((struct __pyx_obj_18MODIS_Raster_Funcs_12SynopticData_MonthlyStatCalculator *)__pyx_v_self), __pyx_v_data, __pyx_v_month, __pyx_v_thisNdv);
+  __pyx_r = __pyx_pf_18MODIS_Raster_Funcs_12SynopticData_21MonthlyStatCalculator_2addFile(((struct __pyx_obj_18MODIS_Raster_Funcs_12SynopticData_MonthlyStatCalculator *)__pyx_v_self), __pyx_v_data, __pyx_v_thisNdv);
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_18MODIS_Raster_Funcs_12SynopticData_21MonthlyStatCalculator_2addFile(struct __pyx_obj_18MODIS_Raster_Funcs_12SynopticData_MonthlyStatCalculator *__pyx_v_self, __Pyx_memviewslice __pyx_v_data, unsigned char __pyx_v_month, float __pyx_v_thisNdv) {
+static PyObject *__pyx_pf_18MODIS_Raster_Funcs_12SynopticData_21MonthlyStatCalculator_2addFile(struct __pyx_obj_18MODIS_Raster_Funcs_12SynopticData_MonthlyStatCalculator *__pyx_v_self, __Pyx_memviewslice __pyx_v_data, float __pyx_v_thisNdv) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
@@ -3694,8 +3653,8 @@ static PyObject *__pyx_pf_18MODIS_Raster_Funcs_12SynopticData_21MonthlyStatCalcu
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("addFile", 0);
   __Pyx_XDECREF(__pyx_r);
-  if (unlikely(!__pyx_v_data.memview)) { __Pyx_RaiseUnboundLocalError("data"); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 47; __pyx_clineno = __LINE__; goto __pyx_L1_error;} }
-  __pyx_t_1 = __pyx_f_18MODIS_Raster_Funcs_12SynopticData_21MonthlyStatCalculator_addFile(__pyx_v_self, __pyx_v_data, __pyx_v_month, __pyx_v_thisNdv, 1); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 47; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (unlikely(!__pyx_v_data.memview)) { __Pyx_RaiseUnboundLocalError("data"); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 70; __pyx_clineno = __LINE__; goto __pyx_L1_error;} }
+  __pyx_t_1 = __pyx_f_18MODIS_Raster_Funcs_12SynopticData_21MonthlyStatCalculator_addFile(__pyx_v_self, __pyx_v_data, __pyx_v_thisNdv, 1); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 70; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -3713,12 +3672,12 @@ static PyObject *__pyx_pf_18MODIS_Raster_Funcs_12SynopticData_21MonthlyStatCalcu
   return __pyx_r;
 }
 
-/* "MODIS_Raster_Funcs\SynopticData.pyx":120
+/* "MODIS_Raster_Funcs\SynopticData.pyx":160
  *     @cython.boundscheck(False)
  *     @cython.cdivision(True)
  *     cpdef emitMonth(self):             # <<<<<<<<<<<<<<
+ *         ''' Return the count, mean, and sd arrays accumulated *since this method was last called* '''
  *         cdef:
- *             double variance
  */
 
 static PyObject *__pyx_pw_18MODIS_Raster_Funcs_12SynopticData_21MonthlyStatCalculator_5emitMonth(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused); /*proto*/
@@ -3756,7 +3715,7 @@ static PyObject *__pyx_f_18MODIS_Raster_Funcs_12SynopticData_21MonthlyStatCalcul
   if (unlikely(__pyx_skip_dispatch)) ;
   /* Check if overridden in Python */
   else if (unlikely(Py_TYPE(((PyObject *)__pyx_v_self))->tp_dictoffset != 0)) {
-    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_emitMonth); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 120; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_emitMonth); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 160; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_1);
     if (!PyCFunction_Check(__pyx_t_1) || (PyCFunction_GET_FUNCTION(__pyx_t_1) != (PyCFunction)__pyx_pw_18MODIS_Raster_Funcs_12SynopticData_21MonthlyStatCalculator_5emitMonth)) {
       __Pyx_XDECREF(__pyx_r);
@@ -3772,10 +3731,10 @@ static PyObject *__pyx_f_18MODIS_Raster_Funcs_12SynopticData_21MonthlyStatCalcul
         }
       }
       if (__pyx_t_4) {
-        __pyx_t_2 = __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_t_4); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 120; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+        __pyx_t_2 = __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_t_4); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 160; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
         __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
       } else {
-        __pyx_t_2 = __Pyx_PyObject_CallNoArg(__pyx_t_3); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 120; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+        __pyx_t_2 = __Pyx_PyObject_CallNoArg(__pyx_t_3); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 160; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       }
       __Pyx_GOTREF(__pyx_t_2);
       __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
@@ -3787,7 +3746,7 @@ static PyObject *__pyx_f_18MODIS_Raster_Funcs_12SynopticData_21MonthlyStatCalcul
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   }
 
-  /* "MODIS_Raster_Funcs\SynopticData.pyx":124
+  /* "MODIS_Raster_Funcs\SynopticData.pyx":165
  *             double variance
  *             Py_ssize_t x, y
  *         with nogil, cython.wraparound(False), parallel(num_threads=6):             # <<<<<<<<<<<<<<
@@ -3822,7 +3781,7 @@ static PyObject *__pyx_f_18MODIS_Raster_Funcs_12SynopticData_21MonthlyStatCalcul
                 Py_BEGIN_ALLOW_THREADS
                 #endif /* _OPENMP */
 
-                /* "MODIS_Raster_Funcs\SynopticData.pyx":125
+                /* "MODIS_Raster_Funcs\SynopticData.pyx":166
  *             Py_ssize_t x, y
  *         with nogil, cython.wraparound(False), parallel(num_threads=6):
  *             for y in prange(self.height, schedule='static'):             # <<<<<<<<<<<<<<
@@ -3832,9 +3791,9 @@ static PyObject *__pyx_f_18MODIS_Raster_Funcs_12SynopticData_21MonthlyStatCalcul
                 __pyx_t_5 = __pyx_v_self->height;
                 if (1 == 0) abort();
                 {
-                    Py_ssize_t __pyx_parallel_temp0 = 0xbad0bad0;
+                    double __pyx_parallel_temp0 = __PYX_NAN();
                     Py_ssize_t __pyx_parallel_temp1 = 0xbad0bad0;
-                    double __pyx_parallel_temp2 = __PYX_NAN();
+                    Py_ssize_t __pyx_parallel_temp2 = 0xbad0bad0;
                     const char *__pyx_parallel_filename = NULL; int __pyx_parallel_lineno = 0, __pyx_parallel_clineno = 0;
                     PyObject *__pyx_parallel_exc_type = NULL, *__pyx_parallel_exc_value = NULL, *__pyx_parallel_exc_tb = NULL;
                     int __pyx_parallel_why;
@@ -3843,17 +3802,17 @@ static PyObject *__pyx_f_18MODIS_Raster_Funcs_12SynopticData_21MonthlyStatCalcul
                     if (__pyx_t_7 > 0)
                     {
                         #ifdef _OPENMP
-                        #pragma omp for lastprivate(__pyx_v_x) firstprivate(__pyx_v_y) lastprivate(__pyx_v_y) lastprivate(__pyx_v_variance) schedule(static)
+                        #pragma omp for lastprivate(__pyx_v_variance) lastprivate(__pyx_v_x) firstprivate(__pyx_v_y) lastprivate(__pyx_v_y) schedule(static)
                         #endif /* _OPENMP */
                         for (__pyx_t_6 = 0; __pyx_t_6 < __pyx_t_7; __pyx_t_6++){
                             if (__pyx_parallel_why < 2)
                             {
                                 __pyx_v_y = 0 + 1 * __pyx_t_6;
                                 /* Initialize private variables to invalid values */
-                                __pyx_v_x = ((Py_ssize_t)0xbad0bad0);
                                 __pyx_v_variance = ((double)__PYX_NAN());
+                                __pyx_v_x = ((Py_ssize_t)0xbad0bad0);
 
-                                /* "MODIS_Raster_Funcs\SynopticData.pyx":126
+                                /* "MODIS_Raster_Funcs\SynopticData.pyx":167
  *         with nogil, cython.wraparound(False), parallel(num_threads=6):
  *             for y in prange(self.height, schedule='static'):
  *                 x = -1             # <<<<<<<<<<<<<<
@@ -3862,7 +3821,7 @@ static PyObject *__pyx_f_18MODIS_Raster_Funcs_12SynopticData_21MonthlyStatCalcul
  */
                                 __pyx_v_x = -1;
 
-                                /* "MODIS_Raster_Funcs\SynopticData.pyx":127
+                                /* "MODIS_Raster_Funcs\SynopticData.pyx":168
  *             for y in prange(self.height, schedule='static'):
  *                 x = -1
  *                 for x in range (0, self.width):             # <<<<<<<<<<<<<<
@@ -3873,20 +3832,20 @@ static PyObject *__pyx_f_18MODIS_Raster_Funcs_12SynopticData_21MonthlyStatCalcul
                                 for (__pyx_t_9 = 0; __pyx_t_9 < __pyx_t_8; __pyx_t_9+=1) {
                                   __pyx_v_x = __pyx_t_9;
 
-                                  /* "MODIS_Raster_Funcs\SynopticData.pyx":128
+                                  /* "MODIS_Raster_Funcs\SynopticData.pyx":169
  *                 x = -1
  *                 for x in range (0, self.width):
  *                     if self.mth_n[y, x] <=1:             # <<<<<<<<<<<<<<
  *                         continue
  *                     variance = self.mth_newS[y, x] / (self.mth_n[y, x] - 1)
  */
-                                  if (unlikely(!__pyx_v_self->mth_n.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 128; __pyx_clineno = __LINE__; goto __pyx_L12_error;}}
+                                  if (unlikely(!__pyx_v_self->mth_n.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 169; __pyx_clineno = __LINE__; goto __pyx_L12_error;}}
                                   __pyx_t_10 = __pyx_v_y;
                                   __pyx_t_11 = __pyx_v_x;
                                   __pyx_t_12 = (((*((short *) ( /* dim=1 */ ((char *) (((short *) ( /* dim=0 */ (__pyx_v_self->mth_n.data + __pyx_t_10 * __pyx_v_self->mth_n.strides[0]) )) + __pyx_t_11)) ))) <= 1) != 0);
                                   if (__pyx_t_12) {
 
-                                    /* "MODIS_Raster_Funcs\SynopticData.pyx":129
+                                    /* "MODIS_Raster_Funcs\SynopticData.pyx":170
  *                 for x in range (0, self.width):
  *                     if self.mth_n[y, x] <=1:
  *                         continue             # <<<<<<<<<<<<<<
@@ -3896,29 +3855,29 @@ static PyObject *__pyx_f_18MODIS_Raster_Funcs_12SynopticData_21MonthlyStatCalcul
                                     goto __pyx_L14_continue;
                                   }
 
-                                  /* "MODIS_Raster_Funcs\SynopticData.pyx":130
+                                  /* "MODIS_Raster_Funcs\SynopticData.pyx":171
  *                     if self.mth_n[y, x] <=1:
  *                         continue
  *                     variance = self.mth_newS[y, x] / (self.mth_n[y, x] - 1)             # <<<<<<<<<<<<<<
  *                     self.mth_newS[y, x] = sqrt(variance)
  *         self._startNewMonth = 1
  */
-                                  if (unlikely(!__pyx_v_self->mth_newS.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 130; __pyx_clineno = __LINE__; goto __pyx_L12_error;}}
+                                  if (unlikely(!__pyx_v_self->mth_newS.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 171; __pyx_clineno = __LINE__; goto __pyx_L12_error;}}
                                   __pyx_t_13 = __pyx_v_y;
                                   __pyx_t_14 = __pyx_v_x;
-                                  if (unlikely(!__pyx_v_self->mth_n.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 130; __pyx_clineno = __LINE__; goto __pyx_L12_error;}}
+                                  if (unlikely(!__pyx_v_self->mth_n.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 171; __pyx_clineno = __LINE__; goto __pyx_L12_error;}}
                                   __pyx_t_15 = __pyx_v_y;
                                   __pyx_t_16 = __pyx_v_x;
                                   __pyx_v_variance = ((*((double *) ( /* dim=1 */ ((char *) (((double *) ( /* dim=0 */ (__pyx_v_self->mth_newS.data + __pyx_t_13 * __pyx_v_self->mth_newS.strides[0]) )) + __pyx_t_14)) ))) / ((*((short *) ( /* dim=1 */ ((char *) (((short *) ( /* dim=0 */ (__pyx_v_self->mth_n.data + __pyx_t_15 * __pyx_v_self->mth_n.strides[0]) )) + __pyx_t_16)) ))) - 1));
 
-                                  /* "MODIS_Raster_Funcs\SynopticData.pyx":131
+                                  /* "MODIS_Raster_Funcs\SynopticData.pyx":172
  *                         continue
  *                     variance = self.mth_newS[y, x] / (self.mth_n[y, x] - 1)
  *                     self.mth_newS[y, x] = sqrt(variance)             # <<<<<<<<<<<<<<
  *         self._startNewMonth = 1
  *         return {
  */
-                                  if (unlikely(!__pyx_v_self->mth_newS.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 131; __pyx_clineno = __LINE__; goto __pyx_L12_error;}}
+                                  if (unlikely(!__pyx_v_self->mth_newS.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 172; __pyx_clineno = __LINE__; goto __pyx_L12_error;}}
                                   __pyx_t_17 = __pyx_v_y;
                                   __pyx_t_18 = __pyx_v_x;
                                   *((double *) ( /* dim=1 */ ((char *) (((double *) ( /* dim=0 */ (__pyx_v_self->mth_newS.data + __pyx_t_17 * __pyx_v_self->mth_newS.strides[0]) )) + __pyx_t_18)) )) = sqrt(__pyx_v_variance);
@@ -3947,6 +3906,611 @@ static PyObject *__pyx_f_18MODIS_Raster_Funcs_12SynopticData_21MonthlyStatCalcul
                                 __pyx_L17:;
                                 #ifdef _OPENMP
                                 #pragma omp critical(__pyx_parallel_lastprivates1)
+                                #endif /* _OPENMP */
+                                {
+                                    __pyx_parallel_temp0 = __pyx_v_variance;
+                                    __pyx_parallel_temp1 = __pyx_v_x;
+                                    __pyx_parallel_temp2 = __pyx_v_y;
+                                }
+                                __pyx_L18:;
+                                #ifdef _OPENMP
+                                #pragma omp flush(__pyx_parallel_why)
+                                #endif /* _OPENMP */
+                            }
+                        }
+                    }
+                    if (__pyx_parallel_exc_type) {
+                      /* This may have been overridden by a continue, break or return in another thread. Prefer the error. */
+                      __pyx_parallel_why = 4;
+                    }
+                    if (__pyx_parallel_why) {
+                      __pyx_v_variance = __pyx_parallel_temp0;
+                      __pyx_v_x = __pyx_parallel_temp1;
+                      __pyx_v_y = __pyx_parallel_temp2;
+                      switch (__pyx_parallel_why) {
+                            case 3: goto __pyx_L9_return;
+                            case 4:
+                        {
+                            #ifdef WITH_THREAD
+                            PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
+                            #endif
+                            __Pyx_GIVEREF(__pyx_parallel_exc_type);
+                            __Pyx_ErrRestore(__pyx_parallel_exc_type, __pyx_parallel_exc_value, __pyx_parallel_exc_tb);
+                            __pyx_filename = __pyx_parallel_filename; __pyx_lineno = __pyx_parallel_lineno; __pyx_clineno = __pyx_parallel_clineno;
+                            #ifdef WITH_THREAD
+                            PyGILState_Release(__pyx_gilstate_save);
+                            #endif
+                        }
+                        goto __pyx_L8_error;
+                      }
+                    }
+                }
+                goto __pyx_L20;
+                __pyx_L9_return:;
+                __pyx_parallel_why = 3;
+                goto __pyx_L20;
+                __pyx_L8_error:;
+                {
+                    #ifdef WITH_THREAD
+                    PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
+                    #endif
+                    #ifdef _OPENMP
+                    #pragma omp flush(__pyx_parallel_exc_type)
+                    #endif /* _OPENMP */
+                    if (!__pyx_parallel_exc_type) {
+                      __Pyx_ErrFetch(&__pyx_parallel_exc_type, &__pyx_parallel_exc_value, &__pyx_parallel_exc_tb);
+                      __pyx_parallel_filename = __pyx_filename; __pyx_parallel_lineno = __pyx_lineno; __pyx_parallel_clineno = __pyx_clineno;
+                      __Pyx_GOTREF(__pyx_parallel_exc_type);
+                    }
+                    #ifdef WITH_THREAD
+                    PyGILState_Release(__pyx_gilstate_save);
+                    #endif
+                }
+                __pyx_parallel_why = 4;
+                goto __pyx_L20;
+                __pyx_L20:;
+                #ifdef _OPENMP
+                Py_END_ALLOW_THREADS
+                #else
+{
+#ifdef WITH_THREAD
+                PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
+                #endif
+                #endif /* _OPENMP */
+                /* Clean up any temporaries */
+                #ifdef WITH_THREAD
+                PyGILState_Release(__pyx_gilstate_save);
+                #endif
+                #ifndef _OPENMP
+}
+#endif /* _OPENMP */
+            }
+            if (__pyx_parallel_exc_type) {
+              /* This may have been overridden by a continue, break or return in another thread. Prefer the error. */
+              __pyx_parallel_why = 4;
+            }
+            if (__pyx_parallel_why) {
+              switch (__pyx_parallel_why) {
+                    case 3: goto __pyx_L3_return;
+                    case 4:
+                {
+                    #ifdef WITH_THREAD
+                    PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
+                    #endif
+                    __Pyx_GIVEREF(__pyx_parallel_exc_type);
+                    __Pyx_ErrRestore(__pyx_parallel_exc_type, __pyx_parallel_exc_value, __pyx_parallel_exc_tb);
+                    __pyx_filename = __pyx_parallel_filename; __pyx_lineno = __pyx_parallel_lineno; __pyx_clineno = __pyx_parallel_clineno;
+                    #ifdef WITH_THREAD
+                    PyGILState_Release(__pyx_gilstate_save);
+                    #endif
+                }
+                goto __pyx_L4_error;
+              }
+            }
+        }
+        #if ((defined(__APPLE__) || defined(__OSX__)) && (defined(__GNUC__) && (__GNUC__ > 2 || (__GNUC__ == 2 && (__GNUC_MINOR__ > 95)))))
+            #undef likely
+            #undef unlikely
+            #define likely(x)   __builtin_expect(!!(x), 1)
+            #define unlikely(x) __builtin_expect(!!(x), 0)
+        #endif
+      }
+
+      /* "MODIS_Raster_Funcs\SynopticData.pyx":165
+ *             double variance
+ *             Py_ssize_t x, y
+ *         with nogil, cython.wraparound(False), parallel(num_threads=6):             # <<<<<<<<<<<<<<
+ *             for y in prange(self.height, schedule='static'):
+ *                 x = -1
+ */
+      /*finally:*/ {
+        /*normal exit:*/{
+          #ifdef WITH_THREAD
+          Py_BLOCK_THREADS
+          #endif
+          goto __pyx_L5;
+        }
+        __pyx_L3_return: {
+          #ifdef WITH_THREAD
+          Py_BLOCK_THREADS
+          #endif
+          goto __pyx_L0;
+        }
+        __pyx_L4_error: {
+          #ifdef WITH_THREAD
+          Py_BLOCK_THREADS
+          #endif
+          goto __pyx_L1_error;
+        }
+        __pyx_L5:;
+      }
+  }
+
+  /* "MODIS_Raster_Funcs\SynopticData.pyx":173
+ *                     variance = self.mth_newS[y, x] / (self.mth_n[y, x] - 1)
+ *                     self.mth_newS[y, x] = sqrt(variance)
+ *         self._startNewMonth = 1             # <<<<<<<<<<<<<<
+ *         return {
+ *             "count": np.asarray(self.mth_n),
+ */
+  __pyx_v_self->_startNewMonth = 1;
+
+  /* "MODIS_Raster_Funcs\SynopticData.pyx":174
+ *                     self.mth_newS[y, x] = sqrt(variance)
+ *         self._startNewMonth = 1
+ *         return {             # <<<<<<<<<<<<<<
+ *             "count": np.asarray(self.mth_n),
+ *             "mean": np.asarray(self.mth_newM).astype('float32'),
+ */
+  __Pyx_XDECREF(__pyx_r);
+  __pyx_t_1 = PyDict_New(); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 174; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_t_1);
+
+  /* "MODIS_Raster_Funcs\SynopticData.pyx":175
+ *         self._startNewMonth = 1
+ *         return {
+ *             "count": np.asarray(self.mth_n),             # <<<<<<<<<<<<<<
+ *             "mean": np.asarray(self.mth_newM).astype('float32'),
+ *             "sd": np.asarray(self.mth_newS).astype('float32')
+ */
+  __pyx_t_3 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 175; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_t_3);
+  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_asarray); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 175; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_t_4);
+  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+  if (unlikely(!__pyx_v_self->mth_n.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 175; __pyx_clineno = __LINE__; goto __pyx_L1_error;}}
+  __pyx_t_3 = __pyx_memoryview_fromslice(__pyx_v_self->mth_n, 2, (PyObject *(*)(char *)) __pyx_memview_get_short, (int (*)(char *, PyObject *)) __pyx_memview_set_short, 0);; if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 175; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_t_3);
+  __pyx_t_19 = NULL;
+  if (CYTHON_COMPILING_IN_CPYTHON && unlikely(PyMethod_Check(__pyx_t_4))) {
+    __pyx_t_19 = PyMethod_GET_SELF(__pyx_t_4);
+    if (likely(__pyx_t_19)) {
+      PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_4);
+      __Pyx_INCREF(__pyx_t_19);
+      __Pyx_INCREF(function);
+      __Pyx_DECREF_SET(__pyx_t_4, function);
+    }
+  }
+  if (!__pyx_t_19) {
+    __pyx_t_2 = __Pyx_PyObject_CallOneArg(__pyx_t_4, __pyx_t_3); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 175; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+    __Pyx_GOTREF(__pyx_t_2);
+  } else {
+    __pyx_t_20 = PyTuple_New(1+1); if (unlikely(!__pyx_t_20)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 175; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __Pyx_GOTREF(__pyx_t_20);
+    PyTuple_SET_ITEM(__pyx_t_20, 0, __pyx_t_19); __Pyx_GIVEREF(__pyx_t_19); __pyx_t_19 = NULL;
+    PyTuple_SET_ITEM(__pyx_t_20, 0+1, __pyx_t_3);
+    __Pyx_GIVEREF(__pyx_t_3);
+    __pyx_t_3 = 0;
+    __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_4, __pyx_t_20, NULL); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 175; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __Pyx_GOTREF(__pyx_t_2);
+    __Pyx_DECREF(__pyx_t_20); __pyx_t_20 = 0;
+  }
+  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_count, __pyx_t_2) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 174; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+
+  /* "MODIS_Raster_Funcs\SynopticData.pyx":176
+ *         return {
+ *             "count": np.asarray(self.mth_n),
+ *             "mean": np.asarray(self.mth_newM).astype('float32'),             # <<<<<<<<<<<<<<
+ *             "sd": np.asarray(self.mth_newS).astype('float32')
+ * 
+ */
+  __pyx_t_4 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 176; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_t_4);
+  __pyx_t_20 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_n_s_asarray); if (unlikely(!__pyx_t_20)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 176; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_t_20);
+  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+  if (unlikely(!__pyx_v_self->mth_newM.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 176; __pyx_clineno = __LINE__; goto __pyx_L1_error;}}
+  __pyx_t_4 = __pyx_memoryview_fromslice(__pyx_v_self->mth_newM, 2, (PyObject *(*)(char *)) __pyx_memview_get_double, (int (*)(char *, PyObject *)) __pyx_memview_set_double, 0);; if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 176; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_t_4);
+  __pyx_t_3 = NULL;
+  if (CYTHON_COMPILING_IN_CPYTHON && unlikely(PyMethod_Check(__pyx_t_20))) {
+    __pyx_t_3 = PyMethod_GET_SELF(__pyx_t_20);
+    if (likely(__pyx_t_3)) {
+      PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_20);
+      __Pyx_INCREF(__pyx_t_3);
+      __Pyx_INCREF(function);
+      __Pyx_DECREF_SET(__pyx_t_20, function);
+    }
+  }
+  if (!__pyx_t_3) {
+    __pyx_t_2 = __Pyx_PyObject_CallOneArg(__pyx_t_20, __pyx_t_4); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 176; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+    __Pyx_GOTREF(__pyx_t_2);
+  } else {
+    __pyx_t_19 = PyTuple_New(1+1); if (unlikely(!__pyx_t_19)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 176; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __Pyx_GOTREF(__pyx_t_19);
+    PyTuple_SET_ITEM(__pyx_t_19, 0, __pyx_t_3); __Pyx_GIVEREF(__pyx_t_3); __pyx_t_3 = NULL;
+    PyTuple_SET_ITEM(__pyx_t_19, 0+1, __pyx_t_4);
+    __Pyx_GIVEREF(__pyx_t_4);
+    __pyx_t_4 = 0;
+    __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_20, __pyx_t_19, NULL); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 176; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __Pyx_GOTREF(__pyx_t_2);
+    __Pyx_DECREF(__pyx_t_19); __pyx_t_19 = 0;
+  }
+  __Pyx_DECREF(__pyx_t_20); __pyx_t_20 = 0;
+  __pyx_t_20 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_astype); if (unlikely(!__pyx_t_20)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 176; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_t_20);
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+  __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_20, __pyx_tuple_, NULL); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 176; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_t_2);
+  __Pyx_DECREF(__pyx_t_20); __pyx_t_20 = 0;
+  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_mean, __pyx_t_2) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 174; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+
+  /* "MODIS_Raster_Funcs\SynopticData.pyx":177
+ *             "count": np.asarray(self.mth_n),
+ *             "mean": np.asarray(self.mth_newM).astype('float32'),
+ *             "sd": np.asarray(self.mth_newS).astype('float32')             # <<<<<<<<<<<<<<
+ * 
+ *         }
+ */
+  __pyx_t_20 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_20)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 177; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_t_20);
+  __pyx_t_19 = __Pyx_PyObject_GetAttrStr(__pyx_t_20, __pyx_n_s_asarray); if (unlikely(!__pyx_t_19)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 177; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_t_19);
+  __Pyx_DECREF(__pyx_t_20); __pyx_t_20 = 0;
+  if (unlikely(!__pyx_v_self->mth_newS.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 177; __pyx_clineno = __LINE__; goto __pyx_L1_error;}}
+  __pyx_t_20 = __pyx_memoryview_fromslice(__pyx_v_self->mth_newS, 2, (PyObject *(*)(char *)) __pyx_memview_get_double, (int (*)(char *, PyObject *)) __pyx_memview_set_double, 0);; if (unlikely(!__pyx_t_20)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 177; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_t_20);
+  __pyx_t_4 = NULL;
+  if (CYTHON_COMPILING_IN_CPYTHON && unlikely(PyMethod_Check(__pyx_t_19))) {
+    __pyx_t_4 = PyMethod_GET_SELF(__pyx_t_19);
+    if (likely(__pyx_t_4)) {
+      PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_19);
+      __Pyx_INCREF(__pyx_t_4);
+      __Pyx_INCREF(function);
+      __Pyx_DECREF_SET(__pyx_t_19, function);
+    }
+  }
+  if (!__pyx_t_4) {
+    __pyx_t_2 = __Pyx_PyObject_CallOneArg(__pyx_t_19, __pyx_t_20); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 177; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __Pyx_DECREF(__pyx_t_20); __pyx_t_20 = 0;
+    __Pyx_GOTREF(__pyx_t_2);
+  } else {
+    __pyx_t_3 = PyTuple_New(1+1); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 177; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __Pyx_GOTREF(__pyx_t_3);
+    PyTuple_SET_ITEM(__pyx_t_3, 0, __pyx_t_4); __Pyx_GIVEREF(__pyx_t_4); __pyx_t_4 = NULL;
+    PyTuple_SET_ITEM(__pyx_t_3, 0+1, __pyx_t_20);
+    __Pyx_GIVEREF(__pyx_t_20);
+    __pyx_t_20 = 0;
+    __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_19, __pyx_t_3, NULL); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 177; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __Pyx_GOTREF(__pyx_t_2);
+    __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+  }
+  __Pyx_DECREF(__pyx_t_19); __pyx_t_19 = 0;
+  __pyx_t_19 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_astype); if (unlikely(!__pyx_t_19)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 177; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_t_19);
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+  __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_19, __pyx_tuple__2, NULL); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 177; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_t_2);
+  __Pyx_DECREF(__pyx_t_19); __pyx_t_19 = 0;
+  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_sd, __pyx_t_2) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 174; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+  __pyx_r = __pyx_t_1;
+  __pyx_t_1 = 0;
+  goto __pyx_L0;
+
+  /* "MODIS_Raster_Funcs\SynopticData.pyx":160
+ *     @cython.boundscheck(False)
+ *     @cython.cdivision(True)
+ *     cpdef emitMonth(self):             # <<<<<<<<<<<<<<
+ *         ''' Return the count, mean, and sd arrays accumulated *since this method was last called* '''
+ *         cdef:
+ */
+
+  /* function exit code */
+  __pyx_L1_error:;
+  __Pyx_XDECREF(__pyx_t_1);
+  __Pyx_XDECREF(__pyx_t_2);
+  __Pyx_XDECREF(__pyx_t_3);
+  __Pyx_XDECREF(__pyx_t_4);
+  __Pyx_XDECREF(__pyx_t_19);
+  __Pyx_XDECREF(__pyx_t_20);
+  __Pyx_AddTraceback("MODIS_Raster_Funcs.SynopticData.MonthlyStatCalculator.emitMonth", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __pyx_r = 0;
+  __pyx_L0:;
+  __Pyx_XGIVEREF(__pyx_r);
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+/* Python wrapper */
+static PyObject *__pyx_pw_18MODIS_Raster_Funcs_12SynopticData_21MonthlyStatCalculator_5emitMonth(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused); /*proto*/
+static char __pyx_doc_18MODIS_Raster_Funcs_12SynopticData_21MonthlyStatCalculator_4emitMonth[] = " Return the count, mean, and sd arrays accumulated *since this method was last called* ";
+static PyObject *__pyx_pw_18MODIS_Raster_Funcs_12SynopticData_21MonthlyStatCalculator_5emitMonth(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused) {
+  PyObject *__pyx_r = 0;
+  __Pyx_RefNannyDeclarations
+  __Pyx_RefNannySetupContext("emitMonth (wrapper)", 0);
+  __pyx_r = __pyx_pf_18MODIS_Raster_Funcs_12SynopticData_21MonthlyStatCalculator_4emitMonth(((struct __pyx_obj_18MODIS_Raster_Funcs_12SynopticData_MonthlyStatCalculator *)__pyx_v_self));
+
+  /* function exit code */
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+static PyObject *__pyx_pf_18MODIS_Raster_Funcs_12SynopticData_21MonthlyStatCalculator_4emitMonth(struct __pyx_obj_18MODIS_Raster_Funcs_12SynopticData_MonthlyStatCalculator *__pyx_v_self) {
+  PyObject *__pyx_r = NULL;
+  __Pyx_RefNannyDeclarations
+  PyObject *__pyx_t_1 = NULL;
+  int __pyx_lineno = 0;
+  const char *__pyx_filename = NULL;
+  int __pyx_clineno = 0;
+  __Pyx_RefNannySetupContext("emitMonth", 0);
+  __Pyx_XDECREF(__pyx_r);
+  __pyx_t_1 = __pyx_f_18MODIS_Raster_Funcs_12SynopticData_21MonthlyStatCalculator_emitMonth(__pyx_v_self, 1); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 160; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_t_1);
+  __pyx_r = __pyx_t_1;
+  __pyx_t_1 = 0;
+  goto __pyx_L0;
+
+  /* function exit code */
+  __pyx_L1_error:;
+  __Pyx_XDECREF(__pyx_t_1);
+  __Pyx_AddTraceback("MODIS_Raster_Funcs.SynopticData.MonthlyStatCalculator.emitMonth", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __pyx_r = NULL;
+  __pyx_L0:;
+  __Pyx_XGIVEREF(__pyx_r);
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+/* "MODIS_Raster_Funcs\SynopticData.pyx":183
+ *     @cython.boundscheck(False)
+ *     @cython.cdivision(True)
+ *     cpdef emitTotal(self):             # <<<<<<<<<<<<<<
+ *         ''' Return the count, mean, and sd arrays accumulated *since the class was instantiated* '''
+ *         cdef:
+ */
+
+static PyObject *__pyx_pw_18MODIS_Raster_Funcs_12SynopticData_21MonthlyStatCalculator_7emitTotal(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused); /*proto*/
+static PyObject *__pyx_f_18MODIS_Raster_Funcs_12SynopticData_21MonthlyStatCalculator_emitTotal(struct __pyx_obj_18MODIS_Raster_Funcs_12SynopticData_MonthlyStatCalculator *__pyx_v_self, int __pyx_skip_dispatch) {
+  double __pyx_v_variance;
+  Py_ssize_t __pyx_v_x;
+  Py_ssize_t __pyx_v_y;
+  PyObject *__pyx_r = NULL;
+  __Pyx_RefNannyDeclarations
+  PyObject *__pyx_t_1 = NULL;
+  PyObject *__pyx_t_2 = NULL;
+  PyObject *__pyx_t_3 = NULL;
+  PyObject *__pyx_t_4 = NULL;
+  Py_ssize_t __pyx_t_5;
+  Py_ssize_t __pyx_t_6;
+  Py_ssize_t __pyx_t_7;
+  Py_ssize_t __pyx_t_8;
+  Py_ssize_t __pyx_t_9;
+  Py_ssize_t __pyx_t_10;
+  Py_ssize_t __pyx_t_11;
+  int __pyx_t_12;
+  Py_ssize_t __pyx_t_13;
+  Py_ssize_t __pyx_t_14;
+  Py_ssize_t __pyx_t_15;
+  Py_ssize_t __pyx_t_16;
+  Py_ssize_t __pyx_t_17;
+  Py_ssize_t __pyx_t_18;
+  PyObject *__pyx_t_19 = NULL;
+  PyObject *__pyx_t_20 = NULL;
+  int __pyx_lineno = 0;
+  const char *__pyx_filename = NULL;
+  int __pyx_clineno = 0;
+  __Pyx_RefNannySetupContext("emitTotal", 0);
+  /* Check if called by wrapper */
+  if (unlikely(__pyx_skip_dispatch)) ;
+  /* Check if overridden in Python */
+  else if (unlikely(Py_TYPE(((PyObject *)__pyx_v_self))->tp_dictoffset != 0)) {
+    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_emitTotal); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 183; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __Pyx_GOTREF(__pyx_t_1);
+    if (!PyCFunction_Check(__pyx_t_1) || (PyCFunction_GET_FUNCTION(__pyx_t_1) != (PyCFunction)__pyx_pw_18MODIS_Raster_Funcs_12SynopticData_21MonthlyStatCalculator_7emitTotal)) {
+      __Pyx_XDECREF(__pyx_r);
+      __Pyx_INCREF(__pyx_t_1);
+      __pyx_t_3 = __pyx_t_1; __pyx_t_4 = NULL;
+      if (CYTHON_COMPILING_IN_CPYTHON && unlikely(PyMethod_Check(__pyx_t_3))) {
+        __pyx_t_4 = PyMethod_GET_SELF(__pyx_t_3);
+        if (likely(__pyx_t_4)) {
+          PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_3);
+          __Pyx_INCREF(__pyx_t_4);
+          __Pyx_INCREF(function);
+          __Pyx_DECREF_SET(__pyx_t_3, function);
+        }
+      }
+      if (__pyx_t_4) {
+        __pyx_t_2 = __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_t_4); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 183; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+        __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+      } else {
+        __pyx_t_2 = __Pyx_PyObject_CallNoArg(__pyx_t_3); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 183; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      }
+      __Pyx_GOTREF(__pyx_t_2);
+      __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+      __pyx_r = __pyx_t_2;
+      __pyx_t_2 = 0;
+      __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+      goto __pyx_L0;
+    }
+    __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+  }
+
+  /* "MODIS_Raster_Funcs\SynopticData.pyx":188
+ *             double variance
+ *             Py_ssize_t x, y
+ *         with nogil, cython.wraparound(False), parallel(num_threads=6):             # <<<<<<<<<<<<<<
+ *             for y in prange(self.height, schedule='static'):
+ *                 x = -1
+ */
+  {
+      #ifdef WITH_THREAD
+      PyThreadState *_save;
+      Py_UNBLOCK_THREADS
+      #endif
+      /*try:*/ {
+        {
+            const char *__pyx_parallel_filename = NULL; int __pyx_parallel_lineno = 0, __pyx_parallel_clineno = 0;
+            PyObject *__pyx_parallel_exc_type = NULL, *__pyx_parallel_exc_value = NULL, *__pyx_parallel_exc_tb = NULL;
+            int __pyx_parallel_why;
+            __pyx_parallel_why = 0;
+            #if ((defined(__APPLE__) || defined(__OSX__)) && (defined(__GNUC__) && (__GNUC__ > 2 || (__GNUC__ == 2 && (__GNUC_MINOR__ > 95)))))
+                #undef likely
+                #undef unlikely
+                #define likely(x)   (x)
+                #define unlikely(x) (x)
+            #endif
+            #ifdef _OPENMP
+            #pragma omp parallel  private(__pyx_t_16, __pyx_t_17, __pyx_t_8, __pyx_t_15, __pyx_t_12, __pyx_t_9, __pyx_t_6, __pyx_t_14, __pyx_t_10, __pyx_t_13, __pyx_t_11, __pyx_t_5, __pyx_t_7, __pyx_t_18) private(__pyx_filename, __pyx_lineno, __pyx_clineno) shared(__pyx_parallel_why, __pyx_parallel_exc_type, __pyx_parallel_exc_value, __pyx_parallel_exc_tb) num_threads(6)
+            #endif /* _OPENMP */
+            {
+                #ifdef _OPENMP
+                #ifdef WITH_THREAD
+                PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
+                #endif
+                Py_BEGIN_ALLOW_THREADS
+                #endif /* _OPENMP */
+
+                /* "MODIS_Raster_Funcs\SynopticData.pyx":189
+ *             Py_ssize_t x, y
+ *         with nogil, cython.wraparound(False), parallel(num_threads=6):
+ *             for y in prange(self.height, schedule='static'):             # <<<<<<<<<<<<<<
+ *                 x = -1
+ *                 for x in range(0, self.width):
+ */
+                __pyx_t_5 = __pyx_v_self->height;
+                if (1 == 0) abort();
+                {
+                    Py_ssize_t __pyx_parallel_temp0 = 0xbad0bad0;
+                    Py_ssize_t __pyx_parallel_temp1 = 0xbad0bad0;
+                    double __pyx_parallel_temp2 = __PYX_NAN();
+                    const char *__pyx_parallel_filename = NULL; int __pyx_parallel_lineno = 0, __pyx_parallel_clineno = 0;
+                    PyObject *__pyx_parallel_exc_type = NULL, *__pyx_parallel_exc_value = NULL, *__pyx_parallel_exc_tb = NULL;
+                    int __pyx_parallel_why;
+                    __pyx_parallel_why = 0;
+                    __pyx_t_7 = (__pyx_t_5 - 0) / 1;
+                    if (__pyx_t_7 > 0)
+                    {
+                        #ifdef _OPENMP
+                        #pragma omp for lastprivate(__pyx_v_x) firstprivate(__pyx_v_y) lastprivate(__pyx_v_y) lastprivate(__pyx_v_variance) schedule(static)
+                        #endif /* _OPENMP */
+                        for (__pyx_t_6 = 0; __pyx_t_6 < __pyx_t_7; __pyx_t_6++){
+                            if (__pyx_parallel_why < 2)
+                            {
+                                __pyx_v_y = 0 + 1 * __pyx_t_6;
+                                /* Initialize private variables to invalid values */
+                                __pyx_v_x = ((Py_ssize_t)0xbad0bad0);
+                                __pyx_v_variance = ((double)__PYX_NAN());
+
+                                /* "MODIS_Raster_Funcs\SynopticData.pyx":190
+ *         with nogil, cython.wraparound(False), parallel(num_threads=6):
+ *             for y in prange(self.height, schedule='static'):
+ *                 x = -1             # <<<<<<<<<<<<<<
+ *                 for x in range(0, self.width):
+ *                     if self.tot_n_Days[y, x] <= 1:
+ */
+                                __pyx_v_x = -1;
+
+                                /* "MODIS_Raster_Funcs\SynopticData.pyx":191
+ *             for y in prange(self.height, schedule='static'):
+ *                 x = -1
+ *                 for x in range(0, self.width):             # <<<<<<<<<<<<<<
+ *                     if self.tot_n_Days[y, x] <= 1:
+ *                         continue
+ */
+                                __pyx_t_8 = __pyx_v_self->width;
+                                for (__pyx_t_9 = 0; __pyx_t_9 < __pyx_t_8; __pyx_t_9+=1) {
+                                  __pyx_v_x = __pyx_t_9;
+
+                                  /* "MODIS_Raster_Funcs\SynopticData.pyx":192
+ *                 x = -1
+ *                 for x in range(0, self.width):
+ *                     if self.tot_n_Days[y, x] <= 1:             # <<<<<<<<<<<<<<
+ *                         continue
+ *                     variance = self.tot_newS_Days[y, x] / (self.tot_n_Days[y, x] - 1)
+ */
+                                  if (unlikely(!__pyx_v_self->tot_n_Days.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 192; __pyx_clineno = __LINE__; goto __pyx_L12_error;}}
+                                  __pyx_t_10 = __pyx_v_y;
+                                  __pyx_t_11 = __pyx_v_x;
+                                  __pyx_t_12 = (((*((short *) ( /* dim=1 */ ((char *) (((short *) ( /* dim=0 */ (__pyx_v_self->tot_n_Days.data + __pyx_t_10 * __pyx_v_self->tot_n_Days.strides[0]) )) + __pyx_t_11)) ))) <= 1) != 0);
+                                  if (__pyx_t_12) {
+
+                                    /* "MODIS_Raster_Funcs\SynopticData.pyx":193
+ *                 for x in range(0, self.width):
+ *                     if self.tot_n_Days[y, x] <= 1:
+ *                         continue             # <<<<<<<<<<<<<<
+ *                     variance = self.tot_newS_Days[y, x] / (self.tot_n_Days[y, x] - 1)
+ *                     self.tot_newS_Days[y, x] = sqrt(variance)
+ */
+                                    goto __pyx_L14_continue;
+                                  }
+
+                                  /* "MODIS_Raster_Funcs\SynopticData.pyx":194
+ *                     if self.tot_n_Days[y, x] <= 1:
+ *                         continue
+ *                     variance = self.tot_newS_Days[y, x] / (self.tot_n_Days[y, x] - 1)             # <<<<<<<<<<<<<<
+ *                     self.tot_newS_Days[y, x] = sqrt(variance)
+ *         return {
+ */
+                                  if (unlikely(!__pyx_v_self->tot_newS_Days.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 194; __pyx_clineno = __LINE__; goto __pyx_L12_error;}}
+                                  __pyx_t_13 = __pyx_v_y;
+                                  __pyx_t_14 = __pyx_v_x;
+                                  if (unlikely(!__pyx_v_self->tot_n_Days.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 194; __pyx_clineno = __LINE__; goto __pyx_L12_error;}}
+                                  __pyx_t_15 = __pyx_v_y;
+                                  __pyx_t_16 = __pyx_v_x;
+                                  __pyx_v_variance = ((*((double *) ( /* dim=1 */ ((char *) (((double *) ( /* dim=0 */ (__pyx_v_self->tot_newS_Days.data + __pyx_t_13 * __pyx_v_self->tot_newS_Days.strides[0]) )) + __pyx_t_14)) ))) / ((*((short *) ( /* dim=1 */ ((char *) (((short *) ( /* dim=0 */ (__pyx_v_self->tot_n_Days.data + __pyx_t_15 * __pyx_v_self->tot_n_Days.strides[0]) )) + __pyx_t_16)) ))) - 1));
+
+                                  /* "MODIS_Raster_Funcs\SynopticData.pyx":195
+ *                         continue
+ *                     variance = self.tot_newS_Days[y, x] / (self.tot_n_Days[y, x] - 1)
+ *                     self.tot_newS_Days[y, x] = sqrt(variance)             # <<<<<<<<<<<<<<
+ *         return {
+ *             "count": np.asarray(self.tot_n_Days),
+ */
+                                  if (unlikely(!__pyx_v_self->tot_newS_Days.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 195; __pyx_clineno = __LINE__; goto __pyx_L12_error;}}
+                                  __pyx_t_17 = __pyx_v_y;
+                                  __pyx_t_18 = __pyx_v_x;
+                                  *((double *) ( /* dim=1 */ ((char *) (((double *) ( /* dim=0 */ (__pyx_v_self->tot_newS_Days.data + __pyx_t_17 * __pyx_v_self->tot_newS_Days.strides[0]) )) + __pyx_t_18)) )) = sqrt(__pyx_v_variance);
+                                  __pyx_L14_continue:;
+                                }
+                                goto __pyx_L18;
+                                __pyx_L12_error:;
+                                {
+                                    #ifdef WITH_THREAD
+                                    PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
+                                    #endif
+                                    #ifdef _OPENMP
+                                    #pragma omp flush(__pyx_parallel_exc_type)
+                                    #endif /* _OPENMP */
+                                    if (!__pyx_parallel_exc_type) {
+                                      __Pyx_ErrFetch(&__pyx_parallel_exc_type, &__pyx_parallel_exc_value, &__pyx_parallel_exc_tb);
+                                      __pyx_parallel_filename = __pyx_filename; __pyx_parallel_lineno = __pyx_lineno; __pyx_parallel_clineno = __pyx_clineno;
+                                      __Pyx_GOTREF(__pyx_parallel_exc_type);
+                                    }
+                                    #ifdef WITH_THREAD
+                                    PyGILState_Release(__pyx_gilstate_save);
+                                    #endif
+                                }
+                                __pyx_parallel_why = 4;
+                                goto __pyx_L17;
+                                __pyx_L17:;
+                                #ifdef _OPENMP
+                                #pragma omp critical(__pyx_parallel_lastprivates2)
                                 #endif /* _OPENMP */
                                 {
                                     __pyx_parallel_temp0 = __pyx_v_x;
@@ -4057,7 +4621,7 @@ static PyObject *__pyx_f_18MODIS_Raster_Funcs_12SynopticData_21MonthlyStatCalcul
         #endif
       }
 
-      /* "MODIS_Raster_Funcs\SynopticData.pyx":124
+      /* "MODIS_Raster_Funcs\SynopticData.pyx":188
  *             double variance
  *             Py_ssize_t x, y
  *         with nogil, cython.wraparound(False), parallel(num_threads=6):             # <<<<<<<<<<<<<<
@@ -4087,611 +4651,7 @@ static PyObject *__pyx_f_18MODIS_Raster_Funcs_12SynopticData_21MonthlyStatCalcul
       }
   }
 
-  /* "MODIS_Raster_Funcs\SynopticData.pyx":132
- *                     variance = self.mth_newS[y, x] / (self.mth_n[y, x] - 1)
- *                     self.mth_newS[y, x] = sqrt(variance)
- *         self._startNewMonth = 1             # <<<<<<<<<<<<<<
- *         return {
- *             "count": np.asarray(self.mth_n),
- */
-  __pyx_v_self->_startNewMonth = 1;
-
-  /* "MODIS_Raster_Funcs\SynopticData.pyx":133
- *                     self.mth_newS[y, x] = sqrt(variance)
- *         self._startNewMonth = 1
- *         return {             # <<<<<<<<<<<<<<
- *             "count": np.asarray(self.mth_n),
- *             "mean": np.asarray(self.mth_newM).astype('float32'),
- */
-  __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = PyDict_New(); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 133; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __Pyx_GOTREF(__pyx_t_1);
-
-  /* "MODIS_Raster_Funcs\SynopticData.pyx":134
- *         self._startNewMonth = 1
- *         return {
- *             "count": np.asarray(self.mth_n),             # <<<<<<<<<<<<<<
- *             "mean": np.asarray(self.mth_newM).astype('float32'),
- *             "sd": np.asarray(self.mth_newS).astype('float32')
- */
-  __pyx_t_3 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 134; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_asarray); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 134; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __Pyx_GOTREF(__pyx_t_4);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (unlikely(!__pyx_v_self->mth_n.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 134; __pyx_clineno = __LINE__; goto __pyx_L1_error;}}
-  __pyx_t_3 = __pyx_memoryview_fromslice(__pyx_v_self->mth_n, 2, (PyObject *(*)(char *)) __pyx_memview_get_short, (int (*)(char *, PyObject *)) __pyx_memview_set_short, 0);; if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 134; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_19 = NULL;
-  if (CYTHON_COMPILING_IN_CPYTHON && unlikely(PyMethod_Check(__pyx_t_4))) {
-    __pyx_t_19 = PyMethod_GET_SELF(__pyx_t_4);
-    if (likely(__pyx_t_19)) {
-      PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_4);
-      __Pyx_INCREF(__pyx_t_19);
-      __Pyx_INCREF(function);
-      __Pyx_DECREF_SET(__pyx_t_4, function);
-    }
-  }
-  if (!__pyx_t_19) {
-    __pyx_t_2 = __Pyx_PyObject_CallOneArg(__pyx_t_4, __pyx_t_3); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 134; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-    __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-    __Pyx_GOTREF(__pyx_t_2);
-  } else {
-    __pyx_t_20 = PyTuple_New(1+1); if (unlikely(!__pyx_t_20)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 134; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-    __Pyx_GOTREF(__pyx_t_20);
-    PyTuple_SET_ITEM(__pyx_t_20, 0, __pyx_t_19); __Pyx_GIVEREF(__pyx_t_19); __pyx_t_19 = NULL;
-    PyTuple_SET_ITEM(__pyx_t_20, 0+1, __pyx_t_3);
-    __Pyx_GIVEREF(__pyx_t_3);
-    __pyx_t_3 = 0;
-    __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_4, __pyx_t_20, NULL); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 134; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-    __Pyx_GOTREF(__pyx_t_2);
-    __Pyx_DECREF(__pyx_t_20); __pyx_t_20 = 0;
-  }
-  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_count, __pyx_t_2) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 133; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "MODIS_Raster_Funcs\SynopticData.pyx":135
- *         return {
- *             "count": np.asarray(self.mth_n),
- *             "mean": np.asarray(self.mth_newM).astype('float32'),             # <<<<<<<<<<<<<<
- *             "sd": np.asarray(self.mth_newS).astype('float32')
- * 
- */
-  __pyx_t_4 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 135; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __Pyx_GOTREF(__pyx_t_4);
-  __pyx_t_20 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_n_s_asarray); if (unlikely(!__pyx_t_20)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 135; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __Pyx_GOTREF(__pyx_t_20);
-  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  if (unlikely(!__pyx_v_self->mth_newM.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 135; __pyx_clineno = __LINE__; goto __pyx_L1_error;}}
-  __pyx_t_4 = __pyx_memoryview_fromslice(__pyx_v_self->mth_newM, 2, (PyObject *(*)(char *)) __pyx_memview_get_double, (int (*)(char *, PyObject *)) __pyx_memview_set_double, 0);; if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 135; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __Pyx_GOTREF(__pyx_t_4);
-  __pyx_t_3 = NULL;
-  if (CYTHON_COMPILING_IN_CPYTHON && unlikely(PyMethod_Check(__pyx_t_20))) {
-    __pyx_t_3 = PyMethod_GET_SELF(__pyx_t_20);
-    if (likely(__pyx_t_3)) {
-      PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_20);
-      __Pyx_INCREF(__pyx_t_3);
-      __Pyx_INCREF(function);
-      __Pyx_DECREF_SET(__pyx_t_20, function);
-    }
-  }
-  if (!__pyx_t_3) {
-    __pyx_t_2 = __Pyx_PyObject_CallOneArg(__pyx_t_20, __pyx_t_4); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 135; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-    __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-    __Pyx_GOTREF(__pyx_t_2);
-  } else {
-    __pyx_t_19 = PyTuple_New(1+1); if (unlikely(!__pyx_t_19)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 135; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-    __Pyx_GOTREF(__pyx_t_19);
-    PyTuple_SET_ITEM(__pyx_t_19, 0, __pyx_t_3); __Pyx_GIVEREF(__pyx_t_3); __pyx_t_3 = NULL;
-    PyTuple_SET_ITEM(__pyx_t_19, 0+1, __pyx_t_4);
-    __Pyx_GIVEREF(__pyx_t_4);
-    __pyx_t_4 = 0;
-    __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_20, __pyx_t_19, NULL); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 135; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-    __Pyx_GOTREF(__pyx_t_2);
-    __Pyx_DECREF(__pyx_t_19); __pyx_t_19 = 0;
-  }
-  __Pyx_DECREF(__pyx_t_20); __pyx_t_20 = 0;
-  __pyx_t_20 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_astype); if (unlikely(!__pyx_t_20)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 135; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __Pyx_GOTREF(__pyx_t_20);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_20, __pyx_tuple_, NULL); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 135; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_20); __pyx_t_20 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_mean, __pyx_t_2) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 133; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "MODIS_Raster_Funcs\SynopticData.pyx":136
- *             "count": np.asarray(self.mth_n),
- *             "mean": np.asarray(self.mth_newM).astype('float32'),
- *             "sd": np.asarray(self.mth_newS).astype('float32')             # <<<<<<<<<<<<<<
- * 
- *         }
- */
-  __pyx_t_20 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_20)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 136; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __Pyx_GOTREF(__pyx_t_20);
-  __pyx_t_19 = __Pyx_PyObject_GetAttrStr(__pyx_t_20, __pyx_n_s_asarray); if (unlikely(!__pyx_t_19)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 136; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __Pyx_GOTREF(__pyx_t_19);
-  __Pyx_DECREF(__pyx_t_20); __pyx_t_20 = 0;
-  if (unlikely(!__pyx_v_self->mth_newS.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 136; __pyx_clineno = __LINE__; goto __pyx_L1_error;}}
-  __pyx_t_20 = __pyx_memoryview_fromslice(__pyx_v_self->mth_newS, 2, (PyObject *(*)(char *)) __pyx_memview_get_double, (int (*)(char *, PyObject *)) __pyx_memview_set_double, 0);; if (unlikely(!__pyx_t_20)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 136; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __Pyx_GOTREF(__pyx_t_20);
-  __pyx_t_4 = NULL;
-  if (CYTHON_COMPILING_IN_CPYTHON && unlikely(PyMethod_Check(__pyx_t_19))) {
-    __pyx_t_4 = PyMethod_GET_SELF(__pyx_t_19);
-    if (likely(__pyx_t_4)) {
-      PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_19);
-      __Pyx_INCREF(__pyx_t_4);
-      __Pyx_INCREF(function);
-      __Pyx_DECREF_SET(__pyx_t_19, function);
-    }
-  }
-  if (!__pyx_t_4) {
-    __pyx_t_2 = __Pyx_PyObject_CallOneArg(__pyx_t_19, __pyx_t_20); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 136; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-    __Pyx_DECREF(__pyx_t_20); __pyx_t_20 = 0;
-    __Pyx_GOTREF(__pyx_t_2);
-  } else {
-    __pyx_t_3 = PyTuple_New(1+1); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 136; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-    __Pyx_GOTREF(__pyx_t_3);
-    PyTuple_SET_ITEM(__pyx_t_3, 0, __pyx_t_4); __Pyx_GIVEREF(__pyx_t_4); __pyx_t_4 = NULL;
-    PyTuple_SET_ITEM(__pyx_t_3, 0+1, __pyx_t_20);
-    __Pyx_GIVEREF(__pyx_t_20);
-    __pyx_t_20 = 0;
-    __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_19, __pyx_t_3, NULL); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 136; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-    __Pyx_GOTREF(__pyx_t_2);
-    __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  }
-  __Pyx_DECREF(__pyx_t_19); __pyx_t_19 = 0;
-  __pyx_t_19 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_astype); if (unlikely(!__pyx_t_19)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 136; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __Pyx_GOTREF(__pyx_t_19);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_19, __pyx_tuple__2, NULL); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 136; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_19); __pyx_t_19 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_sd, __pyx_t_2) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 133; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_r = __pyx_t_1;
-  __pyx_t_1 = 0;
-  goto __pyx_L0;
-
-  /* "MODIS_Raster_Funcs\SynopticData.pyx":120
- *     @cython.boundscheck(False)
- *     @cython.cdivision(True)
- *     cpdef emitMonth(self):             # <<<<<<<<<<<<<<
- *         cdef:
- *             double variance
- */
-
-  /* function exit code */
-  __pyx_L1_error:;
-  __Pyx_XDECREF(__pyx_t_1);
-  __Pyx_XDECREF(__pyx_t_2);
-  __Pyx_XDECREF(__pyx_t_3);
-  __Pyx_XDECREF(__pyx_t_4);
-  __Pyx_XDECREF(__pyx_t_19);
-  __Pyx_XDECREF(__pyx_t_20);
-  __Pyx_AddTraceback("MODIS_Raster_Funcs.SynopticData.MonthlyStatCalculator.emitMonth", __pyx_clineno, __pyx_lineno, __pyx_filename);
-  __pyx_r = 0;
-  __pyx_L0:;
-  __Pyx_XGIVEREF(__pyx_r);
-  __Pyx_RefNannyFinishContext();
-  return __pyx_r;
-}
-
-/* Python wrapper */
-static PyObject *__pyx_pw_18MODIS_Raster_Funcs_12SynopticData_21MonthlyStatCalculator_5emitMonth(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused); /*proto*/
-static PyObject *__pyx_pw_18MODIS_Raster_Funcs_12SynopticData_21MonthlyStatCalculator_5emitMonth(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused) {
-  PyObject *__pyx_r = 0;
-  __Pyx_RefNannyDeclarations
-  __Pyx_RefNannySetupContext("emitMonth (wrapper)", 0);
-  __pyx_r = __pyx_pf_18MODIS_Raster_Funcs_12SynopticData_21MonthlyStatCalculator_4emitMonth(((struct __pyx_obj_18MODIS_Raster_Funcs_12SynopticData_MonthlyStatCalculator *)__pyx_v_self));
-
-  /* function exit code */
-  __Pyx_RefNannyFinishContext();
-  return __pyx_r;
-}
-
-static PyObject *__pyx_pf_18MODIS_Raster_Funcs_12SynopticData_21MonthlyStatCalculator_4emitMonth(struct __pyx_obj_18MODIS_Raster_Funcs_12SynopticData_MonthlyStatCalculator *__pyx_v_self) {
-  PyObject *__pyx_r = NULL;
-  __Pyx_RefNannyDeclarations
-  PyObject *__pyx_t_1 = NULL;
-  int __pyx_lineno = 0;
-  const char *__pyx_filename = NULL;
-  int __pyx_clineno = 0;
-  __Pyx_RefNannySetupContext("emitMonth", 0);
-  __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __pyx_f_18MODIS_Raster_Funcs_12SynopticData_21MonthlyStatCalculator_emitMonth(__pyx_v_self, 1); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 120; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __Pyx_GOTREF(__pyx_t_1);
-  __pyx_r = __pyx_t_1;
-  __pyx_t_1 = 0;
-  goto __pyx_L0;
-
-  /* function exit code */
-  __pyx_L1_error:;
-  __Pyx_XDECREF(__pyx_t_1);
-  __Pyx_AddTraceback("MODIS_Raster_Funcs.SynopticData.MonthlyStatCalculator.emitMonth", __pyx_clineno, __pyx_lineno, __pyx_filename);
-  __pyx_r = NULL;
-  __pyx_L0:;
-  __Pyx_XGIVEREF(__pyx_r);
-  __Pyx_RefNannyFinishContext();
-  return __pyx_r;
-}
-
-/* "MODIS_Raster_Funcs\SynopticData.pyx":142
- *     @cython.boundscheck(False)
- *     @cython.cdivision(True)
- *     cpdef emitTotal(self):             # <<<<<<<<<<<<<<
- *         cdef:
- *             double variance
- */
-
-static PyObject *__pyx_pw_18MODIS_Raster_Funcs_12SynopticData_21MonthlyStatCalculator_7emitTotal(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused); /*proto*/
-static PyObject *__pyx_f_18MODIS_Raster_Funcs_12SynopticData_21MonthlyStatCalculator_emitTotal(struct __pyx_obj_18MODIS_Raster_Funcs_12SynopticData_MonthlyStatCalculator *__pyx_v_self, int __pyx_skip_dispatch) {
-  double __pyx_v_variance;
-  Py_ssize_t __pyx_v_x;
-  Py_ssize_t __pyx_v_y;
-  PyObject *__pyx_r = NULL;
-  __Pyx_RefNannyDeclarations
-  PyObject *__pyx_t_1 = NULL;
-  PyObject *__pyx_t_2 = NULL;
-  PyObject *__pyx_t_3 = NULL;
-  PyObject *__pyx_t_4 = NULL;
-  Py_ssize_t __pyx_t_5;
-  Py_ssize_t __pyx_t_6;
-  Py_ssize_t __pyx_t_7;
-  Py_ssize_t __pyx_t_8;
-  Py_ssize_t __pyx_t_9;
-  Py_ssize_t __pyx_t_10;
-  Py_ssize_t __pyx_t_11;
-  int __pyx_t_12;
-  Py_ssize_t __pyx_t_13;
-  Py_ssize_t __pyx_t_14;
-  Py_ssize_t __pyx_t_15;
-  Py_ssize_t __pyx_t_16;
-  Py_ssize_t __pyx_t_17;
-  Py_ssize_t __pyx_t_18;
-  PyObject *__pyx_t_19 = NULL;
-  PyObject *__pyx_t_20 = NULL;
-  int __pyx_lineno = 0;
-  const char *__pyx_filename = NULL;
-  int __pyx_clineno = 0;
-  __Pyx_RefNannySetupContext("emitTotal", 0);
-  /* Check if called by wrapper */
-  if (unlikely(__pyx_skip_dispatch)) ;
-  /* Check if overridden in Python */
-  else if (unlikely(Py_TYPE(((PyObject *)__pyx_v_self))->tp_dictoffset != 0)) {
-    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_emitTotal); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 142; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-    __Pyx_GOTREF(__pyx_t_1);
-    if (!PyCFunction_Check(__pyx_t_1) || (PyCFunction_GET_FUNCTION(__pyx_t_1) != (PyCFunction)__pyx_pw_18MODIS_Raster_Funcs_12SynopticData_21MonthlyStatCalculator_7emitTotal)) {
-      __Pyx_XDECREF(__pyx_r);
-      __Pyx_INCREF(__pyx_t_1);
-      __pyx_t_3 = __pyx_t_1; __pyx_t_4 = NULL;
-      if (CYTHON_COMPILING_IN_CPYTHON && unlikely(PyMethod_Check(__pyx_t_3))) {
-        __pyx_t_4 = PyMethod_GET_SELF(__pyx_t_3);
-        if (likely(__pyx_t_4)) {
-          PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_3);
-          __Pyx_INCREF(__pyx_t_4);
-          __Pyx_INCREF(function);
-          __Pyx_DECREF_SET(__pyx_t_3, function);
-        }
-      }
-      if (__pyx_t_4) {
-        __pyx_t_2 = __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_t_4); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 142; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-        __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-      } else {
-        __pyx_t_2 = __Pyx_PyObject_CallNoArg(__pyx_t_3); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 142; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-      }
-      __Pyx_GOTREF(__pyx_t_2);
-      __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-      __pyx_r = __pyx_t_2;
-      __pyx_t_2 = 0;
-      __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-      goto __pyx_L0;
-    }
-    __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  }
-
-  /* "MODIS_Raster_Funcs\SynopticData.pyx":146
- *             double variance
- *             Py_ssize_t x, y
- *         with nogil, cython.wraparound(False), parallel(num_threads=6):             # <<<<<<<<<<<<<<
- *             for y in prange(self.height, schedule='static'):
- *                 x = -1
- */
-  {
-      #ifdef WITH_THREAD
-      PyThreadState *_save;
-      Py_UNBLOCK_THREADS
-      #endif
-      /*try:*/ {
-        {
-            const char *__pyx_parallel_filename = NULL; int __pyx_parallel_lineno = 0, __pyx_parallel_clineno = 0;
-            PyObject *__pyx_parallel_exc_type = NULL, *__pyx_parallel_exc_value = NULL, *__pyx_parallel_exc_tb = NULL;
-            int __pyx_parallel_why;
-            __pyx_parallel_why = 0;
-            #if ((defined(__APPLE__) || defined(__OSX__)) && (defined(__GNUC__) && (__GNUC__ > 2 || (__GNUC__ == 2 && (__GNUC_MINOR__ > 95)))))
-                #undef likely
-                #undef unlikely
-                #define likely(x)   (x)
-                #define unlikely(x) (x)
-            #endif
-            #ifdef _OPENMP
-            #pragma omp parallel  private(__pyx_t_16, __pyx_t_17, __pyx_t_8, __pyx_t_15, __pyx_t_12, __pyx_t_9, __pyx_t_6, __pyx_t_14, __pyx_t_10, __pyx_t_13, __pyx_t_11, __pyx_t_5, __pyx_t_7, __pyx_t_18) private(__pyx_filename, __pyx_lineno, __pyx_clineno) shared(__pyx_parallel_why, __pyx_parallel_exc_type, __pyx_parallel_exc_value, __pyx_parallel_exc_tb) num_threads(6)
-            #endif /* _OPENMP */
-            {
-                #ifdef _OPENMP
-                #ifdef WITH_THREAD
-                PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
-                #endif
-                Py_BEGIN_ALLOW_THREADS
-                #endif /* _OPENMP */
-
-                /* "MODIS_Raster_Funcs\SynopticData.pyx":147
- *             Py_ssize_t x, y
- *         with nogil, cython.wraparound(False), parallel(num_threads=6):
- *             for y in prange(self.height, schedule='static'):             # <<<<<<<<<<<<<<
- *                 x = -1
- *                 for x in range(0, self.width):
- */
-                __pyx_t_5 = __pyx_v_self->height;
-                if (1 == 0) abort();
-                {
-                    Py_ssize_t __pyx_parallel_temp0 = 0xbad0bad0;
-                    double __pyx_parallel_temp1 = __PYX_NAN();
-                    Py_ssize_t __pyx_parallel_temp2 = 0xbad0bad0;
-                    const char *__pyx_parallel_filename = NULL; int __pyx_parallel_lineno = 0, __pyx_parallel_clineno = 0;
-                    PyObject *__pyx_parallel_exc_type = NULL, *__pyx_parallel_exc_value = NULL, *__pyx_parallel_exc_tb = NULL;
-                    int __pyx_parallel_why;
-                    __pyx_parallel_why = 0;
-                    __pyx_t_7 = (__pyx_t_5 - 0) / 1;
-                    if (__pyx_t_7 > 0)
-                    {
-                        #ifdef _OPENMP
-                        #pragma omp for firstprivate(__pyx_v_y) lastprivate(__pyx_v_y) lastprivate(__pyx_v_variance) lastprivate(__pyx_v_x) schedule(static)
-                        #endif /* _OPENMP */
-                        for (__pyx_t_6 = 0; __pyx_t_6 < __pyx_t_7; __pyx_t_6++){
-                            if (__pyx_parallel_why < 2)
-                            {
-                                __pyx_v_y = 0 + 1 * __pyx_t_6;
-                                /* Initialize private variables to invalid values */
-                                __pyx_v_variance = ((double)__PYX_NAN());
-                                __pyx_v_x = ((Py_ssize_t)0xbad0bad0);
-
-                                /* "MODIS_Raster_Funcs\SynopticData.pyx":148
- *         with nogil, cython.wraparound(False), parallel(num_threads=6):
- *             for y in prange(self.height, schedule='static'):
- *                 x = -1             # <<<<<<<<<<<<<<
- *                 for x in range(0, self.width):
- *                     if self.tot_n_Days[y, x] <= 1:
- */
-                                __pyx_v_x = -1;
-
-                                /* "MODIS_Raster_Funcs\SynopticData.pyx":149
- *             for y in prange(self.height, schedule='static'):
- *                 x = -1
- *                 for x in range(0, self.width):             # <<<<<<<<<<<<<<
- *                     if self.tot_n_Days[y, x] <= 1:
- *                         continue
- */
-                                __pyx_t_8 = __pyx_v_self->width;
-                                for (__pyx_t_9 = 0; __pyx_t_9 < __pyx_t_8; __pyx_t_9+=1) {
-                                  __pyx_v_x = __pyx_t_9;
-
-                                  /* "MODIS_Raster_Funcs\SynopticData.pyx":150
- *                 x = -1
- *                 for x in range(0, self.width):
- *                     if self.tot_n_Days[y, x] <= 1:             # <<<<<<<<<<<<<<
- *                         continue
- *                     variance = self.tot_newS_Days[y, x] / (self.tot_n_Days[y, x] - 1)
- */
-                                  if (unlikely(!__pyx_v_self->tot_n_Days.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 150; __pyx_clineno = __LINE__; goto __pyx_L12_error;}}
-                                  __pyx_t_10 = __pyx_v_y;
-                                  __pyx_t_11 = __pyx_v_x;
-                                  __pyx_t_12 = (((*((short *) ( /* dim=1 */ ((char *) (((short *) ( /* dim=0 */ (__pyx_v_self->tot_n_Days.data + __pyx_t_10 * __pyx_v_self->tot_n_Days.strides[0]) )) + __pyx_t_11)) ))) <= 1) != 0);
-                                  if (__pyx_t_12) {
-
-                                    /* "MODIS_Raster_Funcs\SynopticData.pyx":151
- *                 for x in range(0, self.width):
- *                     if self.tot_n_Days[y, x] <= 1:
- *                         continue             # <<<<<<<<<<<<<<
- *                     variance = self.tot_newS_Days[y, x] / (self.tot_n_Days[y, x] - 1)
- *                     self.tot_newS_Days[y, x] = sqrt(variance)
- */
-                                    goto __pyx_L14_continue;
-                                  }
-
-                                  /* "MODIS_Raster_Funcs\SynopticData.pyx":152
- *                     if self.tot_n_Days[y, x] <= 1:
- *                         continue
- *                     variance = self.tot_newS_Days[y, x] / (self.tot_n_Days[y, x] - 1)             # <<<<<<<<<<<<<<
- *                     self.tot_newS_Days[y, x] = sqrt(variance)
- *         return {
- */
-                                  if (unlikely(!__pyx_v_self->tot_newS_Days.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 152; __pyx_clineno = __LINE__; goto __pyx_L12_error;}}
-                                  __pyx_t_13 = __pyx_v_y;
-                                  __pyx_t_14 = __pyx_v_x;
-                                  if (unlikely(!__pyx_v_self->tot_n_Days.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 152; __pyx_clineno = __LINE__; goto __pyx_L12_error;}}
-                                  __pyx_t_15 = __pyx_v_y;
-                                  __pyx_t_16 = __pyx_v_x;
-                                  __pyx_v_variance = ((*((double *) ( /* dim=1 */ ((char *) (((double *) ( /* dim=0 */ (__pyx_v_self->tot_newS_Days.data + __pyx_t_13 * __pyx_v_self->tot_newS_Days.strides[0]) )) + __pyx_t_14)) ))) / ((*((short *) ( /* dim=1 */ ((char *) (((short *) ( /* dim=0 */ (__pyx_v_self->tot_n_Days.data + __pyx_t_15 * __pyx_v_self->tot_n_Days.strides[0]) )) + __pyx_t_16)) ))) - 1));
-
-                                  /* "MODIS_Raster_Funcs\SynopticData.pyx":153
- *                         continue
- *                     variance = self.tot_newS_Days[y, x] / (self.tot_n_Days[y, x] - 1)
- *                     self.tot_newS_Days[y, x] = sqrt(variance)             # <<<<<<<<<<<<<<
- *         return {
- *             "count": np.asarray(self.tot_n_Days),
- */
-                                  if (unlikely(!__pyx_v_self->tot_newS_Days.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 153; __pyx_clineno = __LINE__; goto __pyx_L12_error;}}
-                                  __pyx_t_17 = __pyx_v_y;
-                                  __pyx_t_18 = __pyx_v_x;
-                                  *((double *) ( /* dim=1 */ ((char *) (((double *) ( /* dim=0 */ (__pyx_v_self->tot_newS_Days.data + __pyx_t_17 * __pyx_v_self->tot_newS_Days.strides[0]) )) + __pyx_t_18)) )) = sqrt(__pyx_v_variance);
-                                  __pyx_L14_continue:;
-                                }
-                                goto __pyx_L18;
-                                __pyx_L12_error:;
-                                {
-                                    #ifdef WITH_THREAD
-                                    PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
-                                    #endif
-                                    #ifdef _OPENMP
-                                    #pragma omp flush(__pyx_parallel_exc_type)
-                                    #endif /* _OPENMP */
-                                    if (!__pyx_parallel_exc_type) {
-                                      __Pyx_ErrFetch(&__pyx_parallel_exc_type, &__pyx_parallel_exc_value, &__pyx_parallel_exc_tb);
-                                      __pyx_parallel_filename = __pyx_filename; __pyx_parallel_lineno = __pyx_lineno; __pyx_parallel_clineno = __pyx_clineno;
-                                      __Pyx_GOTREF(__pyx_parallel_exc_type);
-                                    }
-                                    #ifdef WITH_THREAD
-                                    PyGILState_Release(__pyx_gilstate_save);
-                                    #endif
-                                }
-                                __pyx_parallel_why = 4;
-                                goto __pyx_L17;
-                                __pyx_L17:;
-                                #ifdef _OPENMP
-                                #pragma omp critical(__pyx_parallel_lastprivates2)
-                                #endif /* _OPENMP */
-                                {
-                                    __pyx_parallel_temp0 = __pyx_v_y;
-                                    __pyx_parallel_temp1 = __pyx_v_variance;
-                                    __pyx_parallel_temp2 = __pyx_v_x;
-                                }
-                                __pyx_L18:;
-                                #ifdef _OPENMP
-                                #pragma omp flush(__pyx_parallel_why)
-                                #endif /* _OPENMP */
-                            }
-                        }
-                    }
-                    if (__pyx_parallel_exc_type) {
-                      /* This may have been overridden by a continue, break or return in another thread. Prefer the error. */
-                      __pyx_parallel_why = 4;
-                    }
-                    if (__pyx_parallel_why) {
-                      __pyx_v_y = __pyx_parallel_temp0;
-                      __pyx_v_variance = __pyx_parallel_temp1;
-                      __pyx_v_x = __pyx_parallel_temp2;
-                      switch (__pyx_parallel_why) {
-                            case 3: goto __pyx_L9_return;
-                            case 4:
-                        {
-                            #ifdef WITH_THREAD
-                            PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
-                            #endif
-                            __Pyx_GIVEREF(__pyx_parallel_exc_type);
-                            __Pyx_ErrRestore(__pyx_parallel_exc_type, __pyx_parallel_exc_value, __pyx_parallel_exc_tb);
-                            __pyx_filename = __pyx_parallel_filename; __pyx_lineno = __pyx_parallel_lineno; __pyx_clineno = __pyx_parallel_clineno;
-                            #ifdef WITH_THREAD
-                            PyGILState_Release(__pyx_gilstate_save);
-                            #endif
-                        }
-                        goto __pyx_L8_error;
-                      }
-                    }
-                }
-                goto __pyx_L20;
-                __pyx_L9_return:;
-                __pyx_parallel_why = 3;
-                goto __pyx_L20;
-                __pyx_L8_error:;
-                {
-                    #ifdef WITH_THREAD
-                    PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
-                    #endif
-                    #ifdef _OPENMP
-                    #pragma omp flush(__pyx_parallel_exc_type)
-                    #endif /* _OPENMP */
-                    if (!__pyx_parallel_exc_type) {
-                      __Pyx_ErrFetch(&__pyx_parallel_exc_type, &__pyx_parallel_exc_value, &__pyx_parallel_exc_tb);
-                      __pyx_parallel_filename = __pyx_filename; __pyx_parallel_lineno = __pyx_lineno; __pyx_parallel_clineno = __pyx_clineno;
-                      __Pyx_GOTREF(__pyx_parallel_exc_type);
-                    }
-                    #ifdef WITH_THREAD
-                    PyGILState_Release(__pyx_gilstate_save);
-                    #endif
-                }
-                __pyx_parallel_why = 4;
-                goto __pyx_L20;
-                __pyx_L20:;
-                #ifdef _OPENMP
-                Py_END_ALLOW_THREADS
-                #else
-{
-#ifdef WITH_THREAD
-                PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
-                #endif
-                #endif /* _OPENMP */
-                /* Clean up any temporaries */
-                #ifdef WITH_THREAD
-                PyGILState_Release(__pyx_gilstate_save);
-                #endif
-                #ifndef _OPENMP
-}
-#endif /* _OPENMP */
-            }
-            if (__pyx_parallel_exc_type) {
-              /* This may have been overridden by a continue, break or return in another thread. Prefer the error. */
-              __pyx_parallel_why = 4;
-            }
-            if (__pyx_parallel_why) {
-              switch (__pyx_parallel_why) {
-                    case 3: goto __pyx_L3_return;
-                    case 4:
-                {
-                    #ifdef WITH_THREAD
-                    PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
-                    #endif
-                    __Pyx_GIVEREF(__pyx_parallel_exc_type);
-                    __Pyx_ErrRestore(__pyx_parallel_exc_type, __pyx_parallel_exc_value, __pyx_parallel_exc_tb);
-                    __pyx_filename = __pyx_parallel_filename; __pyx_lineno = __pyx_parallel_lineno; __pyx_clineno = __pyx_parallel_clineno;
-                    #ifdef WITH_THREAD
-                    PyGILState_Release(__pyx_gilstate_save);
-                    #endif
-                }
-                goto __pyx_L4_error;
-              }
-            }
-        }
-        #if ((defined(__APPLE__) || defined(__OSX__)) && (defined(__GNUC__) && (__GNUC__ > 2 || (__GNUC__ == 2 && (__GNUC_MINOR__ > 95)))))
-            #undef likely
-            #undef unlikely
-            #define likely(x)   __builtin_expect(!!(x), 1)
-            #define unlikely(x) __builtin_expect(!!(x), 0)
-        #endif
-      }
-
-      /* "MODIS_Raster_Funcs\SynopticData.pyx":146
- *             double variance
- *             Py_ssize_t x, y
- *         with nogil, cython.wraparound(False), parallel(num_threads=6):             # <<<<<<<<<<<<<<
- *             for y in prange(self.height, schedule='static'):
- *                 x = -1
- */
-      /*finally:*/ {
-        /*normal exit:*/{
-          #ifdef WITH_THREAD
-          Py_BLOCK_THREADS
-          #endif
-          goto __pyx_L5;
-        }
-        __pyx_L3_return: {
-          #ifdef WITH_THREAD
-          Py_BLOCK_THREADS
-          #endif
-          goto __pyx_L0;
-        }
-        __pyx_L4_error: {
-          #ifdef WITH_THREAD
-          Py_BLOCK_THREADS
-          #endif
-          goto __pyx_L1_error;
-        }
-        __pyx_L5:;
-      }
-  }
-
-  /* "MODIS_Raster_Funcs\SynopticData.pyx":154
+  /* "MODIS_Raster_Funcs\SynopticData.pyx":196
  *                     variance = self.tot_newS_Days[y, x] / (self.tot_n_Days[y, x] - 1)
  *                     self.tot_newS_Days[y, x] = sqrt(variance)
  *         return {             # <<<<<<<<<<<<<<
@@ -4699,23 +4659,23 @@ static PyObject *__pyx_f_18MODIS_Raster_Funcs_12SynopticData_21MonthlyStatCalcul
  *             "mean": np.asarray(self.tot_newM_Days).astype('float32'),
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = PyDict_New(); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 154; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = PyDict_New(); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 196; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
 
-  /* "MODIS_Raster_Funcs\SynopticData.pyx":155
+  /* "MODIS_Raster_Funcs\SynopticData.pyx":197
  *                     self.tot_newS_Days[y, x] = sqrt(variance)
  *         return {
  *             "count": np.asarray(self.tot_n_Days),             # <<<<<<<<<<<<<<
  *             "mean": np.asarray(self.tot_newM_Days).astype('float32'),
  *             "sd": np.asarray(self.tot_newS_Days).astype('float32')
  */
-  __pyx_t_3 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 155; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_3 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 197; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_asarray); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 155; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_asarray); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 197; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (unlikely(!__pyx_v_self->tot_n_Days.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 155; __pyx_clineno = __LINE__; goto __pyx_L1_error;}}
-  __pyx_t_3 = __pyx_memoryview_fromslice(__pyx_v_self->tot_n_Days, 2, (PyObject *(*)(char *)) __pyx_memview_get_short, (int (*)(char *, PyObject *)) __pyx_memview_set_short, 0);; if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 155; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (unlikely(!__pyx_v_self->tot_n_Days.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 197; __pyx_clineno = __LINE__; goto __pyx_L1_error;}}
+  __pyx_t_3 = __pyx_memoryview_fromslice(__pyx_v_self->tot_n_Days, 2, (PyObject *(*)(char *)) __pyx_memview_get_short, (int (*)(char *, PyObject *)) __pyx_memview_set_short, 0);; if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 197; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_3);
   __pyx_t_19 = NULL;
   if (CYTHON_COMPILING_IN_CPYTHON && unlikely(PyMethod_Check(__pyx_t_4))) {
@@ -4728,38 +4688,38 @@ static PyObject *__pyx_f_18MODIS_Raster_Funcs_12SynopticData_21MonthlyStatCalcul
     }
   }
   if (!__pyx_t_19) {
-    __pyx_t_2 = __Pyx_PyObject_CallOneArg(__pyx_t_4, __pyx_t_3); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 155; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_2 = __Pyx_PyObject_CallOneArg(__pyx_t_4, __pyx_t_3); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 197; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
     __Pyx_GOTREF(__pyx_t_2);
   } else {
-    __pyx_t_20 = PyTuple_New(1+1); if (unlikely(!__pyx_t_20)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 155; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_20 = PyTuple_New(1+1); if (unlikely(!__pyx_t_20)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 197; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_20);
     PyTuple_SET_ITEM(__pyx_t_20, 0, __pyx_t_19); __Pyx_GIVEREF(__pyx_t_19); __pyx_t_19 = NULL;
     PyTuple_SET_ITEM(__pyx_t_20, 0+1, __pyx_t_3);
     __Pyx_GIVEREF(__pyx_t_3);
     __pyx_t_3 = 0;
-    __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_4, __pyx_t_20, NULL); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 155; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_4, __pyx_t_20, NULL); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 197; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_2);
     __Pyx_DECREF(__pyx_t_20); __pyx_t_20 = 0;
   }
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_count, __pyx_t_2) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 154; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_count, __pyx_t_2) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 196; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "MODIS_Raster_Funcs\SynopticData.pyx":156
+  /* "MODIS_Raster_Funcs\SynopticData.pyx":198
  *         return {
  *             "count": np.asarray(self.tot_n_Days),
  *             "mean": np.asarray(self.tot_newM_Days).astype('float32'),             # <<<<<<<<<<<<<<
  *             "sd": np.asarray(self.tot_newS_Days).astype('float32')
  *         }
  */
-  __pyx_t_4 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 156; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_4 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 198; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_4);
-  __pyx_t_20 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_n_s_asarray); if (unlikely(!__pyx_t_20)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 156; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_20 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_n_s_asarray); if (unlikely(!__pyx_t_20)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 198; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_20);
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  if (unlikely(!__pyx_v_self->tot_newM_Days.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 156; __pyx_clineno = __LINE__; goto __pyx_L1_error;}}
-  __pyx_t_4 = __pyx_memoryview_fromslice(__pyx_v_self->tot_newM_Days, 2, (PyObject *(*)(char *)) __pyx_memview_get_double, (int (*)(char *, PyObject *)) __pyx_memview_set_double, 0);; if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 156; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (unlikely(!__pyx_v_self->tot_newM_Days.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 198; __pyx_clineno = __LINE__; goto __pyx_L1_error;}}
+  __pyx_t_4 = __pyx_memoryview_fromslice(__pyx_v_self->tot_newM_Days, 2, (PyObject *(*)(char *)) __pyx_memview_get_double, (int (*)(char *, PyObject *)) __pyx_memview_set_double, 0);; if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 198; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_4);
   __pyx_t_3 = NULL;
   if (CYTHON_COMPILING_IN_CPYTHON && unlikely(PyMethod_Check(__pyx_t_20))) {
@@ -4772,44 +4732,44 @@ static PyObject *__pyx_f_18MODIS_Raster_Funcs_12SynopticData_21MonthlyStatCalcul
     }
   }
   if (!__pyx_t_3) {
-    __pyx_t_2 = __Pyx_PyObject_CallOneArg(__pyx_t_20, __pyx_t_4); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 156; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_2 = __Pyx_PyObject_CallOneArg(__pyx_t_20, __pyx_t_4); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 198; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
     __Pyx_GOTREF(__pyx_t_2);
   } else {
-    __pyx_t_19 = PyTuple_New(1+1); if (unlikely(!__pyx_t_19)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 156; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_19 = PyTuple_New(1+1); if (unlikely(!__pyx_t_19)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 198; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_19);
     PyTuple_SET_ITEM(__pyx_t_19, 0, __pyx_t_3); __Pyx_GIVEREF(__pyx_t_3); __pyx_t_3 = NULL;
     PyTuple_SET_ITEM(__pyx_t_19, 0+1, __pyx_t_4);
     __Pyx_GIVEREF(__pyx_t_4);
     __pyx_t_4 = 0;
-    __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_20, __pyx_t_19, NULL); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 156; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_20, __pyx_t_19, NULL); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 198; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_2);
     __Pyx_DECREF(__pyx_t_19); __pyx_t_19 = 0;
   }
   __Pyx_DECREF(__pyx_t_20); __pyx_t_20 = 0;
-  __pyx_t_20 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_astype); if (unlikely(!__pyx_t_20)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 156; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_20 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_astype); if (unlikely(!__pyx_t_20)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 198; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_20);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_20, __pyx_tuple__3, NULL); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 156; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_20, __pyx_tuple__3, NULL); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 198; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_20); __pyx_t_20 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_mean, __pyx_t_2) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 154; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_mean, __pyx_t_2) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 196; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "MODIS_Raster_Funcs\SynopticData.pyx":157
+  /* "MODIS_Raster_Funcs\SynopticData.pyx":199
  *             "count": np.asarray(self.tot_n_Days),
  *             "mean": np.asarray(self.tot_newM_Days).astype('float32'),
  *             "sd": np.asarray(self.tot_newS_Days).astype('float32')             # <<<<<<<<<<<<<<
  *         }
  * 
  */
-  __pyx_t_20 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_20)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 157; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_20 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_20)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 199; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_20);
-  __pyx_t_19 = __Pyx_PyObject_GetAttrStr(__pyx_t_20, __pyx_n_s_asarray); if (unlikely(!__pyx_t_19)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 157; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_19 = __Pyx_PyObject_GetAttrStr(__pyx_t_20, __pyx_n_s_asarray); if (unlikely(!__pyx_t_19)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 199; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_19);
   __Pyx_DECREF(__pyx_t_20); __pyx_t_20 = 0;
-  if (unlikely(!__pyx_v_self->tot_newS_Days.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 157; __pyx_clineno = __LINE__; goto __pyx_L1_error;}}
-  __pyx_t_20 = __pyx_memoryview_fromslice(__pyx_v_self->tot_newS_Days, 2, (PyObject *(*)(char *)) __pyx_memview_get_double, (int (*)(char *, PyObject *)) __pyx_memview_set_double, 0);; if (unlikely(!__pyx_t_20)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 157; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (unlikely(!__pyx_v_self->tot_newS_Days.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 199; __pyx_clineno = __LINE__; goto __pyx_L1_error;}}
+  __pyx_t_20 = __pyx_memoryview_fromslice(__pyx_v_self->tot_newS_Days, 2, (PyObject *(*)(char *)) __pyx_memview_get_double, (int (*)(char *, PyObject *)) __pyx_memview_set_double, 0);; if (unlikely(!__pyx_t_20)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 199; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_20);
   __pyx_t_4 = NULL;
   if (CYTHON_COMPILING_IN_CPYTHON && unlikely(PyMethod_Check(__pyx_t_19))) {
@@ -4822,39 +4782,39 @@ static PyObject *__pyx_f_18MODIS_Raster_Funcs_12SynopticData_21MonthlyStatCalcul
     }
   }
   if (!__pyx_t_4) {
-    __pyx_t_2 = __Pyx_PyObject_CallOneArg(__pyx_t_19, __pyx_t_20); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 157; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_2 = __Pyx_PyObject_CallOneArg(__pyx_t_19, __pyx_t_20); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 199; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_DECREF(__pyx_t_20); __pyx_t_20 = 0;
     __Pyx_GOTREF(__pyx_t_2);
   } else {
-    __pyx_t_3 = PyTuple_New(1+1); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 157; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_3 = PyTuple_New(1+1); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 199; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_3);
     PyTuple_SET_ITEM(__pyx_t_3, 0, __pyx_t_4); __Pyx_GIVEREF(__pyx_t_4); __pyx_t_4 = NULL;
     PyTuple_SET_ITEM(__pyx_t_3, 0+1, __pyx_t_20);
     __Pyx_GIVEREF(__pyx_t_20);
     __pyx_t_20 = 0;
-    __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_19, __pyx_t_3, NULL); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 157; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_19, __pyx_t_3, NULL); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 199; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_2);
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   }
   __Pyx_DECREF(__pyx_t_19); __pyx_t_19 = 0;
-  __pyx_t_19 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_astype); if (unlikely(!__pyx_t_19)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 157; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_19 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_astype); if (unlikely(!__pyx_t_19)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 199; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_19);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_19, __pyx_tuple__4, NULL); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 157; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_19, __pyx_tuple__4, NULL); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 199; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_19); __pyx_t_19 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_sd, __pyx_t_2) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 154; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_sd, __pyx_t_2) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 196; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "MODIS_Raster_Funcs\SynopticData.pyx":142
+  /* "MODIS_Raster_Funcs\SynopticData.pyx":183
  *     @cython.boundscheck(False)
  *     @cython.cdivision(True)
  *     cpdef emitTotal(self):             # <<<<<<<<<<<<<<
+ *         ''' Return the count, mean, and sd arrays accumulated *since the class was instantiated* '''
  *         cdef:
- *             double variance
  */
 
   /* function exit code */
@@ -4875,6 +4835,7 @@ static PyObject *__pyx_f_18MODIS_Raster_Funcs_12SynopticData_21MonthlyStatCalcul
 
 /* Python wrapper */
 static PyObject *__pyx_pw_18MODIS_Raster_Funcs_12SynopticData_21MonthlyStatCalculator_7emitTotal(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused); /*proto*/
+static char __pyx_doc_18MODIS_Raster_Funcs_12SynopticData_21MonthlyStatCalculator_6emitTotal[] = " Return the count, mean, and sd arrays accumulated *since the class was instantiated* ";
 static PyObject *__pyx_pw_18MODIS_Raster_Funcs_12SynopticData_21MonthlyStatCalculator_7emitTotal(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused) {
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
@@ -4895,7 +4856,7 @@ static PyObject *__pyx_pf_18MODIS_Raster_Funcs_12SynopticData_21MonthlyStatCalcu
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("emitTotal", 0);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __pyx_f_18MODIS_Raster_Funcs_12SynopticData_21MonthlyStatCalculator_emitTotal(__pyx_v_self, 1); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 142; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __pyx_f_18MODIS_Raster_Funcs_12SynopticData_21MonthlyStatCalculator_emitTotal(__pyx_v_self, 1); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 183; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -15608,9 +15569,9 @@ static void __pyx_tp_dealloc_18MODIS_Raster_Funcs_12SynopticData_MonthlyStatCalc
 }
 
 static PyMethodDef __pyx_methods_18MODIS_Raster_Funcs_12SynopticData_MonthlyStatCalculator[] = {
-  {"addFile", (PyCFunction)__pyx_pw_18MODIS_Raster_Funcs_12SynopticData_21MonthlyStatCalculator_3addFile, METH_VARARGS|METH_KEYWORDS, 0},
-  {"emitMonth", (PyCFunction)__pyx_pw_18MODIS_Raster_Funcs_12SynopticData_21MonthlyStatCalculator_5emitMonth, METH_NOARGS, 0},
-  {"emitTotal", (PyCFunction)__pyx_pw_18MODIS_Raster_Funcs_12SynopticData_21MonthlyStatCalculator_7emitTotal, METH_NOARGS, 0},
+  {"addFile", (PyCFunction)__pyx_pw_18MODIS_Raster_Funcs_12SynopticData_21MonthlyStatCalculator_3addFile, METH_VARARGS|METH_KEYWORDS, __pyx_doc_18MODIS_Raster_Funcs_12SynopticData_21MonthlyStatCalculator_2addFile},
+  {"emitMonth", (PyCFunction)__pyx_pw_18MODIS_Raster_Funcs_12SynopticData_21MonthlyStatCalculator_5emitMonth, METH_NOARGS, __pyx_doc_18MODIS_Raster_Funcs_12SynopticData_21MonthlyStatCalculator_4emitMonth},
+  {"emitTotal", (PyCFunction)__pyx_pw_18MODIS_Raster_Funcs_12SynopticData_21MonthlyStatCalculator_7emitTotal, METH_NOARGS, __pyx_doc_18MODIS_Raster_Funcs_12SynopticData_21MonthlyStatCalculator_6emitTotal},
   {0, 0, 0, 0}
 };
 
@@ -15639,7 +15600,7 @@ static PyTypeObject __pyx_type_18MODIS_Raster_Funcs_12SynopticData_MonthlyStatCa
   0, /*tp_setattro*/
   0, /*tp_as_buffer*/
   Py_TPFLAGS_DEFAULT|Py_TPFLAGS_HAVE_VERSION_TAG|Py_TPFLAGS_CHECKTYPES|Py_TPFLAGS_HAVE_NEWBUFFER|Py_TPFLAGS_BASETYPE, /*tp_flags*/
-  0, /*tp_doc*/
+  "Calculates a running mean, SD, and count of local values of a series of incoming arrays\n\n    For a given array shape, determined at initialisation, this class creates an array of the local\n    mean, SD, and count of the values in the incoming arrays, which will then be supplied sequentially.\n\n    The variance (and thus SD) are computed using the method of Donald Knuth which is robust against\n    numerical errors that can otherwise occur for large values with small differences.\n\n    Output arrays are generated simultaneously for both all data received, and for all data\n    received since the value of the \"month\" parameter changed. This enables the class to be\n    used to calculate monthly and overall statistics in a single pass.\n\n    The calculation is implemented in optimised multithreaded C code generated using Cython. By\n    default this will use 6 threads although this can be changed in the code.\n\n    This class has been used to generate \"synoptic\" outputs from the MODIS variables used in MAP\n    but of course can be used for any other suitable series of arrays where efficient flattening to\n    mean/sd/count is required.\n    ", /*tp_doc*/
   0, /*tp_traverse*/
   0, /*tp_clear*/
   0, /*tp_richcompare*/
@@ -16401,7 +16362,6 @@ static __Pyx_StringTabEntry __pyx_string_tab[] = {
   {&__pyx_n_s_mean, __pyx_k_mean, sizeof(__pyx_k_mean), 0, 0, 1, 1},
   {&__pyx_n_s_memview, __pyx_k_memview, sizeof(__pyx_k_memview), 0, 0, 1, 1},
   {&__pyx_n_s_mode, __pyx_k_mode, sizeof(__pyx_k_mode), 0, 0, 1, 1},
-  {&__pyx_n_s_month, __pyx_k_month, sizeof(__pyx_k_month), 0, 0, 1, 1},
   {&__pyx_n_s_name, __pyx_k_name, sizeof(__pyx_k_name), 0, 0, 1, 1},
   {&__pyx_n_s_name_2, __pyx_k_name_2, sizeof(__pyx_k_name_2), 0, 0, 1, 1},
   {&__pyx_n_s_ndim, __pyx_k_ndim, sizeof(__pyx_k_ndim), 0, 0, 1, 1},
@@ -16434,7 +16394,7 @@ static __Pyx_StringTabEntry __pyx_string_tab[] = {
   {0, 0, 0, 0, 0, 0, 0}
 };
 static int __Pyx_InitCachedBuiltins(void) {
-  __pyx_builtin_range = __Pyx_GetBuiltinName(__pyx_n_s_range); if (!__pyx_builtin_range) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 78; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_builtin_range = __Pyx_GetBuiltinName(__pyx_n_s_range); if (!__pyx_builtin_range) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 118; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __pyx_builtin_ValueError = __Pyx_GetBuiltinName(__pyx_n_s_ValueError); if (!__pyx_builtin_ValueError) {__pyx_filename = __pyx_f[1]; __pyx_lineno = 127; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __pyx_builtin_MemoryError = __Pyx_GetBuiltinName(__pyx_n_s_MemoryError); if (!__pyx_builtin_MemoryError) {__pyx_filename = __pyx_f[1]; __pyx_lineno = 142; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __pyx_builtin_enumerate = __Pyx_GetBuiltinName(__pyx_n_s_enumerate); if (!__pyx_builtin_enumerate) {__pyx_filename = __pyx_f[1]; __pyx_lineno = 145; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
@@ -16456,47 +16416,47 @@ static int __Pyx_InitCachedConstants(void) {
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("__Pyx_InitCachedConstants", 0);
 
-  /* "MODIS_Raster_Funcs\SynopticData.pyx":135
+  /* "MODIS_Raster_Funcs\SynopticData.pyx":176
  *         return {
  *             "count": np.asarray(self.mth_n),
  *             "mean": np.asarray(self.mth_newM).astype('float32'),             # <<<<<<<<<<<<<<
  *             "sd": np.asarray(self.mth_newS).astype('float32')
  * 
  */
-  __pyx_tuple_ = PyTuple_Pack(1, __pyx_n_s_float32); if (unlikely(!__pyx_tuple_)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 135; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_tuple_ = PyTuple_Pack(1, __pyx_n_s_float32); if (unlikely(!__pyx_tuple_)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 176; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_tuple_);
   __Pyx_GIVEREF(__pyx_tuple_);
 
-  /* "MODIS_Raster_Funcs\SynopticData.pyx":136
+  /* "MODIS_Raster_Funcs\SynopticData.pyx":177
  *             "count": np.asarray(self.mth_n),
  *             "mean": np.asarray(self.mth_newM).astype('float32'),
  *             "sd": np.asarray(self.mth_newS).astype('float32')             # <<<<<<<<<<<<<<
  * 
  *         }
  */
-  __pyx_tuple__2 = PyTuple_Pack(1, __pyx_n_s_float32); if (unlikely(!__pyx_tuple__2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 136; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_tuple__2 = PyTuple_Pack(1, __pyx_n_s_float32); if (unlikely(!__pyx_tuple__2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 177; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_tuple__2);
   __Pyx_GIVEREF(__pyx_tuple__2);
 
-  /* "MODIS_Raster_Funcs\SynopticData.pyx":156
+  /* "MODIS_Raster_Funcs\SynopticData.pyx":198
  *         return {
  *             "count": np.asarray(self.tot_n_Days),
  *             "mean": np.asarray(self.tot_newM_Days).astype('float32'),             # <<<<<<<<<<<<<<
  *             "sd": np.asarray(self.tot_newS_Days).astype('float32')
  *         }
  */
-  __pyx_tuple__3 = PyTuple_Pack(1, __pyx_n_s_float32); if (unlikely(!__pyx_tuple__3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 156; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_tuple__3 = PyTuple_Pack(1, __pyx_n_s_float32); if (unlikely(!__pyx_tuple__3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 198; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_tuple__3);
   __Pyx_GIVEREF(__pyx_tuple__3);
 
-  /* "MODIS_Raster_Funcs\SynopticData.pyx":157
+  /* "MODIS_Raster_Funcs\SynopticData.pyx":199
  *             "count": np.asarray(self.tot_n_Days),
  *             "mean": np.asarray(self.tot_newM_Days).astype('float32'),
  *             "sd": np.asarray(self.tot_newS_Days).astype('float32')             # <<<<<<<<<<<<<<
  *         }
  * 
  */
-  __pyx_tuple__4 = PyTuple_Pack(1, __pyx_n_s_float32); if (unlikely(!__pyx_tuple__4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 157; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_tuple__4 = PyTuple_Pack(1, __pyx_n_s_float32); if (unlikely(!__pyx_tuple__4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 199; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_tuple__4);
   __Pyx_GIVEREF(__pyx_tuple__4);
 
@@ -16785,7 +16745,7 @@ PyMODINIT_FUNC PyInit_SynopticData(void)
   /*--- Function export code ---*/
   /*--- Type init code ---*/
   __pyx_vtabptr_18MODIS_Raster_Funcs_12SynopticData_MonthlyStatCalculator = &__pyx_vtable_18MODIS_Raster_Funcs_12SynopticData_MonthlyStatCalculator;
-  __pyx_vtable_18MODIS_Raster_Funcs_12SynopticData_MonthlyStatCalculator.addFile = (PyObject *(*)(struct __pyx_obj_18MODIS_Raster_Funcs_12SynopticData_MonthlyStatCalculator *, __Pyx_memviewslice, unsigned char, float, int __pyx_skip_dispatch))__pyx_f_18MODIS_Raster_Funcs_12SynopticData_21MonthlyStatCalculator_addFile;
+  __pyx_vtable_18MODIS_Raster_Funcs_12SynopticData_MonthlyStatCalculator.addFile = (PyObject *(*)(struct __pyx_obj_18MODIS_Raster_Funcs_12SynopticData_MonthlyStatCalculator *, __Pyx_memviewslice, float, int __pyx_skip_dispatch))__pyx_f_18MODIS_Raster_Funcs_12SynopticData_21MonthlyStatCalculator_addFile;
   __pyx_vtable_18MODIS_Raster_Funcs_12SynopticData_MonthlyStatCalculator.emitMonth = (PyObject *(*)(struct __pyx_obj_18MODIS_Raster_Funcs_12SynopticData_MonthlyStatCalculator *, int __pyx_skip_dispatch))__pyx_f_18MODIS_Raster_Funcs_12SynopticData_21MonthlyStatCalculator_emitMonth;
   __pyx_vtable_18MODIS_Raster_Funcs_12SynopticData_MonthlyStatCalculator.emitTotal = (PyObject *(*)(struct __pyx_obj_18MODIS_Raster_Funcs_12SynopticData_MonthlyStatCalculator *, int __pyx_skip_dispatch))__pyx_f_18MODIS_Raster_Funcs_12SynopticData_21MonthlyStatCalculator_emitTotal;
   if (PyType_Ready(&__pyx_type_18MODIS_Raster_Funcs_12SynopticData_MonthlyStatCalculator) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 6; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
@@ -19081,122 +19041,6 @@ __pyx_fail:
     return result;
 }
 
-#define __PYX_VERIFY_RETURN_INT(target_type, func_type, func_value)       \
-    {                                                                     \
-        func_type value = func_value;                                     \
-        if (sizeof(target_type) < sizeof(func_type)) {                    \
-            if (unlikely(value != (func_type) (target_type) value)) {     \
-                func_type zero = 0;                                       \
-                if (is_unsigned && unlikely(value < zero))                \
-                    goto raise_neg_overflow;                              \
-                else                                                      \
-                    goto raise_overflow;                                  \
-            }                                                             \
-        }                                                                 \
-        return (target_type) value;                                       \
-    }
-
-#if CYTHON_COMPILING_IN_CPYTHON && PY_MAJOR_VERSION >= 3
- #if CYTHON_USE_PYLONG_INTERNALS
-  #include "longintrepr.h"
- #endif
-#endif
-
-static CYTHON_INLINE unsigned char __Pyx_PyInt_As_unsigned_char(PyObject *x) {
-    const unsigned char neg_one = (unsigned char) -1, const_zero = 0;
-    const int is_unsigned = neg_one > const_zero;
-#if PY_MAJOR_VERSION < 3
-    if (likely(PyInt_Check(x))) {
-        if (sizeof(unsigned char) < sizeof(long)) {
-            __PYX_VERIFY_RETURN_INT(unsigned char, long, PyInt_AS_LONG(x))
-        } else {
-            long val = PyInt_AS_LONG(x);
-            if (is_unsigned && unlikely(val < 0)) {
-                goto raise_neg_overflow;
-            }
-            return (unsigned char) val;
-        }
-    } else
-#endif
-    if (likely(PyLong_Check(x))) {
-        if (is_unsigned) {
-#if CYTHON_COMPILING_IN_CPYTHON && PY_MAJOR_VERSION >= 3
- #if CYTHON_USE_PYLONG_INTERNALS
-            switch (Py_SIZE(x)) {
-                case  0: return 0;
-                case  1: __PYX_VERIFY_RETURN_INT(unsigned char, digit, ((PyLongObject*)x)->ob_digit[0]);
-            }
- #endif
-#endif
-            if (unlikely(Py_SIZE(x) < 0)) {
-                goto raise_neg_overflow;
-            }
-            if (sizeof(unsigned char) <= sizeof(unsigned long)) {
-                __PYX_VERIFY_RETURN_INT(unsigned char, unsigned long, PyLong_AsUnsignedLong(x))
-            } else if (sizeof(unsigned char) <= sizeof(unsigned long long)) {
-                __PYX_VERIFY_RETURN_INT(unsigned char, unsigned long long, PyLong_AsUnsignedLongLong(x))
-            }
-        } else {
-#if CYTHON_COMPILING_IN_CPYTHON && PY_MAJOR_VERSION >= 3
- #if CYTHON_USE_PYLONG_INTERNALS
-            switch (Py_SIZE(x)) {
-                case  0: return 0;
-                case  1: __PYX_VERIFY_RETURN_INT(unsigned char,  digit, +(((PyLongObject*)x)->ob_digit[0]));
-                case -1: __PYX_VERIFY_RETURN_INT(unsigned char, sdigit, -(sdigit) ((PyLongObject*)x)->ob_digit[0]);
-            }
- #endif
-#endif
-            if (sizeof(unsigned char) <= sizeof(long)) {
-                __PYX_VERIFY_RETURN_INT(unsigned char, long, PyLong_AsLong(x))
-            } else if (sizeof(unsigned char) <= sizeof(long long)) {
-                __PYX_VERIFY_RETURN_INT(unsigned char, long long, PyLong_AsLongLong(x))
-            }
-        }
-        {
-#if CYTHON_COMPILING_IN_PYPY && !defined(_PyLong_AsByteArray)
-            PyErr_SetString(PyExc_RuntimeError,
-                            "_PyLong_AsByteArray() not available in PyPy, cannot convert large numbers");
-#else
-            unsigned char val;
-            PyObject *v = __Pyx_PyNumber_Int(x);
- #if PY_MAJOR_VERSION < 3
-            if (likely(v) && !PyLong_Check(v)) {
-                PyObject *tmp = v;
-                v = PyNumber_Long(tmp);
-                Py_DECREF(tmp);
-            }
- #endif
-            if (likely(v)) {
-                int one = 1; int is_little = (int)*(unsigned char *)&one;
-                unsigned char *bytes = (unsigned char *)&val;
-                int ret = _PyLong_AsByteArray((PyLongObject *)v,
-                                              bytes, sizeof(val),
-                                              is_little, !is_unsigned);
-                Py_DECREF(v);
-                if (likely(!ret))
-                    return val;
-            }
-#endif
-            return (unsigned char) -1;
-        }
-    } else {
-        unsigned char val;
-        PyObject *tmp = __Pyx_PyNumber_Int(x);
-        if (!tmp) return (unsigned char) -1;
-        val = __Pyx_PyInt_As_unsigned_char(tmp);
-        Py_DECREF(tmp);
-        return val;
-    }
-raise_overflow:
-    PyErr_SetString(PyExc_OverflowError,
-        "value too large to convert to unsigned char");
-    return (unsigned char) -1;
-raise_neg_overflow:
-    PyErr_SetString(PyExc_OverflowError,
-        "can't convert negative value to unsigned char");
-    return (unsigned char) -1;
-}
-
 static PyObject *__pyx_memview_get_float(const char *itemp) {
     return (PyObject *) PyFloat_FromDouble(*(float *) itemp);
 }
@@ -19206,32 +19050,6 @@ static int __pyx_memview_set_float(const char *itemp, PyObject *obj) {
         return 0;
     *(float *) itemp = value;
     return 1;
-}
-
-static CYTHON_INLINE PyObject* __Pyx_PyInt_From_unsigned_char(unsigned char value) {
-    const unsigned char neg_one = (unsigned char) -1, const_zero = 0;
-    const int is_unsigned = neg_one > const_zero;
-    if (is_unsigned) {
-        if (sizeof(unsigned char) < sizeof(long)) {
-            return PyInt_FromLong((long) value);
-        } else if (sizeof(unsigned char) <= sizeof(unsigned long)) {
-            return PyLong_FromUnsignedLong((unsigned long) value);
-        } else if (sizeof(unsigned char) <= sizeof(unsigned long long)) {
-            return PyLong_FromUnsignedLongLong((unsigned long long) value);
-        }
-    } else {
-        if (sizeof(unsigned char) <= sizeof(long)) {
-            return PyInt_FromLong((long) value);
-        } else if (sizeof(unsigned char) <= sizeof(long long)) {
-            return PyLong_FromLongLong((long long) value);
-        }
-    }
-    {
-        int one = 1; int little = (int)*(unsigned char *)&one;
-        unsigned char *bytes = (unsigned char *)&value;
-        return _PyLong_FromByteArray(bytes, sizeof(unsigned char),
-                                     little, !is_unsigned);
-    }
 }
 
 static CYTHON_INLINE PyObject* __Pyx_PyInt_From_short(short value) {
@@ -19259,6 +19077,27 @@ static CYTHON_INLINE PyObject* __Pyx_PyInt_From_short(short value) {
                                      little, !is_unsigned);
     }
 }
+
+#define __PYX_VERIFY_RETURN_INT(target_type, func_type, func_value)       \
+    {                                                                     \
+        func_type value = func_value;                                     \
+        if (sizeof(target_type) < sizeof(func_type)) {                    \
+            if (unlikely(value != (func_type) (target_type) value)) {     \
+                func_type zero = 0;                                       \
+                if (is_unsigned && unlikely(value < zero))                \
+                    goto raise_neg_overflow;                              \
+                else                                                      \
+                    goto raise_overflow;                                  \
+            }                                                             \
+        }                                                                 \
+        return (target_type) value;                                       \
+    }
+
+#if CYTHON_COMPILING_IN_CPYTHON && PY_MAJOR_VERSION >= 3
+ #if CYTHON_USE_PYLONG_INTERNALS
+  #include "longintrepr.h"
+ #endif
+#endif
 
 static CYTHON_INLINE short __Pyx_PyInt_As_short(PyObject *x) {
     const short neg_one = (short) -1, const_zero = 0;

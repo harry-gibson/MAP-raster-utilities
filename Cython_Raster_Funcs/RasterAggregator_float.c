@@ -1388,7 +1388,7 @@ static PyObject *__pyx_tuple__14;
 static PyObject *__pyx_tuple__15;
 static PyObject *__pyx_tuple__16;
 
-/* "Cython_Raster_Funcs\RasterAggregator_float.pyx":55
+/* "Cython_Raster_Funcs\RasterAggregator_float.pyx":64
  *     @cython.cdivision(True)
  *     @cython.wraparound(False)
  *     def __cinit__(self, xSizeIn, ySizeIn, xSizeOut, ySizeOut, _NDV, minMaxRangeSumOnly):             # <<<<<<<<<<<<<<
@@ -1435,31 +1435,31 @@ static int __pyx_pw_19Cython_Raster_Funcs_22RasterAggregator_float_22RasterAggre
         case  1:
         if (likely((values[1] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_ySizeIn)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("__cinit__", 1, 6, 6, 1); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 55; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+          __Pyx_RaiseArgtupleInvalid("__cinit__", 1, 6, 6, 1); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 64; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
         }
         case  2:
         if (likely((values[2] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_xSizeOut)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("__cinit__", 1, 6, 6, 2); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 55; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+          __Pyx_RaiseArgtupleInvalid("__cinit__", 1, 6, 6, 2); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 64; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
         }
         case  3:
         if (likely((values[3] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_ySizeOut)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("__cinit__", 1, 6, 6, 3); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 55; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+          __Pyx_RaiseArgtupleInvalid("__cinit__", 1, 6, 6, 3); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 64; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
         }
         case  4:
         if (likely((values[4] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_NDV)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("__cinit__", 1, 6, 6, 4); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 55; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+          __Pyx_RaiseArgtupleInvalid("__cinit__", 1, 6, 6, 4); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 64; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
         }
         case  5:
         if (likely((values[5] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_minMaxRangeSumOnly)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("__cinit__", 1, 6, 6, 5); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 55; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+          __Pyx_RaiseArgtupleInvalid("__cinit__", 1, 6, 6, 5); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 64; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "__cinit__") < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 55; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "__cinit__") < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 64; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
       }
     } else if (PyTuple_GET_SIZE(__pyx_args) != 6) {
       goto __pyx_L5_argtuple_error;
@@ -1480,7 +1480,7 @@ static int __pyx_pw_19Cython_Raster_Funcs_22RasterAggregator_float_22RasterAggre
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("__cinit__", 1, 6, 6, PyTuple_GET_SIZE(__pyx_args)); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 55; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+  __Pyx_RaiseArgtupleInvalid("__cinit__", 1, 6, 6, PyTuple_GET_SIZE(__pyx_args)); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 64; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
   __pyx_L3_error:;
   __Pyx_AddTraceback("Cython_Raster_Funcs.RasterAggregator_float.RasterAggregator_float.__cinit__", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
@@ -1527,7 +1527,7 @@ static int __pyx_pf_19Cython_Raster_Funcs_22RasterAggregator_float_22RasterAggre
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__cinit__", 0);
 
-  /* "Cython_Raster_Funcs\RasterAggregator_float.pyx":66
+  /* "Cython_Raster_Funcs\RasterAggregator_float.pyx":75
  *             necessarily a multiple of ySizeIn)
  *         '''
  *         assert xSizeIn > xSizeOut             # <<<<<<<<<<<<<<
@@ -1536,17 +1536,17 @@ static int __pyx_pf_19Cython_Raster_Funcs_22RasterAggregator_float_22RasterAggre
  */
   #ifndef CYTHON_WITHOUT_ASSERTIONS
   if (unlikely(!Py_OptimizeFlag)) {
-    __pyx_t_1 = PyObject_RichCompare(__pyx_v_xSizeIn, __pyx_v_xSizeOut, Py_GT); __Pyx_XGOTREF(__pyx_t_1); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 66; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-    __pyx_t_2 = __Pyx_PyObject_IsTrue(__pyx_t_1); if (unlikely(__pyx_t_2 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 66; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_1 = PyObject_RichCompare(__pyx_v_xSizeIn, __pyx_v_xSizeOut, Py_GT); __Pyx_XGOTREF(__pyx_t_1); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 75; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_2 = __Pyx_PyObject_IsTrue(__pyx_t_1); if (unlikely(__pyx_t_2 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 75; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
     if (unlikely(!__pyx_t_2)) {
       PyErr_SetNone(PyExc_AssertionError);
-      {__pyx_filename = __pyx_f[0]; __pyx_lineno = 66; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      {__pyx_filename = __pyx_f[0]; __pyx_lineno = 75; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     }
   }
   #endif
 
-  /* "Cython_Raster_Funcs\RasterAggregator_float.pyx":67
+  /* "Cython_Raster_Funcs\RasterAggregator_float.pyx":76
  *         '''
  *         assert xSizeIn > xSizeOut
  *         assert ySizeIn > ySizeOut             # <<<<<<<<<<<<<<
@@ -1555,67 +1555,67 @@ static int __pyx_pf_19Cython_Raster_Funcs_22RasterAggregator_float_22RasterAggre
  */
   #ifndef CYTHON_WITHOUT_ASSERTIONS
   if (unlikely(!Py_OptimizeFlag)) {
-    __pyx_t_1 = PyObject_RichCompare(__pyx_v_ySizeIn, __pyx_v_ySizeOut, Py_GT); __Pyx_XGOTREF(__pyx_t_1); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 67; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-    __pyx_t_2 = __Pyx_PyObject_IsTrue(__pyx_t_1); if (unlikely(__pyx_t_2 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 67; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_1 = PyObject_RichCompare(__pyx_v_ySizeIn, __pyx_v_ySizeOut, Py_GT); __Pyx_XGOTREF(__pyx_t_1); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 76; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_2 = __Pyx_PyObject_IsTrue(__pyx_t_1); if (unlikely(__pyx_t_2 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 76; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
     if (unlikely(!__pyx_t_2)) {
       PyErr_SetNone(PyExc_AssertionError);
-      {__pyx_filename = __pyx_f[0]; __pyx_lineno = 67; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      {__pyx_filename = __pyx_f[0]; __pyx_lineno = 76; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     }
   }
   #endif
 
-  /* "Cython_Raster_Funcs\RasterAggregator_float.pyx":69
+  /* "Cython_Raster_Funcs\RasterAggregator_float.pyx":78
  *         assert ySizeIn > ySizeOut
  * 
  *         self.xShapeIn = xSizeIn             # <<<<<<<<<<<<<<
  *         self.yShapeIn = ySizeIn
  *         self.xShapeOut = xSizeOut
  */
-  __pyx_t_3 = __Pyx_PyIndex_AsSsize_t(__pyx_v_xSizeIn); if (unlikely((__pyx_t_3 == (Py_ssize_t)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 69; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_3 = __Pyx_PyIndex_AsSsize_t(__pyx_v_xSizeIn); if (unlikely((__pyx_t_3 == (Py_ssize_t)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 78; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __pyx_v_self->xShapeIn = __pyx_t_3;
 
-  /* "Cython_Raster_Funcs\RasterAggregator_float.pyx":70
+  /* "Cython_Raster_Funcs\RasterAggregator_float.pyx":79
  * 
  *         self.xShapeIn = xSizeIn
  *         self.yShapeIn = ySizeIn             # <<<<<<<<<<<<<<
  *         self.xShapeOut = xSizeOut
  *         self.yShapeOut = ySizeOut
  */
-  __pyx_t_3 = __Pyx_PyIndex_AsSsize_t(__pyx_v_ySizeIn); if (unlikely((__pyx_t_3 == (Py_ssize_t)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 70; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_3 = __Pyx_PyIndex_AsSsize_t(__pyx_v_ySizeIn); if (unlikely((__pyx_t_3 == (Py_ssize_t)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 79; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __pyx_v_self->yShapeIn = __pyx_t_3;
 
-  /* "Cython_Raster_Funcs\RasterAggregator_float.pyx":71
+  /* "Cython_Raster_Funcs\RasterAggregator_float.pyx":80
  *         self.xShapeIn = xSizeIn
  *         self.yShapeIn = ySizeIn
  *         self.xShapeOut = xSizeOut             # <<<<<<<<<<<<<<
  *         self.yShapeOut = ySizeOut
  * 
  */
-  __pyx_t_3 = __Pyx_PyIndex_AsSsize_t(__pyx_v_xSizeOut); if (unlikely((__pyx_t_3 == (Py_ssize_t)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 71; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_3 = __Pyx_PyIndex_AsSsize_t(__pyx_v_xSizeOut); if (unlikely((__pyx_t_3 == (Py_ssize_t)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 80; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __pyx_v_self->xShapeOut = __pyx_t_3;
 
-  /* "Cython_Raster_Funcs\RasterAggregator_float.pyx":72
+  /* "Cython_Raster_Funcs\RasterAggregator_float.pyx":81
  *         self.yShapeIn = ySizeIn
  *         self.xShapeOut = xSizeOut
  *         self.yShapeOut = ySizeOut             # <<<<<<<<<<<<<<
  * 
  *         self.minMaxRangeSumOnly = minMaxRangeSumOnly
  */
-  __pyx_t_3 = __Pyx_PyIndex_AsSsize_t(__pyx_v_ySizeOut); if (unlikely((__pyx_t_3 == (Py_ssize_t)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 72; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_3 = __Pyx_PyIndex_AsSsize_t(__pyx_v_ySizeOut); if (unlikely((__pyx_t_3 == (Py_ssize_t)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 81; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __pyx_v_self->yShapeOut = __pyx_t_3;
 
-  /* "Cython_Raster_Funcs\RasterAggregator_float.pyx":74
+  /* "Cython_Raster_Funcs\RasterAggregator_float.pyx":83
  *         self.yShapeOut = ySizeOut
  * 
  *         self.minMaxRangeSumOnly = minMaxRangeSumOnly             # <<<<<<<<<<<<<<
  * 
  *         self.xFact = <double>self.xShapeIn / self.xShapeOut
  */
-  __pyx_t_4 = __Pyx_PyInt_As_char(__pyx_v_minMaxRangeSumOnly); if (unlikely((__pyx_t_4 == (char)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 74; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_4 = __Pyx_PyInt_As_char(__pyx_v_minMaxRangeSumOnly); if (unlikely((__pyx_t_4 == (char)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 83; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __pyx_v_self->minMaxRangeSumOnly = __pyx_t_4;
 
-  /* "Cython_Raster_Funcs\RasterAggregator_float.pyx":76
+  /* "Cython_Raster_Funcs\RasterAggregator_float.pyx":85
  *         self.minMaxRangeSumOnly = minMaxRangeSumOnly
  * 
  *         self.xFact = <double>self.xShapeIn / self.xShapeOut             # <<<<<<<<<<<<<<
@@ -1624,7 +1624,7 @@ static int __pyx_pf_19Cython_Raster_Funcs_22RasterAggregator_float_22RasterAggre
  */
   __pyx_v_self->xFact = (((double)__pyx_v_self->xShapeIn) / __pyx_v_self->xShapeOut);
 
-  /* "Cython_Raster_Funcs\RasterAggregator_float.pyx":77
+  /* "Cython_Raster_Funcs\RasterAggregator_float.pyx":86
  * 
  *         self.xFact = <double>self.xShapeIn / self.xShapeOut
  *         self.yFact = <double>self.yShapeIn / self.yShapeOut             # <<<<<<<<<<<<<<
@@ -1633,31 +1633,31 @@ static int __pyx_pf_19Cython_Raster_Funcs_22RasterAggregator_float_22RasterAggre
  */
   __pyx_v_self->yFact = (((double)__pyx_v_self->yShapeIn) / __pyx_v_self->yShapeOut);
 
-  /* "Cython_Raster_Funcs\RasterAggregator_float.pyx":79
+  /* "Cython_Raster_Funcs\RasterAggregator_float.pyx":88
  *         self.yFact = <double>self.yShapeIn / self.yShapeOut
  * 
  *         self._NDV = _NDV             # <<<<<<<<<<<<<<
  * 
  *         # initialise the output arrays
  */
-  __pyx_t_5 = __pyx_PyFloat_AsFloat(__pyx_v__NDV); if (unlikely((__pyx_t_5 == (float)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 79; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_5 = __pyx_PyFloat_AsFloat(__pyx_v__NDV); if (unlikely((__pyx_t_5 == (float)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 88; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __pyx_v_self->_NDV = __pyx_t_5;
 
-  /* "Cython_Raster_Funcs\RasterAggregator_float.pyx":82
+  /* "Cython_Raster_Funcs\RasterAggregator_float.pyx":91
  * 
  *         # initialise the output arrays
  *         self.outputMinArr = np.zeros(shape=(ySizeOut, xSizeOut), dtype = np.float32)             # <<<<<<<<<<<<<<
  *         self.outputMaxArr = np.zeros(shape=(ySizeOut, xSizeOut), dtype = np.float32)
  *         self.outputSumArr = np.zeros(shape=(ySizeOut, xSizeOut), dtype = np.float32)
  */
-  __pyx_t_1 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 82; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 91; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_zeros); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 82; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_zeros); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 91; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_6);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_1 = PyDict_New(); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 82; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = PyDict_New(); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 91; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_7 = PyTuple_New(2); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 82; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_7 = PyTuple_New(2); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 91; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_7);
   __Pyx_INCREF(__pyx_v_ySizeOut);
   PyTuple_SET_ITEM(__pyx_t_7, 0, __pyx_v_ySizeOut);
@@ -1665,42 +1665,42 @@ static int __pyx_pf_19Cython_Raster_Funcs_22RasterAggregator_float_22RasterAggre
   __Pyx_INCREF(__pyx_v_xSizeOut);
   PyTuple_SET_ITEM(__pyx_t_7, 1, __pyx_v_xSizeOut);
   __Pyx_GIVEREF(__pyx_v_xSizeOut);
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_shape, __pyx_t_7) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 82; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_shape, __pyx_t_7) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 91; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
-  __pyx_t_7 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 82; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_7 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 91; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_7);
-  __pyx_t_8 = __Pyx_PyObject_GetAttrStr(__pyx_t_7, __pyx_n_s_float32); if (unlikely(!__pyx_t_8)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 82; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_8 = __Pyx_PyObject_GetAttrStr(__pyx_t_7, __pyx_n_s_float32); if (unlikely(!__pyx_t_8)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 91; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_8);
   __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_dtype, __pyx_t_8) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 82; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_dtype, __pyx_t_8) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 91; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
-  __pyx_t_8 = __Pyx_PyObject_Call(__pyx_t_6, __pyx_empty_tuple, __pyx_t_1); if (unlikely(!__pyx_t_8)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 82; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_8 = __Pyx_PyObject_Call(__pyx_t_6, __pyx_empty_tuple, __pyx_t_1); if (unlikely(!__pyx_t_8)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 91; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_8);
   __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_t_9 = __Pyx_PyObject_to_MemoryviewSlice_d_dc_float(__pyx_t_8);
-  if (unlikely(!__pyx_t_9.memview)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 82; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (unlikely(!__pyx_t_9.memview)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 91; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
   __PYX_XDEC_MEMVIEW(&__pyx_v_self->outputMinArr, 0);
   __pyx_v_self->outputMinArr = __pyx_t_9;
   __pyx_t_9.memview = NULL;
   __pyx_t_9.data = NULL;
 
-  /* "Cython_Raster_Funcs\RasterAggregator_float.pyx":83
+  /* "Cython_Raster_Funcs\RasterAggregator_float.pyx":92
  *         # initialise the output arrays
  *         self.outputMinArr = np.zeros(shape=(ySizeOut, xSizeOut), dtype = np.float32)
  *         self.outputMaxArr = np.zeros(shape=(ySizeOut, xSizeOut), dtype = np.float32)             # <<<<<<<<<<<<<<
  *         self.outputSumArr = np.zeros(shape=(ySizeOut, xSizeOut), dtype = np.float32)
  *         self.outputRangeArr = np.zeros(shape=(ySizeOut, xSizeOut), dtype = np.float32)
  */
-  __pyx_t_8 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_8)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 83; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_8 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_8)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 92; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_8);
-  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_t_8, __pyx_n_s_zeros); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 83; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_t_8, __pyx_n_s_zeros); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 92; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
-  __pyx_t_8 = PyDict_New(); if (unlikely(!__pyx_t_8)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 83; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_8 = PyDict_New(); if (unlikely(!__pyx_t_8)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 92; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_8);
-  __pyx_t_6 = PyTuple_New(2); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 83; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_6 = PyTuple_New(2); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 92; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_6);
   __Pyx_INCREF(__pyx_v_ySizeOut);
   PyTuple_SET_ITEM(__pyx_t_6, 0, __pyx_v_ySizeOut);
@@ -1708,42 +1708,42 @@ static int __pyx_pf_19Cython_Raster_Funcs_22RasterAggregator_float_22RasterAggre
   __Pyx_INCREF(__pyx_v_xSizeOut);
   PyTuple_SET_ITEM(__pyx_t_6, 1, __pyx_v_xSizeOut);
   __Pyx_GIVEREF(__pyx_v_xSizeOut);
-  if (PyDict_SetItem(__pyx_t_8, __pyx_n_s_shape, __pyx_t_6) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 83; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (PyDict_SetItem(__pyx_t_8, __pyx_n_s_shape, __pyx_t_6) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 92; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-  __pyx_t_6 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 83; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_6 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 92; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_6);
-  __pyx_t_7 = __Pyx_PyObject_GetAttrStr(__pyx_t_6, __pyx_n_s_float32); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 83; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_7 = __Pyx_PyObject_GetAttrStr(__pyx_t_6, __pyx_n_s_float32); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 92; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_7);
   __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-  if (PyDict_SetItem(__pyx_t_8, __pyx_n_s_dtype, __pyx_t_7) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 83; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (PyDict_SetItem(__pyx_t_8, __pyx_n_s_dtype, __pyx_t_7) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 92; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
-  __pyx_t_7 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_empty_tuple, __pyx_t_8); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 83; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_7 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_empty_tuple, __pyx_t_8); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 92; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_7);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
   __pyx_t_10 = __Pyx_PyObject_to_MemoryviewSlice_d_dc_float(__pyx_t_7);
-  if (unlikely(!__pyx_t_10.memview)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 83; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (unlikely(!__pyx_t_10.memview)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 92; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
   __PYX_XDEC_MEMVIEW(&__pyx_v_self->outputMaxArr, 0);
   __pyx_v_self->outputMaxArr = __pyx_t_10;
   __pyx_t_10.memview = NULL;
   __pyx_t_10.data = NULL;
 
-  /* "Cython_Raster_Funcs\RasterAggregator_float.pyx":84
+  /* "Cython_Raster_Funcs\RasterAggregator_float.pyx":93
  *         self.outputMinArr = np.zeros(shape=(ySizeOut, xSizeOut), dtype = np.float32)
  *         self.outputMaxArr = np.zeros(shape=(ySizeOut, xSizeOut), dtype = np.float32)
  *         self.outputSumArr = np.zeros(shape=(ySizeOut, xSizeOut), dtype = np.float32)             # <<<<<<<<<<<<<<
  *         self.outputRangeArr = np.zeros(shape=(ySizeOut, xSizeOut), dtype = np.float32)
  *         self.outputCountArr = np.zeros(shape=(ySizeOut, xSizeOut), dtype = np.int32)
  */
-  __pyx_t_7 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 84; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_7 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 93; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_7);
-  __pyx_t_8 = __Pyx_PyObject_GetAttrStr(__pyx_t_7, __pyx_n_s_zeros); if (unlikely(!__pyx_t_8)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 84; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_8 = __Pyx_PyObject_GetAttrStr(__pyx_t_7, __pyx_n_s_zeros); if (unlikely(!__pyx_t_8)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 93; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_8);
   __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
-  __pyx_t_7 = PyDict_New(); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 84; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_7 = PyDict_New(); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 93; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_7);
-  __pyx_t_1 = PyTuple_New(2); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 84; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = PyTuple_New(2); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 93; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_INCREF(__pyx_v_ySizeOut);
   PyTuple_SET_ITEM(__pyx_t_1, 0, __pyx_v_ySizeOut);
@@ -1751,42 +1751,42 @@ static int __pyx_pf_19Cython_Raster_Funcs_22RasterAggregator_float_22RasterAggre
   __Pyx_INCREF(__pyx_v_xSizeOut);
   PyTuple_SET_ITEM(__pyx_t_1, 1, __pyx_v_xSizeOut);
   __Pyx_GIVEREF(__pyx_v_xSizeOut);
-  if (PyDict_SetItem(__pyx_t_7, __pyx_n_s_shape, __pyx_t_1) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 84; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (PyDict_SetItem(__pyx_t_7, __pyx_n_s_shape, __pyx_t_1) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 93; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_1 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 84; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 93; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_float32); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 84; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_float32); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 93; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_6);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  if (PyDict_SetItem(__pyx_t_7, __pyx_n_s_dtype, __pyx_t_6) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 84; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (PyDict_SetItem(__pyx_t_7, __pyx_n_s_dtype, __pyx_t_6) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 93; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-  __pyx_t_6 = __Pyx_PyObject_Call(__pyx_t_8, __pyx_empty_tuple, __pyx_t_7); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 84; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_6 = __Pyx_PyObject_Call(__pyx_t_8, __pyx_empty_tuple, __pyx_t_7); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 93; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_6);
   __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
   __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
   __pyx_t_11 = __Pyx_PyObject_to_MemoryviewSlice_d_dc_float(__pyx_t_6);
-  if (unlikely(!__pyx_t_11.memview)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 84; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (unlikely(!__pyx_t_11.memview)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 93; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
   __PYX_XDEC_MEMVIEW(&__pyx_v_self->outputSumArr, 0);
   __pyx_v_self->outputSumArr = __pyx_t_11;
   __pyx_t_11.memview = NULL;
   __pyx_t_11.data = NULL;
 
-  /* "Cython_Raster_Funcs\RasterAggregator_float.pyx":85
+  /* "Cython_Raster_Funcs\RasterAggregator_float.pyx":94
  *         self.outputMaxArr = np.zeros(shape=(ySizeOut, xSizeOut), dtype = np.float32)
  *         self.outputSumArr = np.zeros(shape=(ySizeOut, xSizeOut), dtype = np.float32)
  *         self.outputRangeArr = np.zeros(shape=(ySizeOut, xSizeOut), dtype = np.float32)             # <<<<<<<<<<<<<<
  *         self.outputCountArr = np.zeros(shape=(ySizeOut, xSizeOut), dtype = np.int32)
  *         self.outputMinArr[:] = np.inf
  */
-  __pyx_t_6 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 85; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_6 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 94; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_6);
-  __pyx_t_7 = __Pyx_PyObject_GetAttrStr(__pyx_t_6, __pyx_n_s_zeros); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 85; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_7 = __Pyx_PyObject_GetAttrStr(__pyx_t_6, __pyx_n_s_zeros); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 94; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_7);
   __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-  __pyx_t_6 = PyDict_New(); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 85; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_6 = PyDict_New(); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 94; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_6);
-  __pyx_t_8 = PyTuple_New(2); if (unlikely(!__pyx_t_8)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 85; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_8 = PyTuple_New(2); if (unlikely(!__pyx_t_8)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 94; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_8);
   __Pyx_INCREF(__pyx_v_ySizeOut);
   PyTuple_SET_ITEM(__pyx_t_8, 0, __pyx_v_ySizeOut);
@@ -1794,42 +1794,42 @@ static int __pyx_pf_19Cython_Raster_Funcs_22RasterAggregator_float_22RasterAggre
   __Pyx_INCREF(__pyx_v_xSizeOut);
   PyTuple_SET_ITEM(__pyx_t_8, 1, __pyx_v_xSizeOut);
   __Pyx_GIVEREF(__pyx_v_xSizeOut);
-  if (PyDict_SetItem(__pyx_t_6, __pyx_n_s_shape, __pyx_t_8) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 85; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (PyDict_SetItem(__pyx_t_6, __pyx_n_s_shape, __pyx_t_8) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 94; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
-  __pyx_t_8 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_8)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 85; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_8 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_8)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 94; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_8);
-  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_t_8, __pyx_n_s_float32); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 85; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_t_8, __pyx_n_s_float32); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 94; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
-  if (PyDict_SetItem(__pyx_t_6, __pyx_n_s_dtype, __pyx_t_1) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 85; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (PyDict_SetItem(__pyx_t_6, __pyx_n_s_dtype, __pyx_t_1) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 94; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_7, __pyx_empty_tuple, __pyx_t_6); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 85; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_7, __pyx_empty_tuple, __pyx_t_6); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 94; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
   __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
   __pyx_t_12 = __Pyx_PyObject_to_MemoryviewSlice_d_dc_float(__pyx_t_1);
-  if (unlikely(!__pyx_t_12.memview)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 85; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (unlikely(!__pyx_t_12.memview)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 94; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __PYX_XDEC_MEMVIEW(&__pyx_v_self->outputRangeArr, 0);
   __pyx_v_self->outputRangeArr = __pyx_t_12;
   __pyx_t_12.memview = NULL;
   __pyx_t_12.data = NULL;
 
-  /* "Cython_Raster_Funcs\RasterAggregator_float.pyx":86
+  /* "Cython_Raster_Funcs\RasterAggregator_float.pyx":95
  *         self.outputSumArr = np.zeros(shape=(ySizeOut, xSizeOut), dtype = np.float32)
  *         self.outputRangeArr = np.zeros(shape=(ySizeOut, xSizeOut), dtype = np.float32)
  *         self.outputCountArr = np.zeros(shape=(ySizeOut, xSizeOut), dtype = np.int32)             # <<<<<<<<<<<<<<
  *         self.outputMinArr[:] = np.inf
  *         self.outputMaxArr[:] = -np.inf
  */
-  __pyx_t_1 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 86; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 95; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_zeros); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 86; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_zeros); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 95; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_6);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_1 = PyDict_New(); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 86; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = PyDict_New(); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 95; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_7 = PyTuple_New(2); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 86; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_7 = PyTuple_New(2); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 95; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_7);
   __Pyx_INCREF(__pyx_v_ySizeOut);
   PyTuple_SET_ITEM(__pyx_t_7, 0, __pyx_v_ySizeOut);
@@ -1837,42 +1837,42 @@ static int __pyx_pf_19Cython_Raster_Funcs_22RasterAggregator_float_22RasterAggre
   __Pyx_INCREF(__pyx_v_xSizeOut);
   PyTuple_SET_ITEM(__pyx_t_7, 1, __pyx_v_xSizeOut);
   __Pyx_GIVEREF(__pyx_v_xSizeOut);
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_shape, __pyx_t_7) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 86; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_shape, __pyx_t_7) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 95; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
-  __pyx_t_7 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 86; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_7 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 95; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_7);
-  __pyx_t_8 = __Pyx_PyObject_GetAttrStr(__pyx_t_7, __pyx_n_s_int32); if (unlikely(!__pyx_t_8)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 86; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_8 = __Pyx_PyObject_GetAttrStr(__pyx_t_7, __pyx_n_s_int32); if (unlikely(!__pyx_t_8)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 95; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_8);
   __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_dtype, __pyx_t_8) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 86; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_dtype, __pyx_t_8) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 95; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
-  __pyx_t_8 = __Pyx_PyObject_Call(__pyx_t_6, __pyx_empty_tuple, __pyx_t_1); if (unlikely(!__pyx_t_8)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 86; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_8 = __Pyx_PyObject_Call(__pyx_t_6, __pyx_empty_tuple, __pyx_t_1); if (unlikely(!__pyx_t_8)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 95; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_8);
   __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_t_13 = __Pyx_PyObject_to_MemoryviewSlice_d_dc_int(__pyx_t_8);
-  if (unlikely(!__pyx_t_13.memview)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 86; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (unlikely(!__pyx_t_13.memview)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 95; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
   __PYX_XDEC_MEMVIEW(&__pyx_v_self->outputCountArr, 0);
   __pyx_v_self->outputCountArr = __pyx_t_13;
   __pyx_t_13.memview = NULL;
   __pyx_t_13.data = NULL;
 
-  /* "Cython_Raster_Funcs\RasterAggregator_float.pyx":87
+  /* "Cython_Raster_Funcs\RasterAggregator_float.pyx":96
  *         self.outputRangeArr = np.zeros(shape=(ySizeOut, xSizeOut), dtype = np.float32)
  *         self.outputCountArr = np.zeros(shape=(ySizeOut, xSizeOut), dtype = np.int32)
  *         self.outputMinArr[:] = np.inf             # <<<<<<<<<<<<<<
  *         self.outputMaxArr[:] = -np.inf
  *         self._coverageArr = np.zeros(shape=(ySizeOut, xSizeOut), dtype = np.byte)
  */
-  __pyx_t_8 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_8)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 87; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_8 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_8)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 96; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_8);
-  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_t_8, __pyx_n_s_inf); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 87; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_t_8, __pyx_n_s_inf); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 96; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
-  __pyx_t_5 = __pyx_PyFloat_AsFloat(__pyx_t_1); if (unlikely((__pyx_t_5 == (float)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 87; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_5 = __pyx_PyFloat_AsFloat(__pyx_t_1); if (unlikely((__pyx_t_5 == (float)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 96; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  if (unlikely(!__pyx_v_self->outputMinArr.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 87; __pyx_clineno = __LINE__; goto __pyx_L1_error;}}
+  if (unlikely(!__pyx_v_self->outputMinArr.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 96; __pyx_clineno = __LINE__; goto __pyx_L1_error;}}
   __pyx_t_9 = __pyx_v_self->outputMinArr;
   __PYX_INC_MEMVIEW(&__pyx_t_9, 1);
   __pyx_t_15 = -1;
@@ -1902,24 +1902,24 @@ __PYX_XDEC_MEMVIEW(&__pyx_t_9, 1);
   }
   __PYX_XDEC_MEMVIEW(&__pyx_t_14, 1);
 
-  /* "Cython_Raster_Funcs\RasterAggregator_float.pyx":88
+  /* "Cython_Raster_Funcs\RasterAggregator_float.pyx":97
  *         self.outputCountArr = np.zeros(shape=(ySizeOut, xSizeOut), dtype = np.int32)
  *         self.outputMinArr[:] = np.inf
  *         self.outputMaxArr[:] = -np.inf             # <<<<<<<<<<<<<<
  *         self._coverageArr = np.zeros(shape=(ySizeOut, xSizeOut), dtype = np.byte)
  * 
  */
-  __pyx_t_1 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 88; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 97; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_8 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_inf); if (unlikely(!__pyx_t_8)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 88; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_8 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_inf); if (unlikely(!__pyx_t_8)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 97; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_8);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_1 = PyNumber_Negative(__pyx_t_8); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 88; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = PyNumber_Negative(__pyx_t_8); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 97; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
-  __pyx_t_5 = __pyx_PyFloat_AsFloat(__pyx_t_1); if (unlikely((__pyx_t_5 == (float)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 88; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_5 = __pyx_PyFloat_AsFloat(__pyx_t_1); if (unlikely((__pyx_t_5 == (float)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 97; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  if (unlikely(!__pyx_v_self->outputMaxArr.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 88; __pyx_clineno = __LINE__; goto __pyx_L1_error;}}
+  if (unlikely(!__pyx_v_self->outputMaxArr.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 97; __pyx_clineno = __LINE__; goto __pyx_L1_error;}}
   __pyx_t_10 = __pyx_v_self->outputMaxArr;
   __PYX_INC_MEMVIEW(&__pyx_t_10, 1);
   __pyx_t_15 = -1;
@@ -1949,21 +1949,21 @@ __PYX_XDEC_MEMVIEW(&__pyx_t_10, 1);
   }
   __PYX_XDEC_MEMVIEW(&__pyx_t_16, 1);
 
-  /* "Cython_Raster_Funcs\RasterAggregator_float.pyx":89
+  /* "Cython_Raster_Funcs\RasterAggregator_float.pyx":98
  *         self.outputMinArr[:] = np.inf
  *         self.outputMaxArr[:] = -np.inf
  *         self._coverageArr = np.zeros(shape=(ySizeOut, xSizeOut), dtype = np.byte)             # <<<<<<<<<<<<<<
  * 
  *         if not minMaxRangeSumOnly:
  */
-  __pyx_t_1 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 89; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 98; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_8 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_zeros); if (unlikely(!__pyx_t_8)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 89; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_8 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_zeros); if (unlikely(!__pyx_t_8)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 98; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_8);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_1 = PyDict_New(); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 89; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = PyDict_New(); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 98; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_6 = PyTuple_New(2); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 89; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_6 = PyTuple_New(2); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 98; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_6);
   __Pyx_INCREF(__pyx_v_ySizeOut);
   PyTuple_SET_ITEM(__pyx_t_6, 0, __pyx_v_ySizeOut);
@@ -1971,53 +1971,53 @@ __PYX_XDEC_MEMVIEW(&__pyx_t_10, 1);
   __Pyx_INCREF(__pyx_v_xSizeOut);
   PyTuple_SET_ITEM(__pyx_t_6, 1, __pyx_v_xSizeOut);
   __Pyx_GIVEREF(__pyx_v_xSizeOut);
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_shape, __pyx_t_6) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 89; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_shape, __pyx_t_6) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 98; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-  __pyx_t_6 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 89; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_6 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 98; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_6);
-  __pyx_t_7 = __Pyx_PyObject_GetAttrStr(__pyx_t_6, __pyx_n_s_byte); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 89; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_7 = __Pyx_PyObject_GetAttrStr(__pyx_t_6, __pyx_n_s_byte); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 98; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_7);
   __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_dtype, __pyx_t_7) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 89; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_dtype, __pyx_t_7) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 98; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
-  __pyx_t_7 = __Pyx_PyObject_Call(__pyx_t_8, __pyx_empty_tuple, __pyx_t_1); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 89; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_7 = __Pyx_PyObject_Call(__pyx_t_8, __pyx_empty_tuple, __pyx_t_1); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 98; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_7);
   __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_t_17 = __Pyx_PyObject_to_MemoryviewSlice_d_dc_char(__pyx_t_7);
-  if (unlikely(!__pyx_t_17.memview)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 89; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (unlikely(!__pyx_t_17.memview)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 98; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
   __PYX_XDEC_MEMVIEW(&__pyx_v_self->_coverageArr, 0);
   __pyx_v_self->_coverageArr = __pyx_t_17;
   __pyx_t_17.memview = NULL;
   __pyx_t_17.data = NULL;
 
-  /* "Cython_Raster_Funcs\RasterAggregator_float.pyx":91
+  /* "Cython_Raster_Funcs\RasterAggregator_float.pyx":100
  *         self._coverageArr = np.zeros(shape=(ySizeOut, xSizeOut), dtype = np.byte)
  * 
  *         if not minMaxRangeSumOnly:             # <<<<<<<<<<<<<<
  *             self.outputMeanArr = np.zeros(shape=(ySizeOut, xSizeOut), dtype = np.float32)
  *             self.outputSDArr = np.zeros(shape=(ySizeOut, xSizeOut), dtype = np.float32)
  */
-  __pyx_t_2 = __Pyx_PyObject_IsTrue(__pyx_v_minMaxRangeSumOnly); if (unlikely(__pyx_t_2 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 91; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_2 = __Pyx_PyObject_IsTrue(__pyx_v_minMaxRangeSumOnly); if (unlikely(__pyx_t_2 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 100; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __pyx_t_18 = ((!__pyx_t_2) != 0);
   if (__pyx_t_18) {
 
-    /* "Cython_Raster_Funcs\RasterAggregator_float.pyx":92
+    /* "Cython_Raster_Funcs\RasterAggregator_float.pyx":101
  * 
  *         if not minMaxRangeSumOnly:
  *             self.outputMeanArr = np.zeros(shape=(ySizeOut, xSizeOut), dtype = np.float32)             # <<<<<<<<<<<<<<
  *             self.outputSDArr = np.zeros(shape=(ySizeOut, xSizeOut), dtype = np.float32)
  * 
  */
-    __pyx_t_7 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 92; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_7 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 101; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_7);
-    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_t_7, __pyx_n_s_zeros); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 92; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_t_7, __pyx_n_s_zeros); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 101; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
-    __pyx_t_7 = PyDict_New(); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 92; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_7 = PyDict_New(); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 101; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_7);
-    __pyx_t_8 = PyTuple_New(2); if (unlikely(!__pyx_t_8)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 92; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_8 = PyTuple_New(2); if (unlikely(!__pyx_t_8)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 101; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_8);
     __Pyx_INCREF(__pyx_v_ySizeOut);
     PyTuple_SET_ITEM(__pyx_t_8, 0, __pyx_v_ySizeOut);
@@ -2025,42 +2025,42 @@ __PYX_XDEC_MEMVIEW(&__pyx_t_10, 1);
     __Pyx_INCREF(__pyx_v_xSizeOut);
     PyTuple_SET_ITEM(__pyx_t_8, 1, __pyx_v_xSizeOut);
     __Pyx_GIVEREF(__pyx_v_xSizeOut);
-    if (PyDict_SetItem(__pyx_t_7, __pyx_n_s_shape, __pyx_t_8) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 92; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    if (PyDict_SetItem(__pyx_t_7, __pyx_n_s_shape, __pyx_t_8) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 101; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
-    __pyx_t_8 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_8)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 92; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_8 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_8)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 101; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_8);
-    __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_t_8, __pyx_n_s_float32); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 92; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_t_8, __pyx_n_s_float32); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 101; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_6);
     __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
-    if (PyDict_SetItem(__pyx_t_7, __pyx_n_s_dtype, __pyx_t_6) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 92; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    if (PyDict_SetItem(__pyx_t_7, __pyx_n_s_dtype, __pyx_t_6) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 101; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-    __pyx_t_6 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_empty_tuple, __pyx_t_7); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 92; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_6 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_empty_tuple, __pyx_t_7); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 101; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_6);
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
     __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
     __pyx_t_19 = __Pyx_PyObject_to_MemoryviewSlice_d_dc_float(__pyx_t_6);
-    if (unlikely(!__pyx_t_19.memview)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 92; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    if (unlikely(!__pyx_t_19.memview)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 101; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
     __PYX_XDEC_MEMVIEW(&__pyx_v_self->outputMeanArr, 0);
     __pyx_v_self->outputMeanArr = __pyx_t_19;
     __pyx_t_19.memview = NULL;
     __pyx_t_19.data = NULL;
 
-    /* "Cython_Raster_Funcs\RasterAggregator_float.pyx":93
+    /* "Cython_Raster_Funcs\RasterAggregator_float.pyx":102
  *         if not minMaxRangeSumOnly:
  *             self.outputMeanArr = np.zeros(shape=(ySizeOut, xSizeOut), dtype = np.float32)
  *             self.outputSDArr = np.zeros(shape=(ySizeOut, xSizeOut), dtype = np.float32)             # <<<<<<<<<<<<<<
  * 
  *             self._oldSDArr = np.zeros(shape=(ySizeOut, xSizeOut), dtype = np.float32)
  */
-    __pyx_t_6 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 93; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_6 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 102; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_6);
-    __pyx_t_7 = __Pyx_PyObject_GetAttrStr(__pyx_t_6, __pyx_n_s_zeros); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 93; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_7 = __Pyx_PyObject_GetAttrStr(__pyx_t_6, __pyx_n_s_zeros); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 102; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_7);
     __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-    __pyx_t_6 = PyDict_New(); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 93; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_6 = PyDict_New(); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 102; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_6);
-    __pyx_t_1 = PyTuple_New(2); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 93; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_1 = PyTuple_New(2); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 102; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_INCREF(__pyx_v_ySizeOut);
     PyTuple_SET_ITEM(__pyx_t_1, 0, __pyx_v_ySizeOut);
@@ -2068,42 +2068,42 @@ __PYX_XDEC_MEMVIEW(&__pyx_t_10, 1);
     __Pyx_INCREF(__pyx_v_xSizeOut);
     PyTuple_SET_ITEM(__pyx_t_1, 1, __pyx_v_xSizeOut);
     __Pyx_GIVEREF(__pyx_v_xSizeOut);
-    if (PyDict_SetItem(__pyx_t_6, __pyx_n_s_shape, __pyx_t_1) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 93; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    if (PyDict_SetItem(__pyx_t_6, __pyx_n_s_shape, __pyx_t_1) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 102; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-    __pyx_t_1 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 93; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_1 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 102; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_1);
-    __pyx_t_8 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_float32); if (unlikely(!__pyx_t_8)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 93; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_8 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_float32); if (unlikely(!__pyx_t_8)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 102; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_8);
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-    if (PyDict_SetItem(__pyx_t_6, __pyx_n_s_dtype, __pyx_t_8) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 93; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    if (PyDict_SetItem(__pyx_t_6, __pyx_n_s_dtype, __pyx_t_8) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 102; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
-    __pyx_t_8 = __Pyx_PyObject_Call(__pyx_t_7, __pyx_empty_tuple, __pyx_t_6); if (unlikely(!__pyx_t_8)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 93; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_8 = __Pyx_PyObject_Call(__pyx_t_7, __pyx_empty_tuple, __pyx_t_6); if (unlikely(!__pyx_t_8)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 102; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_8);
     __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
     __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
     __pyx_t_20 = __Pyx_PyObject_to_MemoryviewSlice_d_dc_float(__pyx_t_8);
-    if (unlikely(!__pyx_t_20.memview)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 93; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    if (unlikely(!__pyx_t_20.memview)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 102; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
     __PYX_XDEC_MEMVIEW(&__pyx_v_self->outputSDArr, 0);
     __pyx_v_self->outputSDArr = __pyx_t_20;
     __pyx_t_20.memview = NULL;
     __pyx_t_20.data = NULL;
 
-    /* "Cython_Raster_Funcs\RasterAggregator_float.pyx":95
+    /* "Cython_Raster_Funcs\RasterAggregator_float.pyx":104
  *             self.outputSDArr = np.zeros(shape=(ySizeOut, xSizeOut), dtype = np.float32)
  * 
  *             self._oldSDArr = np.zeros(shape=(ySizeOut, xSizeOut), dtype = np.float32)             # <<<<<<<<<<<<<<
  *             self._oldMeanArr = np.zeros(shape=(ySizeOut, xSizeOut), dtype = np.float32)
  * 
  */
-    __pyx_t_8 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_8)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 95; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_8 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_8)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 104; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_8);
-    __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_t_8, __pyx_n_s_zeros); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 95; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_t_8, __pyx_n_s_zeros); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 104; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_6);
     __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
-    __pyx_t_8 = PyDict_New(); if (unlikely(!__pyx_t_8)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 95; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_8 = PyDict_New(); if (unlikely(!__pyx_t_8)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 104; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_8);
-    __pyx_t_7 = PyTuple_New(2); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 95; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_7 = PyTuple_New(2); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 104; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_7);
     __Pyx_INCREF(__pyx_v_ySizeOut);
     PyTuple_SET_ITEM(__pyx_t_7, 0, __pyx_v_ySizeOut);
@@ -2111,42 +2111,42 @@ __PYX_XDEC_MEMVIEW(&__pyx_t_10, 1);
     __Pyx_INCREF(__pyx_v_xSizeOut);
     PyTuple_SET_ITEM(__pyx_t_7, 1, __pyx_v_xSizeOut);
     __Pyx_GIVEREF(__pyx_v_xSizeOut);
-    if (PyDict_SetItem(__pyx_t_8, __pyx_n_s_shape, __pyx_t_7) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 95; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    if (PyDict_SetItem(__pyx_t_8, __pyx_n_s_shape, __pyx_t_7) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 104; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
-    __pyx_t_7 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 95; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_7 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 104; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_7);
-    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_t_7, __pyx_n_s_float32); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 95; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_t_7, __pyx_n_s_float32); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 104; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
-    if (PyDict_SetItem(__pyx_t_8, __pyx_n_s_dtype, __pyx_t_1) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 95; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    if (PyDict_SetItem(__pyx_t_8, __pyx_n_s_dtype, __pyx_t_1) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 104; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-    __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_6, __pyx_empty_tuple, __pyx_t_8); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 95; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_6, __pyx_empty_tuple, __pyx_t_8); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 104; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
     __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
     __pyx_t_21 = __Pyx_PyObject_to_MemoryviewSlice_d_dc_float(__pyx_t_1);
-    if (unlikely(!__pyx_t_21.memview)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 95; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    if (unlikely(!__pyx_t_21.memview)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 104; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
     __PYX_XDEC_MEMVIEW(&__pyx_v_self->_oldSDArr, 0);
     __pyx_v_self->_oldSDArr = __pyx_t_21;
     __pyx_t_21.memview = NULL;
     __pyx_t_21.data = NULL;
 
-    /* "Cython_Raster_Funcs\RasterAggregator_float.pyx":96
+    /* "Cython_Raster_Funcs\RasterAggregator_float.pyx":105
  * 
  *             self._oldSDArr = np.zeros(shape=(ySizeOut, xSizeOut), dtype = np.float32)
  *             self._oldMeanArr = np.zeros(shape=(ySizeOut, xSizeOut), dtype = np.float32)             # <<<<<<<<<<<<<<
  * 
  *             self.outputMeanArr[:] = _NDV
  */
-    __pyx_t_1 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 96; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_1 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 105; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_1);
-    __pyx_t_8 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_zeros); if (unlikely(!__pyx_t_8)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 96; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_8 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_zeros); if (unlikely(!__pyx_t_8)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 105; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_8);
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-    __pyx_t_1 = PyDict_New(); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 96; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_1 = PyDict_New(); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 105; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_1);
-    __pyx_t_6 = PyTuple_New(2); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 96; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_6 = PyTuple_New(2); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 105; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_6);
     __Pyx_INCREF(__pyx_v_ySizeOut);
     PyTuple_SET_ITEM(__pyx_t_6, 0, __pyx_v_ySizeOut);
@@ -2154,36 +2154,36 @@ __PYX_XDEC_MEMVIEW(&__pyx_t_10, 1);
     __Pyx_INCREF(__pyx_v_xSizeOut);
     PyTuple_SET_ITEM(__pyx_t_6, 1, __pyx_v_xSizeOut);
     __Pyx_GIVEREF(__pyx_v_xSizeOut);
-    if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_shape, __pyx_t_6) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 96; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_shape, __pyx_t_6) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 105; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-    __pyx_t_6 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 96; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_6 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 105; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_6);
-    __pyx_t_7 = __Pyx_PyObject_GetAttrStr(__pyx_t_6, __pyx_n_s_float32); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 96; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_7 = __Pyx_PyObject_GetAttrStr(__pyx_t_6, __pyx_n_s_float32); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 105; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_7);
     __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-    if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_dtype, __pyx_t_7) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 96; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_dtype, __pyx_t_7) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 105; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
-    __pyx_t_7 = __Pyx_PyObject_Call(__pyx_t_8, __pyx_empty_tuple, __pyx_t_1); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 96; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_7 = __Pyx_PyObject_Call(__pyx_t_8, __pyx_empty_tuple, __pyx_t_1); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 105; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_7);
     __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
     __pyx_t_22 = __Pyx_PyObject_to_MemoryviewSlice_d_dc_float(__pyx_t_7);
-    if (unlikely(!__pyx_t_22.memview)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 96; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    if (unlikely(!__pyx_t_22.memview)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 105; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
     __PYX_XDEC_MEMVIEW(&__pyx_v_self->_oldMeanArr, 0);
     __pyx_v_self->_oldMeanArr = __pyx_t_22;
     __pyx_t_22.memview = NULL;
     __pyx_t_22.data = NULL;
 
-    /* "Cython_Raster_Funcs\RasterAggregator_float.pyx":98
+    /* "Cython_Raster_Funcs\RasterAggregator_float.pyx":107
  *             self._oldMeanArr = np.zeros(shape=(ySizeOut, xSizeOut), dtype = np.float32)
  * 
  *             self.outputMeanArr[:] = _NDV             # <<<<<<<<<<<<<<
  *             self.outputSDArr[:] = _NDV
  * 
  */
-    __pyx_t_5 = __pyx_PyFloat_AsFloat(__pyx_v__NDV); if (unlikely((__pyx_t_5 == (float)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 98; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-    if (unlikely(!__pyx_v_self->outputMeanArr.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 98; __pyx_clineno = __LINE__; goto __pyx_L1_error;}}
+    __pyx_t_5 = __pyx_PyFloat_AsFloat(__pyx_v__NDV); if (unlikely((__pyx_t_5 == (float)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 107; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    if (unlikely(!__pyx_v_self->outputMeanArr.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 107; __pyx_clineno = __LINE__; goto __pyx_L1_error;}}
     __pyx_t_19 = __pyx_v_self->outputMeanArr;
     __PYX_INC_MEMVIEW(&__pyx_t_19, 1);
     __pyx_t_15 = -1;
@@ -2213,15 +2213,15 @@ __PYX_XDEC_MEMVIEW(&__pyx_t_19, 1);
     }
     __PYX_XDEC_MEMVIEW(&__pyx_t_23, 1);
 
-    /* "Cython_Raster_Funcs\RasterAggregator_float.pyx":99
+    /* "Cython_Raster_Funcs\RasterAggregator_float.pyx":108
  * 
  *             self.outputMeanArr[:] = _NDV
  *             self.outputSDArr[:] = _NDV             # <<<<<<<<<<<<<<
  * 
  *             self._oldMeanArr[:] = _NDV
  */
-    __pyx_t_5 = __pyx_PyFloat_AsFloat(__pyx_v__NDV); if (unlikely((__pyx_t_5 == (float)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 99; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-    if (unlikely(!__pyx_v_self->outputSDArr.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 99; __pyx_clineno = __LINE__; goto __pyx_L1_error;}}
+    __pyx_t_5 = __pyx_PyFloat_AsFloat(__pyx_v__NDV); if (unlikely((__pyx_t_5 == (float)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 108; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    if (unlikely(!__pyx_v_self->outputSDArr.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 108; __pyx_clineno = __LINE__; goto __pyx_L1_error;}}
     __pyx_t_20 = __pyx_v_self->outputSDArr;
     __PYX_INC_MEMVIEW(&__pyx_t_20, 1);
     __pyx_t_15 = -1;
@@ -2251,15 +2251,15 @@ __PYX_XDEC_MEMVIEW(&__pyx_t_20, 1);
     }
     __PYX_XDEC_MEMVIEW(&__pyx_t_24, 1);
 
-    /* "Cython_Raster_Funcs\RasterAggregator_float.pyx":101
+    /* "Cython_Raster_Funcs\RasterAggregator_float.pyx":110
  *             self.outputSDArr[:] = _NDV
  * 
  *             self._oldMeanArr[:] = _NDV             # <<<<<<<<<<<<<<
  *             self._oldSDArr[:] = _NDV
  * 
  */
-    __pyx_t_5 = __pyx_PyFloat_AsFloat(__pyx_v__NDV); if (unlikely((__pyx_t_5 == (float)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 101; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-    if (unlikely(!__pyx_v_self->_oldMeanArr.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 101; __pyx_clineno = __LINE__; goto __pyx_L1_error;}}
+    __pyx_t_5 = __pyx_PyFloat_AsFloat(__pyx_v__NDV); if (unlikely((__pyx_t_5 == (float)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 110; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    if (unlikely(!__pyx_v_self->_oldMeanArr.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 110; __pyx_clineno = __LINE__; goto __pyx_L1_error;}}
     __pyx_t_22 = __pyx_v_self->_oldMeanArr;
     __PYX_INC_MEMVIEW(&__pyx_t_22, 1);
     __pyx_t_15 = -1;
@@ -2289,15 +2289,15 @@ __PYX_XDEC_MEMVIEW(&__pyx_t_22, 1);
     }
     __PYX_XDEC_MEMVIEW(&__pyx_t_25, 1);
 
-    /* "Cython_Raster_Funcs\RasterAggregator_float.pyx":102
+    /* "Cython_Raster_Funcs\RasterAggregator_float.pyx":111
  * 
  *             self._oldMeanArr[:] = _NDV
  *             self._oldSDArr[:] = _NDV             # <<<<<<<<<<<<<<
  * 
  *     @cython.boundscheck(False)
  */
-    __pyx_t_5 = __pyx_PyFloat_AsFloat(__pyx_v__NDV); if (unlikely((__pyx_t_5 == (float)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 102; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-    if (unlikely(!__pyx_v_self->_oldSDArr.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 102; __pyx_clineno = __LINE__; goto __pyx_L1_error;}}
+    __pyx_t_5 = __pyx_PyFloat_AsFloat(__pyx_v__NDV); if (unlikely((__pyx_t_5 == (float)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 111; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    if (unlikely(!__pyx_v_self->_oldSDArr.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 111; __pyx_clineno = __LINE__; goto __pyx_L1_error;}}
     __pyx_t_21 = __pyx_v_self->_oldSDArr;
     __PYX_INC_MEMVIEW(&__pyx_t_21, 1);
     __pyx_t_15 = -1;
@@ -2330,7 +2330,7 @@ __PYX_XDEC_MEMVIEW(&__pyx_t_21, 1);
   }
   __pyx_L3:;
 
-  /* "Cython_Raster_Funcs\RasterAggregator_float.pyx":55
+  /* "Cython_Raster_Funcs\RasterAggregator_float.pyx":64
  *     @cython.cdivision(True)
  *     @cython.wraparound(False)
  *     def __cinit__(self, xSizeIn, ySizeIn, xSizeOut, ySizeOut, _NDV, minMaxRangeSumOnly):             # <<<<<<<<<<<<<<
@@ -2369,7 +2369,7 @@ __PYX_XDEC_MEMVIEW(&__pyx_t_21, 1);
   return __pyx_r;
 }
 
-/* "Cython_Raster_Funcs\RasterAggregator_float.pyx":107
+/* "Cython_Raster_Funcs\RasterAggregator_float.pyx":116
  *     @cython.cdivision(True)
  *     @cython.wraparound(False)
  *     cpdef addTile(self, float[:,::1] data, Py_ssize_t xOffset, Py_ssize_t yOffset):             # <<<<<<<<<<<<<<
@@ -2465,16 +2465,16 @@ static PyObject *__pyx_f_19Cython_Raster_Funcs_22RasterAggregator_float_22Raster
   if (unlikely(__pyx_skip_dispatch)) ;
   /* Check if overridden in Python */
   else if (unlikely(Py_TYPE(((PyObject *)__pyx_v_self))->tp_dictoffset != 0)) {
-    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_addTile); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 107; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_addTile); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 116; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_1);
     if (!PyCFunction_Check(__pyx_t_1) || (PyCFunction_GET_FUNCTION(__pyx_t_1) != (PyCFunction)__pyx_pw_19Cython_Raster_Funcs_22RasterAggregator_float_22RasterAggregator_float_3addTile)) {
       __Pyx_XDECREF(__pyx_r);
-      if (unlikely(!__pyx_v_data.memview)) { __Pyx_RaiseUnboundLocalError("data"); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 107; __pyx_clineno = __LINE__; goto __pyx_L1_error;} }
-      __pyx_t_3 = __pyx_memoryview_fromslice(__pyx_v_data, 2, (PyObject *(*)(char *)) __pyx_memview_get_float, (int (*)(char *, PyObject *)) __pyx_memview_set_float, 0);; if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 107; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      if (unlikely(!__pyx_v_data.memview)) { __Pyx_RaiseUnboundLocalError("data"); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 116; __pyx_clineno = __LINE__; goto __pyx_L1_error;} }
+      __pyx_t_3 = __pyx_memoryview_fromslice(__pyx_v_data, 2, (PyObject *(*)(char *)) __pyx_memview_get_float, (int (*)(char *, PyObject *)) __pyx_memview_set_float, 0);; if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 116; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_3);
-      __pyx_t_4 = PyInt_FromSsize_t(__pyx_v_xOffset); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 107; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_4 = PyInt_FromSsize_t(__pyx_v_xOffset); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 116; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_4);
-      __pyx_t_5 = PyInt_FromSsize_t(__pyx_v_yOffset); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 107; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_5 = PyInt_FromSsize_t(__pyx_v_yOffset); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 116; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_5);
       __Pyx_INCREF(__pyx_t_1);
       __pyx_t_6 = __pyx_t_1; __pyx_t_7 = NULL;
@@ -2489,7 +2489,7 @@ static PyObject *__pyx_f_19Cython_Raster_Funcs_22RasterAggregator_float_22Raster
           __pyx_t_8 = 1;
         }
       }
-      __pyx_t_9 = PyTuple_New(3+__pyx_t_8); if (unlikely(!__pyx_t_9)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 107; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_9 = PyTuple_New(3+__pyx_t_8); if (unlikely(!__pyx_t_9)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 116; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_9);
       if (__pyx_t_7) {
         PyTuple_SET_ITEM(__pyx_t_9, 0, __pyx_t_7); __Pyx_GIVEREF(__pyx_t_7); __pyx_t_7 = NULL;
@@ -2503,7 +2503,7 @@ static PyObject *__pyx_f_19Cython_Raster_Funcs_22RasterAggregator_float_22Raster
       __pyx_t_3 = 0;
       __pyx_t_4 = 0;
       __pyx_t_5 = 0;
-      __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_6, __pyx_t_9, NULL); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 107; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_6, __pyx_t_9, NULL); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 116; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_2);
       __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
       __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
@@ -2515,7 +2515,7 @@ static PyObject *__pyx_f_19Cython_Raster_Funcs_22RasterAggregator_float_22Raster
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   }
 
-  /* "Cython_Raster_Funcs\RasterAggregator_float.pyx":117
+  /* "Cython_Raster_Funcs\RasterAggregator_float.pyx":126
  *             float localValue
  *             Py_ssize_t xOut, yOut
  *         tileYShapeIn = data.shape[0]             # <<<<<<<<<<<<<<
@@ -2524,7 +2524,7 @@ static PyObject *__pyx_f_19Cython_Raster_Funcs_22RasterAggregator_float_22Raster
  */
   __pyx_v_tileYShapeIn = (__pyx_v_data.shape[0]);
 
-  /* "Cython_Raster_Funcs\RasterAggregator_float.pyx":118
+  /* "Cython_Raster_Funcs\RasterAggregator_float.pyx":127
  *             Py_ssize_t xOut, yOut
  *         tileYShapeIn = data.shape[0]
  *         tileXShapeIn = data.shape[1]             # <<<<<<<<<<<<<<
@@ -2533,7 +2533,7 @@ static PyObject *__pyx_f_19Cython_Raster_Funcs_22RasterAggregator_float_22Raster
  */
   __pyx_v_tileXShapeIn = (__pyx_v_data.shape[1]);
 
-  /* "Cython_Raster_Funcs\RasterAggregator_float.pyx":123
+  /* "Cython_Raster_Funcs\RasterAggregator_float.pyx":132
  *         # most of the work (checking and updating for max / min etc) would need
  *         # to lock the arrays anyway
  *         for yInTile in range(tileYShapeIn):             # <<<<<<<<<<<<<<
@@ -2544,7 +2544,7 @@ static PyObject *__pyx_f_19Cython_Raster_Funcs_22RasterAggregator_float_22Raster
   for (__pyx_t_10 = 0; __pyx_t_10 < __pyx_t_8; __pyx_t_10+=1) {
     __pyx_v_yInTile = __pyx_t_10;
 
-    /* "Cython_Raster_Funcs\RasterAggregator_float.pyx":124
+    /* "Cython_Raster_Funcs\RasterAggregator_float.pyx":133
  *         # to lock the arrays anyway
  *         for yInTile in range(tileYShapeIn):
  *             yInGlobal = yInTile + yOffset             # <<<<<<<<<<<<<<
@@ -2553,7 +2553,7 @@ static PyObject *__pyx_f_19Cython_Raster_Funcs_22RasterAggregator_float_22Raster
  */
     __pyx_v_yInGlobal = (__pyx_v_yInTile + __pyx_v_yOffset);
 
-    /* "Cython_Raster_Funcs\RasterAggregator_float.pyx":125
+    /* "Cython_Raster_Funcs\RasterAggregator_float.pyx":134
  *         for yInTile in range(tileYShapeIn):
  *             yInGlobal = yInTile + yOffset
  *             yAbove = yInGlobal - 1             # <<<<<<<<<<<<<<
@@ -2562,7 +2562,7 @@ static PyObject *__pyx_f_19Cython_Raster_Funcs_22RasterAggregator_float_22Raster
  */
     __pyx_v_yAbove = (__pyx_v_yInGlobal - 1);
 
-    /* "Cython_Raster_Funcs\RasterAggregator_float.pyx":126
+    /* "Cython_Raster_Funcs\RasterAggregator_float.pyx":135
  *             yInGlobal = yInTile + yOffset
  *             yAbove = yInGlobal - 1
  *             if yInGlobal == 0:             # <<<<<<<<<<<<<<
@@ -2572,7 +2572,7 @@ static PyObject *__pyx_f_19Cython_Raster_Funcs_22RasterAggregator_float_22Raster
     __pyx_t_11 = ((__pyx_v_yInGlobal == 0) != 0);
     if (__pyx_t_11) {
 
-      /* "Cython_Raster_Funcs\RasterAggregator_float.pyx":127
+      /* "Cython_Raster_Funcs\RasterAggregator_float.pyx":136
  *             yAbove = yInGlobal - 1
  *             if yInGlobal == 0:
  *                 yAbove = -1             # <<<<<<<<<<<<<<
@@ -2584,7 +2584,7 @@ static PyObject *__pyx_f_19Cython_Raster_Funcs_22RasterAggregator_float_22Raster
     }
     __pyx_L5:;
 
-    /* "Cython_Raster_Funcs\RasterAggregator_float.pyx":128
+    /* "Cython_Raster_Funcs\RasterAggregator_float.pyx":137
  *             if yInGlobal == 0:
  *                 yAbove = -1
  *             yBelow = yInGlobal+1             # <<<<<<<<<<<<<<
@@ -2593,7 +2593,7 @@ static PyObject *__pyx_f_19Cython_Raster_Funcs_22RasterAggregator_float_22Raster
  */
     __pyx_v_yBelow = (__pyx_v_yInGlobal + 1);
 
-    /* "Cython_Raster_Funcs\RasterAggregator_float.pyx":129
+    /* "Cython_Raster_Funcs\RasterAggregator_float.pyx":138
  *                 yAbove = -1
  *             yBelow = yInGlobal+1
  *             if yInGlobal == self.yShapeIn-1:             # <<<<<<<<<<<<<<
@@ -2603,7 +2603,7 @@ static PyObject *__pyx_f_19Cython_Raster_Funcs_22RasterAggregator_float_22Raster
     __pyx_t_11 = ((__pyx_v_yInGlobal == (__pyx_v_self->yShapeIn - 1)) != 0);
     if (__pyx_t_11) {
 
-      /* "Cython_Raster_Funcs\RasterAggregator_float.pyx":130
+      /* "Cython_Raster_Funcs\RasterAggregator_float.pyx":139
  *             yBelow = yInGlobal+1
  *             if yInGlobal == self.yShapeIn-1:
  *                 yBelow = -1             # <<<<<<<<<<<<<<
@@ -2615,7 +2615,7 @@ static PyObject *__pyx_f_19Cython_Raster_Funcs_22RasterAggregator_float_22Raster
     }
     __pyx_L6:;
 
-    /* "Cython_Raster_Funcs\RasterAggregator_float.pyx":131
+    /* "Cython_Raster_Funcs\RasterAggregator_float.pyx":140
  *             if yInGlobal == self.yShapeIn-1:
  *                 yBelow = -1
  *             yOut = <int> (yInGlobal / self.yFact)             # <<<<<<<<<<<<<<
@@ -2624,7 +2624,7 @@ static PyObject *__pyx_f_19Cython_Raster_Funcs_22RasterAggregator_float_22Raster
  */
     __pyx_v_yOut = ((int)(__pyx_v_yInGlobal / __pyx_v_self->yFact));
 
-    /* "Cython_Raster_Funcs\RasterAggregator_float.pyx":132
+    /* "Cython_Raster_Funcs\RasterAggregator_float.pyx":141
  *                 yBelow = -1
  *             yOut = <int> (yInGlobal / self.yFact)
  *             localValue=-1             # <<<<<<<<<<<<<<
@@ -2633,7 +2633,7 @@ static PyObject *__pyx_f_19Cython_Raster_Funcs_22RasterAggregator_float_22Raster
  */
     __pyx_v_localValue = -1.0;
 
-    /* "Cython_Raster_Funcs\RasterAggregator_float.pyx":133
+    /* "Cython_Raster_Funcs\RasterAggregator_float.pyx":142
  *             yOut = <int> (yInGlobal / self.yFact)
  *             localValue=-1
  *             xOut = -1             # <<<<<<<<<<<<<<
@@ -2642,7 +2642,7 @@ static PyObject *__pyx_f_19Cython_Raster_Funcs_22RasterAggregator_float_22Raster
  */
     __pyx_v_xOut = -1;
 
-    /* "Cython_Raster_Funcs\RasterAggregator_float.pyx":134
+    /* "Cython_Raster_Funcs\RasterAggregator_float.pyx":143
  *             localValue=-1
  *             xOut = -1
  *             for xInTile in range(tileXShapeIn):             # <<<<<<<<<<<<<<
@@ -2653,7 +2653,7 @@ static PyObject *__pyx_f_19Cython_Raster_Funcs_22RasterAggregator_float_22Raster
     for (__pyx_t_13 = 0; __pyx_t_13 < __pyx_t_12; __pyx_t_13+=1) {
       __pyx_v_xInTile = __pyx_t_13;
 
-      /* "Cython_Raster_Funcs\RasterAggregator_float.pyx":135
+      /* "Cython_Raster_Funcs\RasterAggregator_float.pyx":144
  *             xOut = -1
  *             for xInTile in range(tileXShapeIn):
  *                 xInGlobal = xInTile + xOffset             # <<<<<<<<<<<<<<
@@ -2662,7 +2662,7 @@ static PyObject *__pyx_f_19Cython_Raster_Funcs_22RasterAggregator_float_22Raster
  */
       __pyx_v_xInGlobal = (__pyx_v_xInTile + __pyx_v_xOffset);
 
-      /* "Cython_Raster_Funcs\RasterAggregator_float.pyx":136
+      /* "Cython_Raster_Funcs\RasterAggregator_float.pyx":145
  *             for xInTile in range(tileXShapeIn):
  *                 xInGlobal = xInTile + xOffset
  *                 xLeft = xInGlobal - 1             # <<<<<<<<<<<<<<
@@ -2671,7 +2671,7 @@ static PyObject *__pyx_f_19Cython_Raster_Funcs_22RasterAggregator_float_22Raster
  */
       __pyx_v_xLeft = (__pyx_v_xInGlobal - 1);
 
-      /* "Cython_Raster_Funcs\RasterAggregator_float.pyx":137
+      /* "Cython_Raster_Funcs\RasterAggregator_float.pyx":146
  *                 xInGlobal = xInTile + xOffset
  *                 xLeft = xInGlobal - 1
  *                 if xInGlobal == 0:             # <<<<<<<<<<<<<<
@@ -2681,7 +2681,7 @@ static PyObject *__pyx_f_19Cython_Raster_Funcs_22RasterAggregator_float_22Raster
       __pyx_t_11 = ((__pyx_v_xInGlobal == 0) != 0);
       if (__pyx_t_11) {
 
-        /* "Cython_Raster_Funcs\RasterAggregator_float.pyx":138
+        /* "Cython_Raster_Funcs\RasterAggregator_float.pyx":147
  *                 xLeft = xInGlobal - 1
  *                 if xInGlobal == 0:
  *                     xLeft = -1             # <<<<<<<<<<<<<<
@@ -2693,7 +2693,7 @@ static PyObject *__pyx_f_19Cython_Raster_Funcs_22RasterAggregator_float_22Raster
       }
       __pyx_L9:;
 
-      /* "Cython_Raster_Funcs\RasterAggregator_float.pyx":139
+      /* "Cython_Raster_Funcs\RasterAggregator_float.pyx":148
  *                 if xInGlobal == 0:
  *                     xLeft = -1
  *                 xRight = xInGlobal + 1             # <<<<<<<<<<<<<<
@@ -2702,7 +2702,7 @@ static PyObject *__pyx_f_19Cython_Raster_Funcs_22RasterAggregator_float_22Raster
  */
       __pyx_v_xRight = (__pyx_v_xInGlobal + 1);
 
-      /* "Cython_Raster_Funcs\RasterAggregator_float.pyx":140
+      /* "Cython_Raster_Funcs\RasterAggregator_float.pyx":149
  *                     xLeft = -1
  *                 xRight = xInGlobal + 1
  *                 if xInGlobal == self.xShapeIn - 1:             # <<<<<<<<<<<<<<
@@ -2712,7 +2712,7 @@ static PyObject *__pyx_f_19Cython_Raster_Funcs_22RasterAggregator_float_22Raster
       __pyx_t_11 = ((__pyx_v_xInGlobal == (__pyx_v_self->xShapeIn - 1)) != 0);
       if (__pyx_t_11) {
 
-        /* "Cython_Raster_Funcs\RasterAggregator_float.pyx":141
+        /* "Cython_Raster_Funcs\RasterAggregator_float.pyx":150
  *                 xRight = xInGlobal + 1
  *                 if xInGlobal == self.xShapeIn - 1:
  *                     xRight = -1             # <<<<<<<<<<<<<<
@@ -2724,7 +2724,7 @@ static PyObject *__pyx_f_19Cython_Raster_Funcs_22RasterAggregator_float_22Raster
       }
       __pyx_L10:;
 
-      /* "Cython_Raster_Funcs\RasterAggregator_float.pyx":142
+      /* "Cython_Raster_Funcs\RasterAggregator_float.pyx":151
  *                 if xInGlobal == self.xShapeIn - 1:
  *                     xRight = -1
  *                 xOut = <int> (xInGlobal / self.xFact)             # <<<<<<<<<<<<<<
@@ -2733,19 +2733,19 @@ static PyObject *__pyx_f_19Cython_Raster_Funcs_22RasterAggregator_float_22Raster
  */
       __pyx_v_xOut = ((int)(__pyx_v_xInGlobal / __pyx_v_self->xFact));
 
-      /* "Cython_Raster_Funcs\RasterAggregator_float.pyx":144
+      /* "Cython_Raster_Funcs\RasterAggregator_float.pyx":153
  *                 xOut = <int> (xInGlobal / self.xFact)
  * 
  *                 self._coverageArr[yOut, xOut] = 1             # <<<<<<<<<<<<<<
  * 
  *                 localValue = data[yInTile, xInTile]
  */
-      if (unlikely(!__pyx_v_self->_coverageArr.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 144; __pyx_clineno = __LINE__; goto __pyx_L1_error;}}
+      if (unlikely(!__pyx_v_self->_coverageArr.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 153; __pyx_clineno = __LINE__; goto __pyx_L1_error;}}
       __pyx_t_14 = __pyx_v_yOut;
       __pyx_t_15 = __pyx_v_xOut;
       *((char *) ( /* dim=1 */ ((char *) (((char *) ( /* dim=0 */ (__pyx_v_self->_coverageArr.data + __pyx_t_14 * __pyx_v_self->_coverageArr.strides[0]) )) + __pyx_t_15)) )) = 1;
 
-      /* "Cython_Raster_Funcs\RasterAggregator_float.pyx":146
+      /* "Cython_Raster_Funcs\RasterAggregator_float.pyx":155
  *                 self._coverageArr[yOut, xOut] = 1
  * 
  *                 localValue = data[yInTile, xInTile]             # <<<<<<<<<<<<<<
@@ -2756,7 +2756,7 @@ static PyObject *__pyx_f_19Cython_Raster_Funcs_22RasterAggregator_float_22Raster
       __pyx_t_17 = __pyx_v_xInTile;
       __pyx_v_localValue = (*((float *) ( /* dim=1 */ ((char *) (((float *) ( /* dim=0 */ (__pyx_v_data.data + __pyx_t_16 * __pyx_v_data.strides[0]) )) + __pyx_t_17)) )));
 
-      /* "Cython_Raster_Funcs\RasterAggregator_float.pyx":147
+      /* "Cython_Raster_Funcs\RasterAggregator_float.pyx":156
  * 
  *                 localValue = data[yInTile, xInTile]
  *                 if localValue == self._NDV:             # <<<<<<<<<<<<<<
@@ -2766,7 +2766,7 @@ static PyObject *__pyx_f_19Cython_Raster_Funcs_22RasterAggregator_float_22Raster
       __pyx_t_11 = ((__pyx_v_localValue == __pyx_v_self->_NDV) != 0);
       if (__pyx_t_11) {
 
-        /* "Cython_Raster_Funcs\RasterAggregator_float.pyx":148
+        /* "Cython_Raster_Funcs\RasterAggregator_float.pyx":157
  *                 localValue = data[yInTile, xInTile]
  *                 if localValue == self._NDV:
  *                     continue             # <<<<<<<<<<<<<<
@@ -2776,27 +2776,27 @@ static PyObject *__pyx_f_19Cython_Raster_Funcs_22RasterAggregator_float_22Raster
         goto __pyx_L7_continue;
       }
 
-      /* "Cython_Raster_Funcs\RasterAggregator_float.pyx":150
+      /* "Cython_Raster_Funcs\RasterAggregator_float.pyx":159
  *                     continue
  *                 # Max and Min
  *                 if localValue > self.outputMaxArr[yOut, xOut]:             # <<<<<<<<<<<<<<
  *                     self.outputMaxArr[yOut, xOut] = localValue
  *                 if localValue < self.outputMinArr[yOut, xOut]:
  */
-      if (unlikely(!__pyx_v_self->outputMaxArr.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 150; __pyx_clineno = __LINE__; goto __pyx_L1_error;}}
+      if (unlikely(!__pyx_v_self->outputMaxArr.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 159; __pyx_clineno = __LINE__; goto __pyx_L1_error;}}
       __pyx_t_18 = __pyx_v_yOut;
       __pyx_t_19 = __pyx_v_xOut;
       __pyx_t_11 = ((__pyx_v_localValue > (*((float *) ( /* dim=1 */ ((char *) (((float *) ( /* dim=0 */ (__pyx_v_self->outputMaxArr.data + __pyx_t_18 * __pyx_v_self->outputMaxArr.strides[0]) )) + __pyx_t_19)) )))) != 0);
       if (__pyx_t_11) {
 
-        /* "Cython_Raster_Funcs\RasterAggregator_float.pyx":151
+        /* "Cython_Raster_Funcs\RasterAggregator_float.pyx":160
  *                 # Max and Min
  *                 if localValue > self.outputMaxArr[yOut, xOut]:
  *                     self.outputMaxArr[yOut, xOut] = localValue             # <<<<<<<<<<<<<<
  *                 if localValue < self.outputMinArr[yOut, xOut]:
  *                     self.outputMinArr[yOut, xOut] = localValue
  */
-        if (unlikely(!__pyx_v_self->outputMaxArr.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 151; __pyx_clineno = __LINE__; goto __pyx_L1_error;}}
+        if (unlikely(!__pyx_v_self->outputMaxArr.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 160; __pyx_clineno = __LINE__; goto __pyx_L1_error;}}
         __pyx_t_20 = __pyx_v_yOut;
         __pyx_t_21 = __pyx_v_xOut;
         *((float *) ( /* dim=1 */ ((char *) (((float *) ( /* dim=0 */ (__pyx_v_self->outputMaxArr.data + __pyx_t_20 * __pyx_v_self->outputMaxArr.strides[0]) )) + __pyx_t_21)) )) = __pyx_v_localValue;
@@ -2804,27 +2804,27 @@ static PyObject *__pyx_f_19Cython_Raster_Funcs_22RasterAggregator_float_22Raster
       }
       __pyx_L12:;
 
-      /* "Cython_Raster_Funcs\RasterAggregator_float.pyx":152
+      /* "Cython_Raster_Funcs\RasterAggregator_float.pyx":161
  *                 if localValue > self.outputMaxArr[yOut, xOut]:
  *                     self.outputMaxArr[yOut, xOut] = localValue
  *                 if localValue < self.outputMinArr[yOut, xOut]:             # <<<<<<<<<<<<<<
  *                     self.outputMinArr[yOut, xOut] = localValue
  *                 # Sum and Count
  */
-      if (unlikely(!__pyx_v_self->outputMinArr.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 152; __pyx_clineno = __LINE__; goto __pyx_L1_error;}}
+      if (unlikely(!__pyx_v_self->outputMinArr.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 161; __pyx_clineno = __LINE__; goto __pyx_L1_error;}}
       __pyx_t_22 = __pyx_v_yOut;
       __pyx_t_23 = __pyx_v_xOut;
       __pyx_t_11 = ((__pyx_v_localValue < (*((float *) ( /* dim=1 */ ((char *) (((float *) ( /* dim=0 */ (__pyx_v_self->outputMinArr.data + __pyx_t_22 * __pyx_v_self->outputMinArr.strides[0]) )) + __pyx_t_23)) )))) != 0);
       if (__pyx_t_11) {
 
-        /* "Cython_Raster_Funcs\RasterAggregator_float.pyx":153
+        /* "Cython_Raster_Funcs\RasterAggregator_float.pyx":162
  *                     self.outputMaxArr[yOut, xOut] = localValue
  *                 if localValue < self.outputMinArr[yOut, xOut]:
  *                     self.outputMinArr[yOut, xOut] = localValue             # <<<<<<<<<<<<<<
  *                 # Sum and Count
  *                 self.outputSumArr[yOut, xOut] += localValue
  */
-        if (unlikely(!__pyx_v_self->outputMinArr.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 153; __pyx_clineno = __LINE__; goto __pyx_L1_error;}}
+        if (unlikely(!__pyx_v_self->outputMinArr.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 162; __pyx_clineno = __LINE__; goto __pyx_L1_error;}}
         __pyx_t_24 = __pyx_v_yOut;
         __pyx_t_25 = __pyx_v_xOut;
         *((float *) ( /* dim=1 */ ((char *) (((float *) ( /* dim=0 */ (__pyx_v_self->outputMinArr.data + __pyx_t_24 * __pyx_v_self->outputMinArr.strides[0]) )) + __pyx_t_25)) )) = __pyx_v_localValue;
@@ -2832,31 +2832,31 @@ static PyObject *__pyx_f_19Cython_Raster_Funcs_22RasterAggregator_float_22Raster
       }
       __pyx_L13:;
 
-      /* "Cython_Raster_Funcs\RasterAggregator_float.pyx":155
+      /* "Cython_Raster_Funcs\RasterAggregator_float.pyx":164
  *                     self.outputMinArr[yOut, xOut] = localValue
  *                 # Sum and Count
  *                 self.outputSumArr[yOut, xOut] += localValue             # <<<<<<<<<<<<<<
  *                 self.outputCountArr[yOut, xOut] += 1
  *                 if not self.minMaxRangeSumOnly:
  */
-      if (unlikely(!__pyx_v_self->outputSumArr.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 155; __pyx_clineno = __LINE__; goto __pyx_L1_error;}}
+      if (unlikely(!__pyx_v_self->outputSumArr.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 164; __pyx_clineno = __LINE__; goto __pyx_L1_error;}}
       __pyx_t_26 = __pyx_v_yOut;
       __pyx_t_27 = __pyx_v_xOut;
       *((float *) ( /* dim=1 */ ((char *) (((float *) ( /* dim=0 */ (__pyx_v_self->outputSumArr.data + __pyx_t_26 * __pyx_v_self->outputSumArr.strides[0]) )) + __pyx_t_27)) )) += __pyx_v_localValue;
 
-      /* "Cython_Raster_Funcs\RasterAggregator_float.pyx":156
+      /* "Cython_Raster_Funcs\RasterAggregator_float.pyx":165
  *                 # Sum and Count
  *                 self.outputSumArr[yOut, xOut] += localValue
  *                 self.outputCountArr[yOut, xOut] += 1             # <<<<<<<<<<<<<<
  *                 if not self.minMaxRangeSumOnly:
  *                     # Running mean and SD
  */
-      if (unlikely(!__pyx_v_self->outputCountArr.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 156; __pyx_clineno = __LINE__; goto __pyx_L1_error;}}
+      if (unlikely(!__pyx_v_self->outputCountArr.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 165; __pyx_clineno = __LINE__; goto __pyx_L1_error;}}
       __pyx_t_28 = __pyx_v_yOut;
       __pyx_t_29 = __pyx_v_xOut;
       *((int *) ( /* dim=1 */ ((char *) (((int *) ( /* dim=0 */ (__pyx_v_self->outputCountArr.data + __pyx_t_28 * __pyx_v_self->outputCountArr.strides[0]) )) + __pyx_t_29)) )) += 1;
 
-      /* "Cython_Raster_Funcs\RasterAggregator_float.pyx":157
+      /* "Cython_Raster_Funcs\RasterAggregator_float.pyx":166
  *                 self.outputSumArr[yOut, xOut] += localValue
  *                 self.outputCountArr[yOut, xOut] += 1
  *                 if not self.minMaxRangeSumOnly:             # <<<<<<<<<<<<<<
@@ -2866,63 +2866,63 @@ static PyObject *__pyx_f_19Cython_Raster_Funcs_22RasterAggregator_float_22Raster
       __pyx_t_11 = ((!(__pyx_v_self->minMaxRangeSumOnly != 0)) != 0);
       if (__pyx_t_11) {
 
-        /* "Cython_Raster_Funcs\RasterAggregator_float.pyx":159
+        /* "Cython_Raster_Funcs\RasterAggregator_float.pyx":168
  *                 if not self.minMaxRangeSumOnly:
  *                     # Running mean and SD
  *                     if self.outputCountArr[yOut, xOut] == 1:             # <<<<<<<<<<<<<<
  *                         self._oldMeanArr[yOut, xOut] = localValue
  *                         self.outputMeanArr[yOut, xOut] = localValue
  */
-        if (unlikely(!__pyx_v_self->outputCountArr.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 159; __pyx_clineno = __LINE__; goto __pyx_L1_error;}}
+        if (unlikely(!__pyx_v_self->outputCountArr.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 168; __pyx_clineno = __LINE__; goto __pyx_L1_error;}}
         __pyx_t_30 = __pyx_v_yOut;
         __pyx_t_31 = __pyx_v_xOut;
         __pyx_t_11 = (((*((int *) ( /* dim=1 */ ((char *) (((int *) ( /* dim=0 */ (__pyx_v_self->outputCountArr.data + __pyx_t_30 * __pyx_v_self->outputCountArr.strides[0]) )) + __pyx_t_31)) ))) == 1) != 0);
         if (__pyx_t_11) {
 
-          /* "Cython_Raster_Funcs\RasterAggregator_float.pyx":160
+          /* "Cython_Raster_Funcs\RasterAggregator_float.pyx":169
  *                     # Running mean and SD
  *                     if self.outputCountArr[yOut, xOut] == 1:
  *                         self._oldMeanArr[yOut, xOut] = localValue             # <<<<<<<<<<<<<<
  *                         self.outputMeanArr[yOut, xOut] = localValue
  *                         self._oldSDArr[yOut, xOut] = 0
  */
-          if (unlikely(!__pyx_v_self->_oldMeanArr.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 160; __pyx_clineno = __LINE__; goto __pyx_L1_error;}}
+          if (unlikely(!__pyx_v_self->_oldMeanArr.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 169; __pyx_clineno = __LINE__; goto __pyx_L1_error;}}
           __pyx_t_32 = __pyx_v_yOut;
           __pyx_t_33 = __pyx_v_xOut;
           *((float *) ( /* dim=1 */ ((char *) (((float *) ( /* dim=0 */ (__pyx_v_self->_oldMeanArr.data + __pyx_t_32 * __pyx_v_self->_oldMeanArr.strides[0]) )) + __pyx_t_33)) )) = __pyx_v_localValue;
 
-          /* "Cython_Raster_Funcs\RasterAggregator_float.pyx":161
+          /* "Cython_Raster_Funcs\RasterAggregator_float.pyx":170
  *                     if self.outputCountArr[yOut, xOut] == 1:
  *                         self._oldMeanArr[yOut, xOut] = localValue
  *                         self.outputMeanArr[yOut, xOut] = localValue             # <<<<<<<<<<<<<<
  *                         self._oldSDArr[yOut, xOut] = 0
  *                         self.outputSDArr[yOut, xOut] = 0
  */
-          if (unlikely(!__pyx_v_self->outputMeanArr.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 161; __pyx_clineno = __LINE__; goto __pyx_L1_error;}}
+          if (unlikely(!__pyx_v_self->outputMeanArr.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 170; __pyx_clineno = __LINE__; goto __pyx_L1_error;}}
           __pyx_t_34 = __pyx_v_yOut;
           __pyx_t_35 = __pyx_v_xOut;
           *((float *) ( /* dim=1 */ ((char *) (((float *) ( /* dim=0 */ (__pyx_v_self->outputMeanArr.data + __pyx_t_34 * __pyx_v_self->outputMeanArr.strides[0]) )) + __pyx_t_35)) )) = __pyx_v_localValue;
 
-          /* "Cython_Raster_Funcs\RasterAggregator_float.pyx":162
+          /* "Cython_Raster_Funcs\RasterAggregator_float.pyx":171
  *                         self._oldMeanArr[yOut, xOut] = localValue
  *                         self.outputMeanArr[yOut, xOut] = localValue
  *                         self._oldSDArr[yOut, xOut] = 0             # <<<<<<<<<<<<<<
  *                         self.outputSDArr[yOut, xOut] = 0
  *                     else:
  */
-          if (unlikely(!__pyx_v_self->_oldSDArr.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 162; __pyx_clineno = __LINE__; goto __pyx_L1_error;}}
+          if (unlikely(!__pyx_v_self->_oldSDArr.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 171; __pyx_clineno = __LINE__; goto __pyx_L1_error;}}
           __pyx_t_36 = __pyx_v_yOut;
           __pyx_t_37 = __pyx_v_xOut;
           *((float *) ( /* dim=1 */ ((char *) (((float *) ( /* dim=0 */ (__pyx_v_self->_oldSDArr.data + __pyx_t_36 * __pyx_v_self->_oldSDArr.strides[0]) )) + __pyx_t_37)) )) = 0.0;
 
-          /* "Cython_Raster_Funcs\RasterAggregator_float.pyx":163
+          /* "Cython_Raster_Funcs\RasterAggregator_float.pyx":172
  *                         self.outputMeanArr[yOut, xOut] = localValue
  *                         self._oldSDArr[yOut, xOut] = 0
  *                         self.outputSDArr[yOut, xOut] = 0             # <<<<<<<<<<<<<<
  *                     else:
  *                         self.outputMeanArr[yOut, xOut] = (self._oldMeanArr[yOut, xOut] +
  */
-          if (unlikely(!__pyx_v_self->outputSDArr.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 163; __pyx_clineno = __LINE__; goto __pyx_L1_error;}}
+          if (unlikely(!__pyx_v_self->outputSDArr.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 172; __pyx_clineno = __LINE__; goto __pyx_L1_error;}}
           __pyx_t_38 = __pyx_v_yOut;
           __pyx_t_39 = __pyx_v_xOut;
           *((float *) ( /* dim=1 */ ((char *) (((float *) ( /* dim=0 */ (__pyx_v_self->outputSDArr.data + __pyx_t_38 * __pyx_v_self->outputSDArr.strides[0]) )) + __pyx_t_39)) )) = 0.0;
@@ -2930,122 +2930,122 @@ static PyObject *__pyx_f_19Cython_Raster_Funcs_22RasterAggregator_float_22Raster
         }
         /*else*/ {
 
-          /* "Cython_Raster_Funcs\RasterAggregator_float.pyx":165
+          /* "Cython_Raster_Funcs\RasterAggregator_float.pyx":174
  *                         self.outputSDArr[yOut, xOut] = 0
  *                     else:
  *                         self.outputMeanArr[yOut, xOut] = (self._oldMeanArr[yOut, xOut] +             # <<<<<<<<<<<<<<
  *                                                      ((localValue - self._oldMeanArr[yOut, xOut]) /
  *                                                           self.outputCountArr[yOut, xOut]))
  */
-          if (unlikely(!__pyx_v_self->_oldMeanArr.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 165; __pyx_clineno = __LINE__; goto __pyx_L1_error;}}
+          if (unlikely(!__pyx_v_self->_oldMeanArr.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 174; __pyx_clineno = __LINE__; goto __pyx_L1_error;}}
           __pyx_t_40 = __pyx_v_yOut;
           __pyx_t_41 = __pyx_v_xOut;
 
-          /* "Cython_Raster_Funcs\RasterAggregator_float.pyx":166
+          /* "Cython_Raster_Funcs\RasterAggregator_float.pyx":175
  *                     else:
  *                         self.outputMeanArr[yOut, xOut] = (self._oldMeanArr[yOut, xOut] +
  *                                                      ((localValue - self._oldMeanArr[yOut, xOut]) /             # <<<<<<<<<<<<<<
  *                                                           self.outputCountArr[yOut, xOut]))
  *                         self.outputSDArr[yOut, xOut] = (self._oldSDArr[yOut, xOut] +
  */
-          if (unlikely(!__pyx_v_self->_oldMeanArr.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 166; __pyx_clineno = __LINE__; goto __pyx_L1_error;}}
+          if (unlikely(!__pyx_v_self->_oldMeanArr.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 175; __pyx_clineno = __LINE__; goto __pyx_L1_error;}}
           __pyx_t_42 = __pyx_v_yOut;
           __pyx_t_43 = __pyx_v_xOut;
 
-          /* "Cython_Raster_Funcs\RasterAggregator_float.pyx":167
+          /* "Cython_Raster_Funcs\RasterAggregator_float.pyx":176
  *                         self.outputMeanArr[yOut, xOut] = (self._oldMeanArr[yOut, xOut] +
  *                                                      ((localValue - self._oldMeanArr[yOut, xOut]) /
  *                                                           self.outputCountArr[yOut, xOut]))             # <<<<<<<<<<<<<<
  *                         self.outputSDArr[yOut, xOut] = (self._oldSDArr[yOut, xOut] +
  *                                                    ((localValue - self._oldMeanArr[yOut, xOut]) *
  */
-          if (unlikely(!__pyx_v_self->outputCountArr.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 167; __pyx_clineno = __LINE__; goto __pyx_L1_error;}}
+          if (unlikely(!__pyx_v_self->outputCountArr.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 176; __pyx_clineno = __LINE__; goto __pyx_L1_error;}}
           __pyx_t_44 = __pyx_v_yOut;
           __pyx_t_45 = __pyx_v_xOut;
 
-          /* "Cython_Raster_Funcs\RasterAggregator_float.pyx":165
+          /* "Cython_Raster_Funcs\RasterAggregator_float.pyx":174
  *                         self.outputSDArr[yOut, xOut] = 0
  *                     else:
  *                         self.outputMeanArr[yOut, xOut] = (self._oldMeanArr[yOut, xOut] +             # <<<<<<<<<<<<<<
  *                                                      ((localValue - self._oldMeanArr[yOut, xOut]) /
  *                                                           self.outputCountArr[yOut, xOut]))
  */
-          if (unlikely(!__pyx_v_self->outputMeanArr.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 165; __pyx_clineno = __LINE__; goto __pyx_L1_error;}}
+          if (unlikely(!__pyx_v_self->outputMeanArr.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 174; __pyx_clineno = __LINE__; goto __pyx_L1_error;}}
           __pyx_t_46 = __pyx_v_yOut;
           __pyx_t_47 = __pyx_v_xOut;
           *((float *) ( /* dim=1 */ ((char *) (((float *) ( /* dim=0 */ (__pyx_v_self->outputMeanArr.data + __pyx_t_46 * __pyx_v_self->outputMeanArr.strides[0]) )) + __pyx_t_47)) )) = ((*((float *) ( /* dim=1 */ ((char *) (((float *) ( /* dim=0 */ (__pyx_v_self->_oldMeanArr.data + __pyx_t_40 * __pyx_v_self->_oldMeanArr.strides[0]) )) + __pyx_t_41)) ))) + ((__pyx_v_localValue - (*((float *) ( /* dim=1 */ ((char *) (((float *) ( /* dim=0 */ (__pyx_v_self->_oldMeanArr.data + __pyx_t_42 * __pyx_v_self->_oldMeanArr.strides[0]) )) + __pyx_t_43)) )))) / (*((int *) ( /* dim=1 */ ((char *) (((int *) ( /* dim=0 */ (__pyx_v_self->outputCountArr.data + __pyx_t_44 * __pyx_v_self->outputCountArr.strides[0]) )) + __pyx_t_45)) )))));
 
-          /* "Cython_Raster_Funcs\RasterAggregator_float.pyx":168
+          /* "Cython_Raster_Funcs\RasterAggregator_float.pyx":177
  *                                                      ((localValue - self._oldMeanArr[yOut, xOut]) /
  *                                                           self.outputCountArr[yOut, xOut]))
  *                         self.outputSDArr[yOut, xOut] = (self._oldSDArr[yOut, xOut] +             # <<<<<<<<<<<<<<
  *                                                    ((localValue - self._oldMeanArr[yOut, xOut]) *
  *                                                     (localValue - self.outputMeanArr[yOut, xOut])
  */
-          if (unlikely(!__pyx_v_self->_oldSDArr.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 168; __pyx_clineno = __LINE__; goto __pyx_L1_error;}}
+          if (unlikely(!__pyx_v_self->_oldSDArr.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 177; __pyx_clineno = __LINE__; goto __pyx_L1_error;}}
           __pyx_t_48 = __pyx_v_yOut;
           __pyx_t_49 = __pyx_v_xOut;
 
-          /* "Cython_Raster_Funcs\RasterAggregator_float.pyx":169
+          /* "Cython_Raster_Funcs\RasterAggregator_float.pyx":178
  *                                                           self.outputCountArr[yOut, xOut]))
  *                         self.outputSDArr[yOut, xOut] = (self._oldSDArr[yOut, xOut] +
  *                                                    ((localValue - self._oldMeanArr[yOut, xOut]) *             # <<<<<<<<<<<<<<
  *                                                     (localValue - self.outputMeanArr[yOut, xOut])
  *                                                     ))
  */
-          if (unlikely(!__pyx_v_self->_oldMeanArr.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 169; __pyx_clineno = __LINE__; goto __pyx_L1_error;}}
+          if (unlikely(!__pyx_v_self->_oldMeanArr.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 178; __pyx_clineno = __LINE__; goto __pyx_L1_error;}}
           __pyx_t_50 = __pyx_v_yOut;
           __pyx_t_51 = __pyx_v_xOut;
 
-          /* "Cython_Raster_Funcs\RasterAggregator_float.pyx":170
+          /* "Cython_Raster_Funcs\RasterAggregator_float.pyx":179
  *                         self.outputSDArr[yOut, xOut] = (self._oldSDArr[yOut, xOut] +
  *                                                    ((localValue - self._oldMeanArr[yOut, xOut]) *
  *                                                     (localValue - self.outputMeanArr[yOut, xOut])             # <<<<<<<<<<<<<<
  *                                                     ))
  *                         self._oldMeanArr[yOut, xOut] = self.outputMeanArr[yOut, xOut]
  */
-          if (unlikely(!__pyx_v_self->outputMeanArr.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 170; __pyx_clineno = __LINE__; goto __pyx_L1_error;}}
+          if (unlikely(!__pyx_v_self->outputMeanArr.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 179; __pyx_clineno = __LINE__; goto __pyx_L1_error;}}
           __pyx_t_52 = __pyx_v_yOut;
           __pyx_t_53 = __pyx_v_xOut;
 
-          /* "Cython_Raster_Funcs\RasterAggregator_float.pyx":168
+          /* "Cython_Raster_Funcs\RasterAggregator_float.pyx":177
  *                                                      ((localValue - self._oldMeanArr[yOut, xOut]) /
  *                                                           self.outputCountArr[yOut, xOut]))
  *                         self.outputSDArr[yOut, xOut] = (self._oldSDArr[yOut, xOut] +             # <<<<<<<<<<<<<<
  *                                                    ((localValue - self._oldMeanArr[yOut, xOut]) *
  *                                                     (localValue - self.outputMeanArr[yOut, xOut])
  */
-          if (unlikely(!__pyx_v_self->outputSDArr.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 168; __pyx_clineno = __LINE__; goto __pyx_L1_error;}}
+          if (unlikely(!__pyx_v_self->outputSDArr.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 177; __pyx_clineno = __LINE__; goto __pyx_L1_error;}}
           __pyx_t_54 = __pyx_v_yOut;
           __pyx_t_55 = __pyx_v_xOut;
           *((float *) ( /* dim=1 */ ((char *) (((float *) ( /* dim=0 */ (__pyx_v_self->outputSDArr.data + __pyx_t_54 * __pyx_v_self->outputSDArr.strides[0]) )) + __pyx_t_55)) )) = ((*((float *) ( /* dim=1 */ ((char *) (((float *) ( /* dim=0 */ (__pyx_v_self->_oldSDArr.data + __pyx_t_48 * __pyx_v_self->_oldSDArr.strides[0]) )) + __pyx_t_49)) ))) + ((__pyx_v_localValue - (*((float *) ( /* dim=1 */ ((char *) (((float *) ( /* dim=0 */ (__pyx_v_self->_oldMeanArr.data + __pyx_t_50 * __pyx_v_self->_oldMeanArr.strides[0]) )) + __pyx_t_51)) )))) * (__pyx_v_localValue - (*((float *) ( /* dim=1 */ ((char *) (((float *) ( /* dim=0 */ (__pyx_v_self->outputMeanArr.data + __pyx_t_52 * __pyx_v_self->outputMeanArr.strides[0]) )) + __pyx_t_53)) ))))));
 
-          /* "Cython_Raster_Funcs\RasterAggregator_float.pyx":172
+          /* "Cython_Raster_Funcs\RasterAggregator_float.pyx":181
  *                                                     (localValue - self.outputMeanArr[yOut, xOut])
  *                                                     ))
  *                         self._oldMeanArr[yOut, xOut] = self.outputMeanArr[yOut, xOut]             # <<<<<<<<<<<<<<
  *                         self._oldSDArr[yOut, xOut] = self.outputSDArr[yOut, xOut]
  * 
  */
-          if (unlikely(!__pyx_v_self->outputMeanArr.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 172; __pyx_clineno = __LINE__; goto __pyx_L1_error;}}
+          if (unlikely(!__pyx_v_self->outputMeanArr.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 181; __pyx_clineno = __LINE__; goto __pyx_L1_error;}}
           __pyx_t_56 = __pyx_v_yOut;
           __pyx_t_57 = __pyx_v_xOut;
-          if (unlikely(!__pyx_v_self->_oldMeanArr.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 172; __pyx_clineno = __LINE__; goto __pyx_L1_error;}}
+          if (unlikely(!__pyx_v_self->_oldMeanArr.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 181; __pyx_clineno = __LINE__; goto __pyx_L1_error;}}
           __pyx_t_58 = __pyx_v_yOut;
           __pyx_t_59 = __pyx_v_xOut;
           *((float *) ( /* dim=1 */ ((char *) (((float *) ( /* dim=0 */ (__pyx_v_self->_oldMeanArr.data + __pyx_t_58 * __pyx_v_self->_oldMeanArr.strides[0]) )) + __pyx_t_59)) )) = (*((float *) ( /* dim=1 */ ((char *) (((float *) ( /* dim=0 */ (__pyx_v_self->outputMeanArr.data + __pyx_t_56 * __pyx_v_self->outputMeanArr.strides[0]) )) + __pyx_t_57)) )));
 
-          /* "Cython_Raster_Funcs\RasterAggregator_float.pyx":173
+          /* "Cython_Raster_Funcs\RasterAggregator_float.pyx":182
  *                                                     ))
  *                         self._oldMeanArr[yOut, xOut] = self.outputMeanArr[yOut, xOut]
  *                         self._oldSDArr[yOut, xOut] = self.outputSDArr[yOut, xOut]             # <<<<<<<<<<<<<<
  * 
  *     @cython.boundscheck(False)
  */
-          if (unlikely(!__pyx_v_self->outputSDArr.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 173; __pyx_clineno = __LINE__; goto __pyx_L1_error;}}
+          if (unlikely(!__pyx_v_self->outputSDArr.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 182; __pyx_clineno = __LINE__; goto __pyx_L1_error;}}
           __pyx_t_60 = __pyx_v_yOut;
           __pyx_t_61 = __pyx_v_xOut;
-          if (unlikely(!__pyx_v_self->_oldSDArr.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 173; __pyx_clineno = __LINE__; goto __pyx_L1_error;}}
+          if (unlikely(!__pyx_v_self->_oldSDArr.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 182; __pyx_clineno = __LINE__; goto __pyx_L1_error;}}
           __pyx_t_62 = __pyx_v_yOut;
           __pyx_t_63 = __pyx_v_xOut;
           *((float *) ( /* dim=1 */ ((char *) (((float *) ( /* dim=0 */ (__pyx_v_self->_oldSDArr.data + __pyx_t_62 * __pyx_v_self->_oldSDArr.strides[0]) )) + __pyx_t_63)) )) = (*((float *) ( /* dim=1 */ ((char *) (((float *) ( /* dim=0 */ (__pyx_v_self->outputSDArr.data + __pyx_t_60 * __pyx_v_self->outputSDArr.strides[0]) )) + __pyx_t_61)) )));
@@ -3058,7 +3058,7 @@ static PyObject *__pyx_f_19Cython_Raster_Funcs_22RasterAggregator_float_22Raster
     }
   }
 
-  /* "Cython_Raster_Funcs\RasterAggregator_float.pyx":107
+  /* "Cython_Raster_Funcs\RasterAggregator_float.pyx":116
  *     @cython.cdivision(True)
  *     @cython.wraparound(False)
  *     cpdef addTile(self, float[:,::1] data, Py_ssize_t xOffset, Py_ssize_t yOffset):             # <<<<<<<<<<<<<<
@@ -3120,16 +3120,16 @@ static PyObject *__pyx_pw_19Cython_Raster_Funcs_22RasterAggregator_float_22Raste
         case  1:
         if (likely((values[1] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_xOffset)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("addTile", 1, 3, 3, 1); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 107; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+          __Pyx_RaiseArgtupleInvalid("addTile", 1, 3, 3, 1); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 116; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
         }
         case  2:
         if (likely((values[2] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_yOffset)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("addTile", 1, 3, 3, 2); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 107; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+          __Pyx_RaiseArgtupleInvalid("addTile", 1, 3, 3, 2); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 116; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "addTile") < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 107; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "addTile") < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 116; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
       }
     } else if (PyTuple_GET_SIZE(__pyx_args) != 3) {
       goto __pyx_L5_argtuple_error;
@@ -3138,13 +3138,13 @@ static PyObject *__pyx_pw_19Cython_Raster_Funcs_22RasterAggregator_float_22Raste
       values[1] = PyTuple_GET_ITEM(__pyx_args, 1);
       values[2] = PyTuple_GET_ITEM(__pyx_args, 2);
     }
-    __pyx_v_data = __Pyx_PyObject_to_MemoryviewSlice_d_dc_float(values[0]); if (unlikely(!__pyx_v_data.memview)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 107; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
-    __pyx_v_xOffset = __Pyx_PyIndex_AsSsize_t(values[1]); if (unlikely((__pyx_v_xOffset == (Py_ssize_t)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 107; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
-    __pyx_v_yOffset = __Pyx_PyIndex_AsSsize_t(values[2]); if (unlikely((__pyx_v_yOffset == (Py_ssize_t)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 107; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+    __pyx_v_data = __Pyx_PyObject_to_MemoryviewSlice_d_dc_float(values[0]); if (unlikely(!__pyx_v_data.memview)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 116; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+    __pyx_v_xOffset = __Pyx_PyIndex_AsSsize_t(values[1]); if (unlikely((__pyx_v_xOffset == (Py_ssize_t)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 116; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+    __pyx_v_yOffset = __Pyx_PyIndex_AsSsize_t(values[2]); if (unlikely((__pyx_v_yOffset == (Py_ssize_t)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 116; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("addTile", 1, 3, 3, PyTuple_GET_SIZE(__pyx_args)); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 107; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+  __Pyx_RaiseArgtupleInvalid("addTile", 1, 3, 3, PyTuple_GET_SIZE(__pyx_args)); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 116; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
   __pyx_L3_error:;
   __Pyx_AddTraceback("Cython_Raster_Funcs.RasterAggregator_float.RasterAggregator_float.addTile", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
@@ -3166,8 +3166,8 @@ static PyObject *__pyx_pf_19Cython_Raster_Funcs_22RasterAggregator_float_22Raste
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("addTile", 0);
   __Pyx_XDECREF(__pyx_r);
-  if (unlikely(!__pyx_v_data.memview)) { __Pyx_RaiseUnboundLocalError("data"); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 107; __pyx_clineno = __LINE__; goto __pyx_L1_error;} }
-  __pyx_t_1 = __pyx_f_19Cython_Raster_Funcs_22RasterAggregator_float_22RasterAggregator_float_addTile(__pyx_v_self, __pyx_v_data, __pyx_v_xOffset, __pyx_v_yOffset, 1); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 107; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (unlikely(!__pyx_v_data.memview)) { __Pyx_RaiseUnboundLocalError("data"); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 116; __pyx_clineno = __LINE__; goto __pyx_L1_error;} }
+  __pyx_t_1 = __pyx_f_19Cython_Raster_Funcs_22RasterAggregator_float_22RasterAggregator_float_addTile(__pyx_v_self, __pyx_v_data, __pyx_v_xOffset, __pyx_v_yOffset, 1); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 116; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -3185,7 +3185,7 @@ static PyObject *__pyx_pf_19Cython_Raster_Funcs_22RasterAggregator_float_22Raste
   return __pyx_r;
 }
 
-/* "Cython_Raster_Funcs\RasterAggregator_float.pyx":178
+/* "Cython_Raster_Funcs\RasterAggregator_float.pyx":187
  *     @cython.cdivision(True)
  *     @cython.wraparound(False)
  *     cdef finalise(self):             # <<<<<<<<<<<<<<
@@ -3243,7 +3243,7 @@ static PyObject *__pyx_f_19Cython_Raster_Funcs_22RasterAggregator_float_22Raster
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("finalise", 0);
 
-  /* "Cython_Raster_Funcs\RasterAggregator_float.pyx":182
+  /* "Cython_Raster_Funcs\RasterAggregator_float.pyx":191
  *             Py_ssize_t xOut, yOut
  *             float variance
  *             float iscomplete = 1             # <<<<<<<<<<<<<<
@@ -3252,7 +3252,7 @@ static PyObject *__pyx_f_19Cython_Raster_Funcs_22RasterAggregator_float_22Raster
  */
   __pyx_v_iscomplete = 1.0;
 
-  /* "Cython_Raster_Funcs\RasterAggregator_float.pyx":183
+  /* "Cython_Raster_Funcs\RasterAggregator_float.pyx":192
  *             float variance
  *             float iscomplete = 1
  *         for yOut in range(self.yShapeOut):             # <<<<<<<<<<<<<<
@@ -3263,7 +3263,7 @@ static PyObject *__pyx_f_19Cython_Raster_Funcs_22RasterAggregator_float_22Raster
   for (__pyx_t_2 = 0; __pyx_t_2 < __pyx_t_1; __pyx_t_2+=1) {
     __pyx_v_yOut = __pyx_t_2;
 
-    /* "Cython_Raster_Funcs\RasterAggregator_float.pyx":184
+    /* "Cython_Raster_Funcs\RasterAggregator_float.pyx":193
  *             float iscomplete = 1
  *         for yOut in range(self.yShapeOut):
  *             xOut = -1             # <<<<<<<<<<<<<<
@@ -3272,7 +3272,7 @@ static PyObject *__pyx_f_19Cython_Raster_Funcs_22RasterAggregator_float_22Raster
  */
     __pyx_v_xOut = -1;
 
-    /* "Cython_Raster_Funcs\RasterAggregator_float.pyx":185
+    /* "Cython_Raster_Funcs\RasterAggregator_float.pyx":194
  *         for yOut in range(self.yShapeOut):
  *             xOut = -1
  *             for xOut in range(self.xShapeOut):             # <<<<<<<<<<<<<<
@@ -3283,20 +3283,20 @@ static PyObject *__pyx_f_19Cython_Raster_Funcs_22RasterAggregator_float_22Raster
     for (__pyx_t_4 = 0; __pyx_t_4 < __pyx_t_3; __pyx_t_4+=1) {
       __pyx_v_xOut = __pyx_t_4;
 
-      /* "Cython_Raster_Funcs\RasterAggregator_float.pyx":186
+      /* "Cython_Raster_Funcs\RasterAggregator_float.pyx":195
  *             xOut = -1
  *             for xOut in range(self.xShapeOut):
  *                 if self._coverageArr[yOut, xOut] == 0:             # <<<<<<<<<<<<<<
  *                     iscomplete = 0
  *                 if self.outputCountArr[yOut, xOut] == 0:
  */
-      if (unlikely(!__pyx_v_self->_coverageArr.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 186; __pyx_clineno = __LINE__; goto __pyx_L1_error;}}
+      if (unlikely(!__pyx_v_self->_coverageArr.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 195; __pyx_clineno = __LINE__; goto __pyx_L1_error;}}
       __pyx_t_5 = __pyx_v_yOut;
       __pyx_t_6 = __pyx_v_xOut;
       __pyx_t_7 = (((*((char *) ( /* dim=1 */ ((char *) (((char *) ( /* dim=0 */ (__pyx_v_self->_coverageArr.data + __pyx_t_5 * __pyx_v_self->_coverageArr.strides[0]) )) + __pyx_t_6)) ))) == 0) != 0);
       if (__pyx_t_7) {
 
-        /* "Cython_Raster_Funcs\RasterAggregator_float.pyx":187
+        /* "Cython_Raster_Funcs\RasterAggregator_float.pyx":196
  *             for xOut in range(self.xShapeOut):
  *                 if self._coverageArr[yOut, xOut] == 0:
  *                     iscomplete = 0             # <<<<<<<<<<<<<<
@@ -3308,20 +3308,20 @@ static PyObject *__pyx_f_19Cython_Raster_Funcs_22RasterAggregator_float_22Raster
       }
       __pyx_L7:;
 
-      /* "Cython_Raster_Funcs\RasterAggregator_float.pyx":188
+      /* "Cython_Raster_Funcs\RasterAggregator_float.pyx":197
  *                 if self._coverageArr[yOut, xOut] == 0:
  *                     iscomplete = 0
  *                 if self.outputCountArr[yOut, xOut] == 0:             # <<<<<<<<<<<<<<
  *                     self.outputMinArr[yOut, xOut] = self._NDV
  *                     self.outputMaxArr[yOut, xOut] = self._NDV
  */
-      if (unlikely(!__pyx_v_self->outputCountArr.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 188; __pyx_clineno = __LINE__; goto __pyx_L1_error;}}
+      if (unlikely(!__pyx_v_self->outputCountArr.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 197; __pyx_clineno = __LINE__; goto __pyx_L1_error;}}
       __pyx_t_8 = __pyx_v_yOut;
       __pyx_t_9 = __pyx_v_xOut;
       __pyx_t_7 = (((*((int *) ( /* dim=1 */ ((char *) (((int *) ( /* dim=0 */ (__pyx_v_self->outputCountArr.data + __pyx_t_8 * __pyx_v_self->outputCountArr.strides[0]) )) + __pyx_t_9)) ))) == 0) != 0);
       if (__pyx_t_7) {
 
-        /* "Cython_Raster_Funcs\RasterAggregator_float.pyx":189
+        /* "Cython_Raster_Funcs\RasterAggregator_float.pyx":198
  *                     iscomplete = 0
  *                 if self.outputCountArr[yOut, xOut] == 0:
  *                     self.outputMinArr[yOut, xOut] = self._NDV             # <<<<<<<<<<<<<<
@@ -3329,12 +3329,12 @@ static PyObject *__pyx_f_19Cython_Raster_Funcs_22RasterAggregator_float_22Raster
  *                     self.outputRangeArr[yOut, xOut] = self._NDV
  */
         __pyx_t_10 = __pyx_v_self->_NDV;
-        if (unlikely(!__pyx_v_self->outputMinArr.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 189; __pyx_clineno = __LINE__; goto __pyx_L1_error;}}
+        if (unlikely(!__pyx_v_self->outputMinArr.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 198; __pyx_clineno = __LINE__; goto __pyx_L1_error;}}
         __pyx_t_11 = __pyx_v_yOut;
         __pyx_t_12 = __pyx_v_xOut;
         *((float *) ( /* dim=1 */ ((char *) (((float *) ( /* dim=0 */ (__pyx_v_self->outputMinArr.data + __pyx_t_11 * __pyx_v_self->outputMinArr.strides[0]) )) + __pyx_t_12)) )) = __pyx_t_10;
 
-        /* "Cython_Raster_Funcs\RasterAggregator_float.pyx":190
+        /* "Cython_Raster_Funcs\RasterAggregator_float.pyx":199
  *                 if self.outputCountArr[yOut, xOut] == 0:
  *                     self.outputMinArr[yOut, xOut] = self._NDV
  *                     self.outputMaxArr[yOut, xOut] = self._NDV             # <<<<<<<<<<<<<<
@@ -3342,12 +3342,12 @@ static PyObject *__pyx_f_19Cython_Raster_Funcs_22RasterAggregator_float_22Raster
  *                     self.outputSumArr[yOut, xOut] = self._NDV
  */
         __pyx_t_10 = __pyx_v_self->_NDV;
-        if (unlikely(!__pyx_v_self->outputMaxArr.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 190; __pyx_clineno = __LINE__; goto __pyx_L1_error;}}
+        if (unlikely(!__pyx_v_self->outputMaxArr.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 199; __pyx_clineno = __LINE__; goto __pyx_L1_error;}}
         __pyx_t_13 = __pyx_v_yOut;
         __pyx_t_14 = __pyx_v_xOut;
         *((float *) ( /* dim=1 */ ((char *) (((float *) ( /* dim=0 */ (__pyx_v_self->outputMaxArr.data + __pyx_t_13 * __pyx_v_self->outputMaxArr.strides[0]) )) + __pyx_t_14)) )) = __pyx_t_10;
 
-        /* "Cython_Raster_Funcs\RasterAggregator_float.pyx":191
+        /* "Cython_Raster_Funcs\RasterAggregator_float.pyx":200
  *                     self.outputMinArr[yOut, xOut] = self._NDV
  *                     self.outputMaxArr[yOut, xOut] = self._NDV
  *                     self.outputRangeArr[yOut, xOut] = self._NDV             # <<<<<<<<<<<<<<
@@ -3355,12 +3355,12 @@ static PyObject *__pyx_f_19Cython_Raster_Funcs_22RasterAggregator_float_22Raster
  *                     if not self.minMaxRangeSumOnly:
  */
         __pyx_t_10 = __pyx_v_self->_NDV;
-        if (unlikely(!__pyx_v_self->outputRangeArr.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 191; __pyx_clineno = __LINE__; goto __pyx_L1_error;}}
+        if (unlikely(!__pyx_v_self->outputRangeArr.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 200; __pyx_clineno = __LINE__; goto __pyx_L1_error;}}
         __pyx_t_15 = __pyx_v_yOut;
         __pyx_t_16 = __pyx_v_xOut;
         *((float *) ( /* dim=1 */ ((char *) (((float *) ( /* dim=0 */ (__pyx_v_self->outputRangeArr.data + __pyx_t_15 * __pyx_v_self->outputRangeArr.strides[0]) )) + __pyx_t_16)) )) = __pyx_t_10;
 
-        /* "Cython_Raster_Funcs\RasterAggregator_float.pyx":192
+        /* "Cython_Raster_Funcs\RasterAggregator_float.pyx":201
  *                     self.outputMaxArr[yOut, xOut] = self._NDV
  *                     self.outputRangeArr[yOut, xOut] = self._NDV
  *                     self.outputSumArr[yOut, xOut] = self._NDV             # <<<<<<<<<<<<<<
@@ -3368,12 +3368,12 @@ static PyObject *__pyx_f_19Cython_Raster_Funcs_22RasterAggregator_float_22Raster
  *                         self.outputMeanArr[yOut, xOut] = self._NDV
  */
         __pyx_t_10 = __pyx_v_self->_NDV;
-        if (unlikely(!__pyx_v_self->outputSumArr.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 192; __pyx_clineno = __LINE__; goto __pyx_L1_error;}}
+        if (unlikely(!__pyx_v_self->outputSumArr.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 201; __pyx_clineno = __LINE__; goto __pyx_L1_error;}}
         __pyx_t_17 = __pyx_v_yOut;
         __pyx_t_18 = __pyx_v_xOut;
         *((float *) ( /* dim=1 */ ((char *) (((float *) ( /* dim=0 */ (__pyx_v_self->outputSumArr.data + __pyx_t_17 * __pyx_v_self->outputSumArr.strides[0]) )) + __pyx_t_18)) )) = __pyx_t_10;
 
-        /* "Cython_Raster_Funcs\RasterAggregator_float.pyx":193
+        /* "Cython_Raster_Funcs\RasterAggregator_float.pyx":202
  *                     self.outputRangeArr[yOut, xOut] = self._NDV
  *                     self.outputSumArr[yOut, xOut] = self._NDV
  *                     if not self.minMaxRangeSumOnly:             # <<<<<<<<<<<<<<
@@ -3383,7 +3383,7 @@ static PyObject *__pyx_f_19Cython_Raster_Funcs_22RasterAggregator_float_22Raster
         __pyx_t_7 = ((!(__pyx_v_self->minMaxRangeSumOnly != 0)) != 0);
         if (__pyx_t_7) {
 
-          /* "Cython_Raster_Funcs\RasterAggregator_float.pyx":194
+          /* "Cython_Raster_Funcs\RasterAggregator_float.pyx":203
  *                     self.outputSumArr[yOut, xOut] = self._NDV
  *                     if not self.minMaxRangeSumOnly:
  *                         self.outputMeanArr[yOut, xOut] = self._NDV             # <<<<<<<<<<<<<<
@@ -3391,7 +3391,7 @@ static PyObject *__pyx_f_19Cython_Raster_Funcs_22RasterAggregator_float_22Raster
  *                 else:
  */
           __pyx_t_10 = __pyx_v_self->_NDV;
-          if (unlikely(!__pyx_v_self->outputMeanArr.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 194; __pyx_clineno = __LINE__; goto __pyx_L1_error;}}
+          if (unlikely(!__pyx_v_self->outputMeanArr.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 203; __pyx_clineno = __LINE__; goto __pyx_L1_error;}}
           __pyx_t_19 = __pyx_v_yOut;
           __pyx_t_20 = __pyx_v_xOut;
           *((float *) ( /* dim=1 */ ((char *) (((float *) ( /* dim=0 */ (__pyx_v_self->outputMeanArr.data + __pyx_t_19 * __pyx_v_self->outputMeanArr.strides[0]) )) + __pyx_t_20)) )) = __pyx_t_10;
@@ -3402,33 +3402,33 @@ static PyObject *__pyx_f_19Cython_Raster_Funcs_22RasterAggregator_float_22Raster
       }
       /*else*/ {
 
-        /* "Cython_Raster_Funcs\RasterAggregator_float.pyx":199
+        /* "Cython_Raster_Funcs\RasterAggregator_float.pyx":208
  *                     # min, max, sum, count are already set
  *                     self.outputRangeArr[yOut, xOut] = (
  *                         self.outputMaxArr[yOut, xOut] - self.outputMinArr[yOut, xOut])             # <<<<<<<<<<<<<<
  *                     if not self.minMaxRangeSumOnly:
  *                         variance = self.outputSDArr[yOut, xOut] / self.outputCountArr[yOut, xOut]
  */
-        if (unlikely(!__pyx_v_self->outputMaxArr.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 199; __pyx_clineno = __LINE__; goto __pyx_L1_error;}}
+        if (unlikely(!__pyx_v_self->outputMaxArr.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 208; __pyx_clineno = __LINE__; goto __pyx_L1_error;}}
         __pyx_t_21 = __pyx_v_yOut;
         __pyx_t_22 = __pyx_v_xOut;
-        if (unlikely(!__pyx_v_self->outputMinArr.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 199; __pyx_clineno = __LINE__; goto __pyx_L1_error;}}
+        if (unlikely(!__pyx_v_self->outputMinArr.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 208; __pyx_clineno = __LINE__; goto __pyx_L1_error;}}
         __pyx_t_23 = __pyx_v_yOut;
         __pyx_t_24 = __pyx_v_xOut;
 
-        /* "Cython_Raster_Funcs\RasterAggregator_float.pyx":198
+        /* "Cython_Raster_Funcs\RasterAggregator_float.pyx":207
  *                 else:
  *                     # min, max, sum, count are already set
  *                     self.outputRangeArr[yOut, xOut] = (             # <<<<<<<<<<<<<<
  *                         self.outputMaxArr[yOut, xOut] - self.outputMinArr[yOut, xOut])
  *                     if not self.minMaxRangeSumOnly:
  */
-        if (unlikely(!__pyx_v_self->outputRangeArr.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 198; __pyx_clineno = __LINE__; goto __pyx_L1_error;}}
+        if (unlikely(!__pyx_v_self->outputRangeArr.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 207; __pyx_clineno = __LINE__; goto __pyx_L1_error;}}
         __pyx_t_25 = __pyx_v_yOut;
         __pyx_t_26 = __pyx_v_xOut;
         *((float *) ( /* dim=1 */ ((char *) (((float *) ( /* dim=0 */ (__pyx_v_self->outputRangeArr.data + __pyx_t_25 * __pyx_v_self->outputRangeArr.strides[0]) )) + __pyx_t_26)) )) = ((*((float *) ( /* dim=1 */ ((char *) (((float *) ( /* dim=0 */ (__pyx_v_self->outputMaxArr.data + __pyx_t_21 * __pyx_v_self->outputMaxArr.strides[0]) )) + __pyx_t_22)) ))) - (*((float *) ( /* dim=1 */ ((char *) (((float *) ( /* dim=0 */ (__pyx_v_self->outputMinArr.data + __pyx_t_23 * __pyx_v_self->outputMinArr.strides[0]) )) + __pyx_t_24)) ))));
 
-        /* "Cython_Raster_Funcs\RasterAggregator_float.pyx":200
+        /* "Cython_Raster_Funcs\RasterAggregator_float.pyx":209
  *                     self.outputRangeArr[yOut, xOut] = (
  *                         self.outputMaxArr[yOut, xOut] - self.outputMinArr[yOut, xOut])
  *                     if not self.minMaxRangeSumOnly:             # <<<<<<<<<<<<<<
@@ -3438,55 +3438,55 @@ static PyObject *__pyx_f_19Cython_Raster_Funcs_22RasterAggregator_float_22Raster
         __pyx_t_7 = ((!(__pyx_v_self->minMaxRangeSumOnly != 0)) != 0);
         if (__pyx_t_7) {
 
-          /* "Cython_Raster_Funcs\RasterAggregator_float.pyx":201
+          /* "Cython_Raster_Funcs\RasterAggregator_float.pyx":210
  *                         self.outputMaxArr[yOut, xOut] - self.outputMinArr[yOut, xOut])
  *                     if not self.minMaxRangeSumOnly:
  *                         variance = self.outputSDArr[yOut, xOut] / self.outputCountArr[yOut, xOut]             # <<<<<<<<<<<<<<
  *                         self.outputSDArr[yOut, xOut] = sqrt(variance)
  *                         # re-calculate the mean using simple sum/n as the running mean method is more
  */
-          if (unlikely(!__pyx_v_self->outputSDArr.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 201; __pyx_clineno = __LINE__; goto __pyx_L1_error;}}
+          if (unlikely(!__pyx_v_self->outputSDArr.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 210; __pyx_clineno = __LINE__; goto __pyx_L1_error;}}
           __pyx_t_27 = __pyx_v_yOut;
           __pyx_t_28 = __pyx_v_xOut;
-          if (unlikely(!__pyx_v_self->outputCountArr.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 201; __pyx_clineno = __LINE__; goto __pyx_L1_error;}}
+          if (unlikely(!__pyx_v_self->outputCountArr.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 210; __pyx_clineno = __LINE__; goto __pyx_L1_error;}}
           __pyx_t_29 = __pyx_v_yOut;
           __pyx_t_30 = __pyx_v_xOut;
           __pyx_v_variance = ((*((float *) ( /* dim=1 */ ((char *) (((float *) ( /* dim=0 */ (__pyx_v_self->outputSDArr.data + __pyx_t_27 * __pyx_v_self->outputSDArr.strides[0]) )) + __pyx_t_28)) ))) / (*((int *) ( /* dim=1 */ ((char *) (((int *) ( /* dim=0 */ (__pyx_v_self->outputCountArr.data + __pyx_t_29 * __pyx_v_self->outputCountArr.strides[0]) )) + __pyx_t_30)) ))));
 
-          /* "Cython_Raster_Funcs\RasterAggregator_float.pyx":202
+          /* "Cython_Raster_Funcs\RasterAggregator_float.pyx":211
  *                     if not self.minMaxRangeSumOnly:
  *                         variance = self.outputSDArr[yOut, xOut] / self.outputCountArr[yOut, xOut]
  *                         self.outputSDArr[yOut, xOut] = sqrt(variance)             # <<<<<<<<<<<<<<
  *                         # re-calculate the mean using simple sum/n as the running mean method is more
  *                         # likely to have accumulated (slight) fp errors (in practice they seem to match
  */
-          if (unlikely(!__pyx_v_self->outputSDArr.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 202; __pyx_clineno = __LINE__; goto __pyx_L1_error;}}
+          if (unlikely(!__pyx_v_self->outputSDArr.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 211; __pyx_clineno = __LINE__; goto __pyx_L1_error;}}
           __pyx_t_31 = __pyx_v_yOut;
           __pyx_t_32 = __pyx_v_xOut;
           *((float *) ( /* dim=1 */ ((char *) (((float *) ( /* dim=0 */ (__pyx_v_self->outputSDArr.data + __pyx_t_31 * __pyx_v_self->outputSDArr.strides[0]) )) + __pyx_t_32)) )) = sqrt(__pyx_v_variance);
 
-          /* "Cython_Raster_Funcs\RasterAggregator_float.pyx":207
+          /* "Cython_Raster_Funcs\RasterAggregator_float.pyx":216
  *                         # to around 1e-6 but this will depend on the size of the values)
  *                         self.outputMeanArr[yOut, xOut] = (
  *                             self.outputSumArr[yOut, xOut] / self.outputCountArr[yOut, xOut])             # <<<<<<<<<<<<<<
  *         if not iscomplete:
  *             print "Warning, generating a result without having received input data for full extent"
  */
-          if (unlikely(!__pyx_v_self->outputSumArr.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 207; __pyx_clineno = __LINE__; goto __pyx_L1_error;}}
+          if (unlikely(!__pyx_v_self->outputSumArr.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 216; __pyx_clineno = __LINE__; goto __pyx_L1_error;}}
           __pyx_t_33 = __pyx_v_yOut;
           __pyx_t_34 = __pyx_v_xOut;
-          if (unlikely(!__pyx_v_self->outputCountArr.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 207; __pyx_clineno = __LINE__; goto __pyx_L1_error;}}
+          if (unlikely(!__pyx_v_self->outputCountArr.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 216; __pyx_clineno = __LINE__; goto __pyx_L1_error;}}
           __pyx_t_35 = __pyx_v_yOut;
           __pyx_t_36 = __pyx_v_xOut;
 
-          /* "Cython_Raster_Funcs\RasterAggregator_float.pyx":206
+          /* "Cython_Raster_Funcs\RasterAggregator_float.pyx":215
  *                         # likely to have accumulated (slight) fp errors (in practice they seem to match
  *                         # to around 1e-6 but this will depend on the size of the values)
  *                         self.outputMeanArr[yOut, xOut] = (             # <<<<<<<<<<<<<<
  *                             self.outputSumArr[yOut, xOut] / self.outputCountArr[yOut, xOut])
  *         if not iscomplete:
  */
-          if (unlikely(!__pyx_v_self->outputMeanArr.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 206; __pyx_clineno = __LINE__; goto __pyx_L1_error;}}
+          if (unlikely(!__pyx_v_self->outputMeanArr.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 215; __pyx_clineno = __LINE__; goto __pyx_L1_error;}}
           __pyx_t_37 = __pyx_v_yOut;
           __pyx_t_38 = __pyx_v_xOut;
           *((float *) ( /* dim=1 */ ((char *) (((float *) ( /* dim=0 */ (__pyx_v_self->outputMeanArr.data + __pyx_t_37 * __pyx_v_self->outputMeanArr.strides[0]) )) + __pyx_t_38)) )) = ((*((float *) ( /* dim=1 */ ((char *) (((float *) ( /* dim=0 */ (__pyx_v_self->outputSumArr.data + __pyx_t_33 * __pyx_v_self->outputSumArr.strides[0]) )) + __pyx_t_34)) ))) / (*((int *) ( /* dim=1 */ ((char *) (((int *) ( /* dim=0 */ (__pyx_v_self->outputCountArr.data + __pyx_t_35 * __pyx_v_self->outputCountArr.strides[0]) )) + __pyx_t_36)) ))));
@@ -3498,7 +3498,7 @@ static PyObject *__pyx_f_19Cython_Raster_Funcs_22RasterAggregator_float_22Raster
     }
   }
 
-  /* "Cython_Raster_Funcs\RasterAggregator_float.pyx":208
+  /* "Cython_Raster_Funcs\RasterAggregator_float.pyx":217
  *                         self.outputMeanArr[yOut, xOut] = (
  *                             self.outputSumArr[yOut, xOut] / self.outputCountArr[yOut, xOut])
  *         if not iscomplete:             # <<<<<<<<<<<<<<
@@ -3508,19 +3508,19 @@ static PyObject *__pyx_f_19Cython_Raster_Funcs_22RasterAggregator_float_22Raster
   __pyx_t_7 = ((!(__pyx_v_iscomplete != 0)) != 0);
   if (__pyx_t_7) {
 
-    /* "Cython_Raster_Funcs\RasterAggregator_float.pyx":209
+    /* "Cython_Raster_Funcs\RasterAggregator_float.pyx":218
  *                             self.outputSumArr[yOut, xOut] / self.outputCountArr[yOut, xOut])
  *         if not iscomplete:
  *             print "Warning, generating a result without having received input data for full extent"             # <<<<<<<<<<<<<<
  * 
  *     @cython.boundscheck(False)
  */
-    if (__Pyx_PrintOne(0, __pyx_kp_s_Warning_generating_a_result_with) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 209; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    if (__Pyx_PrintOne(0, __pyx_kp_s_Warning_generating_a_result_with) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 218; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     goto __pyx_L11;
   }
   __pyx_L11:;
 
-  /* "Cython_Raster_Funcs\RasterAggregator_float.pyx":178
+  /* "Cython_Raster_Funcs\RasterAggregator_float.pyx":187
  *     @cython.cdivision(True)
  *     @cython.wraparound(False)
  *     cdef finalise(self):             # <<<<<<<<<<<<<<
@@ -3540,7 +3540,7 @@ static PyObject *__pyx_f_19Cython_Raster_Funcs_22RasterAggregator_float_22Raster
   return __pyx_r;
 }
 
-/* "Cython_Raster_Funcs\RasterAggregator_float.pyx":214
+/* "Cython_Raster_Funcs\RasterAggregator_float.pyx":223
  *     @cython.cdivision(True)
  *     @cython.wraparound(False)
  *     cpdef GetResults(self):             # <<<<<<<<<<<<<<
@@ -3568,7 +3568,7 @@ static PyObject *__pyx_f_19Cython_Raster_Funcs_22RasterAggregator_float_22Raster
   if (unlikely(__pyx_skip_dispatch)) ;
   /* Check if overridden in Python */
   else if (unlikely(Py_TYPE(((PyObject *)__pyx_v_self))->tp_dictoffset != 0)) {
-    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_GetResults); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 214; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_GetResults); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 223; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_1);
     if (!PyCFunction_Check(__pyx_t_1) || (PyCFunction_GET_FUNCTION(__pyx_t_1) != (PyCFunction)__pyx_pw_19Cython_Raster_Funcs_22RasterAggregator_float_22RasterAggregator_float_5GetResults)) {
       __Pyx_XDECREF(__pyx_r);
@@ -3584,10 +3584,10 @@ static PyObject *__pyx_f_19Cython_Raster_Funcs_22RasterAggregator_float_22Raster
         }
       }
       if (__pyx_t_4) {
-        __pyx_t_2 = __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_t_4); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 214; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+        __pyx_t_2 = __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_t_4); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 223; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
         __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
       } else {
-        __pyx_t_2 = __Pyx_PyObject_CallNoArg(__pyx_t_3); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 214; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+        __pyx_t_2 = __Pyx_PyObject_CallNoArg(__pyx_t_3); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 223; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       }
       __Pyx_GOTREF(__pyx_t_2);
       __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
@@ -3599,18 +3599,18 @@ static PyObject *__pyx_f_19Cython_Raster_Funcs_22RasterAggregator_float_22Raster
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   }
 
-  /* "Cython_Raster_Funcs\RasterAggregator_float.pyx":215
+  /* "Cython_Raster_Funcs\RasterAggregator_float.pyx":224
  *     @cython.wraparound(False)
  *     cpdef GetResults(self):
  *         self.finalise()             # <<<<<<<<<<<<<<
  *         if not self.minMaxRangeSumOnly:
  *             return { # count, max, mean, min, range, sum
  */
-  __pyx_t_1 = ((struct __pyx_vtabstruct_19Cython_Raster_Funcs_22RasterAggregator_float_RasterAggregator_float *)__pyx_v_self->__pyx_vtab)->finalise(__pyx_v_self); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 215; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = ((struct __pyx_vtabstruct_19Cython_Raster_Funcs_22RasterAggregator_float_RasterAggregator_float *)__pyx_v_self->__pyx_vtab)->finalise(__pyx_v_self); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 224; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "Cython_Raster_Funcs\RasterAggregator_float.pyx":216
+  /* "Cython_Raster_Funcs\RasterAggregator_float.pyx":225
  *     cpdef GetResults(self):
  *         self.finalise()
  *         if not self.minMaxRangeSumOnly:             # <<<<<<<<<<<<<<
@@ -3620,7 +3620,7 @@ static PyObject *__pyx_f_19Cython_Raster_Funcs_22RasterAggregator_float_22Raster
   __pyx_t_5 = ((!(__pyx_v_self->minMaxRangeSumOnly != 0)) != 0);
   if (__pyx_t_5) {
 
-    /* "Cython_Raster_Funcs\RasterAggregator_float.pyx":217
+    /* "Cython_Raster_Funcs\RasterAggregator_float.pyx":226
  *         self.finalise()
  *         if not self.minMaxRangeSumOnly:
  *             return { # count, max, mean, min, range, sum             # <<<<<<<<<<<<<<
@@ -3628,23 +3628,23 @@ static PyObject *__pyx_f_19Cython_Raster_Funcs_22RasterAggregator_float_22Raster
  *                 "max": np.asarray(self.outputMaxArr),
  */
     __Pyx_XDECREF(__pyx_r);
-    __pyx_t_1 = PyDict_New(); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 217; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_1 = PyDict_New(); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 226; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_1);
 
-    /* "Cython_Raster_Funcs\RasterAggregator_float.pyx":218
+    /* "Cython_Raster_Funcs\RasterAggregator_float.pyx":227
  *         if not self.minMaxRangeSumOnly:
  *             return { # count, max, mean, min, range, sum
  *                 "count": np.asarray(self.outputCountArr),             # <<<<<<<<<<<<<<
  *                 "max": np.asarray(self.outputMaxArr),
  *                 "mean": np.asarray(self.outputMeanArr).astype(np.float32),
  */
-    __pyx_t_3 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 218; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_3 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 227; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_3);
-    __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_asarray); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 218; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_asarray); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 227; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_4);
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-    if (unlikely(!__pyx_v_self->outputCountArr.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 218; __pyx_clineno = __LINE__; goto __pyx_L1_error;}}
-    __pyx_t_3 = __pyx_memoryview_fromslice(__pyx_v_self->outputCountArr, 2, (PyObject *(*)(char *)) __pyx_memview_get_int, (int (*)(char *, PyObject *)) __pyx_memview_set_int, 0);; if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 218; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    if (unlikely(!__pyx_v_self->outputCountArr.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 227; __pyx_clineno = __LINE__; goto __pyx_L1_error;}}
+    __pyx_t_3 = __pyx_memoryview_fromslice(__pyx_v_self->outputCountArr, 2, (PyObject *(*)(char *)) __pyx_memview_get_int, (int (*)(char *, PyObject *)) __pyx_memview_set_int, 0);; if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 227; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_3);
     __pyx_t_6 = NULL;
     if (CYTHON_COMPILING_IN_CPYTHON && unlikely(PyMethod_Check(__pyx_t_4))) {
@@ -3657,38 +3657,38 @@ static PyObject *__pyx_f_19Cython_Raster_Funcs_22RasterAggregator_float_22Raster
       }
     }
     if (!__pyx_t_6) {
-      __pyx_t_2 = __Pyx_PyObject_CallOneArg(__pyx_t_4, __pyx_t_3); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 218; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_2 = __Pyx_PyObject_CallOneArg(__pyx_t_4, __pyx_t_3); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 227; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
       __Pyx_GOTREF(__pyx_t_2);
     } else {
-      __pyx_t_7 = PyTuple_New(1+1); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 218; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_7 = PyTuple_New(1+1); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 227; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_7);
       PyTuple_SET_ITEM(__pyx_t_7, 0, __pyx_t_6); __Pyx_GIVEREF(__pyx_t_6); __pyx_t_6 = NULL;
       PyTuple_SET_ITEM(__pyx_t_7, 0+1, __pyx_t_3);
       __Pyx_GIVEREF(__pyx_t_3);
       __pyx_t_3 = 0;
-      __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_4, __pyx_t_7, NULL); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 218; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_4, __pyx_t_7, NULL); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 227; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_2);
       __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
     }
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-    if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_count, __pyx_t_2) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 217; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_count, __pyx_t_2) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 226; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-    /* "Cython_Raster_Funcs\RasterAggregator_float.pyx":219
+    /* "Cython_Raster_Funcs\RasterAggregator_float.pyx":228
  *             return { # count, max, mean, min, range, sum
  *                 "count": np.asarray(self.outputCountArr),
  *                 "max": np.asarray(self.outputMaxArr),             # <<<<<<<<<<<<<<
  *                 "mean": np.asarray(self.outputMeanArr).astype(np.float32),
  *                 "min": np.asarray(self.outputMinArr),
  */
-    __pyx_t_4 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 219; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_4 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 228; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_4);
-    __pyx_t_7 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_n_s_asarray); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 219; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_7 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_n_s_asarray); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 228; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_7);
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-    if (unlikely(!__pyx_v_self->outputMaxArr.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 219; __pyx_clineno = __LINE__; goto __pyx_L1_error;}}
-    __pyx_t_4 = __pyx_memoryview_fromslice(__pyx_v_self->outputMaxArr, 2, (PyObject *(*)(char *)) __pyx_memview_get_float, (int (*)(char *, PyObject *)) __pyx_memview_set_float, 0);; if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 219; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    if (unlikely(!__pyx_v_self->outputMaxArr.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 228; __pyx_clineno = __LINE__; goto __pyx_L1_error;}}
+    __pyx_t_4 = __pyx_memoryview_fromslice(__pyx_v_self->outputMaxArr, 2, (PyObject *(*)(char *)) __pyx_memview_get_float, (int (*)(char *, PyObject *)) __pyx_memview_set_float, 0);; if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 228; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_4);
     __pyx_t_3 = NULL;
     if (CYTHON_COMPILING_IN_CPYTHON && unlikely(PyMethod_Check(__pyx_t_7))) {
@@ -3701,38 +3701,38 @@ static PyObject *__pyx_f_19Cython_Raster_Funcs_22RasterAggregator_float_22Raster
       }
     }
     if (!__pyx_t_3) {
-      __pyx_t_2 = __Pyx_PyObject_CallOneArg(__pyx_t_7, __pyx_t_4); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 219; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_2 = __Pyx_PyObject_CallOneArg(__pyx_t_7, __pyx_t_4); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 228; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
       __Pyx_GOTREF(__pyx_t_2);
     } else {
-      __pyx_t_6 = PyTuple_New(1+1); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 219; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_6 = PyTuple_New(1+1); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 228; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_6);
       PyTuple_SET_ITEM(__pyx_t_6, 0, __pyx_t_3); __Pyx_GIVEREF(__pyx_t_3); __pyx_t_3 = NULL;
       PyTuple_SET_ITEM(__pyx_t_6, 0+1, __pyx_t_4);
       __Pyx_GIVEREF(__pyx_t_4);
       __pyx_t_4 = 0;
-      __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_7, __pyx_t_6, NULL); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 219; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_7, __pyx_t_6, NULL); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 228; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_2);
       __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
     }
     __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
-    if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_max, __pyx_t_2) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 217; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_max, __pyx_t_2) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 226; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-    /* "Cython_Raster_Funcs\RasterAggregator_float.pyx":220
+    /* "Cython_Raster_Funcs\RasterAggregator_float.pyx":229
  *                 "count": np.asarray(self.outputCountArr),
  *                 "max": np.asarray(self.outputMaxArr),
  *                 "mean": np.asarray(self.outputMeanArr).astype(np.float32),             # <<<<<<<<<<<<<<
  *                 "min": np.asarray(self.outputMinArr),
  *                 "range": np.asarray(self.outputRangeArr),
  */
-    __pyx_t_6 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 220; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_6 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 229; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_6);
-    __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_6, __pyx_n_s_asarray); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 220; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_6, __pyx_n_s_asarray); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 229; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_4);
     __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-    if (unlikely(!__pyx_v_self->outputMeanArr.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 220; __pyx_clineno = __LINE__; goto __pyx_L1_error;}}
-    __pyx_t_6 = __pyx_memoryview_fromslice(__pyx_v_self->outputMeanArr, 2, (PyObject *(*)(char *)) __pyx_memview_get_float, (int (*)(char *, PyObject *)) __pyx_memview_set_float, 0);; if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 220; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    if (unlikely(!__pyx_v_self->outputMeanArr.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 229; __pyx_clineno = __LINE__; goto __pyx_L1_error;}}
+    __pyx_t_6 = __pyx_memoryview_fromslice(__pyx_v_self->outputMeanArr, 2, (PyObject *(*)(char *)) __pyx_memview_get_float, (int (*)(char *, PyObject *)) __pyx_memview_set_float, 0);; if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 229; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_6);
     __pyx_t_3 = NULL;
     if (CYTHON_COMPILING_IN_CPYTHON && unlikely(PyMethod_Check(__pyx_t_4))) {
@@ -3745,27 +3745,27 @@ static PyObject *__pyx_f_19Cython_Raster_Funcs_22RasterAggregator_float_22Raster
       }
     }
     if (!__pyx_t_3) {
-      __pyx_t_7 = __Pyx_PyObject_CallOneArg(__pyx_t_4, __pyx_t_6); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 220; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_7 = __Pyx_PyObject_CallOneArg(__pyx_t_4, __pyx_t_6); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 229; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
       __Pyx_GOTREF(__pyx_t_7);
     } else {
-      __pyx_t_8 = PyTuple_New(1+1); if (unlikely(!__pyx_t_8)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 220; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_8 = PyTuple_New(1+1); if (unlikely(!__pyx_t_8)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 229; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_8);
       PyTuple_SET_ITEM(__pyx_t_8, 0, __pyx_t_3); __Pyx_GIVEREF(__pyx_t_3); __pyx_t_3 = NULL;
       PyTuple_SET_ITEM(__pyx_t_8, 0+1, __pyx_t_6);
       __Pyx_GIVEREF(__pyx_t_6);
       __pyx_t_6 = 0;
-      __pyx_t_7 = __Pyx_PyObject_Call(__pyx_t_4, __pyx_t_8, NULL); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 220; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_7 = __Pyx_PyObject_Call(__pyx_t_4, __pyx_t_8, NULL); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 229; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_7);
       __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
     }
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-    __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_7, __pyx_n_s_astype); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 220; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_7, __pyx_n_s_astype); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 229; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_4);
     __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
-    __pyx_t_7 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 220; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_7 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 229; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_7);
-    __pyx_t_8 = __Pyx_PyObject_GetAttrStr(__pyx_t_7, __pyx_n_s_float32); if (unlikely(!__pyx_t_8)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 220; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_8 = __Pyx_PyObject_GetAttrStr(__pyx_t_7, __pyx_n_s_float32); if (unlikely(!__pyx_t_8)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 229; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_8);
     __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
     __pyx_t_7 = NULL;
@@ -3779,38 +3779,38 @@ static PyObject *__pyx_f_19Cython_Raster_Funcs_22RasterAggregator_float_22Raster
       }
     }
     if (!__pyx_t_7) {
-      __pyx_t_2 = __Pyx_PyObject_CallOneArg(__pyx_t_4, __pyx_t_8); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 220; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_2 = __Pyx_PyObject_CallOneArg(__pyx_t_4, __pyx_t_8); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 229; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
       __Pyx_GOTREF(__pyx_t_2);
     } else {
-      __pyx_t_6 = PyTuple_New(1+1); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 220; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_6 = PyTuple_New(1+1); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 229; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_6);
       PyTuple_SET_ITEM(__pyx_t_6, 0, __pyx_t_7); __Pyx_GIVEREF(__pyx_t_7); __pyx_t_7 = NULL;
       PyTuple_SET_ITEM(__pyx_t_6, 0+1, __pyx_t_8);
       __Pyx_GIVEREF(__pyx_t_8);
       __pyx_t_8 = 0;
-      __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_4, __pyx_t_6, NULL); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 220; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_4, __pyx_t_6, NULL); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 229; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_2);
       __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
     }
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-    if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_mean, __pyx_t_2) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 217; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_mean, __pyx_t_2) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 226; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-    /* "Cython_Raster_Funcs\RasterAggregator_float.pyx":221
+    /* "Cython_Raster_Funcs\RasterAggregator_float.pyx":230
  *                 "max": np.asarray(self.outputMaxArr),
  *                 "mean": np.asarray(self.outputMeanArr).astype(np.float32),
  *                 "min": np.asarray(self.outputMinArr),             # <<<<<<<<<<<<<<
  *                 "range": np.asarray(self.outputRangeArr),
  *                 "sum": np.asarray(self.outputSumArr),
  */
-    __pyx_t_4 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 221; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_4 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 230; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_4);
-    __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_n_s_asarray); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 221; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_n_s_asarray); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 230; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_6);
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-    if (unlikely(!__pyx_v_self->outputMinArr.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 221; __pyx_clineno = __LINE__; goto __pyx_L1_error;}}
-    __pyx_t_4 = __pyx_memoryview_fromslice(__pyx_v_self->outputMinArr, 2, (PyObject *(*)(char *)) __pyx_memview_get_float, (int (*)(char *, PyObject *)) __pyx_memview_set_float, 0);; if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 221; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    if (unlikely(!__pyx_v_self->outputMinArr.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 230; __pyx_clineno = __LINE__; goto __pyx_L1_error;}}
+    __pyx_t_4 = __pyx_memoryview_fromslice(__pyx_v_self->outputMinArr, 2, (PyObject *(*)(char *)) __pyx_memview_get_float, (int (*)(char *, PyObject *)) __pyx_memview_set_float, 0);; if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 230; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_4);
     __pyx_t_8 = NULL;
     if (CYTHON_COMPILING_IN_CPYTHON && unlikely(PyMethod_Check(__pyx_t_6))) {
@@ -3823,38 +3823,38 @@ static PyObject *__pyx_f_19Cython_Raster_Funcs_22RasterAggregator_float_22Raster
       }
     }
     if (!__pyx_t_8) {
-      __pyx_t_2 = __Pyx_PyObject_CallOneArg(__pyx_t_6, __pyx_t_4); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 221; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_2 = __Pyx_PyObject_CallOneArg(__pyx_t_6, __pyx_t_4); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 230; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
       __Pyx_GOTREF(__pyx_t_2);
     } else {
-      __pyx_t_7 = PyTuple_New(1+1); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 221; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_7 = PyTuple_New(1+1); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 230; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_7);
       PyTuple_SET_ITEM(__pyx_t_7, 0, __pyx_t_8); __Pyx_GIVEREF(__pyx_t_8); __pyx_t_8 = NULL;
       PyTuple_SET_ITEM(__pyx_t_7, 0+1, __pyx_t_4);
       __Pyx_GIVEREF(__pyx_t_4);
       __pyx_t_4 = 0;
-      __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_6, __pyx_t_7, NULL); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 221; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_6, __pyx_t_7, NULL); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 230; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_2);
       __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
     }
     __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-    if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_min, __pyx_t_2) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 217; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_min, __pyx_t_2) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 226; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-    /* "Cython_Raster_Funcs\RasterAggregator_float.pyx":222
+    /* "Cython_Raster_Funcs\RasterAggregator_float.pyx":231
  *                 "mean": np.asarray(self.outputMeanArr).astype(np.float32),
  *                 "min": np.asarray(self.outputMinArr),
  *                 "range": np.asarray(self.outputRangeArr),             # <<<<<<<<<<<<<<
  *                 "sum": np.asarray(self.outputSumArr),
  *                 "sd": np.asarray(self.outputSDArr).astype(np.float32),
  */
-    __pyx_t_6 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 222; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_6 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 231; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_6);
-    __pyx_t_7 = __Pyx_PyObject_GetAttrStr(__pyx_t_6, __pyx_n_s_asarray); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 222; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_7 = __Pyx_PyObject_GetAttrStr(__pyx_t_6, __pyx_n_s_asarray); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 231; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_7);
     __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-    if (unlikely(!__pyx_v_self->outputRangeArr.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 222; __pyx_clineno = __LINE__; goto __pyx_L1_error;}}
-    __pyx_t_6 = __pyx_memoryview_fromslice(__pyx_v_self->outputRangeArr, 2, (PyObject *(*)(char *)) __pyx_memview_get_float, (int (*)(char *, PyObject *)) __pyx_memview_set_float, 0);; if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 222; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    if (unlikely(!__pyx_v_self->outputRangeArr.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 231; __pyx_clineno = __LINE__; goto __pyx_L1_error;}}
+    __pyx_t_6 = __pyx_memoryview_fromslice(__pyx_v_self->outputRangeArr, 2, (PyObject *(*)(char *)) __pyx_memview_get_float, (int (*)(char *, PyObject *)) __pyx_memview_set_float, 0);; if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 231; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_6);
     __pyx_t_4 = NULL;
     if (CYTHON_COMPILING_IN_CPYTHON && unlikely(PyMethod_Check(__pyx_t_7))) {
@@ -3867,38 +3867,38 @@ static PyObject *__pyx_f_19Cython_Raster_Funcs_22RasterAggregator_float_22Raster
       }
     }
     if (!__pyx_t_4) {
-      __pyx_t_2 = __Pyx_PyObject_CallOneArg(__pyx_t_7, __pyx_t_6); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 222; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_2 = __Pyx_PyObject_CallOneArg(__pyx_t_7, __pyx_t_6); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 231; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
       __Pyx_GOTREF(__pyx_t_2);
     } else {
-      __pyx_t_8 = PyTuple_New(1+1); if (unlikely(!__pyx_t_8)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 222; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_8 = PyTuple_New(1+1); if (unlikely(!__pyx_t_8)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 231; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_8);
       PyTuple_SET_ITEM(__pyx_t_8, 0, __pyx_t_4); __Pyx_GIVEREF(__pyx_t_4); __pyx_t_4 = NULL;
       PyTuple_SET_ITEM(__pyx_t_8, 0+1, __pyx_t_6);
       __Pyx_GIVEREF(__pyx_t_6);
       __pyx_t_6 = 0;
-      __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_7, __pyx_t_8, NULL); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 222; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_7, __pyx_t_8, NULL); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 231; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_2);
       __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
     }
     __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
-    if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_range, __pyx_t_2) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 217; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_range, __pyx_t_2) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 226; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-    /* "Cython_Raster_Funcs\RasterAggregator_float.pyx":223
+    /* "Cython_Raster_Funcs\RasterAggregator_float.pyx":232
  *                 "min": np.asarray(self.outputMinArr),
  *                 "range": np.asarray(self.outputRangeArr),
  *                 "sum": np.asarray(self.outputSumArr),             # <<<<<<<<<<<<<<
  *                 "sd": np.asarray(self.outputSDArr).astype(np.float32),
  *             }
  */
-    __pyx_t_7 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 223; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_7 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 232; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_7);
-    __pyx_t_8 = __Pyx_PyObject_GetAttrStr(__pyx_t_7, __pyx_n_s_asarray); if (unlikely(!__pyx_t_8)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 223; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_8 = __Pyx_PyObject_GetAttrStr(__pyx_t_7, __pyx_n_s_asarray); if (unlikely(!__pyx_t_8)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 232; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_8);
     __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
-    if (unlikely(!__pyx_v_self->outputSumArr.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 223; __pyx_clineno = __LINE__; goto __pyx_L1_error;}}
-    __pyx_t_7 = __pyx_memoryview_fromslice(__pyx_v_self->outputSumArr, 2, (PyObject *(*)(char *)) __pyx_memview_get_float, (int (*)(char *, PyObject *)) __pyx_memview_set_float, 0);; if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 223; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    if (unlikely(!__pyx_v_self->outputSumArr.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 232; __pyx_clineno = __LINE__; goto __pyx_L1_error;}}
+    __pyx_t_7 = __pyx_memoryview_fromslice(__pyx_v_self->outputSumArr, 2, (PyObject *(*)(char *)) __pyx_memview_get_float, (int (*)(char *, PyObject *)) __pyx_memview_set_float, 0);; if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 232; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_7);
     __pyx_t_6 = NULL;
     if (CYTHON_COMPILING_IN_CPYTHON && unlikely(PyMethod_Check(__pyx_t_8))) {
@@ -3911,38 +3911,38 @@ static PyObject *__pyx_f_19Cython_Raster_Funcs_22RasterAggregator_float_22Raster
       }
     }
     if (!__pyx_t_6) {
-      __pyx_t_2 = __Pyx_PyObject_CallOneArg(__pyx_t_8, __pyx_t_7); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 223; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_2 = __Pyx_PyObject_CallOneArg(__pyx_t_8, __pyx_t_7); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 232; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
       __Pyx_GOTREF(__pyx_t_2);
     } else {
-      __pyx_t_4 = PyTuple_New(1+1); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 223; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_4 = PyTuple_New(1+1); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 232; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_4);
       PyTuple_SET_ITEM(__pyx_t_4, 0, __pyx_t_6); __Pyx_GIVEREF(__pyx_t_6); __pyx_t_6 = NULL;
       PyTuple_SET_ITEM(__pyx_t_4, 0+1, __pyx_t_7);
       __Pyx_GIVEREF(__pyx_t_7);
       __pyx_t_7 = 0;
-      __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_8, __pyx_t_4, NULL); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 223; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_8, __pyx_t_4, NULL); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 232; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_2);
       __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
     }
     __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
-    if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_sum, __pyx_t_2) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 217; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_sum, __pyx_t_2) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 226; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-    /* "Cython_Raster_Funcs\RasterAggregator_float.pyx":224
+    /* "Cython_Raster_Funcs\RasterAggregator_float.pyx":233
  *                 "range": np.asarray(self.outputRangeArr),
  *                 "sum": np.asarray(self.outputSumArr),
  *                 "sd": np.asarray(self.outputSDArr).astype(np.float32),             # <<<<<<<<<<<<<<
  *             }
  *         else:
  */
-    __pyx_t_4 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 224; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_4 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 233; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_4);
-    __pyx_t_7 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_n_s_asarray); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 224; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_7 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_n_s_asarray); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 233; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_7);
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-    if (unlikely(!__pyx_v_self->outputSDArr.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 224; __pyx_clineno = __LINE__; goto __pyx_L1_error;}}
-    __pyx_t_4 = __pyx_memoryview_fromslice(__pyx_v_self->outputSDArr, 2, (PyObject *(*)(char *)) __pyx_memview_get_float, (int (*)(char *, PyObject *)) __pyx_memview_set_float, 0);; if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 224; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    if (unlikely(!__pyx_v_self->outputSDArr.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 233; __pyx_clineno = __LINE__; goto __pyx_L1_error;}}
+    __pyx_t_4 = __pyx_memoryview_fromslice(__pyx_v_self->outputSDArr, 2, (PyObject *(*)(char *)) __pyx_memview_get_float, (int (*)(char *, PyObject *)) __pyx_memview_set_float, 0);; if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 233; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_4);
     __pyx_t_6 = NULL;
     if (CYTHON_COMPILING_IN_CPYTHON && unlikely(PyMethod_Check(__pyx_t_7))) {
@@ -3955,27 +3955,27 @@ static PyObject *__pyx_f_19Cython_Raster_Funcs_22RasterAggregator_float_22Raster
       }
     }
     if (!__pyx_t_6) {
-      __pyx_t_8 = __Pyx_PyObject_CallOneArg(__pyx_t_7, __pyx_t_4); if (unlikely(!__pyx_t_8)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 224; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_8 = __Pyx_PyObject_CallOneArg(__pyx_t_7, __pyx_t_4); if (unlikely(!__pyx_t_8)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 233; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
       __Pyx_GOTREF(__pyx_t_8);
     } else {
-      __pyx_t_3 = PyTuple_New(1+1); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 224; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_3 = PyTuple_New(1+1); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 233; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_3);
       PyTuple_SET_ITEM(__pyx_t_3, 0, __pyx_t_6); __Pyx_GIVEREF(__pyx_t_6); __pyx_t_6 = NULL;
       PyTuple_SET_ITEM(__pyx_t_3, 0+1, __pyx_t_4);
       __Pyx_GIVEREF(__pyx_t_4);
       __pyx_t_4 = 0;
-      __pyx_t_8 = __Pyx_PyObject_Call(__pyx_t_7, __pyx_t_3, NULL); if (unlikely(!__pyx_t_8)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 224; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_8 = __Pyx_PyObject_Call(__pyx_t_7, __pyx_t_3, NULL); if (unlikely(!__pyx_t_8)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 233; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_8);
       __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
     }
     __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
-    __pyx_t_7 = __Pyx_PyObject_GetAttrStr(__pyx_t_8, __pyx_n_s_astype); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 224; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_7 = __Pyx_PyObject_GetAttrStr(__pyx_t_8, __pyx_n_s_astype); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 233; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_7);
     __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
-    __pyx_t_8 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_8)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 224; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_8 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_8)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 233; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_8);
-    __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_8, __pyx_n_s_float32); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 224; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_8, __pyx_n_s_float32); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 233; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_3);
     __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
     __pyx_t_8 = NULL;
@@ -3989,22 +3989,22 @@ static PyObject *__pyx_f_19Cython_Raster_Funcs_22RasterAggregator_float_22Raster
       }
     }
     if (!__pyx_t_8) {
-      __pyx_t_2 = __Pyx_PyObject_CallOneArg(__pyx_t_7, __pyx_t_3); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 224; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_2 = __Pyx_PyObject_CallOneArg(__pyx_t_7, __pyx_t_3); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 233; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
       __Pyx_GOTREF(__pyx_t_2);
     } else {
-      __pyx_t_4 = PyTuple_New(1+1); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 224; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_4 = PyTuple_New(1+1); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 233; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_4);
       PyTuple_SET_ITEM(__pyx_t_4, 0, __pyx_t_8); __Pyx_GIVEREF(__pyx_t_8); __pyx_t_8 = NULL;
       PyTuple_SET_ITEM(__pyx_t_4, 0+1, __pyx_t_3);
       __Pyx_GIVEREF(__pyx_t_3);
       __pyx_t_3 = 0;
-      __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_7, __pyx_t_4, NULL); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 224; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_7, __pyx_t_4, NULL); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 233; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_2);
       __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
     }
     __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
-    if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_sd, __pyx_t_2) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 217; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_sd, __pyx_t_2) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 226; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
     __pyx_r = __pyx_t_1;
     __pyx_t_1 = 0;
@@ -4012,7 +4012,7 @@ static PyObject *__pyx_f_19Cython_Raster_Funcs_22RasterAggregator_float_22Raster
   }
   /*else*/ {
 
-    /* "Cython_Raster_Funcs\RasterAggregator_float.pyx":227
+    /* "Cython_Raster_Funcs\RasterAggregator_float.pyx":236
  *             }
  *         else:
  *             return {             # <<<<<<<<<<<<<<
@@ -4020,23 +4020,23 @@ static PyObject *__pyx_f_19Cython_Raster_Funcs_22RasterAggregator_float_22Raster
  *                 "max": np.asarray(self.outputMaxArr),
  */
     __Pyx_XDECREF(__pyx_r);
-    __pyx_t_1 = PyDict_New(); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 227; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_1 = PyDict_New(); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 236; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_1);
 
-    /* "Cython_Raster_Funcs\RasterAggregator_float.pyx":228
+    /* "Cython_Raster_Funcs\RasterAggregator_float.pyx":237
  *         else:
  *             return {
  *                 "count": np.asarray(self.outputCountArr),             # <<<<<<<<<<<<<<
  *                 "max": np.asarray(self.outputMaxArr),
  *                 "min": np.asarray(self.outputMinArr),
  */
-    __pyx_t_7 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 228; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_7 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 237; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_7);
-    __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_7, __pyx_n_s_asarray); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 228; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_7, __pyx_n_s_asarray); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 237; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_4);
     __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
-    if (unlikely(!__pyx_v_self->outputCountArr.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 228; __pyx_clineno = __LINE__; goto __pyx_L1_error;}}
-    __pyx_t_7 = __pyx_memoryview_fromslice(__pyx_v_self->outputCountArr, 2, (PyObject *(*)(char *)) __pyx_memview_get_int, (int (*)(char *, PyObject *)) __pyx_memview_set_int, 0);; if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 228; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    if (unlikely(!__pyx_v_self->outputCountArr.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 237; __pyx_clineno = __LINE__; goto __pyx_L1_error;}}
+    __pyx_t_7 = __pyx_memoryview_fromslice(__pyx_v_self->outputCountArr, 2, (PyObject *(*)(char *)) __pyx_memview_get_int, (int (*)(char *, PyObject *)) __pyx_memview_set_int, 0);; if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 237; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_7);
     __pyx_t_3 = NULL;
     if (CYTHON_COMPILING_IN_CPYTHON && unlikely(PyMethod_Check(__pyx_t_4))) {
@@ -4049,38 +4049,38 @@ static PyObject *__pyx_f_19Cython_Raster_Funcs_22RasterAggregator_float_22Raster
       }
     }
     if (!__pyx_t_3) {
-      __pyx_t_2 = __Pyx_PyObject_CallOneArg(__pyx_t_4, __pyx_t_7); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 228; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_2 = __Pyx_PyObject_CallOneArg(__pyx_t_4, __pyx_t_7); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 237; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
       __Pyx_GOTREF(__pyx_t_2);
     } else {
-      __pyx_t_8 = PyTuple_New(1+1); if (unlikely(!__pyx_t_8)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 228; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_8 = PyTuple_New(1+1); if (unlikely(!__pyx_t_8)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 237; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_8);
       PyTuple_SET_ITEM(__pyx_t_8, 0, __pyx_t_3); __Pyx_GIVEREF(__pyx_t_3); __pyx_t_3 = NULL;
       PyTuple_SET_ITEM(__pyx_t_8, 0+1, __pyx_t_7);
       __Pyx_GIVEREF(__pyx_t_7);
       __pyx_t_7 = 0;
-      __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_4, __pyx_t_8, NULL); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 228; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_4, __pyx_t_8, NULL); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 237; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_2);
       __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
     }
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-    if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_count, __pyx_t_2) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 227; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_count, __pyx_t_2) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 236; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-    /* "Cython_Raster_Funcs\RasterAggregator_float.pyx":229
+    /* "Cython_Raster_Funcs\RasterAggregator_float.pyx":238
  *             return {
  *                 "count": np.asarray(self.outputCountArr),
  *                 "max": np.asarray(self.outputMaxArr),             # <<<<<<<<<<<<<<
  *                 "min": np.asarray(self.outputMinArr),
  *                 "range": np.asarray(self.outputRangeArr),
  */
-    __pyx_t_4 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 229; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_4 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 238; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_4);
-    __pyx_t_8 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_n_s_asarray); if (unlikely(!__pyx_t_8)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 229; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_8 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_n_s_asarray); if (unlikely(!__pyx_t_8)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 238; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_8);
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-    if (unlikely(!__pyx_v_self->outputMaxArr.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 229; __pyx_clineno = __LINE__; goto __pyx_L1_error;}}
-    __pyx_t_4 = __pyx_memoryview_fromslice(__pyx_v_self->outputMaxArr, 2, (PyObject *(*)(char *)) __pyx_memview_get_float, (int (*)(char *, PyObject *)) __pyx_memview_set_float, 0);; if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 229; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    if (unlikely(!__pyx_v_self->outputMaxArr.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 238; __pyx_clineno = __LINE__; goto __pyx_L1_error;}}
+    __pyx_t_4 = __pyx_memoryview_fromslice(__pyx_v_self->outputMaxArr, 2, (PyObject *(*)(char *)) __pyx_memview_get_float, (int (*)(char *, PyObject *)) __pyx_memview_set_float, 0);; if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 238; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_4);
     __pyx_t_7 = NULL;
     if (CYTHON_COMPILING_IN_CPYTHON && unlikely(PyMethod_Check(__pyx_t_8))) {
@@ -4093,38 +4093,38 @@ static PyObject *__pyx_f_19Cython_Raster_Funcs_22RasterAggregator_float_22Raster
       }
     }
     if (!__pyx_t_7) {
-      __pyx_t_2 = __Pyx_PyObject_CallOneArg(__pyx_t_8, __pyx_t_4); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 229; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_2 = __Pyx_PyObject_CallOneArg(__pyx_t_8, __pyx_t_4); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 238; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
       __Pyx_GOTREF(__pyx_t_2);
     } else {
-      __pyx_t_3 = PyTuple_New(1+1); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 229; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_3 = PyTuple_New(1+1); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 238; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_3);
       PyTuple_SET_ITEM(__pyx_t_3, 0, __pyx_t_7); __Pyx_GIVEREF(__pyx_t_7); __pyx_t_7 = NULL;
       PyTuple_SET_ITEM(__pyx_t_3, 0+1, __pyx_t_4);
       __Pyx_GIVEREF(__pyx_t_4);
       __pyx_t_4 = 0;
-      __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_8, __pyx_t_3, NULL); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 229; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_8, __pyx_t_3, NULL); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 238; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_2);
       __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
     }
     __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
-    if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_max, __pyx_t_2) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 227; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_max, __pyx_t_2) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 236; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-    /* "Cython_Raster_Funcs\RasterAggregator_float.pyx":230
+    /* "Cython_Raster_Funcs\RasterAggregator_float.pyx":239
  *                 "count": np.asarray(self.outputCountArr),
  *                 "max": np.asarray(self.outputMaxArr),
  *                 "min": np.asarray(self.outputMinArr),             # <<<<<<<<<<<<<<
  *                 "range": np.asarray(self.outputRangeArr),
  *                 "sum": np.asarray(self.outputSumArr),
  */
-    __pyx_t_8 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_8)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 230; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_8 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_8)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 239; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_8);
-    __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_8, __pyx_n_s_asarray); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 230; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_8, __pyx_n_s_asarray); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 239; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_3);
     __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
-    if (unlikely(!__pyx_v_self->outputMinArr.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 230; __pyx_clineno = __LINE__; goto __pyx_L1_error;}}
-    __pyx_t_8 = __pyx_memoryview_fromslice(__pyx_v_self->outputMinArr, 2, (PyObject *(*)(char *)) __pyx_memview_get_float, (int (*)(char *, PyObject *)) __pyx_memview_set_float, 0);; if (unlikely(!__pyx_t_8)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 230; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    if (unlikely(!__pyx_v_self->outputMinArr.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 239; __pyx_clineno = __LINE__; goto __pyx_L1_error;}}
+    __pyx_t_8 = __pyx_memoryview_fromslice(__pyx_v_self->outputMinArr, 2, (PyObject *(*)(char *)) __pyx_memview_get_float, (int (*)(char *, PyObject *)) __pyx_memview_set_float, 0);; if (unlikely(!__pyx_t_8)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 239; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_8);
     __pyx_t_4 = NULL;
     if (CYTHON_COMPILING_IN_CPYTHON && unlikely(PyMethod_Check(__pyx_t_3))) {
@@ -4137,38 +4137,38 @@ static PyObject *__pyx_f_19Cython_Raster_Funcs_22RasterAggregator_float_22Raster
       }
     }
     if (!__pyx_t_4) {
-      __pyx_t_2 = __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_t_8); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 230; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_2 = __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_t_8); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 239; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
       __Pyx_GOTREF(__pyx_t_2);
     } else {
-      __pyx_t_7 = PyTuple_New(1+1); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 230; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_7 = PyTuple_New(1+1); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 239; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_7);
       PyTuple_SET_ITEM(__pyx_t_7, 0, __pyx_t_4); __Pyx_GIVEREF(__pyx_t_4); __pyx_t_4 = NULL;
       PyTuple_SET_ITEM(__pyx_t_7, 0+1, __pyx_t_8);
       __Pyx_GIVEREF(__pyx_t_8);
       __pyx_t_8 = 0;
-      __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_t_7, NULL); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 230; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_t_7, NULL); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 239; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_2);
       __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
     }
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-    if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_min, __pyx_t_2) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 227; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_min, __pyx_t_2) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 236; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-    /* "Cython_Raster_Funcs\RasterAggregator_float.pyx":231
+    /* "Cython_Raster_Funcs\RasterAggregator_float.pyx":240
  *                 "max": np.asarray(self.outputMaxArr),
  *                 "min": np.asarray(self.outputMinArr),
  *                 "range": np.asarray(self.outputRangeArr),             # <<<<<<<<<<<<<<
  *                 "sum": np.asarray(self.outputSumArr),
  *             }
  */
-    __pyx_t_3 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 231; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_3 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 240; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_3);
-    __pyx_t_7 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_asarray); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 231; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_7 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_asarray); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 240; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_7);
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-    if (unlikely(!__pyx_v_self->outputRangeArr.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 231; __pyx_clineno = __LINE__; goto __pyx_L1_error;}}
-    __pyx_t_3 = __pyx_memoryview_fromslice(__pyx_v_self->outputRangeArr, 2, (PyObject *(*)(char *)) __pyx_memview_get_float, (int (*)(char *, PyObject *)) __pyx_memview_set_float, 0);; if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 231; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    if (unlikely(!__pyx_v_self->outputRangeArr.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 240; __pyx_clineno = __LINE__; goto __pyx_L1_error;}}
+    __pyx_t_3 = __pyx_memoryview_fromslice(__pyx_v_self->outputRangeArr, 2, (PyObject *(*)(char *)) __pyx_memview_get_float, (int (*)(char *, PyObject *)) __pyx_memview_set_float, 0);; if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 240; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_3);
     __pyx_t_8 = NULL;
     if (CYTHON_COMPILING_IN_CPYTHON && unlikely(PyMethod_Check(__pyx_t_7))) {
@@ -4181,38 +4181,38 @@ static PyObject *__pyx_f_19Cython_Raster_Funcs_22RasterAggregator_float_22Raster
       }
     }
     if (!__pyx_t_8) {
-      __pyx_t_2 = __Pyx_PyObject_CallOneArg(__pyx_t_7, __pyx_t_3); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 231; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_2 = __Pyx_PyObject_CallOneArg(__pyx_t_7, __pyx_t_3); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 240; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
       __Pyx_GOTREF(__pyx_t_2);
     } else {
-      __pyx_t_4 = PyTuple_New(1+1); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 231; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_4 = PyTuple_New(1+1); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 240; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_4);
       PyTuple_SET_ITEM(__pyx_t_4, 0, __pyx_t_8); __Pyx_GIVEREF(__pyx_t_8); __pyx_t_8 = NULL;
       PyTuple_SET_ITEM(__pyx_t_4, 0+1, __pyx_t_3);
       __Pyx_GIVEREF(__pyx_t_3);
       __pyx_t_3 = 0;
-      __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_7, __pyx_t_4, NULL); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 231; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_7, __pyx_t_4, NULL); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 240; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_2);
       __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
     }
     __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
-    if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_range, __pyx_t_2) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 227; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_range, __pyx_t_2) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 236; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-    /* "Cython_Raster_Funcs\RasterAggregator_float.pyx":232
+    /* "Cython_Raster_Funcs\RasterAggregator_float.pyx":241
  *                 "min": np.asarray(self.outputMinArr),
  *                 "range": np.asarray(self.outputRangeArr),
  *                 "sum": np.asarray(self.outputSumArr),             # <<<<<<<<<<<<<<
  *             }
  * 
  */
-    __pyx_t_7 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 232; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_7 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 241; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_7);
-    __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_7, __pyx_n_s_asarray); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 232; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_7, __pyx_n_s_asarray); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 241; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_4);
     __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
-    if (unlikely(!__pyx_v_self->outputSumArr.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 232; __pyx_clineno = __LINE__; goto __pyx_L1_error;}}
-    __pyx_t_7 = __pyx_memoryview_fromslice(__pyx_v_self->outputSumArr, 2, (PyObject *(*)(char *)) __pyx_memview_get_float, (int (*)(char *, PyObject *)) __pyx_memview_set_float, 0);; if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 232; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    if (unlikely(!__pyx_v_self->outputSumArr.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 241; __pyx_clineno = __LINE__; goto __pyx_L1_error;}}
+    __pyx_t_7 = __pyx_memoryview_fromslice(__pyx_v_self->outputSumArr, 2, (PyObject *(*)(char *)) __pyx_memview_get_float, (int (*)(char *, PyObject *)) __pyx_memview_set_float, 0);; if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 241; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_7);
     __pyx_t_3 = NULL;
     if (CYTHON_COMPILING_IN_CPYTHON && unlikely(PyMethod_Check(__pyx_t_4))) {
@@ -4225,29 +4225,29 @@ static PyObject *__pyx_f_19Cython_Raster_Funcs_22RasterAggregator_float_22Raster
       }
     }
     if (!__pyx_t_3) {
-      __pyx_t_2 = __Pyx_PyObject_CallOneArg(__pyx_t_4, __pyx_t_7); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 232; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_2 = __Pyx_PyObject_CallOneArg(__pyx_t_4, __pyx_t_7); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 241; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
       __Pyx_GOTREF(__pyx_t_2);
     } else {
-      __pyx_t_8 = PyTuple_New(1+1); if (unlikely(!__pyx_t_8)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 232; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_8 = PyTuple_New(1+1); if (unlikely(!__pyx_t_8)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 241; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_8);
       PyTuple_SET_ITEM(__pyx_t_8, 0, __pyx_t_3); __Pyx_GIVEREF(__pyx_t_3); __pyx_t_3 = NULL;
       PyTuple_SET_ITEM(__pyx_t_8, 0+1, __pyx_t_7);
       __Pyx_GIVEREF(__pyx_t_7);
       __pyx_t_7 = 0;
-      __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_4, __pyx_t_8, NULL); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 232; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_4, __pyx_t_8, NULL); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 241; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_2);
       __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
     }
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-    if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_sum, __pyx_t_2) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 227; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_sum, __pyx_t_2) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 236; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
     __pyx_r = __pyx_t_1;
     __pyx_t_1 = 0;
     goto __pyx_L0;
   }
 
-  /* "Cython_Raster_Funcs\RasterAggregator_float.pyx":214
+  /* "Cython_Raster_Funcs\RasterAggregator_float.pyx":223
  *     @cython.cdivision(True)
  *     @cython.wraparound(False)
  *     cpdef GetResults(self):             # <<<<<<<<<<<<<<
@@ -4294,7 +4294,7 @@ static PyObject *__pyx_pf_19Cython_Raster_Funcs_22RasterAggregator_float_22Raste
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("GetResults", 0);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __pyx_f_19Cython_Raster_Funcs_22RasterAggregator_float_22RasterAggregator_float_GetResults(__pyx_v_self, 1); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 214; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __pyx_f_19Cython_Raster_Funcs_22RasterAggregator_float_22RasterAggregator_float_GetResults(__pyx_v_self, 1); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 223; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -15034,7 +15034,7 @@ static PyTypeObject __pyx_type_19Cython_Raster_Funcs_22RasterAggregator_float_Ra
   0, /*tp_setattro*/
   0, /*tp_as_buffer*/
   Py_TPFLAGS_DEFAULT|Py_TPFLAGS_HAVE_VERSION_TAG|Py_TPFLAGS_CHECKTYPES|Py_TPFLAGS_HAVE_NEWBUFFER|Py_TPFLAGS_BASETYPE, /*tp_flags*/
-  " Aggregates a continuous raster grid to smaller dimensions, i.e. coarser resolution\n\n     Returns a tuple containing up to seven grids at the aggregated resolution,\n     each representing a different summary of the source pixels covered by each output\n     pixel, namely:\n        (\n          Count,\n          Max,\n          Mean (or None),\n          Min,\n          Range,\n          Sum,\n          SD (or None)\n        )\n    ", /*tp_doc*/
+  " Aggregates a continuous raster grid to smaller dimensions, i.e. coarser resolution\n\n     Returns a dictionary containing up to seven items, each being a different summary of the source\n     pixels covered by each output pixel. The item key is the string name of the statistic/summary\n     type and the value is the grid at the aggregated resolution for that statistic.\n     The item keys are:\n        (\n          count,\n          max,\n          mean (optional),\n          min,\n          range,\n          sum,\n          sd (optional)\n        )\n    The aggregation is built up by adding tiles of the input data using the addTile method. This way a grid\n    can be aggregated that is much too large to fit in memory. The required output and total input sizes must be\n    specified at instantiation. Input tiles should be provided to cover the whole extent of the specified output -\n    if no data is available for some areas then just add a tile of nodata. (At present only a warning is generated\n    if this isn't done: you can still continue).\n\n    The aggregation is run in optimised C code generated using Cython. This will need compiling / translating on\n    first use.\n    ", /*tp_doc*/
   0, /*tp_traverse*/
   0, /*tp_clear*/
   0, /*tp_richcompare*/
@@ -15839,7 +15839,7 @@ static __Pyx_StringTabEntry __pyx_string_tab[] = {
   {0, 0, 0, 0, 0, 0, 0}
 };
 static int __Pyx_InitCachedBuiltins(void) {
-  __pyx_builtin_range = __Pyx_GetBuiltinName(__pyx_n_s_range); if (!__pyx_builtin_range) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 123; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_builtin_range = __Pyx_GetBuiltinName(__pyx_n_s_range); if (!__pyx_builtin_range) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 132; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __pyx_builtin_ValueError = __Pyx_GetBuiltinName(__pyx_n_s_ValueError); if (!__pyx_builtin_ValueError) {__pyx_filename = __pyx_f[1]; __pyx_lineno = 127; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __pyx_builtin_MemoryError = __Pyx_GetBuiltinName(__pyx_n_s_MemoryError); if (!__pyx_builtin_MemoryError) {__pyx_filename = __pyx_f[1]; __pyx_lineno = 142; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __pyx_builtin_enumerate = __Pyx_GetBuiltinName(__pyx_n_s_enumerate); if (!__pyx_builtin_enumerate) {__pyx_filename = __pyx_f[1]; __pyx_lineno = 145; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
