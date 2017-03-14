@@ -9,18 +9,27 @@ from libc.math cimport sqrt
 cdef class RasterAggregator_float:
     ''' Aggregates a continuous raster grid to smaller dimensions, i.e. coarser resolution
 
-     Returns a tuple containing up to seven grids at the aggregated resolution,
-     each representing a different summary of the source pixels covered by each output
-     pixel, namely:
+     Returns a dictionary containing up to seven items, each being a different summary of the source
+     pixels covered by each output pixel. The item key is the string name of the statistic/summary
+     type and the value is the grid at the aggregated resolution for that statistic.
+     The item keys are:
         (
-          Count,
-          Max,
-          Mean (or None),
-          Min,
-          Range,
-          Sum,
-          SD (or None)
+          count,
+          max,
+          mean (optional),
+          min,
+          range,
+          sum,
+          sd (optional)
         )
+    The aggregation is built up by adding tiles of the input data using the addTile method. This way a grid
+    can be aggregated that is much too large to fit in memory. The required output and total input sizes must be
+    specified at instantiation. Input tiles should be provided to cover the whole extent of the specified output -
+    if no data is available for some areas then just add a tile of nodata. (At present only a warning is generated
+    if this isn't done: you can still continue).
+
+    The aggregation is run in optimised C code generated using Cython. This will need compiling / translating on
+    first use.
     '''
 
     cdef:

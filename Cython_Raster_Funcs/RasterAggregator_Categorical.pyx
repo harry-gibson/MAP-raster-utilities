@@ -11,24 +11,25 @@ cimport openmp
 from cython.parallel import parallel, prange
 
 cdef class RasterAggregator_Categorical:
-    ''' Aggregates a categorical raster grid by a specified factor (e.g. 10 to aggegate 500m to 5km data)
+    ''' Aggregates a categorical raster grid to a coarser resolution (i.e. smaller pixel dimensions)
 
      Returns a dictionary containing two three dimensional grids and one two dimensional grid
      at the aggregated resolution, each representing a different summary of the source
      pixels covered by each output pixel, namely:
         {
-          "fractions" : (3D array, one z-level for each category,
-                          containing fraction of that category as an
+          "fractions" : (3D integer array, one z-level for each category value,
+                          containing fraction of that category in each cell as an
                           integer (rounded) percentage),
-          "likeadjacencies" : (3D array, one z-level for each category,
-                          containing like-adjacency of that category),
-          "majority" : (2D array, containing the value of the modal category
+          "likeadjacencies" : (3D float array, one z-level for each category value,
+                          containing like-adjacency of that category in each cell),
+          "majority" : (2D integer array, containing the value of the modal category
                           at that location),
           "valuemap" : (1D array, containing the category value of each corresponding
                       z-level in the fractions and likeadjacencies arrays. For
                       example [7, 1, 4] means the 2d array at the 0th position of the
                       fractions array z dimension, contains the fraction of the cells
-                      that were covered by category 7)
+                      that were covered by category 7, the one at the 1st position is
+                      category 1, and the 2nd position is the category 4)
         }
 
      The fraction and like adjacency outputs have one image (in the z dimension) for each category
@@ -51,6 +52,13 @@ cdef class RasterAggregator_Categorical:
      contribution for a given pixel, the pixels above, below, left, and right of it are checked.
      But when the contributions of those pixels themselves are also checked, the original pixel will
      be a contributing neighbour of them, too.
+
+     The aggregation is built up by adding tiles of the input data using the addTile method. This way a grid
+     can be aggregated that is much too large to fit in memory. The required output and total input sizes must be
+     specified at instantiation. Input tiles should be provided to cover the whole extent of the specified output -
+     if no data is available for some areas then just add a tile of nodata. If this isn't done then no output will
+     be generated (GetResults will return None).
+
     '''
 
     cdef:
@@ -341,7 +349,7 @@ cdef class RasterAggregator_Categorical:
                         self.outputMajorityArr[yOut, xOut] = 255
 
         if not iscomplete:
-            print "Warning, generating a result without having received input data for full extent"
+            print "Warning, cannot generate a result without having received input data for full extent"
             return False
         return True
 

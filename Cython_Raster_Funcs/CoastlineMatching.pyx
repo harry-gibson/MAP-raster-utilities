@@ -9,12 +9,15 @@ cpdef matchToCoastline(long long[:,::1] data, char[:,::1] landMask, long long _N
     '''
     Matches a data image to a mask image by removing and/or adding pixels from the data.
 
-    Fills in gaps in a data grid, relative to a coastline or other limits layer to create an
-    output dataset that is flush to the coast, and clips (removes) data outside of the coast.
-    Both filling and clipping steps are optional - i.e. either or both can be done.
-
+    The output image is modified such that so that the data has values in and only in the
+    areas marked in the mask. This is akin to the ArcGIS operation called "Nibble".
     For use when an input dataset has been created with a different coastline and now we require
     a dataset that matches MAP's One True Coastline (TM).
+
+    The operation is in two separate parts: clipping (removing) data outside of the coast (or other
+    limits layer), and then filling in gaps within the coast. Both filling and clipping steps are
+    optional - i.e. either or both can be done. You may wish to use this to clip to one dataset
+    (such as a global coastline) but then fill to another dataset (e.g. Pf limits).
 
     Clipping, if done, is done before filling so the values removed do not participate in calculating
     a fill value for missing inland pixels. The clipping step replaces any data pixels that fall
@@ -31,7 +34,8 @@ cpdef matchToCoastline(long long[:,::1] data, char[:,::1] landMask, long long _N
     The fill process is iterative i.e. fill values for one pixel can then be used in generating
     a fill for adjacent pixels. This will lead to "smearing" (down and right) and so this algorithm
     isn't appropriate for filling large areas, and generally it isn't appropriate for continuous
-    data of any kind. Rather, it's intended for matching things like administrative units to a
+    data of any kind, hence the integer input datatype.
+    Rather, it's intended for matching things like administrative units to a
     different coastline template.
 
     The mask should have value 1 for "land" (areas that should have data), and 0 for "sea"
@@ -160,12 +164,14 @@ cpdef reallocateToUnmasked(float[:,::1] data, char[:,::1] landMask, float _NDV =
 
     For use in preparing population datasets for MAP use with standardised land-sea template.
 
-    When matching to a coastline template, for population data we cannot just clip / spread the raster, as
-    this will change the total population.
+    When matching to a coastline template, for population data we cannot just clip / spread the raster
+    ("nibble" it), as this will change the total population.
 
     Instead, any population falling in pixels that are "sea" according to MAP's One True Coastline (TM)
     must be forcibly relocated Bikini-Atoll-style to the nearest "land" pixel according to MAP's
-    One True Coastline (TM), in order to maintain population counts.
+    One True Coastline (TM), in order to maintain population counts. In other words the values from
+    those pixels must be added to a nearby pixel. We can't really know which pixel they should be added to,
+    so we have to pick one - we just use the nearest one (euclidean).
 
     Input data must be a float array. Input mask must be a byte array of the same shape as
     the data array, with a value of 1 on "land" (unmasked areas), and any other value
@@ -174,7 +180,7 @@ cpdef reallocateToUnmasked(float[:,::1] data, char[:,::1] landMask, float _NDV =
     The input data array is modified in-place. The returned object is a new array flagging
     (with a value of 1) locations where the reallocation failed because there was no
     unmasked (land) pixel within the search radius. At these locations, the data will be
-    unmodified despite being in the sea.
+    unmodified despite being in the sea (unless the deleteDespiteFailure flag is set).
     '''
     cdef:
         Py_ssize_t xShapeIn, yShapeIn
