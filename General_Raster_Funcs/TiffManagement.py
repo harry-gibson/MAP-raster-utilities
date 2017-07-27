@@ -1,6 +1,6 @@
 import os
 from osgeo import gdal_array, gdal
-from GeotransformCalcs import  CalculateClippedGeoTransform
+from GeotransformCalcs import  CalculateClippedGeoTransform, CalculateClippedGeoTransform_RoundedRes
 
 def SaveLZWTiff(data, _NDV, geotransform, projection, outDir, outName, cOpts=None):
     '''
@@ -35,7 +35,7 @@ def SaveLZWTiff(data, _NDV, geotransform, projection, outDir, outName, cOpts=Non
     del outBand
     outRaster = None
 
-def ReadAOI_PixelLims(gdalDatasetName, xLims, yLims):
+def ReadAOI_PixelLims(gdalDatasetName, xLims, yLims, useRoundedResolution = False):
     ''' Read a subset of band 1 of a GDAL dataset, specified by bounding x and y coordinates.
 
     Returns a 2-tuple where item 1 is the data as a 2D array and item 2 is the geotransform
@@ -52,10 +52,31 @@ def ReadAOI_PixelLims(gdalDatasetName, xLims, yLims):
 
     inputArr = inputBnd.ReadAsArray(xLims[0], yLims[0], xLims[1] - xLims[0], yLims[1] - yLims[0])
 
-    clippedGT = CalculateClippedGeoTransform(gdalDatasetIn.GetGeoTransform(), xLims, yLims)
+    if useRoundedResolution:
+        clippedGT = CalculateClippedGeoTransform_RoundedRes(gdalDatasetIn.GetGeoTransform(), xLims, yLims)
+    else:
+        clippedGT = CalculateClippedGeoTransform(gdalDatasetIn.GetGeoTransform(), xLims, yLims)
+
     dsProj = gdalDatasetIn.GetProjection()
     ndv = inputBnd.GetNoDataValue()
     return (inputArr, clippedGT, dsProj, ndv)
 
 
-
+def GetRasterProperties(gdalDatasetName):
+    gdalDatasetIn = gdal.Open(gdalDatasetName, gdal.GA_ReadOnly)
+    assert isinstance(gdalDatasetIn, gdal.Dataset)
+    inGT = gdalDatasetIn.GetGeoTransform()
+    inProj = gdalDatasetIn.GetProjection()
+    inBand = gdalDatasetIn.GetRasterBand(1)
+    inNDV = inBand.GetNoDataValue()
+    inWidth = gdalDatasetIn.RasterXSize
+    inHeight = gdalDatasetIn.RasterYSize
+    outObj = {
+        "gt"    :   inGT,
+        "proj"  :   inProj,
+        "ndv"   :   inNDV,
+        "width" :   inWidth,
+        "height":   inHeight
+    }
+    gdalDatasetIn = None
+    return outObj

@@ -5,6 +5,10 @@
 # description: Cython class for aggregating categorical rasters
 
 
+# This file contains Cython code so must be translated (to C) and compiled before it can be used in Python.
+# To do this simply run "python setup.py build_ext --inplace" (assuming you have cython installed)
+
+
 cimport cython
 import numpy as np
 cimport openmp

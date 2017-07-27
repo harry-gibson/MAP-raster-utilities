@@ -124,15 +124,80 @@ def CalculateClippedGeoTransform(inGT, xPixelLims, yPixelLims):
     resX = inGT[1]
     resY = inGT[5]
 
+    # the origin coord of the output is simply a whole number of pixels from the input origin
     topLeftLongOut = topLeftLongIn + xPixelLims[0] * resX
     topLeftLatOut = topLeftLatIn + yPixelLims[0] * resY
 
     clippedGT = (topLeftLongOut, resX, 0.0, topLeftLatOut, 0.0, resY)
     return clippedGT
 
+def CalculateClippedGeoTransform_RoundedRes(inGT, xPixelLims, yPixelLims):
+    '''Returns the GDAL geotransform of a clipped subset of an existing geotransform
+
+    Where clipping coordinates are specified as pixel limits, and the resolution of the output file
+    is one of the the older (inaccurate) versions used in MAP pre-2014 (e.g. 0.00833333 degrees), resulting
+    in a geotransform that will line up with older "mastergrids" files'''
+    topLeftLongIn = inGT[0]
+    topLeftLatIn = inGT[3]
+    resX = inGT[1]
+    resY = inGT[5]
+
+    # the input geotransform should have "true" resolution, i.e. sufficient decimal places to specify the
+    # irrational number resolutions accurately enough to ensure alignment in a global grid. We will output in
+    # the less-precise version used earlier where for example 1/120 ws specified as 0.00833333 rather than
+    # 0.008333333333333
+    roundedResX = round(resX, 8)
+    roundedResY = round(resY, 8)
+    assert roundedResX != resX
+    assert roundedResY != resY
+
+    # top left pixel coordinate of the input image relative to a fully global image with origin at -180, +90
+    topLeftPixelX = (topLeftLongIn - -180.0) / resX
+    topLeftPixelY = (90.0 - topLeftLatIn) / (-resY)
+
+    # what would the lat/lon of this input pixel be in a grid with the rounded resolution
+    # the rounded mastergrid "global" origin is at -180.0, 89.99994
+    topLeftLongInMG = -180.0 + (topLeftPixelX * roundedResX)
+    # NB y-res is negative
+    topLeftLatInMG = 89.99994 + (topLeftPixelY * roundedResY)
+
+    topLeftLongOut = topLeftLongInMG + xPixelLims[0] * roundedResX
+    topLeftLatOut = topLeftLatInMG + yPixelLims[0] * resY
+
+    clippedGT = (topLeftLongOut, roundedResX, 0.0, topLeftLatOut, 0.0, roundedResY)
+    return clippedGT
+
+def CalculatePixelLims_GlobalRef(inGT, longitudeLims, latitudeLims):
+    '''Returns pixel coords of a given AOI in degrees, as they *would* be in a global image
+
+    The resolution is taken from the input geotransform but the origin relative to which the
+    coords are calculated is taken as -180,90 regardless of what is in the geotransform'''
+
+    assert isinstance(longitudeLims, tuple) and len(longitudeLims) == 2
+    assert isinstance(latitudeLims, tuple) and len(latitudeLims) == 2
+    assert isinstance(inGT, tuple) and len(inGT) == 6
+
+    EastLimitOut = longitudeLims[1]
+    WestLimitOut = longitudeLims[0]
+    NorthLimitOut = latitudeLims[0]
+    SouthLimitOut = latitudeLims[1]
+
+    assert EastLimitOut > WestLimitOut
+    assert NorthLimitOut > SouthLimitOut
+
+    xRes = inGT[1]
+    yRes = -(inGT[5])
+    OverallNorthLimit = 90
+    OverallWestLimit = -180
+    x0 = int((WestLimitOut - OverallWestLimit) / xRes)
+    x1 = int(((EastLimitOut - OverallWestLimit) / xRes) + 0.5)
+    y0 = int((OverallNorthLimit - NorthLimitOut) / yRes)
+    y1 = int(((OverallNorthLimit - SouthLimitOut) / yRes) + 0.5)
+
+    return ((x0, x1), (y0, y1))
 
 def CalculatePixelLims(inGT, longitudeLims, latitudeLims):
-    '''Return the pixel coords of a given AOI in degrees
+    '''Returns pixel coords of a given AOI in degrees, in an image with the given geotransform
 
     Returns pixel coordinates as ((xMin, xMax), (yMax, yMin))'''
 
