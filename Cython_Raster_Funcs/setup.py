@@ -4,7 +4,7 @@ try:
 except ImportError:
     from distutils.core import setup
     from distutils.extension import  Extension
-  
+# see https://github.com/cython/cython/wiki/CythonExtensionsOnWindows  for more setup tips on windows
 from Cython.Build import cythonize
 
 cythonexts = [
