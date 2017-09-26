@@ -12,19 +12,11 @@ from libc.math cimport sqrt
 cdef class SpatialAggregator_Continuous_F:
     ''' Aggregates a continuous float raster grid to smaller dimensions, i.e. coarser resolution
 
-     Returns a dictionary containing up to seven items, each being a different summary of the source
-     pixels covered by each output pixel. The item key is the string name of the statistic/summary
-     type and the value is the grid at the aggregated resolution for that statistic.
-     The item keys are:
-        (
-          count,
-          max,
-          mean (optional),
-          min,
-          range,
-          sum,
-          sd (optional)
-        )
+    Returns a dictionary containing up to seven items, each being a different summary of the source
+    pixels covered by each output pixel. The item key is the string name of the statistic/summary
+    type and the value is the grid at the aggregated resolution for that statistic.
+    The statistics available are "count", "min", "max", "range", "sum", "mean", "sd"
+    
     The aggregation is built up by adding tiles of the input data using the addTile method. This way a grid
     can be aggregated that is much too large to fit in memory. The required output and total input sizes must be
     specified at instantiation. Input tiles should be provided to cover the whole extent of the specified output -
