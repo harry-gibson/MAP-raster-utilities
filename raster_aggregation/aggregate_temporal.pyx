@@ -39,8 +39,9 @@ cdef class TemporalAggregator_Dynamic:
                 stats = ["mean", "sd", "count"]):
         '''Height and width specify the shape of the arrays to be provided. NDV refers to outputs.
 
-        The class requires approximately 80 bytes RAM per pixel as the outputs are tracked using
-        double precision - choose a size that will be manageable in the RAM available.'''
+        The class requires approximately 80 bytes RAM per pixel for calculating mean, sd and count,
+        as the outputs are tracked using double precision; plus more if additional stats are chosen.
+        So choose a size that will be manageable in the RAM available.'''
 
         # initialise arrays as required to track both totals and subtotals
         self.tot_n = np.zeros((height, width), dtype='Int16')
@@ -178,6 +179,8 @@ cdef class TemporalAggregator_Dynamic:
                                 ((value - self.tot_oldMean[y,x]) *
                                  (value - self.tot_newMean[y,x])
                                   ))
+                        # the SD calc above uses the old and new mean, so have to repeat the check now
+                        # rather than move this line up
                         if self._doMean:
                             self.tot_oldMean[y,x] = self.tot_newMean[y,x]
                         if self._doSD:
@@ -228,14 +231,15 @@ cdef class TemporalAggregator_Dynamic:
         cdef:
             double variance
             Py_ssize_t x, y
-        with nogil, cython.wraparound(False), parallel(num_threads=6):
-            for y in prange(self.height, schedule='static'):
-                x = -1
-                for x in range (0, self.width):
-                    if self.step_n[y, x] <=1:
-                        continue
-                    variance = self.step_newSD[y, x] / (self.step_n[y, x] - 1)
-                    self.step_newSD[y, x] = sqrt(variance)
+        if self._doSD:
+            with nogil, cython.wraparound(False), parallel(num_threads=6):
+                for y in prange(self.height, schedule='static'):
+                    x = -1
+                    for x in range (0, self.width):
+                        if self.step_n[y, x] <=1:
+                            continue
+                        variance = self.step_newSD[y, x] / (self.step_n[y, x] - 1)
+                        self.step_newSD[y, x] = sqrt(variance)
         self._startNewStep = 1
         returnObj = {
             "count": np.asarray(self.step_n)
@@ -260,14 +264,15 @@ cdef class TemporalAggregator_Dynamic:
         cdef:
             double variance
             Py_ssize_t x, y
-        with nogil, cython.wraparound(False), parallel(num_threads=6):
-            for y in prange(self.height, schedule='static'):
-                x = -1
-                for x in range(0, self.width):
-                    if self.tot_n[y, x] <= 1:
-                        continue
-                    variance = self.tot_newSD[y, x] / (self.tot_n[y, x] - 1)
-                    self.tot_newSD[y, x] = sqrt(variance)
+        if self._doSD:
+            with nogil, cython.wraparound(False), parallel(num_threads=6):
+                for y in prange(self.height, schedule='static'):
+                    x = -1
+                    for x in range(0, self.width):
+                        if self.tot_n[y, x] <= 1:
+                            continue
+                        variance = self.tot_newSD[y, x] / (self.tot_n[y, x] - 1)
+                        self.tot_newSD[y, x] = sqrt(variance)
         returnObj = {
             "count": np.asarray(self.tot_n)
         }
