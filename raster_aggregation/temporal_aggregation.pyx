@@ -3,11 +3,16 @@ from cython.parallel cimport parallel, prange
 import numpy as np
 from libc.math cimport sqrt
 
-cdef class TemporalAggregator_Dynamic:
-    '''Calculates running local mean, SD, and count of a series of incoming arrays
+def logmsg(msg):
+    print(msg)
 
-    For a given array shape, determined at initialisation, this class creates an array of the local
-    mean, SD, and count of the values in the incoming arrays, which will then be supplied sequentially.
+cdef class TemporalAggregator_Dynamic:
+    '''Calculates running local statistics of a series of incoming arrays
+
+    For a given array shape, determined at initialisation, this class creates arrays, for
+    each requested statistic, of the local values of that statistic in the incoming arrays.
+    Two arrays are created for each statistic, representing a subtotal (which can be retrieved and
+    reset) and an overall (synoptic) total. The incoming arrays should then be supplied sequentially.
 
     The variance (and thus SD) are computed using the method of Donald Knuth which is robust against
     numerical errors that can otherwise occur for large values with small differences.
@@ -35,9 +40,11 @@ cdef class TemporalAggregator_Dynamic:
         # track with native vars so we don't have to search stats list in the loop
         unsigned char _doMean, _doSD, _doMin, _doMax, _doSum
         unsigned char _outputCount, _outputMean
+        # allow skipping of synoptic outputs to only track one set of data and halve memory use
+        unsigned char _generateSynoptic
 
     def __cinit__(self, Py_ssize_t height, Py_ssize_t width, double ndv, 
-                stats = ["mean", "sd", "count"]):
+                stats = ["mean", "sd", "count"], generateSynoptic = True):
         '''Height and width specify the shape of the arrays to be provided. NDV refers to outputs.
 
         The class requires approximately 80 bytes RAM per pixel for calculating mean, sd and count,
@@ -53,12 +60,13 @@ cdef class TemporalAggregator_Dynamic:
             self._doMean = 1 # we need mean to do sd, even if we don't output it
             if "mean" in stats:
                 self._outputMean = 1
-            # initialise arrays to track totals
-            self.tot_oldMean = np.zeros((height, width), dtype='float64')
-            self.tot_newMean = np.zeros((height, width), dtype='float64')
-            # don't have zero but no data instead because zero is valid. Counts remain at zero.
-            self.tot_oldMean[:] = ndv
-            self.tot_newMean[:] = ndv
+            if generateSynoptic:
+                # initialise arrays to track totals
+                self.tot_oldMean = np.zeros((height, width), dtype='float64')
+                self.tot_newMean = np.zeros((height, width), dtype='float64')
+                # don't have zero but no data instead because zero is valid. Counts remain at zero.
+                self.tot_oldMean[:] = ndv
+                self.tot_newMean[:] = ndv
             # initialise arrays to track subtotals
             self.step_oldMean = np.zeros((height, width),dtype='float64')
             self.step_newMean = np.zeros((height, width),dtype='float64')
@@ -66,10 +74,11 @@ cdef class TemporalAggregator_Dynamic:
             self.step_newMean[:] = ndv
         if "sd" in stats:
             self._doSD = 1
-            self.tot_oldSD = np.zeros((height, width), dtype='float64')
-            self.tot_newSD = np.zeros((height, width), dtype='float64')
-            self.tot_oldSD[:] = ndv
-            self.tot_newSD[:] = ndv
+            if generateSynoptic:
+                self.tot_oldSD = np.zeros((height, width), dtype='float64')
+                self.tot_newSD = np.zeros((height, width), dtype='float64')
+                self.tot_oldSD[:] = ndv
+                self.tot_newSD[:] = ndv
             self.step_oldSD = np.zeros((height, width),dtype='float64')
             self.step_newSD = np.zeros((height, width),dtype='float64')
             self.step_oldSD[:] = ndv
@@ -77,25 +86,30 @@ cdef class TemporalAggregator_Dynamic:
 
         if "min" in stats:
             self._doMin = 1
-            self.tot_Min = np.zeros((height, width), dtype='float32')
-            self.tot_Min[:] = np.inf
+            if generateSynoptic:
+                self.tot_Min = np.zeros((height, width), dtype='float32')
+                self.tot_Min[:] = np.inf
             self.step_Min = np.zeros((height, width), dtype='float32')
             self.step_Min[:] = np.inf
         if "max" in stats:
             self._doMax = 1
-            self.tot_Max = np.zeros((height, width), dtype='float32')
-            self.tot_Max[:] = -np.inf
+            if generateSynoptic:
+                self.tot_Max = np.zeros((height, width), dtype='float32')
+                self.tot_Max[:] = -np.inf
             self.step_Max = np.zeros((height, width), dtype='float32')
             self.step_Max[:] = -np.inf
         if "sum" in stats:
             self._doSum = 1
-            self.tot_Sum = np.zeros((height, width), dtype='float32')
+            if generateSynoptic:
+                self.tot_Sum = np.zeros((height, width), dtype='float32')
             self.step_Sum = np.zeros((height, width), dtype='float32')
 
         self.ndv = ndv
         self.height = height
         self.width = width
         self._startNewStep = 1
+        if generateSynoptic:
+            self._generateSynoptic = 1
 
     @cython.boundscheck(False)
     @cython.cdivision(True)
@@ -165,38 +179,39 @@ cdef class TemporalAggregator_Dynamic:
                     self.tot_n[y, x] +=1
                     self.step_n[y, x] += 1
                     
-                    # do all the calcs for the overall result
-                    if self.tot_n[y, x] == 1:
-                        if self._doMean: # nb this is set even if we're only doing sd as mean is needed for that
-                            self.tot_oldMean[y, x] = value
-                            self.tot_newMean[y, x] = value
-                        if self._doSD:
-                            self.tot_oldSD[y, x] = 0
-                            self.tot_newSD[y, x] = 0
-                    else:
-                        if self._doMean:
-                            self.tot_newMean[y,x] = (self.tot_oldMean[y,x] +
-                                ((value - self.tot_oldMean[y,x]) / self.tot_n[y,x]))
-                        if self._doSD:
-                            self.tot_newSD[y,x] = (self.tot_oldSD[y,x] +
-                                ((value - self.tot_oldMean[y,x]) *
-                                 (value - self.tot_newMean[y,x])
-                                  ))
-                        # the SD calc above uses the old and new mean, so have to repeat the check now
-                        # rather than move this line up
-                        if self._doMean:
-                            self.tot_oldMean[y,x] = self.tot_newMean[y,x]
-                        if self._doSD:
-                            self.tot_oldSD[y,x] = self.tot_newSD[y,x]
-                    if self._doMax:
-                        if value > self.tot_Max[y,x]:
-                            self.tot_Max[y,x] = value
-                    if self._doMin:
-                        if value < self.tot_Min[y,x]:
-                            self.tot_Min[y,x] = value
-                    if self._doSum:
-                        self.tot_Sum[y,x] += value
-                    
+                    # do all the calcs for the overall result, if required
+                    if self._generateSynoptic:
+                        if self.tot_n[y, x] == 1:
+                            if self._doMean: # nb this is set even if we're only doing sd as mean is needed for that
+                                self.tot_oldMean[y, x] = value
+                                self.tot_newMean[y, x] = value
+                            if self._doSD:
+                                self.tot_oldSD[y, x] = 0
+                                self.tot_newSD[y, x] = 0
+                        else:
+                            if self._doMean:
+                                self.tot_newMean[y,x] = (self.tot_oldMean[y,x] +
+                                    ((value - self.tot_oldMean[y,x]) / self.tot_n[y,x]))
+                            if self._doSD:
+                                self.tot_newSD[y,x] = (self.tot_oldSD[y,x] +
+                                    ((value - self.tot_oldMean[y,x]) *
+                                     (value - self.tot_newMean[y,x])
+                                      ))
+                            # the SD calc above uses the old and new mean, so have to repeat the check now
+                            # rather than move this line up
+                            if self._doMean:
+                                self.tot_oldMean[y,x] = self.tot_newMean[y,x]
+                            if self._doSD:
+                                self.tot_oldSD[y,x] = self.tot_newSD[y,x]
+                        if self._doMax:
+                            if value > self.tot_Max[y,x]:
+                                self.tot_Max[y,x] = value
+                        if self._doMin:
+                            if value < self.tot_Min[y,x]:
+                                self.tot_Min[y,x] = value
+                        if self._doSum:
+                            self.tot_Sum[y,x] += value
+
                     # do it all again for the subtotals
                     if self.step_n[y, x] == 1:
                         if self._doMean: # nb this is set even if we're only doing sd as mean is needed for that
@@ -278,6 +293,10 @@ cdef class TemporalAggregator_Dynamic:
     @cython.cdivision(True)
     cpdef emitTotal(self):
         ''' Return the stats arrays accumulated *since the class was instantiated* '''
+        if not self._generateSynoptic:
+            return {
+                "error": "Generation of synoptic outputs was not done!"
+            }
         cdef:
             double variance
             Py_ssize_t x, y

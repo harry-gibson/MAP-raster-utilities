@@ -16,7 +16,9 @@ cythonexts = [
     ),
     Extension(
         "temporal_aggregation",
-        ["temporal_aggregation.pyx"]
+        ["temporal_aggregation.pyx"],
+        extra_compile_args = ['/openmp'],
+        extra_link_args = ['/openmp']
     )#,
     #Extension(
     #    "CoastlineMatching", ["CoastlineMatching.pyx"]
