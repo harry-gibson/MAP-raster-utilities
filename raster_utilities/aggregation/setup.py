@@ -10,7 +10,7 @@ from Cython.Build import cythonize
 cythonexts = [
     Extension(
         "spatial_aggregation",
-        ["spatial_aggregation.pyx"],
+        ["continuous_aggregation.pyx", "categorical_aggregation.pyx"],
         extra_compile_args=['/openmp'],
         extra_link_args=['/openmp']
     ),

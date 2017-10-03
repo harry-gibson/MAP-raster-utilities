@@ -1,3 +1,5 @@
+from temporal_aggregation import TemporalAggregator_Dynamic
+from General_Raster_Funcs.GeotransformCalcs import *
 def temporalAggregationRunner(filesDict, top, bottom, width, outputNDV, stats, doSynoptic):
     '''Runs temporal aggregation across a set of files.
 

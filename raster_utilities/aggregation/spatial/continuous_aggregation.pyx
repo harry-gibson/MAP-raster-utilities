@@ -9,7 +9,7 @@ from libc.math cimport sqrt
 @cython.boundscheck(False)
 @cython.cdivision(True)
 @cython.wraparound(False)
-cdef class SpatialAggregator_Continuous_F:
+cdef class Continuous_Aggregator_Flt:
     ''' Aggregates a continuous float raster grid to smaller dimensions, i.e. coarser resolution
 
     Returns a dictionary containing up to seven items, each being a different summary of the source

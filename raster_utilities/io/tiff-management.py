@@ -1,13 +1,13 @@
 import os
 from osgeo import gdal_array, gdal
-from GeotransformCalcs import  CalculateClippedGeoTransform, CalculateClippedGeoTransform_RoundedRes
+from ..utils.geotransform_calcs   import  CalculateClippedGeoTransform, CalculateClippedGeoTransform_RoundedRes
 
 def SaveLZWTiff(data, _NDV, geotransform, projection, outDir, outName, cOpts=None):
     '''
     Save a numpy array to a single-band LZW-compressed tiff file in the specified folder
 
     The data-type of the tiff file depends on the input array.
-    The file will be saved with LZW compression, predictor 2, sparse ok, bigtiff yes.
+    The file will be saved with LZW compression, predictor 2 , bigtiff yes.
     To over-ride this, provide cOpts as an array of creation option strings.
 
     GeoTransform should be a 6-tuple conforming to the GDAL geotransform spec. Projection
@@ -38,8 +38,9 @@ def SaveLZWTiff(data, _NDV, geotransform, projection, outDir, outName, cOpts=Non
 def ReadAOI_PixelLims(gdalDatasetName, xLims, yLims, useRoundedResolution = False):
     ''' Read a subset of band 1 of a GDAL dataset, specified by bounding x and y coordinates.
 
-    Returns a 2-tuple where item 1 is the data as a 2D array and item 2 is the geotransform
-    it should be saved to'''
+    Returns a 4-tuple where item 0 is the data as a 2D array, item 1 is the geotransform,
+    item 2 is the projection, and item 3 is the nodata value - items 1, 2, 3 can be used
+    to save the data or another array representing same area/resolution to a tiff file'''
     gdalDatasetIn = gdal.Open(gdalDatasetName)
     assert isinstance(gdalDatasetIn, gdal.Dataset)
     if xLims is None:
