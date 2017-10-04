@@ -72,12 +72,21 @@ def GetRasterProperties(gdalDatasetName):
     inNDV = inBand.GetNoDataValue()
     inWidth = gdalDatasetIn.RasterXSize
     inHeight = gdalDatasetIn.RasterYSize
+    res = inGT[1]
+    if abs(res - 0.008333333333333) < 1e-9:
+        res = "1km"
+    elif abs(res - 0.0416666666666667) < 1e-9:
+        res = "5km"
+    elif abs(res - 0.08333333333333) < 1e-9:
+        res = "10km"
+
     outObj = {
         "gt"    :   inGT,
         "proj"  :   inProj,
         "ndv"   :   inNDV,
         "width" :   inWidth,
-        "height":   inHeight
+        "height":   inHeight,
+        "res"   :   res
     }
     gdalDatasetIn = None
     return outObj
