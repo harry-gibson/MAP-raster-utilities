@@ -1,5 +1,7 @@
 import math
-def calcAggregatedProperties(method, inShape, inGT,
+from ..io.tiff_management import RasterProps
+from ..utils.logger import logMessage
+def calcAggregatedProperties(method, inRasterProps,
                              aggFactor=None, outShape=None, outResolution=None):
     ''' Given an input raster, get the post-aggregation geotransform and dimensions
 
@@ -23,12 +25,15 @@ def calcAggregatedProperties(method, inShape, inGT,
 
     calcAggregatedProperties("resolution", (17400,43200), origGT, None, None, 0.04166666666665)
 
+    calcAggregatedProperties("resolution", (17400, 43200), origGT, None, None, "5km")
+
     calcAggregatedProperties("factor", (21600,43200), origGT, 10, None, None)
 
 
     '''
-    assert len(inShape) == 2
-    assert len(inGT) == 6
+    assert isinstance(inRasterProps, RasterProps)
+    assert len(inRasterProps.gt) == 6
+
     assert aggFactor is not None or outShape is not None or outResolution is not None
 
     if method == "factor":
@@ -36,13 +41,15 @@ def calcAggregatedProperties(method, inShape, inGT,
         # if it's not a clean match then we will expand to get everything
         # Implies the same pixel shape as before just larger
         assert isinstance(aggFactor, int) and aggFactor > 0
-        outXSize = int(math.ceil(1.0 * inShape[1] / aggFactor))
-        outYSize = int(math.ceil(1.0 * inShape[0] / aggFactor))
-        if inShape[1] % aggFactor != 0 or inShape[0] % aggFactor != 0:
+        outXSize = int(math.ceil(1.0 * inRasterProps.width / aggFactor))
+        outYSize = int(math.ceil(1.0 * inRasterProps.height / aggFactor))
+        if inRasterProps.width % aggFactor != 0 or inRasterProps.height % aggFactor != 0:
             # this will tend to trigger with irrational cell sizes such as 1/120 so we should probably
             # put a tolerance on it
-            print "warning, input size was not clean multiple of factor, output will have 1 cell greater extent"
-        outputGT = (inGT[0], inGT[1] * aggFactor, 0.0, inGT[3], 0.0, inGT[5] * aggFactor)
+            logMessage("warning, input size was not clean multiple of factor, "+
+                       "output will have 1 cell greater extent", "warning")
+        outputGT = (inRasterProps.gt[0], inRasterProps.gt[1] * aggFactor, 0.0,
+                    inRasterProps.gt[3], 0.0, inRasterProps.gt[5] * aggFactor)
 
     elif method == "size":
         # we will specify the required pixel dimensions of the output: aspect ratio may change
@@ -50,31 +57,34 @@ def calcAggregatedProperties(method, inShape, inGT,
         outXSize = outShape[1]
         outYSize = outShape[0]
         # now we need to calculate the resolution this implies (for a maintained extent)
-        inputHeightPx = inShape[0]
-        inputWidthPx = inShape[1]
+        inputHeightPx = inRasterProps.height
+        inputWidthPx = inRasterProps.width
         if 1.0 * inputHeightPx / inputWidthPx != 1.0 * outYSize / outXSize:
             # the coverage in ground extent will be the same, so the pixels themselves must change shape
-            print "warning, output size is different proportion to input, cells will change shape"
-        inputXMin = inGT[0]
-        inputYMax = inGT[3]
-        inputXMax = inputXMin + inGT[1] * inputWidthPx
+            logMessage("warning, output size is different proportion to input, "+
+                       "cells will change shape", "warning")
+        inputXMin = inRasterProps.gt[0]
+        inputYMax = inRasterProps.gt[3]
+        inputXMax = inputXMin + inRasterProps.gt[1] * inputWidthPx
         # y resolution is negative as origin is top left
-        inputYMin = inputYMax + inGT[5] * inputHeightPx
+        inputYMin = inputYMax + inRasterProps.gt[5] * inputHeightPx
         inputHeightProj = inputYMax - inputYMin
         inputWidthProj = inputXMax - inputXMin
         outputResX = inputWidthProj / outXSize
         outputResY = inputHeightProj / outYSize
-        outputGT = (inGT[0], outputResX, 0.0, inGT[3], 0.0, -outputResY)
+        outputGT = (inRasterProps.gt[0], outputResX, 0.0, inRasterProps.gt[3], 0.0, -outputResY)
 
     elif method == "resolution":
+        inGT = inRasterProps.gt
         inResX = inGT[1]
         inResY = inGT[5]
-        inXSize = inShape[1]
-        inYSize = inShape[0]
+        inXSize = inRasterProps.width[1]
+        inYSize = inRasterProps.height[0]
         xOrigin = inGT[0]
         yOrigin = inGT[3]
         if not inResY == -inResX:
-            print "warning, input had non-square cells, resolution mode creates square cells so they will change shape"
+            logMessage("warning, input had non-square cells, "+
+                       "resolution mode creates square cells so they will change shape", "warning")
         if isinstance(outResolution, str):
             # use the hardcoded resolutions for the 3 main MAP resolutions to avoid
             # cocking about with irrational numbers not multiplying / dividing cleanly
@@ -93,7 +103,7 @@ def calcAggregatedProperties(method, inShape, inGT,
                 outYSize = int(12 * yExtent)
                 outResolution = 0.08333333333333
             else:
-                print "Unknown string resolution description!"
+                logMessage("Unknown string resolution description!", "error")
                 assert False
         else:
             # specify a desired output resolution, implies the same in both directions (square pixels)
@@ -104,9 +114,12 @@ def calcAggregatedProperties(method, inShape, inGT,
             outXSize = math.ceil(outX_exact)
             outYSize = math.ceil(outY_exact)
             if outX_exact != outXSize or outY_exact != outYSize:
-                print "warning, specified resolution was not clean multiple of input, output will have 1 cell greater extent"
+                logMessage("warning, specified resolution was not clean multiple of input, "+
+                           "output will have 1 cell greater extent", "warning")
         outputGT = (inGT[0], outResolution, 0.0, inGT[3], 0.0, -outResolution)
     else:
+        logMessage("Unknown aggregation type requested, valid values are 'size', 'resolution', 'factor'",
+                   "error")
         assert False
 
     return (

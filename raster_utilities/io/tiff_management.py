@@ -1,7 +1,7 @@
 import os
 from osgeo import gdal_array, gdal
 from ..utils.geotransform_calcs   import  CalculateClippedGeoTransform, CalculateClippedGeoTransform_RoundedRes
-
+from collections import namedtuple
 def SaveLZWTiff(data, _NDV, geotransform, projection, outDir, outName, cOpts=None):
     '''
     Save a numpy array to a single-band LZW-compressed tiff file in the specified folder
@@ -63,6 +63,7 @@ def ReadAOI_PixelLims(gdalDatasetName, xLims, yLims, useRoundedResolution = Fals
     return (inputArr, clippedGT, dsProj, ndv)
 
 
+RasterProps = namedtuple("RasterProps", ["gt", "proj", "ndv", "width", "height", "res"])
 def GetRasterProperties(gdalDatasetName):
     gdalDatasetIn = gdal.Open(gdalDatasetName, gdal.GA_ReadOnly)
     assert isinstance(gdalDatasetIn, gdal.Dataset)
@@ -80,13 +81,6 @@ def GetRasterProperties(gdalDatasetName):
     elif abs(res - 0.08333333333333) < 1e-9:
         res = "10km"
 
-    outObj = {
-        "gt"    :   inGT,
-        "proj"  :   inProj,
-        "ndv"   :   inNDV,
-        "width" :   inWidth,
-        "height":   inHeight,
-        "res"   :   res
-    }
+    outObj = RasterProps (inGT, inProj, inNDV, inWidth, inHeight, res)
     gdalDatasetIn = None
     return outObj

@@ -36,7 +36,7 @@ class TemporalAggregator:
 
     def _estimateTemporalAgggregationMemory(self, height):
         nPix = height * self.InputProperties["width"]
-        bpp = {"count": 2, "mean": 8, "sd": 8, "min": 4, "max": 4, "sum": 4}
+        bpp = {"count": 2, "mean": 16, "sd": 16, "min": 4, "max": 4, "sum": 4}
         try:
             bppTot = sum([bpp[s] for s in self.stats])
         except KeyError:
@@ -47,6 +47,7 @@ class TemporalAggregator:
         bTot = bppTot * nPix
         if self.doSynoptic:
             bTot *= 2
+        bTot += 4 * nPix # the input data tile
         return bTot
 
     def RunAggregation(self):
@@ -84,9 +85,10 @@ class TemporalAggregator:
         w = self.InputProperties.width
         h = self.InputProperties.height
         runHeight = h
-        bytesFull = self._estimateTemporalAgggregationMemory(h, w, self.stats, self.doSynoptic)
+        bytesFull = self._estimateTemporalAgggregationMemory(runHeight)
         while bytesFull > 2e30:
             runHeight = runHeight // 2 # force integer division on python 2.x
+            bytesFull = self._estimateTemporalAgggregationMemory(runHeight)
         slices = sorted(list(set([s[1] for s in getTiles(w, h, runHeight)])))
         isFullFile = len(slices) > 1
         if isFullFile:
