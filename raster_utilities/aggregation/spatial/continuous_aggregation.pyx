@@ -1,6 +1,7 @@
 cimport cython
 import numpy as np
 from libc.math cimport sqrt
+from ..aggregation_values import ContinuousAggregationStats as contstats
 
 # This file contains Cython code so must be translated (to C) and compiled before it can be used in Python.
 # To do this simply run "python setup.py build_ext --inplace" (assuming you have cython installed)
@@ -62,7 +63,7 @@ cdef class Continuous_Aggregator_Flt:
     @cython.cdivision(True)
     @cython.wraparound(False)
     def __cinit__(self, xSizeIn, ySizeIn, xSizeOut, ySizeOut, _NDV, 
-        stats = ["min", "max", "range", "sum"]):
+        stats):
         '''
         Initialise an instance of the class for aggregating a float-type dataset.
 
@@ -81,7 +82,7 @@ cdef class Continuous_Aggregator_Flt:
         self.xShapeOut = xSizeOut
         self.yShapeOut = ySizeOut
 
-        self.minMaxRangeSumOnly = "mean" not in stats and  "sd" not in stats
+        self.minMaxRangeSumOnly = contstats.Mean not in stats and  contstats.SD not in stats
 
         # the factor can be non-integer, which means the output cells will have 
         # varying number of input cells
@@ -94,35 +95,35 @@ cdef class Continuous_Aggregator_Flt:
         # always keep a coverage array which tells us when all tiles have been added
         self._coverageArr = np.zeros(shape=(ySizeOut, xSizeOut), dtype = np.byte)
         self.outputCountArr = np.zeros(shape=(ySizeOut, xSizeOut), dtype = np.int32)
-
-        if "min" in stats:
+        # but only create as many of the other arrays as we actually need, to save memory
+        if contstats.Min in stats:
             self.outputMinArr = np.zeros(shape=(ySizeOut, xSizeOut), dtype = np.float32)
             self.outputMinArr[:] = np.inf
             self._doMin = 1
             self._outputMin = 1
-        if "max" in stats:
+        if contstats.Max in stats:
             self.outputMaxArr = np.zeros(shape=(ySizeOut, xSizeOut), dtype = np.float32)
             self.outputMaxArr[:] = -np.inf
             self._doMax = 1
             self._outputMax = 1
-        if "range" in stats:
+        if contstats.Range in stats:
             self._doRange = 1
             self._doMax = 1
             self._doMin = 1
-        if "sum" in stats:
+        if contstats.Sum in stats:
             self.outputSumArr = np.zeros(shape=(ySizeOut, xSizeOut), dtype = np.float32)
             self._doSum = 1
             self._outputSum = 1
-        if "mean" in stats or "sd" in stats:
+        if contstats.Mean in stats or contstats.SD in stats:
             self._doMean = 1
-            if "mean" in stats:
+            if contstats.Mean in stats:
                 self._outputMean = 1
                 self._doSum = 1
             self.outputMeanArr = np.zeros(shape=(ySizeOut, xSizeOut), dtype = np.float32)
             self._oldMeanArr = np.zeros(shape=(ySizeOut, xSizeOut), dtype = np.float32)
             self.outputMeanArr[:] = _NDV
             self._oldMeanArr[:] = _NDV
-        if "sd" in stats:
+        if contstats.SD in stats:
             self.outputSDArr = np.zeros(shape=(ySizeOut, xSizeOut), dtype = np.float32)
             self._oldSDArr = np.zeros(shape=(ySizeOut, xSizeOut), dtype = np.float32)
             self.outputSDArr[:] = _NDV
@@ -208,6 +209,9 @@ cdef class Continuous_Aggregator_Flt:
             Py_ssize_t xOut, yOut
             float variance
             float iscomplete = 1
+        # free the mem from the arrays we're done with before attempting to allocate one for range
+        self._oldMeanArr = None
+        self._oldSDArr = None
         if self._doRange:
             self.outputRangeArr = np.zeros(shape=(self.ySizeOut, self.xSizeOut), dtype = np.float32)
                     
@@ -251,20 +255,20 @@ cdef class Continuous_Aggregator_Flt:
     cpdef GetResults(self):
         self.finalise()
         returnObj = {
-            "count": np.asarray(self.outputCountArr)
+            contstats.Count: np.asarray(self.outputCountArr)
         }
         if self._outputMin:
-            returnObj["min"] = np.asarray(self.outputMinArr)
+            returnObj[contstats.Min] = np.asarray(self.outputMinArr)
         if self._outputMax:
-            returnObj["max"] = np.asarray(self.outputMaxArr)
+            returnObj[contstats.Max] = np.asarray(self.outputMaxArr)
         if self._doRange:
-            returnObj["range"] = np.asarray(self.outputRangeArr)
+            returnObj[contstats.Range] = np.asarray(self.outputRangeArr)
         if self._outputMean:
-            returnObj["mean"] = np.asarray(self.outputMeanArr)
+            returnObj[contstats.Mean] = np.asarray(self.outputMeanArr)
         if self._doSD:
-            returnObj["sd"] = np.asarray(self.outputSDArr)
+            returnObj[contstats.SD] = np.asarray(self.outputSDArr)
         if self._outputSum:
-            returnObj["sum"] = np.asarray(self.outputSumArr)
+            returnObj[contstats.Sum] = np.asarray(self.outputSumArr)
 
         return returnObj
         

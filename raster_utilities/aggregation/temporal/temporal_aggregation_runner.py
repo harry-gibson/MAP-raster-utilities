@@ -2,8 +2,10 @@ from temporal_aggregation import TemporalAggregator_Dynamic
 from ...utils.logger import logMessage
 from ...utils.raster_tiling import getTiles
 from ...io.tiff_management import GetRasterProperties, ReadAOI_PixelLims, SaveLZWTiff
+from ..aggregation_values import TemporalAggregationStats as tempstats
 import os
 import subprocess
+
 
 class TemporalAggregator:
     def __init__(self, filesDict, outFolder, outputNDV, stats, doSynoptic):
@@ -13,10 +15,11 @@ class TemporalAggregator:
         self.outFolder = outFolder
         self._tileFolder = os.path.join(outFolder, "aggregation_tiles")
         self.outputNDV = outputNDV
+
         assert isinstance(stats, list)
-        validStats = ["count", "min", "max", "sd", "mean", "sum"]
-        assert all([s in validStats for s in stats])
+        assert (all([s in tempstats.All for s in stats]))
         self.stats = stats
+
         self.doSynoptic = doSynoptic == True
 
         aFilename = self.filesDict.iteritems().next()[1][0]
@@ -27,23 +30,25 @@ class TemporalAggregator:
         return sorted(self.filesDict.keys())
 
     def _fnGetter(self, whatandwhen, stat, where):
+        statname = tempstats.Names[stat]
         if where == -1:
-            return ".".join([str(whatandwhen), str(stat).title(),
+            return ".".join([str(whatandwhen), statname,
                              str(self.InputProperties["res"]), "tif"])
         else:
-            return ".".join([str(whatandwhen), str(stat).title(),
+            return ".".join([str(whatandwhen), statname,
                              str(self.InputProperties["res"]), str(where), "tif"])
 
     def _estimateTemporalAgggregationMemory(self, height):
         nPix = height * self.InputProperties["width"]
-        bpp = {"count": 2, "mean": 16, "sd": 16, "min": 4, "max": 4, "sum": 4}
+        bpp = {tempstats.Count: 2, tempstats.Mean: 16, tempstats.SD: 16,
+               tempstats.Min: 4, tempstats.Max: 4, tempstats.Sum: 4}
         try:
             bppTot = sum([bpp[s] for s in self.stats])
         except KeyError:
             raise KeyError("Invalid statistic specified! Valid items are " + str(bpp.keys()))
         # calculating sd requires calculating mean anyway
-        if (("sd" in self.stats) and ("mean" not in self.stats)):
-            bppTot += bpp["mean"]
+        if ((tempstats.SD in self.stats) and (tempstats.Mean not in self.stats)):
+            bppTot += bpp[tempstats.Mean]
         bTot = bppTot * nPix
         if self.doSynoptic:
             bTot *= 2
@@ -121,10 +126,11 @@ class TemporalAggregator:
         tifs = []
         tileFolder = self.outFolder
         for stat in self.stats:
+            statname = tempstats.Names[stat]
             for timeKey in self._timePoints():
                 tiffWildCard = self._fnGetter(str(timeKey), stat,  "*")
                 sliceTiffs = os.path.join(self._tileFolder, tiffWildCard)
-                vrtName = timeKey + "." + "stat" + ".vrt"
+                vrtName = timeKey + "." + statname + ".vrt"
                 vrtFile = os.path.join(self.outFolder, vrtName)
                 vrtCommand = vrtBuilder.format(vrtFile, sliceTiffs)
                 logMessage("Building vrt " + vrtFile)

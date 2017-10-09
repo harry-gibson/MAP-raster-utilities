@@ -13,6 +13,7 @@ cimport cython
 import numpy as np
 cimport openmp
 from cython.parallel import parallel, prange
+from ..aggregation_values import CategoricalAggregationStats as catstats
 
 cdef class Categorical_Aggregator:
     ''' Aggregates a categorical raster grid to a coarser resolution (i.e. smaller pixel dimensions)
@@ -94,7 +95,7 @@ cdef class Categorical_Aggregator:
                   Py_ssize_t xSizeOut, Py_ssize_t ySizeOut,
                   unsigned char nCategories,
                   bool doLikeAdjacency = True,
-                  float ndvOut = -9999, ndvIn = None):
+                  float fltNdv = -9999, byteNdv = None):
         assert xSizeIn > xSizeOut
         assert ySizeIn > ySizeOut
 
@@ -106,10 +107,10 @@ cdef class Categorical_Aggregator:
         self.xFact = <double>self.xShapeIn / self.xShapeOut
         self.yFact = <double>self.yShapeIn / self.yShapeOut
 
-        self._fltNDV = ndvOut
-        # categorical rasters often don't contain nodata
-        if ndvIn is not None and isinstance(ndvIn, int) and 0 <= ndvIn <= 255:
-            self._byteNDV = ndvIn
+        self._fltNDV = fltNdv
+        # categorical rasters often don't contain nodata, that's fine
+        if byteNdv is not None and isinstance(byteNdv, int) and 0 <= byteNdv <= 255:
+            self._byteNDV = byteNdv
             self._hasNDV = 1
         else:
             self._hasNDV = 0
@@ -367,10 +368,10 @@ cdef class Categorical_Aggregator:
         if not self.finalise():
             return None
         returnObj = {
-            "fractions": np.asarray(self.outputFracArr).astype(np.int16),
-            "majority": np.asarray(self.outputMajorityArr), #.astype(np.uint8)
+            catstats.Fractions: np.asarray(self.outputFracArr).astype(np.int16),
+            catstats.Majority: np.asarray(self.outputMajorityArr), #.astype(np.uint8)
             "valuemap": np.asarray(self.valueMap)
         }
         if self._doLikeAdj:
-            returnObj["likeadjacencies"] = np.asarray(self.outputLikeAdjArr)
+            returnObj[catstats.LikeAdjacencies] = np.asarray(self.outputLikeAdjArr)
         return returnObj

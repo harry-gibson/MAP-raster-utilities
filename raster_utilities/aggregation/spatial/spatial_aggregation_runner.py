@@ -9,7 +9,7 @@ import numpy as np
 import os
 from osgeo import gdal_array
 from ..aggregation_values import CategoricalAggregationStats as catstats, \
-    ContinuousAggregationStats as contstats,
+    ContinuousAggregationStats as contstats, AggregationModes, AggregationTypes
 
 from collections import namedtuple
 
@@ -32,26 +32,26 @@ class SpatialAggregator:
         self.outFolder = outFolder
         self.ndvOut = ndvOut
 
-        assert (all([s in _continuousAggregationStats.All for s in stats]) or
-                all([s in _categoricalAggregationStats.All for s in stats]))
-        if stats[0] in _continuousAggregationStats.All:
-            self._mode = _aggregationModes.Continuous
+        assert (all([s in contstats.All for s in stats]) or
+                all([s in catstats.All for s in stats]))
+        if stats[0] in contstats.All:
+            self._mode = AggregationModes.Continuous
         else:
-            self._mode = _aggregationModes.Categorical
+            self._mode = AggregationModes.Categorical
             assert aggregationArgs.has_key("categories")
             categories = aggregationArgs["categories"]
             if isinstance(categories, int):
                 assert categories <= 256
                 assert categories < 256
                 assert categories >= 0
-                nCategories = categories
+                # todo set categories to range here
+                self.nCategories = categories
             else:
                 assert isinstance(categories, list)
                 assert len(categories) <= 256
                 assert max(categories) < 256
                 assert min(categories) >= 0
-                nCategories = len(categories)
-            self.categories = categories
+                self.nCategories = len(categories)
 
         self.stats = stats
 
@@ -59,19 +59,19 @@ class SpatialAggregator:
         self._aggFactor = None
         self._aggShape = None
         if aggregationArgs.has_key("resolution"):
-            self.aggregationType = _aggregationTypes.Resolution
+            self.aggregationType = AggregationTypes.Resolution
             assert (isinstance(aggregationArgs["resolution"], float)
                     or aggregationArgs["resolution"] in ["1km", "5km", "10km"])
             self._aggResolution = aggregationArgs["resolution"]
 
         elif aggregationArgs.has_key("x_size"):
             assert aggregationArgs.has_key("y_size")
-            self.aggregationType = _aggregationTypes.Size
+            self.aggregationType = AggregationTypes.Size
             self._aggShape = (aggregationArgs["y_size"], aggregationArgs["x_size"])
         else:
             assert aggregationArgs.has_key("factor")
             assert (isinstance(aggregationArgs["factor"], int))
-            self.aggregationType = _aggregationTypes.Factor
+            self.aggregationType = AggregationTypes.Factor
             self._aggFactor = aggregationArgs["factor"]
         if aggregationArgs.has_key["resolution_name"]:
             self._resName = aggregationArgs["resolution_name"]
@@ -79,15 +79,15 @@ class SpatialAggregator:
             self._resName = "Aggregated"
 
     def _fnGetterContinuous(self, filename, stat):
-        assert self._mode == _aggregationModes.Continuous
-        statname = _continuousAggregationStats.Names[stat]
+        assert self._mode == AggregationModes.Continuous
+        statname = contstats.Names[stat]
         return (os.path.basename(filename).replace(".tif", "") + "."
                 + self._resName + "." + statname + ".tif")
 
     def _fnGetterCategorical(self, filename, cat, stat):
-        assert self._mode == _aggregationModes.Categorical
+        assert self._mode == AggregationModes.Categorical
         outNameTemplate = r'{0!s}.{1!s}.{2!s}.tif'
-        statname = _categoricalAggregationStats.Names[stat]
+        statname = catstats.Names[stat]
         fOut = outNameTemplate.format(
             os.path.basename(filename).replace(".tif", ""),
             "Class-"+str(cat),
@@ -99,28 +99,39 @@ class SpatialAggregator:
         # it's a fairly wrong estimation of peak memory as it doesn't account for anything other
         # than the main arrays themselves, including for instance temporary objects that are formed
         # by casting. never mind, just make all other estimates conservative and fingers crossed
-        if self._mode == _aggregationModes.Continuous:
+        if self._mode == AggregationModes.Continuous:
             nPix = totalHeight * totalWidth #tileHeight * tileWidth
-            bpp = {_continuousAggregationStats.Count: 2,
-                   _continuousAggregationStats.Mean: 8,
-                   _continuousAggregationStats.SD: 8, "min": 4, "max": 4, "sum": 4, "range": 4}
+            bpp = {contstats.Count: 2,
+                   contstats.Mean: 8,contstats.SD: 8,
+                   contstats.Min: 4, contstats.Max: 4, contstats.Sum: 4, contstats.Range: 4}
             try:
                 bppTot = sum([bpp[s] for s in self.stats])
             except KeyError:
                 raise KeyError("Invalid statistic specified! Valid items are " + str(bpp.keys()))
             # calculating sd requires calculating mean anyway
-            if (("sd" in self.stats) and ("mean" not in self.stats)):
-                bppTot += bpp["mean"]
-            if (("mean" in self.stats) and ("sum" not in self.stats)):
+            if ((contstats.SD in self.stats) and (contstats.Mean not in self.stats)):
+                bppTot += bpp[contstats.Mean]
+            if ((contstats.Mean in self.stats) and (contstats.Sum not in self.stats)):
                 # outputting mean requires calculating sum too
-                bppTot += bpp["sum"]
+                bppTot += bpp[contstats.Sum]
             bTot = bppTot * nPix
             # plus the input tile
             bTot += tileWidth * tileHeight * 4
             return bTot
         else:
-            # similar for categorical
-            pass
+            nPix = totalHeight * totalWidth
+            bpp = { catstats.Majority: 5,
+                    catstats.Fractions: 4 * self.nCategories,
+                    catstats.LikeAdjacencies: 4 * self.nCategories
+            }
+            try:
+                bppTot = sum([bpp[s] for s in self.stats])
+            except KeyError:
+                raise KeyError("Invalid statistic specified! Valid items are "  + str(bpp.keys()))
+            bTot = bppTot * nPix
+            # plus the input tile which is always 8 bit
+            bTot += tileWidth * tileHeight * 1
+            return bTot
 
     def RunAggregation(self):
         for f in self.filesList:
@@ -136,38 +147,41 @@ class SpatialAggregator:
                                                     self._aggShape,
                                                    self._aggResolution)
         # establish a tile size that can be done in 30GB memory +- wild estimation factor
-        tileH = outShape[0]
-        tileW = outShape[1]
+        tileH = inputProperties.height
+        tileW = inputProperties.width
         bytesTile = self._estimateAgggregationMemory(outShape[0], outShape[1], tileH, tileW)
+        splits = 1
         while bytesTile > 2e30:
             tileH = tileH // 2
             tileW = tileW // 2
             bytesTile = self._estimateAgggregationMemory(outShape[0], outShape[1], tileH, tileW)
+            splits += 1
+            ntiles = 2^splits
+            if ntiles > 4096:
+                # 2^12
+                raise MemoryError("This is going to take too many tiles: try processing a smaller output area")
         # and actually just ignore all the non squareness of the world and stuff and use the larger dim
         tileMax = max(tileH, tileW)
 
         tiles = getTiles(inputProperties.width, inputProperties.height, tileMax)
         logMessage("Processing in {0!s} tiles of {1!s} pixels".format(len(tiles), tileMax))
         if inputProperties.ndv is not None:
-            ndvIn = inputProperties.ndv
+            catNdv = inputProperties.ndv
         else:
             logMessage("No NDV defined")
-            ndvIn = self.ndvOut
-        if self._mode == _aggregationModes.Continuous:
+            catNdv = None
+        if self._mode == AggregationModes.Continuous:
             aggregator = Continuous_Aggregator_Flt(inputProperties.width, inputProperties.height,
                                                self.outShape[1], self.outShape[0],
                                                self.ndvOut,
                                                self.stats)
         else:
-            if isinstance(self.categories, int):
-                nCategories = self.categories
-            else:
-                nCategories = len(self.categories)
-
-            doLikeAdjacency = "like"
+            doLikeAdjacency = catstats.LikeAdjacencies in self.stats
             aggregator = Categorical_Aggregator(inputProperties.width, inputProperties.height,
                                                 self.outShape[1], self.outShape[0],
                                                 self.nCategories,
+                                                doLikeAdjacency,
+                                                self.ndvOut, catNdv
                                             )
         for tile in tiles:
             logMessage(".")
@@ -179,20 +193,40 @@ class SpatialAggregator:
             aggregator.addTile(inArr, xOff, yOff).astype(np.float32)
         r = aggregator.GetResults()
         for stat in self.stats:
-            fnOut = self._fnGetter(os.path.basename(filename), stat)
+            fnOut = self._fnGetterContinuous(os.path.basename(filename), stat)
             logMessage("Saving to "+fnOut)
-            if stat in ['min', 'max', 'range']:
-                nptype = gdal_array.GDALTypeCodeToNumericTypeCode(inputProperties["datatype"])
-                SaveLZWTiff(r[stat].astype(nptype), self.ndvOut, outGT, inputProperties["gt"],
-                            self.outFolder, fnOut)
-            elif stat in ['mean', 'sd', 'sum']:
-                SaveLZWTiff(r[stat], self.ndvOut, outGT, inputProperties["gt"],
-                self.outFolder, fnOut)
-            elif stat in ['count']:
-                SaveLZWTiff(r[stat].astype(np.int32), self.ndvOut, outGT, inputProperties["gt"],
-                            self.outFolder, fnOut)
+            if self._mode == AggregationModes.Continuous:
+                if stat in [contstats.Min, contstats.Max, contstats.Range]:
+                    nptype = gdal_array.GDALTypeCodeToNumericTypeCode(inputProperties["datatype"])
+                    SaveLZWTiff(r[stat].astype(nptype), self.ndvOut, outGT, inputProperties["proj"],
+                                self.outFolder, fnOut)
+                elif stat in [contstats.Mean, contstats.SD, contstats.Sum]:
+                    SaveLZWTiff(r[stat], self.ndvOut, outGT, inputProperties["proj"],
+                    self.outFolder, fnOut)
+                elif stat in [contstats.Count]:
+                    SaveLZWTiff(r[stat].astype(np.int32), self.ndvOut, outGT, inputProperties["proj"],
+                                self.outFolder, fnOut)
+                else:
+                    assert False
             else:
-                assert False
+                if stat == catstats.Majority:
+                    SaveLZWTiff(r[stat], catNdv, outGT, inputProperties["proj"],
+                                self.outFolder, fnOut)
+                else:
+                    for i in range(0, self.nCategories):
+                        outValue = r['valuemap'][i]
+                        if stat == catstats.Fractions:
+                            fnOut = self._fnGetterCategorical(os.path.basename(filename),
+                                                            outValue,
+                                                            "Fraction")
+                            SaveLZWTiff((r[stat][i], self.ndvOut, outGT, inputProperties["proj"],
+                                         self.outFolder, fnOut))
+                        elif stat == catstats.LikeAdjacencies:
+                            fnOut = self._fnGetterCategorical(os.path.basename(filename),
+                                                              outValue,
+                                                              "LikeAdjacency")
+                            SaveLZWTiff((r[stat][i], self.ndvOut, outGT, inputProperties["proj"],
+                                         self.outFolder, fnOut))
 
     def _aggregateCategoricalFile(self, filename):
         inputProperties = GetRasterProperties(filename)
@@ -212,7 +246,7 @@ class SpatialAggregator:
             bytesTile = self._estimateCategoricalAgggregationMemory(outShape[0], outShape[1], tileH, tileW)
         # and actually just ignore all the non squareness of the world and stuff and use the larger dim
         tileMax = max(tileH, tileW)
-        doLikeAdj = "like-adjacency" in self.stats
+        doLikeAdj = catstats.LikeAdjacencies in self.stats
         if inputProperties.ndv is not None:
             ndvIn = inputProperties.ndv
         else:
@@ -222,7 +256,7 @@ class SpatialAggregator:
         #nBytesRequired = ds.RasterXSize * ds.RasterYSize * 1 * nCategories
         aggregator = Categorical_Aggregator(inputProperties.width, inputProperties.height,
                                            self.outShape[1], self.outShape[0],
-                                           nCategories,
+                                           self.nCategories,
                                            doLikeAdj,
                                            self.ndvOut,
                                            ndvIn)
