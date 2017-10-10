@@ -1,5 +1,4 @@
 import math
-from ..io.tiff_management import RasterProps
 from ..utils.logger import logMessage
 def calcAggregatedProperties(method, inRasterProps,
                              aggFactor=None, outShape=None, outResolution=None):
@@ -31,6 +30,8 @@ def calcAggregatedProperties(method, inRasterProps,
 
 
     '''
+    from ..io.tiff_management import RasterProps
+
     assert isinstance(inRasterProps, RasterProps)
     assert len(inRasterProps.gt) == 6
 

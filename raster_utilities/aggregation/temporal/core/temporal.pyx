@@ -2,7 +2,7 @@ cimport cython, openmp
 from cython.parallel cimport parallel, prange
 import numpy as np
 from libc.math cimport sqrt
-from ..aggregation_values import TemporalAggregationStats as tempstats
+from raster_utilities.aggregation.aggregation_values import TemporalAggregationStats as tempstats
 
 def logmsg(msg):
     print(msg)

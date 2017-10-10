@@ -1,20 +1,17 @@
-from continuous_aggregation import Continuous_Aggregator_Flt
-from categorical_aggregation import Categorical_Aggregator
-from ...utils.logger import logMessage
-from ...utils.raster_tiling import getTiles
-from ...io.tiff_management import GetRasterProperties, ReadAOI_PixelLims, SaveLZWTiff, RasterProps
-from ...utils.geotransform_calcs import calcAggregatedProperties
-from ...utils.raster_tiling import getTiles
-import numpy as np
+
 import os
+
+import numpy as np
 from osgeo import gdal_array
+from raster_utilities.aggregation.spatial.core.categorical import Categorical_Aggregator
+from raster_utilities.aggregation.spatial.core.continuous import Continuous_Aggregator_Flt
+
 from ..aggregation_values import CategoricalAggregationStats as catstats, \
     ContinuousAggregationStats as contstats, AggregationModes, AggregationTypes
-
-from collections import namedtuple
-
-from math import floor
-
+from ...io.tiff_management import GetRasterProperties, ReadAOI_PixelLims, SaveLZWTiff
+from ...utils.geotransform_calcs import calcAggregatedProperties
+from ...utils.logger import logMessage
+from ...utils.raster_tiling import getTiles
 
 
 class SpatialAggregator:

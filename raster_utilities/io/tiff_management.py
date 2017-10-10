@@ -63,7 +63,9 @@ def ReadAOI_PixelLims(gdalDatasetName, xLims, yLims, useRoundedResolution = Fals
     return (inputArr, clippedGT, dsProj, ndv)
 
 
+
 RasterProps = namedtuple("RasterProps", ["gt", "proj", "ndv", "width", "height", "res"])
+
 def GetRasterProperties(gdalDatasetName):
     gdalDatasetIn = gdal.Open(gdalDatasetName, gdal.GA_ReadOnly)
     assert isinstance(gdalDatasetIn, gdal.Dataset)

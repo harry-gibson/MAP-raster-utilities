@@ -13,7 +13,7 @@ cimport cython
 import numpy as np
 cimport openmp
 from cython.parallel import parallel, prange
-from ..aggregation_values import CategoricalAggregationStats as catstats
+from raster_utilities.aggregation.aggregation_values import CategoricalAggregationStats as catstats
 
 cdef class Categorical_Aggregator:
     ''' Aggregates a categorical raster grid to a coarser resolution (i.e. smaller pixel dimensions)
@@ -94,7 +94,7 @@ cdef class Categorical_Aggregator:
                   Py_ssize_t xSizeIn, Py_ssize_t ySizeIn,
                   Py_ssize_t xSizeOut, Py_ssize_t ySizeOut,
                   unsigned char nCategories,
-                  bool doLikeAdjacency = True,
+                  unsigned char doLikeAdjacency = 1,
                   float fltNdv = -9999, byteNdv = None):
         assert xSizeIn > xSizeOut
         assert ySizeIn > ySizeOut

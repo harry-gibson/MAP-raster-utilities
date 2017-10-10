@@ -1,10 +1,11 @@
-from temporal_aggregation import TemporalAggregator_Dynamic
-from ...utils.logger import logMessage
-from ...utils.raster_tiling import getTiles
-from ...io.tiff_management import GetRasterProperties, ReadAOI_PixelLims, SaveLZWTiff
-from ..aggregation_values import TemporalAggregationStats as tempstats
 import os
 import subprocess
+
+from raster_utilities.aggregation.temporal.core.temporal import TemporalAggregator_Dynamic
+from ..aggregation_values import TemporalAggregationStats as tempstats
+from ...io.tiff_management import GetRasterProperties, ReadAOI_PixelLims, SaveLZWTiff
+from ...utils.logger import logMessage
+from ...utils.raster_tiling import getTiles
 
 
 class TemporalAggregator:
@@ -38,7 +39,7 @@ class TemporalAggregator:
             return ".".join([str(whatandwhen), statname,
                              str(self.InputProperties["res"]), str(where), "tif"])
 
-    def _estimateTemporalAgggregationMemory(self, height):
+    def _estimateTemporalAggregationMemory(self, height):
         nPix = height * self.InputProperties["width"]
         bpp = {tempstats.Count: 2, tempstats.Mean: 16, tempstats.SD: 16,
                tempstats.Min: 4, tempstats.Max: 4, tempstats.Sum: 4}
@@ -79,8 +80,8 @@ class TemporalAggregator:
 
         outputNDV doesn't have to match the incoming NDV
 
-        stats is a list containing some or all of
-        ["min", "max", "mean", "sd", "sum", "count"]
+        stats is a list containing some or all of the values from aggregation_values.TemporalAggregationStats
+
         The more statistics are specified, the more memory is required.
 
         doSynoptic specifies whether "overall" statistics should be calculated in addition to one
@@ -90,10 +91,10 @@ class TemporalAggregator:
         w = self.InputProperties.width
         h = self.InputProperties.height
         runHeight = h
-        bytesFull = self._estimateTemporalAgggregationMemory(runHeight)
+        bytesFull = self._estimateTemporalAggregationMemory(runHeight)
         while bytesFull > 2e30:
             runHeight = runHeight // 2 # force integer division on python 2.x
-            bytesFull = self._estimateTemporalAgggregationMemory(runHeight)
+            bytesFull = self._estimateTemporalAggregationMemory(runHeight)
         slices = sorted(list(set([s[1] for s in getTiles(w, h, runHeight)])))
         isFullFile = len(slices) > 1
         if isFullFile:
@@ -104,9 +105,7 @@ class TemporalAggregator:
             logMessage("Running by splitting across {0!s} tiles".format(len(slices)))
 
         for t, b in slices:
-            self.temporalAggregationSliceRunner(self.filesDict, saveFolder,
-                                                t, b, w,
-                                                self.outputNDV, self.stats, self.doSynoptic)
+            self._temporalAggregationSliceRunner(t, b, saveFolder)
 
         if len(slices) > 1:
             self._stitchTiles()
@@ -185,8 +184,7 @@ class TemporalAggregator:
         sliceHeight = bottom - top
         runSynoptic = (len(self.filesDict.keys()) > 1) and self.doSynoptic
 
-        bytesTot = self._estimateTemporalAgggregationMemory(sliceHeight, self.InputProperties["width"],
-                                                            self.stats, runSynoptic)
+        bytesTot = self._estimateTemporalAggregationMemory(sliceHeight)
         gb = bytesTot / 2e30
         if gb > 30:
             logMessage("Requires more than 30GB, are you sure this is wise....")

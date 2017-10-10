@@ -1,7 +1,7 @@
 cimport cython
 import numpy as np
 from libc.math cimport sqrt
-from ..aggregation_values import ContinuousAggregationStats as contstats
+from raster_utilities.aggregation.aggregation_values import ContinuousAggregationStats as contstats
 
 # This file contains Cython code so must be translated (to C) and compiled before it can be used in Python.
 # To do this simply run "python setup.py build_ext --inplace" (assuming you have cython installed)
