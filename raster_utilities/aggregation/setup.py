@@ -4,7 +4,7 @@ try:
 except ImportError:
     from distutils.core import setup
     from distutils.extension import  Extension
-# see https://github.com/cython/cython/wiki/CythonExtensionsOnWindows  for more setup tips on windows
+
 from Cython.Build import cythonize
 import os
 
@@ -60,7 +60,18 @@ allextNames = spatialextNames + temporalextNames
 extensions = [makeExtension(name) for name in allextNames]
 
 setup(
-    name = "MAP Cython Aggregation Functions",
+    name = "Aggregation",
+    description = "MAP Cython Raster Aggregation and Summary Functions",
+    author = "Harry Gibson",
+    author_email = "harry.s.gibson@gmail.com",
+    long_description='''
+    Contains functions written in Cython for the aggregation of large numerical arrays, 
+    probably representing the contents of singleband raster images. Functions are provided 
+    for aggregating a raster spatially (reducing resolution) or temporally (the value at a point 
+    being derived from multiple other rasters of the same alignment). Aggregations are done in memory 
+    so depending on the output size a lot of RAM may be required, but input data can exceed the 
+    available RAM.
+    ''',
     packages=["spatial", "spatial.core", "temporal", "temporal.core"],
     #ext_modules = cythonize(cythonexts),
     ext_modules=extensions,

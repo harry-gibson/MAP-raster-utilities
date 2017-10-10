@@ -18,7 +18,7 @@ class TemporalAggregator:
         self.outputNDV = outputNDV
 
         assert isinstance(stats, list)
-        assert (all([s in tempstats.All for s in stats]))
+        assert (all([s in tempstats.ALL for s in stats]))
         self.stats = stats
 
         self.doSynoptic = doSynoptic == True
@@ -31,7 +31,7 @@ class TemporalAggregator:
         return sorted(self.filesDict.keys())
 
     def _fnGetter(self, whatandwhen, stat, where):
-        statname = tempstats.Names[stat]
+        statname = stat
         if where == -1:
             return ".".join([str(whatandwhen), statname,
                              str(self.InputProperties["res"]), "tif"])
@@ -41,15 +41,15 @@ class TemporalAggregator:
 
     def _estimateTemporalAggregationMemory(self, height):
         nPix = height * self.InputProperties["width"]
-        bpp = {tempstats.Count: 2, tempstats.Mean: 16, tempstats.SD: 16,
-               tempstats.Min: 4, tempstats.Max: 4, tempstats.Sum: 4}
+        bpp = {tempstats.COUNT: 2, tempstats.MEAN: 16, tempstats.SD: 16,
+               tempstats.MIN: 4, tempstats.MAX: 4, tempstats.SUM: 4}
         try:
             bppTot = sum([bpp[s] for s in self.stats])
         except KeyError:
             raise KeyError("Invalid statistic specified! Valid items are " + str(bpp.keys()))
         # calculating sd requires calculating mean anyway
-        if ((tempstats.SD in self.stats) and (tempstats.Mean not in self.stats)):
-            bppTot += bpp[tempstats.Mean]
+        if ((tempstats.SD in self.stats) and (tempstats.MEAN not in self.stats)):
+            bppTot += bpp[tempstats.MEAN]
         bTot = bppTot * nPix
         if self.doSynoptic:
             bTot *= 2
@@ -125,7 +125,7 @@ class TemporalAggregator:
         tifs = []
         tileFolder = self.outFolder
         for stat in self.stats:
-            statname = tempstats.Names[stat]
+            statname = stat
             for timeKey in self._timePoints():
                 tiffWildCard = self._fnGetter(str(timeKey), stat,  "*")
                 sliceTiffs = os.path.join(self._tileFolder, tiffWildCard)

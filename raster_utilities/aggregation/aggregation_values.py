@@ -1,19 +1,34 @@
 class AggregationModes:
-    Continuous, Categorical = range(2)
+    CONTINUOUS = "continuous"
+    CATEGORICAL = "categorical"
+
 class AggregationTypes:
-    Resolution, Factor, Size = range(3)
+    RESOLUTION = "resolution"
+    FACTOR = "factor"
+    SIZE = "size"
 
 class TemporalAggregationStats:
-    Min, Max, Range, Sum, Mean, SD, Count = range(7)
-    All = [Min, Max, Range, Sum, Mean, SD, Count]
-    Names = {0: "min", 1: "max", 2: "range", 3: "sum", 4: "mean", 5: "sd", 6: "count"}
+    MIN = "min"
+    MAX = "max"
+    RANGE = "range"
+    SUM = "sum"
+    MEAN = "mean"
+    SD = "SD"
+    COUNT = "count"
+    ALL = [MIN, MAX, RANGE, SUM, MEAN, SD, COUNT]
 
 class ContinuousAggregationStats:
-    Min, Max, Range, Sum, Mean, SD, Count = range(7)
-    All = [Min, Max, Range, Sum, Mean, SD, Count]
-    Names = {0:"min", 1:"max", 2:"range", 3:"sum", 4:"mean", 5:"sd", 6:"count"}
+    MIN = "min"
+    MAX = "max"
+    RANGE = "range"
+    SUM = "sum"
+    MEAN = "mean"
+    SD = "SD"
+    COUNT = "count"
+    ALL = [MIN, MAX, RANGE, SUM, MEAN, SD, COUNT]
 
 class CategoricalAggregationStats:
-    Majority, Fractions, LikeAdjacencies = range(3)
-    All = [Majority, Fractions, LikeAdjacencies]
-    Names = {0:"majority", 1:"fractions", 2:"like-adjacencies"}
+    MAJORITY = "MajorityClass"
+    FRACTIONS = "fraction"
+    LIKEADJACENCIES = "like-adjacency"
+    ALL = [MAJORITY, FRACTIONS, LIKEADJACENCIES]

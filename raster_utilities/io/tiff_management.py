@@ -63,8 +63,7 @@ def ReadAOI_PixelLims(gdalDatasetName, xLims, yLims, useRoundedResolution = Fals
     return (inputArr, clippedGT, dsProj, ndv)
 
 
-
-RasterProps = namedtuple("RasterProps", ["gt", "proj", "ndv", "width", "height", "res"])
+RasterProps = namedtuple("RasterProps", ["gt", "proj", "ndv", "width", "height", "res", "datatype"])
 
 def GetRasterProperties(gdalDatasetName):
     gdalDatasetIn = gdal.Open(gdalDatasetName, gdal.GA_ReadOnly)
@@ -75,6 +74,8 @@ def GetRasterProperties(gdalDatasetName):
     inNDV = inBand.GetNoDataValue()
     inWidth = gdalDatasetIn.RasterXSize
     inHeight = gdalDatasetIn.RasterYSize
+    b = gdalDatasetIn.GetRasterBand(1)
+    gdalDType = b.DataType
     res = inGT[1]
     if abs(res - 0.008333333333333) < 1e-9:
         res = "1km"
@@ -83,6 +84,6 @@ def GetRasterProperties(gdalDatasetName):
     elif abs(res - 0.08333333333333) < 1e-9:
         res = "10km"
 
-    outObj = RasterProps (inGT, inProj, inNDV, inWidth, inHeight, res)
+    outObj = RasterProps (inGT, inProj, inNDV, inWidth, inHeight, res, gdalDType)
     gdalDatasetIn = None
     return outObj

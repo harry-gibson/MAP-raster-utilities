@@ -14,7 +14,7 @@ import numpy as np
 cimport openmp
 from cython.parallel import parallel, prange
 from raster_utilities.aggregation.aggregation_values import CategoricalAggregationStats as catstats
-
+from ....utils.logger import logMessage
 cdef class Categorical_Aggregator:
     ''' Aggregates a categorical raster grid to a coarser resolution (i.e. smaller pixel dimensions)
 
@@ -359,19 +359,20 @@ cdef class Categorical_Aggregator:
                         self.outputMajorityArr[yOut, xOut] = 255
 
         if not iscomplete:
-            print "Warning, cannot generate a result without having received input data for full extent"
+            logMessage("Warning, cannot generate a result without \
+            having received input data for full extent")
             return False
         return True
 
     cpdef GetResults(self):
-        '''If input is complete, returns an object containing 'fractions', 'likeadjacencies', 'majority' '''
+        '''If input is complete, returns an dict containing the results plus "valuemap" for the z-order '''
         if not self.finalise():
             return None
         returnObj = {
-            catstats.Fractions: np.asarray(self.outputFracArr).astype(np.int16),
-            catstats.Majority: np.asarray(self.outputMajorityArr), #.astype(np.uint8)
+            catstats.FRACTIONS: np.asarray(self.outputFracArr).astype(np.int16),
+            catstats.MAJORITY: np.asarray(self.outputMajorityArr), #.astype(np.uint8)
             "valuemap": np.asarray(self.valueMap)
         }
         if self._doLikeAdj:
-            returnObj[catstats.LikeAdjacencies] = np.asarray(self.outputLikeAdjArr)
+            returnObj[catstats.LIKEADJACENCIES] = np.asarray(self.outputLikeAdjArr)
         return returnObj

@@ -2,7 +2,7 @@ cimport cython
 import numpy as np
 from libc.math cimport sqrt
 from raster_utilities.aggregation.aggregation_values import ContinuousAggregationStats as contstats
-
+from ....utils.logger import logMessage
 # This file contains Cython code so must be translated (to C) and compiled before it can be used in Python.
 # To do this simply run "python setup.py build_ext --inplace" (assuming you have cython installed)
 
@@ -82,7 +82,7 @@ cdef class Continuous_Aggregator_Flt:
         self.xShapeOut = xSizeOut
         self.yShapeOut = ySizeOut
 
-        self.minMaxRangeSumOnly = contstats.Mean not in stats and  contstats.SD not in stats
+        self.minMaxRangeSumOnly = contstats.MEAN not in stats and  contstats.SD not in stats
 
         # the factor can be non-integer, which means the output cells will have 
         # varying number of input cells
@@ -96,27 +96,27 @@ cdef class Continuous_Aggregator_Flt:
         self._coverageArr = np.zeros(shape=(ySizeOut, xSizeOut), dtype = np.byte)
         self.outputCountArr = np.zeros(shape=(ySizeOut, xSizeOut), dtype = np.int32)
         # but only create as many of the other arrays as we actually need, to save memory
-        if contstats.Min in stats:
+        if contstats.MIN in stats:
             self.outputMinArr = np.zeros(shape=(ySizeOut, xSizeOut), dtype = np.float32)
             self.outputMinArr[:] = np.inf
             self._doMin = 1
             self._outputMin = 1
-        if contstats.Max in stats:
+        if contstats.MAX in stats:
             self.outputMaxArr = np.zeros(shape=(ySizeOut, xSizeOut), dtype = np.float32)
             self.outputMaxArr[:] = -np.inf
             self._doMax = 1
             self._outputMax = 1
-        if contstats.Range in stats:
+        if contstats.RANGE in stats:
             self._doRange = 1
             self._doMax = 1
             self._doMin = 1
-        if contstats.Sum in stats:
+        if contstats.SUM in stats:
             self.outputSumArr = np.zeros(shape=(ySizeOut, xSizeOut), dtype = np.float32)
             self._doSum = 1
             self._outputSum = 1
-        if contstats.Mean in stats or contstats.SD in stats:
+        if contstats.MEAN in stats or contstats.SD in stats:
             self._doMean = 1
-            if contstats.Mean in stats:
+            if contstats.MEAN in stats:
                 self._outputMean = 1
                 self._doSum = 1
             self.outputMeanArr = np.zeros(shape=(ySizeOut, xSizeOut), dtype = np.float32)
@@ -247,7 +247,7 @@ cdef class Continuous_Aggregator_Flt:
                         self.outputMeanArr[yOut, xOut] = (
                             self.outputSumArr[yOut, xOut] / self.outputCountArr[yOut, xOut])
         if not iscomplete:
-            print "Warning, generating a result without having received input data for full extent"
+            logMessage("Warning, generating a result without having received input data for full extent")
 
     @cython.boundscheck(False)
     @cython.cdivision(True)
@@ -255,20 +255,20 @@ cdef class Continuous_Aggregator_Flt:
     cpdef GetResults(self):
         self.finalise()
         returnObj = {
-            contstats.Count: np.asarray(self.outputCountArr)
+            contstats.COUNT: np.asarray(self.outputCountArr)
         }
         if self._outputMin:
-            returnObj[contstats.Min] = np.asarray(self.outputMinArr)
+            returnObj[contstats.MIN] = np.asarray(self.outputMinArr)
         if self._outputMax:
-            returnObj[contstats.Max] = np.asarray(self.outputMaxArr)
+            returnObj[contstats.MAX] = np.asarray(self.outputMaxArr)
         if self._doRange:
-            returnObj[contstats.Range] = np.asarray(self.outputRangeArr)
+            returnObj[contstats.RANGE] = np.asarray(self.outputRangeArr)
         if self._outputMean:
-            returnObj[contstats.Mean] = np.asarray(self.outputMeanArr)
+            returnObj[contstats.MEAN] = np.asarray(self.outputMeanArr)
         if self._doSD:
             returnObj[contstats.SD] = np.asarray(self.outputSDArr)
         if self._outputSum:
-            returnObj[contstats.Sum] = np.asarray(self.outputSumArr)
+            returnObj[contstats.SUM] = np.asarray(self.outputSumArr)
 
         return returnObj
         

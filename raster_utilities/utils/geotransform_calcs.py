@@ -1,12 +1,15 @@
 import math
 from ..utils.logger import logMessage
+from ..aggregation.aggregation_values import AggregationTypes
 def calcAggregatedProperties(method, inRasterProps,
                              aggFactor=None, outShape=None, outResolution=None):
     ''' Given an input raster, get the post-aggregation geotransform and dimensions
 
-    method should be a string, either, "factor", "size", or "resolution"; the appropriate one
-    of the other parameters should then also be set to determine either the cell size
-    multiplication factor, a desired output shape, or a desired output resolution.
+    method should be one of AggregationTypes.Factor, AggregationTypes.Size, or
+    AggregationTypes.Resolutions (or a string "factor", "size", or "resolution");
+    the appropriate one of the other parameters should then also be set to determine
+    either the cell size multiplication factor, a desired output shape, or a desired
+    output resolution.
 
     For the resolution method, a numeric value can be provided, or a string. A string
     must be one of "1k", "5k", or "10k" to set the resolution to 30 arcseconds, 2.5
@@ -37,7 +40,7 @@ def calcAggregatedProperties(method, inRasterProps,
 
     assert aggFactor is not None or outShape is not None or outResolution is not None
 
-    if method == "factor":
+    if method == "factor" or method == AggregationTypes.FACTOR:
         # the simplest version, output is just n times coarser than before
         # if it's not a clean match then we will expand to get everything
         # Implies the same pixel shape as before just larger
@@ -52,7 +55,7 @@ def calcAggregatedProperties(method, inRasterProps,
         outputGT = (inRasterProps.gt[0], inRasterProps.gt[1] * aggFactor, 0.0,
                     inRasterProps.gt[3], 0.0, inRasterProps.gt[5] * aggFactor)
 
-    elif method == "size":
+    elif method == "size" or method == AggregationTypes.SIZE:
         # we will specify the required pixel dimensions of the output: aspect ratio may change
         # this is generally the best method to use if we're working with non-integer cell resolutions
         outXSize = outShape[1]
@@ -75,12 +78,12 @@ def calcAggregatedProperties(method, inRasterProps,
         outputResY = inputHeightProj / outYSize
         outputGT = (inRasterProps.gt[0], outputResX, 0.0, inRasterProps.gt[3], 0.0, -outputResY)
 
-    elif method == "resolution":
+    elif method == "resolution" or method == AggregationTypes.RESOLUTION:
         inGT = inRasterProps.gt
         inResX = inGT[1]
         inResY = inGT[5]
-        inXSize = inRasterProps.width[1]
-        inYSize = inRasterProps.height[0]
+        inXSize = inRasterProps.width
+        inYSize = inRasterProps.height
         xOrigin = inGT[0]
         yOrigin = inGT[3]
         if not inResY == -inResX:

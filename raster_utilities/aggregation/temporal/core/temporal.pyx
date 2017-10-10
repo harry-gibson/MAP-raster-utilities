@@ -4,8 +4,6 @@ import numpy as np
 from libc.math cimport sqrt
 from raster_utilities.aggregation.aggregation_values import TemporalAggregationStats as tempstats
 
-def logmsg(msg):
-    print(msg)
 
 cdef class TemporalAggregator_Dynamic:
     '''Calculates running local statistics of a series of incoming arrays
@@ -55,11 +53,11 @@ cdef class TemporalAggregator_Dynamic:
         # initialise arrays as required to track both totals and subtotals
         self.tot_n = np.zeros((height, width), dtype='Int16')
         self.step_n = np.zeros((height, width),dtype='Int16')
-        if tempstats.Count in stats:
+        if tempstats.COUNT in stats:
             self._outputCount = 1
-        if tempstats.Mean in stats or tempstats.SD in stats:
+        if tempstats.MEAN in stats or tempstats.SD in stats:
             self._doMean = 1 # we need mean to do sd, even if we don't output it
-            if tempstats.Mean in stats:
+            if tempstats.MEAN in stats:
                 self._outputMean = 1
             if generateSynoptic:
                 # initialise arrays to track totals
@@ -85,21 +83,21 @@ cdef class TemporalAggregator_Dynamic:
             self.step_oldSD[:] = ndv
             self.step_newSD[:] = ndv
 
-        if tempstats.Min in stats:
+        if tempstats.MIN in stats:
             self._doMin = 1
             if generateSynoptic:
                 self.tot_Min = np.zeros((height, width), dtype='float32')
                 self.tot_Min[:] = np.inf
             self.step_Min = np.zeros((height, width), dtype='float32')
             self.step_Min[:] = np.inf
-        if tempstats.Max in stats:
+        if tempstats.MAX in stats:
             self._doMax = 1
             if generateSynoptic:
                 self.tot_Max = np.zeros((height, width), dtype='float32')
                 self.tot_Max[:] = -np.inf
             self.step_Max = np.zeros((height, width), dtype='float32')
             self.step_Max[:] = -np.inf
-        if tempstats.Sum in stats:
+        if tempstats.SUM in stats:
             self._doSum = 1
             if generateSynoptic:
                 self.tot_Sum = np.zeros((height, width), dtype='float32')
@@ -261,10 +259,10 @@ cdef class TemporalAggregator_Dynamic:
                         self.step_newSD[y, x] = sqrt(variance)
         self._startNewStep = 1
         returnObj = {
-            tempstats.Count: np.asarray(self.step_n)
+            tempstats.COUNT: np.asarray(self.step_n)
         }
         if self._outputMean:
-            returnObj[tempstats.Mean] = np.asarray(self.step_newMean).astype('float32')
+            returnObj[tempstats.MEAN] = np.asarray(self.step_newMean).astype('float32')
         if self._doSD:
             returnObj[tempstats.SD] = np.asarray(self.step_newSD).astype('float32')
         if self._doMin:
@@ -275,7 +273,7 @@ cdef class TemporalAggregator_Dynamic:
                     for x in range(0, self.width):
                         if self.step_n[y, x] == 0:
                             self.step_Min[y, x] = self.ndv
-            returnObj[tempstats.Min] = np.asarray(self.step_Min)
+            returnObj[tempstats.MIN] = np.asarray(self.step_Min)
         if self._doMax:
             # get rid of the infinities
             with nogil, cython.wraparound(False), parallel(num_threads=6):
@@ -284,9 +282,9 @@ cdef class TemporalAggregator_Dynamic:
                     for x in range(0, self.width):
                         if self.step_n[y, x] == 0:
                             self.step_Max[y, x] = self.ndv
-            returnObj[tempstats.Max] = np.asarray(self.step_Max)
+            returnObj[tempstats.MAX] = np.asarray(self.step_Max)
         if self._doSum:
-            returnObj[tempstats.Sum] = np.asarray(self.step_Sum)
+            returnObj[tempstats.SUM] = np.asarray(self.step_Sum)
 
         return returnObj
 
@@ -314,7 +312,7 @@ cdef class TemporalAggregator_Dynamic:
             "count": np.asarray(self.tot_n)
         }
         if self._outputMean:
-            returnObj[tempstats.Mean] = np.asarray(self.tot_newMean).astype('float32')
+            returnObj[tempstats.MEAN] = np.asarray(self.tot_newMean).astype('float32')
         if self._doSD:
             returnObj[tempstats.SD] = np.asarray(self.tot_newSD).astype('float32')
         if self._doMin:
@@ -325,7 +323,7 @@ cdef class TemporalAggregator_Dynamic:
                     for x in range(0, self.width):
                         if self.tot_n[y, x] == 0:
                             self.tot_Min[y, x] = self.ndv
-            returnObj[tempstats.Min] = np.asarray(self.tot_Min)
+            returnObj[tempstats.MIN] = np.asarray(self.tot_Min)
         if self._doMax:
             # get rid of the infinities
             with nogil, cython.wraparound(False), parallel(num_threads=6):
@@ -334,9 +332,9 @@ cdef class TemporalAggregator_Dynamic:
                     for x in range(0, self.width):
                         if self.tot_n[y, x] == 0:
                             self.tot_Max[y, x] = self.ndv
-            returnObj[tempstats.Max] = np.asarray(self.tot_Max)
+            returnObj[tempstats.MAX] = np.asarray(self.tot_Max)
         if self._doSum:
-            returnObj[tempstats.Sum] = np.asarray(self.tot_Sum)
+            returnObj[tempstats.SUM] = np.asarray(self.tot_Sum)
 
         return returnObj
 
