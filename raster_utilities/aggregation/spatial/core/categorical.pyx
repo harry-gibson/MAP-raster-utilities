@@ -72,7 +72,7 @@ cdef class Categorical_Aggregator:
         double xFact, yFact
         float proportion
 
-        Py_ssize_t xIn, yIn, xOut, yOut, catNum
+        Py_ssize_t xIn, yIn, xOut, yOut
         int yBelow, yAbove, xLeft, xRight
 
         unsigned char nCategories
@@ -83,7 +83,7 @@ cdef class Categorical_Aggregator:
         float[:,:,::1] outputLikeAdjArr
         unsigned char [:,::1] outputMajorityArr
         int [::1] valueMap
-
+        int [::1] sortedValueMap
         float [:,::1] tmpMajorityPropArr
         char[:,::1] _coverageArr
         short[:,::1] _countArr
@@ -118,6 +118,8 @@ cdef class Categorical_Aggregator:
         self.nCategories = nCategories
         self.valueMap = np.zeros(shape = (nCategories), dtype = np.int32)
         self.valueMap[:] = -1
+        self.sortedValueMap = np.zeros(shape=(nCategories), dtype=np.int32)
+        self.sortedValueMap[:] = -1
         self.outputFracArr = np.zeros(shape = (nCategories, self.yShapeOut, self.xShapeOut),
                                       dtype = np.float32)
         if doLikeAdjacency:
@@ -146,7 +148,6 @@ cdef class Categorical_Aggregator:
             Py_ssize_t xInGlobal, xInTile, yInGlobal, yInTile
             unsigned char localValue
             unsigned char nNeighbours
-            unsigned char catNum
             float likeAdjProp
             Py_ssize_t xOut, yOut
             # how much of an output cell does each input cell account for
@@ -231,13 +232,16 @@ cdef class Categorical_Aggregator:
                         if self.valueMap[i] == localValue:
                             valuePos = i
                             break
-                    # if we haven't seen this value yet, add it
+                    # if we haven't seen this value yet, add it to the next position in valuemap
+                    # todo think about whether this is truly safe. not quite sure. can we end up with
+                    # valuemap being inconsistent?
                     if valuePos == -1:
-                        for i in range(self.nCategories):
-                            if self.valueMap[i] == -1:
-                                self.valueMap[i] = localValue
-                                valuePos = i
-                                break
+                        with gil:
+                            for i in range(self.nCategories):
+                                if self.valueMap[i] == -1:
+                                    self.valueMap[i] = localValue
+                                    valuePos = i
+                                    break
                     # if we failed to add it, we must have more categories in the data
                     # than we bargained for
                     if valuePos == -1:
@@ -282,7 +286,8 @@ cdef class Categorical_Aggregator:
                     break
 
         if catsOk == False:
-            raise Exception("More category values were encountered than were specified. Cannot continue!")
+            raise Exception("More category values were encountered than were specified. Cannot continue! "+
+                            str(np.asarray(self.valueMap)))
 
     @cython.boundscheck(False)
     @cython.cdivision(True)
@@ -292,8 +297,16 @@ cdef class Categorical_Aggregator:
             Py_ssize_t xOut, yOut
             float iscomplete = 1
             float proportion
+            int i, catValue, catPosition
+        vmNumpy = np.asarray(self.valueMap)
+        logMessage("Value map is "+str(vmNumpy))
+        vmNumpyExclBlank = vmNumpy[vmNumpy!=-1]
+        if len(np.unique(vmNumpyExclBlank)) < len(vmNumpyExclBlank):
+            raise ValueError("messed up the value map, that's an error" + str(np.asarray(self.valueMap)))
 
-        for catNum in range(self.nCategories):
+        # normalise the fraction and like-adjacency arrays according to then number of data pixels
+        # that went into each output location
+        for i in range(self.nCategories):
             yOut = -1
             with nogil, parallel():
                 for yOut in prange(self.yShapeOut):
@@ -301,12 +314,27 @@ cdef class Categorical_Aggregator:
                     for xOut in range(self.xShapeOut):
                         if self._countArr[yOut, xOut] > 0:
                             proportion = 1.0 / self._countArr[yOut, xOut]
-                            self.outputFracArr[catNum, yOut, xOut] *= proportion
+                            self.outputFracArr[i, yOut, xOut] *= proportion
                             if self._doLikeAdj:
-                                self.outputLikeAdjArr[catNum, yOut, xOut] *= proportion
+                                self.outputLikeAdjArr[i, yOut, xOut] *= proportion
 
+        self.sortedValueMap = np.array(sorted(vmNumpy))
         # replace output values in fraction and like-adjacency stacks with nodata where appropriate
-        for catNum in range (self.nCategories):
+        for i in range (self.nCategories):
+            # For the majority class output, if there is a tie then we will output whichever class
+            # with that tied fraction we hit first.
+            # However the order that items got added to valuemap is non-deterministic as we are
+            # running with multiple threads. Therefore, if we just go through valuemap in whatever
+            # order it is and pick the majority based on what we hit first, the output majority grid
+            # can vary between repeated runs.
+            # So we will always determine the majority output in sorted order, i.e. output the lowest
+            # one first.
+            # the value to output
+            catValue = self.sortedValueMap[i]
+            if catValue == -1:
+                continue
+            # the position in thje stack
+            catPosition = np.argwhere(vmNumpy==catValue)[0]
             # catNum here is actually just the position in the stack not the actual value
             yOut = -1
             for yOut in range (self.yShapeOut):
@@ -318,35 +346,35 @@ cdef class Categorical_Aggregator:
                         iscomplete = 0
 
                     # update the majority-class grid if this class' fraction is the highest yet
-                    if self.outputFracArr[catNum, yOut, xOut] > self.tmpMajorityPropArr[yOut, xOut]:
-                        self.tmpMajorityPropArr[yOut, xOut] = self.outputFracArr[catNum, yOut, xOut]
-                        self.outputMajorityArr[yOut, xOut] = self.valueMap[catNum]
+                    if self.outputFracArr[catPosition, yOut, xOut] > self.tmpMajorityPropArr[yOut, xOut]:
+                        self.tmpMajorityPropArr[yOut, xOut] = self.outputFracArr[catPosition, yOut, xOut]
+                        self.outputMajorityArr[yOut, xOut] = catValue
 
                     # for the like adjacency grids, output a value if we've had any input data here;
                     # but output nodata if we haven't.
                     # The arrays are initialised to zero so we need to change those positions to ndv.
                     # Use the fraction (class proportion) grids to check this
                     # (non-zero implies we had a data pixel)
-                    if self.outputFracArr[catNum, yOut, xOut] > 0:
+                    if self.outputFracArr[catPosition, yOut, xOut] > 0:
                         # we've had at least one data pixel of this class at this location
                         # so we can calculate a like adjacency
                         if self._doLikeAdj:
-                            self.outputLikeAdjArr[catNum, yOut, xOut] = (
-                                self.outputLikeAdjArr[catNum, yOut, xOut] / self.outputFracArr[catNum, yOut, xOut]
+                            self.outputLikeAdjArr[catPosition, yOut, xOut] = (
+                                self.outputLikeAdjArr[catPosition, yOut, xOut] / self.outputFracArr[catPosition, yOut, xOut]
                             )
                         # also, convert the fraction to a percentage so we can return as int type
-                        self.outputFracArr[catNum, yOut, xOut] *= 100
+                        self.outputFracArr[catPosition, yOut, xOut] *= 100
                         # so we can cast (truncate) rather than round
-                        self.outputFracArr[catNum, yOut, xOut] += 0.5
+                        self.outputFracArr[catPosition, yOut, xOut] += 0.5
                     else:
                         # no input pixels of this class at this output loc: output ndv for like-adjacency
                         if self._doLikeAdj:
-                            self.outputLikeAdjArr[catNum, yOut, xOut] = self._fltNDV
+                            self.outputLikeAdjArr[catPosition, yOut, xOut] = self._fltNDV
                         # for the fraction (class proportion) grids, output ndv if we haven't
                         # had any input data of _any_ class here (if we have, but of a different
                         # class, then the default 0 is correct for this fraction grid)
                         if self._coverageArr[yOut, xOut] & 2 == 0:
-                            self.outputFracArr[catNum, yOut, xOut] = self._fltNDV
+                            self.outputFracArr[catPosition, yOut, xOut] = self._fltNDV
 
         # replace output values in majority class grid with nodata where appropriate
         for yOut in range (self.yShapeOut):
