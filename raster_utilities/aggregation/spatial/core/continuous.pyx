@@ -54,7 +54,7 @@ cdef class Continuous_Aggregator_Flt:
         double variance
         double xFact, yFact
         # things we need to calculate
-        unsigned char _doMean, _doSD, _doMin, _doMax, _doSum
+        unsigned char _doMean, _doSD, _doMin, _doMax, _doSum, _doRange
         # things we want to output - e.g. we may need to track mean for the SD calculation, 
         # but not want to output it
         unsigned char _outputMean, _outputMax, _outputMin, _outputSum
@@ -124,6 +124,7 @@ cdef class Continuous_Aggregator_Flt:
             self.outputMeanArr[:] = _NDV
             self._oldMeanArr[:] = _NDV
         if contstats.SD in stats:
+            self._doSD = 1
             self.outputSDArr = np.zeros(shape=(ySizeOut, xSizeOut), dtype = np.float32)
             self._oldSDArr = np.zeros(shape=(ySizeOut, xSizeOut), dtype = np.float32)
             self.outputSDArr[:] = _NDV
@@ -213,7 +214,7 @@ cdef class Continuous_Aggregator_Flt:
         self._oldMeanArr = None
         self._oldSDArr = None
         if self._doRange:
-            self.outputRangeArr = np.zeros(shape=(self.ySizeOut, self.xSizeOut), dtype = np.float32)
+            self.outputRangeArr = np.zeros(shape=(self.yShapeOut, self.xShapeOut), dtype = np.float32)
                     
         for yOut in range(self.yShapeOut):
             xOut = -1
