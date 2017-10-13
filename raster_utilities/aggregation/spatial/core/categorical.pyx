@@ -25,7 +25,7 @@ cdef class Categorical_Aggregator:
           "fractions" : (3D integer array, one z-level for each category value,
                           containing fraction of that category in each cell as an
                           integer (rounded) percentage),
-          "likeadjacencies" : (3D float array, one z-level for each category value,
+          "likeadjacencies" : (OPTIONAL) (3D float array, one z-level for each category value,
                           containing like-adjacency of that category in each cell),
           "majority" : (2D integer array, containing the value of the modal category
                           at that location),
@@ -76,6 +76,7 @@ cdef class Categorical_Aggregator:
         int yBelow, yAbove, xLeft, xRight
 
         unsigned char nCategories
+        unsigned char gotCategories
         float _fltNDV
         unsigned char _byteNDV
         unsigned char _hasNDV
@@ -93,7 +94,7 @@ cdef class Categorical_Aggregator:
     def __cinit__(self,
                   Py_ssize_t xSizeIn, Py_ssize_t ySizeIn,
                   Py_ssize_t xSizeOut, Py_ssize_t ySizeOut,
-                  unsigned char nCategories,
+                  categories,
                   unsigned char doLikeAdjacency = 1,
                   float fltNdv = -9999, byteNdv = None):
         assert xSizeIn > xSizeOut
@@ -109,21 +110,35 @@ cdef class Categorical_Aggregator:
 
         self._fltNDV = fltNdv
         # categorical rasters often don't contain nodata, that's fine
-        if byteNdv is not None and isinstance(byteNdv, int) and 0 <= byteNdv <= 255:
+        if byteNdv is not None and (int(byteNdv) == byteNdv) and 0 <= byteNdv <= 255:
             self._byteNDV = byteNdv
             self._hasNDV = 1
         else:
             self._hasNDV = 0
 
-        self.nCategories = nCategories
-        self.valueMap = np.zeros(shape = (nCategories), dtype = np.int32)
-        self.valueMap[:] = -1
-        self.sortedValueMap = np.zeros(shape=(nCategories), dtype=np.int32)
+        # categories parameter can be an int number of categories, in which case we will derive them, or
+        # a list / ndarray of the values, which must be between 0 and 255
+        if (isinstance(categories,int)):
+            assert 0 < categories <= 255
+            self.nCategories = categories
+            self.valueMap = np.zeros(shape = (categories), dtype = np.int32)
+            self.valueMap[:] = -1
+        else:
+            if isinstance(categories, list):
+                categories = np.asarray(categories)
+            else:
+                assert isinstance(categories, np.ndarray)
+            assert 0 <= categories.min()
+            assert 255 >= categories.max()
+            self.valueMap = categories
+            self.gotCategories = 1
+
+        self.sortedValueMap = np.zeros(shape=(self.nCategories), dtype=np.int32)
         self.sortedValueMap[:] = -1
-        self.outputFracArr = np.zeros(shape = (nCategories, self.yShapeOut, self.xShapeOut),
+        self.outputFracArr = np.zeros(shape = (self.nCategories, self.yShapeOut, self.xShapeOut),
                                       dtype = np.float32)
         if doLikeAdjacency:
-            self.outputLikeAdjArr = np.zeros(shape = (nCategories, self.yShapeOut, self.xShapeOut),
+            self.outputLikeAdjArr = np.zeros(shape = (self.nCategories, self.yShapeOut, self.xShapeOut),
                                              dtype = np.float32)
             self._doLikeAdj = True
         self.outputMajorityArr = np.zeros(shape = (self.yShapeOut, self.xShapeOut),
@@ -132,6 +147,11 @@ cdef class Categorical_Aggregator:
                                            dtype = np.float32)
         self._coverageArr = np.zeros(shape = (self.yShapeOut, self.xShapeOut), dtype = np.byte)
         self._countArr = np.zeros(shape = (self.yShapeOut, self.xShapeOut), dtype = np.int16)
+
+        if self._hasNDV:
+            logMessage("Input nodata value is "+str(self._byteNDV))
+        else:
+            logMessage("Nodata not defined")
 
     @cython.boundscheck(False)
     @cython.cdivision(True)
@@ -232,10 +252,19 @@ cdef class Categorical_Aggregator:
                         if self.valueMap[i] == localValue:
                             valuePos = i
                             break
-                    # if we haven't seen this value yet, add it to the next position in valuemap
-                    # todo think about whether this is truly safe. not quite sure. can we end up with
-                    # valuemap being inconsistent?
                     if valuePos == -1:
+                        if self.gotCategories:
+                            # we have been given the expected category values but have encountered a different one
+                            # for now, error out - though actually we might want to just continue here i.e. ignore
+                            # cells with unspecified values maybe treating as nodata
+                            catsOk = 0
+                            break
+                        # if we haven't seen this value yet, and we haven't pre-loaded the list of expected values,
+                        # add it to the next available position in valuemap
+                        # todo think about whether this is truly safe. not sure - can we end up with valuemap
+                        # inconsistent?
+                        # i.e. is the with gil sufficient to ensure consistent access to valueMap. I'm not sure it is
+                        # as threads can still be preempted. See the finalise method for a backstop check.
                         with gil:
                             for i in range(self.nCategories):
                                 if self.valueMap[i] == -1:
@@ -298,11 +327,16 @@ cdef class Categorical_Aggregator:
             float iscomplete = 1
             float proportion
             int i, catValue, catPosition
+
+        # because i'm not certain that we can validly build the valuemap from the data in a threadsafe way,
+        # here we check for errors that might have occurred. The potential risk is that the same value could have
+        # been added to the valuemap twice. So check that the valuemap is in fact unique.
         vmNumpy = np.asarray(self.valueMap)
         logMessage("Value map is "+str(vmNumpy))
         vmNumpyExclBlank = vmNumpy[vmNumpy!=-1]
         if len(np.unique(vmNumpyExclBlank)) < len(vmNumpyExclBlank):
-            raise ValueError("messed up the value map, that's an error" + str(np.asarray(self.valueMap)))
+            raise ValueError("messed up the value map, that's an error. Please try re-running with the expected" 
+                             " value map passed as input. Produced: "+ str(np.asarray(self.valueMap)))
 
         # normalise the fraction and like-adjacency arrays according to then number of data pixels
         # that went into each output location
@@ -393,7 +427,7 @@ cdef class Categorical_Aggregator:
         return True
 
     cpdef GetResults(self):
-        '''If input is complete, returns an dict containing the results plus "valuemap" for the z-order '''
+        '''If input is complete, returns a dict containing the results plus "valuemap" for the z-order '''
         if not self.finalise():
             return None
         returnObj = {

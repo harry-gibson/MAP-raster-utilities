@@ -35,6 +35,19 @@ def SaveLZWTiff(data, _NDV, geotransform, projection, outDir, outName, cOpts=Non
     del outBand
     outRaster = None
 
+def ReadAOI_PixelLims_Inplace(gdalDatasetName, xLims, yLims, dataBuffer, useRoundedResolution = False):
+    gdalDatasetIn = gdal.Open(gdalDatasetName)
+    assert isinstance(gdalDatasetIn, gdal.Dataset)
+    if xLims is None:
+        xLims = (0, gdalDatasetIn.RasterXSize)
+    if yLims is None:
+        yLims = (0, gdalDatasetIn.RasterYSize)
+    assert max(xLims) <= gdalDatasetIn.RasterXSize
+    assert max(yLims) <= gdalDatasetIn.RasterYSize
+    inputBnd = gdalDatasetIn.GetRasterBand(1)
+    inputBnd.ReadAsArray(xLims[0], yLims[0], xLims[1] - xLims[0], yLims[1] - yLims[0], buf_obj=dataBuffer)
+
+
 def ReadAOI_PixelLims(gdalDatasetName, xLims, yLims, useRoundedResolution = False):
     ''' Read a subset of band 1 of a GDAL dataset, specified by bounding x and y coordinates.
 

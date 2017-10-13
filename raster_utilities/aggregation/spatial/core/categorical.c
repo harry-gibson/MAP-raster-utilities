@@ -551,6 +551,7 @@ struct __pyx_obj_7spatial_4core_11categorical_Categorical_Aggregator {
   int xLeft;
   int xRight;
   unsigned char nCategories;
+  unsigned char gotCategories;
   float _fltNDV;
   unsigned char _byteNDV;
   unsigned char _hasNDV;
@@ -821,16 +822,22 @@ static CYTHON_INLINE int __pyx_sub_acquisition_count_locked(
 static CYTHON_INLINE void __Pyx_INC_MEMVIEW(__Pyx_memviewslice *, int, int);
 static CYTHON_INLINE void __Pyx_XDEC_MEMVIEW(__Pyx_memviewslice *, int, int);
 
-static CYTHON_INLINE void __Pyx_RaiseUnboundLocalError(const char *varname);
-
-static CYTHON_INLINE void __Pyx_ErrRestore(PyObject *type, PyObject *value, PyObject *tb);
-static CYTHON_INLINE void __Pyx_ErrFetch(PyObject **type, PyObject **value, PyObject **tb);
-
 #if CYTHON_COMPILING_IN_CPYTHON
 static CYTHON_INLINE PyObject* __Pyx_PyObject_CallMethO(PyObject *func, PyObject *arg);
 #endif
 
 static CYTHON_INLINE PyObject* __Pyx_PyObject_CallOneArg(PyObject *func, PyObject *arg);
+
+#if CYTHON_COMPILING_IN_CPYTHON
+static CYTHON_INLINE PyObject* __Pyx_PyObject_CallNoArg(PyObject *func);
+#else
+#define __Pyx_PyObject_CallNoArg(func) __Pyx_PyObject_Call(func, __pyx_empty_tuple, NULL)
+#endif
+
+static CYTHON_INLINE void __Pyx_RaiseUnboundLocalError(const char *varname);
+
+static CYTHON_INLINE void __Pyx_ErrRestore(PyObject *type, PyObject *value, PyObject *tb);
+static CYTHON_INLINE void __Pyx_ErrFetch(PyObject **type, PyObject **value, PyObject **tb);
 
 static void __Pyx_Raise(PyObject *type, PyObject *value, PyObject *tb, PyObject *cause);
 
@@ -854,12 +861,6 @@ static CYTHON_INLINE PyObject *__Pyx_GetItemInt_Tuple_Fast(PyObject *o, Py_ssize
 static CYTHON_INLINE PyObject *__Pyx_GetItemInt_Generic(PyObject *o, PyObject* j);
 static CYTHON_INLINE PyObject *__Pyx_GetItemInt_Fast(PyObject *o, Py_ssize_t i,
                                                      int is_list, int wraparound, int boundscheck);
-
-#if CYTHON_COMPILING_IN_CPYTHON
-static CYTHON_INLINE PyObject* __Pyx_PyObject_CallNoArg(PyObject *func);
-#else
-#define __Pyx_PyObject_CallNoArg(func) __Pyx_PyObject_Call(func, __pyx_empty_tuple, NULL)
-#endif
 
 static CYTHON_INLINE int __Pyx_ArgTypeTest(PyObject *obj, PyTypeObject *type, int none_allowed,
     const char *name, int exact);
@@ -1161,7 +1162,7 @@ static PyObject *__pyx_builtin_TypeError;
 static PyObject *__pyx_builtin_xrange;
 static PyObject *__pyx_builtin_id;
 static PyObject *__pyx_builtin_IndexError;
-static int __pyx_pf_7spatial_4core_11categorical_22Categorical_Aggregator___cinit__(struct __pyx_obj_7spatial_4core_11categorical_Categorical_Aggregator *__pyx_v_self, Py_ssize_t __pyx_v_xSizeIn, Py_ssize_t __pyx_v_ySizeIn, Py_ssize_t __pyx_v_xSizeOut, Py_ssize_t __pyx_v_ySizeOut, unsigned char __pyx_v_nCategories, unsigned char __pyx_v_doLikeAdjacency, float __pyx_v_fltNdv, PyObject *__pyx_v_byteNdv); /* proto */
+static int __pyx_pf_7spatial_4core_11categorical_22Categorical_Aggregator___cinit__(struct __pyx_obj_7spatial_4core_11categorical_Categorical_Aggregator *__pyx_v_self, Py_ssize_t __pyx_v_xSizeIn, Py_ssize_t __pyx_v_ySizeIn, Py_ssize_t __pyx_v_xSizeOut, Py_ssize_t __pyx_v_ySizeOut, PyObject *__pyx_v_categories, unsigned char __pyx_v_doLikeAdjacency, float __pyx_v_fltNdv, PyObject *__pyx_v_byteNdv); /* proto */
 static PyObject *__pyx_pf_7spatial_4core_11categorical_22Categorical_Aggregator_2addTile(struct __pyx_obj_7spatial_4core_11categorical_Categorical_Aggregator *__pyx_v_self, __Pyx_memviewslice __pyx_v_data, Py_ssize_t __pyx_v_xOffset, Py_ssize_t __pyx_v_yOffset); /* proto */
 static PyObject *__pyx_pf_7spatial_4core_11categorical_22Categorical_Aggregator_4GetResults(struct __pyx_obj_7spatial_4core_11categorical_Categorical_Aggregator *__pyx_v_self); /* proto */
 static int __pyx_array_MemoryView_5array___cinit__(struct __pyx_array_obj *__pyx_v_self, PyObject *__pyx_v_shape, Py_ssize_t __pyx_v_itemsize, PyObject *__pyx_v_format, PyObject *__pyx_v_mode, int __pyx_v_allocate_buffer); /* proto */
@@ -1205,6 +1206,8 @@ static char __pyx_k_O[] = "O";
 static char __pyx_k_c[] = "c";
 static char __pyx_k_id[] = "id";
 static char __pyx_k_np[] = "np";
+static char __pyx_k_max[] = "max";
+static char __pyx_k_min[] = "min";
 static char __pyx_k_obj[] = "obj";
 static char __pyx_k_base[] = "base";
 static char __pyx_k_byte[] = "byte";
@@ -1247,6 +1250,7 @@ static char __pyx_k_byteNdv[] = "byteNdv";
 static char __pyx_k_float32[] = "float32";
 static char __pyx_k_fortran[] = "fortran";
 static char __pyx_k_memview[] = "memview";
+static char __pyx_k_ndarray[] = "ndarray";
 static char __pyx_k_xOffset[] = "xOffset";
 static char __pyx_k_xSizeIn[] = "xSizeIn";
 static char __pyx_k_yOffset[] = "yOffset";
@@ -1266,10 +1270,10 @@ static char __pyx_k_enumerate[] = "enumerate";
 static char __pyx_k_GetResults[] = "GetResults";
 static char __pyx_k_IndexError[] = "IndexError";
 static char __pyx_k_ValueError[] = "ValueError";
+static char __pyx_k_categories[] = "categories";
 static char __pyx_k_logMessage[] = "logMessage";
 static char __pyx_k_pyx_vtable[] = "__pyx_vtable__";
 static char __pyx_k_MemoryError[] = "MemoryError";
-static char __pyx_k_nCategories[] = "nCategories";
 static char __pyx_k_Value_map_is[] = "Value map is ";
 static char __pyx_k_utils_logger[] = "utils.logger";
 static char __pyx_k_pyx_getbuffer[] = "__pyx_getbuffer";
@@ -1277,8 +1281,10 @@ static char __pyx_k_LIKEADJACENCIES[] = "LIKEADJACENCIES";
 static char __pyx_k_allocate_buffer[] = "allocate_buffer";
 static char __pyx_k_doLikeAdjacency[] = "doLikeAdjacency";
 static char __pyx_k_dtype_is_object[] = "dtype_is_object";
+static char __pyx_k_Nodata_not_defined[] = "Nodata not defined";
 static char __pyx_k_strided_and_direct[] = "<strided and direct>";
 static char __pyx_k_strided_and_indirect[] = "<strided and indirect>";
+static char __pyx_k_Input_nodata_value_is[] = "Input nodata value is ";
 static char __pyx_k_contiguous_and_direct[] = "<contiguous and direct>";
 static char __pyx_k_MemoryView_of_r_object[] = "<MemoryView of %r object>";
 static char __pyx_k_MemoryView_of_r_at_0x_x[] = "<MemoryView of %r at 0x%x>";
@@ -1305,7 +1311,7 @@ static char __pyx_k_Out_of_bounds_on_buffer_access_a[] = "Out of bounds on buffe
 static char __pyx_k_Unable_to_convert_item_to_object[] = "Unable to convert item to object";
 static char __pyx_k_Warning_cannot_generate_a_result[] = "Warning, cannot generate a result without             having received input data for full extent";
 static char __pyx_k_got_differing_extents_in_dimensi[] = "got differing extents in dimension %d (got %d and %d)";
-static char __pyx_k_messed_up_the_value_map_that_s_a[] = "messed up the value map, that's an error";
+static char __pyx_k_messed_up_the_value_map_that_s_a[] = "messed up the value map, that's an error. Please try re-running with the expected value map passed as input. Produced: ";
 static char __pyx_k_raster_utilities_aggregation_agg[] = "raster_utilities.aggregation.aggregation_values";
 static char __pyx_k_unable_to_allocate_shape_and_str[] = "unable to allocate shape and strides.";
 static PyObject *__pyx_kp_s_Buffer_view_does_not_expose_stri;
@@ -1319,6 +1325,7 @@ static PyObject *__pyx_n_s_FRACTIONS;
 static PyObject *__pyx_n_s_GetResults;
 static PyObject *__pyx_n_s_IndexError;
 static PyObject *__pyx_kp_s_Indirect_dimensions_not_supporte;
+static PyObject *__pyx_kp_s_Input_nodata_value_is;
 static PyObject *__pyx_kp_s_Invalid_mode_expected_c_or_fortr;
 static PyObject *__pyx_kp_s_Invalid_shape_in_axis_d_d;
 static PyObject *__pyx_n_s_LIKEADJACENCIES;
@@ -1327,6 +1334,7 @@ static PyObject *__pyx_n_s_MemoryError;
 static PyObject *__pyx_kp_s_MemoryView_of_r_at_0x_x;
 static PyObject *__pyx_kp_s_MemoryView_of_r_object;
 static PyObject *__pyx_kp_s_More_category_values_were_encoun;
+static PyObject *__pyx_kp_s_Nodata_not_defined;
 static PyObject *__pyx_n_b_O;
 static PyObject *__pyx_kp_s_Out_of_bounds_on_buffer_access_a;
 static PyObject *__pyx_n_s_TypeError;
@@ -1345,6 +1353,7 @@ static PyObject *__pyx_n_s_byte;
 static PyObject *__pyx_n_s_byteNdv;
 static PyObject *__pyx_n_s_c;
 static PyObject *__pyx_n_u_c;
+static PyObject *__pyx_n_s_categories;
 static PyObject *__pyx_n_s_catstats;
 static PyObject *__pyx_n_s_class;
 static PyObject *__pyx_kp_s_contiguous_and_direct;
@@ -1370,12 +1379,14 @@ static PyObject *__pyx_n_s_itemsize;
 static PyObject *__pyx_kp_s_itemsize_0_for_cython_array;
 static PyObject *__pyx_n_s_logMessage;
 static PyObject *__pyx_n_s_main;
+static PyObject *__pyx_n_s_max;
 static PyObject *__pyx_n_s_memview;
 static PyObject *__pyx_kp_s_messed_up_the_value_map_that_s_a;
+static PyObject *__pyx_n_s_min;
 static PyObject *__pyx_n_s_mode;
-static PyObject *__pyx_n_s_nCategories;
 static PyObject *__pyx_n_s_name;
 static PyObject *__pyx_n_s_name_2;
+static PyObject *__pyx_n_s_ndarray;
 static PyObject *__pyx_n_s_ndim;
 static PyObject *__pyx_n_s_np;
 static PyObject *__pyx_n_s_numpy;
@@ -1416,7 +1427,6 @@ static PyObject *__pyx_int_1;
 static PyObject *__pyx_int_255;
 static PyObject *__pyx_int_neg_1;
 static PyObject *__pyx_tuple_;
-static PyObject *__pyx_slice__9;
 static PyObject *__pyx_tuple__2;
 static PyObject *__pyx_tuple__3;
 static PyObject *__pyx_tuple__4;
@@ -1424,16 +1434,18 @@ static PyObject *__pyx_tuple__5;
 static PyObject *__pyx_tuple__6;
 static PyObject *__pyx_tuple__7;
 static PyObject *__pyx_tuple__8;
+static PyObject *__pyx_tuple__9;
 static PyObject *__pyx_slice__10;
 static PyObject *__pyx_slice__11;
-static PyObject *__pyx_tuple__12;
+static PyObject *__pyx_slice__12;
 static PyObject *__pyx_tuple__13;
 static PyObject *__pyx_tuple__14;
 static PyObject *__pyx_tuple__15;
 static PyObject *__pyx_tuple__16;
 static PyObject *__pyx_tuple__17;
+static PyObject *__pyx_tuple__18;
 
-/* "spatial\core\categorical.pyx":93
+/* "spatial\core\categorical.pyx":94
  *         unsigned char _doFractions, _doLikeAdj
  * 
  *     def __cinit__(self,             # <<<<<<<<<<<<<<
@@ -1448,7 +1460,7 @@ static int __pyx_pw_7spatial_4core_11categorical_22Categorical_Aggregator_1__cin
   Py_ssize_t __pyx_v_ySizeIn;
   Py_ssize_t __pyx_v_xSizeOut;
   Py_ssize_t __pyx_v_ySizeOut;
-  unsigned char __pyx_v_nCategories;
+  PyObject *__pyx_v_categories = 0;
   unsigned char __pyx_v_doLikeAdjacency;
   float __pyx_v_fltNdv;
   PyObject *__pyx_v_byteNdv = 0;
@@ -1459,11 +1471,11 @@ static int __pyx_pw_7spatial_4core_11categorical_22Categorical_Aggregator_1__cin
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("__cinit__ (wrapper)", 0);
   {
-    static PyObject **__pyx_pyargnames[] = {&__pyx_n_s_xSizeIn,&__pyx_n_s_ySizeIn,&__pyx_n_s_xSizeOut,&__pyx_n_s_ySizeOut,&__pyx_n_s_nCategories,&__pyx_n_s_doLikeAdjacency,&__pyx_n_s_fltNdv,&__pyx_n_s_byteNdv,0};
+    static PyObject **__pyx_pyargnames[] = {&__pyx_n_s_xSizeIn,&__pyx_n_s_ySizeIn,&__pyx_n_s_xSizeOut,&__pyx_n_s_ySizeOut,&__pyx_n_s_categories,&__pyx_n_s_doLikeAdjacency,&__pyx_n_s_fltNdv,&__pyx_n_s_byteNdv,0};
     PyObject* values[8] = {0,0,0,0,0,0,0,0};
 
-    /* "spatial\core\categorical.pyx":98
- *                   unsigned char nCategories,
+    /* "spatial\core\categorical.pyx":99
+ *                   categories,
  *                   unsigned char doLikeAdjacency = 1,
  *                   float fltNdv = -9999, byteNdv = None):             # <<<<<<<<<<<<<<
  *         assert xSizeIn > xSizeOut
@@ -1493,22 +1505,22 @@ static int __pyx_pw_7spatial_4core_11categorical_22Categorical_Aggregator_1__cin
         case  1:
         if (likely((values[1] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_ySizeIn)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("__cinit__", 0, 5, 8, 1); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 93; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+          __Pyx_RaiseArgtupleInvalid("__cinit__", 0, 5, 8, 1); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 94; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
         }
         case  2:
         if (likely((values[2] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_xSizeOut)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("__cinit__", 0, 5, 8, 2); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 93; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+          __Pyx_RaiseArgtupleInvalid("__cinit__", 0, 5, 8, 2); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 94; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
         }
         case  3:
         if (likely((values[3] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_ySizeOut)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("__cinit__", 0, 5, 8, 3); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 93; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+          __Pyx_RaiseArgtupleInvalid("__cinit__", 0, 5, 8, 3); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 94; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
         }
         case  4:
-        if (likely((values[4] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_nCategories)) != 0)) kw_args--;
+        if (likely((values[4] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_categories)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("__cinit__", 0, 5, 8, 4); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 93; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+          __Pyx_RaiseArgtupleInvalid("__cinit__", 0, 5, 8, 4); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 94; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
         }
         case  5:
         if (kw_args > 0) {
@@ -1527,7 +1539,7 @@ static int __pyx_pw_7spatial_4core_11categorical_22Categorical_Aggregator_1__cin
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "__cinit__") < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 93; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "__cinit__") < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 94; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
       }
     } else {
       switch (PyTuple_GET_SIZE(__pyx_args)) {
@@ -1543,18 +1555,18 @@ static int __pyx_pw_7spatial_4core_11categorical_22Categorical_Aggregator_1__cin
         default: goto __pyx_L5_argtuple_error;
       }
     }
-    __pyx_v_xSizeIn = __Pyx_PyIndex_AsSsize_t(values[0]); if (unlikely((__pyx_v_xSizeIn == (Py_ssize_t)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 94; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
-    __pyx_v_ySizeIn = __Pyx_PyIndex_AsSsize_t(values[1]); if (unlikely((__pyx_v_ySizeIn == (Py_ssize_t)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 94; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
-    __pyx_v_xSizeOut = __Pyx_PyIndex_AsSsize_t(values[2]); if (unlikely((__pyx_v_xSizeOut == (Py_ssize_t)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 95; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
-    __pyx_v_ySizeOut = __Pyx_PyIndex_AsSsize_t(values[3]); if (unlikely((__pyx_v_ySizeOut == (Py_ssize_t)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 95; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
-    __pyx_v_nCategories = __Pyx_PyInt_As_unsigned_char(values[4]); if (unlikely((__pyx_v_nCategories == (unsigned char)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 96; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+    __pyx_v_xSizeIn = __Pyx_PyIndex_AsSsize_t(values[0]); if (unlikely((__pyx_v_xSizeIn == (Py_ssize_t)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 95; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+    __pyx_v_ySizeIn = __Pyx_PyIndex_AsSsize_t(values[1]); if (unlikely((__pyx_v_ySizeIn == (Py_ssize_t)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 95; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+    __pyx_v_xSizeOut = __Pyx_PyIndex_AsSsize_t(values[2]); if (unlikely((__pyx_v_xSizeOut == (Py_ssize_t)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 96; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+    __pyx_v_ySizeOut = __Pyx_PyIndex_AsSsize_t(values[3]); if (unlikely((__pyx_v_ySizeOut == (Py_ssize_t)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 96; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+    __pyx_v_categories = values[4];
     if (values[5]) {
-      __pyx_v_doLikeAdjacency = __Pyx_PyInt_As_unsigned_char(values[5]); if (unlikely((__pyx_v_doLikeAdjacency == (unsigned char)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 97; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+      __pyx_v_doLikeAdjacency = __Pyx_PyInt_As_unsigned_char(values[5]); if (unlikely((__pyx_v_doLikeAdjacency == (unsigned char)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 98; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
     } else {
       __pyx_v_doLikeAdjacency = ((unsigned char)1);
     }
     if (values[6]) {
-      __pyx_v_fltNdv = __pyx_PyFloat_AsFloat(values[6]); if (unlikely((__pyx_v_fltNdv == (float)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 98; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+      __pyx_v_fltNdv = __pyx_PyFloat_AsFloat(values[6]); if (unlikely((__pyx_v_fltNdv == (float)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 99; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
     } else {
       __pyx_v_fltNdv = ((float)-9999.0);
     }
@@ -1562,15 +1574,15 @@ static int __pyx_pw_7spatial_4core_11categorical_22Categorical_Aggregator_1__cin
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("__cinit__", 0, 5, 8, PyTuple_GET_SIZE(__pyx_args)); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 93; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+  __Pyx_RaiseArgtupleInvalid("__cinit__", 0, 5, 8, PyTuple_GET_SIZE(__pyx_args)); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 94; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
   __pyx_L3_error:;
   __Pyx_AddTraceback("spatial.core.categorical.Categorical_Aggregator.__cinit__", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
   return -1;
   __pyx_L4_argument_unpacking_done:;
-  __pyx_r = __pyx_pf_7spatial_4core_11categorical_22Categorical_Aggregator___cinit__(((struct __pyx_obj_7spatial_4core_11categorical_Categorical_Aggregator *)__pyx_v_self), __pyx_v_xSizeIn, __pyx_v_ySizeIn, __pyx_v_xSizeOut, __pyx_v_ySizeOut, __pyx_v_nCategories, __pyx_v_doLikeAdjacency, __pyx_v_fltNdv, __pyx_v_byteNdv);
+  __pyx_r = __pyx_pf_7spatial_4core_11categorical_22Categorical_Aggregator___cinit__(((struct __pyx_obj_7spatial_4core_11categorical_Categorical_Aggregator *)__pyx_v_self), __pyx_v_xSizeIn, __pyx_v_ySizeIn, __pyx_v_xSizeOut, __pyx_v_ySizeOut, __pyx_v_categories, __pyx_v_doLikeAdjacency, __pyx_v_fltNdv, __pyx_v_byteNdv);
 
-  /* "spatial\core\categorical.pyx":93
+  /* "spatial\core\categorical.pyx":94
  *         unsigned char _doFractions, _doLikeAdj
  * 
  *     def __cinit__(self,             # <<<<<<<<<<<<<<
@@ -1583,15 +1595,15 @@ static int __pyx_pw_7spatial_4core_11categorical_22Categorical_Aggregator_1__cin
   return __pyx_r;
 }
 
-static int __pyx_pf_7spatial_4core_11categorical_22Categorical_Aggregator___cinit__(struct __pyx_obj_7spatial_4core_11categorical_Categorical_Aggregator *__pyx_v_self, Py_ssize_t __pyx_v_xSizeIn, Py_ssize_t __pyx_v_ySizeIn, Py_ssize_t __pyx_v_xSizeOut, Py_ssize_t __pyx_v_ySizeOut, unsigned char __pyx_v_nCategories, unsigned char __pyx_v_doLikeAdjacency, float __pyx_v_fltNdv, PyObject *__pyx_v_byteNdv) {
+static int __pyx_pf_7spatial_4core_11categorical_22Categorical_Aggregator___cinit__(struct __pyx_obj_7spatial_4core_11categorical_Categorical_Aggregator *__pyx_v_self, Py_ssize_t __pyx_v_xSizeIn, Py_ssize_t __pyx_v_ySizeIn, Py_ssize_t __pyx_v_xSizeOut, Py_ssize_t __pyx_v_ySizeOut, PyObject *__pyx_v_categories, unsigned char __pyx_v_doLikeAdjacency, float __pyx_v_fltNdv, PyObject *__pyx_v_byteNdv) {
   int __pyx_r;
   __Pyx_RefNannyDeclarations
   int __pyx_t_1;
   int __pyx_t_2;
   int __pyx_t_3;
   PyObject *__pyx_t_4 = NULL;
-  unsigned char __pyx_t_5;
-  PyObject *__pyx_t_6 = NULL;
+  PyObject *__pyx_t_5 = NULL;
+  unsigned char __pyx_t_6;
   PyObject *__pyx_t_7 = NULL;
   PyObject *__pyx_t_8 = NULL;
   __Pyx_memviewslice __pyx_t_9 = { 0, 0, { 0 }, { 0 }, { 0 } };
@@ -1611,8 +1623,9 @@ static int __pyx_pf_7spatial_4core_11categorical_22Categorical_Aggregator___cini
   const char *__pyx_filename = NULL;
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__cinit__", 0);
+  __Pyx_INCREF(__pyx_v_categories);
 
-  /* "spatial\core\categorical.pyx":99
+  /* "spatial\core\categorical.pyx":100
  *                   unsigned char doLikeAdjacency = 1,
  *                   float fltNdv = -9999, byteNdv = None):
  *         assert xSizeIn > xSizeOut             # <<<<<<<<<<<<<<
@@ -1623,12 +1636,12 @@ static int __pyx_pf_7spatial_4core_11categorical_22Categorical_Aggregator___cini
   if (unlikely(!Py_OptimizeFlag)) {
     if (unlikely(!((__pyx_v_xSizeIn > __pyx_v_xSizeOut) != 0))) {
       PyErr_SetNone(PyExc_AssertionError);
-      {__pyx_filename = __pyx_f[0]; __pyx_lineno = 99; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      {__pyx_filename = __pyx_f[0]; __pyx_lineno = 100; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     }
   }
   #endif
 
-  /* "spatial\core\categorical.pyx":100
+  /* "spatial\core\categorical.pyx":101
  *                   float fltNdv = -9999, byteNdv = None):
  *         assert xSizeIn > xSizeOut
  *         assert ySizeIn > ySizeOut             # <<<<<<<<<<<<<<
@@ -1639,12 +1652,12 @@ static int __pyx_pf_7spatial_4core_11categorical_22Categorical_Aggregator___cini
   if (unlikely(!Py_OptimizeFlag)) {
     if (unlikely(!((__pyx_v_ySizeIn > __pyx_v_ySizeOut) != 0))) {
       PyErr_SetNone(PyExc_AssertionError);
-      {__pyx_filename = __pyx_f[0]; __pyx_lineno = 100; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      {__pyx_filename = __pyx_f[0]; __pyx_lineno = 101; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     }
   }
   #endif
 
-  /* "spatial\core\categorical.pyx":102
+  /* "spatial\core\categorical.pyx":103
  *         assert ySizeIn > ySizeOut
  * 
  *         self.xShapeIn = xSizeIn             # <<<<<<<<<<<<<<
@@ -1653,7 +1666,7 @@ static int __pyx_pf_7spatial_4core_11categorical_22Categorical_Aggregator___cini
  */
   __pyx_v_self->xShapeIn = __pyx_v_xSizeIn;
 
-  /* "spatial\core\categorical.pyx":103
+  /* "spatial\core\categorical.pyx":104
  * 
  *         self.xShapeIn = xSizeIn
  *         self.yShapeIn = ySizeIn             # <<<<<<<<<<<<<<
@@ -1662,7 +1675,7 @@ static int __pyx_pf_7spatial_4core_11categorical_22Categorical_Aggregator___cini
  */
   __pyx_v_self->yShapeIn = __pyx_v_ySizeIn;
 
-  /* "spatial\core\categorical.pyx":104
+  /* "spatial\core\categorical.pyx":105
  *         self.xShapeIn = xSizeIn
  *         self.yShapeIn = ySizeIn
  *         self.xShapeOut = xSizeOut             # <<<<<<<<<<<<<<
@@ -1671,7 +1684,7 @@ static int __pyx_pf_7spatial_4core_11categorical_22Categorical_Aggregator___cini
  */
   __pyx_v_self->xShapeOut = __pyx_v_xSizeOut;
 
-  /* "spatial\core\categorical.pyx":105
+  /* "spatial\core\categorical.pyx":106
  *         self.yShapeIn = ySizeIn
  *         self.xShapeOut = xSizeOut
  *         self.yShapeOut = ySizeOut             # <<<<<<<<<<<<<<
@@ -1680,7 +1693,7 @@ static int __pyx_pf_7spatial_4core_11categorical_22Categorical_Aggregator___cini
  */
   __pyx_v_self->yShapeOut = __pyx_v_ySizeOut;
 
-  /* "spatial\core\categorical.pyx":107
+  /* "spatial\core\categorical.pyx":108
  *         self.yShapeOut = ySizeOut
  * 
  *         self.xFact = <double>self.xShapeIn / self.xShapeOut             # <<<<<<<<<<<<<<
@@ -1695,11 +1708,11 @@ static int __pyx_pf_7spatial_4core_11categorical_22Categorical_Aggregator___cini
     #ifdef WITH_THREAD
     PyGILState_Release(__pyx_gilstate_save);
     #endif
-    {__pyx_filename = __pyx_f[0]; __pyx_lineno = 107; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    {__pyx_filename = __pyx_f[0]; __pyx_lineno = 108; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   }
   __pyx_v_self->xFact = (((double)__pyx_v_self->xShapeIn) / __pyx_v_self->xShapeOut);
 
-  /* "spatial\core\categorical.pyx":108
+  /* "spatial\core\categorical.pyx":109
  * 
  *         self.xFact = <double>self.xShapeIn / self.xShapeOut
  *         self.yFact = <double>self.yShapeIn / self.yShapeOut             # <<<<<<<<<<<<<<
@@ -1714,23 +1727,23 @@ static int __pyx_pf_7spatial_4core_11categorical_22Categorical_Aggregator___cini
     #ifdef WITH_THREAD
     PyGILState_Release(__pyx_gilstate_save);
     #endif
-    {__pyx_filename = __pyx_f[0]; __pyx_lineno = 108; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    {__pyx_filename = __pyx_f[0]; __pyx_lineno = 109; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   }
   __pyx_v_self->yFact = (((double)__pyx_v_self->yShapeIn) / __pyx_v_self->yShapeOut);
 
-  /* "spatial\core\categorical.pyx":110
+  /* "spatial\core\categorical.pyx":111
  *         self.yFact = <double>self.yShapeIn / self.yShapeOut
  * 
  *         self._fltNDV = fltNdv             # <<<<<<<<<<<<<<
  *         # categorical rasters often don't contain nodata, that's fine
- *         if byteNdv is not None and isinstance(byteNdv, int) and 0 <= byteNdv <= 255:
+ *         if byteNdv is not None and (int(byteNdv) == byteNdv) and 0 <= byteNdv <= 255:
  */
   __pyx_v_self->_fltNDV = __pyx_v_fltNdv;
 
-  /* "spatial\core\categorical.pyx":112
+  /* "spatial\core\categorical.pyx":113
  *         self._fltNDV = fltNdv
  *         # categorical rasters often don't contain nodata, that's fine
- *         if byteNdv is not None and isinstance(byteNdv, int) and 0 <= byteNdv <= 255:             # <<<<<<<<<<<<<<
+ *         if byteNdv is not None and (int(byteNdv) == byteNdv) and 0 <= byteNdv <= 255:             # <<<<<<<<<<<<<<
  *             self._byteNDV = byteNdv
  *             self._hasNDV = 1
  */
@@ -1741,36 +1754,40 @@ static int __pyx_pf_7spatial_4core_11categorical_22Categorical_Aggregator___cini
     __pyx_t_1 = __pyx_t_3;
     goto __pyx_L4_bool_binop_done;
   }
-  __pyx_t_3 = PyInt_Check(__pyx_v_byteNdv); 
-  __pyx_t_2 = (__pyx_t_3 != 0);
-  if (__pyx_t_2) {
+  __pyx_t_4 = PyNumber_Int(__pyx_v_byteNdv); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 113; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_t_4);
+  __pyx_t_5 = PyObject_RichCompare(__pyx_t_4, __pyx_v_byteNdv, Py_EQ); __Pyx_XGOTREF(__pyx_t_5); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 113; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+  __pyx_t_3 = __Pyx_PyObject_IsTrue(__pyx_t_5); if (unlikely(__pyx_t_3 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 113; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
+  if (__pyx_t_3) {
   } else {
-    __pyx_t_1 = __pyx_t_2;
+    __pyx_t_1 = __pyx_t_3;
     goto __pyx_L4_bool_binop_done;
   }
-  __pyx_t_4 = PyObject_RichCompare(__pyx_int_0, __pyx_v_byteNdv, Py_LE); __Pyx_XGOTREF(__pyx_t_4); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 112; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  if (__Pyx_PyObject_IsTrue(__pyx_t_4)) {
-    __Pyx_DECREF(__pyx_t_4);
-    __pyx_t_4 = PyObject_RichCompare(__pyx_v_byteNdv, __pyx_int_255, Py_LE); __Pyx_XGOTREF(__pyx_t_4); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 112; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_5 = PyObject_RichCompare(__pyx_int_0, __pyx_v_byteNdv, Py_LE); __Pyx_XGOTREF(__pyx_t_5); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 113; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (__Pyx_PyObject_IsTrue(__pyx_t_5)) {
+    __Pyx_DECREF(__pyx_t_5);
+    __pyx_t_5 = PyObject_RichCompare(__pyx_v_byteNdv, __pyx_int_255, Py_LE); __Pyx_XGOTREF(__pyx_t_5); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 113; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   }
-  __pyx_t_2 = __Pyx_PyObject_IsTrue(__pyx_t_4); if (unlikely(__pyx_t_2 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 112; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  __pyx_t_1 = __pyx_t_2;
+  __pyx_t_3 = __Pyx_PyObject_IsTrue(__pyx_t_5); if (unlikely(__pyx_t_3 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 113; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
+  __pyx_t_1 = __pyx_t_3;
   __pyx_L4_bool_binop_done:;
   if (__pyx_t_1) {
 
-    /* "spatial\core\categorical.pyx":113
+    /* "spatial\core\categorical.pyx":114
  *         # categorical rasters often don't contain nodata, that's fine
- *         if byteNdv is not None and isinstance(byteNdv, int) and 0 <= byteNdv <= 255:
+ *         if byteNdv is not None and (int(byteNdv) == byteNdv) and 0 <= byteNdv <= 255:
  *             self._byteNDV = byteNdv             # <<<<<<<<<<<<<<
  *             self._hasNDV = 1
  *         else:
  */
-    __pyx_t_5 = __Pyx_PyInt_As_unsigned_char(__pyx_v_byteNdv); if (unlikely((__pyx_t_5 == (unsigned char)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 113; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-    __pyx_v_self->_byteNDV = __pyx_t_5;
+    __pyx_t_6 = __Pyx_PyInt_As_unsigned_char(__pyx_v_byteNdv); if (unlikely((__pyx_t_6 == (unsigned char)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 114; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_v_self->_byteNDV = __pyx_t_6;
 
-    /* "spatial\core\categorical.pyx":114
- *         if byteNdv is not None and isinstance(byteNdv, int) and 0 <= byteNdv <= 255:
+    /* "spatial\core\categorical.pyx":115
+ *         if byteNdv is not None and (int(byteNdv) == byteNdv) and 0 <= byteNdv <= 255:
  *             self._byteNDV = byteNdv
  *             self._hasNDV = 1             # <<<<<<<<<<<<<<
  *         else:
@@ -1781,141 +1798,360 @@ static int __pyx_pf_7spatial_4core_11categorical_22Categorical_Aggregator___cini
   }
   /*else*/ {
 
-    /* "spatial\core\categorical.pyx":116
+    /* "spatial\core\categorical.pyx":117
  *             self._hasNDV = 1
  *         else:
  *             self._hasNDV = 0             # <<<<<<<<<<<<<<
  * 
- *         self.nCategories = nCategories
+ *         # categories parameter can be an int number of categories, in which case we will derive them, or
  */
     __pyx_v_self->_hasNDV = 0;
   }
   __pyx_L3:;
 
-  /* "spatial\core\categorical.pyx":118
- *             self._hasNDV = 0
- * 
- *         self.nCategories = nCategories             # <<<<<<<<<<<<<<
- *         self.valueMap = np.zeros(shape = (nCategories), dtype = np.int32)
- *         self.valueMap[:] = -1
+  /* "spatial\core\categorical.pyx":121
+ *         # categories parameter can be an int number of categories, in which case we will derive them, or
+ *         # a list / ndarray of the values, which must be between 0 and 255
+ *         if (isinstance(categories,int)):             # <<<<<<<<<<<<<<
+ *             assert 0 < categories <= 255
+ *             self.nCategories = categories
  */
-  __pyx_v_self->nCategories = __pyx_v_nCategories;
+  __pyx_t_1 = PyInt_Check(__pyx_v_categories); 
+  __pyx_t_3 = (__pyx_t_1 != 0);
+  if (__pyx_t_3) {
 
-  /* "spatial\core\categorical.pyx":119
- * 
- *         self.nCategories = nCategories
- *         self.valueMap = np.zeros(shape = (nCategories), dtype = np.int32)             # <<<<<<<<<<<<<<
- *         self.valueMap[:] = -1
- *         self.sortedValueMap = np.zeros(shape=(nCategories), dtype=np.int32)
+    /* "spatial\core\categorical.pyx":122
+ *         # a list / ndarray of the values, which must be between 0 and 255
+ *         if (isinstance(categories,int)):
+ *             assert 0 < categories <= 255             # <<<<<<<<<<<<<<
+ *             self.nCategories = categories
+ *             self.valueMap = np.zeros(shape = (categories), dtype = np.int32)
  */
-  __pyx_t_4 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 119; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __Pyx_GOTREF(__pyx_t_4);
-  __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_n_s_zeros); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 119; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __Pyx_GOTREF(__pyx_t_6);
-  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  __pyx_t_4 = PyDict_New(); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 119; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __Pyx_GOTREF(__pyx_t_4);
-  __pyx_t_7 = __Pyx_PyInt_From_unsigned_char(__pyx_v_nCategories); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 119; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __Pyx_GOTREF(__pyx_t_7);
-  if (PyDict_SetItem(__pyx_t_4, __pyx_n_s_shape, __pyx_t_7) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 119; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
-  __pyx_t_7 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 119; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __Pyx_GOTREF(__pyx_t_7);
-  __pyx_t_8 = __Pyx_PyObject_GetAttrStr(__pyx_t_7, __pyx_n_s_int32); if (unlikely(!__pyx_t_8)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 119; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __Pyx_GOTREF(__pyx_t_8);
-  __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
-  if (PyDict_SetItem(__pyx_t_4, __pyx_n_s_dtype, __pyx_t_8) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 119; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
-  __pyx_t_8 = __Pyx_PyObject_Call(__pyx_t_6, __pyx_empty_tuple, __pyx_t_4); if (unlikely(!__pyx_t_8)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 119; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __Pyx_GOTREF(__pyx_t_8);
-  __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  __pyx_t_9 = __Pyx_PyObject_to_MemoryviewSlice_dc_int(__pyx_t_8);
-  if (unlikely(!__pyx_t_9.memview)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 119; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
-  __PYX_XDEC_MEMVIEW(&__pyx_v_self->valueMap, 0);
-  __pyx_v_self->valueMap = __pyx_t_9;
-  __pyx_t_9.memview = NULL;
-  __pyx_t_9.data = NULL;
+    #ifndef CYTHON_WITHOUT_ASSERTIONS
+    if (unlikely(!Py_OptimizeFlag)) {
+      __pyx_t_5 = PyObject_RichCompare(__pyx_int_0, __pyx_v_categories, Py_LT); __Pyx_XGOTREF(__pyx_t_5); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 122; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      if (__Pyx_PyObject_IsTrue(__pyx_t_5)) {
+        __Pyx_DECREF(__pyx_t_5);
+        __pyx_t_5 = PyObject_RichCompare(__pyx_v_categories, __pyx_int_255, Py_LE); __Pyx_XGOTREF(__pyx_t_5); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 122; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      }
+      __pyx_t_3 = __Pyx_PyObject_IsTrue(__pyx_t_5); if (unlikely(__pyx_t_3 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 122; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
+      if (unlikely(!__pyx_t_3)) {
+        PyErr_SetNone(PyExc_AssertionError);
+        {__pyx_filename = __pyx_f[0]; __pyx_lineno = 122; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      }
+    }
+    #endif
 
-  /* "spatial\core\categorical.pyx":120
- *         self.nCategories = nCategories
- *         self.valueMap = np.zeros(shape = (nCategories), dtype = np.int32)
- *         self.valueMap[:] = -1             # <<<<<<<<<<<<<<
- *         self.sortedValueMap = np.zeros(shape=(nCategories), dtype=np.int32)
- *         self.sortedValueMap[:] = -1
+    /* "spatial\core\categorical.pyx":123
+ *         if (isinstance(categories,int)):
+ *             assert 0 < categories <= 255
+ *             self.nCategories = categories             # <<<<<<<<<<<<<<
+ *             self.valueMap = np.zeros(shape = (categories), dtype = np.int32)
+ *             self.valueMap[:] = -1
  */
-  if (unlikely(!__pyx_v_self->valueMap.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 120; __pyx_clineno = __LINE__; goto __pyx_L1_error;}}
-  __pyx_t_9 = __pyx_v_self->valueMap;
-  __PYX_INC_MEMVIEW(&__pyx_t_9, 1);
-  __pyx_t_11 = -1;
-  __pyx_t_10.data = __pyx_t_9.data;
-  __pyx_t_10.memview = __pyx_t_9.memview;
-  __PYX_INC_MEMVIEW(&__pyx_t_10, 0);
-  __pyx_t_10.shape[0] = __pyx_t_9.shape[0];
+    __pyx_t_6 = __Pyx_PyInt_As_unsigned_char(__pyx_v_categories); if (unlikely((__pyx_t_6 == (unsigned char)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 123; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_v_self->nCategories = __pyx_t_6;
+
+    /* "spatial\core\categorical.pyx":124
+ *             assert 0 < categories <= 255
+ *             self.nCategories = categories
+ *             self.valueMap = np.zeros(shape = (categories), dtype = np.int32)             # <<<<<<<<<<<<<<
+ *             self.valueMap[:] = -1
+ *         else:
+ */
+    __pyx_t_5 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 124; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __Pyx_GOTREF(__pyx_t_5);
+    __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_5, __pyx_n_s_zeros); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 124; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __Pyx_GOTREF(__pyx_t_4);
+    __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
+    __pyx_t_5 = PyDict_New(); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 124; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __Pyx_GOTREF(__pyx_t_5);
+    if (PyDict_SetItem(__pyx_t_5, __pyx_n_s_shape, __pyx_v_categories) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 124; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_7 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 124; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __Pyx_GOTREF(__pyx_t_7);
+    __pyx_t_8 = __Pyx_PyObject_GetAttrStr(__pyx_t_7, __pyx_n_s_int32); if (unlikely(!__pyx_t_8)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 124; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __Pyx_GOTREF(__pyx_t_8);
+    __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
+    if (PyDict_SetItem(__pyx_t_5, __pyx_n_s_dtype, __pyx_t_8) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 124; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
+    __pyx_t_8 = __Pyx_PyObject_Call(__pyx_t_4, __pyx_empty_tuple, __pyx_t_5); if (unlikely(!__pyx_t_8)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 124; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __Pyx_GOTREF(__pyx_t_8);
+    __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+    __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
+    __pyx_t_9 = __Pyx_PyObject_to_MemoryviewSlice_dc_int(__pyx_t_8);
+    if (unlikely(!__pyx_t_9.memview)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 124; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
+    __PYX_XDEC_MEMVIEW(&__pyx_v_self->valueMap, 0);
+    __pyx_v_self->valueMap = __pyx_t_9;
+    __pyx_t_9.memview = NULL;
+    __pyx_t_9.data = NULL;
+
+    /* "spatial\core\categorical.pyx":125
+ *             self.nCategories = categories
+ *             self.valueMap = np.zeros(shape = (categories), dtype = np.int32)
+ *             self.valueMap[:] = -1             # <<<<<<<<<<<<<<
+ *         else:
+ *             if isinstance(categories, list):
+ */
+    if (unlikely(!__pyx_v_self->valueMap.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 125; __pyx_clineno = __LINE__; goto __pyx_L1_error;}}
+    __pyx_t_9 = __pyx_v_self->valueMap;
+    __PYX_INC_MEMVIEW(&__pyx_t_9, 1);
+    __pyx_t_11 = -1;
+    __pyx_t_10.data = __pyx_t_9.data;
+    __pyx_t_10.memview = __pyx_t_9.memview;
+    __PYX_INC_MEMVIEW(&__pyx_t_10, 0);
+    __pyx_t_10.shape[0] = __pyx_t_9.shape[0];
 __pyx_t_10.strides[0] = __pyx_t_9.strides[0];
     __pyx_t_10.suboffsets[0] = -1;
 
 __PYX_XDEC_MEMVIEW(&__pyx_t_9, 1);
-  {
-      int __pyx_temp_scalar = -1;
-      {
-          Py_ssize_t __pyx_temp_extent = __pyx_t_10.shape[0];
-          Py_ssize_t __pyx_temp_idx;
-          int *__pyx_temp_pointer = (int *) __pyx_t_10.data;
-          for (__pyx_temp_idx = 0; __pyx_temp_idx < __pyx_temp_extent; __pyx_temp_idx++) {
-            *((int *) __pyx_temp_pointer) = __pyx_temp_scalar;
-            __pyx_temp_pointer += 1;
-          }
-      }
+    {
+        int __pyx_temp_scalar = -1;
+        {
+            Py_ssize_t __pyx_temp_extent = __pyx_t_10.shape[0];
+            Py_ssize_t __pyx_temp_idx;
+            int *__pyx_temp_pointer = (int *) __pyx_t_10.data;
+            for (__pyx_temp_idx = 0; __pyx_temp_idx < __pyx_temp_extent; __pyx_temp_idx++) {
+              *((int *) __pyx_temp_pointer) = __pyx_temp_scalar;
+              __pyx_temp_pointer += 1;
+            }
+        }
+    }
+    __PYX_XDEC_MEMVIEW(&__pyx_t_10, 1);
+    goto __pyx_L7;
   }
-  __PYX_XDEC_MEMVIEW(&__pyx_t_10, 1);
+  /*else*/ {
 
-  /* "spatial\core\categorical.pyx":121
- *         self.valueMap = np.zeros(shape = (nCategories), dtype = np.int32)
- *         self.valueMap[:] = -1
- *         self.sortedValueMap = np.zeros(shape=(nCategories), dtype=np.int32)             # <<<<<<<<<<<<<<
- *         self.sortedValueMap[:] = -1
- *         self.outputFracArr = np.zeros(shape = (nCategories, self.yShapeOut, self.xShapeOut),
+    /* "spatial\core\categorical.pyx":127
+ *             self.valueMap[:] = -1
+ *         else:
+ *             if isinstance(categories, list):             # <<<<<<<<<<<<<<
+ *                 categories = np.asarray(categories)
+ *             else:
  */
-  __pyx_t_8 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_8)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 121; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __Pyx_GOTREF(__pyx_t_8);
-  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_8, __pyx_n_s_zeros); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 121; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_3 = PyList_Check(__pyx_v_categories); 
+    __pyx_t_1 = (__pyx_t_3 != 0);
+    if (__pyx_t_1) {
+
+      /* "spatial\core\categorical.pyx":128
+ *         else:
+ *             if isinstance(categories, list):
+ *                 categories = np.asarray(categories)             # <<<<<<<<<<<<<<
+ *             else:
+ *                 assert isinstance(categories, np.ndarray)
+ */
+      __pyx_t_5 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 128; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __Pyx_GOTREF(__pyx_t_5);
+      __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_5, __pyx_n_s_asarray); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 128; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __Pyx_GOTREF(__pyx_t_4);
+      __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
+      __pyx_t_5 = NULL;
+      if (CYTHON_COMPILING_IN_CPYTHON && unlikely(PyMethod_Check(__pyx_t_4))) {
+        __pyx_t_5 = PyMethod_GET_SELF(__pyx_t_4);
+        if (likely(__pyx_t_5)) {
+          PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_4);
+          __Pyx_INCREF(__pyx_t_5);
+          __Pyx_INCREF(function);
+          __Pyx_DECREF_SET(__pyx_t_4, function);
+        }
+      }
+      if (!__pyx_t_5) {
+        __pyx_t_8 = __Pyx_PyObject_CallOneArg(__pyx_t_4, __pyx_v_categories); if (unlikely(!__pyx_t_8)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 128; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+        __Pyx_GOTREF(__pyx_t_8);
+      } else {
+        __pyx_t_7 = PyTuple_New(1+1); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 128; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+        __Pyx_GOTREF(__pyx_t_7);
+        PyTuple_SET_ITEM(__pyx_t_7, 0, __pyx_t_5); __Pyx_GIVEREF(__pyx_t_5); __pyx_t_5 = NULL;
+        __Pyx_INCREF(__pyx_v_categories);
+        PyTuple_SET_ITEM(__pyx_t_7, 0+1, __pyx_v_categories);
+        __Pyx_GIVEREF(__pyx_v_categories);
+        __pyx_t_8 = __Pyx_PyObject_Call(__pyx_t_4, __pyx_t_7, NULL); if (unlikely(!__pyx_t_8)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 128; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+        __Pyx_GOTREF(__pyx_t_8);
+        __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
+      }
+      __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+      __Pyx_DECREF_SET(__pyx_v_categories, __pyx_t_8);
+      __pyx_t_8 = 0;
+      goto __pyx_L8;
+    }
+    /*else*/ {
+
+      /* "spatial\core\categorical.pyx":130
+ *                 categories = np.asarray(categories)
+ *             else:
+ *                 assert isinstance(categories, np.ndarray)             # <<<<<<<<<<<<<<
+ *             assert 0 <= categories.min()
+ *             assert 255 >= categories.max()
+ */
+      #ifndef CYTHON_WITHOUT_ASSERTIONS
+      if (unlikely(!Py_OptimizeFlag)) {
+        __pyx_t_8 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_8)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 130; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+        __Pyx_GOTREF(__pyx_t_8);
+        __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_8, __pyx_n_s_ndarray); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 130; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+        __Pyx_GOTREF(__pyx_t_4);
+        __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
+        __pyx_t_1 = PyObject_IsInstance(__pyx_v_categories, __pyx_t_4); if (unlikely(__pyx_t_1 == -1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 130; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+        __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+        if (unlikely(!(__pyx_t_1 != 0))) {
+          PyErr_SetNone(PyExc_AssertionError);
+          {__pyx_filename = __pyx_f[0]; __pyx_lineno = 130; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+        }
+      }
+      #endif
+    }
+    __pyx_L8:;
+
+    /* "spatial\core\categorical.pyx":131
+ *             else:
+ *                 assert isinstance(categories, np.ndarray)
+ *             assert 0 <= categories.min()             # <<<<<<<<<<<<<<
+ *             assert 255 >= categories.max()
+ *             self.valueMap = categories
+ */
+    #ifndef CYTHON_WITHOUT_ASSERTIONS
+    if (unlikely(!Py_OptimizeFlag)) {
+      __pyx_t_8 = __Pyx_PyObject_GetAttrStr(__pyx_v_categories, __pyx_n_s_min); if (unlikely(!__pyx_t_8)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 131; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __Pyx_GOTREF(__pyx_t_8);
+      __pyx_t_7 = NULL;
+      if (CYTHON_COMPILING_IN_CPYTHON && likely(PyMethod_Check(__pyx_t_8))) {
+        __pyx_t_7 = PyMethod_GET_SELF(__pyx_t_8);
+        if (likely(__pyx_t_7)) {
+          PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_8);
+          __Pyx_INCREF(__pyx_t_7);
+          __Pyx_INCREF(function);
+          __Pyx_DECREF_SET(__pyx_t_8, function);
+        }
+      }
+      if (__pyx_t_7) {
+        __pyx_t_4 = __Pyx_PyObject_CallOneArg(__pyx_t_8, __pyx_t_7); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 131; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+        __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
+      } else {
+        __pyx_t_4 = __Pyx_PyObject_CallNoArg(__pyx_t_8); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 131; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      }
+      __Pyx_GOTREF(__pyx_t_4);
+      __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
+      __pyx_t_8 = PyObject_RichCompare(__pyx_int_0, __pyx_t_4, Py_LE); __Pyx_XGOTREF(__pyx_t_8); if (unlikely(!__pyx_t_8)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 131; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+      __pyx_t_1 = __Pyx_PyObject_IsTrue(__pyx_t_8); if (unlikely(__pyx_t_1 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 131; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
+      if (unlikely(!__pyx_t_1)) {
+        PyErr_SetNone(PyExc_AssertionError);
+        {__pyx_filename = __pyx_f[0]; __pyx_lineno = 131; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      }
+    }
+    #endif
+
+    /* "spatial\core\categorical.pyx":132
+ *                 assert isinstance(categories, np.ndarray)
+ *             assert 0 <= categories.min()
+ *             assert 255 >= categories.max()             # <<<<<<<<<<<<<<
+ *             self.valueMap = categories
+ *             self.gotCategories = 1
+ */
+    #ifndef CYTHON_WITHOUT_ASSERTIONS
+    if (unlikely(!Py_OptimizeFlag)) {
+      __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_v_categories, __pyx_n_s_max); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 132; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __Pyx_GOTREF(__pyx_t_4);
+      __pyx_t_7 = NULL;
+      if (CYTHON_COMPILING_IN_CPYTHON && likely(PyMethod_Check(__pyx_t_4))) {
+        __pyx_t_7 = PyMethod_GET_SELF(__pyx_t_4);
+        if (likely(__pyx_t_7)) {
+          PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_4);
+          __Pyx_INCREF(__pyx_t_7);
+          __Pyx_INCREF(function);
+          __Pyx_DECREF_SET(__pyx_t_4, function);
+        }
+      }
+      if (__pyx_t_7) {
+        __pyx_t_8 = __Pyx_PyObject_CallOneArg(__pyx_t_4, __pyx_t_7); if (unlikely(!__pyx_t_8)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 132; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+        __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
+      } else {
+        __pyx_t_8 = __Pyx_PyObject_CallNoArg(__pyx_t_4); if (unlikely(!__pyx_t_8)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 132; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      }
+      __Pyx_GOTREF(__pyx_t_8);
+      __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+      __pyx_t_4 = PyObject_RichCompare(__pyx_int_255, __pyx_t_8, Py_GE); __Pyx_XGOTREF(__pyx_t_4); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 132; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
+      __pyx_t_1 = __Pyx_PyObject_IsTrue(__pyx_t_4); if (unlikely(__pyx_t_1 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 132; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+      if (unlikely(!__pyx_t_1)) {
+        PyErr_SetNone(PyExc_AssertionError);
+        {__pyx_filename = __pyx_f[0]; __pyx_lineno = 132; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      }
+    }
+    #endif
+
+    /* "spatial\core\categorical.pyx":133
+ *             assert 0 <= categories.min()
+ *             assert 255 >= categories.max()
+ *             self.valueMap = categories             # <<<<<<<<<<<<<<
+ *             self.gotCategories = 1
+ * 
+ */
+    __pyx_t_9 = __Pyx_PyObject_to_MemoryviewSlice_dc_int(__pyx_v_categories);
+    if (unlikely(!__pyx_t_9.memview)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 133; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __PYX_XDEC_MEMVIEW(&__pyx_v_self->valueMap, 0);
+    __pyx_v_self->valueMap = __pyx_t_9;
+    __pyx_t_9.memview = NULL;
+    __pyx_t_9.data = NULL;
+
+    /* "spatial\core\categorical.pyx":134
+ *             assert 255 >= categories.max()
+ *             self.valueMap = categories
+ *             self.gotCategories = 1             # <<<<<<<<<<<<<<
+ * 
+ *         self.sortedValueMap = np.zeros(shape=(self.nCategories), dtype=np.int32)
+ */
+    __pyx_v_self->gotCategories = 1;
+  }
+  __pyx_L7:;
+
+  /* "spatial\core\categorical.pyx":136
+ *             self.gotCategories = 1
+ * 
+ *         self.sortedValueMap = np.zeros(shape=(self.nCategories), dtype=np.int32)             # <<<<<<<<<<<<<<
+ *         self.sortedValueMap[:] = -1
+ *         self.outputFracArr = np.zeros(shape = (self.nCategories, self.yShapeOut, self.xShapeOut),
+ */
+  __pyx_t_4 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 136; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_4);
-  __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
-  __pyx_t_8 = PyDict_New(); if (unlikely(!__pyx_t_8)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 121; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_8 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_n_s_zeros); if (unlikely(!__pyx_t_8)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 136; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_8);
-  __pyx_t_6 = __Pyx_PyInt_From_unsigned_char(__pyx_v_nCategories); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 121; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __Pyx_GOTREF(__pyx_t_6);
-  if (PyDict_SetItem(__pyx_t_8, __pyx_n_s_shape, __pyx_t_6) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 121; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-  __pyx_t_6 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 121; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __Pyx_GOTREF(__pyx_t_6);
-  __pyx_t_7 = __Pyx_PyObject_GetAttrStr(__pyx_t_6, __pyx_n_s_int32); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 121; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __Pyx_GOTREF(__pyx_t_7);
-  __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-  if (PyDict_SetItem(__pyx_t_8, __pyx_n_s_dtype, __pyx_t_7) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 121; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
-  __pyx_t_7 = __Pyx_PyObject_Call(__pyx_t_4, __pyx_empty_tuple, __pyx_t_8); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 121; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __Pyx_GOTREF(__pyx_t_7);
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
-  __pyx_t_12 = __Pyx_PyObject_to_MemoryviewSlice_dc_int(__pyx_t_7);
-  if (unlikely(!__pyx_t_12.memview)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 121; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_4 = PyDict_New(); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 136; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_t_4);
+  __pyx_t_7 = __Pyx_PyInt_From_unsigned_char(__pyx_v_self->nCategories); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 136; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_t_7);
+  if (PyDict_SetItem(__pyx_t_4, __pyx_n_s_shape, __pyx_t_7) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 136; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
+  __pyx_t_7 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 136; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_t_7);
+  __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_t_7, __pyx_n_s_int32); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 136; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_t_5);
+  __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
+  if (PyDict_SetItem(__pyx_t_4, __pyx_n_s_dtype, __pyx_t_5) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 136; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
+  __pyx_t_5 = __Pyx_PyObject_Call(__pyx_t_8, __pyx_empty_tuple, __pyx_t_4); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 136; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_t_5);
+  __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
+  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+  __pyx_t_12 = __Pyx_PyObject_to_MemoryviewSlice_dc_int(__pyx_t_5);
+  if (unlikely(!__pyx_t_12.memview)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 136; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
   __PYX_XDEC_MEMVIEW(&__pyx_v_self->sortedValueMap, 0);
   __pyx_v_self->sortedValueMap = __pyx_t_12;
   __pyx_t_12.memview = NULL;
   __pyx_t_12.data = NULL;
 
-  /* "spatial\core\categorical.pyx":122
- *         self.valueMap[:] = -1
- *         self.sortedValueMap = np.zeros(shape=(nCategories), dtype=np.int32)
+  /* "spatial\core\categorical.pyx":137
+ * 
+ *         self.sortedValueMap = np.zeros(shape=(self.nCategories), dtype=np.int32)
  *         self.sortedValueMap[:] = -1             # <<<<<<<<<<<<<<
- *         self.outputFracArr = np.zeros(shape = (nCategories, self.yShapeOut, self.xShapeOut),
+ *         self.outputFracArr = np.zeros(shape = (self.nCategories, self.yShapeOut, self.xShapeOut),
  *                                       dtype = np.float32)
  */
-  if (unlikely(!__pyx_v_self->sortedValueMap.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 122; __pyx_clineno = __LINE__; goto __pyx_L1_error;}}
+  if (unlikely(!__pyx_v_self->sortedValueMap.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 137; __pyx_clineno = __LINE__; goto __pyx_L1_error;}}
   __pyx_t_12 = __pyx_v_self->sortedValueMap;
   __PYX_INC_MEMVIEW(&__pyx_t_12, 1);
   __pyx_t_11 = -1;
@@ -1941,385 +2177,464 @@ __PYX_XDEC_MEMVIEW(&__pyx_t_12, 1);
   }
   __PYX_XDEC_MEMVIEW(&__pyx_t_13, 1);
 
-  /* "spatial\core\categorical.pyx":123
- *         self.sortedValueMap = np.zeros(shape=(nCategories), dtype=np.int32)
+  /* "spatial\core\categorical.pyx":138
+ *         self.sortedValueMap = np.zeros(shape=(self.nCategories), dtype=np.int32)
  *         self.sortedValueMap[:] = -1
- *         self.outputFracArr = np.zeros(shape = (nCategories, self.yShapeOut, self.xShapeOut),             # <<<<<<<<<<<<<<
+ *         self.outputFracArr = np.zeros(shape = (self.nCategories, self.yShapeOut, self.xShapeOut),             # <<<<<<<<<<<<<<
  *                                       dtype = np.float32)
  *         if doLikeAdjacency:
  */
-  __pyx_t_7 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 123; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __Pyx_GOTREF(__pyx_t_7);
-  __pyx_t_8 = __Pyx_PyObject_GetAttrStr(__pyx_t_7, __pyx_n_s_zeros); if (unlikely(!__pyx_t_8)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 123; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __Pyx_GOTREF(__pyx_t_8);
-  __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
-  __pyx_t_7 = PyDict_New(); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 123; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __Pyx_GOTREF(__pyx_t_7);
-  __pyx_t_4 = __Pyx_PyInt_From_unsigned_char(__pyx_v_nCategories); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 123; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_5 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 138; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_t_5);
+  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_5, __pyx_n_s_zeros); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 138; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_4);
-  __pyx_t_6 = PyInt_FromSsize_t(__pyx_v_self->yShapeOut); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 123; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __Pyx_GOTREF(__pyx_t_6);
-  __pyx_t_14 = PyInt_FromSsize_t(__pyx_v_self->xShapeOut); if (unlikely(!__pyx_t_14)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 123; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
+  __pyx_t_5 = PyDict_New(); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 138; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_t_5);
+  __pyx_t_8 = __Pyx_PyInt_From_unsigned_char(__pyx_v_self->nCategories); if (unlikely(!__pyx_t_8)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 138; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_t_8);
+  __pyx_t_7 = PyInt_FromSsize_t(__pyx_v_self->yShapeOut); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 138; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_t_7);
+  __pyx_t_14 = PyInt_FromSsize_t(__pyx_v_self->xShapeOut); if (unlikely(!__pyx_t_14)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 138; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_14);
-  __pyx_t_15 = PyTuple_New(3); if (unlikely(!__pyx_t_15)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 123; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_15 = PyTuple_New(3); if (unlikely(!__pyx_t_15)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 138; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_15);
-  PyTuple_SET_ITEM(__pyx_t_15, 0, __pyx_t_4);
-  __Pyx_GIVEREF(__pyx_t_4);
-  PyTuple_SET_ITEM(__pyx_t_15, 1, __pyx_t_6);
-  __Pyx_GIVEREF(__pyx_t_6);
+  PyTuple_SET_ITEM(__pyx_t_15, 0, __pyx_t_8);
+  __Pyx_GIVEREF(__pyx_t_8);
+  PyTuple_SET_ITEM(__pyx_t_15, 1, __pyx_t_7);
+  __Pyx_GIVEREF(__pyx_t_7);
   PyTuple_SET_ITEM(__pyx_t_15, 2, __pyx_t_14);
   __Pyx_GIVEREF(__pyx_t_14);
-  __pyx_t_4 = 0;
-  __pyx_t_6 = 0;
+  __pyx_t_8 = 0;
+  __pyx_t_7 = 0;
   __pyx_t_14 = 0;
-  if (PyDict_SetItem(__pyx_t_7, __pyx_n_s_shape, __pyx_t_15) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 123; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (PyDict_SetItem(__pyx_t_5, __pyx_n_s_shape, __pyx_t_15) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 138; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_DECREF(__pyx_t_15); __pyx_t_15 = 0;
 
-  /* "spatial\core\categorical.pyx":124
+  /* "spatial\core\categorical.pyx":139
  *         self.sortedValueMap[:] = -1
- *         self.outputFracArr = np.zeros(shape = (nCategories, self.yShapeOut, self.xShapeOut),
+ *         self.outputFracArr = np.zeros(shape = (self.nCategories, self.yShapeOut, self.xShapeOut),
  *                                       dtype = np.float32)             # <<<<<<<<<<<<<<
  *         if doLikeAdjacency:
- *             self.outputLikeAdjArr = np.zeros(shape = (nCategories, self.yShapeOut, self.xShapeOut),
+ *             self.outputLikeAdjArr = np.zeros(shape = (self.nCategories, self.yShapeOut, self.xShapeOut),
  */
-  __pyx_t_15 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_15)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 124; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_15 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_15)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 139; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_15);
-  __pyx_t_14 = __Pyx_PyObject_GetAttrStr(__pyx_t_15, __pyx_n_s_float32); if (unlikely(!__pyx_t_14)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 124; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_14 = __Pyx_PyObject_GetAttrStr(__pyx_t_15, __pyx_n_s_float32); if (unlikely(!__pyx_t_14)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 139; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_14);
   __Pyx_DECREF(__pyx_t_15); __pyx_t_15 = 0;
-  if (PyDict_SetItem(__pyx_t_7, __pyx_n_s_dtype, __pyx_t_14) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 123; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (PyDict_SetItem(__pyx_t_5, __pyx_n_s_dtype, __pyx_t_14) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 138; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_DECREF(__pyx_t_14); __pyx_t_14 = 0;
 
-  /* "spatial\core\categorical.pyx":123
- *         self.sortedValueMap = np.zeros(shape=(nCategories), dtype=np.int32)
+  /* "spatial\core\categorical.pyx":138
+ *         self.sortedValueMap = np.zeros(shape=(self.nCategories), dtype=np.int32)
  *         self.sortedValueMap[:] = -1
- *         self.outputFracArr = np.zeros(shape = (nCategories, self.yShapeOut, self.xShapeOut),             # <<<<<<<<<<<<<<
+ *         self.outputFracArr = np.zeros(shape = (self.nCategories, self.yShapeOut, self.xShapeOut),             # <<<<<<<<<<<<<<
  *                                       dtype = np.float32)
  *         if doLikeAdjacency:
  */
-  __pyx_t_14 = __Pyx_PyObject_Call(__pyx_t_8, __pyx_empty_tuple, __pyx_t_7); if (unlikely(!__pyx_t_14)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 123; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_14 = __Pyx_PyObject_Call(__pyx_t_4, __pyx_empty_tuple, __pyx_t_5); if (unlikely(!__pyx_t_14)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 138; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_14);
-  __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
-  __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
+  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+  __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
   __pyx_t_16 = __Pyx_PyObject_to_MemoryviewSlice_d_d_dc_float(__pyx_t_14);
-  if (unlikely(!__pyx_t_16.memview)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 123; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (unlikely(!__pyx_t_16.memview)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 138; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_DECREF(__pyx_t_14); __pyx_t_14 = 0;
   __PYX_XDEC_MEMVIEW(&__pyx_v_self->outputFracArr, 0);
   __pyx_v_self->outputFracArr = __pyx_t_16;
   __pyx_t_16.memview = NULL;
   __pyx_t_16.data = NULL;
 
-  /* "spatial\core\categorical.pyx":125
- *         self.outputFracArr = np.zeros(shape = (nCategories, self.yShapeOut, self.xShapeOut),
+  /* "spatial\core\categorical.pyx":140
+ *         self.outputFracArr = np.zeros(shape = (self.nCategories, self.yShapeOut, self.xShapeOut),
  *                                       dtype = np.float32)
  *         if doLikeAdjacency:             # <<<<<<<<<<<<<<
- *             self.outputLikeAdjArr = np.zeros(shape = (nCategories, self.yShapeOut, self.xShapeOut),
+ *             self.outputLikeAdjArr = np.zeros(shape = (self.nCategories, self.yShapeOut, self.xShapeOut),
  *                                              dtype = np.float32)
  */
   __pyx_t_1 = (__pyx_v_doLikeAdjacency != 0);
   if (__pyx_t_1) {
 
-    /* "spatial\core\categorical.pyx":126
+    /* "spatial\core\categorical.pyx":141
  *                                       dtype = np.float32)
  *         if doLikeAdjacency:
- *             self.outputLikeAdjArr = np.zeros(shape = (nCategories, self.yShapeOut, self.xShapeOut),             # <<<<<<<<<<<<<<
+ *             self.outputLikeAdjArr = np.zeros(shape = (self.nCategories, self.yShapeOut, self.xShapeOut),             # <<<<<<<<<<<<<<
  *                                              dtype = np.float32)
  *             self._doLikeAdj = True
  */
-    __pyx_t_14 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_14)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 126; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_14 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_14)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 141; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_14);
-    __pyx_t_7 = __Pyx_PyObject_GetAttrStr(__pyx_t_14, __pyx_n_s_zeros); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 126; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-    __Pyx_GOTREF(__pyx_t_7);
+    __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_t_14, __pyx_n_s_zeros); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 141; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __Pyx_GOTREF(__pyx_t_5);
     __Pyx_DECREF(__pyx_t_14); __pyx_t_14 = 0;
-    __pyx_t_14 = PyDict_New(); if (unlikely(!__pyx_t_14)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 126; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_14 = PyDict_New(); if (unlikely(!__pyx_t_14)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 141; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_14);
-    __pyx_t_8 = __Pyx_PyInt_From_unsigned_char(__pyx_v_nCategories); if (unlikely(!__pyx_t_8)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 126; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-    __Pyx_GOTREF(__pyx_t_8);
-    __pyx_t_15 = PyInt_FromSsize_t(__pyx_v_self->yShapeOut); if (unlikely(!__pyx_t_15)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 126; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-    __Pyx_GOTREF(__pyx_t_15);
-    __pyx_t_6 = PyInt_FromSsize_t(__pyx_v_self->xShapeOut); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 126; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-    __Pyx_GOTREF(__pyx_t_6);
-    __pyx_t_4 = PyTuple_New(3); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 126; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_4 = __Pyx_PyInt_From_unsigned_char(__pyx_v_self->nCategories); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 141; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_4);
-    PyTuple_SET_ITEM(__pyx_t_4, 0, __pyx_t_8);
-    __Pyx_GIVEREF(__pyx_t_8);
-    PyTuple_SET_ITEM(__pyx_t_4, 1, __pyx_t_15);
+    __pyx_t_15 = PyInt_FromSsize_t(__pyx_v_self->yShapeOut); if (unlikely(!__pyx_t_15)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 141; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __Pyx_GOTREF(__pyx_t_15);
+    __pyx_t_7 = PyInt_FromSsize_t(__pyx_v_self->xShapeOut); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 141; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __Pyx_GOTREF(__pyx_t_7);
+    __pyx_t_8 = PyTuple_New(3); if (unlikely(!__pyx_t_8)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 141; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __Pyx_GOTREF(__pyx_t_8);
+    PyTuple_SET_ITEM(__pyx_t_8, 0, __pyx_t_4);
+    __Pyx_GIVEREF(__pyx_t_4);
+    PyTuple_SET_ITEM(__pyx_t_8, 1, __pyx_t_15);
     __Pyx_GIVEREF(__pyx_t_15);
-    PyTuple_SET_ITEM(__pyx_t_4, 2, __pyx_t_6);
-    __Pyx_GIVEREF(__pyx_t_6);
-    __pyx_t_8 = 0;
+    PyTuple_SET_ITEM(__pyx_t_8, 2, __pyx_t_7);
+    __Pyx_GIVEREF(__pyx_t_7);
+    __pyx_t_4 = 0;
     __pyx_t_15 = 0;
-    __pyx_t_6 = 0;
-    if (PyDict_SetItem(__pyx_t_14, __pyx_n_s_shape, __pyx_t_4) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 126; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-    __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+    __pyx_t_7 = 0;
+    if (PyDict_SetItem(__pyx_t_14, __pyx_n_s_shape, __pyx_t_8) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 141; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
 
-    /* "spatial\core\categorical.pyx":127
+    /* "spatial\core\categorical.pyx":142
  *         if doLikeAdjacency:
- *             self.outputLikeAdjArr = np.zeros(shape = (nCategories, self.yShapeOut, self.xShapeOut),
+ *             self.outputLikeAdjArr = np.zeros(shape = (self.nCategories, self.yShapeOut, self.xShapeOut),
  *                                              dtype = np.float32)             # <<<<<<<<<<<<<<
  *             self._doLikeAdj = True
  *         self.outputMajorityArr = np.zeros(shape = (self.yShapeOut, self.xShapeOut),
  */
-    __pyx_t_4 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 127; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-    __Pyx_GOTREF(__pyx_t_4);
-    __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_n_s_float32); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 127; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-    __Pyx_GOTREF(__pyx_t_6);
-    __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-    if (PyDict_SetItem(__pyx_t_14, __pyx_n_s_dtype, __pyx_t_6) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 126; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-    __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
+    __pyx_t_8 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_8)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 142; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __Pyx_GOTREF(__pyx_t_8);
+    __pyx_t_7 = __Pyx_PyObject_GetAttrStr(__pyx_t_8, __pyx_n_s_float32); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 142; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __Pyx_GOTREF(__pyx_t_7);
+    __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
+    if (PyDict_SetItem(__pyx_t_14, __pyx_n_s_dtype, __pyx_t_7) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 141; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
 
-    /* "spatial\core\categorical.pyx":126
+    /* "spatial\core\categorical.pyx":141
  *                                       dtype = np.float32)
  *         if doLikeAdjacency:
- *             self.outputLikeAdjArr = np.zeros(shape = (nCategories, self.yShapeOut, self.xShapeOut),             # <<<<<<<<<<<<<<
+ *             self.outputLikeAdjArr = np.zeros(shape = (self.nCategories, self.yShapeOut, self.xShapeOut),             # <<<<<<<<<<<<<<
  *                                              dtype = np.float32)
  *             self._doLikeAdj = True
  */
-    __pyx_t_6 = __Pyx_PyObject_Call(__pyx_t_7, __pyx_empty_tuple, __pyx_t_14); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 126; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-    __Pyx_GOTREF(__pyx_t_6);
-    __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
+    __pyx_t_7 = __Pyx_PyObject_Call(__pyx_t_5, __pyx_empty_tuple, __pyx_t_14); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 141; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __Pyx_GOTREF(__pyx_t_7);
+    __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
     __Pyx_DECREF(__pyx_t_14); __pyx_t_14 = 0;
-    __pyx_t_17 = __Pyx_PyObject_to_MemoryviewSlice_d_d_dc_float(__pyx_t_6);
-    if (unlikely(!__pyx_t_17.memview)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 126; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-    __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
+    __pyx_t_17 = __Pyx_PyObject_to_MemoryviewSlice_d_d_dc_float(__pyx_t_7);
+    if (unlikely(!__pyx_t_17.memview)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 141; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
     __PYX_XDEC_MEMVIEW(&__pyx_v_self->outputLikeAdjArr, 0);
     __pyx_v_self->outputLikeAdjArr = __pyx_t_17;
     __pyx_t_17.memview = NULL;
     __pyx_t_17.data = NULL;
 
-    /* "spatial\core\categorical.pyx":128
- *             self.outputLikeAdjArr = np.zeros(shape = (nCategories, self.yShapeOut, self.xShapeOut),
+    /* "spatial\core\categorical.pyx":143
+ *             self.outputLikeAdjArr = np.zeros(shape = (self.nCategories, self.yShapeOut, self.xShapeOut),
  *                                              dtype = np.float32)
  *             self._doLikeAdj = True             # <<<<<<<<<<<<<<
  *         self.outputMajorityArr = np.zeros(shape = (self.yShapeOut, self.xShapeOut),
  *                                           dtype = np.uint8)
  */
     __pyx_v_self->_doLikeAdj = 1;
-    goto __pyx_L7;
+    goto __pyx_L9;
   }
-  __pyx_L7:;
+  __pyx_L9:;
 
-  /* "spatial\core\categorical.pyx":129
+  /* "spatial\core\categorical.pyx":144
  *                                              dtype = np.float32)
  *             self._doLikeAdj = True
  *         self.outputMajorityArr = np.zeros(shape = (self.yShapeOut, self.xShapeOut),             # <<<<<<<<<<<<<<
  *                                           dtype = np.uint8)
  *         self.tmpMajorityPropArr = np.zeros(shape = (self.yShapeOut, self.xShapeOut),
  */
-  __pyx_t_6 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 129; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __Pyx_GOTREF(__pyx_t_6);
-  __pyx_t_14 = __Pyx_PyObject_GetAttrStr(__pyx_t_6, __pyx_n_s_zeros); if (unlikely(!__pyx_t_14)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 129; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __Pyx_GOTREF(__pyx_t_14);
-  __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-  __pyx_t_6 = PyDict_New(); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 129; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __Pyx_GOTREF(__pyx_t_6);
-  __pyx_t_7 = PyInt_FromSsize_t(__pyx_v_self->yShapeOut); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 129; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_7 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 144; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_7);
-  __pyx_t_4 = PyInt_FromSsize_t(__pyx_v_self->xShapeOut); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 129; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __Pyx_GOTREF(__pyx_t_4);
-  __pyx_t_15 = PyTuple_New(2); if (unlikely(!__pyx_t_15)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 129; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_14 = __Pyx_PyObject_GetAttrStr(__pyx_t_7, __pyx_n_s_zeros); if (unlikely(!__pyx_t_14)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 144; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_t_14);
+  __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
+  __pyx_t_7 = PyDict_New(); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 144; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_t_7);
+  __pyx_t_5 = PyInt_FromSsize_t(__pyx_v_self->yShapeOut); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 144; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_t_5);
+  __pyx_t_8 = PyInt_FromSsize_t(__pyx_v_self->xShapeOut); if (unlikely(!__pyx_t_8)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 144; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_t_8);
+  __pyx_t_15 = PyTuple_New(2); if (unlikely(!__pyx_t_15)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 144; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_15);
-  PyTuple_SET_ITEM(__pyx_t_15, 0, __pyx_t_7);
-  __Pyx_GIVEREF(__pyx_t_7);
-  PyTuple_SET_ITEM(__pyx_t_15, 1, __pyx_t_4);
-  __Pyx_GIVEREF(__pyx_t_4);
-  __pyx_t_7 = 0;
-  __pyx_t_4 = 0;
-  if (PyDict_SetItem(__pyx_t_6, __pyx_n_s_shape, __pyx_t_15) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 129; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  PyTuple_SET_ITEM(__pyx_t_15, 0, __pyx_t_5);
+  __Pyx_GIVEREF(__pyx_t_5);
+  PyTuple_SET_ITEM(__pyx_t_15, 1, __pyx_t_8);
+  __Pyx_GIVEREF(__pyx_t_8);
+  __pyx_t_5 = 0;
+  __pyx_t_8 = 0;
+  if (PyDict_SetItem(__pyx_t_7, __pyx_n_s_shape, __pyx_t_15) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 144; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_DECREF(__pyx_t_15); __pyx_t_15 = 0;
 
-  /* "spatial\core\categorical.pyx":130
+  /* "spatial\core\categorical.pyx":145
  *             self._doLikeAdj = True
  *         self.outputMajorityArr = np.zeros(shape = (self.yShapeOut, self.xShapeOut),
  *                                           dtype = np.uint8)             # <<<<<<<<<<<<<<
  *         self.tmpMajorityPropArr = np.zeros(shape = (self.yShapeOut, self.xShapeOut),
  *                                            dtype = np.float32)
  */
-  __pyx_t_15 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_15)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 130; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_15 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_15)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 145; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_15);
-  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_15, __pyx_n_s_uint8); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 130; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __Pyx_GOTREF(__pyx_t_4);
+  __pyx_t_8 = __Pyx_PyObject_GetAttrStr(__pyx_t_15, __pyx_n_s_uint8); if (unlikely(!__pyx_t_8)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 145; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_t_8);
   __Pyx_DECREF(__pyx_t_15); __pyx_t_15 = 0;
-  if (PyDict_SetItem(__pyx_t_6, __pyx_n_s_dtype, __pyx_t_4) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 129; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+  if (PyDict_SetItem(__pyx_t_7, __pyx_n_s_dtype, __pyx_t_8) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 144; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
 
-  /* "spatial\core\categorical.pyx":129
+  /* "spatial\core\categorical.pyx":144
  *                                              dtype = np.float32)
  *             self._doLikeAdj = True
  *         self.outputMajorityArr = np.zeros(shape = (self.yShapeOut, self.xShapeOut),             # <<<<<<<<<<<<<<
  *                                           dtype = np.uint8)
  *         self.tmpMajorityPropArr = np.zeros(shape = (self.yShapeOut, self.xShapeOut),
  */
-  __pyx_t_4 = __Pyx_PyObject_Call(__pyx_t_14, __pyx_empty_tuple, __pyx_t_6); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 129; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __Pyx_GOTREF(__pyx_t_4);
+  __pyx_t_8 = __Pyx_PyObject_Call(__pyx_t_14, __pyx_empty_tuple, __pyx_t_7); if (unlikely(!__pyx_t_8)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 144; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_t_8);
   __Pyx_DECREF(__pyx_t_14); __pyx_t_14 = 0;
-  __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-  __pyx_t_18 = __Pyx_PyObject_to_MemoryviewSlice_d_dc_unsigned_char(__pyx_t_4);
-  if (unlikely(!__pyx_t_18.memview)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 129; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+  __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
+  __pyx_t_18 = __Pyx_PyObject_to_MemoryviewSlice_d_dc_unsigned_char(__pyx_t_8);
+  if (unlikely(!__pyx_t_18.memview)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 144; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
   __PYX_XDEC_MEMVIEW(&__pyx_v_self->outputMajorityArr, 0);
   __pyx_v_self->outputMajorityArr = __pyx_t_18;
   __pyx_t_18.memview = NULL;
   __pyx_t_18.data = NULL;
 
-  /* "spatial\core\categorical.pyx":131
+  /* "spatial\core\categorical.pyx":146
  *         self.outputMajorityArr = np.zeros(shape = (self.yShapeOut, self.xShapeOut),
  *                                           dtype = np.uint8)
  *         self.tmpMajorityPropArr = np.zeros(shape = (self.yShapeOut, self.xShapeOut),             # <<<<<<<<<<<<<<
  *                                            dtype = np.float32)
  *         self._coverageArr = np.zeros(shape = (self.yShapeOut, self.xShapeOut), dtype = np.byte)
  */
-  __pyx_t_4 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 131; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __Pyx_GOTREF(__pyx_t_4);
-  __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_n_s_zeros); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 131; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __Pyx_GOTREF(__pyx_t_6);
-  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  __pyx_t_4 = PyDict_New(); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 131; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __Pyx_GOTREF(__pyx_t_4);
-  __pyx_t_14 = PyInt_FromSsize_t(__pyx_v_self->yShapeOut); if (unlikely(!__pyx_t_14)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 131; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __Pyx_GOTREF(__pyx_t_14);
-  __pyx_t_15 = PyInt_FromSsize_t(__pyx_v_self->xShapeOut); if (unlikely(!__pyx_t_15)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 131; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __Pyx_GOTREF(__pyx_t_15);
-  __pyx_t_7 = PyTuple_New(2); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 131; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_8 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_8)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 146; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_t_8);
+  __pyx_t_7 = __Pyx_PyObject_GetAttrStr(__pyx_t_8, __pyx_n_s_zeros); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 146; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_7);
-  PyTuple_SET_ITEM(__pyx_t_7, 0, __pyx_t_14);
+  __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
+  __pyx_t_8 = PyDict_New(); if (unlikely(!__pyx_t_8)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 146; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_t_8);
+  __pyx_t_14 = PyInt_FromSsize_t(__pyx_v_self->yShapeOut); if (unlikely(!__pyx_t_14)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 146; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_t_14);
+  __pyx_t_15 = PyInt_FromSsize_t(__pyx_v_self->xShapeOut); if (unlikely(!__pyx_t_15)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 146; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_t_15);
+  __pyx_t_5 = PyTuple_New(2); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 146; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_t_5);
+  PyTuple_SET_ITEM(__pyx_t_5, 0, __pyx_t_14);
   __Pyx_GIVEREF(__pyx_t_14);
-  PyTuple_SET_ITEM(__pyx_t_7, 1, __pyx_t_15);
+  PyTuple_SET_ITEM(__pyx_t_5, 1, __pyx_t_15);
   __Pyx_GIVEREF(__pyx_t_15);
   __pyx_t_14 = 0;
   __pyx_t_15 = 0;
-  if (PyDict_SetItem(__pyx_t_4, __pyx_n_s_shape, __pyx_t_7) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 131; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
+  if (PyDict_SetItem(__pyx_t_8, __pyx_n_s_shape, __pyx_t_5) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 146; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
 
-  /* "spatial\core\categorical.pyx":132
+  /* "spatial\core\categorical.pyx":147
  *                                           dtype = np.uint8)
  *         self.tmpMajorityPropArr = np.zeros(shape = (self.yShapeOut, self.xShapeOut),
  *                                            dtype = np.float32)             # <<<<<<<<<<<<<<
  *         self._coverageArr = np.zeros(shape = (self.yShapeOut, self.xShapeOut), dtype = np.byte)
  *         self._countArr = np.zeros(shape = (self.yShapeOut, self.xShapeOut), dtype = np.int16)
  */
-  __pyx_t_7 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 132; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __Pyx_GOTREF(__pyx_t_7);
-  __pyx_t_15 = __Pyx_PyObject_GetAttrStr(__pyx_t_7, __pyx_n_s_float32); if (unlikely(!__pyx_t_15)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 132; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_5 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 147; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_t_5);
+  __pyx_t_15 = __Pyx_PyObject_GetAttrStr(__pyx_t_5, __pyx_n_s_float32); if (unlikely(!__pyx_t_15)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 147; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_15);
-  __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
-  if (PyDict_SetItem(__pyx_t_4, __pyx_n_s_dtype, __pyx_t_15) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 131; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
+  if (PyDict_SetItem(__pyx_t_8, __pyx_n_s_dtype, __pyx_t_15) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 146; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_DECREF(__pyx_t_15); __pyx_t_15 = 0;
 
-  /* "spatial\core\categorical.pyx":131
+  /* "spatial\core\categorical.pyx":146
  *         self.outputMajorityArr = np.zeros(shape = (self.yShapeOut, self.xShapeOut),
  *                                           dtype = np.uint8)
  *         self.tmpMajorityPropArr = np.zeros(shape = (self.yShapeOut, self.xShapeOut),             # <<<<<<<<<<<<<<
  *                                            dtype = np.float32)
  *         self._coverageArr = np.zeros(shape = (self.yShapeOut, self.xShapeOut), dtype = np.byte)
  */
-  __pyx_t_15 = __Pyx_PyObject_Call(__pyx_t_6, __pyx_empty_tuple, __pyx_t_4); if (unlikely(!__pyx_t_15)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 131; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_15 = __Pyx_PyObject_Call(__pyx_t_7, __pyx_empty_tuple, __pyx_t_8); if (unlikely(!__pyx_t_15)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 146; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_15);
-  __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+  __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
+  __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
   __pyx_t_19 = __Pyx_PyObject_to_MemoryviewSlice_d_dc_float(__pyx_t_15);
-  if (unlikely(!__pyx_t_19.memview)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 131; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (unlikely(!__pyx_t_19.memview)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 146; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_DECREF(__pyx_t_15); __pyx_t_15 = 0;
   __PYX_XDEC_MEMVIEW(&__pyx_v_self->tmpMajorityPropArr, 0);
   __pyx_v_self->tmpMajorityPropArr = __pyx_t_19;
   __pyx_t_19.memview = NULL;
   __pyx_t_19.data = NULL;
 
-  /* "spatial\core\categorical.pyx":133
+  /* "spatial\core\categorical.pyx":148
  *         self.tmpMajorityPropArr = np.zeros(shape = (self.yShapeOut, self.xShapeOut),
  *                                            dtype = np.float32)
  *         self._coverageArr = np.zeros(shape = (self.yShapeOut, self.xShapeOut), dtype = np.byte)             # <<<<<<<<<<<<<<
  *         self._countArr = np.zeros(shape = (self.yShapeOut, self.xShapeOut), dtype = np.int16)
  * 
  */
-  __pyx_t_15 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_15)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 133; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_15 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_15)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 148; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_15);
-  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_15, __pyx_n_s_zeros); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 133; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __Pyx_GOTREF(__pyx_t_4);
+  __pyx_t_8 = __Pyx_PyObject_GetAttrStr(__pyx_t_15, __pyx_n_s_zeros); if (unlikely(!__pyx_t_8)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 148; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_t_8);
   __Pyx_DECREF(__pyx_t_15); __pyx_t_15 = 0;
-  __pyx_t_15 = PyDict_New(); if (unlikely(!__pyx_t_15)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 133; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_15 = PyDict_New(); if (unlikely(!__pyx_t_15)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 148; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_15);
-  __pyx_t_6 = PyInt_FromSsize_t(__pyx_v_self->yShapeOut); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 133; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __Pyx_GOTREF(__pyx_t_6);
-  __pyx_t_7 = PyInt_FromSsize_t(__pyx_v_self->xShapeOut); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 133; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_7 = PyInt_FromSsize_t(__pyx_v_self->yShapeOut); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 148; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_7);
-  __pyx_t_14 = PyTuple_New(2); if (unlikely(!__pyx_t_14)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 133; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_5 = PyInt_FromSsize_t(__pyx_v_self->xShapeOut); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 148; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_t_5);
+  __pyx_t_14 = PyTuple_New(2); if (unlikely(!__pyx_t_14)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 148; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_14);
-  PyTuple_SET_ITEM(__pyx_t_14, 0, __pyx_t_6);
-  __Pyx_GIVEREF(__pyx_t_6);
-  PyTuple_SET_ITEM(__pyx_t_14, 1, __pyx_t_7);
+  PyTuple_SET_ITEM(__pyx_t_14, 0, __pyx_t_7);
   __Pyx_GIVEREF(__pyx_t_7);
-  __pyx_t_6 = 0;
+  PyTuple_SET_ITEM(__pyx_t_14, 1, __pyx_t_5);
+  __Pyx_GIVEREF(__pyx_t_5);
   __pyx_t_7 = 0;
-  if (PyDict_SetItem(__pyx_t_15, __pyx_n_s_shape, __pyx_t_14) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 133; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_5 = 0;
+  if (PyDict_SetItem(__pyx_t_15, __pyx_n_s_shape, __pyx_t_14) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 148; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_DECREF(__pyx_t_14); __pyx_t_14 = 0;
-  __pyx_t_14 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_14)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 133; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_14 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_14)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 148; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_14);
-  __pyx_t_7 = __Pyx_PyObject_GetAttrStr(__pyx_t_14, __pyx_n_s_byte); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 133; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __Pyx_GOTREF(__pyx_t_7);
+  __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_t_14, __pyx_n_s_byte); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 148; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_t_5);
   __Pyx_DECREF(__pyx_t_14); __pyx_t_14 = 0;
-  if (PyDict_SetItem(__pyx_t_15, __pyx_n_s_dtype, __pyx_t_7) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 133; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
-  __pyx_t_7 = __Pyx_PyObject_Call(__pyx_t_4, __pyx_empty_tuple, __pyx_t_15); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 133; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __Pyx_GOTREF(__pyx_t_7);
-  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+  if (PyDict_SetItem(__pyx_t_15, __pyx_n_s_dtype, __pyx_t_5) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 148; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
+  __pyx_t_5 = __Pyx_PyObject_Call(__pyx_t_8, __pyx_empty_tuple, __pyx_t_15); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 148; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_t_5);
+  __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
   __Pyx_DECREF(__pyx_t_15); __pyx_t_15 = 0;
-  __pyx_t_20 = __Pyx_PyObject_to_MemoryviewSlice_d_dc_char(__pyx_t_7);
-  if (unlikely(!__pyx_t_20.memview)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 133; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
+  __pyx_t_20 = __Pyx_PyObject_to_MemoryviewSlice_d_dc_char(__pyx_t_5);
+  if (unlikely(!__pyx_t_20.memview)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 148; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
   __PYX_XDEC_MEMVIEW(&__pyx_v_self->_coverageArr, 0);
   __pyx_v_self->_coverageArr = __pyx_t_20;
   __pyx_t_20.memview = NULL;
   __pyx_t_20.data = NULL;
 
-  /* "spatial\core\categorical.pyx":134
+  /* "spatial\core\categorical.pyx":149
  *                                            dtype = np.float32)
  *         self._coverageArr = np.zeros(shape = (self.yShapeOut, self.xShapeOut), dtype = np.byte)
  *         self._countArr = np.zeros(shape = (self.yShapeOut, self.xShapeOut), dtype = np.int16)             # <<<<<<<<<<<<<<
  * 
- *     @cython.boundscheck(False)
+ *         if self._hasNDV:
  */
-  __pyx_t_7 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 134; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __Pyx_GOTREF(__pyx_t_7);
-  __pyx_t_15 = __Pyx_PyObject_GetAttrStr(__pyx_t_7, __pyx_n_s_zeros); if (unlikely(!__pyx_t_15)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 134; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_5 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 149; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_t_5);
+  __pyx_t_15 = __Pyx_PyObject_GetAttrStr(__pyx_t_5, __pyx_n_s_zeros); if (unlikely(!__pyx_t_15)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 149; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_15);
-  __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
-  __pyx_t_7 = PyDict_New(); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 134; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
+  __pyx_t_5 = PyDict_New(); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 149; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_t_5);
+  __pyx_t_8 = PyInt_FromSsize_t(__pyx_v_self->yShapeOut); if (unlikely(!__pyx_t_8)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 149; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_t_8);
+  __pyx_t_14 = PyInt_FromSsize_t(__pyx_v_self->xShapeOut); if (unlikely(!__pyx_t_14)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 149; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_t_14);
+  __pyx_t_7 = PyTuple_New(2); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 149; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_7);
-  __pyx_t_4 = PyInt_FromSsize_t(__pyx_v_self->yShapeOut); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 134; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __Pyx_GOTREF(__pyx_t_4);
-  __pyx_t_14 = PyInt_FromSsize_t(__pyx_v_self->xShapeOut); if (unlikely(!__pyx_t_14)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 134; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __Pyx_GOTREF(__pyx_t_14);
-  __pyx_t_6 = PyTuple_New(2); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 134; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __Pyx_GOTREF(__pyx_t_6);
-  PyTuple_SET_ITEM(__pyx_t_6, 0, __pyx_t_4);
-  __Pyx_GIVEREF(__pyx_t_4);
-  PyTuple_SET_ITEM(__pyx_t_6, 1, __pyx_t_14);
+  PyTuple_SET_ITEM(__pyx_t_7, 0, __pyx_t_8);
+  __Pyx_GIVEREF(__pyx_t_8);
+  PyTuple_SET_ITEM(__pyx_t_7, 1, __pyx_t_14);
   __Pyx_GIVEREF(__pyx_t_14);
-  __pyx_t_4 = 0;
+  __pyx_t_8 = 0;
   __pyx_t_14 = 0;
-  if (PyDict_SetItem(__pyx_t_7, __pyx_n_s_shape, __pyx_t_6) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 134; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-  __pyx_t_6 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 134; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __Pyx_GOTREF(__pyx_t_6);
-  __pyx_t_14 = __Pyx_PyObject_GetAttrStr(__pyx_t_6, __pyx_n_s_int16); if (unlikely(!__pyx_t_14)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 134; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (PyDict_SetItem(__pyx_t_5, __pyx_n_s_shape, __pyx_t_7) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 149; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
+  __pyx_t_7 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 149; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_t_7);
+  __pyx_t_14 = __Pyx_PyObject_GetAttrStr(__pyx_t_7, __pyx_n_s_int16); if (unlikely(!__pyx_t_14)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 149; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_14);
-  __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-  if (PyDict_SetItem(__pyx_t_7, __pyx_n_s_dtype, __pyx_t_14) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 134; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
+  if (PyDict_SetItem(__pyx_t_5, __pyx_n_s_dtype, __pyx_t_14) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 149; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_DECREF(__pyx_t_14); __pyx_t_14 = 0;
-  __pyx_t_14 = __Pyx_PyObject_Call(__pyx_t_15, __pyx_empty_tuple, __pyx_t_7); if (unlikely(!__pyx_t_14)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 134; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_14 = __Pyx_PyObject_Call(__pyx_t_15, __pyx_empty_tuple, __pyx_t_5); if (unlikely(!__pyx_t_14)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 149; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_14);
   __Pyx_DECREF(__pyx_t_15); __pyx_t_15 = 0;
-  __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
+  __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
   __pyx_t_21 = __Pyx_PyObject_to_MemoryviewSlice_d_dc_short(__pyx_t_14);
-  if (unlikely(!__pyx_t_21.memview)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 134; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (unlikely(!__pyx_t_21.memview)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 149; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_DECREF(__pyx_t_14); __pyx_t_14 = 0;
   __PYX_XDEC_MEMVIEW(&__pyx_v_self->_countArr, 0);
   __pyx_v_self->_countArr = __pyx_t_21;
   __pyx_t_21.memview = NULL;
   __pyx_t_21.data = NULL;
 
-  /* "spatial\core\categorical.pyx":93
+  /* "spatial\core\categorical.pyx":151
+ *         self._countArr = np.zeros(shape = (self.yShapeOut, self.xShapeOut), dtype = np.int16)
+ * 
+ *         if self._hasNDV:             # <<<<<<<<<<<<<<
+ *             logMessage("Input nodata value is "+str(self._byteNDV))
+ *         else:
+ */
+  __pyx_t_1 = (__pyx_v_self->_hasNDV != 0);
+  if (__pyx_t_1) {
+
+    /* "spatial\core\categorical.pyx":152
+ * 
+ *         if self._hasNDV:
+ *             logMessage("Input nodata value is "+str(self._byteNDV))             # <<<<<<<<<<<<<<
+ *         else:
+ *             logMessage("Nodata not defined")
+ */
+    __pyx_t_5 = __Pyx_GetModuleGlobalName(__pyx_n_s_logMessage); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 152; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __Pyx_GOTREF(__pyx_t_5);
+    __pyx_t_15 = __Pyx_PyInt_From_unsigned_char(__pyx_v_self->_byteNDV); if (unlikely(!__pyx_t_15)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 152; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __Pyx_GOTREF(__pyx_t_15);
+    __pyx_t_7 = PyTuple_New(1); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 152; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __Pyx_GOTREF(__pyx_t_7);
+    PyTuple_SET_ITEM(__pyx_t_7, 0, __pyx_t_15);
+    __Pyx_GIVEREF(__pyx_t_15);
+    __pyx_t_15 = 0;
+    __pyx_t_15 = __Pyx_PyObject_Call(((PyObject *)((PyObject*)(&PyString_Type))), __pyx_t_7, NULL); if (unlikely(!__pyx_t_15)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 152; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __Pyx_GOTREF(__pyx_t_15);
+    __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
+    __pyx_t_7 = PyNumber_Add(__pyx_kp_s_Input_nodata_value_is, __pyx_t_15); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 152; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __Pyx_GOTREF(__pyx_t_7);
+    __Pyx_DECREF(__pyx_t_15); __pyx_t_15 = 0;
+    __pyx_t_15 = NULL;
+    if (CYTHON_COMPILING_IN_CPYTHON && unlikely(PyMethod_Check(__pyx_t_5))) {
+      __pyx_t_15 = PyMethod_GET_SELF(__pyx_t_5);
+      if (likely(__pyx_t_15)) {
+        PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_5);
+        __Pyx_INCREF(__pyx_t_15);
+        __Pyx_INCREF(function);
+        __Pyx_DECREF_SET(__pyx_t_5, function);
+      }
+    }
+    if (!__pyx_t_15) {
+      __pyx_t_14 = __Pyx_PyObject_CallOneArg(__pyx_t_5, __pyx_t_7); if (unlikely(!__pyx_t_14)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 152; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
+      __Pyx_GOTREF(__pyx_t_14);
+    } else {
+      __pyx_t_8 = PyTuple_New(1+1); if (unlikely(!__pyx_t_8)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 152; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __Pyx_GOTREF(__pyx_t_8);
+      PyTuple_SET_ITEM(__pyx_t_8, 0, __pyx_t_15); __Pyx_GIVEREF(__pyx_t_15); __pyx_t_15 = NULL;
+      PyTuple_SET_ITEM(__pyx_t_8, 0+1, __pyx_t_7);
+      __Pyx_GIVEREF(__pyx_t_7);
+      __pyx_t_7 = 0;
+      __pyx_t_14 = __Pyx_PyObject_Call(__pyx_t_5, __pyx_t_8, NULL); if (unlikely(!__pyx_t_14)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 152; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __Pyx_GOTREF(__pyx_t_14);
+      __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
+    }
+    __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
+    __Pyx_DECREF(__pyx_t_14); __pyx_t_14 = 0;
+    goto __pyx_L10;
+  }
+  /*else*/ {
+
+    /* "spatial\core\categorical.pyx":154
+ *             logMessage("Input nodata value is "+str(self._byteNDV))
+ *         else:
+ *             logMessage("Nodata not defined")             # <<<<<<<<<<<<<<
+ * 
+ *     @cython.boundscheck(False)
+ */
+    __pyx_t_14 = __Pyx_GetModuleGlobalName(__pyx_n_s_logMessage); if (unlikely(!__pyx_t_14)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 154; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __Pyx_GOTREF(__pyx_t_14);
+    __pyx_t_5 = __Pyx_PyObject_Call(__pyx_t_14, __pyx_tuple_, NULL); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 154; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __Pyx_GOTREF(__pyx_t_5);
+    __Pyx_DECREF(__pyx_t_14); __pyx_t_14 = 0;
+    __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
+  }
+  __pyx_L10:;
+
+  /* "spatial\core\categorical.pyx":94
  *         unsigned char _doFractions, _doLikeAdj
  * 
  *     def __cinit__(self,             # <<<<<<<<<<<<<<
@@ -2332,7 +2647,7 @@ __PYX_XDEC_MEMVIEW(&__pyx_t_12, 1);
   goto __pyx_L0;
   __pyx_L1_error:;
   __Pyx_XDECREF(__pyx_t_4);
-  __Pyx_XDECREF(__pyx_t_6);
+  __Pyx_XDECREF(__pyx_t_5);
   __Pyx_XDECREF(__pyx_t_7);
   __Pyx_XDECREF(__pyx_t_8);
   __PYX_XDEC_MEMVIEW(&__pyx_t_9, 1);
@@ -2350,11 +2665,12 @@ __PYX_XDEC_MEMVIEW(&__pyx_t_12, 1);
   __Pyx_AddTraceback("spatial.core.categorical.Categorical_Aggregator.__cinit__", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = -1;
   __pyx_L0:;
+  __Pyx_XDECREF(__pyx_v_categories);
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-/* "spatial\core\categorical.pyx":139
+/* "spatial\core\categorical.pyx":159
  *     @cython.cdivision(True)
  *     @cython.wraparound(False)
  *     cpdef addTile(self, unsigned char[:,::1] data, Py_ssize_t xOffset, Py_ssize_t yOffset):             # <<<<<<<<<<<<<<
@@ -2441,16 +2757,16 @@ static PyObject *__pyx_f_7spatial_4core_11categorical_22Categorical_Aggregator_a
   if (unlikely(__pyx_skip_dispatch)) ;
   /* Check if overridden in Python */
   else if (unlikely(Py_TYPE(((PyObject *)__pyx_v_self))->tp_dictoffset != 0)) {
-    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_addTile); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 139; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_addTile); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 159; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_1);
     if (!PyCFunction_Check(__pyx_t_1) || (PyCFunction_GET_FUNCTION(__pyx_t_1) != (PyCFunction)__pyx_pw_7spatial_4core_11categorical_22Categorical_Aggregator_3addTile)) {
       __Pyx_XDECREF(__pyx_r);
-      if (unlikely(!__pyx_v_data.memview)) { __Pyx_RaiseUnboundLocalError("data"); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 139; __pyx_clineno = __LINE__; goto __pyx_L1_error;} }
-      __pyx_t_3 = __pyx_memoryview_fromslice(__pyx_v_data, 2, (PyObject *(*)(char *)) __pyx_memview_get_unsigned_char, (int (*)(char *, PyObject *)) __pyx_memview_set_unsigned_char, 0);; if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 139; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      if (unlikely(!__pyx_v_data.memview)) { __Pyx_RaiseUnboundLocalError("data"); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 159; __pyx_clineno = __LINE__; goto __pyx_L1_error;} }
+      __pyx_t_3 = __pyx_memoryview_fromslice(__pyx_v_data, 2, (PyObject *(*)(char *)) __pyx_memview_get_unsigned_char, (int (*)(char *, PyObject *)) __pyx_memview_set_unsigned_char, 0);; if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 159; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_3);
-      __pyx_t_4 = PyInt_FromSsize_t(__pyx_v_xOffset); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 139; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_4 = PyInt_FromSsize_t(__pyx_v_xOffset); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 159; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_4);
-      __pyx_t_5 = PyInt_FromSsize_t(__pyx_v_yOffset); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 139; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_5 = PyInt_FromSsize_t(__pyx_v_yOffset); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 159; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_5);
       __Pyx_INCREF(__pyx_t_1);
       __pyx_t_6 = __pyx_t_1; __pyx_t_7 = NULL;
@@ -2465,7 +2781,7 @@ static PyObject *__pyx_f_7spatial_4core_11categorical_22Categorical_Aggregator_a
           __pyx_t_8 = 1;
         }
       }
-      __pyx_t_9 = PyTuple_New(3+__pyx_t_8); if (unlikely(!__pyx_t_9)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 139; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_9 = PyTuple_New(3+__pyx_t_8); if (unlikely(!__pyx_t_9)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 159; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_9);
       if (__pyx_t_7) {
         PyTuple_SET_ITEM(__pyx_t_9, 0, __pyx_t_7); __Pyx_GIVEREF(__pyx_t_7); __pyx_t_7 = NULL;
@@ -2479,7 +2795,7 @@ static PyObject *__pyx_f_7spatial_4core_11categorical_22Categorical_Aggregator_a
       __pyx_t_3 = 0;
       __pyx_t_4 = 0;
       __pyx_t_5 = 0;
-      __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_6, __pyx_t_9, NULL); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 139; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_6, __pyx_t_9, NULL); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 159; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_2);
       __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
       __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
@@ -2491,7 +2807,7 @@ static PyObject *__pyx_f_7spatial_4core_11categorical_22Categorical_Aggregator_a
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   }
 
-  /* "spatial\core\categorical.pyx":159
+  /* "spatial\core\categorical.pyx":179
  *             Py_ssize_t i
  * 
  *         tileXShapeIn = data.shape[1]             # <<<<<<<<<<<<<<
@@ -2500,7 +2816,7 @@ static PyObject *__pyx_f_7spatial_4core_11categorical_22Categorical_Aggregator_a
  */
   __pyx_v_tileXShapeIn = (__pyx_v_data.shape[1]);
 
-  /* "spatial\core\categorical.pyx":160
+  /* "spatial\core\categorical.pyx":180
  * 
  *         tileXShapeIn = data.shape[1]
  *         tileYShapeIn = data.shape[0]             # <<<<<<<<<<<<<<
@@ -2509,7 +2825,7 @@ static PyObject *__pyx_f_7spatial_4core_11categorical_22Categorical_Aggregator_a
  */
   __pyx_v_tileYShapeIn = (__pyx_v_data.shape[0]);
 
-  /* "spatial\core\categorical.pyx":165
+  /* "spatial\core\categorical.pyx":185
  *         #proportion = 1.0 / (self.xFact * self.yFact)
  * 
  *         with nogil, parallel():             # <<<<<<<<<<<<<<
@@ -2534,7 +2850,7 @@ static PyObject *__pyx_f_7spatial_4core_11categorical_22Categorical_Aggregator_a
                 #define unlikely(x) (x)
             #endif
             #ifdef _OPENMP
-            #pragma omp parallel  reduction(+:__pyx_v_likeAdjProp) private(__pyx_t_42, __pyx_t_31, __pyx_t_35, __pyx_t_28, __pyx_t_18, __pyx_t_13, __pyx_t_23, __pyx_t_44, __pyx_t_21, __pyx_t_41, __pyx_t_10, __pyx_t_22, __pyx_t_8, __pyx_t_19, __pyx_t_27, __pyx_t_20, __pyx_t_33, __pyx_t_40, __pyx_t_16, __pyx_t_11, __pyx_t_26, __pyx_t_24, __pyx_t_34, __pyx_t_43, __pyx_t_17, __pyx_t_39, __pyx_t_36, __pyx_t_15, __pyx_t_25, __pyx_t_38, __pyx_t_14, __pyx_t_30, __pyx_t_37, __pyx_t_29, __pyx_t_45, __pyx_t_32, __pyx_t_12) private(__pyx_filename, __pyx_lineno, __pyx_clineno) shared(__pyx_parallel_why, __pyx_parallel_exc_type, __pyx_parallel_exc_value, __pyx_parallel_exc_tb)
+            #pragma omp parallel  reduction(+:__pyx_v_likeAdjProp) private(__pyx_t_42, __pyx_t_31, __pyx_t_35, __pyx_t_28, __pyx_t_18, __pyx_t_19, __pyx_t_23, __pyx_t_44, __pyx_t_21, __pyx_t_41, __pyx_t_10, __pyx_t_22, __pyx_t_8, __pyx_t_13, __pyx_t_27, __pyx_t_20, __pyx_t_33, __pyx_t_40, __pyx_t_16, __pyx_t_11, __pyx_t_26, __pyx_t_24, __pyx_t_34, __pyx_t_43, __pyx_t_17, __pyx_t_39, __pyx_t_36, __pyx_t_15, __pyx_t_25, __pyx_t_38, __pyx_t_14, __pyx_t_30, __pyx_t_37, __pyx_t_29, __pyx_t_45, __pyx_t_32, __pyx_t_12) private(__pyx_filename, __pyx_lineno, __pyx_clineno) shared(__pyx_parallel_why, __pyx_parallel_exc_type, __pyx_parallel_exc_value, __pyx_parallel_exc_tb)
             #endif /* _OPENMP */
             {
                 #ifdef _OPENMP
@@ -2544,7 +2860,7 @@ static PyObject *__pyx_f_7spatial_4core_11categorical_22Categorical_Aggregator_a
                 Py_BEGIN_ALLOW_THREADS
                 #endif /* _OPENMP */
 
-                /* "spatial\core\categorical.pyx":166
+                /* "spatial\core\categorical.pyx":186
  * 
  *         with nogil, parallel():
  *             for yInTile in prange (tileYShapeIn):             # <<<<<<<<<<<<<<
@@ -2554,25 +2870,25 @@ static PyObject *__pyx_f_7spatial_4core_11categorical_22Categorical_Aggregator_a
                 __pyx_t_8 = __pyx_v_tileYShapeIn;
                 if (1 == 0) abort();
                 {
-                    Py_ssize_t __pyx_parallel_temp0 = 0xbad0bad0;
+                    int __pyx_parallel_temp0 = 0xbad0bad0;
                     Py_ssize_t __pyx_parallel_temp1 = 0xbad0bad0;
                     int __pyx_parallel_temp2 = 0xbad0bad0;
                     int __pyx_parallel_temp3 = 0xbad0bad0;
                     Py_ssize_t __pyx_parallel_temp4 = 0xbad0bad0;
                     int __pyx_parallel_temp5 = 0xbad0bad0;
-                    float __pyx_parallel_temp6 = __PYX_NAN();
+                    unsigned char __pyx_parallel_temp6 = '?';
                     Py_ssize_t __pyx_parallel_temp7 = 0xbad0bad0;
-                    int __pyx_parallel_temp8 = 0xbad0bad0;
+                    Py_ssize_t __pyx_parallel_temp8 = 0xbad0bad0;
                     int __pyx_parallel_temp9 = 0xbad0bad0;
-                    unsigned char __pyx_parallel_temp10 = '?';
+                    int __pyx_parallel_temp10 = 0xbad0bad0;
                     Py_ssize_t __pyx_parallel_temp11 = 0xbad0bad0;
-                    unsigned char __pyx_parallel_temp12 = '?';
+                    int __pyx_parallel_temp12 = 0xbad0bad0;
                     int __pyx_parallel_temp13 = 0xbad0bad0;
-                    int __pyx_parallel_temp14 = 0xbad0bad0;
-                    int __pyx_parallel_temp15 = 0xbad0bad0;
-                    unsigned char __pyx_parallel_temp16 = '?';
-                    int __pyx_parallel_temp17 = 0xbad0bad0;
-                    Py_ssize_t __pyx_parallel_temp18 = 0xbad0bad0;
+                    unsigned char __pyx_parallel_temp14 = '?';
+                    unsigned char __pyx_parallel_temp15 = '?';
+                    float __pyx_parallel_temp16 = __PYX_NAN();
+                    Py_ssize_t __pyx_parallel_temp17 = 0xbad0bad0;
+                    int __pyx_parallel_temp18 = 0xbad0bad0;
                     Py_ssize_t __pyx_parallel_temp19 = 0xbad0bad0;
                     const char *__pyx_parallel_filename = NULL; int __pyx_parallel_lineno = 0, __pyx_parallel_clineno = 0;
                     PyObject *__pyx_parallel_exc_type = NULL, *__pyx_parallel_exc_value = NULL, *__pyx_parallel_exc_tb = NULL;
@@ -2582,33 +2898,33 @@ static PyObject *__pyx_f_7spatial_4core_11categorical_22Categorical_Aggregator_a
                     if (__pyx_t_11 > 0)
                     {
                         #ifdef _OPENMP
-                        #pragma omp for lastprivate(__pyx_v_yOut) lastprivate(__pyx_v_xInTile) lastprivate(__pyx_v_xRightTile) lastprivate(__pyx_v_xLeftGlobal) lastprivate(__pyx_v_xInGlobal) lastprivate(__pyx_v_xLeftTile) lastprivate(__pyx_v_xOut) lastprivate(__pyx_v_yBelowTile) lastprivate(__pyx_v_yBelowGlobal) lastprivate(__pyx_v_nNeighbours) lastprivate(__pyx_v_i) lastprivate(__pyx_v_catsOk) lastprivate(__pyx_v_xRightGlobal) lastprivate(__pyx_v_yAboveTile) lastprivate(__pyx_v_yAboveGlobal) lastprivate(__pyx_v_localValue) lastprivate(__pyx_v_valuePos) firstprivate(__pyx_v_yInTile) lastprivate(__pyx_v_yInTile) lastprivate(__pyx_v_yInGlobal)
+                        #pragma omp for lastprivate(__pyx_v_valuePos) lastprivate(__pyx_v_i) lastprivate(__pyx_v_xLeftGlobal) lastprivate(__pyx_v_yBelowTile) lastprivate(__pyx_v_yOut) lastprivate(__pyx_v_yBelowGlobal) lastprivate(__pyx_v_catsOk) lastprivate(__pyx_v_xInGlobal) lastprivate(__pyx_v_xOut) lastprivate(__pyx_v_xLeftTile) lastprivate(__pyx_v_yAboveGlobal) firstprivate(__pyx_v_yInTile) lastprivate(__pyx_v_yInTile) lastprivate(__pyx_v_xRightGlobal) lastprivate(__pyx_v_yAboveTile) lastprivate(__pyx_v_nNeighbours) lastprivate(__pyx_v_localValue) lastprivate(__pyx_v_yInGlobal) lastprivate(__pyx_v_xRightTile) lastprivate(__pyx_v_xInTile)
                         #endif /* _OPENMP */
                         for (__pyx_t_10 = 0; __pyx_t_10 < __pyx_t_11; __pyx_t_10++){
                             if (__pyx_parallel_why < 2)
                             {
                                 __pyx_v_yInTile = 0 + 1 * __pyx_t_10;
                                 /* Initialize private variables to invalid values */
-                                __pyx_v_yOut = ((Py_ssize_t)0xbad0bad0);
-                                __pyx_v_xInTile = ((Py_ssize_t)0xbad0bad0);
-                                __pyx_v_xRightTile = ((int)0xbad0bad0);
-                                __pyx_v_xLeftGlobal = ((int)0xbad0bad0);
-                                __pyx_v_xInGlobal = ((Py_ssize_t)0xbad0bad0);
-                                __pyx_v_xLeftTile = ((int)0xbad0bad0);
-                                __pyx_v_xOut = ((Py_ssize_t)0xbad0bad0);
-                                __pyx_v_yBelowTile = ((int)0xbad0bad0);
-                                __pyx_v_yBelowGlobal = ((int)0xbad0bad0);
-                                __pyx_v_nNeighbours = ((unsigned char)'?');
+                                __pyx_v_valuePos = ((int)0xbad0bad0);
                                 __pyx_v_i = ((Py_ssize_t)0xbad0bad0);
+                                __pyx_v_xLeftGlobal = ((int)0xbad0bad0);
+                                __pyx_v_yBelowTile = ((int)0xbad0bad0);
+                                __pyx_v_yOut = ((Py_ssize_t)0xbad0bad0);
+                                __pyx_v_yBelowGlobal = ((int)0xbad0bad0);
                                 __pyx_v_catsOk = ((unsigned char)'?');
+                                __pyx_v_xInGlobal = ((Py_ssize_t)0xbad0bad0);
+                                __pyx_v_xOut = ((Py_ssize_t)0xbad0bad0);
+                                __pyx_v_xLeftTile = ((int)0xbad0bad0);
+                                __pyx_v_yAboveGlobal = ((int)0xbad0bad0);
                                 __pyx_v_xRightGlobal = ((int)0xbad0bad0);
                                 __pyx_v_yAboveTile = ((int)0xbad0bad0);
-                                __pyx_v_yAboveGlobal = ((int)0xbad0bad0);
+                                __pyx_v_nNeighbours = ((unsigned char)'?');
                                 __pyx_v_localValue = ((unsigned char)'?');
-                                __pyx_v_valuePos = ((int)0xbad0bad0);
                                 __pyx_v_yInGlobal = ((Py_ssize_t)0xbad0bad0);
+                                __pyx_v_xRightTile = ((int)0xbad0bad0);
+                                __pyx_v_xInTile = ((Py_ssize_t)0xbad0bad0);
 
-                                /* "spatial\core\categorical.pyx":167
+                                /* "spatial\core\categorical.pyx":187
  *         with nogil, parallel():
  *             for yInTile in prange (tileYShapeIn):
  *                 catsOk = 1             # <<<<<<<<<<<<<<
@@ -2617,7 +2933,7 @@ static PyObject *__pyx_f_7spatial_4core_11categorical_22Categorical_Aggregator_a
  */
                                 __pyx_v_catsOk = 1;
 
-                                /* "spatial\core\categorical.pyx":168
+                                /* "spatial\core\categorical.pyx":188
  *             for yInTile in prange (tileYShapeIn):
  *                 catsOk = 1
  *                 yInGlobal = yInTile + yOffset             # <<<<<<<<<<<<<<
@@ -2626,7 +2942,7 @@ static PyObject *__pyx_f_7spatial_4core_11categorical_22Categorical_Aggregator_a
  */
                                 __pyx_v_yInGlobal = (__pyx_v_yInTile + __pyx_v_yOffset);
 
-                                /* "spatial\core\categorical.pyx":170
+                                /* "spatial\core\categorical.pyx":190
  *                 yInGlobal = yInTile + yOffset
  * 
  *                 yAboveGlobal = yInGlobal - 1             # <<<<<<<<<<<<<<
@@ -2635,7 +2951,7 @@ static PyObject *__pyx_f_7spatial_4core_11categorical_22Categorical_Aggregator_a
  */
                                 __pyx_v_yAboveGlobal = (__pyx_v_yInGlobal - 1);
 
-                                /* "spatial\core\categorical.pyx":171
+                                /* "spatial\core\categorical.pyx":191
  * 
  *                 yAboveGlobal = yInGlobal - 1
  *                 if yInGlobal == 0:             # <<<<<<<<<<<<<<
@@ -2645,7 +2961,7 @@ static PyObject *__pyx_f_7spatial_4core_11categorical_22Categorical_Aggregator_a
                                 __pyx_t_12 = ((__pyx_v_yInGlobal == 0) != 0);
                                 if (__pyx_t_12) {
 
-                                  /* "spatial\core\categorical.pyx":172
+                                  /* "spatial\core\categorical.pyx":192
  *                 yAboveGlobal = yInGlobal - 1
  *                 if yInGlobal == 0:
  *                     yAboveGlobal = -1             # <<<<<<<<<<<<<<
@@ -2657,7 +2973,7 @@ static PyObject *__pyx_f_7spatial_4core_11categorical_22Categorical_Aggregator_a
                                 }
                                 __pyx_L14:;
 
-                                /* "spatial\core\categorical.pyx":173
+                                /* "spatial\core\categorical.pyx":193
  *                 if yInGlobal == 0:
  *                     yAboveGlobal = -1
  *                 yAboveTile = yInTile - 1             # <<<<<<<<<<<<<<
@@ -2666,7 +2982,7 @@ static PyObject *__pyx_f_7spatial_4core_11categorical_22Categorical_Aggregator_a
  */
                                 __pyx_v_yAboveTile = (__pyx_v_yInTile - 1);
 
-                                /* "spatial\core\categorical.pyx":174
+                                /* "spatial\core\categorical.pyx":194
  *                     yAboveGlobal = -1
  *                 yAboveTile = yInTile - 1
  *                 if yInTile == 0:             # <<<<<<<<<<<<<<
@@ -2676,7 +2992,7 @@ static PyObject *__pyx_f_7spatial_4core_11categorical_22Categorical_Aggregator_a
                                 __pyx_t_12 = ((__pyx_v_yInTile == 0) != 0);
                                 if (__pyx_t_12) {
 
-                                  /* "spatial\core\categorical.pyx":175
+                                  /* "spatial\core\categorical.pyx":195
  *                 yAboveTile = yInTile - 1
  *                 if yInTile == 0:
  *                     yAboveTile = -1             # <<<<<<<<<<<<<<
@@ -2688,7 +3004,7 @@ static PyObject *__pyx_f_7spatial_4core_11categorical_22Categorical_Aggregator_a
                                 }
                                 __pyx_L15:;
 
-                                /* "spatial\core\categorical.pyx":177
+                                /* "spatial\core\categorical.pyx":197
  *                     yAboveTile = -1
  * 
  *                 yBelowGlobal = yInGlobal + 1             # <<<<<<<<<<<<<<
@@ -2697,7 +3013,7 @@ static PyObject *__pyx_f_7spatial_4core_11categorical_22Categorical_Aggregator_a
  */
                                 __pyx_v_yBelowGlobal = (__pyx_v_yInGlobal + 1);
 
-                                /* "spatial\core\categorical.pyx":178
+                                /* "spatial\core\categorical.pyx":198
  * 
  *                 yBelowGlobal = yInGlobal + 1
  *                 if yInGlobal == self.yShapeIn - 1:             # <<<<<<<<<<<<<<
@@ -2707,7 +3023,7 @@ static PyObject *__pyx_f_7spatial_4core_11categorical_22Categorical_Aggregator_a
                                 __pyx_t_12 = ((__pyx_v_yInGlobal == (__pyx_v_self->yShapeIn - 1)) != 0);
                                 if (__pyx_t_12) {
 
-                                  /* "spatial\core\categorical.pyx":179
+                                  /* "spatial\core\categorical.pyx":199
  *                 yBelowGlobal = yInGlobal + 1
  *                 if yInGlobal == self.yShapeIn - 1:
  *                     yBelowGlobal = -1             # <<<<<<<<<<<<<<
@@ -2719,7 +3035,7 @@ static PyObject *__pyx_f_7spatial_4core_11categorical_22Categorical_Aggregator_a
                                 }
                                 __pyx_L16:;
 
-                                /* "spatial\core\categorical.pyx":180
+                                /* "spatial\core\categorical.pyx":200
  *                 if yInGlobal == self.yShapeIn - 1:
  *                     yBelowGlobal = -1
  *                 yBelowTile = yInTile + 1             # <<<<<<<<<<<<<<
@@ -2728,7 +3044,7 @@ static PyObject *__pyx_f_7spatial_4core_11categorical_22Categorical_Aggregator_a
  */
                                 __pyx_v_yBelowTile = (__pyx_v_yInTile + 1);
 
-                                /* "spatial\core\categorical.pyx":181
+                                /* "spatial\core\categorical.pyx":201
  *                     yBelowGlobal = -1
  *                 yBelowTile = yInTile + 1
  *                 if yInTile == tileYShapeIn - 1:             # <<<<<<<<<<<<<<
@@ -2738,7 +3054,7 @@ static PyObject *__pyx_f_7spatial_4core_11categorical_22Categorical_Aggregator_a
                                 __pyx_t_12 = ((__pyx_v_yInTile == (__pyx_v_tileYShapeIn - 1)) != 0);
                                 if (__pyx_t_12) {
 
-                                  /* "spatial\core\categorical.pyx":182
+                                  /* "spatial\core\categorical.pyx":202
  *                 yBelowTile = yInTile + 1
  *                 if yInTile == tileYShapeIn - 1:
  *                     yBelowTile = -1             # <<<<<<<<<<<<<<
@@ -2750,7 +3066,7 @@ static PyObject *__pyx_f_7spatial_4core_11categorical_22Categorical_Aggregator_a
                                 }
                                 __pyx_L17:;
 
-                                /* "spatial\core\categorical.pyx":184
+                                /* "spatial\core\categorical.pyx":204
  *                     yBelowTile = -1
  * 
  *                 yOut = <int> (yInGlobal / self.yFact)             # <<<<<<<<<<<<<<
@@ -2759,7 +3075,7 @@ static PyObject *__pyx_f_7spatial_4core_11categorical_22Categorical_Aggregator_a
  */
                                 __pyx_v_yOut = ((int)(__pyx_v_yInGlobal / __pyx_v_self->yFact));
 
-                                /* "spatial\core\categorical.pyx":187
+                                /* "spatial\core\categorical.pyx":207
  *                 # yeah i know that it's an unsigned char but we won't actually use this value,
  *                 # these assignments are to cause the cython converter to make these thread-local
  *                 localValue = -1             # <<<<<<<<<<<<<<
@@ -2768,7 +3084,7 @@ static PyObject *__pyx_f_7spatial_4core_11categorical_22Categorical_Aggregator_a
  */
                                 __pyx_v_localValue = -1;
 
-                                /* "spatial\core\categorical.pyx":188
+                                /* "spatial\core\categorical.pyx":208
  *                 # these assignments are to cause the cython converter to make these thread-local
  *                 localValue = -1
  *                 xOut = -1             # <<<<<<<<<<<<<<
@@ -2777,7 +3093,7 @@ static PyObject *__pyx_f_7spatial_4core_11categorical_22Categorical_Aggregator_a
  */
                                 __pyx_v_xOut = -1;
 
-                                /* "spatial\core\categorical.pyx":189
+                                /* "spatial\core\categorical.pyx":209
  *                 localValue = -1
  *                 xOut = -1
  *                 valuePos = -1             # <<<<<<<<<<<<<<
@@ -2786,7 +3102,7 @@ static PyObject *__pyx_f_7spatial_4core_11categorical_22Categorical_Aggregator_a
  */
                                 __pyx_v_valuePos = -1;
 
-                                /* "spatial\core\categorical.pyx":190
+                                /* "spatial\core\categorical.pyx":210
  *                 xOut = -1
  *                 valuePos = -1
  *                 i = 0             # <<<<<<<<<<<<<<
@@ -2795,7 +3111,7 @@ static PyObject *__pyx_f_7spatial_4core_11categorical_22Categorical_Aggregator_a
  */
                                 __pyx_v_i = 0;
 
-                                /* "spatial\core\categorical.pyx":192
+                                /* "spatial\core\categorical.pyx":212
  *                 i = 0
  * 
  *                 for xInTile in range(tileXShapeIn):             # <<<<<<<<<<<<<<
@@ -2806,7 +3122,7 @@ static PyObject *__pyx_f_7spatial_4core_11categorical_22Categorical_Aggregator_a
                                 for (__pyx_t_14 = 0; __pyx_t_14 < __pyx_t_13; __pyx_t_14+=1) {
                                   __pyx_v_xInTile = __pyx_t_14;
 
-                                  /* "spatial\core\categorical.pyx":193
+                                  /* "spatial\core\categorical.pyx":213
  * 
  *                 for xInTile in range(tileXShapeIn):
  *                     xInGlobal = xInTile + xOffset             # <<<<<<<<<<<<<<
@@ -2815,7 +3131,7 @@ static PyObject *__pyx_f_7spatial_4core_11categorical_22Categorical_Aggregator_a
  */
                                   __pyx_v_xInGlobal = (__pyx_v_xInTile + __pyx_v_xOffset);
 
-                                  /* "spatial\core\categorical.pyx":195
+                                  /* "spatial\core\categorical.pyx":215
  *                     xInGlobal = xInTile + xOffset
  *                     # make these private by assignment
  *                     nNeighbours = 0             # <<<<<<<<<<<<<<
@@ -2824,7 +3140,7 @@ static PyObject *__pyx_f_7spatial_4core_11categorical_22Categorical_Aggregator_a
  */
                                   __pyx_v_nNeighbours = 0;
 
-                                  /* "spatial\core\categorical.pyx":196
+                                  /* "spatial\core\categorical.pyx":216
  *                     # make these private by assignment
  *                     nNeighbours = 0
  *                     likeAdjProp = 0             # <<<<<<<<<<<<<<
@@ -2833,7 +3149,7 @@ static PyObject *__pyx_f_7spatial_4core_11categorical_22Categorical_Aggregator_a
  */
                                   __pyx_v_likeAdjProp = 0.0;
 
-                                  /* "spatial\core\categorical.pyx":198
+                                  /* "spatial\core\categorical.pyx":218
  *                     likeAdjProp = 0
  * 
  *                     xLeftGlobal = xInGlobal - 1             # <<<<<<<<<<<<<<
@@ -2842,7 +3158,7 @@ static PyObject *__pyx_f_7spatial_4core_11categorical_22Categorical_Aggregator_a
  */
                                   __pyx_v_xLeftGlobal = (__pyx_v_xInGlobal - 1);
 
-                                  /* "spatial\core\categorical.pyx":199
+                                  /* "spatial\core\categorical.pyx":219
  * 
  *                     xLeftGlobal = xInGlobal - 1
  *                     if xInGlobal == 0:             # <<<<<<<<<<<<<<
@@ -2852,7 +3168,7 @@ static PyObject *__pyx_f_7spatial_4core_11categorical_22Categorical_Aggregator_a
                                   __pyx_t_12 = ((__pyx_v_xInGlobal == 0) != 0);
                                   if (__pyx_t_12) {
 
-                                    /* "spatial\core\categorical.pyx":200
+                                    /* "spatial\core\categorical.pyx":220
  *                     xLeftGlobal = xInGlobal - 1
  *                     if xInGlobal == 0:
  *                         xLeftGlobal = -1             # <<<<<<<<<<<<<<
@@ -2864,7 +3180,7 @@ static PyObject *__pyx_f_7spatial_4core_11categorical_22Categorical_Aggregator_a
                                   }
                                   __pyx_L20:;
 
-                                  /* "spatial\core\categorical.pyx":201
+                                  /* "spatial\core\categorical.pyx":221
  *                     if xInGlobal == 0:
  *                         xLeftGlobal = -1
  *                     xLeftTile = xInTile - 1             # <<<<<<<<<<<<<<
@@ -2873,7 +3189,7 @@ static PyObject *__pyx_f_7spatial_4core_11categorical_22Categorical_Aggregator_a
  */
                                   __pyx_v_xLeftTile = (__pyx_v_xInTile - 1);
 
-                                  /* "spatial\core\categorical.pyx":202
+                                  /* "spatial\core\categorical.pyx":222
  *                         xLeftGlobal = -1
  *                     xLeftTile = xInTile - 1
  *                     if xInTile == 0:             # <<<<<<<<<<<<<<
@@ -2883,7 +3199,7 @@ static PyObject *__pyx_f_7spatial_4core_11categorical_22Categorical_Aggregator_a
                                   __pyx_t_12 = ((__pyx_v_xInTile == 0) != 0);
                                   if (__pyx_t_12) {
 
-                                    /* "spatial\core\categorical.pyx":203
+                                    /* "spatial\core\categorical.pyx":223
  *                     xLeftTile = xInTile - 1
  *                     if xInTile == 0:
  *                         xLeftTile = -1             # <<<<<<<<<<<<<<
@@ -2895,7 +3211,7 @@ static PyObject *__pyx_f_7spatial_4core_11categorical_22Categorical_Aggregator_a
                                   }
                                   __pyx_L21:;
 
-                                  /* "spatial\core\categorical.pyx":205
+                                  /* "spatial\core\categorical.pyx":225
  *                         xLeftTile = -1
  * 
  *                     xRightGlobal = xInGlobal + 1             # <<<<<<<<<<<<<<
@@ -2904,7 +3220,7 @@ static PyObject *__pyx_f_7spatial_4core_11categorical_22Categorical_Aggregator_a
  */
                                   __pyx_v_xRightGlobal = (__pyx_v_xInGlobal + 1);
 
-                                  /* "spatial\core\categorical.pyx":206
+                                  /* "spatial\core\categorical.pyx":226
  * 
  *                     xRightGlobal = xInGlobal + 1
  *                     if xInGlobal == self.xShapeIn - 1:             # <<<<<<<<<<<<<<
@@ -2914,7 +3230,7 @@ static PyObject *__pyx_f_7spatial_4core_11categorical_22Categorical_Aggregator_a
                                   __pyx_t_12 = ((__pyx_v_xInGlobal == (__pyx_v_self->xShapeIn - 1)) != 0);
                                   if (__pyx_t_12) {
 
-                                    /* "spatial\core\categorical.pyx":207
+                                    /* "spatial\core\categorical.pyx":227
  *                     xRightGlobal = xInGlobal + 1
  *                     if xInGlobal == self.xShapeIn - 1:
  *                         xRightGlobal = -1             # <<<<<<<<<<<<<<
@@ -2926,7 +3242,7 @@ static PyObject *__pyx_f_7spatial_4core_11categorical_22Categorical_Aggregator_a
                                   }
                                   __pyx_L22:;
 
-                                  /* "spatial\core\categorical.pyx":208
+                                  /* "spatial\core\categorical.pyx":228
  *                     if xInGlobal == self.xShapeIn - 1:
  *                         xRightGlobal = -1
  *                     xRightTile = xInTile + 1             # <<<<<<<<<<<<<<
@@ -2935,7 +3251,7 @@ static PyObject *__pyx_f_7spatial_4core_11categorical_22Categorical_Aggregator_a
  */
                                   __pyx_v_xRightTile = (__pyx_v_xInTile + 1);
 
-                                  /* "spatial\core\categorical.pyx":209
+                                  /* "spatial\core\categorical.pyx":229
  *                         xRightGlobal = -1
  *                     xRightTile = xInTile + 1
  *                     if xInTile == tileXShapeIn - 1:             # <<<<<<<<<<<<<<
@@ -2945,7 +3261,7 @@ static PyObject *__pyx_f_7spatial_4core_11categorical_22Categorical_Aggregator_a
                                   __pyx_t_12 = ((__pyx_v_xInTile == (__pyx_v_tileXShapeIn - 1)) != 0);
                                   if (__pyx_t_12) {
 
-                                    /* "spatial\core\categorical.pyx":210
+                                    /* "spatial\core\categorical.pyx":230
  *                     xRightTile = xInTile + 1
  *                     if xInTile == tileXShapeIn - 1:
  *                         xRightTile = -1             # <<<<<<<<<<<<<<
@@ -2957,7 +3273,7 @@ static PyObject *__pyx_f_7spatial_4core_11categorical_22Categorical_Aggregator_a
                                   }
                                   __pyx_L23:;
 
-                                  /* "spatial\core\categorical.pyx":212
+                                  /* "spatial\core\categorical.pyx":232
  *                         xRightTile = -1
  * 
  *                     xOut = <int> (xInGlobal / self.xFact)             # <<<<<<<<<<<<<<
@@ -2966,7 +3282,7 @@ static PyObject *__pyx_f_7spatial_4core_11categorical_22Categorical_Aggregator_a
  */
                                   __pyx_v_xOut = ((int)(__pyx_v_xInGlobal / __pyx_v_self->xFact));
 
-                                  /* "spatial\core\categorical.pyx":214
+                                  /* "spatial\core\categorical.pyx":234
  *                     xOut = <int> (xInGlobal / self.xFact)
  * 
  *                     localValue = data[yInTile, xInTile]             # <<<<<<<<<<<<<<
@@ -2977,19 +3293,19 @@ static PyObject *__pyx_f_7spatial_4core_11categorical_22Categorical_Aggregator_a
                                   __pyx_t_16 = __pyx_v_xInTile;
                                   __pyx_v_localValue = (*((unsigned char *) ( /* dim=1 */ ((char *) (((unsigned char *) ( /* dim=0 */ (__pyx_v_data.data + __pyx_t_15 * __pyx_v_data.strides[0]) )) + __pyx_t_16)) )));
 
-                                  /* "spatial\core\categorical.pyx":220
+                                  /* "spatial\core\categorical.pyx":240
  *                     # number of inputs per output will vary cyclically.
  *                     # We count the incoming cells regardless of whether or not they have data.
  *                     self._countArr[yOut, xOut] += 1             # <<<<<<<<<<<<<<
  * 
  *                     if self._hasNDV == 1 and localValue == self._byteNDV:
  */
-                                  if (unlikely(!__pyx_v_self->_countArr.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 220; __pyx_clineno = __LINE__; goto __pyx_L12_error;}}
+                                  if (unlikely(!__pyx_v_self->_countArr.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 240; __pyx_clineno = __LINE__; goto __pyx_L12_error;}}
                                   __pyx_t_17 = __pyx_v_yOut;
                                   __pyx_t_18 = __pyx_v_xOut;
                                   *((short *) ( /* dim=1 */ ((char *) (((short *) ( /* dim=0 */ (__pyx_v_self->_countArr.data + __pyx_t_17 * __pyx_v_self->_countArr.strides[0]) )) + __pyx_t_18)) )) += 1;
 
-                                  /* "spatial\core\categorical.pyx":222
+                                  /* "spatial\core\categorical.pyx":242
  *                     self._countArr[yOut, xOut] += 1
  * 
  *                     if self._hasNDV == 1 and localValue == self._byteNDV:             # <<<<<<<<<<<<<<
@@ -3007,22 +3323,22 @@ static PyObject *__pyx_f_7spatial_4core_11categorical_22Categorical_Aggregator_a
                                   __pyx_L25_bool_binop_done:;
                                   if (__pyx_t_12) {
 
-                                    /* "spatial\core\categorical.pyx":224
+                                    /* "spatial\core\categorical.pyx":244
  *                     if self._hasNDV == 1 and localValue == self._byteNDV:
  *                         # bit 1 indicates covered by some input grid even if it was nodata
  *                         self._coverageArr[yOut, xOut] = self._coverageArr[yOut, xOut] | 1             # <<<<<<<<<<<<<<
  *                         # don't do anything
  *                         continue
  */
-                                    if (unlikely(!__pyx_v_self->_coverageArr.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 224; __pyx_clineno = __LINE__; goto __pyx_L12_error;}}
+                                    if (unlikely(!__pyx_v_self->_coverageArr.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 244; __pyx_clineno = __LINE__; goto __pyx_L12_error;}}
                                     __pyx_t_20 = __pyx_v_yOut;
                                     __pyx_t_21 = __pyx_v_xOut;
-                                    if (unlikely(!__pyx_v_self->_coverageArr.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 224; __pyx_clineno = __LINE__; goto __pyx_L12_error;}}
+                                    if (unlikely(!__pyx_v_self->_coverageArr.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 244; __pyx_clineno = __LINE__; goto __pyx_L12_error;}}
                                     __pyx_t_22 = __pyx_v_yOut;
                                     __pyx_t_23 = __pyx_v_xOut;
                                     *((char *) ( /* dim=1 */ ((char *) (((char *) ( /* dim=0 */ (__pyx_v_self->_coverageArr.data + __pyx_t_22 * __pyx_v_self->_coverageArr.strides[0]) )) + __pyx_t_23)) )) = ((*((char *) ( /* dim=1 */ ((char *) (((char *) ( /* dim=0 */ (__pyx_v_self->_coverageArr.data + __pyx_t_20 * __pyx_v_self->_coverageArr.strides[0]) )) + __pyx_t_21)) ))) | 1);
 
-                                    /* "spatial\core\categorical.pyx":226
+                                    /* "spatial\core\categorical.pyx":246
  *                         self._coverageArr[yOut, xOut] = self._coverageArr[yOut, xOut] | 1
  *                         # don't do anything
  *                         continue             # <<<<<<<<<<<<<<
@@ -3032,7 +3348,7 @@ static PyObject *__pyx_f_7spatial_4core_11categorical_22Categorical_Aggregator_a
                                     goto __pyx_L18_continue;
                                   }
 
-                                  /* "spatial\core\categorical.pyx":230
+                                  /* "spatial\core\categorical.pyx":250
  *                     # determine the z-position in the output stack for the fractional / like-adj
  *                     # grids for this category value
  *                     valuePos = -1             # <<<<<<<<<<<<<<
@@ -3041,7 +3357,7 @@ static PyObject *__pyx_f_7spatial_4core_11categorical_22Categorical_Aggregator_a
  */
                                   __pyx_v_valuePos = -1;
 
-                                  /* "spatial\core\categorical.pyx":231
+                                  /* "spatial\core\categorical.pyx":251
  *                     # grids for this category value
  *                     valuePos = -1
  *                     for i in range(self.nCategories):             # <<<<<<<<<<<<<<
@@ -3052,52 +3368,81 @@ static PyObject *__pyx_f_7spatial_4core_11categorical_22Categorical_Aggregator_a
                                   for (__pyx_t_25 = 0; __pyx_t_25 < __pyx_t_24; __pyx_t_25+=1) {
                                     __pyx_v_i = __pyx_t_25;
 
-                                    /* "spatial\core\categorical.pyx":232
+                                    /* "spatial\core\categorical.pyx":252
  *                     valuePos = -1
  *                     for i in range(self.nCategories):
  *                         if self.valueMap[i] == localValue:             # <<<<<<<<<<<<<<
  *                             valuePos = i
  *                             break
  */
-                                    if (unlikely(!__pyx_v_self->valueMap.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 232; __pyx_clineno = __LINE__; goto __pyx_L12_error;}}
+                                    if (unlikely(!__pyx_v_self->valueMap.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 252; __pyx_clineno = __LINE__; goto __pyx_L12_error;}}
                                     __pyx_t_26 = __pyx_v_i;
                                     __pyx_t_12 = (((*((int *) ( /* dim=0 */ ((char *) (((int *) __pyx_v_self->valueMap.data) + __pyx_t_26)) ))) == __pyx_v_localValue) != 0);
                                     if (__pyx_t_12) {
 
-                                      /* "spatial\core\categorical.pyx":233
+                                      /* "spatial\core\categorical.pyx":253
  *                     for i in range(self.nCategories):
  *                         if self.valueMap[i] == localValue:
  *                             valuePos = i             # <<<<<<<<<<<<<<
  *                             break
- *                     # if we haven't seen this value yet, add it to the next position in valuemap
+ *                     if valuePos == -1:
  */
                                       __pyx_v_valuePos = __pyx_v_i;
 
-                                      /* "spatial\core\categorical.pyx":234
+                                      /* "spatial\core\categorical.pyx":254
  *                         if self.valueMap[i] == localValue:
  *                             valuePos = i
  *                             break             # <<<<<<<<<<<<<<
- *                     # if we haven't seen this value yet, add it to the next position in valuemap
- *                     # todo think about whether this is truly safe. not quite sure. can we end up with
+ *                     if valuePos == -1:
+ *                         if self.gotCategories:
  */
                                       goto __pyx_L28_break;
                                     }
                                   }
                                   __pyx_L28_break:;
 
-                                  /* "spatial\core\categorical.pyx":238
- *                     # todo think about whether this is truly safe. not quite sure. can we end up with
- *                     # valuemap being inconsistent?
+                                  /* "spatial\core\categorical.pyx":255
+ *                             valuePos = i
+ *                             break
  *                     if valuePos == -1:             # <<<<<<<<<<<<<<
- *                         with gil:
- *                             for i in range(self.nCategories):
+ *                         if self.gotCategories:
+ *                             # we have been given the expected category values but have encountered a different one
  */
                                   __pyx_t_12 = ((__pyx_v_valuePos == -1) != 0);
                                   if (__pyx_t_12) {
 
-                                    /* "spatial\core\categorical.pyx":239
- *                     # valuemap being inconsistent?
+                                    /* "spatial\core\categorical.pyx":256
+ *                             break
  *                     if valuePos == -1:
+ *                         if self.gotCategories:             # <<<<<<<<<<<<<<
+ *                             # we have been given the expected category values but have encountered a different one
+ *                             # for now, error out - though actually we might want to just continue here i.e. ignore
+ */
+                                    __pyx_t_12 = (__pyx_v_self->gotCategories != 0);
+                                    if (__pyx_t_12) {
+
+                                      /* "spatial\core\categorical.pyx":260
+ *                             # for now, error out - though actually we might want to just continue here i.e. ignore
+ *                             # cells with unspecified values maybe treating as nodata
+ *                             catsOk = 0             # <<<<<<<<<<<<<<
+ *                             break
+ *                         # if we haven't seen this value yet, and we haven't pre-loaded the list of expected values,
+ */
+                                      __pyx_v_catsOk = 0;
+
+                                      /* "spatial\core\categorical.pyx":261
+ *                             # cells with unspecified values maybe treating as nodata
+ *                             catsOk = 0
+ *                             break             # <<<<<<<<<<<<<<
+ *                         # if we haven't seen this value yet, and we haven't pre-loaded the list of expected values,
+ *                         # add it to the next available position in valuemap
+ */
+                                      goto __pyx_L19_break;
+                                    }
+
+                                    /* "spatial\core\categorical.pyx":268
+ *                         # i.e. is the with gil sufficient to ensure consistent access to valueMap. I'm not sure it is
+ *                         # as threads can still be preempted. See the finalise method for a backstop check.
  *                         with gil:             # <<<<<<<<<<<<<<
  *                             for i in range(self.nCategories):
  *                                 if self.valueMap[i] == -1:
@@ -3108,8 +3453,8 @@ static PyObject *__pyx_f_7spatial_4core_11categorical_22Categorical_Aggregator_a
                                         #endif
                                         /*try:*/ {
 
-                                          /* "spatial\core\categorical.pyx":240
- *                     if valuePos == -1:
+                                          /* "spatial\core\categorical.pyx":269
+ *                         # as threads can still be preempted. See the finalise method for a backstop check.
  *                         with gil:
  *                             for i in range(self.nCategories):             # <<<<<<<<<<<<<<
  *                                 if self.valueMap[i] == -1:
@@ -3119,30 +3464,30 @@ static PyObject *__pyx_f_7spatial_4core_11categorical_22Categorical_Aggregator_a
                                           for (__pyx_t_25 = 0; __pyx_t_25 < __pyx_t_24; __pyx_t_25+=1) {
                                             __pyx_v_i = __pyx_t_25;
 
-                                            /* "spatial\core\categorical.pyx":241
+                                            /* "spatial\core\categorical.pyx":270
  *                         with gil:
  *                             for i in range(self.nCategories):
  *                                 if self.valueMap[i] == -1:             # <<<<<<<<<<<<<<
  *                                     self.valueMap[i] = localValue
  *                                     valuePos = i
  */
-                                            if (unlikely(!__pyx_v_self->valueMap.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 241; __pyx_clineno = __LINE__; goto __pyx_L34_error;}}
+                                            if (unlikely(!__pyx_v_self->valueMap.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 270; __pyx_clineno = __LINE__; goto __pyx_L35_error;}}
                                             __pyx_t_27 = __pyx_v_i;
                                             __pyx_t_12 = (((*((int *) ( /* dim=0 */ ((char *) (((int *) __pyx_v_self->valueMap.data) + __pyx_t_27)) ))) == -1) != 0);
                                             if (__pyx_t_12) {
 
-                                              /* "spatial\core\categorical.pyx":242
+                                              /* "spatial\core\categorical.pyx":271
  *                             for i in range(self.nCategories):
  *                                 if self.valueMap[i] == -1:
  *                                     self.valueMap[i] = localValue             # <<<<<<<<<<<<<<
  *                                     valuePos = i
  *                                     break
  */
-                                              if (unlikely(!__pyx_v_self->valueMap.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 242; __pyx_clineno = __LINE__; goto __pyx_L34_error;}}
+                                              if (unlikely(!__pyx_v_self->valueMap.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 271; __pyx_clineno = __LINE__; goto __pyx_L35_error;}}
                                               __pyx_t_28 = __pyx_v_i;
                                               *((int *) ( /* dim=0 */ ((char *) (((int *) __pyx_v_self->valueMap.data) + __pyx_t_28)) )) = __pyx_v_localValue;
 
-                                              /* "spatial\core\categorical.pyx":243
+                                              /* "spatial\core\categorical.pyx":272
  *                                 if self.valueMap[i] == -1:
  *                                     self.valueMap[i] = localValue
  *                                     valuePos = i             # <<<<<<<<<<<<<<
@@ -3151,22 +3496,22 @@ static PyObject *__pyx_f_7spatial_4core_11categorical_22Categorical_Aggregator_a
  */
                                               __pyx_v_valuePos = __pyx_v_i;
 
-                                              /* "spatial\core\categorical.pyx":244
+                                              /* "spatial\core\categorical.pyx":273
  *                                     self.valueMap[i] = localValue
  *                                     valuePos = i
  *                                     break             # <<<<<<<<<<<<<<
  *                     # if we failed to add it, we must have more categories in the data
  *                     # than we bargained for
  */
-                                              goto __pyx_L37_break;
+                                              goto __pyx_L38_break;
                                             }
                                           }
-                                          __pyx_L37_break:;
+                                          __pyx_L38_break:;
                                         }
 
-                                        /* "spatial\core\categorical.pyx":239
- *                     # valuemap being inconsistent?
- *                     if valuePos == -1:
+                                        /* "spatial\core\categorical.pyx":268
+ *                         # i.e. is the with gil sufficient to ensure consistent access to valueMap. I'm not sure it is
+ *                         # as threads can still be preempted. See the finalise method for a backstop check.
  *                         with gil:             # <<<<<<<<<<<<<<
  *                             for i in range(self.nCategories):
  *                                 if self.valueMap[i] == -1:
@@ -3176,22 +3521,22 @@ static PyObject *__pyx_f_7spatial_4core_11categorical_22Categorical_Aggregator_a
                                             #ifdef WITH_THREAD
                                             PyGILState_Release(__pyx_gilstate_save);
                                             #endif
-                                            goto __pyx_L35;
+                                            goto __pyx_L36;
                                           }
-                                          __pyx_L34_error: {
+                                          __pyx_L35_error: {
                                             #ifdef WITH_THREAD
                                             PyGILState_Release(__pyx_gilstate_save);
                                             #endif
                                             goto __pyx_L12_error;
                                           }
-                                          __pyx_L35:;
+                                          __pyx_L36:;
                                         }
                                     }
                                     goto __pyx_L30;
                                   }
                                   __pyx_L30:;
 
-                                  /* "spatial\core\categorical.pyx":247
+                                  /* "spatial\core\categorical.pyx":276
  *                     # if we failed to add it, we must have more categories in the data
  *                     # than we bargained for
  *                     if valuePos == -1:             # <<<<<<<<<<<<<<
@@ -3201,7 +3546,7 @@ static PyObject *__pyx_f_7spatial_4core_11categorical_22Categorical_Aggregator_a
                                   __pyx_t_12 = ((__pyx_v_valuePos == -1) != 0);
                                   if (__pyx_t_12) {
 
-                                    /* "spatial\core\categorical.pyx":248
+                                    /* "spatial\core\categorical.pyx":277
  *                     # than we bargained for
  *                     if valuePos == -1:
  *                         catsOk = 0             # <<<<<<<<<<<<<<
@@ -3210,7 +3555,7 @@ static PyObject *__pyx_f_7spatial_4core_11categorical_22Categorical_Aggregator_a
  */
                                     __pyx_v_catsOk = 0;
 
-                                    /* "spatial\core\categorical.pyx":249
+                                    /* "spatial\core\categorical.pyx":278
  *                     if valuePos == -1:
  *                         catsOk = 0
  *                         break             # <<<<<<<<<<<<<<
@@ -3220,35 +3565,35 @@ static PyObject *__pyx_f_7spatial_4core_11categorical_22Categorical_Aggregator_a
                                     goto __pyx_L19_break;
                                   }
 
-                                  /* "spatial\core\categorical.pyx":252
+                                  /* "spatial\core\categorical.pyx":281
  * 
  *                     # bit 2 indicates covered by a data pixel
  *                     self._coverageArr[yOut, xOut] = self._coverageArr[yOut, xOut] | 2             # <<<<<<<<<<<<<<
  * 
  *                     # the fraction is straightforward, just the proportion of the output cell
  */
-                                  if (unlikely(!__pyx_v_self->_coverageArr.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 252; __pyx_clineno = __LINE__; goto __pyx_L12_error;}}
+                                  if (unlikely(!__pyx_v_self->_coverageArr.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 281; __pyx_clineno = __LINE__; goto __pyx_L12_error;}}
                                   __pyx_t_25 = __pyx_v_yOut;
                                   __pyx_t_29 = __pyx_v_xOut;
-                                  if (unlikely(!__pyx_v_self->_coverageArr.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 252; __pyx_clineno = __LINE__; goto __pyx_L12_error;}}
+                                  if (unlikely(!__pyx_v_self->_coverageArr.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 281; __pyx_clineno = __LINE__; goto __pyx_L12_error;}}
                                   __pyx_t_30 = __pyx_v_yOut;
                                   __pyx_t_31 = __pyx_v_xOut;
                                   *((char *) ( /* dim=1 */ ((char *) (((char *) ( /* dim=0 */ (__pyx_v_self->_coverageArr.data + __pyx_t_30 * __pyx_v_self->_coverageArr.strides[0]) )) + __pyx_t_31)) )) = ((*((char *) ( /* dim=1 */ ((char *) (((char *) ( /* dim=0 */ (__pyx_v_self->_coverageArr.data + __pyx_t_25 * __pyx_v_self->_coverageArr.strides[0]) )) + __pyx_t_29)) ))) | 2);
 
-                                  /* "spatial\core\categorical.pyx":259
+                                  /* "spatial\core\categorical.pyx":288
  *                     # reminder: inplace operator (+=) causes it to be treated as a reduction
  *                     # (shared) variable by the cython translation
  *                     self.outputFracArr[valuePos, yOut, xOut] += 1             # <<<<<<<<<<<<<<
  * 
  *                     # the like adjacency contribution of a given incoming cell
  */
-                                  if (unlikely(!__pyx_v_self->outputFracArr.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 259; __pyx_clineno = __LINE__; goto __pyx_L12_error;}}
+                                  if (unlikely(!__pyx_v_self->outputFracArr.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 288; __pyx_clineno = __LINE__; goto __pyx_L12_error;}}
                                   __pyx_t_32 = __pyx_v_valuePos;
                                   __pyx_t_33 = __pyx_v_yOut;
                                   __pyx_t_34 = __pyx_v_xOut;
                                   *((float *) ( /* dim=2 */ ((char *) (((float *) ( /* dim=1 */ (( /* dim=0 */ (__pyx_v_self->outputFracArr.data + __pyx_t_32 * __pyx_v_self->outputFracArr.strides[0]) ) + __pyx_t_33 * __pyx_v_self->outputFracArr.strides[1]) )) + __pyx_t_34)) )) += 1.0;
 
-                                  /* "spatial\core\categorical.pyx":266
+                                  /* "spatial\core\categorical.pyx":295
  *                     # so we just calculate it based on how many neighbours we do have
  *                     # (this isn't totally accurate of course)
  *                     if self._doLikeAdj:             # <<<<<<<<<<<<<<
@@ -3258,7 +3603,7 @@ static PyObject *__pyx_f_7spatial_4core_11categorical_22Categorical_Aggregator_a
                                   __pyx_t_12 = (__pyx_v_self->_doLikeAdj != 0);
                                   if (__pyx_t_12) {
 
-                                    /* "spatial\core\categorical.pyx":267
+                                    /* "spatial\core\categorical.pyx":296
  *                     # (this isn't totally accurate of course)
  *                     if self._doLikeAdj:
  *                         if yAboveTile >= 0:             # <<<<<<<<<<<<<<
@@ -3268,7 +3613,7 @@ static PyObject *__pyx_f_7spatial_4core_11categorical_22Categorical_Aggregator_a
                                     __pyx_t_12 = ((__pyx_v_yAboveTile >= 0) != 0);
                                     if (__pyx_t_12) {
 
-                                      /* "spatial\core\categorical.pyx":268
+                                      /* "spatial\core\categorical.pyx":297
  *                     if self._doLikeAdj:
  *                         if yAboveTile >= 0:
  *                             nNeighbours = nNeighbours + 1             # <<<<<<<<<<<<<<
@@ -3277,7 +3622,7 @@ static PyObject *__pyx_f_7spatial_4core_11categorical_22Categorical_Aggregator_a
  */
                                       __pyx_v_nNeighbours = (__pyx_v_nNeighbours + 1);
 
-                                      /* "spatial\core\categorical.pyx":269
+                                      /* "spatial\core\categorical.pyx":298
  *                         if yAboveTile >= 0:
  *                             nNeighbours = nNeighbours + 1
  *                             if data[yAboveTile, xInTile] == localValue:             # <<<<<<<<<<<<<<
@@ -3289,7 +3634,7 @@ static PyObject *__pyx_f_7spatial_4core_11categorical_22Categorical_Aggregator_a
                                       __pyx_t_12 = (((*((unsigned char *) ( /* dim=1 */ ((char *) (((unsigned char *) ( /* dim=0 */ (__pyx_v_data.data + __pyx_t_35 * __pyx_v_data.strides[0]) )) + __pyx_t_36)) ))) == __pyx_v_localValue) != 0);
                                       if (__pyx_t_12) {
 
-                                        /* "spatial\core\categorical.pyx":270
+                                        /* "spatial\core\categorical.pyx":299
  *                             nNeighbours = nNeighbours + 1
  *                             if data[yAboveTile, xInTile] == localValue:
  *                                 likeAdjProp += 1             # <<<<<<<<<<<<<<
@@ -3297,14 +3642,14 @@ static PyObject *__pyx_f_7spatial_4core_11categorical_22Categorical_Aggregator_a
  *                             nNeighbours = nNeighbours + 1
  */
                                         __pyx_v_likeAdjProp = (__pyx_v_likeAdjProp + 1.0);
-                                        goto __pyx_L42;
+                                        goto __pyx_L43;
                                       }
-                                      __pyx_L42:;
-                                      goto __pyx_L41;
+                                      __pyx_L43:;
+                                      goto __pyx_L42;
                                     }
-                                    __pyx_L41:;
+                                    __pyx_L42:;
 
-                                    /* "spatial\core\categorical.pyx":271
+                                    /* "spatial\core\categorical.pyx":300
  *                             if data[yAboveTile, xInTile] == localValue:
  *                                 likeAdjProp += 1
  *                         if xRightTile >= 0:             # <<<<<<<<<<<<<<
@@ -3314,7 +3659,7 @@ static PyObject *__pyx_f_7spatial_4core_11categorical_22Categorical_Aggregator_a
                                     __pyx_t_12 = ((__pyx_v_xRightTile >= 0) != 0);
                                     if (__pyx_t_12) {
 
-                                      /* "spatial\core\categorical.pyx":272
+                                      /* "spatial\core\categorical.pyx":301
  *                                 likeAdjProp += 1
  *                         if xRightTile >= 0:
  *                             nNeighbours = nNeighbours + 1             # <<<<<<<<<<<<<<
@@ -3323,7 +3668,7 @@ static PyObject *__pyx_f_7spatial_4core_11categorical_22Categorical_Aggregator_a
  */
                                       __pyx_v_nNeighbours = (__pyx_v_nNeighbours + 1);
 
-                                      /* "spatial\core\categorical.pyx":273
+                                      /* "spatial\core\categorical.pyx":302
  *                         if xRightTile >= 0:
  *                             nNeighbours = nNeighbours + 1
  *                             if data[yInTile, xRightTile] == localValue:             # <<<<<<<<<<<<<<
@@ -3335,7 +3680,7 @@ static PyObject *__pyx_f_7spatial_4core_11categorical_22Categorical_Aggregator_a
                                       __pyx_t_12 = (((*((unsigned char *) ( /* dim=1 */ ((char *) (((unsigned char *) ( /* dim=0 */ (__pyx_v_data.data + __pyx_t_37 * __pyx_v_data.strides[0]) )) + __pyx_t_38)) ))) == __pyx_v_localValue) != 0);
                                       if (__pyx_t_12) {
 
-                                        /* "spatial\core\categorical.pyx":274
+                                        /* "spatial\core\categorical.pyx":303
  *                             nNeighbours = nNeighbours + 1
  *                             if data[yInTile, xRightTile] == localValue:
  *                                 likeAdjProp += 1             # <<<<<<<<<<<<<<
@@ -3343,14 +3688,14 @@ static PyObject *__pyx_f_7spatial_4core_11categorical_22Categorical_Aggregator_a
  *                             nNeighbours = nNeighbours + 1
  */
                                         __pyx_v_likeAdjProp = (__pyx_v_likeAdjProp + 1.0);
-                                        goto __pyx_L44;
+                                        goto __pyx_L45;
                                       }
-                                      __pyx_L44:;
-                                      goto __pyx_L43;
+                                      __pyx_L45:;
+                                      goto __pyx_L44;
                                     }
-                                    __pyx_L43:;
+                                    __pyx_L44:;
 
-                                    /* "spatial\core\categorical.pyx":275
+                                    /* "spatial\core\categorical.pyx":304
  *                             if data[yInTile, xRightTile] == localValue:
  *                                 likeAdjProp += 1
  *                         if yBelowTile >= 0:             # <<<<<<<<<<<<<<
@@ -3360,7 +3705,7 @@ static PyObject *__pyx_f_7spatial_4core_11categorical_22Categorical_Aggregator_a
                                     __pyx_t_12 = ((__pyx_v_yBelowTile >= 0) != 0);
                                     if (__pyx_t_12) {
 
-                                      /* "spatial\core\categorical.pyx":276
+                                      /* "spatial\core\categorical.pyx":305
  *                                 likeAdjProp += 1
  *                         if yBelowTile >= 0:
  *                             nNeighbours = nNeighbours + 1             # <<<<<<<<<<<<<<
@@ -3369,7 +3714,7 @@ static PyObject *__pyx_f_7spatial_4core_11categorical_22Categorical_Aggregator_a
  */
                                       __pyx_v_nNeighbours = (__pyx_v_nNeighbours + 1);
 
-                                      /* "spatial\core\categorical.pyx":277
+                                      /* "spatial\core\categorical.pyx":306
  *                         if yBelowTile >= 0:
  *                             nNeighbours = nNeighbours + 1
  *                             if data[yBelowTile, xInTile] == localValue:             # <<<<<<<<<<<<<<
@@ -3381,7 +3726,7 @@ static PyObject *__pyx_f_7spatial_4core_11categorical_22Categorical_Aggregator_a
                                       __pyx_t_12 = (((*((unsigned char *) ( /* dim=1 */ ((char *) (((unsigned char *) ( /* dim=0 */ (__pyx_v_data.data + __pyx_t_39 * __pyx_v_data.strides[0]) )) + __pyx_t_40)) ))) == __pyx_v_localValue) != 0);
                                       if (__pyx_t_12) {
 
-                                        /* "spatial\core\categorical.pyx":278
+                                        /* "spatial\core\categorical.pyx":307
  *                             nNeighbours = nNeighbours + 1
  *                             if data[yBelowTile, xInTile] == localValue:
  *                                 likeAdjProp += 1             # <<<<<<<<<<<<<<
@@ -3389,14 +3734,14 @@ static PyObject *__pyx_f_7spatial_4core_11categorical_22Categorical_Aggregator_a
  *                             nNeighbours = nNeighbours + 1
  */
                                         __pyx_v_likeAdjProp = (__pyx_v_likeAdjProp + 1.0);
-                                        goto __pyx_L46;
+                                        goto __pyx_L47;
                                       }
-                                      __pyx_L46:;
-                                      goto __pyx_L45;
+                                      __pyx_L47:;
+                                      goto __pyx_L46;
                                     }
-                                    __pyx_L45:;
+                                    __pyx_L46:;
 
-                                    /* "spatial\core\categorical.pyx":279
+                                    /* "spatial\core\categorical.pyx":308
  *                             if data[yBelowTile, xInTile] == localValue:
  *                                 likeAdjProp += 1
  *                         if xLeftTile >= 0:             # <<<<<<<<<<<<<<
@@ -3406,7 +3751,7 @@ static PyObject *__pyx_f_7spatial_4core_11categorical_22Categorical_Aggregator_a
                                     __pyx_t_12 = ((__pyx_v_xLeftTile >= 0) != 0);
                                     if (__pyx_t_12) {
 
-                                      /* "spatial\core\categorical.pyx":280
+                                      /* "spatial\core\categorical.pyx":309
  *                                 likeAdjProp += 1
  *                         if xLeftTile >= 0:
  *                             nNeighbours = nNeighbours + 1             # <<<<<<<<<<<<<<
@@ -3415,7 +3760,7 @@ static PyObject *__pyx_f_7spatial_4core_11categorical_22Categorical_Aggregator_a
  */
                                       __pyx_v_nNeighbours = (__pyx_v_nNeighbours + 1);
 
-                                      /* "spatial\core\categorical.pyx":281
+                                      /* "spatial\core\categorical.pyx":310
  *                         if xLeftTile >= 0:
  *                             nNeighbours = nNeighbours + 1
  *                             if data[yInTile, xLeftTile] == localValue:             # <<<<<<<<<<<<<<
@@ -3427,7 +3772,7 @@ static PyObject *__pyx_f_7spatial_4core_11categorical_22Categorical_Aggregator_a
                                       __pyx_t_12 = (((*((unsigned char *) ( /* dim=1 */ ((char *) (((unsigned char *) ( /* dim=0 */ (__pyx_v_data.data + __pyx_t_41 * __pyx_v_data.strides[0]) )) + __pyx_t_42)) ))) == __pyx_v_localValue) != 0);
                                       if (__pyx_t_12) {
 
-                                        /* "spatial\core\categorical.pyx":282
+                                        /* "spatial\core\categorical.pyx":311
  *                             nNeighbours = nNeighbours + 1
  *                             if data[yInTile, xLeftTile] == localValue:
  *                                 likeAdjProp += 1             # <<<<<<<<<<<<<<
@@ -3435,33 +3780,33 @@ static PyObject *__pyx_f_7spatial_4core_11categorical_22Categorical_Aggregator_a
  *                             (likeAdjProp / nNeighbours) )
  */
                                         __pyx_v_likeAdjProp = (__pyx_v_likeAdjProp + 1.0);
-                                        goto __pyx_L48;
+                                        goto __pyx_L49;
                                       }
-                                      __pyx_L48:;
-                                      goto __pyx_L47;
+                                      __pyx_L49:;
+                                      goto __pyx_L48;
                                     }
-                                    __pyx_L47:;
+                                    __pyx_L48:;
 
-                                    /* "spatial\core\categorical.pyx":283
+                                    /* "spatial\core\categorical.pyx":312
  *                             if data[yInTile, xLeftTile] == localValue:
  *                                 likeAdjProp += 1
  *                         self.outputLikeAdjArr[valuePos, yOut, xOut] += (             # <<<<<<<<<<<<<<
  *                             (likeAdjProp / nNeighbours) )
  *                 if catsOk == 0:
  */
-                                    if (unlikely(!__pyx_v_self->outputLikeAdjArr.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 283; __pyx_clineno = __LINE__; goto __pyx_L12_error;}}
+                                    if (unlikely(!__pyx_v_self->outputLikeAdjArr.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 312; __pyx_clineno = __LINE__; goto __pyx_L12_error;}}
                                     __pyx_t_43 = __pyx_v_valuePos;
                                     __pyx_t_44 = __pyx_v_yOut;
                                     __pyx_t_45 = __pyx_v_xOut;
                                     *((float *) ( /* dim=2 */ ((char *) (((float *) ( /* dim=1 */ (( /* dim=0 */ (__pyx_v_self->outputLikeAdjArr.data + __pyx_t_43 * __pyx_v_self->outputLikeAdjArr.strides[0]) ) + __pyx_t_44 * __pyx_v_self->outputLikeAdjArr.strides[1]) )) + __pyx_t_45)) )) += (__pyx_v_likeAdjProp / __pyx_v_nNeighbours);
-                                    goto __pyx_L40;
+                                    goto __pyx_L41;
                                   }
-                                  __pyx_L40:;
+                                  __pyx_L41:;
                                   __pyx_L18_continue:;
                                 }
                                 __pyx_L19_break:;
 
-                                /* "spatial\core\categorical.pyx":285
+                                /* "spatial\core\categorical.pyx":314
  *                         self.outputLikeAdjArr[valuePos, yOut, xOut] += (
  *                             (likeAdjProp / nNeighbours) )
  *                 if catsOk == 0:             # <<<<<<<<<<<<<<
@@ -3471,7 +3816,7 @@ static PyObject *__pyx_f_7spatial_4core_11categorical_22Categorical_Aggregator_a
                                 __pyx_t_12 = ((__pyx_v_catsOk == 0) != 0);
                                 if (__pyx_t_12) {
 
-                                  /* "spatial\core\categorical.pyx":286
+                                  /* "spatial\core\categorical.pyx":315
  *                             (likeAdjProp / nNeighbours) )
  *                 if catsOk == 0:
  *                     break             # <<<<<<<<<<<<<<
@@ -3480,10 +3825,10 @@ static PyObject *__pyx_f_7spatial_4core_11categorical_22Categorical_Aggregator_a
  */
                                   goto __pyx_L11_break;
                                 }
-                                goto __pyx_L51;
+                                goto __pyx_L52;
                                 __pyx_L11_break:;
                                 __pyx_parallel_why = 2;
-                                goto __pyx_L50;
+                                goto __pyx_L51;
                                 __pyx_L12_error:;
                                 {
                                     #ifdef WITH_THREAD
@@ -3502,34 +3847,34 @@ static PyObject *__pyx_f_7spatial_4core_11categorical_22Categorical_Aggregator_a
                                     #endif
                                 }
                                 __pyx_parallel_why = 4;
-                                goto __pyx_L50;
-                                __pyx_L50:;
+                                goto __pyx_L51;
+                                __pyx_L51:;
                                 #ifdef _OPENMP
                                 #pragma omp critical(__pyx_parallel_lastprivates0)
                                 #endif /* _OPENMP */
                                 {
-                                    __pyx_parallel_temp0 = __pyx_v_yOut;
-                                    __pyx_parallel_temp1 = __pyx_v_xInTile;
-                                    __pyx_parallel_temp2 = __pyx_v_xRightTile;
-                                    __pyx_parallel_temp3 = __pyx_v_xLeftGlobal;
-                                    __pyx_parallel_temp4 = __pyx_v_xInGlobal;
-                                    __pyx_parallel_temp5 = __pyx_v_xLeftTile;
-                                    __pyx_parallel_temp6 = __pyx_v_likeAdjProp;
-                                    __pyx_parallel_temp7 = __pyx_v_xOut;
-                                    __pyx_parallel_temp8 = __pyx_v_yBelowTile;
-                                    __pyx_parallel_temp9 = __pyx_v_yBelowGlobal;
-                                    __pyx_parallel_temp10 = __pyx_v_nNeighbours;
-                                    __pyx_parallel_temp11 = __pyx_v_i;
-                                    __pyx_parallel_temp12 = __pyx_v_catsOk;
-                                    __pyx_parallel_temp13 = __pyx_v_xRightGlobal;
-                                    __pyx_parallel_temp14 = __pyx_v_yAboveTile;
-                                    __pyx_parallel_temp15 = __pyx_v_yAboveGlobal;
-                                    __pyx_parallel_temp16 = __pyx_v_localValue;
-                                    __pyx_parallel_temp17 = __pyx_v_valuePos;
-                                    __pyx_parallel_temp18 = __pyx_v_yInTile;
-                                    __pyx_parallel_temp19 = __pyx_v_yInGlobal;
+                                    __pyx_parallel_temp0 = __pyx_v_valuePos;
+                                    __pyx_parallel_temp1 = __pyx_v_i;
+                                    __pyx_parallel_temp2 = __pyx_v_xLeftGlobal;
+                                    __pyx_parallel_temp3 = __pyx_v_yBelowTile;
+                                    __pyx_parallel_temp4 = __pyx_v_yOut;
+                                    __pyx_parallel_temp5 = __pyx_v_yBelowGlobal;
+                                    __pyx_parallel_temp6 = __pyx_v_catsOk;
+                                    __pyx_parallel_temp7 = __pyx_v_xInGlobal;
+                                    __pyx_parallel_temp8 = __pyx_v_xOut;
+                                    __pyx_parallel_temp9 = __pyx_v_xLeftTile;
+                                    __pyx_parallel_temp10 = __pyx_v_yAboveGlobal;
+                                    __pyx_parallel_temp11 = __pyx_v_yInTile;
+                                    __pyx_parallel_temp12 = __pyx_v_xRightGlobal;
+                                    __pyx_parallel_temp13 = __pyx_v_yAboveTile;
+                                    __pyx_parallel_temp14 = __pyx_v_nNeighbours;
+                                    __pyx_parallel_temp15 = __pyx_v_localValue;
+                                    __pyx_parallel_temp16 = __pyx_v_likeAdjProp;
+                                    __pyx_parallel_temp17 = __pyx_v_yInGlobal;
+                                    __pyx_parallel_temp18 = __pyx_v_xRightTile;
+                                    __pyx_parallel_temp19 = __pyx_v_xInTile;
                                 }
-                                __pyx_L51:;
+                                __pyx_L52:;
                                 #ifdef _OPENMP
                                 #pragma omp flush(__pyx_parallel_why)
                                 #endif /* _OPENMP */
@@ -3541,26 +3886,26 @@ static PyObject *__pyx_f_7spatial_4core_11categorical_22Categorical_Aggregator_a
                       __pyx_parallel_why = 4;
                     }
                     if (__pyx_parallel_why) {
-                      __pyx_v_yOut = __pyx_parallel_temp0;
-                      __pyx_v_xInTile = __pyx_parallel_temp1;
-                      __pyx_v_xRightTile = __pyx_parallel_temp2;
-                      __pyx_v_xLeftGlobal = __pyx_parallel_temp3;
-                      __pyx_v_xInGlobal = __pyx_parallel_temp4;
-                      __pyx_v_xLeftTile = __pyx_parallel_temp5;
-                      __pyx_v_likeAdjProp = __pyx_parallel_temp6;
-                      __pyx_v_xOut = __pyx_parallel_temp7;
-                      __pyx_v_yBelowTile = __pyx_parallel_temp8;
-                      __pyx_v_yBelowGlobal = __pyx_parallel_temp9;
-                      __pyx_v_nNeighbours = __pyx_parallel_temp10;
-                      __pyx_v_i = __pyx_parallel_temp11;
-                      __pyx_v_catsOk = __pyx_parallel_temp12;
-                      __pyx_v_xRightGlobal = __pyx_parallel_temp13;
-                      __pyx_v_yAboveTile = __pyx_parallel_temp14;
-                      __pyx_v_yAboveGlobal = __pyx_parallel_temp15;
-                      __pyx_v_localValue = __pyx_parallel_temp16;
-                      __pyx_v_valuePos = __pyx_parallel_temp17;
-                      __pyx_v_yInTile = __pyx_parallel_temp18;
-                      __pyx_v_yInGlobal = __pyx_parallel_temp19;
+                      __pyx_v_valuePos = __pyx_parallel_temp0;
+                      __pyx_v_i = __pyx_parallel_temp1;
+                      __pyx_v_xLeftGlobal = __pyx_parallel_temp2;
+                      __pyx_v_yBelowTile = __pyx_parallel_temp3;
+                      __pyx_v_yOut = __pyx_parallel_temp4;
+                      __pyx_v_yBelowGlobal = __pyx_parallel_temp5;
+                      __pyx_v_catsOk = __pyx_parallel_temp6;
+                      __pyx_v_xInGlobal = __pyx_parallel_temp7;
+                      __pyx_v_xOut = __pyx_parallel_temp8;
+                      __pyx_v_xLeftTile = __pyx_parallel_temp9;
+                      __pyx_v_yAboveGlobal = __pyx_parallel_temp10;
+                      __pyx_v_yInTile = __pyx_parallel_temp11;
+                      __pyx_v_xRightGlobal = __pyx_parallel_temp12;
+                      __pyx_v_yAboveTile = __pyx_parallel_temp13;
+                      __pyx_v_nNeighbours = __pyx_parallel_temp14;
+                      __pyx_v_localValue = __pyx_parallel_temp15;
+                      __pyx_v_likeAdjProp = __pyx_parallel_temp16;
+                      __pyx_v_yInGlobal = __pyx_parallel_temp17;
+                      __pyx_v_xRightTile = __pyx_parallel_temp18;
+                      __pyx_v_xInTile = __pyx_parallel_temp19;
                       switch (__pyx_parallel_why) {
                             case 3: goto __pyx_L9_return;
                             case 4:
@@ -3579,10 +3924,10 @@ static PyObject *__pyx_f_7spatial_4core_11categorical_22Categorical_Aggregator_a
                       }
                     }
                 }
-                goto __pyx_L53;
+                goto __pyx_L54;
                 __pyx_L9_return:;
                 __pyx_parallel_why = 3;
-                goto __pyx_L53;
+                goto __pyx_L54;
                 __pyx_L8_error:;
                 {
                     #ifdef WITH_THREAD
@@ -3601,8 +3946,8 @@ static PyObject *__pyx_f_7spatial_4core_11categorical_22Categorical_Aggregator_a
                     #endif
                 }
                 __pyx_parallel_why = 4;
-                goto __pyx_L53;
-                __pyx_L53:;
+                goto __pyx_L54;
+                __pyx_L54:;
                 #ifdef _OPENMP
                 Py_END_ALLOW_THREADS
                 #else
@@ -3650,7 +3995,7 @@ static PyObject *__pyx_f_7spatial_4core_11categorical_22Categorical_Aggregator_a
         #endif
       }
 
-      /* "spatial\core\categorical.pyx":165
+      /* "spatial\core\categorical.pyx":185
  *         #proportion = 1.0 / (self.xFact * self.yFact)
  * 
  *         with nogil, parallel():             # <<<<<<<<<<<<<<
@@ -3680,7 +4025,7 @@ static PyObject *__pyx_f_7spatial_4core_11categorical_22Categorical_Aggregator_a
       }
   }
 
-  /* "spatial\core\categorical.pyx":288
+  /* "spatial\core\categorical.pyx":317
  *                     break
  * 
  *         if catsOk == False:             # <<<<<<<<<<<<<<
@@ -3690,20 +4035,20 @@ static PyObject *__pyx_f_7spatial_4core_11categorical_22Categorical_Aggregator_a
   __pyx_t_12 = ((__pyx_v_catsOk == 0) != 0);
   if (__pyx_t_12) {
 
-    /* "spatial\core\categorical.pyx":290
+    /* "spatial\core\categorical.pyx":319
  *         if catsOk == False:
  *             raise Exception("More category values were encountered than were specified. Cannot continue! "+
  *                             str(np.asarray(self.valueMap)))             # <<<<<<<<<<<<<<
  * 
  *     @cython.boundscheck(False)
  */
-    __pyx_t_2 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 290; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_2 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 319; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_2);
-    __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_asarray); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 290; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_asarray); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 319; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_6);
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-    if (unlikely(!__pyx_v_self->valueMap.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 290; __pyx_clineno = __LINE__; goto __pyx_L1_error;}}
-    __pyx_t_2 = __pyx_memoryview_fromslice(__pyx_v_self->valueMap, 1, (PyObject *(*)(char *)) __pyx_memview_get_int, (int (*)(char *, PyObject *)) __pyx_memview_set_int, 0);; if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 290; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    if (unlikely(!__pyx_v_self->valueMap.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 319; __pyx_clineno = __LINE__; goto __pyx_L1_error;}}
+    __pyx_t_2 = __pyx_memoryview_fromslice(__pyx_v_self->valueMap, 1, (PyObject *(*)(char *)) __pyx_memview_get_int, (int (*)(char *, PyObject *)) __pyx_memview_set_int, 0);; if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 319; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_2);
     __pyx_t_9 = NULL;
     if (CYTHON_COMPILING_IN_CPYTHON && unlikely(PyMethod_Check(__pyx_t_6))) {
@@ -3716,54 +4061,54 @@ static PyObject *__pyx_f_7spatial_4core_11categorical_22Categorical_Aggregator_a
       }
     }
     if (!__pyx_t_9) {
-      __pyx_t_1 = __Pyx_PyObject_CallOneArg(__pyx_t_6, __pyx_t_2); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 290; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_1 = __Pyx_PyObject_CallOneArg(__pyx_t_6, __pyx_t_2); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 319; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
       __Pyx_GOTREF(__pyx_t_1);
     } else {
-      __pyx_t_5 = PyTuple_New(1+1); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 290; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_5 = PyTuple_New(1+1); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 319; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_5);
       PyTuple_SET_ITEM(__pyx_t_5, 0, __pyx_t_9); __Pyx_GIVEREF(__pyx_t_9); __pyx_t_9 = NULL;
       PyTuple_SET_ITEM(__pyx_t_5, 0+1, __pyx_t_2);
       __Pyx_GIVEREF(__pyx_t_2);
       __pyx_t_2 = 0;
-      __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_6, __pyx_t_5, NULL); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 290; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_6, __pyx_t_5, NULL); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 319; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_1);
       __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
     }
     __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-    __pyx_t_6 = PyTuple_New(1); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 290; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_6 = PyTuple_New(1); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 319; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_6);
     PyTuple_SET_ITEM(__pyx_t_6, 0, __pyx_t_1);
     __Pyx_GIVEREF(__pyx_t_1);
     __pyx_t_1 = 0;
-    __pyx_t_1 = __Pyx_PyObject_Call(((PyObject *)((PyObject*)(&PyString_Type))), __pyx_t_6, NULL); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 290; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_1 = __Pyx_PyObject_Call(((PyObject *)((PyObject*)(&PyString_Type))), __pyx_t_6, NULL); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 319; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
 
-    /* "spatial\core\categorical.pyx":289
+    /* "spatial\core\categorical.pyx":318
  * 
  *         if catsOk == False:
  *             raise Exception("More category values were encountered than were specified. Cannot continue! "+             # <<<<<<<<<<<<<<
  *                             str(np.asarray(self.valueMap)))
  * 
  */
-    __pyx_t_6 = PyNumber_Add(__pyx_kp_s_More_category_values_were_encoun, __pyx_t_1); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 289; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_6 = PyNumber_Add(__pyx_kp_s_More_category_values_were_encoun, __pyx_t_1); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 318; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_6);
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-    __pyx_t_1 = PyTuple_New(1); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 289; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_1 = PyTuple_New(1); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 318; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_1);
     PyTuple_SET_ITEM(__pyx_t_1, 0, __pyx_t_6);
     __Pyx_GIVEREF(__pyx_t_6);
     __pyx_t_6 = 0;
-    __pyx_t_6 = __Pyx_PyObject_Call(__pyx_builtin_Exception, __pyx_t_1, NULL); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 289; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_6 = __Pyx_PyObject_Call(__pyx_builtin_Exception, __pyx_t_1, NULL); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 318; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_6);
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
     __Pyx_Raise(__pyx_t_6, 0, 0, 0);
     __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-    {__pyx_filename = __pyx_f[0]; __pyx_lineno = 289; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    {__pyx_filename = __pyx_f[0]; __pyx_lineno = 318; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   }
 
-  /* "spatial\core\categorical.pyx":139
+  /* "spatial\core\categorical.pyx":159
  *     @cython.cdivision(True)
  *     @cython.wraparound(False)
  *     cpdef addTile(self, unsigned char[:,::1] data, Py_ssize_t xOffset, Py_ssize_t yOffset):             # <<<<<<<<<<<<<<
@@ -3824,16 +4169,16 @@ static PyObject *__pyx_pw_7spatial_4core_11categorical_22Categorical_Aggregator_
         case  1:
         if (likely((values[1] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_xOffset)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("addTile", 1, 3, 3, 1); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 139; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+          __Pyx_RaiseArgtupleInvalid("addTile", 1, 3, 3, 1); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 159; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
         }
         case  2:
         if (likely((values[2] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_yOffset)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("addTile", 1, 3, 3, 2); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 139; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+          __Pyx_RaiseArgtupleInvalid("addTile", 1, 3, 3, 2); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 159; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "addTile") < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 139; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "addTile") < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 159; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
       }
     } else if (PyTuple_GET_SIZE(__pyx_args) != 3) {
       goto __pyx_L5_argtuple_error;
@@ -3842,13 +4187,13 @@ static PyObject *__pyx_pw_7spatial_4core_11categorical_22Categorical_Aggregator_
       values[1] = PyTuple_GET_ITEM(__pyx_args, 1);
       values[2] = PyTuple_GET_ITEM(__pyx_args, 2);
     }
-    __pyx_v_data = __Pyx_PyObject_to_MemoryviewSlice_d_dc_unsigned_char(values[0]); if (unlikely(!__pyx_v_data.memview)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 139; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
-    __pyx_v_xOffset = __Pyx_PyIndex_AsSsize_t(values[1]); if (unlikely((__pyx_v_xOffset == (Py_ssize_t)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 139; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
-    __pyx_v_yOffset = __Pyx_PyIndex_AsSsize_t(values[2]); if (unlikely((__pyx_v_yOffset == (Py_ssize_t)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 139; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+    __pyx_v_data = __Pyx_PyObject_to_MemoryviewSlice_d_dc_unsigned_char(values[0]); if (unlikely(!__pyx_v_data.memview)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 159; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+    __pyx_v_xOffset = __Pyx_PyIndex_AsSsize_t(values[1]); if (unlikely((__pyx_v_xOffset == (Py_ssize_t)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 159; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+    __pyx_v_yOffset = __Pyx_PyIndex_AsSsize_t(values[2]); if (unlikely((__pyx_v_yOffset == (Py_ssize_t)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 159; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("addTile", 1, 3, 3, PyTuple_GET_SIZE(__pyx_args)); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 139; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+  __Pyx_RaiseArgtupleInvalid("addTile", 1, 3, 3, PyTuple_GET_SIZE(__pyx_args)); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 159; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
   __pyx_L3_error:;
   __Pyx_AddTraceback("spatial.core.categorical.Categorical_Aggregator.addTile", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
@@ -3870,8 +4215,8 @@ static PyObject *__pyx_pf_7spatial_4core_11categorical_22Categorical_Aggregator_
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("addTile", 0);
   __Pyx_XDECREF(__pyx_r);
-  if (unlikely(!__pyx_v_data.memview)) { __Pyx_RaiseUnboundLocalError("data"); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 139; __pyx_clineno = __LINE__; goto __pyx_L1_error;} }
-  __pyx_t_1 = __pyx_f_7spatial_4core_11categorical_22Categorical_Aggregator_addTile(__pyx_v_self, __pyx_v_data, __pyx_v_xOffset, __pyx_v_yOffset, 1); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 139; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (unlikely(!__pyx_v_data.memview)) { __Pyx_RaiseUnboundLocalError("data"); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 159; __pyx_clineno = __LINE__; goto __pyx_L1_error;} }
+  __pyx_t_1 = __pyx_f_7spatial_4core_11categorical_22Categorical_Aggregator_addTile(__pyx_v_self, __pyx_v_data, __pyx_v_xOffset, __pyx_v_yOffset, 1); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 159; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -3889,7 +4234,7 @@ static PyObject *__pyx_pf_7spatial_4core_11categorical_22Categorical_Aggregator_
   return __pyx_r;
 }
 
-/* "spatial\core\categorical.pyx":295
+/* "spatial\core\categorical.pyx":324
  *     @cython.cdivision(True)
  *     @cython.wraparound(False)
  *     cdef finalise(self):             # <<<<<<<<<<<<<<
@@ -3985,7 +4330,7 @@ static PyObject *__pyx_f_7spatial_4core_11categorical_22Categorical_Aggregator_f
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("finalise", 0);
 
-  /* "spatial\core\categorical.pyx":298
+  /* "spatial\core\categorical.pyx":327
  *         cdef:
  *             Py_ssize_t xOut, yOut
  *             float iscomplete = 1             # <<<<<<<<<<<<<<
@@ -3994,20 +4339,20 @@ static PyObject *__pyx_f_7spatial_4core_11categorical_22Categorical_Aggregator_f
  */
   __pyx_v_iscomplete = 1.0;
 
-  /* "spatial\core\categorical.pyx":301
- *             float proportion
- *             int i, catValue, catPosition
+  /* "spatial\core\categorical.pyx":334
+ *         # here we check for errors that might have occurred. The potential risk is that the same value could have
+ *         # been added to the valuemap twice. So check that the valuemap is in fact unique.
  *         vmNumpy = np.asarray(self.valueMap)             # <<<<<<<<<<<<<<
  *         logMessage("Value map is "+str(vmNumpy))
  *         vmNumpyExclBlank = vmNumpy[vmNumpy!=-1]
  */
-  __pyx_t_2 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 301; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_2 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 334; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_asarray); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 301; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_asarray); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 334; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  if (unlikely(!__pyx_v_self->valueMap.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 301; __pyx_clineno = __LINE__; goto __pyx_L1_error;}}
-  __pyx_t_2 = __pyx_memoryview_fromslice(__pyx_v_self->valueMap, 1, (PyObject *(*)(char *)) __pyx_memview_get_int, (int (*)(char *, PyObject *)) __pyx_memview_set_int, 0);; if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 301; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (unlikely(!__pyx_v_self->valueMap.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 334; __pyx_clineno = __LINE__; goto __pyx_L1_error;}}
+  __pyx_t_2 = __pyx_memoryview_fromslice(__pyx_v_self->valueMap, 1, (PyObject *(*)(char *)) __pyx_memview_get_int, (int (*)(char *, PyObject *)) __pyx_memview_set_int, 0);; if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 334; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_2);
   __pyx_t_4 = NULL;
   if (CYTHON_COMPILING_IN_CPYTHON && unlikely(PyMethod_Check(__pyx_t_3))) {
@@ -4020,17 +4365,17 @@ static PyObject *__pyx_f_7spatial_4core_11categorical_22Categorical_Aggregator_f
     }
   }
   if (!__pyx_t_4) {
-    __pyx_t_1 = __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_t_2); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 301; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_1 = __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_t_2); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 334; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
     __Pyx_GOTREF(__pyx_t_1);
   } else {
-    __pyx_t_5 = PyTuple_New(1+1); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 301; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_5 = PyTuple_New(1+1); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 334; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_5);
     PyTuple_SET_ITEM(__pyx_t_5, 0, __pyx_t_4); __Pyx_GIVEREF(__pyx_t_4); __pyx_t_4 = NULL;
     PyTuple_SET_ITEM(__pyx_t_5, 0+1, __pyx_t_2);
     __Pyx_GIVEREF(__pyx_t_2);
     __pyx_t_2 = 0;
-    __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_t_5, NULL); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 301; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_t_5, NULL); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 334; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
   }
@@ -4038,24 +4383,24 @@ static PyObject *__pyx_f_7spatial_4core_11categorical_22Categorical_Aggregator_f
   __pyx_v_vmNumpy = __pyx_t_1;
   __pyx_t_1 = 0;
 
-  /* "spatial\core\categorical.pyx":302
- *             int i, catValue, catPosition
+  /* "spatial\core\categorical.pyx":335
+ *         # been added to the valuemap twice. So check that the valuemap is in fact unique.
  *         vmNumpy = np.asarray(self.valueMap)
  *         logMessage("Value map is "+str(vmNumpy))             # <<<<<<<<<<<<<<
  *         vmNumpyExclBlank = vmNumpy[vmNumpy!=-1]
  *         if len(np.unique(vmNumpyExclBlank)) < len(vmNumpyExclBlank):
  */
-  __pyx_t_3 = __Pyx_GetModuleGlobalName(__pyx_n_s_logMessage); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 302; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_3 = __Pyx_GetModuleGlobalName(__pyx_n_s_logMessage); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 335; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_5 = PyTuple_New(1); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 302; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_5 = PyTuple_New(1); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 335; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_5);
   __Pyx_INCREF(__pyx_v_vmNumpy);
   PyTuple_SET_ITEM(__pyx_t_5, 0, __pyx_v_vmNumpy);
   __Pyx_GIVEREF(__pyx_v_vmNumpy);
-  __pyx_t_2 = __Pyx_PyObject_Call(((PyObject *)((PyObject*)(&PyString_Type))), __pyx_t_5, NULL); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 302; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_2 = __Pyx_PyObject_Call(((PyObject *)((PyObject*)(&PyString_Type))), __pyx_t_5, NULL); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 335; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-  __pyx_t_5 = PyNumber_Add(__pyx_kp_s_Value_map_is, __pyx_t_2); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 302; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_5 = PyNumber_Add(__pyx_kp_s_Value_map_is, __pyx_t_2); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 335; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_5);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __pyx_t_2 = NULL;
@@ -4069,47 +4414,47 @@ static PyObject *__pyx_f_7spatial_4core_11categorical_22Categorical_Aggregator_f
     }
   }
   if (!__pyx_t_2) {
-    __pyx_t_1 = __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_t_5); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 302; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_1 = __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_t_5); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 335; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
     __Pyx_GOTREF(__pyx_t_1);
   } else {
-    __pyx_t_4 = PyTuple_New(1+1); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 302; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_4 = PyTuple_New(1+1); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 335; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_4);
     PyTuple_SET_ITEM(__pyx_t_4, 0, __pyx_t_2); __Pyx_GIVEREF(__pyx_t_2); __pyx_t_2 = NULL;
     PyTuple_SET_ITEM(__pyx_t_4, 0+1, __pyx_t_5);
     __Pyx_GIVEREF(__pyx_t_5);
     __pyx_t_5 = 0;
-    __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_t_4, NULL); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 302; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_t_4, NULL); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 335; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   }
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "spatial\core\categorical.pyx":303
+  /* "spatial\core\categorical.pyx":336
  *         vmNumpy = np.asarray(self.valueMap)
  *         logMessage("Value map is "+str(vmNumpy))
  *         vmNumpyExclBlank = vmNumpy[vmNumpy!=-1]             # <<<<<<<<<<<<<<
  *         if len(np.unique(vmNumpyExclBlank)) < len(vmNumpyExclBlank):
- *             raise ValueError("messed up the value map, that's an error" + str(np.asarray(self.valueMap)))
+ *             raise ValueError("messed up the value map, that's an error. Please try re-running with the expected"
  */
-  __pyx_t_1 = PyObject_RichCompare(__pyx_v_vmNumpy, __pyx_int_neg_1, Py_NE); __Pyx_XGOTREF(__pyx_t_1); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 303; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __pyx_t_3 = PyObject_GetItem(__pyx_v_vmNumpy, __pyx_t_1); if (unlikely(__pyx_t_3 == NULL)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 303; __pyx_clineno = __LINE__; goto __pyx_L1_error;};
+  __pyx_t_1 = PyObject_RichCompare(__pyx_v_vmNumpy, __pyx_int_neg_1, Py_NE); __Pyx_XGOTREF(__pyx_t_1); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 336; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_3 = PyObject_GetItem(__pyx_v_vmNumpy, __pyx_t_1); if (unlikely(__pyx_t_3 == NULL)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 336; __pyx_clineno = __LINE__; goto __pyx_L1_error;};
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_v_vmNumpyExclBlank = __pyx_t_3;
   __pyx_t_3 = 0;
 
-  /* "spatial\core\categorical.pyx":304
+  /* "spatial\core\categorical.pyx":337
  *         logMessage("Value map is "+str(vmNumpy))
  *         vmNumpyExclBlank = vmNumpy[vmNumpy!=-1]
  *         if len(np.unique(vmNumpyExclBlank)) < len(vmNumpyExclBlank):             # <<<<<<<<<<<<<<
- *             raise ValueError("messed up the value map, that's an error" + str(np.asarray(self.valueMap)))
- * 
+ *             raise ValueError("messed up the value map, that's an error. Please try re-running with the expected"
+ *                              " value map passed as input. Produced: "+ str(np.asarray(self.valueMap)))
  */
-  __pyx_t_1 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 304; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 337; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_unique); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 304; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_unique); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 337; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_t_1 = NULL;
@@ -4123,40 +4468,40 @@ static PyObject *__pyx_f_7spatial_4core_11categorical_22Categorical_Aggregator_f
     }
   }
   if (!__pyx_t_1) {
-    __pyx_t_3 = __Pyx_PyObject_CallOneArg(__pyx_t_4, __pyx_v_vmNumpyExclBlank); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 304; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_3 = __Pyx_PyObject_CallOneArg(__pyx_t_4, __pyx_v_vmNumpyExclBlank); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 337; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_3);
   } else {
-    __pyx_t_5 = PyTuple_New(1+1); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 304; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_5 = PyTuple_New(1+1); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 337; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_5);
     PyTuple_SET_ITEM(__pyx_t_5, 0, __pyx_t_1); __Pyx_GIVEREF(__pyx_t_1); __pyx_t_1 = NULL;
     __Pyx_INCREF(__pyx_v_vmNumpyExclBlank);
     PyTuple_SET_ITEM(__pyx_t_5, 0+1, __pyx_v_vmNumpyExclBlank);
     __Pyx_GIVEREF(__pyx_v_vmNumpyExclBlank);
-    __pyx_t_3 = __Pyx_PyObject_Call(__pyx_t_4, __pyx_t_5, NULL); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 304; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_3 = __Pyx_PyObject_Call(__pyx_t_4, __pyx_t_5, NULL); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 337; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_3);
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
   }
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  __pyx_t_6 = PyObject_Length(__pyx_t_3); if (unlikely(__pyx_t_6 == -1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 304; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_6 = PyObject_Length(__pyx_t_3); if (unlikely(__pyx_t_6 == -1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 337; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  __pyx_t_7 = PyObject_Length(__pyx_v_vmNumpyExclBlank); if (unlikely(__pyx_t_7 == -1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 304; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_7 = PyObject_Length(__pyx_v_vmNumpyExclBlank); if (unlikely(__pyx_t_7 == -1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 337; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __pyx_t_8 = ((__pyx_t_6 < __pyx_t_7) != 0);
   if (__pyx_t_8) {
 
-    /* "spatial\core\categorical.pyx":305
- *         vmNumpyExclBlank = vmNumpy[vmNumpy!=-1]
+    /* "spatial\core\categorical.pyx":339
  *         if len(np.unique(vmNumpyExclBlank)) < len(vmNumpyExclBlank):
- *             raise ValueError("messed up the value map, that's an error" + str(np.asarray(self.valueMap)))             # <<<<<<<<<<<<<<
+ *             raise ValueError("messed up the value map, that's an error. Please try re-running with the expected"
+ *                              " value map passed as input. Produced: "+ str(np.asarray(self.valueMap)))             # <<<<<<<<<<<<<<
  * 
  *         # normalise the fraction and like-adjacency arrays according to then number of data pixels
  */
-    __pyx_t_4 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 305; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_4 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 339; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_4);
-    __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_n_s_asarray); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 305; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_n_s_asarray); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 339; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_5);
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-    if (unlikely(!__pyx_v_self->valueMap.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 305; __pyx_clineno = __LINE__; goto __pyx_L1_error;}}
-    __pyx_t_4 = __pyx_memoryview_fromslice(__pyx_v_self->valueMap, 1, (PyObject *(*)(char *)) __pyx_memview_get_int, (int (*)(char *, PyObject *)) __pyx_memview_set_int, 0);; if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 305; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    if (unlikely(!__pyx_v_self->valueMap.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 339; __pyx_clineno = __LINE__; goto __pyx_L1_error;}}
+    __pyx_t_4 = __pyx_memoryview_fromslice(__pyx_v_self->valueMap, 1, (PyObject *(*)(char *)) __pyx_memview_get_int, (int (*)(char *, PyObject *)) __pyx_memview_set_int, 0);; if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 339; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_4);
     __pyx_t_1 = NULL;
     if (CYTHON_COMPILING_IN_CPYTHON && unlikely(PyMethod_Check(__pyx_t_5))) {
@@ -4169,46 +4514,54 @@ static PyObject *__pyx_f_7spatial_4core_11categorical_22Categorical_Aggregator_f
       }
     }
     if (!__pyx_t_1) {
-      __pyx_t_3 = __Pyx_PyObject_CallOneArg(__pyx_t_5, __pyx_t_4); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 305; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_3 = __Pyx_PyObject_CallOneArg(__pyx_t_5, __pyx_t_4); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 339; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
       __Pyx_GOTREF(__pyx_t_3);
     } else {
-      __pyx_t_2 = PyTuple_New(1+1); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 305; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_2 = PyTuple_New(1+1); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 339; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_2);
       PyTuple_SET_ITEM(__pyx_t_2, 0, __pyx_t_1); __Pyx_GIVEREF(__pyx_t_1); __pyx_t_1 = NULL;
       PyTuple_SET_ITEM(__pyx_t_2, 0+1, __pyx_t_4);
       __Pyx_GIVEREF(__pyx_t_4);
       __pyx_t_4 = 0;
-      __pyx_t_3 = __Pyx_PyObject_Call(__pyx_t_5, __pyx_t_2, NULL); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 305; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_3 = __Pyx_PyObject_Call(__pyx_t_5, __pyx_t_2, NULL); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 339; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_3);
       __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
     }
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-    __pyx_t_5 = PyTuple_New(1); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 305; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_5 = PyTuple_New(1); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 339; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_5);
     PyTuple_SET_ITEM(__pyx_t_5, 0, __pyx_t_3);
     __Pyx_GIVEREF(__pyx_t_3);
     __pyx_t_3 = 0;
-    __pyx_t_3 = __Pyx_PyObject_Call(((PyObject *)((PyObject*)(&PyString_Type))), __pyx_t_5, NULL); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 305; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_3 = __Pyx_PyObject_Call(((PyObject *)((PyObject*)(&PyString_Type))), __pyx_t_5, NULL); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 339; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_3);
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-    __pyx_t_5 = PyNumber_Add(__pyx_kp_s_messed_up_the_value_map_that_s_a, __pyx_t_3); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 305; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_5 = PyNumber_Add(__pyx_kp_s_messed_up_the_value_map_that_s_a, __pyx_t_3); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 339; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_5);
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-    __pyx_t_3 = PyTuple_New(1); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 305; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+
+    /* "spatial\core\categorical.pyx":338
+ *         vmNumpyExclBlank = vmNumpy[vmNumpy!=-1]
+ *         if len(np.unique(vmNumpyExclBlank)) < len(vmNumpyExclBlank):
+ *             raise ValueError("messed up the value map, that's an error. Please try re-running with the expected"             # <<<<<<<<<<<<<<
+ *                              " value map passed as input. Produced: "+ str(np.asarray(self.valueMap)))
+ * 
+ */
+    __pyx_t_3 = PyTuple_New(1); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 338; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_3);
     PyTuple_SET_ITEM(__pyx_t_3, 0, __pyx_t_5);
     __Pyx_GIVEREF(__pyx_t_5);
     __pyx_t_5 = 0;
-    __pyx_t_5 = __Pyx_PyObject_Call(__pyx_builtin_ValueError, __pyx_t_3, NULL); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 305; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_5 = __Pyx_PyObject_Call(__pyx_builtin_ValueError, __pyx_t_3, NULL); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 338; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_5);
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
     __Pyx_Raise(__pyx_t_5, 0, 0, 0);
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-    {__pyx_filename = __pyx_f[0]; __pyx_lineno = 305; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    {__pyx_filename = __pyx_f[0]; __pyx_lineno = 338; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   }
 
-  /* "spatial\core\categorical.pyx":309
+  /* "spatial\core\categorical.pyx":343
  *         # normalise the fraction and like-adjacency arrays according to then number of data pixels
  *         # that went into each output location
  *         for i in range(self.nCategories):             # <<<<<<<<<<<<<<
@@ -4219,7 +4572,7 @@ static PyObject *__pyx_f_7spatial_4core_11categorical_22Categorical_Aggregator_f
   for (__pyx_t_10 = 0; __pyx_t_10 < __pyx_t_9; __pyx_t_10+=1) {
     __pyx_v_i = __pyx_t_10;
 
-    /* "spatial\core\categorical.pyx":310
+    /* "spatial\core\categorical.pyx":344
  *         # that went into each output location
  *         for i in range(self.nCategories):
  *             yOut = -1             # <<<<<<<<<<<<<<
@@ -4228,7 +4581,7 @@ static PyObject *__pyx_f_7spatial_4core_11categorical_22Categorical_Aggregator_f
  */
     __pyx_v_yOut = -1;
 
-    /* "spatial\core\categorical.pyx":311
+    /* "spatial\core\categorical.pyx":345
  *         for i in range(self.nCategories):
  *             yOut = -1
  *             with nogil, parallel():             # <<<<<<<<<<<<<<
@@ -4263,7 +4616,7 @@ static PyObject *__pyx_f_7spatial_4core_11categorical_22Categorical_Aggregator_f
                   Py_BEGIN_ALLOW_THREADS
                   #endif /* _OPENMP */
 
-                  /* "spatial\core\categorical.pyx":312
+                  /* "spatial\core\categorical.pyx":346
  *             yOut = -1
  *             with nogil, parallel():
  *                 for yOut in prange(self.yShapeOut):             # <<<<<<<<<<<<<<
@@ -4284,7 +4637,7 @@ static PyObject *__pyx_f_7spatial_4core_11categorical_22Categorical_Aggregator_f
                       if (__pyx_t_11 > 0)
                       {
                           #ifdef _OPENMP
-                          #pragma omp for lastprivate(__pyx_v_proportion) firstprivate(__pyx_v_yOut) lastprivate(__pyx_v_yOut) lastprivate(__pyx_v_xOut)
+                          #pragma omp for lastprivate(__pyx_v_proportion) lastprivate(__pyx_v_xOut) firstprivate(__pyx_v_yOut) lastprivate(__pyx_v_yOut)
                           #endif /* _OPENMP */
                           for (__pyx_t_6 = 0; __pyx_t_6 < __pyx_t_11; __pyx_t_6++){
                               if (__pyx_parallel_why < 2)
@@ -4294,7 +4647,7 @@ static PyObject *__pyx_f_7spatial_4core_11categorical_22Categorical_Aggregator_f
                                   __pyx_v_proportion = ((float)__PYX_NAN());
                                   __pyx_v_xOut = ((Py_ssize_t)0xbad0bad0);
 
-                                  /* "spatial\core\categorical.pyx":313
+                                  /* "spatial\core\categorical.pyx":347
  *             with nogil, parallel():
  *                 for yOut in prange(self.yShapeOut):
  *                     xOut = -1             # <<<<<<<<<<<<<<
@@ -4303,7 +4656,7 @@ static PyObject *__pyx_f_7spatial_4core_11categorical_22Categorical_Aggregator_f
  */
                                   __pyx_v_xOut = -1;
 
-                                  /* "spatial\core\categorical.pyx":314
+                                  /* "spatial\core\categorical.pyx":348
  *                 for yOut in prange(self.yShapeOut):
  *                     xOut = -1
  *                     for xOut in range(self.xShapeOut):             # <<<<<<<<<<<<<<
@@ -4314,45 +4667,45 @@ static PyObject *__pyx_f_7spatial_4core_11categorical_22Categorical_Aggregator_f
                                   for (__pyx_t_13 = 0; __pyx_t_13 < __pyx_t_12; __pyx_t_13+=1) {
                                     __pyx_v_xOut = __pyx_t_13;
 
-                                    /* "spatial\core\categorical.pyx":315
+                                    /* "spatial\core\categorical.pyx":349
  *                     xOut = -1
  *                     for xOut in range(self.xShapeOut):
  *                         if self._countArr[yOut, xOut] > 0:             # <<<<<<<<<<<<<<
  *                             proportion = 1.0 / self._countArr[yOut, xOut]
  *                             self.outputFracArr[i, yOut, xOut] *= proportion
  */
-                                    if (unlikely(!__pyx_v_self->_countArr.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 315; __pyx_clineno = __LINE__; goto __pyx_L17_error;}}
+                                    if (unlikely(!__pyx_v_self->_countArr.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 349; __pyx_clineno = __LINE__; goto __pyx_L17_error;}}
                                     __pyx_t_14 = __pyx_v_yOut;
                                     __pyx_t_15 = __pyx_v_xOut;
                                     __pyx_t_8 = (((*((short *) ( /* dim=1 */ ((char *) (((short *) ( /* dim=0 */ (__pyx_v_self->_countArr.data + __pyx_t_14 * __pyx_v_self->_countArr.strides[0]) )) + __pyx_t_15)) ))) > 0) != 0);
                                     if (__pyx_t_8) {
 
-                                      /* "spatial\core\categorical.pyx":316
+                                      /* "spatial\core\categorical.pyx":350
  *                     for xOut in range(self.xShapeOut):
  *                         if self._countArr[yOut, xOut] > 0:
  *                             proportion = 1.0 / self._countArr[yOut, xOut]             # <<<<<<<<<<<<<<
  *                             self.outputFracArr[i, yOut, xOut] *= proportion
  *                             if self._doLikeAdj:
  */
-                                      if (unlikely(!__pyx_v_self->_countArr.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 316; __pyx_clineno = __LINE__; goto __pyx_L17_error;}}
+                                      if (unlikely(!__pyx_v_self->_countArr.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 350; __pyx_clineno = __LINE__; goto __pyx_L17_error;}}
                                       __pyx_t_16 = __pyx_v_yOut;
                                       __pyx_t_17 = __pyx_v_xOut;
                                       __pyx_v_proportion = (1.0 / (*((short *) ( /* dim=1 */ ((char *) (((short *) ( /* dim=0 */ (__pyx_v_self->_countArr.data + __pyx_t_16 * __pyx_v_self->_countArr.strides[0]) )) + __pyx_t_17)) ))));
 
-                                      /* "spatial\core\categorical.pyx":317
+                                      /* "spatial\core\categorical.pyx":351
  *                         if self._countArr[yOut, xOut] > 0:
  *                             proportion = 1.0 / self._countArr[yOut, xOut]
  *                             self.outputFracArr[i, yOut, xOut] *= proportion             # <<<<<<<<<<<<<<
  *                             if self._doLikeAdj:
  *                                 self.outputLikeAdjArr[i, yOut, xOut] *= proportion
  */
-                                      if (unlikely(!__pyx_v_self->outputFracArr.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 317; __pyx_clineno = __LINE__; goto __pyx_L17_error;}}
+                                      if (unlikely(!__pyx_v_self->outputFracArr.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 351; __pyx_clineno = __LINE__; goto __pyx_L17_error;}}
                                       __pyx_t_18 = __pyx_v_i;
                                       __pyx_t_19 = __pyx_v_yOut;
                                       __pyx_t_20 = __pyx_v_xOut;
                                       *((float *) ( /* dim=2 */ ((char *) (((float *) ( /* dim=1 */ (( /* dim=0 */ (__pyx_v_self->outputFracArr.data + __pyx_t_18 * __pyx_v_self->outputFracArr.strides[0]) ) + __pyx_t_19 * __pyx_v_self->outputFracArr.strides[1]) )) + __pyx_t_20)) )) *= __pyx_v_proportion;
 
-                                      /* "spatial\core\categorical.pyx":318
+                                      /* "spatial\core\categorical.pyx":352
  *                             proportion = 1.0 / self._countArr[yOut, xOut]
  *                             self.outputFracArr[i, yOut, xOut] *= proportion
  *                             if self._doLikeAdj:             # <<<<<<<<<<<<<<
@@ -4362,14 +4715,14 @@ static PyObject *__pyx_f_7spatial_4core_11categorical_22Categorical_Aggregator_f
                                       __pyx_t_8 = (__pyx_v_self->_doLikeAdj != 0);
                                       if (__pyx_t_8) {
 
-                                        /* "spatial\core\categorical.pyx":319
+                                        /* "spatial\core\categorical.pyx":353
  *                             self.outputFracArr[i, yOut, xOut] *= proportion
  *                             if self._doLikeAdj:
  *                                 self.outputLikeAdjArr[i, yOut, xOut] *= proportion             # <<<<<<<<<<<<<<
  * 
  *         self.sortedValueMap = np.array(sorted(vmNumpy))
  */
-                                        if (unlikely(!__pyx_v_self->outputLikeAdjArr.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 319; __pyx_clineno = __LINE__; goto __pyx_L17_error;}}
+                                        if (unlikely(!__pyx_v_self->outputLikeAdjArr.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 353; __pyx_clineno = __LINE__; goto __pyx_L17_error;}}
                                         __pyx_t_21 = __pyx_v_i;
                                         __pyx_t_22 = __pyx_v_yOut;
                                         __pyx_t_23 = __pyx_v_xOut;
@@ -4407,8 +4760,8 @@ static PyObject *__pyx_f_7spatial_4core_11categorical_22Categorical_Aggregator_f
                                   #endif /* _OPENMP */
                                   {
                                       __pyx_parallel_temp0 = __pyx_v_proportion;
-                                      __pyx_parallel_temp1 = __pyx_v_yOut;
-                                      __pyx_parallel_temp2 = __pyx_v_xOut;
+                                      __pyx_parallel_temp1 = __pyx_v_xOut;
+                                      __pyx_parallel_temp2 = __pyx_v_yOut;
                                   }
                                   __pyx_L24:;
                                   #ifdef _OPENMP
@@ -4423,8 +4776,8 @@ static PyObject *__pyx_f_7spatial_4core_11categorical_22Categorical_Aggregator_f
                       }
                       if (__pyx_parallel_why) {
                         __pyx_v_proportion = __pyx_parallel_temp0;
-                        __pyx_v_yOut = __pyx_parallel_temp1;
-                        __pyx_v_xOut = __pyx_parallel_temp2;
+                        __pyx_v_xOut = __pyx_parallel_temp1;
+                        __pyx_v_yOut = __pyx_parallel_temp2;
                         switch (__pyx_parallel_why) {
                               case 3: goto __pyx_L14_return;
                               case 4:
@@ -4514,7 +4867,7 @@ static PyObject *__pyx_f_7spatial_4core_11categorical_22Categorical_Aggregator_f
           #endif
         }
 
-        /* "spatial\core\categorical.pyx":311
+        /* "spatial\core\categorical.pyx":345
  *         for i in range(self.nCategories):
  *             yOut = -1
  *             with nogil, parallel():             # <<<<<<<<<<<<<<
@@ -4545,24 +4898,24 @@ static PyObject *__pyx_f_7spatial_4core_11categorical_22Categorical_Aggregator_f
     }
   }
 
-  /* "spatial\core\categorical.pyx":321
+  /* "spatial\core\categorical.pyx":355
  *                                 self.outputLikeAdjArr[i, yOut, xOut] *= proportion
  * 
  *         self.sortedValueMap = np.array(sorted(vmNumpy))             # <<<<<<<<<<<<<<
  *         # replace output values in fraction and like-adjacency stacks with nodata where appropriate
  *         for i in range (self.nCategories):
  */
-  __pyx_t_3 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 321; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_3 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 355; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_array); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 321; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_array); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 355; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  __pyx_t_3 = PyTuple_New(1); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 321; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_3 = PyTuple_New(1); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 355; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_INCREF(__pyx_v_vmNumpy);
   PyTuple_SET_ITEM(__pyx_t_3, 0, __pyx_v_vmNumpy);
   __Pyx_GIVEREF(__pyx_v_vmNumpy);
-  __pyx_t_4 = __Pyx_PyObject_Call(__pyx_builtin_sorted, __pyx_t_3, NULL); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 321; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_4 = __Pyx_PyObject_Call(__pyx_builtin_sorted, __pyx_t_3, NULL); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 355; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __pyx_t_3 = NULL;
@@ -4576,30 +4929,30 @@ static PyObject *__pyx_f_7spatial_4core_11categorical_22Categorical_Aggregator_f
     }
   }
   if (!__pyx_t_3) {
-    __pyx_t_5 = __Pyx_PyObject_CallOneArg(__pyx_t_2, __pyx_t_4); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 321; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_5 = __Pyx_PyObject_CallOneArg(__pyx_t_2, __pyx_t_4); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 355; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
     __Pyx_GOTREF(__pyx_t_5);
   } else {
-    __pyx_t_1 = PyTuple_New(1+1); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 321; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_1 = PyTuple_New(1+1); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 355; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_1);
     PyTuple_SET_ITEM(__pyx_t_1, 0, __pyx_t_3); __Pyx_GIVEREF(__pyx_t_3); __pyx_t_3 = NULL;
     PyTuple_SET_ITEM(__pyx_t_1, 0+1, __pyx_t_4);
     __Pyx_GIVEREF(__pyx_t_4);
     __pyx_t_4 = 0;
-    __pyx_t_5 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_t_1, NULL); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 321; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_5 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_t_1, NULL); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 355; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_5);
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   }
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __pyx_t_24 = __Pyx_PyObject_to_MemoryviewSlice_dc_int(__pyx_t_5);
-  if (unlikely(!__pyx_t_24.memview)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 321; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (unlikely(!__pyx_t_24.memview)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 355; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
   __PYX_XDEC_MEMVIEW(&__pyx_v_self->sortedValueMap, 0);
   __pyx_v_self->sortedValueMap = __pyx_t_24;
   __pyx_t_24.memview = NULL;
   __pyx_t_24.data = NULL;
 
-  /* "spatial\core\categorical.pyx":323
+  /* "spatial\core\categorical.pyx":357
  *         self.sortedValueMap = np.array(sorted(vmNumpy))
  *         # replace output values in fraction and like-adjacency stacks with nodata where appropriate
  *         for i in range (self.nCategories):             # <<<<<<<<<<<<<<
@@ -4610,18 +4963,18 @@ static PyObject *__pyx_f_7spatial_4core_11categorical_22Categorical_Aggregator_f
   for (__pyx_t_10 = 0; __pyx_t_10 < __pyx_t_9; __pyx_t_10+=1) {
     __pyx_v_i = __pyx_t_10;
 
-    /* "spatial\core\categorical.pyx":333
+    /* "spatial\core\categorical.pyx":367
  *             # one first.
  *             # the value to output
  *             catValue = self.sortedValueMap[i]             # <<<<<<<<<<<<<<
  *             if catValue == -1:
  *                 continue
  */
-    if (unlikely(!__pyx_v_self->sortedValueMap.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 333; __pyx_clineno = __LINE__; goto __pyx_L1_error;}}
+    if (unlikely(!__pyx_v_self->sortedValueMap.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 367; __pyx_clineno = __LINE__; goto __pyx_L1_error;}}
     __pyx_t_25 = __pyx_v_i;
     __pyx_v_catValue = (*((int *) ( /* dim=0 */ ((char *) (((int *) __pyx_v_self->sortedValueMap.data) + __pyx_t_25)) )));
 
-    /* "spatial\core\categorical.pyx":334
+    /* "spatial\core\categorical.pyx":368
  *             # the value to output
  *             catValue = self.sortedValueMap[i]
  *             if catValue == -1:             # <<<<<<<<<<<<<<
@@ -4631,7 +4984,7 @@ static PyObject *__pyx_f_7spatial_4core_11categorical_22Categorical_Aggregator_f
     __pyx_t_8 = ((__pyx_v_catValue == -1) != 0);
     if (__pyx_t_8) {
 
-      /* "spatial\core\categorical.pyx":335
+      /* "spatial\core\categorical.pyx":369
  *             catValue = self.sortedValueMap[i]
  *             if catValue == -1:
  *                 continue             # <<<<<<<<<<<<<<
@@ -4641,21 +4994,21 @@ static PyObject *__pyx_f_7spatial_4core_11categorical_22Categorical_Aggregator_f
       goto __pyx_L27_continue;
     }
 
-    /* "spatial\core\categorical.pyx":337
+    /* "spatial\core\categorical.pyx":371
  *                 continue
  *             # the position in thje stack
  *             catPosition = np.argwhere(vmNumpy==catValue)[0]             # <<<<<<<<<<<<<<
  *             # catNum here is actually just the position in the stack not the actual value
  *             yOut = -1
  */
-    __pyx_t_2 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 337; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_2 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 371; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_2);
-    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_argwhere); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 337; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_argwhere); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 371; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-    __pyx_t_2 = __Pyx_PyInt_From_int(__pyx_v_catValue); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 337; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_2 = __Pyx_PyInt_From_int(__pyx_v_catValue); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 371; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_2);
-    __pyx_t_4 = PyObject_RichCompare(__pyx_v_vmNumpy, __pyx_t_2, Py_EQ); __Pyx_XGOTREF(__pyx_t_4); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 337; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_4 = PyObject_RichCompare(__pyx_v_vmNumpy, __pyx_t_2, Py_EQ); __Pyx_XGOTREF(__pyx_t_4); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 371; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
     __pyx_t_2 = NULL;
     if (CYTHON_COMPILING_IN_CPYTHON && unlikely(PyMethod_Check(__pyx_t_1))) {
@@ -4668,29 +5021,29 @@ static PyObject *__pyx_f_7spatial_4core_11categorical_22Categorical_Aggregator_f
       }
     }
     if (!__pyx_t_2) {
-      __pyx_t_5 = __Pyx_PyObject_CallOneArg(__pyx_t_1, __pyx_t_4); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 337; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_5 = __Pyx_PyObject_CallOneArg(__pyx_t_1, __pyx_t_4); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 371; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
       __Pyx_GOTREF(__pyx_t_5);
     } else {
-      __pyx_t_3 = PyTuple_New(1+1); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 337; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_3 = PyTuple_New(1+1); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 371; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_3);
       PyTuple_SET_ITEM(__pyx_t_3, 0, __pyx_t_2); __Pyx_GIVEREF(__pyx_t_2); __pyx_t_2 = NULL;
       PyTuple_SET_ITEM(__pyx_t_3, 0+1, __pyx_t_4);
       __Pyx_GIVEREF(__pyx_t_4);
       __pyx_t_4 = 0;
-      __pyx_t_5 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_t_3, NULL); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 337; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_5 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_t_3, NULL); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 371; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_5);
       __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
     }
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-    __pyx_t_1 = __Pyx_GetItemInt(__pyx_t_5, 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 0); if (unlikely(__pyx_t_1 == NULL)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 337; __pyx_clineno = __LINE__; goto __pyx_L1_error;};
+    __pyx_t_1 = __Pyx_GetItemInt(__pyx_t_5, 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 0); if (unlikely(__pyx_t_1 == NULL)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 371; __pyx_clineno = __LINE__; goto __pyx_L1_error;};
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-    __pyx_t_26 = __Pyx_PyInt_As_int(__pyx_t_1); if (unlikely((__pyx_t_26 == (int)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 337; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_26 = __Pyx_PyInt_As_int(__pyx_t_1); if (unlikely((__pyx_t_26 == (int)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 371; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
     __pyx_v_catPosition = __pyx_t_26;
 
-    /* "spatial\core\categorical.pyx":339
+    /* "spatial\core\categorical.pyx":373
  *             catPosition = np.argwhere(vmNumpy==catValue)[0]
  *             # catNum here is actually just the position in the stack not the actual value
  *             yOut = -1             # <<<<<<<<<<<<<<
@@ -4699,7 +5052,7 @@ static PyObject *__pyx_f_7spatial_4core_11categorical_22Categorical_Aggregator_f
  */
     __pyx_v_yOut = -1;
 
-    /* "spatial\core\categorical.pyx":340
+    /* "spatial\core\categorical.pyx":374
  *             # catNum here is actually just the position in the stack not the actual value
  *             yOut = -1
  *             for yOut in range (self.yShapeOut):             # <<<<<<<<<<<<<<
@@ -4710,7 +5063,7 @@ static PyObject *__pyx_f_7spatial_4core_11categorical_22Categorical_Aggregator_f
     for (__pyx_t_6 = 0; __pyx_t_6 < __pyx_t_11; __pyx_t_6+=1) {
       __pyx_v_yOut = __pyx_t_6;
 
-      /* "spatial\core\categorical.pyx":341
+      /* "spatial\core\categorical.pyx":375
  *             yOut = -1
  *             for yOut in range (self.yShapeOut):
  *                 xOut = -1             # <<<<<<<<<<<<<<
@@ -4719,7 +5072,7 @@ static PyObject *__pyx_f_7spatial_4core_11categorical_22Categorical_Aggregator_f
  */
       __pyx_v_xOut = -1;
 
-      /* "spatial\core\categorical.pyx":342
+      /* "spatial\core\categorical.pyx":376
  *             for yOut in range (self.yShapeOut):
  *                 xOut = -1
  *                 for xOut in range (self.xShapeOut):             # <<<<<<<<<<<<<<
@@ -4730,20 +5083,20 @@ static PyObject *__pyx_f_7spatial_4core_11categorical_22Categorical_Aggregator_f
       for (__pyx_t_12 = 0; __pyx_t_12 < __pyx_t_7; __pyx_t_12+=1) {
         __pyx_v_xOut = __pyx_t_12;
 
-        /* "spatial\core\categorical.pyx":345
+        /* "spatial\core\categorical.pyx":379
  *                     # check whether there's anywhere that hasn't been covered by an input grid
  *                     # (no matter whether that was data or nodata)
  *                     if self._coverageArr[yOut, xOut] & 3 == 0:             # <<<<<<<<<<<<<<
  *                         iscomplete = 0
  * 
  */
-        if (unlikely(!__pyx_v_self->_coverageArr.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 345; __pyx_clineno = __LINE__; goto __pyx_L1_error;}}
+        if (unlikely(!__pyx_v_self->_coverageArr.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 379; __pyx_clineno = __LINE__; goto __pyx_L1_error;}}
         __pyx_t_13 = __pyx_v_yOut;
         __pyx_t_27 = __pyx_v_xOut;
         __pyx_t_8 = ((((*((char *) ( /* dim=1 */ ((char *) (((char *) ( /* dim=0 */ (__pyx_v_self->_coverageArr.data + __pyx_t_13 * __pyx_v_self->_coverageArr.strides[0]) )) + __pyx_t_27)) ))) & 3) == 0) != 0);
         if (__pyx_t_8) {
 
-          /* "spatial\core\categorical.pyx":346
+          /* "spatial\core\categorical.pyx":380
  *                     # (no matter whether that was data or nodata)
  *                     if self._coverageArr[yOut, xOut] & 3 == 0:
  *                         iscomplete = 0             # <<<<<<<<<<<<<<
@@ -4755,47 +5108,47 @@ static PyObject *__pyx_f_7spatial_4core_11categorical_22Categorical_Aggregator_f
         }
         __pyx_L34:;
 
-        /* "spatial\core\categorical.pyx":349
+        /* "spatial\core\categorical.pyx":383
  * 
  *                     # update the majority-class grid if this class' fraction is the highest yet
  *                     if self.outputFracArr[catPosition, yOut, xOut] > self.tmpMajorityPropArr[yOut, xOut]:             # <<<<<<<<<<<<<<
  *                         self.tmpMajorityPropArr[yOut, xOut] = self.outputFracArr[catPosition, yOut, xOut]
  *                         self.outputMajorityArr[yOut, xOut] = catValue
  */
-        if (unlikely(!__pyx_v_self->outputFracArr.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 349; __pyx_clineno = __LINE__; goto __pyx_L1_error;}}
+        if (unlikely(!__pyx_v_self->outputFracArr.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 383; __pyx_clineno = __LINE__; goto __pyx_L1_error;}}
         __pyx_t_26 = __pyx_v_catPosition;
         __pyx_t_28 = __pyx_v_yOut;
         __pyx_t_29 = __pyx_v_xOut;
-        if (unlikely(!__pyx_v_self->tmpMajorityPropArr.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 349; __pyx_clineno = __LINE__; goto __pyx_L1_error;}}
+        if (unlikely(!__pyx_v_self->tmpMajorityPropArr.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 383; __pyx_clineno = __LINE__; goto __pyx_L1_error;}}
         __pyx_t_30 = __pyx_v_yOut;
         __pyx_t_31 = __pyx_v_xOut;
         __pyx_t_8 = (((*((float *) ( /* dim=2 */ ((char *) (((float *) ( /* dim=1 */ (( /* dim=0 */ (__pyx_v_self->outputFracArr.data + __pyx_t_26 * __pyx_v_self->outputFracArr.strides[0]) ) + __pyx_t_28 * __pyx_v_self->outputFracArr.strides[1]) )) + __pyx_t_29)) ))) > (*((float *) ( /* dim=1 */ ((char *) (((float *) ( /* dim=0 */ (__pyx_v_self->tmpMajorityPropArr.data + __pyx_t_30 * __pyx_v_self->tmpMajorityPropArr.strides[0]) )) + __pyx_t_31)) )))) != 0);
         if (__pyx_t_8) {
 
-          /* "spatial\core\categorical.pyx":350
+          /* "spatial\core\categorical.pyx":384
  *                     # update the majority-class grid if this class' fraction is the highest yet
  *                     if self.outputFracArr[catPosition, yOut, xOut] > self.tmpMajorityPropArr[yOut, xOut]:
  *                         self.tmpMajorityPropArr[yOut, xOut] = self.outputFracArr[catPosition, yOut, xOut]             # <<<<<<<<<<<<<<
  *                         self.outputMajorityArr[yOut, xOut] = catValue
  * 
  */
-          if (unlikely(!__pyx_v_self->outputFracArr.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 350; __pyx_clineno = __LINE__; goto __pyx_L1_error;}}
+          if (unlikely(!__pyx_v_self->outputFracArr.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 384; __pyx_clineno = __LINE__; goto __pyx_L1_error;}}
           __pyx_t_32 = __pyx_v_catPosition;
           __pyx_t_33 = __pyx_v_yOut;
           __pyx_t_34 = __pyx_v_xOut;
-          if (unlikely(!__pyx_v_self->tmpMajorityPropArr.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 350; __pyx_clineno = __LINE__; goto __pyx_L1_error;}}
+          if (unlikely(!__pyx_v_self->tmpMajorityPropArr.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 384; __pyx_clineno = __LINE__; goto __pyx_L1_error;}}
           __pyx_t_35 = __pyx_v_yOut;
           __pyx_t_36 = __pyx_v_xOut;
           *((float *) ( /* dim=1 */ ((char *) (((float *) ( /* dim=0 */ (__pyx_v_self->tmpMajorityPropArr.data + __pyx_t_35 * __pyx_v_self->tmpMajorityPropArr.strides[0]) )) + __pyx_t_36)) )) = (*((float *) ( /* dim=2 */ ((char *) (((float *) ( /* dim=1 */ (( /* dim=0 */ (__pyx_v_self->outputFracArr.data + __pyx_t_32 * __pyx_v_self->outputFracArr.strides[0]) ) + __pyx_t_33 * __pyx_v_self->outputFracArr.strides[1]) )) + __pyx_t_34)) )));
 
-          /* "spatial\core\categorical.pyx":351
+          /* "spatial\core\categorical.pyx":385
  *                     if self.outputFracArr[catPosition, yOut, xOut] > self.tmpMajorityPropArr[yOut, xOut]:
  *                         self.tmpMajorityPropArr[yOut, xOut] = self.outputFracArr[catPosition, yOut, xOut]
  *                         self.outputMajorityArr[yOut, xOut] = catValue             # <<<<<<<<<<<<<<
  * 
  *                     # for the like adjacency grids, output a value if we've had any input data here;
  */
-          if (unlikely(!__pyx_v_self->outputMajorityArr.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 351; __pyx_clineno = __LINE__; goto __pyx_L1_error;}}
+          if (unlikely(!__pyx_v_self->outputMajorityArr.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 385; __pyx_clineno = __LINE__; goto __pyx_L1_error;}}
           __pyx_t_37 = __pyx_v_yOut;
           __pyx_t_38 = __pyx_v_xOut;
           *((unsigned char *) ( /* dim=1 */ ((char *) (((unsigned char *) ( /* dim=0 */ (__pyx_v_self->outputMajorityArr.data + __pyx_t_37 * __pyx_v_self->outputMajorityArr.strides[0]) )) + __pyx_t_38)) )) = __pyx_v_catValue;
@@ -4803,21 +5156,21 @@ static PyObject *__pyx_f_7spatial_4core_11categorical_22Categorical_Aggregator_f
         }
         __pyx_L35:;
 
-        /* "spatial\core\categorical.pyx":358
+        /* "spatial\core\categorical.pyx":392
  *                     # Use the fraction (class proportion) grids to check this
  *                     # (non-zero implies we had a data pixel)
  *                     if self.outputFracArr[catPosition, yOut, xOut] > 0:             # <<<<<<<<<<<<<<
  *                         # we've had at least one data pixel of this class at this location
  *                         # so we can calculate a like adjacency
  */
-        if (unlikely(!__pyx_v_self->outputFracArr.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 358; __pyx_clineno = __LINE__; goto __pyx_L1_error;}}
+        if (unlikely(!__pyx_v_self->outputFracArr.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 392; __pyx_clineno = __LINE__; goto __pyx_L1_error;}}
         __pyx_t_39 = __pyx_v_catPosition;
         __pyx_t_40 = __pyx_v_yOut;
         __pyx_t_41 = __pyx_v_xOut;
         __pyx_t_8 = (((*((float *) ( /* dim=2 */ ((char *) (((float *) ( /* dim=1 */ (( /* dim=0 */ (__pyx_v_self->outputFracArr.data + __pyx_t_39 * __pyx_v_self->outputFracArr.strides[0]) ) + __pyx_t_40 * __pyx_v_self->outputFracArr.strides[1]) )) + __pyx_t_41)) ))) > 0.0) != 0);
         if (__pyx_t_8) {
 
-          /* "spatial\core\categorical.pyx":361
+          /* "spatial\core\categorical.pyx":395
  *                         # we've had at least one data pixel of this class at this location
  *                         # so we can calculate a like adjacency
  *                         if self._doLikeAdj:             # <<<<<<<<<<<<<<
@@ -4827,30 +5180,30 @@ static PyObject *__pyx_f_7spatial_4core_11categorical_22Categorical_Aggregator_f
           __pyx_t_8 = (__pyx_v_self->_doLikeAdj != 0);
           if (__pyx_t_8) {
 
-            /* "spatial\core\categorical.pyx":363
+            /* "spatial\core\categorical.pyx":397
  *                         if self._doLikeAdj:
  *                             self.outputLikeAdjArr[catPosition, yOut, xOut] = (
  *                                 self.outputLikeAdjArr[catPosition, yOut, xOut] / self.outputFracArr[catPosition, yOut, xOut]             # <<<<<<<<<<<<<<
  *                             )
  *                         # also, convert the fraction to a percentage so we can return as int type
  */
-            if (unlikely(!__pyx_v_self->outputLikeAdjArr.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 363; __pyx_clineno = __LINE__; goto __pyx_L1_error;}}
+            if (unlikely(!__pyx_v_self->outputLikeAdjArr.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 397; __pyx_clineno = __LINE__; goto __pyx_L1_error;}}
             __pyx_t_42 = __pyx_v_catPosition;
             __pyx_t_43 = __pyx_v_yOut;
             __pyx_t_44 = __pyx_v_xOut;
-            if (unlikely(!__pyx_v_self->outputFracArr.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 363; __pyx_clineno = __LINE__; goto __pyx_L1_error;}}
+            if (unlikely(!__pyx_v_self->outputFracArr.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 397; __pyx_clineno = __LINE__; goto __pyx_L1_error;}}
             __pyx_t_45 = __pyx_v_catPosition;
             __pyx_t_46 = __pyx_v_yOut;
             __pyx_t_47 = __pyx_v_xOut;
 
-            /* "spatial\core\categorical.pyx":362
+            /* "spatial\core\categorical.pyx":396
  *                         # so we can calculate a like adjacency
  *                         if self._doLikeAdj:
  *                             self.outputLikeAdjArr[catPosition, yOut, xOut] = (             # <<<<<<<<<<<<<<
  *                                 self.outputLikeAdjArr[catPosition, yOut, xOut] / self.outputFracArr[catPosition, yOut, xOut]
  *                             )
  */
-            if (unlikely(!__pyx_v_self->outputLikeAdjArr.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 362; __pyx_clineno = __LINE__; goto __pyx_L1_error;}}
+            if (unlikely(!__pyx_v_self->outputLikeAdjArr.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 396; __pyx_clineno = __LINE__; goto __pyx_L1_error;}}
             __pyx_t_48 = __pyx_v_catPosition;
             __pyx_t_49 = __pyx_v_yOut;
             __pyx_t_50 = __pyx_v_xOut;
@@ -4859,27 +5212,27 @@ static PyObject *__pyx_f_7spatial_4core_11categorical_22Categorical_Aggregator_f
           }
           __pyx_L37:;
 
-          /* "spatial\core\categorical.pyx":366
+          /* "spatial\core\categorical.pyx":400
  *                             )
  *                         # also, convert the fraction to a percentage so we can return as int type
  *                         self.outputFracArr[catPosition, yOut, xOut] *= 100             # <<<<<<<<<<<<<<
  *                         # so we can cast (truncate) rather than round
  *                         self.outputFracArr[catPosition, yOut, xOut] += 0.5
  */
-          if (unlikely(!__pyx_v_self->outputFracArr.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 366; __pyx_clineno = __LINE__; goto __pyx_L1_error;}}
+          if (unlikely(!__pyx_v_self->outputFracArr.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 400; __pyx_clineno = __LINE__; goto __pyx_L1_error;}}
           __pyx_t_51 = __pyx_v_catPosition;
           __pyx_t_52 = __pyx_v_yOut;
           __pyx_t_53 = __pyx_v_xOut;
           *((float *) ( /* dim=2 */ ((char *) (((float *) ( /* dim=1 */ (( /* dim=0 */ (__pyx_v_self->outputFracArr.data + __pyx_t_51 * __pyx_v_self->outputFracArr.strides[0]) ) + __pyx_t_52 * __pyx_v_self->outputFracArr.strides[1]) )) + __pyx_t_53)) )) *= 100.0;
 
-          /* "spatial\core\categorical.pyx":368
+          /* "spatial\core\categorical.pyx":402
  *                         self.outputFracArr[catPosition, yOut, xOut] *= 100
  *                         # so we can cast (truncate) rather than round
  *                         self.outputFracArr[catPosition, yOut, xOut] += 0.5             # <<<<<<<<<<<<<<
  *                     else:
  *                         # no input pixels of this class at this output loc: output ndv for like-adjacency
  */
-          if (unlikely(!__pyx_v_self->outputFracArr.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 368; __pyx_clineno = __LINE__; goto __pyx_L1_error;}}
+          if (unlikely(!__pyx_v_self->outputFracArr.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 402; __pyx_clineno = __LINE__; goto __pyx_L1_error;}}
           __pyx_t_54 = __pyx_v_catPosition;
           __pyx_t_55 = __pyx_v_yOut;
           __pyx_t_56 = __pyx_v_xOut;
@@ -4888,7 +5241,7 @@ static PyObject *__pyx_f_7spatial_4core_11categorical_22Categorical_Aggregator_f
         }
         /*else*/ {
 
-          /* "spatial\core\categorical.pyx":371
+          /* "spatial\core\categorical.pyx":405
  *                     else:
  *                         # no input pixels of this class at this output loc: output ndv for like-adjacency
  *                         if self._doLikeAdj:             # <<<<<<<<<<<<<<
@@ -4898,7 +5251,7 @@ static PyObject *__pyx_f_7spatial_4core_11categorical_22Categorical_Aggregator_f
           __pyx_t_8 = (__pyx_v_self->_doLikeAdj != 0);
           if (__pyx_t_8) {
 
-            /* "spatial\core\categorical.pyx":372
+            /* "spatial\core\categorical.pyx":406
  *                         # no input pixels of this class at this output loc: output ndv for like-adjacency
  *                         if self._doLikeAdj:
  *                             self.outputLikeAdjArr[catPosition, yOut, xOut] = self._fltNDV             # <<<<<<<<<<<<<<
@@ -4906,7 +5259,7 @@ static PyObject *__pyx_f_7spatial_4core_11categorical_22Categorical_Aggregator_f
  *                         # had any input data of _any_ class here (if we have, but of a different
  */
             __pyx_t_57 = __pyx_v_self->_fltNDV;
-            if (unlikely(!__pyx_v_self->outputLikeAdjArr.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 372; __pyx_clineno = __LINE__; goto __pyx_L1_error;}}
+            if (unlikely(!__pyx_v_self->outputLikeAdjArr.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 406; __pyx_clineno = __LINE__; goto __pyx_L1_error;}}
             __pyx_t_58 = __pyx_v_catPosition;
             __pyx_t_59 = __pyx_v_yOut;
             __pyx_t_60 = __pyx_v_xOut;
@@ -4915,20 +5268,20 @@ static PyObject *__pyx_f_7spatial_4core_11categorical_22Categorical_Aggregator_f
           }
           __pyx_L38:;
 
-          /* "spatial\core\categorical.pyx":376
+          /* "spatial\core\categorical.pyx":410
  *                         # had any input data of _any_ class here (if we have, but of a different
  *                         # class, then the default 0 is correct for this fraction grid)
  *                         if self._coverageArr[yOut, xOut] & 2 == 0:             # <<<<<<<<<<<<<<
  *                             self.outputFracArr[catPosition, yOut, xOut] = self._fltNDV
  * 
  */
-          if (unlikely(!__pyx_v_self->_coverageArr.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 376; __pyx_clineno = __LINE__; goto __pyx_L1_error;}}
+          if (unlikely(!__pyx_v_self->_coverageArr.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 410; __pyx_clineno = __LINE__; goto __pyx_L1_error;}}
           __pyx_t_61 = __pyx_v_yOut;
           __pyx_t_62 = __pyx_v_xOut;
           __pyx_t_8 = ((((*((char *) ( /* dim=1 */ ((char *) (((char *) ( /* dim=0 */ (__pyx_v_self->_coverageArr.data + __pyx_t_61 * __pyx_v_self->_coverageArr.strides[0]) )) + __pyx_t_62)) ))) & 2) == 0) != 0);
           if (__pyx_t_8) {
 
-            /* "spatial\core\categorical.pyx":377
+            /* "spatial\core\categorical.pyx":411
  *                         # class, then the default 0 is correct for this fraction grid)
  *                         if self._coverageArr[yOut, xOut] & 2 == 0:
  *                             self.outputFracArr[catPosition, yOut, xOut] = self._fltNDV             # <<<<<<<<<<<<<<
@@ -4936,7 +5289,7 @@ static PyObject *__pyx_f_7spatial_4core_11categorical_22Categorical_Aggregator_f
  *         # replace output values in majority class grid with nodata where appropriate
  */
             __pyx_t_57 = __pyx_v_self->_fltNDV;
-            if (unlikely(!__pyx_v_self->outputFracArr.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 377; __pyx_clineno = __LINE__; goto __pyx_L1_error;}}
+            if (unlikely(!__pyx_v_self->outputFracArr.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 411; __pyx_clineno = __LINE__; goto __pyx_L1_error;}}
             __pyx_t_63 = __pyx_v_catPosition;
             __pyx_t_64 = __pyx_v_yOut;
             __pyx_t_65 = __pyx_v_xOut;
@@ -4951,7 +5304,7 @@ static PyObject *__pyx_f_7spatial_4core_11categorical_22Categorical_Aggregator_f
     __pyx_L27_continue:;
   }
 
-  /* "spatial\core\categorical.pyx":380
+  /* "spatial\core\categorical.pyx":414
  * 
  *         # replace output values in majority class grid with nodata where appropriate
  *         for yOut in range (self.yShapeOut):             # <<<<<<<<<<<<<<
@@ -4962,7 +5315,7 @@ static PyObject *__pyx_f_7spatial_4core_11categorical_22Categorical_Aggregator_f
   for (__pyx_t_6 = 0; __pyx_t_6 < __pyx_t_11; __pyx_t_6+=1) {
     __pyx_v_yOut = __pyx_t_6;
 
-    /* "spatial\core\categorical.pyx":381
+    /* "spatial\core\categorical.pyx":415
  *         # replace output values in majority class grid with nodata where appropriate
  *         for yOut in range (self.yShapeOut):
  *             for xOut in range(self.xShapeOut):             # <<<<<<<<<<<<<<
@@ -4973,20 +5326,20 @@ static PyObject *__pyx_f_7spatial_4core_11categorical_22Categorical_Aggregator_f
     for (__pyx_t_12 = 0; __pyx_t_12 < __pyx_t_7; __pyx_t_12+=1) {
       __pyx_v_xOut = __pyx_t_12;
 
-      /* "spatial\core\categorical.pyx":383
+      /* "spatial\core\categorical.pyx":417
  *             for xOut in range(self.xShapeOut):
  *                 # if an output pixel has not been covered by any true data then set it to ndv
  *                 if self._coverageArr[yOut, xOut] & 2 == 0:             # <<<<<<<<<<<<<<
  *                     if self._hasNDV:
  *                         self.outputMajorityArr[yOut, xOut] = self._byteNDV
  */
-      if (unlikely(!__pyx_v_self->_coverageArr.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 383; __pyx_clineno = __LINE__; goto __pyx_L1_error;}}
+      if (unlikely(!__pyx_v_self->_coverageArr.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 417; __pyx_clineno = __LINE__; goto __pyx_L1_error;}}
       __pyx_t_66 = __pyx_v_yOut;
       __pyx_t_67 = __pyx_v_xOut;
       __pyx_t_8 = ((((*((char *) ( /* dim=1 */ ((char *) (((char *) ( /* dim=0 */ (__pyx_v_self->_coverageArr.data + __pyx_t_66 * __pyx_v_self->_coverageArr.strides[0]) )) + __pyx_t_67)) ))) & 2) == 0) != 0);
       if (__pyx_t_8) {
 
-        /* "spatial\core\categorical.pyx":384
+        /* "spatial\core\categorical.pyx":418
  *                 # if an output pixel has not been covered by any true data then set it to ndv
  *                 if self._coverageArr[yOut, xOut] & 2 == 0:
  *                     if self._hasNDV:             # <<<<<<<<<<<<<<
@@ -4996,7 +5349,7 @@ static PyObject *__pyx_f_7spatial_4core_11categorical_22Categorical_Aggregator_f
         __pyx_t_8 = (__pyx_v_self->_hasNDV != 0);
         if (__pyx_t_8) {
 
-          /* "spatial\core\categorical.pyx":385
+          /* "spatial\core\categorical.pyx":419
  *                 if self._coverageArr[yOut, xOut] & 2 == 0:
  *                     if self._hasNDV:
  *                         self.outputMajorityArr[yOut, xOut] = self._byteNDV             # <<<<<<<<<<<<<<
@@ -5004,7 +5357,7 @@ static PyObject *__pyx_f_7spatial_4core_11categorical_22Categorical_Aggregator_f
  *                         self.outputMajorityArr[yOut, xOut] = 255
  */
           __pyx_t_9 = __pyx_v_self->_byteNDV;
-          if (unlikely(!__pyx_v_self->outputMajorityArr.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 385; __pyx_clineno = __LINE__; goto __pyx_L1_error;}}
+          if (unlikely(!__pyx_v_self->outputMajorityArr.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 419; __pyx_clineno = __LINE__; goto __pyx_L1_error;}}
           __pyx_t_68 = __pyx_v_yOut;
           __pyx_t_69 = __pyx_v_xOut;
           *((unsigned char *) ( /* dim=1 */ ((char *) (((unsigned char *) ( /* dim=0 */ (__pyx_v_self->outputMajorityArr.data + __pyx_t_68 * __pyx_v_self->outputMajorityArr.strides[0]) )) + __pyx_t_69)) )) = __pyx_t_9;
@@ -5012,14 +5365,14 @@ static PyObject *__pyx_f_7spatial_4core_11categorical_22Categorical_Aggregator_f
         }
         /*else*/ {
 
-          /* "spatial\core\categorical.pyx":387
+          /* "spatial\core\categorical.pyx":421
  *                         self.outputMajorityArr[yOut, xOut] = self._byteNDV
  *                     else:
  *                         self.outputMajorityArr[yOut, xOut] = 255             # <<<<<<<<<<<<<<
  * 
  *         if not iscomplete:
  */
-          if (unlikely(!__pyx_v_self->outputMajorityArr.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 387; __pyx_clineno = __LINE__; goto __pyx_L1_error;}}
+          if (unlikely(!__pyx_v_self->outputMajorityArr.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 421; __pyx_clineno = __LINE__; goto __pyx_L1_error;}}
           __pyx_t_70 = __pyx_v_yOut;
           __pyx_t_71 = __pyx_v_xOut;
           *((unsigned char *) ( /* dim=1 */ ((char *) (((unsigned char *) ( /* dim=0 */ (__pyx_v_self->outputMajorityArr.data + __pyx_t_70 * __pyx_v_self->outputMajorityArr.strides[0]) )) + __pyx_t_71)) )) = 255;
@@ -5031,7 +5384,7 @@ static PyObject *__pyx_f_7spatial_4core_11categorical_22Categorical_Aggregator_f
     }
   }
 
-  /* "spatial\core\categorical.pyx":389
+  /* "spatial\core\categorical.pyx":423
  *                         self.outputMajorityArr[yOut, xOut] = 255
  * 
  *         if not iscomplete:             # <<<<<<<<<<<<<<
@@ -5041,21 +5394,21 @@ static PyObject *__pyx_f_7spatial_4core_11categorical_22Categorical_Aggregator_f
   __pyx_t_8 = ((!(__pyx_v_iscomplete != 0)) != 0);
   if (__pyx_t_8) {
 
-    /* "spatial\core\categorical.pyx":390
+    /* "spatial\core\categorical.pyx":424
  * 
  *         if not iscomplete:
  *             logMessage("Warning, cannot generate a result without \             # <<<<<<<<<<<<<<
  *             having received input data for full extent")
  *             return False
  */
-    __pyx_t_1 = __Pyx_GetModuleGlobalName(__pyx_n_s_logMessage); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 390; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_1 = __Pyx_GetModuleGlobalName(__pyx_n_s_logMessage); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 424; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_1);
-    __pyx_t_5 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_tuple_, NULL); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 390; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_5 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_tuple__2, NULL); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 424; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_5);
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
 
-    /* "spatial\core\categorical.pyx":392
+    /* "spatial\core\categorical.pyx":426
  *             logMessage("Warning, cannot generate a result without \
  *             having received input data for full extent")
  *             return False             # <<<<<<<<<<<<<<
@@ -5068,7 +5421,7 @@ static PyObject *__pyx_f_7spatial_4core_11categorical_22Categorical_Aggregator_f
     goto __pyx_L0;
   }
 
-  /* "spatial\core\categorical.pyx":393
+  /* "spatial\core\categorical.pyx":427
  *             having received input data for full extent")
  *             return False
  *         return True             # <<<<<<<<<<<<<<
@@ -5080,7 +5433,7 @@ static PyObject *__pyx_f_7spatial_4core_11categorical_22Categorical_Aggregator_f
   __pyx_r = Py_True;
   goto __pyx_L0;
 
-  /* "spatial\core\categorical.pyx":295
+  /* "spatial\core\categorical.pyx":324
  *     @cython.cdivision(True)
  *     @cython.wraparound(False)
  *     cdef finalise(self):             # <<<<<<<<<<<<<<
@@ -5106,11 +5459,11 @@ static PyObject *__pyx_f_7spatial_4core_11categorical_22Categorical_Aggregator_f
   return __pyx_r;
 }
 
-/* "spatial\core\categorical.pyx":395
+/* "spatial\core\categorical.pyx":429
  *         return True
  * 
  *     cpdef GetResults(self):             # <<<<<<<<<<<<<<
- *         '''If input is complete, returns an dict containing the results plus "valuemap" for the z-order '''
+ *         '''If input is complete, returns a dict containing the results plus "valuemap" for the z-order '''
  *         if not self.finalise():
  */
 
@@ -5137,7 +5490,7 @@ static PyObject *__pyx_f_7spatial_4core_11categorical_22Categorical_Aggregator_G
   if (unlikely(__pyx_skip_dispatch)) ;
   /* Check if overridden in Python */
   else if (unlikely(Py_TYPE(((PyObject *)__pyx_v_self))->tp_dictoffset != 0)) {
-    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_GetResults); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 395; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_GetResults); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 429; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_1);
     if (!PyCFunction_Check(__pyx_t_1) || (PyCFunction_GET_FUNCTION(__pyx_t_1) != (PyCFunction)__pyx_pw_7spatial_4core_11categorical_22Categorical_Aggregator_5GetResults)) {
       __Pyx_XDECREF(__pyx_r);
@@ -5153,10 +5506,10 @@ static PyObject *__pyx_f_7spatial_4core_11categorical_22Categorical_Aggregator_G
         }
       }
       if (__pyx_t_4) {
-        __pyx_t_2 = __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_t_4); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 395; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+        __pyx_t_2 = __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_t_4); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 429; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
         __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
       } else {
-        __pyx_t_2 = __Pyx_PyObject_CallNoArg(__pyx_t_3); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 395; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+        __pyx_t_2 = __Pyx_PyObject_CallNoArg(__pyx_t_3); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 429; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       }
       __Pyx_GOTREF(__pyx_t_2);
       __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
@@ -5168,22 +5521,22 @@ static PyObject *__pyx_f_7spatial_4core_11categorical_22Categorical_Aggregator_G
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   }
 
-  /* "spatial\core\categorical.pyx":397
+  /* "spatial\core\categorical.pyx":431
  *     cpdef GetResults(self):
- *         '''If input is complete, returns an dict containing the results plus "valuemap" for the z-order '''
+ *         '''If input is complete, returns a dict containing the results plus "valuemap" for the z-order '''
  *         if not self.finalise():             # <<<<<<<<<<<<<<
  *             return None
  *         returnObj = {
  */
-  __pyx_t_1 = ((struct __pyx_vtabstruct_7spatial_4core_11categorical_Categorical_Aggregator *)__pyx_v_self->__pyx_vtab)->finalise(__pyx_v_self); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 397; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = ((struct __pyx_vtabstruct_7spatial_4core_11categorical_Categorical_Aggregator *)__pyx_v_self->__pyx_vtab)->finalise(__pyx_v_self); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 431; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_5 = __Pyx_PyObject_IsTrue(__pyx_t_1); if (unlikely(__pyx_t_5 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 397; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_5 = __Pyx_PyObject_IsTrue(__pyx_t_1); if (unlikely(__pyx_t_5 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 431; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_t_6 = ((!__pyx_t_5) != 0);
   if (__pyx_t_6) {
 
-    /* "spatial\core\categorical.pyx":398
- *         '''If input is complete, returns an dict containing the results plus "valuemap" for the z-order '''
+    /* "spatial\core\categorical.pyx":432
+ *         '''If input is complete, returns a dict containing the results plus "valuemap" for the z-order '''
  *         if not self.finalise():
  *             return None             # <<<<<<<<<<<<<<
  *         returnObj = {
@@ -5195,35 +5548,35 @@ static PyObject *__pyx_f_7spatial_4core_11categorical_22Categorical_Aggregator_G
     goto __pyx_L0;
   }
 
-  /* "spatial\core\categorical.pyx":399
+  /* "spatial\core\categorical.pyx":433
  *         if not self.finalise():
  *             return None
  *         returnObj = {             # <<<<<<<<<<<<<<
  *             catstats.FRACTIONS: np.asarray(self.outputFracArr).astype(np.int16),
  *             catstats.MAJORITY: np.asarray(self.outputMajorityArr), #.astype(np.uint8)
  */
-  __pyx_t_1 = PyDict_New(); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 399; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = PyDict_New(); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 433; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
 
-  /* "spatial\core\categorical.pyx":400
+  /* "spatial\core\categorical.pyx":434
  *             return None
  *         returnObj = {
  *             catstats.FRACTIONS: np.asarray(self.outputFracArr).astype(np.int16),             # <<<<<<<<<<<<<<
  *             catstats.MAJORITY: np.asarray(self.outputMajorityArr), #.astype(np.uint8)
  *             "valuemap": np.asarray(self.valueMap)
  */
-  __pyx_t_2 = __Pyx_GetModuleGlobalName(__pyx_n_s_catstats); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 400; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_2 = __Pyx_GetModuleGlobalName(__pyx_n_s_catstats); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 434; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_FRACTIONS); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 400; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_FRACTIONS); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 434; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_7 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 400; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_7 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 434; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_7);
-  __pyx_t_8 = __Pyx_PyObject_GetAttrStr(__pyx_t_7, __pyx_n_s_asarray); if (unlikely(!__pyx_t_8)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 400; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_8 = __Pyx_PyObject_GetAttrStr(__pyx_t_7, __pyx_n_s_asarray); if (unlikely(!__pyx_t_8)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 434; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_8);
   __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
-  if (unlikely(!__pyx_v_self->outputFracArr.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 400; __pyx_clineno = __LINE__; goto __pyx_L1_error;}}
-  __pyx_t_7 = __pyx_memoryview_fromslice(__pyx_v_self->outputFracArr, 3, (PyObject *(*)(char *)) __pyx_memview_get_float, (int (*)(char *, PyObject *)) __pyx_memview_set_float, 0);; if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 400; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (unlikely(!__pyx_v_self->outputFracArr.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 434; __pyx_clineno = __LINE__; goto __pyx_L1_error;}}
+  __pyx_t_7 = __pyx_memoryview_fromslice(__pyx_v_self->outputFracArr, 3, (PyObject *(*)(char *)) __pyx_memview_get_float, (int (*)(char *, PyObject *)) __pyx_memview_set_float, 0);; if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 434; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_7);
   __pyx_t_9 = NULL;
   if (CYTHON_COMPILING_IN_CPYTHON && unlikely(PyMethod_Check(__pyx_t_8))) {
@@ -5236,27 +5589,27 @@ static PyObject *__pyx_f_7spatial_4core_11categorical_22Categorical_Aggregator_G
     }
   }
   if (!__pyx_t_9) {
-    __pyx_t_4 = __Pyx_PyObject_CallOneArg(__pyx_t_8, __pyx_t_7); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 400; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_4 = __Pyx_PyObject_CallOneArg(__pyx_t_8, __pyx_t_7); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 434; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
     __Pyx_GOTREF(__pyx_t_4);
   } else {
-    __pyx_t_10 = PyTuple_New(1+1); if (unlikely(!__pyx_t_10)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 400; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_10 = PyTuple_New(1+1); if (unlikely(!__pyx_t_10)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 434; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_10);
     PyTuple_SET_ITEM(__pyx_t_10, 0, __pyx_t_9); __Pyx_GIVEREF(__pyx_t_9); __pyx_t_9 = NULL;
     PyTuple_SET_ITEM(__pyx_t_10, 0+1, __pyx_t_7);
     __Pyx_GIVEREF(__pyx_t_7);
     __pyx_t_7 = 0;
-    __pyx_t_4 = __Pyx_PyObject_Call(__pyx_t_8, __pyx_t_10, NULL); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 400; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_4 = __Pyx_PyObject_Call(__pyx_t_8, __pyx_t_10, NULL); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 434; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_4);
     __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
   }
   __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
-  __pyx_t_8 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_n_s_astype); if (unlikely(!__pyx_t_8)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 400; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_8 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_n_s_astype); if (unlikely(!__pyx_t_8)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 434; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_8);
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  __pyx_t_4 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 400; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_4 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 434; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_4);
-  __pyx_t_10 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_n_s_int16); if (unlikely(!__pyx_t_10)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 400; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_10 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_n_s_int16); if (unlikely(!__pyx_t_10)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 434; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_10);
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   __pyx_t_4 = NULL;
@@ -5270,44 +5623,44 @@ static PyObject *__pyx_f_7spatial_4core_11categorical_22Categorical_Aggregator_G
     }
   }
   if (!__pyx_t_4) {
-    __pyx_t_2 = __Pyx_PyObject_CallOneArg(__pyx_t_8, __pyx_t_10); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 400; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_2 = __Pyx_PyObject_CallOneArg(__pyx_t_8, __pyx_t_10); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 434; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
     __Pyx_GOTREF(__pyx_t_2);
   } else {
-    __pyx_t_7 = PyTuple_New(1+1); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 400; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_7 = PyTuple_New(1+1); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 434; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_7);
     PyTuple_SET_ITEM(__pyx_t_7, 0, __pyx_t_4); __Pyx_GIVEREF(__pyx_t_4); __pyx_t_4 = NULL;
     PyTuple_SET_ITEM(__pyx_t_7, 0+1, __pyx_t_10);
     __Pyx_GIVEREF(__pyx_t_10);
     __pyx_t_10 = 0;
-    __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_8, __pyx_t_7, NULL); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 400; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_8, __pyx_t_7, NULL); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 434; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_2);
     __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
   }
   __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_t_3, __pyx_t_2) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 399; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (PyDict_SetItem(__pyx_t_1, __pyx_t_3, __pyx_t_2) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 433; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "spatial\core\categorical.pyx":401
+  /* "spatial\core\categorical.pyx":435
  *         returnObj = {
  *             catstats.FRACTIONS: np.asarray(self.outputFracArr).astype(np.int16),
  *             catstats.MAJORITY: np.asarray(self.outputMajorityArr), #.astype(np.uint8)             # <<<<<<<<<<<<<<
  *             "valuemap": np.asarray(self.valueMap)
  *         }
  */
-  __pyx_t_2 = __Pyx_GetModuleGlobalName(__pyx_n_s_catstats); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 401; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_2 = __Pyx_GetModuleGlobalName(__pyx_n_s_catstats); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 435; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_MAJORITY); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 401; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_MAJORITY); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 435; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_8 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_8)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 401; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_8 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_8)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 435; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_8);
-  __pyx_t_7 = __Pyx_PyObject_GetAttrStr(__pyx_t_8, __pyx_n_s_asarray); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 401; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_7 = __Pyx_PyObject_GetAttrStr(__pyx_t_8, __pyx_n_s_asarray); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 435; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_7);
   __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
-  if (unlikely(!__pyx_v_self->outputMajorityArr.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 401; __pyx_clineno = __LINE__; goto __pyx_L1_error;}}
-  __pyx_t_8 = __pyx_memoryview_fromslice(__pyx_v_self->outputMajorityArr, 2, (PyObject *(*)(char *)) __pyx_memview_get_unsigned_char, (int (*)(char *, PyObject *)) __pyx_memview_set_unsigned_char, 0);; if (unlikely(!__pyx_t_8)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 401; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (unlikely(!__pyx_v_self->outputMajorityArr.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 435; __pyx_clineno = __LINE__; goto __pyx_L1_error;}}
+  __pyx_t_8 = __pyx_memoryview_fromslice(__pyx_v_self->outputMajorityArr, 2, (PyObject *(*)(char *)) __pyx_memview_get_unsigned_char, (int (*)(char *, PyObject *)) __pyx_memview_set_unsigned_char, 0);; if (unlikely(!__pyx_t_8)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 435; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_8);
   __pyx_t_10 = NULL;
   if (CYTHON_COMPILING_IN_CPYTHON && unlikely(PyMethod_Check(__pyx_t_7))) {
@@ -5320,39 +5673,39 @@ static PyObject *__pyx_f_7spatial_4core_11categorical_22Categorical_Aggregator_G
     }
   }
   if (!__pyx_t_10) {
-    __pyx_t_2 = __Pyx_PyObject_CallOneArg(__pyx_t_7, __pyx_t_8); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 401; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_2 = __Pyx_PyObject_CallOneArg(__pyx_t_7, __pyx_t_8); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 435; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
     __Pyx_GOTREF(__pyx_t_2);
   } else {
-    __pyx_t_4 = PyTuple_New(1+1); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 401; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_4 = PyTuple_New(1+1); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 435; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_4);
     PyTuple_SET_ITEM(__pyx_t_4, 0, __pyx_t_10); __Pyx_GIVEREF(__pyx_t_10); __pyx_t_10 = NULL;
     PyTuple_SET_ITEM(__pyx_t_4, 0+1, __pyx_t_8);
     __Pyx_GIVEREF(__pyx_t_8);
     __pyx_t_8 = 0;
-    __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_7, __pyx_t_4, NULL); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 401; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_7, __pyx_t_4, NULL); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 435; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_2);
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   }
   __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_t_3, __pyx_t_2) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 399; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (PyDict_SetItem(__pyx_t_1, __pyx_t_3, __pyx_t_2) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 433; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "spatial\core\categorical.pyx":402
+  /* "spatial\core\categorical.pyx":436
  *             catstats.FRACTIONS: np.asarray(self.outputFracArr).astype(np.int16),
  *             catstats.MAJORITY: np.asarray(self.outputMajorityArr), #.astype(np.uint8)
  *             "valuemap": np.asarray(self.valueMap)             # <<<<<<<<<<<<<<
  *         }
  *         if self._doLikeAdj:
  */
-  __pyx_t_3 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 402; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_3 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 436; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_7 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_asarray); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 402; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_7 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_asarray); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 436; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_7);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (unlikely(!__pyx_v_self->valueMap.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 402; __pyx_clineno = __LINE__; goto __pyx_L1_error;}}
-  __pyx_t_3 = __pyx_memoryview_fromslice(__pyx_v_self->valueMap, 1, (PyObject *(*)(char *)) __pyx_memview_get_int, (int (*)(char *, PyObject *)) __pyx_memview_set_int, 0);; if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 402; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (unlikely(!__pyx_v_self->valueMap.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 436; __pyx_clineno = __LINE__; goto __pyx_L1_error;}}
+  __pyx_t_3 = __pyx_memoryview_fromslice(__pyx_v_self->valueMap, 1, (PyObject *(*)(char *)) __pyx_memview_get_int, (int (*)(char *, PyObject *)) __pyx_memview_set_int, 0);; if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 436; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_3);
   __pyx_t_4 = NULL;
   if (CYTHON_COMPILING_IN_CPYTHON && unlikely(PyMethod_Check(__pyx_t_7))) {
@@ -5365,27 +5718,27 @@ static PyObject *__pyx_f_7spatial_4core_11categorical_22Categorical_Aggregator_G
     }
   }
   if (!__pyx_t_4) {
-    __pyx_t_2 = __Pyx_PyObject_CallOneArg(__pyx_t_7, __pyx_t_3); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 402; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_2 = __Pyx_PyObject_CallOneArg(__pyx_t_7, __pyx_t_3); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 436; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
     __Pyx_GOTREF(__pyx_t_2);
   } else {
-    __pyx_t_8 = PyTuple_New(1+1); if (unlikely(!__pyx_t_8)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 402; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_8 = PyTuple_New(1+1); if (unlikely(!__pyx_t_8)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 436; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_8);
     PyTuple_SET_ITEM(__pyx_t_8, 0, __pyx_t_4); __Pyx_GIVEREF(__pyx_t_4); __pyx_t_4 = NULL;
     PyTuple_SET_ITEM(__pyx_t_8, 0+1, __pyx_t_3);
     __Pyx_GIVEREF(__pyx_t_3);
     __pyx_t_3 = 0;
-    __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_7, __pyx_t_8, NULL); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 402; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_7, __pyx_t_8, NULL); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 436; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_2);
     __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
   }
   __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_valuemap, __pyx_t_2) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 399; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_valuemap, __pyx_t_2) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 433; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __pyx_v_returnObj = ((PyObject*)__pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "spatial\core\categorical.pyx":404
+  /* "spatial\core\categorical.pyx":438
  *             "valuemap": np.asarray(self.valueMap)
  *         }
  *         if self._doLikeAdj:             # <<<<<<<<<<<<<<
@@ -5395,19 +5748,19 @@ static PyObject *__pyx_f_7spatial_4core_11categorical_22Categorical_Aggregator_G
   __pyx_t_6 = (__pyx_v_self->_doLikeAdj != 0);
   if (__pyx_t_6) {
 
-    /* "spatial\core\categorical.pyx":405
+    /* "spatial\core\categorical.pyx":439
  *         }
  *         if self._doLikeAdj:
  *             returnObj[catstats.LIKEADJACENCIES] = np.asarray(self.outputLikeAdjArr)             # <<<<<<<<<<<<<<
  *         return returnObj
  */
-    __pyx_t_2 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 405; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_2 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 439; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_2);
-    __pyx_t_7 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_asarray); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 405; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_7 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_asarray); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 439; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_7);
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-    if (unlikely(!__pyx_v_self->outputLikeAdjArr.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 405; __pyx_clineno = __LINE__; goto __pyx_L1_error;}}
-    __pyx_t_2 = __pyx_memoryview_fromslice(__pyx_v_self->outputLikeAdjArr, 3, (PyObject *(*)(char *)) __pyx_memview_get_float, (int (*)(char *, PyObject *)) __pyx_memview_set_float, 0);; if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 405; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    if (unlikely(!__pyx_v_self->outputLikeAdjArr.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 439; __pyx_clineno = __LINE__; goto __pyx_L1_error;}}
+    __pyx_t_2 = __pyx_memoryview_fromslice(__pyx_v_self->outputLikeAdjArr, 3, (PyObject *(*)(char *)) __pyx_memview_get_float, (int (*)(char *, PyObject *)) __pyx_memview_set_float, 0);; if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 439; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_2);
     __pyx_t_8 = NULL;
     if (CYTHON_COMPILING_IN_CPYTHON && unlikely(PyMethod_Check(__pyx_t_7))) {
@@ -5420,34 +5773,34 @@ static PyObject *__pyx_f_7spatial_4core_11categorical_22Categorical_Aggregator_G
       }
     }
     if (!__pyx_t_8) {
-      __pyx_t_1 = __Pyx_PyObject_CallOneArg(__pyx_t_7, __pyx_t_2); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 405; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_1 = __Pyx_PyObject_CallOneArg(__pyx_t_7, __pyx_t_2); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 439; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
       __Pyx_GOTREF(__pyx_t_1);
     } else {
-      __pyx_t_3 = PyTuple_New(1+1); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 405; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_3 = PyTuple_New(1+1); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 439; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_3);
       PyTuple_SET_ITEM(__pyx_t_3, 0, __pyx_t_8); __Pyx_GIVEREF(__pyx_t_8); __pyx_t_8 = NULL;
       PyTuple_SET_ITEM(__pyx_t_3, 0+1, __pyx_t_2);
       __Pyx_GIVEREF(__pyx_t_2);
       __pyx_t_2 = 0;
-      __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_7, __pyx_t_3, NULL); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 405; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_7, __pyx_t_3, NULL); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 439; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_1);
       __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
     }
     __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
-    __pyx_t_7 = __Pyx_GetModuleGlobalName(__pyx_n_s_catstats); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 405; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_7 = __Pyx_GetModuleGlobalName(__pyx_n_s_catstats); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 439; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_7);
-    __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_7, __pyx_n_s_LIKEADJACENCIES); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 405; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_7, __pyx_n_s_LIKEADJACENCIES); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 439; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_3);
     __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
-    if (unlikely(PyDict_SetItem(__pyx_v_returnObj, __pyx_t_3, __pyx_t_1) < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 405; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    if (unlikely(PyDict_SetItem(__pyx_v_returnObj, __pyx_t_3, __pyx_t_1) < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 439; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
     goto __pyx_L4;
   }
   __pyx_L4:;
 
-  /* "spatial\core\categorical.pyx":406
+  /* "spatial\core\categorical.pyx":440
  *         if self._doLikeAdj:
  *             returnObj[catstats.LIKEADJACENCIES] = np.asarray(self.outputLikeAdjArr)
  *         return returnObj             # <<<<<<<<<<<<<<
@@ -5457,11 +5810,11 @@ static PyObject *__pyx_f_7spatial_4core_11categorical_22Categorical_Aggregator_G
   __pyx_r = __pyx_v_returnObj;
   goto __pyx_L0;
 
-  /* "spatial\core\categorical.pyx":395
+  /* "spatial\core\categorical.pyx":429
  *         return True
  * 
  *     cpdef GetResults(self):             # <<<<<<<<<<<<<<
- *         '''If input is complete, returns an dict containing the results plus "valuemap" for the z-order '''
+ *         '''If input is complete, returns a dict containing the results plus "valuemap" for the z-order '''
  *         if not self.finalise():
  */
 
@@ -5486,7 +5839,7 @@ static PyObject *__pyx_f_7spatial_4core_11categorical_22Categorical_Aggregator_G
 
 /* Python wrapper */
 static PyObject *__pyx_pw_7spatial_4core_11categorical_22Categorical_Aggregator_5GetResults(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused); /*proto*/
-static char __pyx_doc_7spatial_4core_11categorical_22Categorical_Aggregator_4GetResults[] = "If input is complete, returns an dict containing the results plus \"valuemap\" for the z-order ";
+static char __pyx_doc_7spatial_4core_11categorical_22Categorical_Aggregator_4GetResults[] = "If input is complete, returns a dict containing the results plus \"valuemap\" for the z-order ";
 static PyObject *__pyx_pw_7spatial_4core_11categorical_22Categorical_Aggregator_5GetResults(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused) {
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
@@ -5507,7 +5860,7 @@ static PyObject *__pyx_pf_7spatial_4core_11categorical_22Categorical_Aggregator_
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("GetResults", 0);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __pyx_f_7spatial_4core_11categorical_22Categorical_Aggregator_GetResults(__pyx_v_self, 1); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 395; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __pyx_f_7spatial_4core_11categorical_22Categorical_Aggregator_GetResults(__pyx_v_self, 1); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 429; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -5715,7 +6068,7 @@ static int __pyx_array_MemoryView_5array___cinit__(struct __pyx_array_obj *__pyx
  * 
  *         if itemsize <= 0:
  */
-    __pyx_t_3 = __Pyx_PyObject_Call(__pyx_builtin_ValueError, __pyx_tuple__2, NULL); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[1]; __pyx_lineno = 127; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_3 = __Pyx_PyObject_Call(__pyx_builtin_ValueError, __pyx_tuple__3, NULL); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[1]; __pyx_lineno = 127; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_3);
     __Pyx_Raise(__pyx_t_3, 0, 0, 0);
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
@@ -5739,7 +6092,7 @@ static int __pyx_array_MemoryView_5array___cinit__(struct __pyx_array_obj *__pyx
  * 
  *         if isinstance(format, unicode):
  */
-    __pyx_t_3 = __Pyx_PyObject_Call(__pyx_builtin_ValueError, __pyx_tuple__3, NULL); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[1]; __pyx_lineno = 130; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_3 = __Pyx_PyObject_Call(__pyx_builtin_ValueError, __pyx_tuple__4, NULL); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[1]; __pyx_lineno = 130; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_3);
     __Pyx_Raise(__pyx_t_3, 0, 0, 0);
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
@@ -5837,7 +6190,7 @@ static int __pyx_array_MemoryView_5array___cinit__(struct __pyx_array_obj *__pyx
  * 
  * 
  */
-    __pyx_t_3 = __Pyx_PyObject_Call(__pyx_builtin_MemoryError, __pyx_tuple__4, NULL); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[1]; __pyx_lineno = 142; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_3 = __Pyx_PyObject_Call(__pyx_builtin_MemoryError, __pyx_tuple__5, NULL); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[1]; __pyx_lineno = 142; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_3);
     __Pyx_Raise(__pyx_t_3, 0, 0, 0);
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
@@ -6088,7 +6441,7 @@ static int __pyx_array_MemoryView_5array___cinit__(struct __pyx_array_obj *__pyx
  * 
  *             if self.dtype_is_object:
  */
-      __pyx_t_3 = __Pyx_PyObject_Call(__pyx_builtin_MemoryError, __pyx_tuple__5, NULL); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[1]; __pyx_lineno = 170; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_3 = __Pyx_PyObject_Call(__pyx_builtin_MemoryError, __pyx_tuple__6, NULL); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[1]; __pyx_lineno = 170; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_3);
       __Pyx_Raise(__pyx_t_3, 0, 0, 0);
       __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
@@ -6306,7 +6659,7 @@ static int __pyx_array_getbuffer_MemoryView_5array_2__getbuffer__(struct __pyx_a
  *         info.buf = self.data
  *         info.len = self.len
  */
-    __pyx_t_3 = __Pyx_PyObject_Call(__pyx_builtin_ValueError, __pyx_tuple__6, NULL); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[1]; __pyx_lineno = 186; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_3 = __Pyx_PyObject_Call(__pyx_builtin_ValueError, __pyx_tuple__7, NULL); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[1]; __pyx_lineno = 186; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_3);
     __Pyx_Raise(__pyx_t_3, 0, 0, 0);
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
@@ -8899,7 +9252,7 @@ static PyObject *__pyx_memoryview_convert_item_to_object(struct __pyx_memoryview
  *         else:
  *             if len(self.view.format) == 1:
  */
-      __pyx_t_6 = __Pyx_PyObject_Call(__pyx_builtin_ValueError, __pyx_tuple__7, NULL); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[1]; __pyx_lineno = 445; __pyx_clineno = __LINE__; goto __pyx_L5_except_error;}
+      __pyx_t_6 = __Pyx_PyObject_Call(__pyx_builtin_ValueError, __pyx_tuple__8, NULL); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[1]; __pyx_lineno = 445; __pyx_clineno = __LINE__; goto __pyx_L5_except_error;}
       __Pyx_GOTREF(__pyx_t_6);
       __Pyx_Raise(__pyx_t_6, 0, 0, 0);
       __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
@@ -9678,7 +10031,7 @@ static PyObject *__pyx_memoryview_get_strides_MemoryView_10memoryview_7strides__
  * 
  *             return tuple([self.view.strides[i] for i in xrange(self.view.ndim)])
  */
-    __pyx_t_2 = __Pyx_PyObject_Call(__pyx_builtin_ValueError, __pyx_tuple__8, NULL); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[1]; __pyx_lineno = 521; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_2 = __Pyx_PyObject_Call(__pyx_builtin_ValueError, __pyx_tuple__9, NULL); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[1]; __pyx_lineno = 521; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_2);
     __Pyx_Raise(__pyx_t_2, 0, 0, 0);
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
@@ -11141,9 +11494,9 @@ static PyObject *_unellipsify(PyObject *__pyx_v_index, int __pyx_v_ndim) {
         __Pyx_GOTREF(__pyx_t_7);
         { Py_ssize_t __pyx_temp;
           for (__pyx_temp=0; __pyx_temp < ((__pyx_v_ndim - __pyx_t_8) + 1); __pyx_temp++) {
-            __Pyx_INCREF(__pyx_slice__9);
-            PyList_SET_ITEM(__pyx_t_7, __pyx_temp, __pyx_slice__9);
-            __Pyx_GIVEREF(__pyx_slice__9);
+            __Pyx_INCREF(__pyx_slice__10);
+            PyList_SET_ITEM(__pyx_t_7, __pyx_temp, __pyx_slice__10);
+            __Pyx_GIVEREF(__pyx_slice__10);
           }
         }
         __pyx_t_9 = __Pyx_PyList_Extend(__pyx_v_result, __pyx_t_7); if (unlikely(__pyx_t_9 == -1)) {__pyx_filename = __pyx_f[1]; __pyx_lineno = 638; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
@@ -11168,7 +11521,7 @@ static PyObject *_unellipsify(PyObject *__pyx_v_index, int __pyx_v_ndim) {
  *             have_slices = True
  *         else:
  */
-        __pyx_t_9 = __Pyx_PyList_Append(__pyx_v_result, __pyx_slice__10); if (unlikely(__pyx_t_9 == -1)) {__pyx_filename = __pyx_f[1]; __pyx_lineno = 641; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+        __pyx_t_9 = __Pyx_PyList_Append(__pyx_v_result, __pyx_slice__11); if (unlikely(__pyx_t_9 == -1)) {__pyx_filename = __pyx_f[1]; __pyx_lineno = 641; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       }
       __pyx_L7:;
 
@@ -11297,9 +11650,9 @@ static PyObject *_unellipsify(PyObject *__pyx_v_index, int __pyx_v_ndim) {
     __Pyx_GOTREF(__pyx_t_3);
     { Py_ssize_t __pyx_temp;
       for (__pyx_temp=0; __pyx_temp < __pyx_v_nslices; __pyx_temp++) {
-        __Pyx_INCREF(__pyx_slice__11);
-        PyList_SET_ITEM(__pyx_t_3, __pyx_temp, __pyx_slice__11);
-        __Pyx_GIVEREF(__pyx_slice__11);
+        __Pyx_INCREF(__pyx_slice__12);
+        PyList_SET_ITEM(__pyx_t_3, __pyx_temp, __pyx_slice__12);
+        __Pyx_GIVEREF(__pyx_slice__12);
       }
     }
     __pyx_t_9 = __Pyx_PyList_Extend(__pyx_v_result, __pyx_t_3); if (unlikely(__pyx_t_9 == -1)) {__pyx_filename = __pyx_f[1]; __pyx_lineno = 652; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
@@ -11418,7 +11771,7 @@ static PyObject *assert_direct_dimensions(Py_ssize_t *__pyx_v_suboffsets, int __
  * 
  * 
  */
-      __pyx_t_4 = __Pyx_PyObject_Call(__pyx_builtin_ValueError, __pyx_tuple__12, NULL); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[1]; __pyx_lineno = 660; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_4 = __Pyx_PyObject_Call(__pyx_builtin_ValueError, __pyx_tuple__13, NULL); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[1]; __pyx_lineno = 660; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_4);
       __Pyx_Raise(__pyx_t_4, 0, 0, 0);
       __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
@@ -16241,7 +16594,7 @@ static PyTypeObject __pyx_type_7spatial_4core_11categorical_Categorical_Aggregat
   0, /*tp_setattro*/
   0, /*tp_as_buffer*/
   Py_TPFLAGS_DEFAULT|Py_TPFLAGS_HAVE_VERSION_TAG|Py_TPFLAGS_CHECKTYPES|Py_TPFLAGS_HAVE_NEWBUFFER|Py_TPFLAGS_BASETYPE, /*tp_flags*/
-  " Aggregates a categorical raster grid to a coarser resolution (i.e. smaller pixel dimensions)\n\n     Returns a dictionary containing two three dimensional grids and one two dimensional grid\n     at the aggregated resolution, each representing a different summary of the source\n     pixels covered by each output pixel, namely:\n        {\n          \"fractions\" : (3D integer array, one z-level for each category value,\n                          containing fraction of that category in each cell as an\n                          integer (rounded) percentage),\n          \"likeadjacencies\" : (3D float array, one z-level for each category value,\n                          containing like-adjacency of that category in each cell),\n          \"majority\" : (2D integer array, containing the value of the modal category\n                          at that location),\n          \"valuemap\" : (1D array, containing the category value of each corresponding\n                      z-level in the fractions and likeadjacencies arrays. For\n                      example [7, 1, 4] means the 2d array at the 0th position of the\n                      fractions array z dimension, contains the fraction of the cells\n                      that were covered by category 7, the one at the 1st position is\n                      category 1, and the 2nd position is the category 4)\n        }\n\n     The fraction and like adjacency outputs have one image (in the z dimension) for each category\n     (value) of the input raster.\n\n     Note that this means the output will have as many \"layers\" in the z dimension as there are unique\n     values in the input data. Thus this is only recommended where there are a small number of unique\n     values, or the output grids are small, due to the large memory implications. This is the main reason\n     why the input data type is restricted to an 8-bit unsigned integer raster.\n\n     The input grid dimensions do not necessarily need to be exact multiples of the output\n     dimensions, but this is generally recommended as otherwise the output pixels will be\n     comprised of varying numbers of input pixels (each input is allocated to only one output\n     based on the location of its left/top corner).\n\n     The output majority grid will use 255 as nodata value unless another value is provided\n     so this value should not appear in the input data.\n\n     Like-adjacencies are calculated using the double-count method. That is, to calculate the\n     contribution for a given pixel, the pixels above, below, left, and right of it are checked.\n     But when the contributions of those pixels themselves are also checked, the original pixel will\n     be a contributing neighbour of them, too.\n\n     The aggregation is built up by adding tiles of the input data using the addTile method. This way a grid\n     can be aggregated that is much too large to fit in memory. The required output and total input sizes must be\n     specified at instantiation. Input tiles should be provided to cover the whole extent of the specified output -\n     if no data is available for some areas then just add a tile of nodata. If this isn't done then no output will\n     be generated (GetResults will return None).\n\n    ", /*tp_doc*/
+  " Aggregates a categorical raster grid to a coarser resolution (i.e. smaller pixel dimensions)\n\n     Returns a dictionary containing two three dimensional grids and one two dimensional grid\n     at the aggregated resolution, each representing a different summary of the source\n     pixels covered by each output pixel, namely:\n        {\n          \"fractions\" : (3D integer array, one z-level for each category value,\n                          containing fraction of that category in each cell as an\n                          integer (rounded) percentage),\n          \"likeadjacencies\" : (OPTIONAL) (3D float array, one z-level for each category value,\n                          containing like-adjacency of that category in each cell),\n          \"majority\" : (2D integer array, containing the value of the modal category\n                          at that location),\n          \"valuemap\" : (1D array, containing the category value of each corresponding\n                      z-level in the fractions and likeadjacencies arrays. For\n                      example [7, 1, 4] means the 2d array at the 0th position of the\n                      fractions array z dimension, contains the fraction of the cells\n                      that were covered by category 7, the one at the 1st position is\n                      category 1, and the 2nd position is the category 4)\n        }\n\n     The fraction and like adjacency outputs have one image (in the z dimension) for each category\n     (value) of the input raster.\n\n     Note that this means the output will have as many \"layers\" in the z dimension as there are unique\n     values in the input data. Thus this is only recommended where there are a small number of unique\n     values, or the output grids are small, due to the large memory implications. This is the main reason\n     why the input data type is restricted to an 8-bit unsigned integer raster.\n\n     The input grid dimensions do not necessarily need to be exact multiples of the output\n     dimensions, but this is generally recommended as otherwise the output pixels will be\n     comprised of varying numbers of input pixels (each input is allocated to only one output\n     based on the location of its left/top corner).\n\n     The output majority grid will use 255 as nodata value unless another value is provided\n     so this value should not appear in the input data.\n\n     Like-adjacencies are calculated using the double-count method. That is, to calculate the\n     contribution for a given pixel, the pixels above, below, left, and right of it are checked.\n     But when the contributions of those pixels themselves are also checked, the original pixel will\n     be a contributing neighbour of them, too.\n\n     The aggregation is built up by adding tiles of the input data using the addTile method. This way a grid\n     can be aggregated that is much too large to fit in memory. The required output and total input sizes must be\n     specified at instantiation. Input tiles should be provided to cover the whole extent of the specified output -\n     if no data is available for some areas then just add a tile of nodata. If this isn't done then no output will\n     be generated (GetResults will return None).\n\n    ", /*tp_doc*/
   0, /*tp_traverse*/
   0, /*tp_clear*/
   0, /*tp_richcompare*/
@@ -16962,6 +17315,7 @@ static __Pyx_StringTabEntry __pyx_string_tab[] = {
   {&__pyx_n_s_GetResults, __pyx_k_GetResults, sizeof(__pyx_k_GetResults), 0, 0, 1, 1},
   {&__pyx_n_s_IndexError, __pyx_k_IndexError, sizeof(__pyx_k_IndexError), 0, 0, 1, 1},
   {&__pyx_kp_s_Indirect_dimensions_not_supporte, __pyx_k_Indirect_dimensions_not_supporte, sizeof(__pyx_k_Indirect_dimensions_not_supporte), 0, 0, 1, 0},
+  {&__pyx_kp_s_Input_nodata_value_is, __pyx_k_Input_nodata_value_is, sizeof(__pyx_k_Input_nodata_value_is), 0, 0, 1, 0},
   {&__pyx_kp_s_Invalid_mode_expected_c_or_fortr, __pyx_k_Invalid_mode_expected_c_or_fortr, sizeof(__pyx_k_Invalid_mode_expected_c_or_fortr), 0, 0, 1, 0},
   {&__pyx_kp_s_Invalid_shape_in_axis_d_d, __pyx_k_Invalid_shape_in_axis_d_d, sizeof(__pyx_k_Invalid_shape_in_axis_d_d), 0, 0, 1, 0},
   {&__pyx_n_s_LIKEADJACENCIES, __pyx_k_LIKEADJACENCIES, sizeof(__pyx_k_LIKEADJACENCIES), 0, 0, 1, 1},
@@ -16970,6 +17324,7 @@ static __Pyx_StringTabEntry __pyx_string_tab[] = {
   {&__pyx_kp_s_MemoryView_of_r_at_0x_x, __pyx_k_MemoryView_of_r_at_0x_x, sizeof(__pyx_k_MemoryView_of_r_at_0x_x), 0, 0, 1, 0},
   {&__pyx_kp_s_MemoryView_of_r_object, __pyx_k_MemoryView_of_r_object, sizeof(__pyx_k_MemoryView_of_r_object), 0, 0, 1, 0},
   {&__pyx_kp_s_More_category_values_were_encoun, __pyx_k_More_category_values_were_encoun, sizeof(__pyx_k_More_category_values_were_encoun), 0, 0, 1, 0},
+  {&__pyx_kp_s_Nodata_not_defined, __pyx_k_Nodata_not_defined, sizeof(__pyx_k_Nodata_not_defined), 0, 0, 1, 0},
   {&__pyx_n_b_O, __pyx_k_O, sizeof(__pyx_k_O), 0, 0, 0, 1},
   {&__pyx_kp_s_Out_of_bounds_on_buffer_access_a, __pyx_k_Out_of_bounds_on_buffer_access_a, sizeof(__pyx_k_Out_of_bounds_on_buffer_access_a), 0, 0, 1, 0},
   {&__pyx_n_s_TypeError, __pyx_k_TypeError, sizeof(__pyx_k_TypeError), 0, 0, 1, 1},
@@ -16988,6 +17343,7 @@ static __Pyx_StringTabEntry __pyx_string_tab[] = {
   {&__pyx_n_s_byteNdv, __pyx_k_byteNdv, sizeof(__pyx_k_byteNdv), 0, 0, 1, 1},
   {&__pyx_n_s_c, __pyx_k_c, sizeof(__pyx_k_c), 0, 0, 1, 1},
   {&__pyx_n_u_c, __pyx_k_c, sizeof(__pyx_k_c), 0, 1, 0, 1},
+  {&__pyx_n_s_categories, __pyx_k_categories, sizeof(__pyx_k_categories), 0, 0, 1, 1},
   {&__pyx_n_s_catstats, __pyx_k_catstats, sizeof(__pyx_k_catstats), 0, 0, 1, 1},
   {&__pyx_n_s_class, __pyx_k_class, sizeof(__pyx_k_class), 0, 0, 1, 1},
   {&__pyx_kp_s_contiguous_and_direct, __pyx_k_contiguous_and_direct, sizeof(__pyx_k_contiguous_and_direct), 0, 0, 1, 0},
@@ -17013,12 +17369,14 @@ static __Pyx_StringTabEntry __pyx_string_tab[] = {
   {&__pyx_kp_s_itemsize_0_for_cython_array, __pyx_k_itemsize_0_for_cython_array, sizeof(__pyx_k_itemsize_0_for_cython_array), 0, 0, 1, 0},
   {&__pyx_n_s_logMessage, __pyx_k_logMessage, sizeof(__pyx_k_logMessage), 0, 0, 1, 1},
   {&__pyx_n_s_main, __pyx_k_main, sizeof(__pyx_k_main), 0, 0, 1, 1},
+  {&__pyx_n_s_max, __pyx_k_max, sizeof(__pyx_k_max), 0, 0, 1, 1},
   {&__pyx_n_s_memview, __pyx_k_memview, sizeof(__pyx_k_memview), 0, 0, 1, 1},
   {&__pyx_kp_s_messed_up_the_value_map_that_s_a, __pyx_k_messed_up_the_value_map_that_s_a, sizeof(__pyx_k_messed_up_the_value_map_that_s_a), 0, 0, 1, 0},
+  {&__pyx_n_s_min, __pyx_k_min, sizeof(__pyx_k_min), 0, 0, 1, 1},
   {&__pyx_n_s_mode, __pyx_k_mode, sizeof(__pyx_k_mode), 0, 0, 1, 1},
-  {&__pyx_n_s_nCategories, __pyx_k_nCategories, sizeof(__pyx_k_nCategories), 0, 0, 1, 1},
   {&__pyx_n_s_name, __pyx_k_name, sizeof(__pyx_k_name), 0, 0, 1, 1},
   {&__pyx_n_s_name_2, __pyx_k_name_2, sizeof(__pyx_k_name_2), 0, 0, 1, 1},
+  {&__pyx_n_s_ndarray, __pyx_k_ndarray, sizeof(__pyx_k_ndarray), 0, 0, 1, 1},
   {&__pyx_n_s_ndim, __pyx_k_ndim, sizeof(__pyx_k_ndim), 0, 0, 1, 1},
   {&__pyx_n_s_np, __pyx_k_np, sizeof(__pyx_k_np), 0, 0, 1, 1},
   {&__pyx_n_s_numpy, __pyx_k_numpy, sizeof(__pyx_k_numpy), 0, 0, 1, 1},
@@ -17057,10 +17415,10 @@ static __Pyx_StringTabEntry __pyx_string_tab[] = {
   {0, 0, 0, 0, 0, 0, 0}
 };
 static int __Pyx_InitCachedBuiltins(void) {
-  __pyx_builtin_range = __Pyx_GetBuiltinName(__pyx_n_s_range); if (!__pyx_builtin_range) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 192; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __pyx_builtin_Exception = __Pyx_GetBuiltinName(__pyx_n_s_Exception); if (!__pyx_builtin_Exception) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 289; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __pyx_builtin_ValueError = __Pyx_GetBuiltinName(__pyx_n_s_ValueError); if (!__pyx_builtin_ValueError) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 305; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __pyx_builtin_sorted = __Pyx_GetBuiltinName(__pyx_n_s_sorted); if (!__pyx_builtin_sorted) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 321; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_builtin_range = __Pyx_GetBuiltinName(__pyx_n_s_range); if (!__pyx_builtin_range) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 212; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_builtin_Exception = __Pyx_GetBuiltinName(__pyx_n_s_Exception); if (!__pyx_builtin_Exception) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 318; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_builtin_ValueError = __Pyx_GetBuiltinName(__pyx_n_s_ValueError); if (!__pyx_builtin_ValueError) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 338; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_builtin_sorted = __Pyx_GetBuiltinName(__pyx_n_s_sorted); if (!__pyx_builtin_sorted) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 355; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __pyx_builtin_MemoryError = __Pyx_GetBuiltinName(__pyx_n_s_MemoryError); if (!__pyx_builtin_MemoryError) {__pyx_filename = __pyx_f[1]; __pyx_lineno = 142; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __pyx_builtin_enumerate = __Pyx_GetBuiltinName(__pyx_n_s_enumerate); if (!__pyx_builtin_enumerate) {__pyx_filename = __pyx_f[1]; __pyx_lineno = 145; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __pyx_builtin_Ellipsis = __Pyx_GetBuiltinName(__pyx_n_s_Ellipsis); if (!__pyx_builtin_Ellipsis) {__pyx_filename = __pyx_f[1]; __pyx_lineno = 357; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
@@ -17081,16 +17439,27 @@ static int __Pyx_InitCachedConstants(void) {
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("__Pyx_InitCachedConstants", 0);
 
-  /* "spatial\core\categorical.pyx":390
+  /* "spatial\core\categorical.pyx":154
+ *             logMessage("Input nodata value is "+str(self._byteNDV))
+ *         else:
+ *             logMessage("Nodata not defined")             # <<<<<<<<<<<<<<
+ * 
+ *     @cython.boundscheck(False)
+ */
+  __pyx_tuple_ = PyTuple_Pack(1, __pyx_kp_s_Nodata_not_defined); if (unlikely(!__pyx_tuple_)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 154; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_tuple_);
+  __Pyx_GIVEREF(__pyx_tuple_);
+
+  /* "spatial\core\categorical.pyx":424
  * 
  *         if not iscomplete:
  *             logMessage("Warning, cannot generate a result without \             # <<<<<<<<<<<<<<
  *             having received input data for full extent")
  *             return False
  */
-  __pyx_tuple_ = PyTuple_Pack(1, __pyx_kp_s_Warning_cannot_generate_a_result); if (unlikely(!__pyx_tuple_)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 390; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __Pyx_GOTREF(__pyx_tuple_);
-  __Pyx_GIVEREF(__pyx_tuple_);
+  __pyx_tuple__2 = PyTuple_Pack(1, __pyx_kp_s_Warning_cannot_generate_a_result); if (unlikely(!__pyx_tuple__2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 424; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_tuple__2);
+  __Pyx_GIVEREF(__pyx_tuple__2);
 
   /* "View.MemoryView":127
  * 
@@ -17099,9 +17468,9 @@ static int __Pyx_InitCachedConstants(void) {
  * 
  *         if itemsize <= 0:
  */
-  __pyx_tuple__2 = PyTuple_Pack(1, __pyx_kp_s_Empty_shape_tuple_for_cython_arr); if (unlikely(!__pyx_tuple__2)) {__pyx_filename = __pyx_f[1]; __pyx_lineno = 127; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __Pyx_GOTREF(__pyx_tuple__2);
-  __Pyx_GIVEREF(__pyx_tuple__2);
+  __pyx_tuple__3 = PyTuple_Pack(1, __pyx_kp_s_Empty_shape_tuple_for_cython_arr); if (unlikely(!__pyx_tuple__3)) {__pyx_filename = __pyx_f[1]; __pyx_lineno = 127; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_tuple__3);
+  __Pyx_GIVEREF(__pyx_tuple__3);
 
   /* "View.MemoryView":130
  * 
@@ -17110,9 +17479,9 @@ static int __Pyx_InitCachedConstants(void) {
  * 
  *         if isinstance(format, unicode):
  */
-  __pyx_tuple__3 = PyTuple_Pack(1, __pyx_kp_s_itemsize_0_for_cython_array); if (unlikely(!__pyx_tuple__3)) {__pyx_filename = __pyx_f[1]; __pyx_lineno = 130; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __Pyx_GOTREF(__pyx_tuple__3);
-  __Pyx_GIVEREF(__pyx_tuple__3);
+  __pyx_tuple__4 = PyTuple_Pack(1, __pyx_kp_s_itemsize_0_for_cython_array); if (unlikely(!__pyx_tuple__4)) {__pyx_filename = __pyx_f[1]; __pyx_lineno = 130; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_tuple__4);
+  __Pyx_GIVEREF(__pyx_tuple__4);
 
   /* "View.MemoryView":142
  * 
@@ -17121,9 +17490,9 @@ static int __Pyx_InitCachedConstants(void) {
  * 
  * 
  */
-  __pyx_tuple__4 = PyTuple_Pack(1, __pyx_kp_s_unable_to_allocate_shape_and_str); if (unlikely(!__pyx_tuple__4)) {__pyx_filename = __pyx_f[1]; __pyx_lineno = 142; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __Pyx_GOTREF(__pyx_tuple__4);
-  __Pyx_GIVEREF(__pyx_tuple__4);
+  __pyx_tuple__5 = PyTuple_Pack(1, __pyx_kp_s_unable_to_allocate_shape_and_str); if (unlikely(!__pyx_tuple__5)) {__pyx_filename = __pyx_f[1]; __pyx_lineno = 142; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_tuple__5);
+  __Pyx_GIVEREF(__pyx_tuple__5);
 
   /* "View.MemoryView":170
  *             self.data = <char *>malloc(self.len)
@@ -17132,9 +17501,9 @@ static int __Pyx_InitCachedConstants(void) {
  * 
  *             if self.dtype_is_object:
  */
-  __pyx_tuple__5 = PyTuple_Pack(1, __pyx_kp_s_unable_to_allocate_array_data); if (unlikely(!__pyx_tuple__5)) {__pyx_filename = __pyx_f[1]; __pyx_lineno = 170; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __Pyx_GOTREF(__pyx_tuple__5);
-  __Pyx_GIVEREF(__pyx_tuple__5);
+  __pyx_tuple__6 = PyTuple_Pack(1, __pyx_kp_s_unable_to_allocate_array_data); if (unlikely(!__pyx_tuple__6)) {__pyx_filename = __pyx_f[1]; __pyx_lineno = 170; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_tuple__6);
+  __Pyx_GIVEREF(__pyx_tuple__6);
 
   /* "View.MemoryView":186
  *             bufmode = PyBUF_F_CONTIGUOUS | PyBUF_ANY_CONTIGUOUS
@@ -17143,9 +17512,9 @@ static int __Pyx_InitCachedConstants(void) {
  *         info.buf = self.data
  *         info.len = self.len
  */
-  __pyx_tuple__6 = PyTuple_Pack(1, __pyx_kp_s_Can_only_create_a_buffer_that_is); if (unlikely(!__pyx_tuple__6)) {__pyx_filename = __pyx_f[1]; __pyx_lineno = 186; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __Pyx_GOTREF(__pyx_tuple__6);
-  __Pyx_GIVEREF(__pyx_tuple__6);
+  __pyx_tuple__7 = PyTuple_Pack(1, __pyx_kp_s_Can_only_create_a_buffer_that_is); if (unlikely(!__pyx_tuple__7)) {__pyx_filename = __pyx_f[1]; __pyx_lineno = 186; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_tuple__7);
+  __Pyx_GIVEREF(__pyx_tuple__7);
 
   /* "View.MemoryView":445
  *             result = struct.unpack(self.view.format, bytesitem)
@@ -17154,9 +17523,9 @@ static int __Pyx_InitCachedConstants(void) {
  *         else:
  *             if len(self.view.format) == 1:
  */
-  __pyx_tuple__7 = PyTuple_Pack(1, __pyx_kp_s_Unable_to_convert_item_to_object); if (unlikely(!__pyx_tuple__7)) {__pyx_filename = __pyx_f[1]; __pyx_lineno = 445; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __Pyx_GOTREF(__pyx_tuple__7);
-  __Pyx_GIVEREF(__pyx_tuple__7);
+  __pyx_tuple__8 = PyTuple_Pack(1, __pyx_kp_s_Unable_to_convert_item_to_object); if (unlikely(!__pyx_tuple__8)) {__pyx_filename = __pyx_f[1]; __pyx_lineno = 445; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_tuple__8);
+  __Pyx_GIVEREF(__pyx_tuple__8);
 
   /* "View.MemoryView":521
  *             if self.view.strides == NULL:
@@ -17165,9 +17534,9 @@ static int __Pyx_InitCachedConstants(void) {
  * 
  *             return tuple([self.view.strides[i] for i in xrange(self.view.ndim)])
  */
-  __pyx_tuple__8 = PyTuple_Pack(1, __pyx_kp_s_Buffer_view_does_not_expose_stri); if (unlikely(!__pyx_tuple__8)) {__pyx_filename = __pyx_f[1]; __pyx_lineno = 521; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __Pyx_GOTREF(__pyx_tuple__8);
-  __Pyx_GIVEREF(__pyx_tuple__8);
+  __pyx_tuple__9 = PyTuple_Pack(1, __pyx_kp_s_Buffer_view_does_not_expose_stri); if (unlikely(!__pyx_tuple__9)) {__pyx_filename = __pyx_f[1]; __pyx_lineno = 521; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_tuple__9);
+  __Pyx_GIVEREF(__pyx_tuple__9);
 
   /* "View.MemoryView":638
  *         if item is Ellipsis:
@@ -17176,9 +17545,9 @@ static int __Pyx_InitCachedConstants(void) {
  *                 seen_ellipsis = True
  *             else:
  */
-  __pyx_slice__9 = PySlice_New(Py_None, Py_None, Py_None); if (unlikely(!__pyx_slice__9)) {__pyx_filename = __pyx_f[1]; __pyx_lineno = 638; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __Pyx_GOTREF(__pyx_slice__9);
-  __Pyx_GIVEREF(__pyx_slice__9);
+  __pyx_slice__10 = PySlice_New(Py_None, Py_None, Py_None); if (unlikely(!__pyx_slice__10)) {__pyx_filename = __pyx_f[1]; __pyx_lineno = 638; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_slice__10);
+  __Pyx_GIVEREF(__pyx_slice__10);
 
   /* "View.MemoryView":641
  *                 seen_ellipsis = True
@@ -17187,9 +17556,9 @@ static int __Pyx_InitCachedConstants(void) {
  *             have_slices = True
  *         else:
  */
-  __pyx_slice__10 = PySlice_New(Py_None, Py_None, Py_None); if (unlikely(!__pyx_slice__10)) {__pyx_filename = __pyx_f[1]; __pyx_lineno = 641; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __Pyx_GOTREF(__pyx_slice__10);
-  __Pyx_GIVEREF(__pyx_slice__10);
+  __pyx_slice__11 = PySlice_New(Py_None, Py_None, Py_None); if (unlikely(!__pyx_slice__11)) {__pyx_filename = __pyx_f[1]; __pyx_lineno = 641; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_slice__11);
+  __Pyx_GIVEREF(__pyx_slice__11);
 
   /* "View.MemoryView":652
  *     nslices = ndim - len(result)
@@ -17198,9 +17567,9 @@ static int __Pyx_InitCachedConstants(void) {
  * 
  *     return have_slices or nslices, tuple(result)
  */
-  __pyx_slice__11 = PySlice_New(Py_None, Py_None, Py_None); if (unlikely(!__pyx_slice__11)) {__pyx_filename = __pyx_f[1]; __pyx_lineno = 652; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __Pyx_GOTREF(__pyx_slice__11);
-  __Pyx_GIVEREF(__pyx_slice__11);
+  __pyx_slice__12 = PySlice_New(Py_None, Py_None, Py_None); if (unlikely(!__pyx_slice__12)) {__pyx_filename = __pyx_f[1]; __pyx_lineno = 652; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_slice__12);
+  __Pyx_GIVEREF(__pyx_slice__12);
 
   /* "View.MemoryView":660
  *     for i in range(ndim):
@@ -17209,9 +17578,9 @@ static int __Pyx_InitCachedConstants(void) {
  * 
  * 
  */
-  __pyx_tuple__12 = PyTuple_Pack(1, __pyx_kp_s_Indirect_dimensions_not_supporte); if (unlikely(!__pyx_tuple__12)) {__pyx_filename = __pyx_f[1]; __pyx_lineno = 660; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __Pyx_GOTREF(__pyx_tuple__12);
-  __Pyx_GIVEREF(__pyx_tuple__12);
+  __pyx_tuple__13 = PyTuple_Pack(1, __pyx_kp_s_Indirect_dimensions_not_supporte); if (unlikely(!__pyx_tuple__13)) {__pyx_filename = __pyx_f[1]; __pyx_lineno = 660; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_tuple__13);
+  __Pyx_GIVEREF(__pyx_tuple__13);
 
   /* "View.MemoryView":276
  *         return self.name
@@ -17220,9 +17589,9 @@ static int __Pyx_InitCachedConstants(void) {
  * cdef strided = Enum("<strided and direct>") # default
  * cdef indirect = Enum("<strided and indirect>")
  */
-  __pyx_tuple__13 = PyTuple_Pack(1, __pyx_kp_s_strided_and_direct_or_indirect); if (unlikely(!__pyx_tuple__13)) {__pyx_filename = __pyx_f[1]; __pyx_lineno = 276; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __Pyx_GOTREF(__pyx_tuple__13);
-  __Pyx_GIVEREF(__pyx_tuple__13);
+  __pyx_tuple__14 = PyTuple_Pack(1, __pyx_kp_s_strided_and_direct_or_indirect); if (unlikely(!__pyx_tuple__14)) {__pyx_filename = __pyx_f[1]; __pyx_lineno = 276; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_tuple__14);
+  __Pyx_GIVEREF(__pyx_tuple__14);
 
   /* "View.MemoryView":277
  * 
@@ -17231,9 +17600,9 @@ static int __Pyx_InitCachedConstants(void) {
  * cdef indirect = Enum("<strided and indirect>")
  * 
  */
-  __pyx_tuple__14 = PyTuple_Pack(1, __pyx_kp_s_strided_and_direct); if (unlikely(!__pyx_tuple__14)) {__pyx_filename = __pyx_f[1]; __pyx_lineno = 277; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __Pyx_GOTREF(__pyx_tuple__14);
-  __Pyx_GIVEREF(__pyx_tuple__14);
+  __pyx_tuple__15 = PyTuple_Pack(1, __pyx_kp_s_strided_and_direct); if (unlikely(!__pyx_tuple__15)) {__pyx_filename = __pyx_f[1]; __pyx_lineno = 277; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_tuple__15);
+  __Pyx_GIVEREF(__pyx_tuple__15);
 
   /* "View.MemoryView":278
  * cdef generic = Enum("<strided and direct or indirect>")
@@ -17242,9 +17611,9 @@ static int __Pyx_InitCachedConstants(void) {
  * 
  * 
  */
-  __pyx_tuple__15 = PyTuple_Pack(1, __pyx_kp_s_strided_and_indirect); if (unlikely(!__pyx_tuple__15)) {__pyx_filename = __pyx_f[1]; __pyx_lineno = 278; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __Pyx_GOTREF(__pyx_tuple__15);
-  __Pyx_GIVEREF(__pyx_tuple__15);
+  __pyx_tuple__16 = PyTuple_Pack(1, __pyx_kp_s_strided_and_indirect); if (unlikely(!__pyx_tuple__16)) {__pyx_filename = __pyx_f[1]; __pyx_lineno = 278; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_tuple__16);
+  __Pyx_GIVEREF(__pyx_tuple__16);
 
   /* "View.MemoryView":281
  * 
@@ -17253,9 +17622,9 @@ static int __Pyx_InitCachedConstants(void) {
  * cdef indirect_contiguous = Enum("<contiguous and indirect>")
  * 
  */
-  __pyx_tuple__16 = PyTuple_Pack(1, __pyx_kp_s_contiguous_and_direct); if (unlikely(!__pyx_tuple__16)) {__pyx_filename = __pyx_f[1]; __pyx_lineno = 281; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __Pyx_GOTREF(__pyx_tuple__16);
-  __Pyx_GIVEREF(__pyx_tuple__16);
+  __pyx_tuple__17 = PyTuple_Pack(1, __pyx_kp_s_contiguous_and_direct); if (unlikely(!__pyx_tuple__17)) {__pyx_filename = __pyx_f[1]; __pyx_lineno = 281; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_tuple__17);
+  __Pyx_GIVEREF(__pyx_tuple__17);
 
   /* "View.MemoryView":282
  * 
@@ -17264,9 +17633,9 @@ static int __Pyx_InitCachedConstants(void) {
  * 
  * 
  */
-  __pyx_tuple__17 = PyTuple_Pack(1, __pyx_kp_s_contiguous_and_indirect); if (unlikely(!__pyx_tuple__17)) {__pyx_filename = __pyx_f[1]; __pyx_lineno = 282; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __Pyx_GOTREF(__pyx_tuple__17);
-  __Pyx_GIVEREF(__pyx_tuple__17);
+  __pyx_tuple__18 = PyTuple_Pack(1, __pyx_kp_s_contiguous_and_indirect); if (unlikely(!__pyx_tuple__18)) {__pyx_filename = __pyx_f[1]; __pyx_lineno = 282; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_tuple__18);
+  __Pyx_GIVEREF(__pyx_tuple__18);
   __Pyx_RefNannyFinishContext();
   return 0;
   __pyx_L1_error:;
@@ -17503,7 +17872,7 @@ PyMODINIT_FUNC PyInit_categorical(void)
  * cdef strided = Enum("<strided and direct>") # default
  * cdef indirect = Enum("<strided and indirect>")
  */
-  __pyx_t_1 = __Pyx_PyObject_Call(((PyObject *)((PyObject *)__pyx_MemviewEnum_type)), __pyx_tuple__13, NULL); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[1]; __pyx_lineno = 276; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __Pyx_PyObject_Call(((PyObject *)((PyObject *)__pyx_MemviewEnum_type)), __pyx_tuple__14, NULL); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[1]; __pyx_lineno = 276; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_XGOTREF(generic);
   __Pyx_DECREF_SET(generic, __pyx_t_1);
@@ -17517,7 +17886,7 @@ PyMODINIT_FUNC PyInit_categorical(void)
  * cdef indirect = Enum("<strided and indirect>")
  * 
  */
-  __pyx_t_1 = __Pyx_PyObject_Call(((PyObject *)((PyObject *)__pyx_MemviewEnum_type)), __pyx_tuple__14, NULL); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[1]; __pyx_lineno = 277; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __Pyx_PyObject_Call(((PyObject *)((PyObject *)__pyx_MemviewEnum_type)), __pyx_tuple__15, NULL); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[1]; __pyx_lineno = 277; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_XGOTREF(strided);
   __Pyx_DECREF_SET(strided, __pyx_t_1);
@@ -17531,7 +17900,7 @@ PyMODINIT_FUNC PyInit_categorical(void)
  * 
  * 
  */
-  __pyx_t_1 = __Pyx_PyObject_Call(((PyObject *)((PyObject *)__pyx_MemviewEnum_type)), __pyx_tuple__15, NULL); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[1]; __pyx_lineno = 278; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __Pyx_PyObject_Call(((PyObject *)((PyObject *)__pyx_MemviewEnum_type)), __pyx_tuple__16, NULL); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[1]; __pyx_lineno = 278; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_XGOTREF(indirect);
   __Pyx_DECREF_SET(indirect, __pyx_t_1);
@@ -17545,7 +17914,7 @@ PyMODINIT_FUNC PyInit_categorical(void)
  * cdef indirect_contiguous = Enum("<contiguous and indirect>")
  * 
  */
-  __pyx_t_1 = __Pyx_PyObject_Call(((PyObject *)((PyObject *)__pyx_MemviewEnum_type)), __pyx_tuple__16, NULL); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[1]; __pyx_lineno = 281; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __Pyx_PyObject_Call(((PyObject *)((PyObject *)__pyx_MemviewEnum_type)), __pyx_tuple__17, NULL); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[1]; __pyx_lineno = 281; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_XGOTREF(contiguous);
   __Pyx_DECREF_SET(contiguous, __pyx_t_1);
@@ -17559,7 +17928,7 @@ PyMODINIT_FUNC PyInit_categorical(void)
  * 
  * 
  */
-  __pyx_t_1 = __Pyx_PyObject_Call(((PyObject *)((PyObject *)__pyx_MemviewEnum_type)), __pyx_tuple__17, NULL); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[1]; __pyx_lineno = 282; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __Pyx_PyObject_Call(((PyObject *)((PyObject *)__pyx_MemviewEnum_type)), __pyx_tuple__18, NULL); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[1]; __pyx_lineno = 282; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_XGOTREF(indirect_contiguous);
   __Pyx_DECREF_SET(indirect_contiguous, __pyx_t_1);
@@ -18512,41 +18881,6 @@ static CYTHON_INLINE void __Pyx_XDEC_MEMVIEW(__Pyx_memviewslice *memslice,
     }
 }
 
-static CYTHON_INLINE void __Pyx_RaiseUnboundLocalError(const char *varname) {
-    PyErr_Format(PyExc_UnboundLocalError, "local variable '%s' referenced before assignment", varname);
-}
-
-static CYTHON_INLINE void __Pyx_ErrRestore(PyObject *type, PyObject *value, PyObject *tb) {
-#if CYTHON_COMPILING_IN_CPYTHON
-    PyObject *tmp_type, *tmp_value, *tmp_tb;
-    PyThreadState *tstate = PyThreadState_GET();
-    tmp_type = tstate->curexc_type;
-    tmp_value = tstate->curexc_value;
-    tmp_tb = tstate->curexc_traceback;
-    tstate->curexc_type = type;
-    tstate->curexc_value = value;
-    tstate->curexc_traceback = tb;
-    Py_XDECREF(tmp_type);
-    Py_XDECREF(tmp_value);
-    Py_XDECREF(tmp_tb);
-#else
-    PyErr_Restore(type, value, tb);
-#endif
-}
-static CYTHON_INLINE void __Pyx_ErrFetch(PyObject **type, PyObject **value, PyObject **tb) {
-#if CYTHON_COMPILING_IN_CPYTHON
-    PyThreadState *tstate = PyThreadState_GET();
-    *type = tstate->curexc_type;
-    *value = tstate->curexc_value;
-    *tb = tstate->curexc_traceback;
-    tstate->curexc_type = 0;
-    tstate->curexc_value = 0;
-    tstate->curexc_traceback = 0;
-#else
-    PyErr_Fetch(type, value, tb);
-#endif
-}
-
 #if CYTHON_COMPILING_IN_CPYTHON
 static CYTHON_INLINE PyObject* __Pyx_PyObject_CallMethO(PyObject *func, PyObject *arg) {
     PyObject *self, *result;
@@ -18595,6 +18929,56 @@ static CYTHON_INLINE PyObject* __Pyx_PyObject_CallOneArg(PyObject *func, PyObjec
     return (likely(args)) ? __Pyx_PyObject_Call(func, args, NULL) : NULL;
 }
 #endif
+
+#if CYTHON_COMPILING_IN_CPYTHON
+static CYTHON_INLINE PyObject* __Pyx_PyObject_CallNoArg(PyObject *func) {
+#ifdef __Pyx_CyFunction_USED
+    if (likely(PyCFunction_Check(func) || PyObject_TypeCheck(func, __pyx_CyFunctionType))) {
+#else
+    if (likely(PyCFunction_Check(func))) {
+#endif
+        if (likely(PyCFunction_GET_FLAGS(func) & METH_NOARGS)) {
+            return __Pyx_PyObject_CallMethO(func, NULL);
+        }
+    }
+    return __Pyx_PyObject_Call(func, __pyx_empty_tuple, NULL);
+}
+#endif
+
+static CYTHON_INLINE void __Pyx_RaiseUnboundLocalError(const char *varname) {
+    PyErr_Format(PyExc_UnboundLocalError, "local variable '%s' referenced before assignment", varname);
+}
+
+static CYTHON_INLINE void __Pyx_ErrRestore(PyObject *type, PyObject *value, PyObject *tb) {
+#if CYTHON_COMPILING_IN_CPYTHON
+    PyObject *tmp_type, *tmp_value, *tmp_tb;
+    PyThreadState *tstate = PyThreadState_GET();
+    tmp_type = tstate->curexc_type;
+    tmp_value = tstate->curexc_value;
+    tmp_tb = tstate->curexc_traceback;
+    tstate->curexc_type = type;
+    tstate->curexc_value = value;
+    tstate->curexc_traceback = tb;
+    Py_XDECREF(tmp_type);
+    Py_XDECREF(tmp_value);
+    Py_XDECREF(tmp_tb);
+#else
+    PyErr_Restore(type, value, tb);
+#endif
+}
+static CYTHON_INLINE void __Pyx_ErrFetch(PyObject **type, PyObject **value, PyObject **tb) {
+#if CYTHON_COMPILING_IN_CPYTHON
+    PyThreadState *tstate = PyThreadState_GET();
+    *type = tstate->curexc_type;
+    *value = tstate->curexc_value;
+    *tb = tstate->curexc_traceback;
+    tstate->curexc_type = 0;
+    tstate->curexc_value = 0;
+    tstate->curexc_traceback = 0;
+#else
+    PyErr_Fetch(type, value, tb);
+#endif
+}
 
 #if PY_MAJOR_VERSION < 3
 static void __Pyx_Raise(PyObject *type, PyObject *value, PyObject *tb,
@@ -18830,21 +19214,6 @@ static CYTHON_INLINE PyObject *__Pyx_GetItemInt_Fast(PyObject *o, Py_ssize_t i,
 #endif
     return __Pyx_GetItemInt_Generic(o, PyInt_FromSsize_t(i));
 }
-
-#if CYTHON_COMPILING_IN_CPYTHON
-static CYTHON_INLINE PyObject* __Pyx_PyObject_CallNoArg(PyObject *func) {
-#ifdef __Pyx_CyFunction_USED
-    if (likely(PyCFunction_Check(func) || PyObject_TypeCheck(func, __pyx_CyFunctionType))) {
-#else
-    if (likely(PyCFunction_Check(func))) {
-#endif
-        if (likely(PyCFunction_GET_FLAGS(func) & METH_NOARGS)) {
-            return __Pyx_PyObject_CallMethO(func, NULL);
-        }
-    }
-    return __Pyx_PyObject_Call(func, __pyx_empty_tuple, NULL);
-}
-#endif
 
 static void __Pyx_RaiseArgumentTypeInvalid(const char* name, PyObject *obj, PyTypeObject *type) {
     PyErr_Format(PyExc_TypeError,

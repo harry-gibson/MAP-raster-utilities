@@ -8,7 +8,7 @@ from raster_utilities.aggregation.spatial.core.continuous import Continuous_Aggr
 
 from ..aggregation_values import CategoricalAggregationStats as catstats, \
     ContinuousAggregationStats as contstats, AggregationModes, AggregationTypes
-from ...io.tiff_management import GetRasterProperties, ReadAOI_PixelLims, SaveLZWTiff
+from ...io.tiff_management import GetRasterProperties, ReadAOI_PixelLims, SaveLZWTiff, ReadAOI_PixelLims_Inplace
 from ...utils.geotransform_calcs import calcAggregatedProperties
 from ...utils.logger import logMessage
 from ...utils.raster_tiling import getTiles
@@ -72,6 +72,7 @@ class SpatialAggregator:
                 assert max(categories) < 256
                 assert min(categories) >= 0
                 self.nCategories = len(categories)
+                self.categories = categories
 
         self.stats = stats
 
@@ -102,6 +103,11 @@ class SpatialAggregator:
         else:
             self._resName = "Aggregated"
 
+        if aggregationArgs.has_key("mem_limit_gb"):
+            self._gbLimit = aggregationArgs["mem_limit_gb"]
+        else:
+            self._gbLimit = 30
+
     def _fnGetter(self, filename, stat, cat=None):
         if self._mode == AggregationModes.CONTINUOUS:
             statname = stat
@@ -131,7 +137,8 @@ class SpatialAggregator:
     def _estimateAgggregationMemory(self, totalHeight, totalWidth, tileHeight, tileWidth):
         # it's a fairly wrong estimation of peak memory as it doesn't account for anything other
         # than the main arrays themselves, including for instance temporary objects that are formed
-        # by casting. never mind, just make all other estimates conservative and fingers crossed
+        # by casting and temporary copies that i can't seem to track down.
+        # never mind, just make all other estimates conservative and fingers crossed
         if self._mode == AggregationModes.CONTINUOUS:
             nPix = totalHeight * totalWidth #tileHeight * tileWidth
             bpp = {contstats.COUNT: 2,
@@ -147,7 +154,7 @@ class SpatialAggregator:
             if ((contstats.MEAN in self.stats) and (contstats.SUM not in self.stats)):
                 # outputting mean requires calculating sum too
                 bppTot += bpp[contstats.SUM]
-            bTot = bppTot * nPix
+            bTot = bppTot * nPix * 2 # double for all the casting we do.... this is rough right
             # plus the input tile
             bTot += tileWidth * tileHeight * 4
             return bTot
@@ -161,9 +168,11 @@ class SpatialAggregator:
                 bppTot = sum([bpp[s] for s in self.stats])
             except KeyError:
                 raise KeyError("Invalid statistic specified! Valid items are "  + str(bpp.keys()))
-            bTot = bppTot * nPix
-            # plus the input tile which is always 8 bit
-            bTot += tileWidth * tileHeight * 1
+            bTot = bppTot * nPix * 2 # double for all the casting we do.... this is rough right
+            # plus the input tile which is actually going to be twice the size called for as the tiler just
+            # works off the max dimension, hence *2, but actually somewhere
+            # some copies must be getting made and i can't figure out where... so *4
+            bTot += tileWidth * tileHeight * 4
             return bTot
 
     def RunAggregation(self):
@@ -174,6 +183,7 @@ class SpatialAggregator:
         logMessage("Processing file " + filename)
         # the input files could all be different, if needed
         inputProperties = GetRasterProperties(filename)
+        npDataType = gdal_array.GDALTypeCodeToNumericTypeCode(inputProperties.datatype)
         outGT, outShape = calcAggregatedProperties(self.aggregationType,
                                                     inputProperties,
                                                     self._aggFactor,
@@ -184,7 +194,8 @@ class SpatialAggregator:
         tileW = inputProperties.width
         bytesTile = self._estimateAgggregationMemory(outShape[0], outShape[1], tileH, tileW)
         splits = 1
-        while bytesTile > 2e30:
+        byteLim = self._gbLimit * (pow(2,30))
+        while bytesTile > byteLim:
             tileH = tileH // 2
             tileW = tileW // 2
             bytesTile = self._estimateAgggregationMemory(outShape[0], outShape[1], tileH, tileW)
@@ -193,6 +204,9 @@ class SpatialAggregator:
             if ntiles > 4096:
                 # 2^12
                 raise MemoryError("This is going to take too many tiles: try processing a smaller output area")
+        estMem = bytesTile / float(pow(2,30))
+        print ("estimated GB: "+str(estMem))
+
         # and actually just ignore all the non squareness of the world and stuff and use the larger dim
         tileMax = max(tileH, tileW)
 
@@ -200,6 +214,7 @@ class SpatialAggregator:
         logMessage("Processing in {0!s} tiles of {1!s} pixels".format(len(tiles), tileMax))
         if inputProperties.ndv is not None:
             catNdv = inputProperties.ndv
+            logMessage("Incoming nodata value is "+str(catNdv))
         else:
             logMessage("No NDV defined")
             catNdv = None
@@ -219,24 +234,32 @@ class SpatialAggregator:
         # for each tile read the data and add to the aggregator
         # todo (maybe) don't bother adding complete nodata tiles? (just add fake one)
         for tile in tiles:
-            logMessage(".")
+            logMessage(".", newline=False)
             xOff = tile[0][0]
             yOff = tile[1][0]
             xSize = tile[0][1] - xOff
             ySize = tile[1][1] - yOff
-            inArr, x1, x2, x3 = ReadAOI_PixelLims(filename,
-                                                    (xOff, xOff+xSize),
-                                                    (yOff, yOff+ySize))
+
+            inArr = np.empty(shape=(ySize, xSize), dtype=npDataType)
+            ReadAOI_PixelLims_Inplace(filename,
+                                      (xOff, xOff+xSize),
+                                      (yOff, yOff+ySize),
+                                      inArr)
+            #inArr, x1, x2, x3 = ReadAOI_PixelLims(filename,
+            #                                        (xOff, xOff+xSize),
+            #                                        (yOff, yOff+ySize))
             # todo check the actual datatypes of the files here esp for categorical
             if self._mode == AggregationModes.CONTINUOUS:
                 aggregator.addTile(inArr.astype(np.float32), xOff, yOff)
             else:
-                aggregator.addTile(inArr.astype(np.uint8), xOff, yOff)
+                aggregator.addTile(inArr#.astype(np.uint8)
+                                   , xOff, yOff)
+            inArr = None
 
         # all tiles added, get results
         r = aggregator.GetResults()
         for stat in self.stats:
-            logMessage("Saving outputs... ")
+            logMessage("Saving outputs: " + stat)
             if self._mode == AggregationModes.CONTINUOUS:
                 fnOut = self._fnGetter(os.path.basename(filename), stat)
                 if stat in [contstats.MIN, contstats.MAX, contstats.RANGE]:
