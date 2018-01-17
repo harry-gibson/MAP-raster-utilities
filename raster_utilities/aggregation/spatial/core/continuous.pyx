@@ -97,13 +97,9 @@ cdef class Continuous_Aggregator_Flt:
         self.outputCountArr = np.zeros(shape=(ySizeOut, xSizeOut), dtype = np.int32)
         # but only create as many of the other arrays as we actually need, to save memory
         if contstats.MIN in stats:
-            self.outputMinArr = np.zeros(shape=(ySizeOut, xSizeOut), dtype = np.float32)
-            self.outputMinArr[:] = np.inf
             self._doMin = 1
             self._outputMin = 1
         if contstats.MAX in stats:
-            self.outputMaxArr = np.zeros(shape=(ySizeOut, xSizeOut), dtype = np.float32)
-            self.outputMaxArr[:] = -np.inf
             self._doMax = 1
             self._outputMax = 1
         if contstats.RANGE in stats:
@@ -111,7 +107,6 @@ cdef class Continuous_Aggregator_Flt:
             self._doMax = 1
             self._doMin = 1
         if contstats.SUM in stats:
-            self.outputSumArr = np.zeros(shape=(ySizeOut, xSizeOut), dtype = np.float32)
             self._doSum = 1
             self._outputSum = 1
         if contstats.MEAN in stats or contstats.SD in stats:
@@ -129,6 +124,15 @@ cdef class Continuous_Aggregator_Flt:
             self._oldSDArr = np.zeros(shape=(ySizeOut, xSizeOut), dtype = np.float32)
             self.outputSDArr[:] = _NDV
             self._oldSDArr[:] = _NDV
+        if self._doSum:
+            self.outputSumArr = np.zeros(shape=(ySizeOut, xSizeOut), dtype = np.float32)
+        if self._doMax:
+            self.outputMaxArr = np.zeros(shape=(ySizeOut, xSizeOut), dtype = np.float32)
+            self.outputMaxArr[:] = -np.inf
+        if self._doMin:
+            self.outputMinArr = np.zeros(shape=(ySizeOut, xSizeOut), dtype = np.float32)
+            self.outputMinArr[:] = np.inf
+
 
         #self.outputRangeArr = np.zeros(shape=(ySizeOut, xSizeOut), dtype = np.float32)
             
