@@ -66,6 +66,7 @@ class SpatialAggregator:
                 assert categories >= 0
                 # todo set categories to range here
                 self.nCategories = categories
+                self.categories = None
             else:
                 assert isinstance(categories, list)
                 assert len(categories) <= 256
@@ -119,17 +120,19 @@ class SpatialAggregator:
             assert ((cat is not None) or
                     (stat == catstats.MAJORITY))
             if stat == catstats.MAJORITY:
-                outNameTemplate = r'{0!s}.{1!s}.tif'
-                statname = stat
-                fOut = outNameTemplate.format(
-                    os.path.basename(filename).replace(".tif", ""),
-                    statname)
-            else:
                 outNameTemplate = r'{0!s}.{1!s}.{2!s}.tif'
                 statname = stat
                 fOut = outNameTemplate.format(
                     os.path.basename(filename).replace(".tif", ""),
+                    self._resName,
+                    statname)
+            else:
+                outNameTemplate = r'{0!s}.{1!s}.{2!s}.{3!s}.tif'
+                statname = stat
+                fOut = outNameTemplate.format(
+                    os.path.basename(filename).replace(".tif", ""),
                     "Class-" + str(cat),
+                    self._resName,
                     statname)
             return fOut
 
@@ -216,7 +219,7 @@ class SpatialAggregator:
             catNdv = inputProperties.ndv
             logMessage("Incoming nodata value is "+str(catNdv))
         else:
-            logMessage("No NDV defined")
+            logMessage("No NDV defined in input")
             catNdv = None
         if self._mode == AggregationModes.CONTINUOUS:
             aggregator = Continuous_Aggregator_Flt(inputProperties.width, inputProperties.height,
@@ -225,9 +228,13 @@ class SpatialAggregator:
                                                self.stats)
         else:
             doLikeAdjacency = catstats.LIKEADJACENCIES in self.stats
+            if self.categories is not None:
+                catArg = self.categories
+            else:
+                catArg = self.nCategories
             aggregator = Categorical_Aggregator(inputProperties.width, inputProperties.height,
                                                 outShape[1], outShape[0],
-                                                self.nCategories,
+                                                catArg,
                                                 doLikeAdjacency,
                                                 self.ndvOut, catNdv
                                             )
