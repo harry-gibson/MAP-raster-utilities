@@ -123,6 +123,7 @@ cdef class Categorical_Aggregator:
             self.nCategories = categories
             self.valueMap = np.zeros(shape = (categories), dtype = np.int32)
             self.valueMap[:] = -1
+            logMessage("Building category list, max expected number is "+str(categories))
         else:
             if isinstance(categories, list):
                 categories = np.asarray(categories)
@@ -132,6 +133,7 @@ cdef class Categorical_Aggregator:
             assert 255 >= categories.max()
             self.valueMap = categories
             self.gotCategories = 1
+            logMessage("Using provided category list of "+str(len(categories))+" values: "+str(categories))
 
         self.sortedValueMap = np.zeros(shape=(self.nCategories), dtype=np.int32)
         self.sortedValueMap[:] = -1
@@ -166,13 +168,13 @@ cdef class Categorical_Aggregator:
             int yBelowTile, yAboveTile, xLeftTile, xRightTile
             # current pixel coords in global and tile coords
             Py_ssize_t xInGlobal, xInTile, yInGlobal, yInTile
-            unsigned char localValue
-            unsigned char nNeighbours
+            unsigned char localValue, nNeighbours
             float likeAdjProp
             Py_ssize_t xOut, yOut
             # how much of an output cell does each input cell account for
             #float proportion
             unsigned char catsOk
+            int errorCategory
             int valuePos
             Py_ssize_t i
 
@@ -181,10 +183,11 @@ cdef class Categorical_Aggregator:
 
         # how much of an output cell does each input cell account for
         #proportion = 1.0 / (self.xFact * self.yFact)
-
+        catsOk = 1
+        errorCategory = -1
         with nogil, parallel():
             for yInTile in prange (tileYShapeIn):
-                catsOk = 1
+
                 yInGlobal = yInTile + yOffset
 
                 yAboveGlobal = yInGlobal - 1
@@ -258,6 +261,7 @@ cdef class Categorical_Aggregator:
                             # for now, error out - though actually we might want to just continue here i.e. ignore
                             # cells with unspecified values maybe treating as nodata
                             catsOk = 0
+                            errorCategory = localValue
                             break
                         # if we haven't seen this value yet, and we haven't pre-loaded the list of expected values,
                         # add it to the next available position in valuemap
@@ -274,6 +278,7 @@ cdef class Categorical_Aggregator:
                     # if we failed to add it, we must have more categories in the data
                     # than we bargained for
                     if valuePos == -1:
+                        errorCategory = localValue
                         catsOk = 0
                         break
 
@@ -315,7 +320,10 @@ cdef class Categorical_Aggregator:
                     break
 
         if catsOk == False:
-            raise Exception("More category values were encountered than were specified. Cannot continue! "+
+            if self.gotCategories:
+                raise Exception("Encountered unexpected category value of "+str(errorCategory))
+            else:
+                raise Exception("More category values were encountered than were specified. Cannot continue! "+
                             str(np.asarray(self.valueMap)))
 
     @cython.boundscheck(False)
