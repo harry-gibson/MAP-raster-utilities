@@ -10,7 +10,7 @@ from ...utils.raster_tiling import getTiles
 
 class TemporalAggregator:
     def __init__(self, filesDict, outFolder, outputNDV, stats, doSynoptic):
-        assert isinstance(outFolder, dict)
+        assert isinstance(filesDict, dict)
         self.filesDict = filesDict
         assert isinstance(outFolder, str)
         self.outFolder = outFolder
@@ -34,19 +34,20 @@ class TemporalAggregator:
         statname = stat
         if where == -1:
             return ".".join([str(whatandwhen), statname,
-                             str(self.InputProperties["res"]), "tif"])
+                             str(self.InputProperties.res), "tif"])
         else:
             return ".".join([str(whatandwhen), statname,
-                             str(self.InputProperties["res"]), str(where), "tif"])
+                             str(self.InputProperties.res), str(where), "tif"])
 
     def _estimateTemporalAggregationMemory(self, height):
-        nPix = height * self.InputProperties["width"]
+        nPix = height * self.InputProperties.width
         bpp = {tempstats.COUNT: 2, tempstats.MEAN: 16, tempstats.SD: 16,
                tempstats.MIN: 4, tempstats.MAX: 4, tempstats.SUM: 4}
         try:
             bppTot = sum([bpp[s] for s in self.stats])
         except KeyError:
             raise KeyError("Invalid statistic specified! Valid items are " + str(bpp.keys()))
+
         # calculating sd requires calculating mean anyway
         if ((tempstats.SD in self.stats) and (tempstats.MEAN not in self.stats)):
             bppTot += bpp[tempstats.MEAN]
@@ -96,13 +97,14 @@ class TemporalAggregator:
             runHeight = runHeight // 2 # force integer division on python 2.x
             bytesFull = self._estimateTemporalAggregationMemory(runHeight)
         slices = sorted(list(set([s[1] for s in getTiles(w, h, runHeight)])))
-        isFullFile = len(slices) > 1
+        isFullFile = len(slices) == 1
         if isFullFile:
             saveFolder = self.outFolder
             logMessage("Running entire extent in one pass")
         else:
             saveFolder = self._tileFolder
-            logMessage("Running by splitting across {0!s} tiles".format(len(slices)))
+            if len(slices)>1:
+                logMessage("Running by splitting across {0!s} tiles".format(len(slices)))
 
         for t, b in slices:
             self._temporalAggregationSliceRunner(t, b, saveFolder)
@@ -189,7 +191,7 @@ class TemporalAggregator:
         if gb > 30:
             logMessage("Requires more than 30GB, are you sure this is wise....")
 
-        statsCalculator = TemporalAggregator_Dynamic(sliceHeight, self.InputProperties["width"],
+        statsCalculator = TemporalAggregator_Dynamic(sliceHeight, self.InputProperties.width,
                                                      self.outputNDV, self.stats, runSynoptic)
         sliceGT = None
         sliceProj = None
@@ -202,7 +204,7 @@ class TemporalAggregator:
                     # first file
                     sliceGT = thisGT
                     sliceProj = thisProj
-                    if sliceHeight == self.InputProperties["height"]:
+                    if sliceHeight == self.InputProperties.height:
                         isFullFile = True
                 else:
                     if sliceGT != thisGT or sliceProj != thisProj:
