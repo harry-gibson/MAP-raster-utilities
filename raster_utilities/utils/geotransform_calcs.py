@@ -92,6 +92,20 @@ def calcAggregatedProperties(method, inRasterProps,
         if isinstance(outResolution, str):
             # use the hardcoded resolutions for the 3 main MAP resolutions to avoid
             # cocking about with irrational numbers not multiplying / dividing cleanly
+            inResXRnd = round(inResX, 8)
+            inResYRnd = round(inResY, 8)
+            if inResXRnd == 0.00833333:
+                inResX = 1.0 / 120.0
+            elif inResXRnd == 0.04166667:
+                inResX = 1.0 / 24.0
+            elif inResXRnd == 0.08333333:
+                inResX = 1.0 / 12.0
+            if inResYRnd == -0.00833333:
+                inResY = -1.0 / 120.0
+            elif inResYRnd == -0.04166667:
+                inResY = -1.0 / 24.0
+            elif inResYRnd == -0.08333333:
+                inResY = -1.0 / 12.0
             xExtent = inXSize * inResX
             yExtent = inYSize * -inResY
             if outResolution.lower().startswith("1k"):
