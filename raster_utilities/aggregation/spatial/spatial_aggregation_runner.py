@@ -216,11 +216,11 @@ class SpatialAggregator:
         tiles = getTiles(inputProperties.width, inputProperties.height, tileMax)
         logMessage("Processing in {0!s} tiles of {1!s} pixels".format(len(tiles), tileMax))
         if inputProperties.ndv is not None:
-            catNdv = inputProperties.ndv
-            logMessage("Incoming nodata value is "+str(catNdv))
+            ndv_In = inputProperties.ndv
+            logMessage("Incoming nodata value is "+str(ndv_In))
         else:
             logMessage("No NDV defined in input")
-            catNdv = None
+            ndv_In = None
         if self._mode == AggregationModes.CONTINUOUS:
             aggregator = Continuous_Aggregator_Flt(inputProperties.width, inputProperties.height,
                                                outShape[1], outShape[0],
@@ -236,7 +236,7 @@ class SpatialAggregator:
                                                 outShape[1], outShape[0],
                                                 catArg,
                                                 doLikeAdjacency,
-                                                self.ndvOut, catNdv
+                                                self.ndvOut, ndv_In
                                             )
         # for each tile read the data and add to the aggregator
         # todo (maybe) don't bother adding complete nodata tiles? (just add fake one)
@@ -257,7 +257,7 @@ class SpatialAggregator:
             #                                        (yOff, yOff+ySize))
             # todo check the actual datatypes of the files here esp for categorical
             if self._mode == AggregationModes.CONTINUOUS:
-                aggregator.addTile(inArr.astype(np.float32), xOff, yOff)
+                aggregator.addTile(inArr.astype(np.float32), xOff, yOff, ndv_In)
             else:
                 aggregator.addTile(inArr#.astype(np.uint8)
                                    , xOff, yOff)
@@ -285,7 +285,7 @@ class SpatialAggregator:
                 if stat == catstats.MAJORITY:
                     fnOut = self._fnGetter(os.path.basename(filename),
                                            stat)
-                    SaveLZWTiff(r[stat], catNdv, outGT, inputProperties.proj,
+                    SaveLZWTiff(r[stat], ndv_In, outGT, inputProperties.proj,
                                 self.outFolder, fnOut)
                 else:
                     for i in range(0, self.nCategories):
