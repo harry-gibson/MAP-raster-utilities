@@ -139,7 +139,7 @@ cdef class Continuous_Aggregator_Flt:
     @cython.boundscheck(False)
     @cython.cdivision(True)
     @cython.wraparound(False)
-    cpdef addTile(self, float[:,::1] data, Py_ssize_t xOffset, Py_ssize_t yOffset):
+    cpdef addTile(self, float[:,::1] data, Py_ssize_t xOffset, Py_ssize_t yOffset, float ndv_In):
         ''' Add a tile of the input data to the aggregation. Provide the offset of the top-left pixel.
         float[:,::1] data, int xOffset, int yOffset
         '''
@@ -168,7 +168,7 @@ cdef class Continuous_Aggregator_Flt:
                 self._coverageArr[yOut, xOut] = 1
 
                 localValue = data[yInTile, xInTile]
-                if localValue == self._NDV:
+                if localValue == ndv_In:
                     continue
                 # always track count
                 self.outputCountArr[yOut, xOut] += 1
