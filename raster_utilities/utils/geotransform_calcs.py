@@ -202,7 +202,13 @@ def CalculatePixelLims_GlobalRef(inGT, longitudeLims, latitudeLims):
     '''Returns pixel coords of a given AOI in degrees, as they *would* be in a global image
 
     The resolution is taken from the input geotransform but the origin relative to which the
-    coords are calculated is taken as -180,90 regardless of what is in the geotransform'''
+    coords are calculated is taken as -180,90 regardless of what is in the geotransform.
+
+    Returns pixel coordinates as ((xMin, xMax), (yMax, yMin)); these represent the pixel window on a
+    global image of the matching resolution that includes the request bbox.
+
+    The main mastergrid resolutions of 30 arcsecond, 2.5 arcminute, 5 arcminute are treated
+    explicitly to avoid rounding errors.'''
 
     assert isinstance(longitudeLims, tuple) and len(longitudeLims) == 2
     assert isinstance(latitudeLims, tuple) and len(latitudeLims) == 2
@@ -218,8 +224,24 @@ def CalculatePixelLims_GlobalRef(inGT, longitudeLims, latitudeLims):
 
     xRes = inGT[1]
     yRes = -(inGT[5])
-    OverallNorthLimit = 90
-    OverallWestLimit = -180
+    # check for the commonly-used imprecise resolutions and recalculate to ensure we don't end up missing a pixel
+    inResXRnd = round(xRes, 8)
+    inResYRnd = round(yRes, 8)
+    if inResXRnd == 0.00833333:
+        xRes = 1.0 / 120.0
+    elif inResXRnd == 0.04166667:
+        xRes = 1.0 / 24.0
+    elif inResXRnd == 0.08333333:
+        xRes= 1.0 / 12.0
+    if inResYRnd == 0.00833333:
+        yRes= 1.0 / 120.0
+    elif inResYRnd == 0.04166667:
+        yRes= 1.0 / 24.0
+    elif inResYRnd == 0.08333333:
+        yRes= 1.0 / 12.0
+
+    OverallNorthLimit = 90.
+    OverallWestLimit = -180.
     x0 = int((WestLimitOut - OverallWestLimit) / xRes)
     x1 = int(((EastLimitOut - OverallWestLimit) / xRes) + 0.5)
     y0 = int((OverallNorthLimit - NorthLimitOut) / yRes)
@@ -230,7 +252,11 @@ def CalculatePixelLims_GlobalRef(inGT, longitudeLims, latitudeLims):
 def CalculatePixelLims(inGT, longitudeLims, latitudeLims):
     '''Returns pixel coords of a given AOI in degrees, in an image with the given geotransform
 
-    Returns pixel coordinates as ((xMin, xMax), (yMax, yMin))'''
+    Returns pixel coordinates as ((xMin, xMax), (yMax, yMin)); these represent the pixel window on a
+    global image of the matching resolution that includes the request bbox.
+
+    The main mastergrid resolutions of 30 arcsecond, 2.5 arcminute, 5 arcminute are treated
+    explicitly to avoid rounding errors.'''
 
     assert isinstance(longitudeLims, tuple) and len(longitudeLims) == 2
     assert isinstance(latitudeLims, tuple) and len(latitudeLims) == 2
@@ -246,6 +272,22 @@ def CalculatePixelLims(inGT, longitudeLims, latitudeLims):
 
     xRes = inGT[1]
     yRes = -(inGT[5])
+    # check for the commonly-used imprecise resolutions and recalculate to ensure we don't end up missing a pixel
+    inResXRnd = round(xRes, 8)
+    inResYRnd = round(yRes, 8)
+    if inResXRnd == 0.00833333:
+        xRes = 1.0 / 120.0
+    elif inResXRnd == 0.04166667:
+        xRes = 1.0 / 24.0
+    elif inResXRnd == 0.08333333:
+        xRes = 1.0 / 12.0
+    if inResYRnd == 0.00833333:
+        yRes = 1.0 / 120.0
+    elif inResYRnd == 0.04166667:
+        yRes = 1.0 / 24.0
+    elif inResYRnd == 0.08333333:
+        yRes = 1.0 / 12.0
+
     OverallNorthLimit = inGT[3]
     OverallWestLimit = inGT[0]
 

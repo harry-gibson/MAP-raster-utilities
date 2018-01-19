@@ -2,7 +2,10 @@ import os
 from osgeo import gdal_array, gdal
 from ..utils.geotransform_calcs   import  CalculateClippedGeoTransform, CalculateClippedGeoTransform_RoundedRes
 from collections import namedtuple
-def SaveLZWTiff(data, _NDV, geotransform, projection, outDir, outName, cOpts=None):
+def SaveLZWTiff(data, _NDV, geotransform, projection, outDir, outName,
+                cOpts=None,
+                outShape=None,
+                outOffset=None):
     '''
     Save a numpy array to a single-band LZW-compressed tiff file in the specified folder
 
@@ -19,22 +22,41 @@ def SaveLZWTiff(data, _NDV, geotransform, projection, outDir, outName, cOpts=Non
     gdType = gdal_array.NumericTypeCodeToGDALTypeCode(data.dtype)
 
     outDrv = gdal.GetDriverByName('GTiff')
-
     outRasterName = os.path.join(outDir, outName)
+
     if cOpts is None:
         cOpts = ["TILED=YES", "SPARSE_OK=FALSE", "BIGTIFF=YES", "COMPRESS=LZW", "PREDICTOR=2",
                  "NUM_THREADS=ALL_CPUS"]
-    outRaster = outDrv.Create(outRasterName, data.shape[1], data.shape[0], 1, gdType,
+
+    if outShape is None:
+        outShape = data.shape
+    if outOffset is None:
+        outOffset = (0,0)
+
+    if outShape[0] < data.shape[0] or outShape[1] < data.shape[1]:
+        raise ValueError("cannot write to a smaller image than the supplied data")
+
+    if ((data.shape[0] + outOffset[0]) > outShape[0]) or ((data.shape[1] + outOffset[1]) > outShape[1]):
+        raise ValueError("data + offset are larger than the specified image size")
+
+    outRaster = outDrv.Create(outRasterName, outShape[1], outShape[0], 1, gdType,
                               cOpts)
     outRaster.SetGeoTransform(geotransform)
     outRaster.SetProjection(projection)
     outBand = outRaster.GetRasterBand(1)
     if _NDV:
         outBand.SetNoDataValue(_NDV)
-    outBand.WriteArray(data)
+    outBand.WriteArray(data, xoff=outOffset[1], yoff=outOffset[0])
     outBand.FlushCache()
     del outBand
     outRaster = None
+
+
+def SaveLZWTiffPart(data, shape, xOff, yOff, geotransform, projection, outDir, outName, cOpts=None):
+    if not os.path.exists(outDir):
+        os.makedirs(outDir)
+
+
 
 def ReadAOI_PixelLims_Inplace(gdalDatasetName, xLims, yLims, dataBuffer, useRoundedResolution = False):
     gdalDatasetIn = gdal.Open(gdalDatasetName)
@@ -63,6 +85,11 @@ def ReadAOI_PixelLims(gdalDatasetName, xLims, yLims, useRoundedResolution = Fals
         yLims = (0, gdalDatasetIn.RasterYSize)
     assert max(xLims) <= gdalDatasetIn.RasterXSize
     assert max(yLims) <= gdalDatasetIn.RasterYSize
+    assert min(xLims) >= 0
+    assert min(yLims) >= 0
+    assert xLims[1] >= xLims[0]
+    assert yLims[1] >= xLims[0]
+
     inputBnd = gdalDatasetIn.GetRasterBand(1)
 
     inputArr = inputBnd.ReadAsArray(xLims[0], yLims[0], xLims[1] - xLims[0], yLims[1] - yLims[0])
