@@ -18,3 +18,8 @@ class CubeResolutions:
     ONE_K = 1.0 / 120.0
     FIVE_K = 1.0 / 24.0
     TEN_K = 1.0 / 12.0
+
+class CubeLevels:
+    MONTHLY = "monthly"
+    ANNUAL = "annual"
+    SYNOPTIC = "synoptic"

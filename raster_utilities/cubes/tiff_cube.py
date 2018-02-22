@@ -1,9 +1,9 @@
 import os, glob
 from datetime import date
 from collections import  defaultdict
-from cube_constants import  CubeResolutions
+from cube_constants import  CubeResolutions, CubeLevels
 from ..aggregation.aggregation_values import TemporalAggregationStats, ContinuousAggregationStats
-
+from ..io.tiff_management import ReadAOI_PixelLims
 class TiffCube:
     '''
 
@@ -95,7 +95,7 @@ class TiffCube:
                 if yearOrSynoptic == "Synoptic":
                     self.SynopticDictionary[monthOrOverall.zfill(2)] = f
                 else:
-                    self.log("File {0!s} is in synoptic folder but filename does not matcch format"
+                    self.log("File {0!s} is in synoptic folder but filename does not match format"
                              .format(f))
 
 
@@ -110,6 +110,60 @@ class TiffCube:
         elif self.VariableName != variablename:
             raise ValueError("Filename {0!s} has variable inconsistent with {1!s}".format(filename, self.VariableName))
         return variablename, yearOrSynoptic, monthOrOverall, temporalType, resolution, spatialType
+
+    def ReadMonthlyData(self, date, latLims, lonLims):
+        pass
+
+    def ReadAnnualData(self, date, latLims, lonLims):
+        pass
+
+    def ReadDataForDate(self, CubeLevel, RequiredDate):
+        '''produces an array of data representing the content of the required term for this date
+
+        This takes into account the temporal summary, anomaly, and lag as appropriate for this term
+
+        TODO - specify a subset bounding box'''
+        rasterFilename = None
+        if CubeLevel == CubeLevels.MONTHLY:
+            firstOfMonth = date(RequiredDate.year, RequiredDate.month, 1)
+            if self.MonthlyDictionary.has_key(firstOfMonth):
+                rasterFilename = self.MonthlyDictionary[firstOfMonth]
+        elif CubeLevel == CubeLevels.ANNUAL:
+            year = RequiredDate.year
+            if self.AnnualDictionary.has_key(year):
+                rasterFilename = self.AnnualDictionary[year]
+        elif CubeLevel == CubeLevels.SYNOPTIC:
+            if RequiredDate is not None:
+                mth = str(RequiredDate.month).zfill(2)
+            else:
+                mth = "Overall"
+            if self.SynopticDictionary.has_key(mth):
+                rasterFilename = self.SynopticDictionary[mth]
+        else:
+            self.log("Unknown value for CubeLevel parameter")
+        if rasterFilename is not None:
+            dataArr, dataGT, dataProj, dataNDV = ReadAOI_PixelLims(rasterFilename)
+            return dataArr
+        else:
+            self.log("No matching filename found")
+            return None
+
+
+
+
+
+        if self._TemporalSummaryType == TemporalSummaryTypes.D_MONTHLY:
+            rasterFilename = self.TryGetMonthlyFileForDate(RequiredDate)
+        elif self._TemporalSummaryType == TemporalSummaryTypes.D_ANNUAL:
+            rasterFilename = self.TryGetAnnualFileForDate(RequiredDate)
+        elif (self._TemporalSummaryType == TemporalSummaryTypes.S_MONTHLY_SD or
+            self._TemporalSummaryType == TemporalSummaryTypes.S_MONTHLY_MEAN):
+            rasterFilename = self.TryGetSynopticMonthlyFileForDate()
+        elif (self._TemporalSummaryType == TemporalSummaryTypes.S_ANNUAL_MEAN or
+            self._TemporalSummaryType == TemporalSummaryTypes.STATIC):
+            rasterFilename = self.StaticFilename
+
+
 
 
 
