@@ -176,7 +176,7 @@ cdef class TemporalAggregator_Dynamic:
                 self._uniqueFileSet.add(fileTag)
                 useForSynoptic = 1
             elif fileTag is not None:
-                print("Already added {0!S} to synoptic total, skipping. ".format(fileTag))
+                print("Already added {0!s} to synoptic total, skipping. ".format(fileTag))
 
         # hardcode to 6 threads which is fast enough for anything that can 
         # feasibly fit in RAM anyway and is ok on most machines
