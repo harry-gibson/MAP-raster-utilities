@@ -9,7 +9,16 @@ from ..utils.geotransform_calcs import CalculatePixelLims
 class TiffCube:
     ''' Represents a view of a MAP mastergrids data cube folder for a single variable
 
-    Based on a
+    Based on a folder structure documented elsewhere. In summary the given Masterfolder should contain
+    subfolders for resolution: any / all of "1k", "5k", "10k". Each of these should contain subfolders named
+    any / all of "Monthly", "Annual", "Synoptic". Files within each of these folders should have base filenames
+    with six (or more) dot-delimited tokens, with the following meanings:
+
+    {VariableName}.{Year}.{Month}.{TemporalSummary}.{Res}.{SpatialSummary}.tif
+    - The second token can be the string "Synoptic" instead of a year.
+    - The third token can be a month number, or the string "Overall" iif "Synoptic" is in pos 2.
+    - The fourth token can be a value from TemporalAggregationStats, although only "mean" is generally available
+    - The sixth token can be a value from ContinuousAggregationStats, e.g. "mean", "max", "min"...
 
     {
         resolution (1km / 5km):
@@ -139,7 +148,7 @@ class TiffCube:
         '''RequiredDate may be None for overall synoptic, or a date for the matching synoptic month'''
         return self.ReadDataForDate(CubeLevels.SYNOPTIC, RequiredDate, latLims, lonLims)
 
-    def ReadDataForDate(self, CubeLevel, RequiredDate, latLims, lonLims):
+    def ReadDataForDate(self, CubeLevel, RequiredDate, latLims = None, lonLims = None):
         '''produces an array of data representing the content of the required term for this date
 
         This takes into account the temporal summary, anomaly, as appropriate for this term
@@ -154,15 +163,19 @@ class TiffCube:
             if self.AnnualDictionary.has_key(year):
                 rasterFilename = self.AnnualDictionary[year]
         elif CubeLevel == CubeLevels.SYNOPTIC:
-            if RequiredDate is not None:
-                mth = str(RequiredDate.month).zfill(2)
-            else:
+            if RequiredDate is None:
                 mth = "Overall"
+            else:
+                mth = str(RequiredDate.month).zfill(2)
             if self.SynopticDictionary.has_key(mth):
                 rasterFilename = self.SynopticDictionary[mth]
+        elif CubeLevel == CubeLevels.STATIC:
+            if self.SynopticDictionary.has_key("STATIC"):
+                rasterFilename = self.SynopticDictionary["STATIC"]
         else:
             self.log("Unknown value for CubeLevel parameter")
         if rasterFilename is not None:
+            self.log("Reading data from file " + rasterFilename)
             inGT, inProj, inNDV, inWidth, inHeight, inRes, inDT = GetRasterProperties(rasterFilename)
             pixelLims = CalculatePixelLims(inGT, lonLims, latLims)
             dataArr, subsetGT, _, _ = ReadAOI_PixelLims(rasterFilename, pixelLims[0], pixelLims[1])
@@ -170,25 +183,6 @@ class TiffCube:
         else:
             self.log("No matching filename found")
             return None
-
-
-
-
-
-        if self._TemporalSummaryType == TemporalSummaryTypes.D_MONTHLY:
-            rasterFilename = self.TryGetMonthlyFileForDate(RequiredDate)
-        elif self._TemporalSummaryType == TemporalSummaryTypes.D_ANNUAL:
-            rasterFilename = self.TryGetAnnualFileForDate(RequiredDate)
-        elif (self._TemporalSummaryType == TemporalSummaryTypes.S_MONTHLY_SD or
-            self._TemporalSummaryType == TemporalSummaryTypes.S_MONTHLY_MEAN):
-            rasterFilename = self.TryGetSynopticMonthlyFileForDate()
-        elif (self._TemporalSummaryType == TemporalSummaryTypes.S_ANNUAL_MEAN or
-            self._TemporalSummaryType == TemporalSummaryTypes.STATIC):
-            rasterFilename = self.StaticFilename
-
-
-
-
 
     def __isInt(self, s):
         try:
