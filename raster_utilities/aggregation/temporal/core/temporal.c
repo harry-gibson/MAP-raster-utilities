@@ -523,6 +523,19 @@ struct __pyx_array_obj;
 struct __pyx_MemviewEnum_obj;
 struct __pyx_memoryview_obj;
 struct __pyx_memoryviewslice_obj;
+struct __pyx_opt_args_8temporal_4core_8temporal_26TemporalAggregator_Dynamic_addFile;
+
+/* "temporal\core\temporal.pyx":118
+ *     @cython.boundscheck(False)
+ *     @cython.cdivision(True)
+ *     cpdef addFile(self, float[:,::1] data, float thisNdv, fileTag = None):             # <<<<<<<<<<<<<<
+ *         '''Add a tile of data to the running summaries. Data array must be of shape specified in startup.
+ * 
+ */
+struct __pyx_opt_args_8temporal_4core_8temporal_26TemporalAggregator_Dynamic_addFile {
+  int __pyx_n;
+  PyObject *fileTag;
+};
 
 /* "temporal\core\temporal.pyx":8
  * 
@@ -562,6 +575,7 @@ struct __pyx_obj_8temporal_4core_8temporal_TemporalAggregator_Dynamic {
   unsigned char _outputCount;
   unsigned char _outputMean;
   unsigned char _generateSynoptic;
+  PyObject *_uniqueFileSet;
 };
 
 
@@ -651,7 +665,7 @@ struct __pyx_memoryviewslice_obj {
  */
 
 struct __pyx_vtabstruct_8temporal_4core_8temporal_TemporalAggregator_Dynamic {
-  PyObject *(*addFile)(struct __pyx_obj_8temporal_4core_8temporal_TemporalAggregator_Dynamic *, __Pyx_memviewslice, float, int __pyx_skip_dispatch);
+  PyObject *(*addFile)(struct __pyx_obj_8temporal_4core_8temporal_TemporalAggregator_Dynamic *, __Pyx_memviewslice, float, int __pyx_skip_dispatch, struct __pyx_opt_args_8temporal_4core_8temporal_26TemporalAggregator_Dynamic_addFile *__pyx_optional_args);
   PyObject *(*emitStep)(struct __pyx_obj_8temporal_4core_8temporal_TemporalAggregator_Dynamic *, int __pyx_skip_dispatch);
   PyObject *(*emitTotal)(struct __pyx_obj_8temporal_4core_8temporal_TemporalAggregator_Dynamic *, int __pyx_skip_dispatch);
 };
@@ -822,18 +836,18 @@ static CYTHON_INLINE int __Pyx_PySequence_Contains(PyObject* item, PyObject* seq
 
 static CYTHON_INLINE void __Pyx_RaiseUnboundLocalError(const char *varname);
 
+#if CYTHON_COMPILING_IN_CPYTHON
+static CYTHON_INLINE PyObject* __Pyx_PyObject_CallMethO(PyObject *func, PyObject *arg);
+#endif
+
+static CYTHON_INLINE PyObject* __Pyx_PyObject_CallOneArg(PyObject *func, PyObject *arg);
+
 #ifndef __PYX_FORCE_INIT_THREADS
   #define __PYX_FORCE_INIT_THREADS 0
 #endif
 
 static CYTHON_INLINE void __Pyx_ErrRestore(PyObject *type, PyObject *value, PyObject *tb);
 static CYTHON_INLINE void __Pyx_ErrFetch(PyObject **type, PyObject **value, PyObject **tb);
-
-#if CYTHON_COMPILING_IN_CPYTHON
-static CYTHON_INLINE PyObject* __Pyx_PyObject_CallMethO(PyObject *func, PyObject *arg);
-#endif
-
-static CYTHON_INLINE PyObject* __Pyx_PyObject_CallOneArg(PyObject *func, PyObject *arg);
 
 #if CYTHON_COMPILING_IN_CPYTHON
 static CYTHON_INLINE PyObject* __Pyx_PyObject_CallNoArg(PyObject *func);
@@ -1033,6 +1047,14 @@ static CYTHON_INLINE __Pyx_memviewslice __Pyx_PyObject_to_MemoryviewSlice_d_dc_f
 static PyObject *__pyx_memview_get_float(const char *itemp);
 static int __pyx_memview_set_float(const char *itemp, PyObject *obj);
 
+static int __Pyx_Print(PyObject*, PyObject *, int);
+#if CYTHON_COMPILING_IN_PYPY || PY_MAJOR_VERSION >= 3
+static PyObject* __pyx_print = 0;
+static PyObject* __pyx_print_kwargs = 0;
+#endif
+
+static int __Pyx_PrintOne(PyObject* stream, PyObject *o);
+
 static CYTHON_INLINE PyObject* __Pyx_PyInt_From_short(short value);
 
 static CYTHON_INLINE short __Pyx_PyInt_As_short(PyObject *);
@@ -1076,7 +1098,7 @@ static int __Pyx_check_binary_version(void);
 
 static int __Pyx_InitStrings(__Pyx_StringTabEntry *t);
 
-static PyObject *__pyx_f_8temporal_4core_8temporal_26TemporalAggregator_Dynamic_addFile(struct __pyx_obj_8temporal_4core_8temporal_TemporalAggregator_Dynamic *__pyx_v_self, __Pyx_memviewslice __pyx_v_data, float __pyx_v_thisNdv, int __pyx_skip_dispatch); /* proto*/
+static PyObject *__pyx_f_8temporal_4core_8temporal_26TemporalAggregator_Dynamic_addFile(struct __pyx_obj_8temporal_4core_8temporal_TemporalAggregator_Dynamic *__pyx_v_self, __Pyx_memviewslice __pyx_v_data, float __pyx_v_thisNdv, int __pyx_skip_dispatch, struct __pyx_opt_args_8temporal_4core_8temporal_26TemporalAggregator_Dynamic_addFile *__pyx_optional_args); /* proto*/
 static PyObject *__pyx_f_8temporal_4core_8temporal_26TemporalAggregator_Dynamic_emitStep(struct __pyx_obj_8temporal_4core_8temporal_TemporalAggregator_Dynamic *__pyx_v_self, int __pyx_skip_dispatch); /* proto*/
 static PyObject *__pyx_f_8temporal_4core_8temporal_26TemporalAggregator_Dynamic_emitTotal(struct __pyx_obj_8temporal_4core_8temporal_TemporalAggregator_Dynamic *__pyx_v_self, int __pyx_skip_dispatch); /* proto*/
 static char *__pyx_memoryview_get_item_pointer(struct __pyx_memoryview_obj *__pyx_v_self, PyObject *__pyx_v_index); /* proto*/
@@ -1157,7 +1179,7 @@ static PyObject *__pyx_builtin_xrange;
 static PyObject *__pyx_builtin_id;
 static PyObject *__pyx_builtin_IndexError;
 static int __pyx_pf_8temporal_4core_8temporal_26TemporalAggregator_Dynamic___cinit__(struct __pyx_obj_8temporal_4core_8temporal_TemporalAggregator_Dynamic *__pyx_v_self, Py_ssize_t __pyx_v_height, Py_ssize_t __pyx_v_width, double __pyx_v_ndv, PyObject *__pyx_v_stats, PyObject *__pyx_v_generateSynoptic); /* proto */
-static PyObject *__pyx_pf_8temporal_4core_8temporal_26TemporalAggregator_Dynamic_2addFile(struct __pyx_obj_8temporal_4core_8temporal_TemporalAggregator_Dynamic *__pyx_v_self, __Pyx_memviewslice __pyx_v_data, float __pyx_v_thisNdv); /* proto */
+static PyObject *__pyx_pf_8temporal_4core_8temporal_26TemporalAggregator_Dynamic_2addFile(struct __pyx_obj_8temporal_4core_8temporal_TemporalAggregator_Dynamic *__pyx_v_self, __Pyx_memviewslice __pyx_v_data, float __pyx_v_thisNdv, PyObject *__pyx_v_fileTag); /* proto */
 static PyObject *__pyx_pf_8temporal_4core_8temporal_26TemporalAggregator_Dynamic_4emitStep(struct __pyx_obj_8temporal_4core_8temporal_TemporalAggregator_Dynamic *__pyx_v_self); /* proto */
 static PyObject *__pyx_pf_8temporal_4core_8temporal_26TemporalAggregator_Dynamic_6emitTotal(struct __pyx_obj_8temporal_4core_8temporal_TemporalAggregator_Dynamic *__pyx_v_self); /* proto */
 static int __pyx_array_MemoryView_5array___cinit__(struct __pyx_array_obj *__pyx_v_self, PyObject *__pyx_v_shape, Py_ssize_t __pyx_v_itemsize, PyObject *__pyx_v_format, PyObject *__pyx_v_mode, int __pyx_v_allocate_buffer); /* proto */
@@ -1205,12 +1227,14 @@ static char __pyx_k_np[] = "np";
 static char __pyx_k_MAX[] = "MAX";
 static char __pyx_k_MIN[] = "MIN";
 static char __pyx_k_SUM[] = "SUM";
+static char __pyx_k_end[] = "end";
 static char __pyx_k_inf[] = "inf";
 static char __pyx_k_ndv[] = "ndv";
 static char __pyx_k_obj[] = "obj";
 static char __pyx_k_MEAN[] = "MEAN";
 static char __pyx_k_base[] = "base";
 static char __pyx_k_data[] = "data";
+static char __pyx_k_file[] = "file";
 static char __pyx_k_main[] = "__main__";
 static char __pyx_k_mode[] = "mode";
 static char __pyx_k_name[] = "name";
@@ -1228,6 +1252,7 @@ static char __pyx_k_dtype[] = "dtype";
 static char __pyx_k_error[] = "error";
 static char __pyx_k_flags[] = "flags";
 static char __pyx_k_numpy[] = "numpy";
+static char __pyx_k_print[] = "print";
 static char __pyx_k_range[] = "range";
 static char __pyx_k_shape[] = "shape";
 static char __pyx_k_start[] = "start";
@@ -1244,6 +1269,7 @@ static char __pyx_k_unpack[] = "unpack";
 static char __pyx_k_xrange[] = "xrange";
 static char __pyx_k_addFile[] = "addFile";
 static char __pyx_k_asarray[] = "asarray";
+static char __pyx_k_fileTag[] = "fileTag";
 static char __pyx_k_float32[] = "float32";
 static char __pyx_k_float64[] = "float64";
 static char __pyx_k_fortran[] = "fortran";
@@ -1281,6 +1307,7 @@ static char __pyx_k_itemsize_0_for_cython_array[] = "itemsize <= 0 for cython.ar
 static char __pyx_k_unable_to_allocate_array_data[] = "unable to allocate array data.";
 static char __pyx_k_strided_and_direct_or_indirect[] = "<strided and direct or indirect>";
 static char __pyx_k_All_dimensions_preceding_dimensi[] = "All dimensions preceding dimension %d must be indexed and not sliced";
+static char __pyx_k_Already_added_0_S_to_synoptic_to[] = "Already added {0!S} to synoptic total, skipping. ";
 static char __pyx_k_Buffer_view_does_not_expose_stri[] = "Buffer view does not expose strides";
 static char __pyx_k_Can_only_create_a_buffer_that_is[] = "Can only create a buffer that is contiguous in memory.";
 static char __pyx_k_Cannot_transpose_memoryview_with[] = "Cannot transpose memoryview with indirect dimensions";
@@ -1293,6 +1320,7 @@ static char __pyx_k_Unable_to_convert_item_to_object[] = "Unable to convert item
 static char __pyx_k_got_differing_extents_in_dimensi[] = "got differing extents in dimension %d (got %d and %d)";
 static char __pyx_k_raster_utilities_aggregation_agg[] = "raster_utilities.aggregation.aggregation_values";
 static char __pyx_k_unable_to_allocate_shape_and_str[] = "unable to allocate shape and strides.";
+static PyObject *__pyx_kp_s_Already_added_0_S_to_synoptic_to;
 static PyObject *__pyx_kp_s_Buffer_view_does_not_expose_stri;
 static PyObject *__pyx_n_s_COUNT;
 static PyObject *__pyx_kp_s_Can_only_create_a_buffer_that_is;
@@ -1335,8 +1363,11 @@ static PyObject *__pyx_n_s_dtype;
 static PyObject *__pyx_n_s_dtype_is_object;
 static PyObject *__pyx_n_s_emitStep;
 static PyObject *__pyx_n_s_emitTotal;
+static PyObject *__pyx_n_s_end;
 static PyObject *__pyx_n_s_enumerate;
 static PyObject *__pyx_n_s_error;
+static PyObject *__pyx_n_s_file;
+static PyObject *__pyx_n_s_fileTag;
 static PyObject *__pyx_n_s_flags;
 static PyObject *__pyx_n_s_float32;
 static PyObject *__pyx_n_s_float64;
@@ -1362,6 +1393,7 @@ static PyObject *__pyx_n_s_np;
 static PyObject *__pyx_n_s_numpy;
 static PyObject *__pyx_n_s_obj;
 static PyObject *__pyx_n_s_pack;
+static PyObject *__pyx_n_s_print;
 static PyObject *__pyx_n_s_pyx_getbuffer;
 static PyObject *__pyx_n_s_pyx_vtable;
 static PyObject *__pyx_n_s_range;
@@ -1409,8 +1441,8 @@ static PyObject *__pyx_tuple__18;
 static PyObject *__pyx_tuple__19;
 static PyObject *__pyx_tuple__20;
 
-/* "temporal\core\temporal.pyx":45
- *         unsigned char _generateSynoptic
+/* "temporal\core\temporal.pyx":47
+ * 
  * 
  *     def __cinit__(self, Py_ssize_t height, Py_ssize_t width, double ndv,             # <<<<<<<<<<<<<<
  *                 stats, generateSynoptic = True):
@@ -1435,7 +1467,7 @@ static int __pyx_pw_8temporal_4core_8temporal_26TemporalAggregator_Dynamic_1__ci
     static PyObject **__pyx_pyargnames[] = {&__pyx_n_s_height,&__pyx_n_s_width,&__pyx_n_s_ndv,&__pyx_n_s_stats,&__pyx_n_s_generateSynoptic,0};
     PyObject* values[5] = {0,0,0,0,0};
 
-    /* "temporal\core\temporal.pyx":46
+    /* "temporal\core\temporal.pyx":48
  * 
  *     def __cinit__(self, Py_ssize_t height, Py_ssize_t width, double ndv,
  *                 stats, generateSynoptic = True):             # <<<<<<<<<<<<<<
@@ -1463,17 +1495,17 @@ static int __pyx_pw_8temporal_4core_8temporal_26TemporalAggregator_Dynamic_1__ci
         case  1:
         if (likely((values[1] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_width)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("__cinit__", 0, 4, 5, 1); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 45; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+          __Pyx_RaiseArgtupleInvalid("__cinit__", 0, 4, 5, 1); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 47; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
         }
         case  2:
         if (likely((values[2] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_ndv)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("__cinit__", 0, 4, 5, 2); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 45; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+          __Pyx_RaiseArgtupleInvalid("__cinit__", 0, 4, 5, 2); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 47; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
         }
         case  3:
         if (likely((values[3] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_stats)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("__cinit__", 0, 4, 5, 3); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 45; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+          __Pyx_RaiseArgtupleInvalid("__cinit__", 0, 4, 5, 3); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 47; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
         }
         case  4:
         if (kw_args > 0) {
@@ -1482,7 +1514,7 @@ static int __pyx_pw_8temporal_4core_8temporal_26TemporalAggregator_Dynamic_1__ci
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "__cinit__") < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 45; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "__cinit__") < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 47; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
       }
     } else {
       switch (PyTuple_GET_SIZE(__pyx_args)) {
@@ -1495,15 +1527,15 @@ static int __pyx_pw_8temporal_4core_8temporal_26TemporalAggregator_Dynamic_1__ci
         default: goto __pyx_L5_argtuple_error;
       }
     }
-    __pyx_v_height = __Pyx_PyIndex_AsSsize_t(values[0]); if (unlikely((__pyx_v_height == (Py_ssize_t)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 45; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
-    __pyx_v_width = __Pyx_PyIndex_AsSsize_t(values[1]); if (unlikely((__pyx_v_width == (Py_ssize_t)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 45; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
-    __pyx_v_ndv = __pyx_PyFloat_AsDouble(values[2]); if (unlikely((__pyx_v_ndv == (double)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 45; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+    __pyx_v_height = __Pyx_PyIndex_AsSsize_t(values[0]); if (unlikely((__pyx_v_height == (Py_ssize_t)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 47; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+    __pyx_v_width = __Pyx_PyIndex_AsSsize_t(values[1]); if (unlikely((__pyx_v_width == (Py_ssize_t)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 47; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+    __pyx_v_ndv = __pyx_PyFloat_AsDouble(values[2]); if (unlikely((__pyx_v_ndv == (double)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 47; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
     __pyx_v_stats = values[3];
     __pyx_v_generateSynoptic = values[4];
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("__cinit__", 0, 4, 5, PyTuple_GET_SIZE(__pyx_args)); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 45; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+  __Pyx_RaiseArgtupleInvalid("__cinit__", 0, 4, 5, PyTuple_GET_SIZE(__pyx_args)); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 47; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
   __pyx_L3_error:;
   __Pyx_AddTraceback("temporal.core.temporal.TemporalAggregator_Dynamic.__cinit__", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
@@ -1511,8 +1543,8 @@ static int __pyx_pw_8temporal_4core_8temporal_26TemporalAggregator_Dynamic_1__ci
   __pyx_L4_argument_unpacking_done:;
   __pyx_r = __pyx_pf_8temporal_4core_8temporal_26TemporalAggregator_Dynamic___cinit__(((struct __pyx_obj_8temporal_4core_8temporal_TemporalAggregator_Dynamic *)__pyx_v_self), __pyx_v_height, __pyx_v_width, __pyx_v_ndv, __pyx_v_stats, __pyx_v_generateSynoptic);
 
-  /* "temporal\core\temporal.pyx":45
- *         unsigned char _generateSynoptic
+  /* "temporal\core\temporal.pyx":47
+ * 
  * 
  *     def __cinit__(self, Py_ssize_t height, Py_ssize_t width, double ndv,             # <<<<<<<<<<<<<<
  *                 stats, generateSynoptic = True):
@@ -1557,23 +1589,23 @@ static int __pyx_pf_8temporal_4core_8temporal_26TemporalAggregator_Dynamic___cin
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__cinit__", 0);
 
-  /* "temporal\core\temporal.pyx":54
+  /* "temporal\core\temporal.pyx":56
  * 
  *         # initialise arrays as required to track both totals and subtotals
  *         self.tot_n = np.zeros((height, width), dtype='Int16')             # <<<<<<<<<<<<<<
  *         self.step_n = np.zeros((height, width),dtype='Int16')
  *         if tempstats.COUNT in stats:
  */
-  __pyx_t_1 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 54; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 56; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_zeros); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 54; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_zeros); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 56; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_1 = PyInt_FromSsize_t(__pyx_v_height); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 54; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = PyInt_FromSsize_t(__pyx_v_height); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 56; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_3 = PyInt_FromSsize_t(__pyx_v_width); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 54; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_3 = PyInt_FromSsize_t(__pyx_v_width); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 56; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_4 = PyTuple_New(2); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 54; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_4 = PyTuple_New(2); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 56; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_4);
   PyTuple_SET_ITEM(__pyx_t_4, 0, __pyx_t_1);
   __Pyx_GIVEREF(__pyx_t_1);
@@ -1581,44 +1613,44 @@ static int __pyx_pf_8temporal_4core_8temporal_26TemporalAggregator_Dynamic___cin
   __Pyx_GIVEREF(__pyx_t_3);
   __pyx_t_1 = 0;
   __pyx_t_3 = 0;
-  __pyx_t_3 = PyTuple_New(1); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 54; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_3 = PyTuple_New(1); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 56; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_3);
   PyTuple_SET_ITEM(__pyx_t_3, 0, __pyx_t_4);
   __Pyx_GIVEREF(__pyx_t_4);
   __pyx_t_4 = 0;
-  __pyx_t_4 = PyDict_New(); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 54; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_4 = PyDict_New(); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 56; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_4);
-  if (PyDict_SetItem(__pyx_t_4, __pyx_n_s_dtype, __pyx_n_s_Int16) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 54; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_t_3, __pyx_t_4); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 54; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (PyDict_SetItem(__pyx_t_4, __pyx_n_s_dtype, __pyx_n_s_Int16) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 56; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_t_3, __pyx_t_4); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 56; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   __pyx_t_5 = __Pyx_PyObject_to_MemoryviewSlice_d_dc_short(__pyx_t_1);
-  if (unlikely(!__pyx_t_5.memview)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 54; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (unlikely(!__pyx_t_5.memview)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 56; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __PYX_XDEC_MEMVIEW(&__pyx_v_self->tot_n, 0);
   __pyx_v_self->tot_n = __pyx_t_5;
   __pyx_t_5.memview = NULL;
   __pyx_t_5.data = NULL;
 
-  /* "temporal\core\temporal.pyx":55
+  /* "temporal\core\temporal.pyx":57
  *         # initialise arrays as required to track both totals and subtotals
  *         self.tot_n = np.zeros((height, width), dtype='Int16')
  *         self.step_n = np.zeros((height, width),dtype='Int16')             # <<<<<<<<<<<<<<
  *         if tempstats.COUNT in stats:
  *             self._outputCount = 1
  */
-  __pyx_t_1 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 55; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 57; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_zeros); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 55; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_zeros); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 57; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_1 = PyInt_FromSsize_t(__pyx_v_height); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 55; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = PyInt_FromSsize_t(__pyx_v_height); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 57; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_3 = PyInt_FromSsize_t(__pyx_v_width); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 55; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_3 = PyInt_FromSsize_t(__pyx_v_width); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 57; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_2 = PyTuple_New(2); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 55; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_2 = PyTuple_New(2); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 57; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_2);
   PyTuple_SET_ITEM(__pyx_t_2, 0, __pyx_t_1);
   __Pyx_GIVEREF(__pyx_t_1);
@@ -1626,45 +1658,45 @@ static int __pyx_pf_8temporal_4core_8temporal_26TemporalAggregator_Dynamic___cin
   __Pyx_GIVEREF(__pyx_t_3);
   __pyx_t_1 = 0;
   __pyx_t_3 = 0;
-  __pyx_t_3 = PyTuple_New(1); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 55; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_3 = PyTuple_New(1); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 57; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_3);
   PyTuple_SET_ITEM(__pyx_t_3, 0, __pyx_t_2);
   __Pyx_GIVEREF(__pyx_t_2);
   __pyx_t_2 = 0;
-  __pyx_t_2 = PyDict_New(); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 55; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_2 = PyDict_New(); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 57; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_2);
-  if (PyDict_SetItem(__pyx_t_2, __pyx_n_s_dtype, __pyx_n_s_Int16) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 55; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_4, __pyx_t_3, __pyx_t_2); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 55; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (PyDict_SetItem(__pyx_t_2, __pyx_n_s_dtype, __pyx_n_s_Int16) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 57; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_4, __pyx_t_3, __pyx_t_2); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 57; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __pyx_t_5 = __Pyx_PyObject_to_MemoryviewSlice_d_dc_short(__pyx_t_1);
-  if (unlikely(!__pyx_t_5.memview)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 55; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (unlikely(!__pyx_t_5.memview)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 57; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __PYX_XDEC_MEMVIEW(&__pyx_v_self->step_n, 0);
   __pyx_v_self->step_n = __pyx_t_5;
   __pyx_t_5.memview = NULL;
   __pyx_t_5.data = NULL;
 
-  /* "temporal\core\temporal.pyx":56
+  /* "temporal\core\temporal.pyx":58
  *         self.tot_n = np.zeros((height, width), dtype='Int16')
  *         self.step_n = np.zeros((height, width),dtype='Int16')
  *         if tempstats.COUNT in stats:             # <<<<<<<<<<<<<<
  *             self._outputCount = 1
  *         if tempstats.MEAN in stats or tempstats.SD in stats:
  */
-  __pyx_t_1 = __Pyx_GetModuleGlobalName(__pyx_n_s_tempstats); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 56; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __Pyx_GetModuleGlobalName(__pyx_n_s_tempstats); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 58; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_COUNT); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 56; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_COUNT); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 58; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_6 = (__Pyx_PySequence_Contains(__pyx_t_2, __pyx_v_stats, Py_EQ)); if (unlikely(__pyx_t_6 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 56; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_6 = (__Pyx_PySequence_Contains(__pyx_t_2, __pyx_v_stats, Py_EQ)); if (unlikely(__pyx_t_6 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 58; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __pyx_t_7 = (__pyx_t_6 != 0);
   if (__pyx_t_7) {
 
-    /* "temporal\core\temporal.pyx":57
+    /* "temporal\core\temporal.pyx":59
  *         self.step_n = np.zeros((height, width),dtype='Int16')
  *         if tempstats.COUNT in stats:
  *             self._outputCount = 1             # <<<<<<<<<<<<<<
@@ -1676,19 +1708,19 @@ static int __pyx_pf_8temporal_4core_8temporal_26TemporalAggregator_Dynamic___cin
   }
   __pyx_L3:;
 
-  /* "temporal\core\temporal.pyx":58
+  /* "temporal\core\temporal.pyx":60
  *         if tempstats.COUNT in stats:
  *             self._outputCount = 1
  *         if tempstats.MEAN in stats or tempstats.SD in stats:             # <<<<<<<<<<<<<<
  *             self._doMean = 1 # we need mean to do sd, even if we don't output it
  *             if tempstats.MEAN in stats:
  */
-  __pyx_t_2 = __Pyx_GetModuleGlobalName(__pyx_n_s_tempstats); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 58; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_2 = __Pyx_GetModuleGlobalName(__pyx_n_s_tempstats); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 60; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_MEAN); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 58; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_MEAN); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 60; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_6 = (__Pyx_PySequence_Contains(__pyx_t_1, __pyx_v_stats, Py_EQ)); if (unlikely(__pyx_t_6 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 58; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_6 = (__Pyx_PySequence_Contains(__pyx_t_1, __pyx_v_stats, Py_EQ)); if (unlikely(__pyx_t_6 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 60; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_t_8 = (__pyx_t_6 != 0);
   if (!__pyx_t_8) {
@@ -1696,19 +1728,19 @@ static int __pyx_pf_8temporal_4core_8temporal_26TemporalAggregator_Dynamic___cin
     __pyx_t_7 = __pyx_t_8;
     goto __pyx_L5_bool_binop_done;
   }
-  __pyx_t_1 = __Pyx_GetModuleGlobalName(__pyx_n_s_tempstats); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 58; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __Pyx_GetModuleGlobalName(__pyx_n_s_tempstats); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 60; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_SD); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 58; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_SD); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 60; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_8 = (__Pyx_PySequence_Contains(__pyx_t_2, __pyx_v_stats, Py_EQ)); if (unlikely(__pyx_t_8 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 58; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_8 = (__Pyx_PySequence_Contains(__pyx_t_2, __pyx_v_stats, Py_EQ)); if (unlikely(__pyx_t_8 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 60; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __pyx_t_6 = (__pyx_t_8 != 0);
   __pyx_t_7 = __pyx_t_6;
   __pyx_L5_bool_binop_done:;
   if (__pyx_t_7) {
 
-    /* "temporal\core\temporal.pyx":59
+    /* "temporal\core\temporal.pyx":61
  *             self._outputCount = 1
  *         if tempstats.MEAN in stats or tempstats.SD in stats:
  *             self._doMean = 1 # we need mean to do sd, even if we don't output it             # <<<<<<<<<<<<<<
@@ -1717,24 +1749,24 @@ static int __pyx_pf_8temporal_4core_8temporal_26TemporalAggregator_Dynamic___cin
  */
     __pyx_v_self->_doMean = 1;
 
-    /* "temporal\core\temporal.pyx":60
+    /* "temporal\core\temporal.pyx":62
  *         if tempstats.MEAN in stats or tempstats.SD in stats:
  *             self._doMean = 1 # we need mean to do sd, even if we don't output it
  *             if tempstats.MEAN in stats:             # <<<<<<<<<<<<<<
  *                 self._outputMean = 1
  *             if generateSynoptic:
  */
-    __pyx_t_2 = __Pyx_GetModuleGlobalName(__pyx_n_s_tempstats); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 60; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_2 = __Pyx_GetModuleGlobalName(__pyx_n_s_tempstats); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 62; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_2);
-    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_MEAN); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 60; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_MEAN); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 62; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-    __pyx_t_7 = (__Pyx_PySequence_Contains(__pyx_t_1, __pyx_v_stats, Py_EQ)); if (unlikely(__pyx_t_7 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 60; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_7 = (__Pyx_PySequence_Contains(__pyx_t_1, __pyx_v_stats, Py_EQ)); if (unlikely(__pyx_t_7 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 62; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
     __pyx_t_6 = (__pyx_t_7 != 0);
     if (__pyx_t_6) {
 
-      /* "temporal\core\temporal.pyx":61
+      /* "temporal\core\temporal.pyx":63
  *             self._doMean = 1 # we need mean to do sd, even if we don't output it
  *             if tempstats.MEAN in stats:
  *                 self._outputMean = 1             # <<<<<<<<<<<<<<
@@ -1746,33 +1778,33 @@ static int __pyx_pf_8temporal_4core_8temporal_26TemporalAggregator_Dynamic___cin
     }
     __pyx_L7:;
 
-    /* "temporal\core\temporal.pyx":62
+    /* "temporal\core\temporal.pyx":64
  *             if tempstats.MEAN in stats:
  *                 self._outputMean = 1
  *             if generateSynoptic:             # <<<<<<<<<<<<<<
  *                 # initialise arrays to track totals
  *                 self.tot_oldMean = np.zeros((height, width), dtype='float64')
  */
-    __pyx_t_6 = __Pyx_PyObject_IsTrue(__pyx_v_generateSynoptic); if (unlikely(__pyx_t_6 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 62; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_6 = __Pyx_PyObject_IsTrue(__pyx_v_generateSynoptic); if (unlikely(__pyx_t_6 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 64; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     if (__pyx_t_6) {
 
-      /* "temporal\core\temporal.pyx":64
+      /* "temporal\core\temporal.pyx":66
  *             if generateSynoptic:
  *                 # initialise arrays to track totals
  *                 self.tot_oldMean = np.zeros((height, width), dtype='float64')             # <<<<<<<<<<<<<<
  *                 self.tot_newMean = np.zeros((height, width), dtype='float64')
  *                 # don't have zero but no data instead because zero is valid. Counts remain at zero.
  */
-      __pyx_t_1 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 64; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_1 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 66; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_1);
-      __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_zeros); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 64; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_zeros); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 66; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_2);
       __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-      __pyx_t_1 = PyInt_FromSsize_t(__pyx_v_height); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 64; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_1 = PyInt_FromSsize_t(__pyx_v_height); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 66; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_1);
-      __pyx_t_3 = PyInt_FromSsize_t(__pyx_v_width); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 64; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_3 = PyInt_FromSsize_t(__pyx_v_width); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 66; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_3);
-      __pyx_t_4 = PyTuple_New(2); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 64; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_4 = PyTuple_New(2); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 66; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_4);
       PyTuple_SET_ITEM(__pyx_t_4, 0, __pyx_t_1);
       __Pyx_GIVEREF(__pyx_t_1);
@@ -1780,44 +1812,44 @@ static int __pyx_pf_8temporal_4core_8temporal_26TemporalAggregator_Dynamic___cin
       __Pyx_GIVEREF(__pyx_t_3);
       __pyx_t_1 = 0;
       __pyx_t_3 = 0;
-      __pyx_t_3 = PyTuple_New(1); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 64; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_3 = PyTuple_New(1); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 66; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_3);
       PyTuple_SET_ITEM(__pyx_t_3, 0, __pyx_t_4);
       __Pyx_GIVEREF(__pyx_t_4);
       __pyx_t_4 = 0;
-      __pyx_t_4 = PyDict_New(); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 64; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_4 = PyDict_New(); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 66; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_4);
-      if (PyDict_SetItem(__pyx_t_4, __pyx_n_s_dtype, __pyx_n_s_float64) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 64; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-      __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_t_3, __pyx_t_4); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 64; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      if (PyDict_SetItem(__pyx_t_4, __pyx_n_s_dtype, __pyx_n_s_float64) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 66; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_t_3, __pyx_t_4); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 66; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_1);
       __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
       __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
       __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
       __pyx_t_9 = __Pyx_PyObject_to_MemoryviewSlice_d_dc_double(__pyx_t_1);
-      if (unlikely(!__pyx_t_9.memview)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 64; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      if (unlikely(!__pyx_t_9.memview)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 66; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
       __PYX_XDEC_MEMVIEW(&__pyx_v_self->tot_oldMean, 0);
       __pyx_v_self->tot_oldMean = __pyx_t_9;
       __pyx_t_9.memview = NULL;
       __pyx_t_9.data = NULL;
 
-      /* "temporal\core\temporal.pyx":65
+      /* "temporal\core\temporal.pyx":67
  *                 # initialise arrays to track totals
  *                 self.tot_oldMean = np.zeros((height, width), dtype='float64')
  *                 self.tot_newMean = np.zeros((height, width), dtype='float64')             # <<<<<<<<<<<<<<
  *                 # don't have zero but no data instead because zero is valid. Counts remain at zero.
  *                 self.tot_oldMean[:] = ndv
  */
-      __pyx_t_1 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 65; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_1 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 67; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_1);
-      __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_zeros); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 65; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_zeros); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 67; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_4);
       __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-      __pyx_t_1 = PyInt_FromSsize_t(__pyx_v_height); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 65; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_1 = PyInt_FromSsize_t(__pyx_v_height); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 67; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_1);
-      __pyx_t_3 = PyInt_FromSsize_t(__pyx_v_width); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 65; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_3 = PyInt_FromSsize_t(__pyx_v_width); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 67; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_3);
-      __pyx_t_2 = PyTuple_New(2); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 65; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_2 = PyTuple_New(2); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 67; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_2);
       PyTuple_SET_ITEM(__pyx_t_2, 0, __pyx_t_1);
       __Pyx_GIVEREF(__pyx_t_1);
@@ -1825,35 +1857,35 @@ static int __pyx_pf_8temporal_4core_8temporal_26TemporalAggregator_Dynamic___cin
       __Pyx_GIVEREF(__pyx_t_3);
       __pyx_t_1 = 0;
       __pyx_t_3 = 0;
-      __pyx_t_3 = PyTuple_New(1); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 65; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_3 = PyTuple_New(1); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 67; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_3);
       PyTuple_SET_ITEM(__pyx_t_3, 0, __pyx_t_2);
       __Pyx_GIVEREF(__pyx_t_2);
       __pyx_t_2 = 0;
-      __pyx_t_2 = PyDict_New(); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 65; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_2 = PyDict_New(); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 67; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_2);
-      if (PyDict_SetItem(__pyx_t_2, __pyx_n_s_dtype, __pyx_n_s_float64) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 65; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-      __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_4, __pyx_t_3, __pyx_t_2); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 65; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      if (PyDict_SetItem(__pyx_t_2, __pyx_n_s_dtype, __pyx_n_s_float64) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 67; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_4, __pyx_t_3, __pyx_t_2); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 67; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_1);
       __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
       __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
       __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
       __pyx_t_9 = __Pyx_PyObject_to_MemoryviewSlice_d_dc_double(__pyx_t_1);
-      if (unlikely(!__pyx_t_9.memview)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 65; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      if (unlikely(!__pyx_t_9.memview)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 67; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
       __PYX_XDEC_MEMVIEW(&__pyx_v_self->tot_newMean, 0);
       __pyx_v_self->tot_newMean = __pyx_t_9;
       __pyx_t_9.memview = NULL;
       __pyx_t_9.data = NULL;
 
-      /* "temporal\core\temporal.pyx":67
+      /* "temporal\core\temporal.pyx":69
  *                 self.tot_newMean = np.zeros((height, width), dtype='float64')
  *                 # don't have zero but no data instead because zero is valid. Counts remain at zero.
  *                 self.tot_oldMean[:] = ndv             # <<<<<<<<<<<<<<
  *                 self.tot_newMean[:] = ndv
  *             # initialise arrays to track subtotals
  */
-      if (unlikely(!__pyx_v_self->tot_oldMean.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 67; __pyx_clineno = __LINE__; goto __pyx_L1_error;}}
+      if (unlikely(!__pyx_v_self->tot_oldMean.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 69; __pyx_clineno = __LINE__; goto __pyx_L1_error;}}
       __pyx_t_9 = __pyx_v_self->tot_oldMean;
       __PYX_INC_MEMVIEW(&__pyx_t_9, 1);
       __pyx_t_11 = -1;
@@ -1883,14 +1915,14 @@ __PYX_XDEC_MEMVIEW(&__pyx_t_9, 1);
       }
       __PYX_XDEC_MEMVIEW(&__pyx_t_10, 1);
 
-      /* "temporal\core\temporal.pyx":68
+      /* "temporal\core\temporal.pyx":70
  *                 # don't have zero but no data instead because zero is valid. Counts remain at zero.
  *                 self.tot_oldMean[:] = ndv
  *                 self.tot_newMean[:] = ndv             # <<<<<<<<<<<<<<
  *             # initialise arrays to track subtotals
  *             self.step_oldMean = np.zeros((height, width),dtype='float64')
  */
-      if (unlikely(!__pyx_v_self->tot_newMean.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 68; __pyx_clineno = __LINE__; goto __pyx_L1_error;}}
+      if (unlikely(!__pyx_v_self->tot_newMean.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 70; __pyx_clineno = __LINE__; goto __pyx_L1_error;}}
       __pyx_t_9 = __pyx_v_self->tot_newMean;
       __PYX_INC_MEMVIEW(&__pyx_t_9, 1);
       __pyx_t_11 = -1;
@@ -1923,23 +1955,23 @@ __PYX_XDEC_MEMVIEW(&__pyx_t_9, 1);
     }
     __pyx_L8:;
 
-    /* "temporal\core\temporal.pyx":70
+    /* "temporal\core\temporal.pyx":72
  *                 self.tot_newMean[:] = ndv
  *             # initialise arrays to track subtotals
  *             self.step_oldMean = np.zeros((height, width),dtype='float64')             # <<<<<<<<<<<<<<
  *             self.step_newMean = np.zeros((height, width),dtype='float64')
  *             self.step_oldMean[:] = ndv
  */
-    __pyx_t_1 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 70; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_1 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 72; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_1);
-    __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_zeros); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 70; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_zeros); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 72; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_2);
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-    __pyx_t_1 = PyInt_FromSsize_t(__pyx_v_height); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 70; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_1 = PyInt_FromSsize_t(__pyx_v_height); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 72; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_1);
-    __pyx_t_3 = PyInt_FromSsize_t(__pyx_v_width); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 70; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_3 = PyInt_FromSsize_t(__pyx_v_width); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 72; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_3);
-    __pyx_t_4 = PyTuple_New(2); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 70; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_4 = PyTuple_New(2); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 72; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_4);
     PyTuple_SET_ITEM(__pyx_t_4, 0, __pyx_t_1);
     __Pyx_GIVEREF(__pyx_t_1);
@@ -1947,44 +1979,44 @@ __PYX_XDEC_MEMVIEW(&__pyx_t_9, 1);
     __Pyx_GIVEREF(__pyx_t_3);
     __pyx_t_1 = 0;
     __pyx_t_3 = 0;
-    __pyx_t_3 = PyTuple_New(1); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 70; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_3 = PyTuple_New(1); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 72; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_3);
     PyTuple_SET_ITEM(__pyx_t_3, 0, __pyx_t_4);
     __Pyx_GIVEREF(__pyx_t_4);
     __pyx_t_4 = 0;
-    __pyx_t_4 = PyDict_New(); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 70; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_4 = PyDict_New(); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 72; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_4);
-    if (PyDict_SetItem(__pyx_t_4, __pyx_n_s_dtype, __pyx_n_s_float64) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 70; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-    __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_t_3, __pyx_t_4); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 70; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    if (PyDict_SetItem(__pyx_t_4, __pyx_n_s_dtype, __pyx_n_s_float64) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 72; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_t_3, __pyx_t_4); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 72; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
     __pyx_t_13 = __Pyx_PyObject_to_MemoryviewSlice_d_dc_double(__pyx_t_1);
-    if (unlikely(!__pyx_t_13.memview)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 70; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    if (unlikely(!__pyx_t_13.memview)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 72; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
     __PYX_XDEC_MEMVIEW(&__pyx_v_self->step_oldMean, 0);
     __pyx_v_self->step_oldMean = __pyx_t_13;
     __pyx_t_13.memview = NULL;
     __pyx_t_13.data = NULL;
 
-    /* "temporal\core\temporal.pyx":71
+    /* "temporal\core\temporal.pyx":73
  *             # initialise arrays to track subtotals
  *             self.step_oldMean = np.zeros((height, width),dtype='float64')
  *             self.step_newMean = np.zeros((height, width),dtype='float64')             # <<<<<<<<<<<<<<
  *             self.step_oldMean[:] = ndv
  *             self.step_newMean[:] = ndv
  */
-    __pyx_t_1 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 71; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_1 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 73; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_1);
-    __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_zeros); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 71; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_zeros); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 73; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_4);
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-    __pyx_t_1 = PyInt_FromSsize_t(__pyx_v_height); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 71; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_1 = PyInt_FromSsize_t(__pyx_v_height); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 73; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_1);
-    __pyx_t_3 = PyInt_FromSsize_t(__pyx_v_width); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 71; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_3 = PyInt_FromSsize_t(__pyx_v_width); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 73; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_3);
-    __pyx_t_2 = PyTuple_New(2); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 71; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_2 = PyTuple_New(2); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 73; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_2);
     PyTuple_SET_ITEM(__pyx_t_2, 0, __pyx_t_1);
     __Pyx_GIVEREF(__pyx_t_1);
@@ -1992,35 +2024,35 @@ __PYX_XDEC_MEMVIEW(&__pyx_t_9, 1);
     __Pyx_GIVEREF(__pyx_t_3);
     __pyx_t_1 = 0;
     __pyx_t_3 = 0;
-    __pyx_t_3 = PyTuple_New(1); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 71; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_3 = PyTuple_New(1); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 73; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_3);
     PyTuple_SET_ITEM(__pyx_t_3, 0, __pyx_t_2);
     __Pyx_GIVEREF(__pyx_t_2);
     __pyx_t_2 = 0;
-    __pyx_t_2 = PyDict_New(); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 71; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_2 = PyDict_New(); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 73; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_2);
-    if (PyDict_SetItem(__pyx_t_2, __pyx_n_s_dtype, __pyx_n_s_float64) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 71; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-    __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_4, __pyx_t_3, __pyx_t_2); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 71; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    if (PyDict_SetItem(__pyx_t_2, __pyx_n_s_dtype, __pyx_n_s_float64) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 73; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_4, __pyx_t_3, __pyx_t_2); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 73; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
     __pyx_t_13 = __Pyx_PyObject_to_MemoryviewSlice_d_dc_double(__pyx_t_1);
-    if (unlikely(!__pyx_t_13.memview)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 71; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    if (unlikely(!__pyx_t_13.memview)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 73; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
     __PYX_XDEC_MEMVIEW(&__pyx_v_self->step_newMean, 0);
     __pyx_v_self->step_newMean = __pyx_t_13;
     __pyx_t_13.memview = NULL;
     __pyx_t_13.data = NULL;
 
-    /* "temporal\core\temporal.pyx":72
+    /* "temporal\core\temporal.pyx":74
  *             self.step_oldMean = np.zeros((height, width),dtype='float64')
  *             self.step_newMean = np.zeros((height, width),dtype='float64')
  *             self.step_oldMean[:] = ndv             # <<<<<<<<<<<<<<
  *             self.step_newMean[:] = ndv
  *         if tempstats.SD in stats:
  */
-    if (unlikely(!__pyx_v_self->step_oldMean.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 72; __pyx_clineno = __LINE__; goto __pyx_L1_error;}}
+    if (unlikely(!__pyx_v_self->step_oldMean.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 74; __pyx_clineno = __LINE__; goto __pyx_L1_error;}}
     __pyx_t_13 = __pyx_v_self->step_oldMean;
     __PYX_INC_MEMVIEW(&__pyx_t_13, 1);
     __pyx_t_11 = -1;
@@ -2050,14 +2082,14 @@ __PYX_XDEC_MEMVIEW(&__pyx_t_13, 1);
     }
     __PYX_XDEC_MEMVIEW(&__pyx_t_14, 1);
 
-    /* "temporal\core\temporal.pyx":73
+    /* "temporal\core\temporal.pyx":75
  *             self.step_newMean = np.zeros((height, width),dtype='float64')
  *             self.step_oldMean[:] = ndv
  *             self.step_newMean[:] = ndv             # <<<<<<<<<<<<<<
  *         if tempstats.SD in stats:
  *             self._doSD = 1
  */
-    if (unlikely(!__pyx_v_self->step_newMean.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 73; __pyx_clineno = __LINE__; goto __pyx_L1_error;}}
+    if (unlikely(!__pyx_v_self->step_newMean.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 75; __pyx_clineno = __LINE__; goto __pyx_L1_error;}}
     __pyx_t_13 = __pyx_v_self->step_newMean;
     __PYX_INC_MEMVIEW(&__pyx_t_13, 1);
     __pyx_t_11 = -1;
@@ -2090,24 +2122,24 @@ __PYX_XDEC_MEMVIEW(&__pyx_t_13, 1);
   }
   __pyx_L4:;
 
-  /* "temporal\core\temporal.pyx":74
+  /* "temporal\core\temporal.pyx":76
  *             self.step_oldMean[:] = ndv
  *             self.step_newMean[:] = ndv
  *         if tempstats.SD in stats:             # <<<<<<<<<<<<<<
  *             self._doSD = 1
  *             if generateSynoptic:
  */
-  __pyx_t_1 = __Pyx_GetModuleGlobalName(__pyx_n_s_tempstats); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 74; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __Pyx_GetModuleGlobalName(__pyx_n_s_tempstats); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 76; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_SD); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 74; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_SD); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 76; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_6 = (__Pyx_PySequence_Contains(__pyx_t_2, __pyx_v_stats, Py_EQ)); if (unlikely(__pyx_t_6 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 74; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_6 = (__Pyx_PySequence_Contains(__pyx_t_2, __pyx_v_stats, Py_EQ)); if (unlikely(__pyx_t_6 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 76; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __pyx_t_7 = (__pyx_t_6 != 0);
   if (__pyx_t_7) {
 
-    /* "temporal\core\temporal.pyx":75
+    /* "temporal\core\temporal.pyx":77
  *             self.step_newMean[:] = ndv
  *         if tempstats.SD in stats:
  *             self._doSD = 1             # <<<<<<<<<<<<<<
@@ -2116,33 +2148,33 @@ __PYX_XDEC_MEMVIEW(&__pyx_t_13, 1);
  */
     __pyx_v_self->_doSD = 1;
 
-    /* "temporal\core\temporal.pyx":76
+    /* "temporal\core\temporal.pyx":78
  *         if tempstats.SD in stats:
  *             self._doSD = 1
  *             if generateSynoptic:             # <<<<<<<<<<<<<<
  *                 self.tot_oldSD = np.zeros((height, width), dtype='float64')
  *                 self.tot_newSD = np.zeros((height, width), dtype='float64')
  */
-    __pyx_t_7 = __Pyx_PyObject_IsTrue(__pyx_v_generateSynoptic); if (unlikely(__pyx_t_7 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 76; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_7 = __Pyx_PyObject_IsTrue(__pyx_v_generateSynoptic); if (unlikely(__pyx_t_7 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 78; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     if (__pyx_t_7) {
 
-      /* "temporal\core\temporal.pyx":77
+      /* "temporal\core\temporal.pyx":79
  *             self._doSD = 1
  *             if generateSynoptic:
  *                 self.tot_oldSD = np.zeros((height, width), dtype='float64')             # <<<<<<<<<<<<<<
  *                 self.tot_newSD = np.zeros((height, width), dtype='float64')
  *                 self.tot_oldSD[:] = ndv
  */
-      __pyx_t_2 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 77; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_2 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 79; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_2);
-      __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_zeros); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 77; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_zeros); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 79; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_1);
       __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-      __pyx_t_2 = PyInt_FromSsize_t(__pyx_v_height); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 77; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_2 = PyInt_FromSsize_t(__pyx_v_height); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 79; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_2);
-      __pyx_t_3 = PyInt_FromSsize_t(__pyx_v_width); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 77; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_3 = PyInt_FromSsize_t(__pyx_v_width); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 79; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_3);
-      __pyx_t_4 = PyTuple_New(2); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 77; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_4 = PyTuple_New(2); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 79; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_4);
       PyTuple_SET_ITEM(__pyx_t_4, 0, __pyx_t_2);
       __Pyx_GIVEREF(__pyx_t_2);
@@ -2150,44 +2182,44 @@ __PYX_XDEC_MEMVIEW(&__pyx_t_13, 1);
       __Pyx_GIVEREF(__pyx_t_3);
       __pyx_t_2 = 0;
       __pyx_t_3 = 0;
-      __pyx_t_3 = PyTuple_New(1); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 77; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_3 = PyTuple_New(1); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 79; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_3);
       PyTuple_SET_ITEM(__pyx_t_3, 0, __pyx_t_4);
       __Pyx_GIVEREF(__pyx_t_4);
       __pyx_t_4 = 0;
-      __pyx_t_4 = PyDict_New(); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 77; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_4 = PyDict_New(); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 79; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_4);
-      if (PyDict_SetItem(__pyx_t_4, __pyx_n_s_dtype, __pyx_n_s_float64) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 77; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-      __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_t_3, __pyx_t_4); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 77; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      if (PyDict_SetItem(__pyx_t_4, __pyx_n_s_dtype, __pyx_n_s_float64) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 79; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_t_3, __pyx_t_4); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 79; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_2);
       __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
       __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
       __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
       __pyx_t_9 = __Pyx_PyObject_to_MemoryviewSlice_d_dc_double(__pyx_t_2);
-      if (unlikely(!__pyx_t_9.memview)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 77; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      if (unlikely(!__pyx_t_9.memview)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 79; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
       __PYX_XDEC_MEMVIEW(&__pyx_v_self->tot_oldSD, 0);
       __pyx_v_self->tot_oldSD = __pyx_t_9;
       __pyx_t_9.memview = NULL;
       __pyx_t_9.data = NULL;
 
-      /* "temporal\core\temporal.pyx":78
+      /* "temporal\core\temporal.pyx":80
  *             if generateSynoptic:
  *                 self.tot_oldSD = np.zeros((height, width), dtype='float64')
  *                 self.tot_newSD = np.zeros((height, width), dtype='float64')             # <<<<<<<<<<<<<<
  *                 self.tot_oldSD[:] = ndv
  *                 self.tot_newSD[:] = ndv
  */
-      __pyx_t_2 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 78; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_2 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 80; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_2);
-      __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_zeros); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 78; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_zeros); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 80; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_4);
       __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-      __pyx_t_2 = PyInt_FromSsize_t(__pyx_v_height); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 78; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_2 = PyInt_FromSsize_t(__pyx_v_height); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 80; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_2);
-      __pyx_t_3 = PyInt_FromSsize_t(__pyx_v_width); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 78; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_3 = PyInt_FromSsize_t(__pyx_v_width); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 80; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_3);
-      __pyx_t_1 = PyTuple_New(2); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 78; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_1 = PyTuple_New(2); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 80; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_1);
       PyTuple_SET_ITEM(__pyx_t_1, 0, __pyx_t_2);
       __Pyx_GIVEREF(__pyx_t_2);
@@ -2195,35 +2227,35 @@ __PYX_XDEC_MEMVIEW(&__pyx_t_13, 1);
       __Pyx_GIVEREF(__pyx_t_3);
       __pyx_t_2 = 0;
       __pyx_t_3 = 0;
-      __pyx_t_3 = PyTuple_New(1); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 78; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_3 = PyTuple_New(1); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 80; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_3);
       PyTuple_SET_ITEM(__pyx_t_3, 0, __pyx_t_1);
       __Pyx_GIVEREF(__pyx_t_1);
       __pyx_t_1 = 0;
-      __pyx_t_1 = PyDict_New(); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 78; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_1 = PyDict_New(); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 80; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_1);
-      if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_dtype, __pyx_n_s_float64) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 78; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-      __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_4, __pyx_t_3, __pyx_t_1); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 78; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_dtype, __pyx_n_s_float64) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 80; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_4, __pyx_t_3, __pyx_t_1); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 80; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_2);
       __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
       __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
       __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
       __pyx_t_9 = __Pyx_PyObject_to_MemoryviewSlice_d_dc_double(__pyx_t_2);
-      if (unlikely(!__pyx_t_9.memview)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 78; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      if (unlikely(!__pyx_t_9.memview)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 80; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
       __PYX_XDEC_MEMVIEW(&__pyx_v_self->tot_newSD, 0);
       __pyx_v_self->tot_newSD = __pyx_t_9;
       __pyx_t_9.memview = NULL;
       __pyx_t_9.data = NULL;
 
-      /* "temporal\core\temporal.pyx":79
+      /* "temporal\core\temporal.pyx":81
  *                 self.tot_oldSD = np.zeros((height, width), dtype='float64')
  *                 self.tot_newSD = np.zeros((height, width), dtype='float64')
  *                 self.tot_oldSD[:] = ndv             # <<<<<<<<<<<<<<
  *                 self.tot_newSD[:] = ndv
  *             self.step_oldSD = np.zeros((height, width),dtype='float64')
  */
-      if (unlikely(!__pyx_v_self->tot_oldSD.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 79; __pyx_clineno = __LINE__; goto __pyx_L1_error;}}
+      if (unlikely(!__pyx_v_self->tot_oldSD.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 81; __pyx_clineno = __LINE__; goto __pyx_L1_error;}}
       __pyx_t_9 = __pyx_v_self->tot_oldSD;
       __PYX_INC_MEMVIEW(&__pyx_t_9, 1);
       __pyx_t_11 = -1;
@@ -2253,14 +2285,14 @@ __PYX_XDEC_MEMVIEW(&__pyx_t_9, 1);
       }
       __PYX_XDEC_MEMVIEW(&__pyx_t_16, 1);
 
-      /* "temporal\core\temporal.pyx":80
+      /* "temporal\core\temporal.pyx":82
  *                 self.tot_newSD = np.zeros((height, width), dtype='float64')
  *                 self.tot_oldSD[:] = ndv
  *                 self.tot_newSD[:] = ndv             # <<<<<<<<<<<<<<
  *             self.step_oldSD = np.zeros((height, width),dtype='float64')
  *             self.step_newSD = np.zeros((height, width),dtype='float64')
  */
-      if (unlikely(!__pyx_v_self->tot_newSD.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 80; __pyx_clineno = __LINE__; goto __pyx_L1_error;}}
+      if (unlikely(!__pyx_v_self->tot_newSD.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 82; __pyx_clineno = __LINE__; goto __pyx_L1_error;}}
       __pyx_t_9 = __pyx_v_self->tot_newSD;
       __PYX_INC_MEMVIEW(&__pyx_t_9, 1);
       __pyx_t_11 = -1;
@@ -2293,23 +2325,23 @@ __PYX_XDEC_MEMVIEW(&__pyx_t_9, 1);
     }
     __pyx_L10:;
 
-    /* "temporal\core\temporal.pyx":81
+    /* "temporal\core\temporal.pyx":83
  *                 self.tot_oldSD[:] = ndv
  *                 self.tot_newSD[:] = ndv
  *             self.step_oldSD = np.zeros((height, width),dtype='float64')             # <<<<<<<<<<<<<<
  *             self.step_newSD = np.zeros((height, width),dtype='float64')
  *             self.step_oldSD[:] = ndv
  */
-    __pyx_t_2 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 81; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_2 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 83; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_2);
-    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_zeros); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 81; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_zeros); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 83; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-    __pyx_t_2 = PyInt_FromSsize_t(__pyx_v_height); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 81; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_2 = PyInt_FromSsize_t(__pyx_v_height); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 83; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_2);
-    __pyx_t_3 = PyInt_FromSsize_t(__pyx_v_width); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 81; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_3 = PyInt_FromSsize_t(__pyx_v_width); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 83; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_3);
-    __pyx_t_4 = PyTuple_New(2); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 81; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_4 = PyTuple_New(2); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 83; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_4);
     PyTuple_SET_ITEM(__pyx_t_4, 0, __pyx_t_2);
     __Pyx_GIVEREF(__pyx_t_2);
@@ -2317,44 +2349,44 @@ __PYX_XDEC_MEMVIEW(&__pyx_t_9, 1);
     __Pyx_GIVEREF(__pyx_t_3);
     __pyx_t_2 = 0;
     __pyx_t_3 = 0;
-    __pyx_t_3 = PyTuple_New(1); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 81; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_3 = PyTuple_New(1); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 83; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_3);
     PyTuple_SET_ITEM(__pyx_t_3, 0, __pyx_t_4);
     __Pyx_GIVEREF(__pyx_t_4);
     __pyx_t_4 = 0;
-    __pyx_t_4 = PyDict_New(); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 81; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_4 = PyDict_New(); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 83; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_4);
-    if (PyDict_SetItem(__pyx_t_4, __pyx_n_s_dtype, __pyx_n_s_float64) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 81; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-    __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_t_3, __pyx_t_4); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 81; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    if (PyDict_SetItem(__pyx_t_4, __pyx_n_s_dtype, __pyx_n_s_float64) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 83; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_t_3, __pyx_t_4); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 83; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_2);
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
     __pyx_t_13 = __Pyx_PyObject_to_MemoryviewSlice_d_dc_double(__pyx_t_2);
-    if (unlikely(!__pyx_t_13.memview)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 81; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    if (unlikely(!__pyx_t_13.memview)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 83; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
     __PYX_XDEC_MEMVIEW(&__pyx_v_self->step_oldSD, 0);
     __pyx_v_self->step_oldSD = __pyx_t_13;
     __pyx_t_13.memview = NULL;
     __pyx_t_13.data = NULL;
 
-    /* "temporal\core\temporal.pyx":82
+    /* "temporal\core\temporal.pyx":84
  *                 self.tot_newSD[:] = ndv
  *             self.step_oldSD = np.zeros((height, width),dtype='float64')
  *             self.step_newSD = np.zeros((height, width),dtype='float64')             # <<<<<<<<<<<<<<
  *             self.step_oldSD[:] = ndv
  *             self.step_newSD[:] = ndv
  */
-    __pyx_t_2 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 82; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_2 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 84; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_2);
-    __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_zeros); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 82; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_zeros); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 84; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_4);
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-    __pyx_t_2 = PyInt_FromSsize_t(__pyx_v_height); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 82; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_2 = PyInt_FromSsize_t(__pyx_v_height); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 84; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_2);
-    __pyx_t_3 = PyInt_FromSsize_t(__pyx_v_width); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 82; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_3 = PyInt_FromSsize_t(__pyx_v_width); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 84; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_3);
-    __pyx_t_1 = PyTuple_New(2); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 82; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_1 = PyTuple_New(2); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 84; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_1);
     PyTuple_SET_ITEM(__pyx_t_1, 0, __pyx_t_2);
     __Pyx_GIVEREF(__pyx_t_2);
@@ -2362,35 +2394,35 @@ __PYX_XDEC_MEMVIEW(&__pyx_t_9, 1);
     __Pyx_GIVEREF(__pyx_t_3);
     __pyx_t_2 = 0;
     __pyx_t_3 = 0;
-    __pyx_t_3 = PyTuple_New(1); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 82; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_3 = PyTuple_New(1); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 84; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_3);
     PyTuple_SET_ITEM(__pyx_t_3, 0, __pyx_t_1);
     __Pyx_GIVEREF(__pyx_t_1);
     __pyx_t_1 = 0;
-    __pyx_t_1 = PyDict_New(); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 82; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_1 = PyDict_New(); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 84; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_1);
-    if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_dtype, __pyx_n_s_float64) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 82; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-    __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_4, __pyx_t_3, __pyx_t_1); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 82; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_dtype, __pyx_n_s_float64) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 84; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_4, __pyx_t_3, __pyx_t_1); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 84; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_2);
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
     __pyx_t_13 = __Pyx_PyObject_to_MemoryviewSlice_d_dc_double(__pyx_t_2);
-    if (unlikely(!__pyx_t_13.memview)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 82; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    if (unlikely(!__pyx_t_13.memview)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 84; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
     __PYX_XDEC_MEMVIEW(&__pyx_v_self->step_newSD, 0);
     __pyx_v_self->step_newSD = __pyx_t_13;
     __pyx_t_13.memview = NULL;
     __pyx_t_13.data = NULL;
 
-    /* "temporal\core\temporal.pyx":83
+    /* "temporal\core\temporal.pyx":85
  *             self.step_oldSD = np.zeros((height, width),dtype='float64')
  *             self.step_newSD = np.zeros((height, width),dtype='float64')
  *             self.step_oldSD[:] = ndv             # <<<<<<<<<<<<<<
  *             self.step_newSD[:] = ndv
  * 
  */
-    if (unlikely(!__pyx_v_self->step_oldSD.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 83; __pyx_clineno = __LINE__; goto __pyx_L1_error;}}
+    if (unlikely(!__pyx_v_self->step_oldSD.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 85; __pyx_clineno = __LINE__; goto __pyx_L1_error;}}
     __pyx_t_13 = __pyx_v_self->step_oldSD;
     __PYX_INC_MEMVIEW(&__pyx_t_13, 1);
     __pyx_t_11 = -1;
@@ -2420,14 +2452,14 @@ __PYX_XDEC_MEMVIEW(&__pyx_t_13, 1);
     }
     __PYX_XDEC_MEMVIEW(&__pyx_t_18, 1);
 
-    /* "temporal\core\temporal.pyx":84
+    /* "temporal\core\temporal.pyx":86
  *             self.step_newSD = np.zeros((height, width),dtype='float64')
  *             self.step_oldSD[:] = ndv
  *             self.step_newSD[:] = ndv             # <<<<<<<<<<<<<<
  * 
  *         if tempstats.MIN in stats:
  */
-    if (unlikely(!__pyx_v_self->step_newSD.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 84; __pyx_clineno = __LINE__; goto __pyx_L1_error;}}
+    if (unlikely(!__pyx_v_self->step_newSD.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 86; __pyx_clineno = __LINE__; goto __pyx_L1_error;}}
     __pyx_t_13 = __pyx_v_self->step_newSD;
     __PYX_INC_MEMVIEW(&__pyx_t_13, 1);
     __pyx_t_11 = -1;
@@ -2460,24 +2492,24 @@ __PYX_XDEC_MEMVIEW(&__pyx_t_13, 1);
   }
   __pyx_L9:;
 
-  /* "temporal\core\temporal.pyx":86
+  /* "temporal\core\temporal.pyx":88
  *             self.step_newSD[:] = ndv
  * 
  *         if tempstats.MIN in stats:             # <<<<<<<<<<<<<<
  *             self._doMin = 1
  *             if generateSynoptic:
  */
-  __pyx_t_2 = __Pyx_GetModuleGlobalName(__pyx_n_s_tempstats); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 86; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_2 = __Pyx_GetModuleGlobalName(__pyx_n_s_tempstats); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 88; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_MIN); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 86; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_MIN); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 88; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_7 = (__Pyx_PySequence_Contains(__pyx_t_1, __pyx_v_stats, Py_EQ)); if (unlikely(__pyx_t_7 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 86; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_7 = (__Pyx_PySequence_Contains(__pyx_t_1, __pyx_v_stats, Py_EQ)); if (unlikely(__pyx_t_7 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 88; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_t_6 = (__pyx_t_7 != 0);
   if (__pyx_t_6) {
 
-    /* "temporal\core\temporal.pyx":87
+    /* "temporal\core\temporal.pyx":89
  * 
  *         if tempstats.MIN in stats:
  *             self._doMin = 1             # <<<<<<<<<<<<<<
@@ -2486,33 +2518,33 @@ __PYX_XDEC_MEMVIEW(&__pyx_t_13, 1);
  */
     __pyx_v_self->_doMin = 1;
 
-    /* "temporal\core\temporal.pyx":88
+    /* "temporal\core\temporal.pyx":90
  *         if tempstats.MIN in stats:
  *             self._doMin = 1
  *             if generateSynoptic:             # <<<<<<<<<<<<<<
  *                 self.tot_Min = np.zeros((height, width), dtype='float32')
  *                 self.tot_Min[:] = np.inf
  */
-    __pyx_t_6 = __Pyx_PyObject_IsTrue(__pyx_v_generateSynoptic); if (unlikely(__pyx_t_6 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 88; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_6 = __Pyx_PyObject_IsTrue(__pyx_v_generateSynoptic); if (unlikely(__pyx_t_6 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 90; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     if (__pyx_t_6) {
 
-      /* "temporal\core\temporal.pyx":89
+      /* "temporal\core\temporal.pyx":91
  *             self._doMin = 1
  *             if generateSynoptic:
  *                 self.tot_Min = np.zeros((height, width), dtype='float32')             # <<<<<<<<<<<<<<
  *                 self.tot_Min[:] = np.inf
  *             self.step_Min = np.zeros((height, width), dtype='float32')
  */
-      __pyx_t_1 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 89; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_1 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 91; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_1);
-      __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_zeros); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 89; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_zeros); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 91; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_2);
       __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-      __pyx_t_1 = PyInt_FromSsize_t(__pyx_v_height); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 89; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_1 = PyInt_FromSsize_t(__pyx_v_height); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 91; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_1);
-      __pyx_t_3 = PyInt_FromSsize_t(__pyx_v_width); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 89; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_3 = PyInt_FromSsize_t(__pyx_v_width); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 91; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_3);
-      __pyx_t_4 = PyTuple_New(2); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 89; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_4 = PyTuple_New(2); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 91; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_4);
       PyTuple_SET_ITEM(__pyx_t_4, 0, __pyx_t_1);
       __Pyx_GIVEREF(__pyx_t_1);
@@ -2520,42 +2552,42 @@ __PYX_XDEC_MEMVIEW(&__pyx_t_13, 1);
       __Pyx_GIVEREF(__pyx_t_3);
       __pyx_t_1 = 0;
       __pyx_t_3 = 0;
-      __pyx_t_3 = PyTuple_New(1); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 89; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_3 = PyTuple_New(1); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 91; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_3);
       PyTuple_SET_ITEM(__pyx_t_3, 0, __pyx_t_4);
       __Pyx_GIVEREF(__pyx_t_4);
       __pyx_t_4 = 0;
-      __pyx_t_4 = PyDict_New(); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 89; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_4 = PyDict_New(); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 91; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_4);
-      if (PyDict_SetItem(__pyx_t_4, __pyx_n_s_dtype, __pyx_n_s_float32) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 89; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-      __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_t_3, __pyx_t_4); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 89; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      if (PyDict_SetItem(__pyx_t_4, __pyx_n_s_dtype, __pyx_n_s_float32) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 91; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_t_3, __pyx_t_4); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 91; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_1);
       __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
       __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
       __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
       __pyx_t_20 = __Pyx_PyObject_to_MemoryviewSlice_d_dc_float(__pyx_t_1);
-      if (unlikely(!__pyx_t_20.memview)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 89; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      if (unlikely(!__pyx_t_20.memview)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 91; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
       __PYX_XDEC_MEMVIEW(&__pyx_v_self->tot_Min, 0);
       __pyx_v_self->tot_Min = __pyx_t_20;
       __pyx_t_20.memview = NULL;
       __pyx_t_20.data = NULL;
 
-      /* "temporal\core\temporal.pyx":90
+      /* "temporal\core\temporal.pyx":92
  *             if generateSynoptic:
  *                 self.tot_Min = np.zeros((height, width), dtype='float32')
  *                 self.tot_Min[:] = np.inf             # <<<<<<<<<<<<<<
  *             self.step_Min = np.zeros((height, width), dtype='float32')
  *             self.step_Min[:] = np.inf
  */
-      __pyx_t_1 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 90; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_1 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 92; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_1);
-      __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_inf); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 90; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_inf); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 92; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_4);
       __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-      __pyx_t_21 = __pyx_PyFloat_AsFloat(__pyx_t_4); if (unlikely((__pyx_t_21 == (float)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 90; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_21 = __pyx_PyFloat_AsFloat(__pyx_t_4); if (unlikely((__pyx_t_21 == (float)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 92; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-      if (unlikely(!__pyx_v_self->tot_Min.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 90; __pyx_clineno = __LINE__; goto __pyx_L1_error;}}
+      if (unlikely(!__pyx_v_self->tot_Min.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 92; __pyx_clineno = __LINE__; goto __pyx_L1_error;}}
       __pyx_t_20 = __pyx_v_self->tot_Min;
       __PYX_INC_MEMVIEW(&__pyx_t_20, 1);
       __pyx_t_11 = -1;
@@ -2588,23 +2620,23 @@ __PYX_XDEC_MEMVIEW(&__pyx_t_20, 1);
     }
     __pyx_L12:;
 
-    /* "temporal\core\temporal.pyx":91
+    /* "temporal\core\temporal.pyx":93
  *                 self.tot_Min = np.zeros((height, width), dtype='float32')
  *                 self.tot_Min[:] = np.inf
  *             self.step_Min = np.zeros((height, width), dtype='float32')             # <<<<<<<<<<<<<<
  *             self.step_Min[:] = np.inf
  *         if tempstats.MAX in stats:
  */
-    __pyx_t_4 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 91; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_4 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 93; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_4);
-    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_n_s_zeros); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 91; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_n_s_zeros); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 93; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-    __pyx_t_4 = PyInt_FromSsize_t(__pyx_v_height); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 91; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_4 = PyInt_FromSsize_t(__pyx_v_height); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 93; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_4);
-    __pyx_t_3 = PyInt_FromSsize_t(__pyx_v_width); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 91; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_3 = PyInt_FromSsize_t(__pyx_v_width); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 93; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_3);
-    __pyx_t_2 = PyTuple_New(2); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 91; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_2 = PyTuple_New(2); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 93; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_2);
     PyTuple_SET_ITEM(__pyx_t_2, 0, __pyx_t_4);
     __Pyx_GIVEREF(__pyx_t_4);
@@ -2612,42 +2644,42 @@ __PYX_XDEC_MEMVIEW(&__pyx_t_20, 1);
     __Pyx_GIVEREF(__pyx_t_3);
     __pyx_t_4 = 0;
     __pyx_t_3 = 0;
-    __pyx_t_3 = PyTuple_New(1); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 91; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_3 = PyTuple_New(1); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 93; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_3);
     PyTuple_SET_ITEM(__pyx_t_3, 0, __pyx_t_2);
     __Pyx_GIVEREF(__pyx_t_2);
     __pyx_t_2 = 0;
-    __pyx_t_2 = PyDict_New(); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 91; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_2 = PyDict_New(); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 93; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_2);
-    if (PyDict_SetItem(__pyx_t_2, __pyx_n_s_dtype, __pyx_n_s_float32) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 91; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-    __pyx_t_4 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_t_3, __pyx_t_2); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 91; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    if (PyDict_SetItem(__pyx_t_2, __pyx_n_s_dtype, __pyx_n_s_float32) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 93; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_4 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_t_3, __pyx_t_2); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 93; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_4);
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
     __pyx_t_20 = __Pyx_PyObject_to_MemoryviewSlice_d_dc_float(__pyx_t_4);
-    if (unlikely(!__pyx_t_20.memview)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 91; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    if (unlikely(!__pyx_t_20.memview)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 93; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
     __PYX_XDEC_MEMVIEW(&__pyx_v_self->step_Min, 0);
     __pyx_v_self->step_Min = __pyx_t_20;
     __pyx_t_20.memview = NULL;
     __pyx_t_20.data = NULL;
 
-    /* "temporal\core\temporal.pyx":92
+    /* "temporal\core\temporal.pyx":94
  *                 self.tot_Min[:] = np.inf
  *             self.step_Min = np.zeros((height, width), dtype='float32')
  *             self.step_Min[:] = np.inf             # <<<<<<<<<<<<<<
  *         if tempstats.MAX in stats:
  *             self._doMax = 1
  */
-    __pyx_t_4 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 92; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_4 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 94; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_4);
-    __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_n_s_inf); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 92; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_n_s_inf); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 94; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_2);
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-    __pyx_t_21 = __pyx_PyFloat_AsFloat(__pyx_t_2); if (unlikely((__pyx_t_21 == (float)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 92; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_21 = __pyx_PyFloat_AsFloat(__pyx_t_2); if (unlikely((__pyx_t_21 == (float)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 94; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-    if (unlikely(!__pyx_v_self->step_Min.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 92; __pyx_clineno = __LINE__; goto __pyx_L1_error;}}
+    if (unlikely(!__pyx_v_self->step_Min.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 94; __pyx_clineno = __LINE__; goto __pyx_L1_error;}}
     __pyx_t_20 = __pyx_v_self->step_Min;
     __PYX_INC_MEMVIEW(&__pyx_t_20, 1);
     __pyx_t_11 = -1;
@@ -2680,24 +2712,24 @@ __PYX_XDEC_MEMVIEW(&__pyx_t_20, 1);
   }
   __pyx_L11:;
 
-  /* "temporal\core\temporal.pyx":93
+  /* "temporal\core\temporal.pyx":95
  *             self.step_Min = np.zeros((height, width), dtype='float32')
  *             self.step_Min[:] = np.inf
  *         if tempstats.MAX in stats:             # <<<<<<<<<<<<<<
  *             self._doMax = 1
  *             if generateSynoptic:
  */
-  __pyx_t_2 = __Pyx_GetModuleGlobalName(__pyx_n_s_tempstats); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 93; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_2 = __Pyx_GetModuleGlobalName(__pyx_n_s_tempstats); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 95; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_MAX); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 93; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_MAX); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 95; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_6 = (__Pyx_PySequence_Contains(__pyx_t_4, __pyx_v_stats, Py_EQ)); if (unlikely(__pyx_t_6 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 93; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_6 = (__Pyx_PySequence_Contains(__pyx_t_4, __pyx_v_stats, Py_EQ)); if (unlikely(__pyx_t_6 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 95; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   __pyx_t_7 = (__pyx_t_6 != 0);
   if (__pyx_t_7) {
 
-    /* "temporal\core\temporal.pyx":94
+    /* "temporal\core\temporal.pyx":96
  *             self.step_Min[:] = np.inf
  *         if tempstats.MAX in stats:
  *             self._doMax = 1             # <<<<<<<<<<<<<<
@@ -2706,33 +2738,33 @@ __PYX_XDEC_MEMVIEW(&__pyx_t_20, 1);
  */
     __pyx_v_self->_doMax = 1;
 
-    /* "temporal\core\temporal.pyx":95
+    /* "temporal\core\temporal.pyx":97
  *         if tempstats.MAX in stats:
  *             self._doMax = 1
  *             if generateSynoptic:             # <<<<<<<<<<<<<<
  *                 self.tot_Max = np.zeros((height, width), dtype='float32')
  *                 self.tot_Max[:] = -np.inf
  */
-    __pyx_t_7 = __Pyx_PyObject_IsTrue(__pyx_v_generateSynoptic); if (unlikely(__pyx_t_7 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 95; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_7 = __Pyx_PyObject_IsTrue(__pyx_v_generateSynoptic); if (unlikely(__pyx_t_7 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 97; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     if (__pyx_t_7) {
 
-      /* "temporal\core\temporal.pyx":96
+      /* "temporal\core\temporal.pyx":98
  *             self._doMax = 1
  *             if generateSynoptic:
  *                 self.tot_Max = np.zeros((height, width), dtype='float32')             # <<<<<<<<<<<<<<
  *                 self.tot_Max[:] = -np.inf
  *             self.step_Max = np.zeros((height, width), dtype='float32')
  */
-      __pyx_t_4 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 96; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_4 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 98; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_4);
-      __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_n_s_zeros); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 96; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_n_s_zeros); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 98; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_2);
       __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-      __pyx_t_4 = PyInt_FromSsize_t(__pyx_v_height); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 96; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_4 = PyInt_FromSsize_t(__pyx_v_height); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 98; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_4);
-      __pyx_t_3 = PyInt_FromSsize_t(__pyx_v_width); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 96; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_3 = PyInt_FromSsize_t(__pyx_v_width); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 98; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_3);
-      __pyx_t_1 = PyTuple_New(2); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 96; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_1 = PyTuple_New(2); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 98; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_1);
       PyTuple_SET_ITEM(__pyx_t_1, 0, __pyx_t_4);
       __Pyx_GIVEREF(__pyx_t_4);
@@ -2740,45 +2772,45 @@ __PYX_XDEC_MEMVIEW(&__pyx_t_20, 1);
       __Pyx_GIVEREF(__pyx_t_3);
       __pyx_t_4 = 0;
       __pyx_t_3 = 0;
-      __pyx_t_3 = PyTuple_New(1); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 96; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_3 = PyTuple_New(1); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 98; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_3);
       PyTuple_SET_ITEM(__pyx_t_3, 0, __pyx_t_1);
       __Pyx_GIVEREF(__pyx_t_1);
       __pyx_t_1 = 0;
-      __pyx_t_1 = PyDict_New(); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 96; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_1 = PyDict_New(); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 98; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_1);
-      if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_dtype, __pyx_n_s_float32) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 96; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-      __pyx_t_4 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_t_3, __pyx_t_1); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 96; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_dtype, __pyx_n_s_float32) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 98; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_4 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_t_3, __pyx_t_1); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 98; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_4);
       __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
       __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
       __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
       __pyx_t_20 = __Pyx_PyObject_to_MemoryviewSlice_d_dc_float(__pyx_t_4);
-      if (unlikely(!__pyx_t_20.memview)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 96; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      if (unlikely(!__pyx_t_20.memview)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 98; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
       __PYX_XDEC_MEMVIEW(&__pyx_v_self->tot_Max, 0);
       __pyx_v_self->tot_Max = __pyx_t_20;
       __pyx_t_20.memview = NULL;
       __pyx_t_20.data = NULL;
 
-      /* "temporal\core\temporal.pyx":97
+      /* "temporal\core\temporal.pyx":99
  *             if generateSynoptic:
  *                 self.tot_Max = np.zeros((height, width), dtype='float32')
  *                 self.tot_Max[:] = -np.inf             # <<<<<<<<<<<<<<
  *             self.step_Max = np.zeros((height, width), dtype='float32')
  *             self.step_Max[:] = -np.inf
  */
-      __pyx_t_4 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 97; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_4 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 99; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_4);
-      __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_n_s_inf); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 97; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_n_s_inf); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 99; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_1);
       __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-      __pyx_t_4 = PyNumber_Negative(__pyx_t_1); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 97; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_4 = PyNumber_Negative(__pyx_t_1); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 99; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_4);
       __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-      __pyx_t_21 = __pyx_PyFloat_AsFloat(__pyx_t_4); if (unlikely((__pyx_t_21 == (float)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 97; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_21 = __pyx_PyFloat_AsFloat(__pyx_t_4); if (unlikely((__pyx_t_21 == (float)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 99; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-      if (unlikely(!__pyx_v_self->tot_Max.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 97; __pyx_clineno = __LINE__; goto __pyx_L1_error;}}
+      if (unlikely(!__pyx_v_self->tot_Max.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 99; __pyx_clineno = __LINE__; goto __pyx_L1_error;}}
       __pyx_t_20 = __pyx_v_self->tot_Max;
       __PYX_INC_MEMVIEW(&__pyx_t_20, 1);
       __pyx_t_11 = -1;
@@ -2811,23 +2843,23 @@ __PYX_XDEC_MEMVIEW(&__pyx_t_20, 1);
     }
     __pyx_L14:;
 
-    /* "temporal\core\temporal.pyx":98
+    /* "temporal\core\temporal.pyx":100
  *                 self.tot_Max = np.zeros((height, width), dtype='float32')
  *                 self.tot_Max[:] = -np.inf
  *             self.step_Max = np.zeros((height, width), dtype='float32')             # <<<<<<<<<<<<<<
  *             self.step_Max[:] = -np.inf
  *         if tempstats.SUM in stats:
  */
-    __pyx_t_4 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 98; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_4 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 100; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_4);
-    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_n_s_zeros); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 98; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_n_s_zeros); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 100; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-    __pyx_t_4 = PyInt_FromSsize_t(__pyx_v_height); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 98; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_4 = PyInt_FromSsize_t(__pyx_v_height); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 100; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_4);
-    __pyx_t_3 = PyInt_FromSsize_t(__pyx_v_width); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 98; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_3 = PyInt_FromSsize_t(__pyx_v_width); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 100; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_3);
-    __pyx_t_2 = PyTuple_New(2); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 98; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_2 = PyTuple_New(2); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 100; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_2);
     PyTuple_SET_ITEM(__pyx_t_2, 0, __pyx_t_4);
     __Pyx_GIVEREF(__pyx_t_4);
@@ -2835,45 +2867,45 @@ __PYX_XDEC_MEMVIEW(&__pyx_t_20, 1);
     __Pyx_GIVEREF(__pyx_t_3);
     __pyx_t_4 = 0;
     __pyx_t_3 = 0;
-    __pyx_t_3 = PyTuple_New(1); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 98; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_3 = PyTuple_New(1); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 100; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_3);
     PyTuple_SET_ITEM(__pyx_t_3, 0, __pyx_t_2);
     __Pyx_GIVEREF(__pyx_t_2);
     __pyx_t_2 = 0;
-    __pyx_t_2 = PyDict_New(); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 98; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_2 = PyDict_New(); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 100; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_2);
-    if (PyDict_SetItem(__pyx_t_2, __pyx_n_s_dtype, __pyx_n_s_float32) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 98; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-    __pyx_t_4 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_t_3, __pyx_t_2); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 98; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    if (PyDict_SetItem(__pyx_t_2, __pyx_n_s_dtype, __pyx_n_s_float32) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 100; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_4 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_t_3, __pyx_t_2); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 100; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_4);
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
     __pyx_t_20 = __Pyx_PyObject_to_MemoryviewSlice_d_dc_float(__pyx_t_4);
-    if (unlikely(!__pyx_t_20.memview)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 98; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    if (unlikely(!__pyx_t_20.memview)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 100; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
     __PYX_XDEC_MEMVIEW(&__pyx_v_self->step_Max, 0);
     __pyx_v_self->step_Max = __pyx_t_20;
     __pyx_t_20.memview = NULL;
     __pyx_t_20.data = NULL;
 
-    /* "temporal\core\temporal.pyx":99
+    /* "temporal\core\temporal.pyx":101
  *                 self.tot_Max[:] = -np.inf
  *             self.step_Max = np.zeros((height, width), dtype='float32')
  *             self.step_Max[:] = -np.inf             # <<<<<<<<<<<<<<
  *         if tempstats.SUM in stats:
  *             self._doSum = 1
  */
-    __pyx_t_4 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 99; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_4 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 101; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_4);
-    __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_n_s_inf); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 99; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_n_s_inf); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 101; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_2);
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-    __pyx_t_4 = PyNumber_Negative(__pyx_t_2); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 99; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_4 = PyNumber_Negative(__pyx_t_2); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 101; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_4);
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-    __pyx_t_21 = __pyx_PyFloat_AsFloat(__pyx_t_4); if (unlikely((__pyx_t_21 == (float)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 99; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_21 = __pyx_PyFloat_AsFloat(__pyx_t_4); if (unlikely((__pyx_t_21 == (float)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 101; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-    if (unlikely(!__pyx_v_self->step_Max.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 99; __pyx_clineno = __LINE__; goto __pyx_L1_error;}}
+    if (unlikely(!__pyx_v_self->step_Max.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 101; __pyx_clineno = __LINE__; goto __pyx_L1_error;}}
     __pyx_t_20 = __pyx_v_self->step_Max;
     __PYX_INC_MEMVIEW(&__pyx_t_20, 1);
     __pyx_t_11 = -1;
@@ -2906,24 +2938,24 @@ __PYX_XDEC_MEMVIEW(&__pyx_t_20, 1);
   }
   __pyx_L13:;
 
-  /* "temporal\core\temporal.pyx":100
+  /* "temporal\core\temporal.pyx":102
  *             self.step_Max = np.zeros((height, width), dtype='float32')
  *             self.step_Max[:] = -np.inf
  *         if tempstats.SUM in stats:             # <<<<<<<<<<<<<<
  *             self._doSum = 1
  *             if generateSynoptic:
  */
-  __pyx_t_4 = __Pyx_GetModuleGlobalName(__pyx_n_s_tempstats); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 100; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_4 = __Pyx_GetModuleGlobalName(__pyx_n_s_tempstats); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 102; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_4);
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_n_s_SUM); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 100; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_n_s_SUM); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 102; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  __pyx_t_7 = (__Pyx_PySequence_Contains(__pyx_t_2, __pyx_v_stats, Py_EQ)); if (unlikely(__pyx_t_7 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 100; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_7 = (__Pyx_PySequence_Contains(__pyx_t_2, __pyx_v_stats, Py_EQ)); if (unlikely(__pyx_t_7 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 102; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __pyx_t_6 = (__pyx_t_7 != 0);
   if (__pyx_t_6) {
 
-    /* "temporal\core\temporal.pyx":101
+    /* "temporal\core\temporal.pyx":103
  *             self.step_Max[:] = -np.inf
  *         if tempstats.SUM in stats:
  *             self._doSum = 1             # <<<<<<<<<<<<<<
@@ -2932,33 +2964,33 @@ __PYX_XDEC_MEMVIEW(&__pyx_t_20, 1);
  */
     __pyx_v_self->_doSum = 1;
 
-    /* "temporal\core\temporal.pyx":102
+    /* "temporal\core\temporal.pyx":104
  *         if tempstats.SUM in stats:
  *             self._doSum = 1
  *             if generateSynoptic:             # <<<<<<<<<<<<<<
  *                 self.tot_Sum = np.zeros((height, width), dtype='float32')
  *             self.step_Sum = np.zeros((height, width), dtype='float32')
  */
-    __pyx_t_6 = __Pyx_PyObject_IsTrue(__pyx_v_generateSynoptic); if (unlikely(__pyx_t_6 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 102; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_6 = __Pyx_PyObject_IsTrue(__pyx_v_generateSynoptic); if (unlikely(__pyx_t_6 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 104; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     if (__pyx_t_6) {
 
-      /* "temporal\core\temporal.pyx":103
+      /* "temporal\core\temporal.pyx":105
  *             self._doSum = 1
  *             if generateSynoptic:
  *                 self.tot_Sum = np.zeros((height, width), dtype='float32')             # <<<<<<<<<<<<<<
  *             self.step_Sum = np.zeros((height, width), dtype='float32')
  * 
  */
-      __pyx_t_2 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 103; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_2 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 105; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_2);
-      __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_zeros); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 103; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_zeros); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 105; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_4);
       __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-      __pyx_t_2 = PyInt_FromSsize_t(__pyx_v_height); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 103; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_2 = PyInt_FromSsize_t(__pyx_v_height); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 105; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_2);
-      __pyx_t_3 = PyInt_FromSsize_t(__pyx_v_width); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 103; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_3 = PyInt_FromSsize_t(__pyx_v_width); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 105; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_3);
-      __pyx_t_1 = PyTuple_New(2); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 103; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_1 = PyTuple_New(2); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 105; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_1);
       PyTuple_SET_ITEM(__pyx_t_1, 0, __pyx_t_2);
       __Pyx_GIVEREF(__pyx_t_2);
@@ -2966,21 +2998,21 @@ __PYX_XDEC_MEMVIEW(&__pyx_t_20, 1);
       __Pyx_GIVEREF(__pyx_t_3);
       __pyx_t_2 = 0;
       __pyx_t_3 = 0;
-      __pyx_t_3 = PyTuple_New(1); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 103; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_3 = PyTuple_New(1); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 105; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_3);
       PyTuple_SET_ITEM(__pyx_t_3, 0, __pyx_t_1);
       __Pyx_GIVEREF(__pyx_t_1);
       __pyx_t_1 = 0;
-      __pyx_t_1 = PyDict_New(); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 103; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_1 = PyDict_New(); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 105; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_1);
-      if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_dtype, __pyx_n_s_float32) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 103; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-      __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_4, __pyx_t_3, __pyx_t_1); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 103; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_dtype, __pyx_n_s_float32) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 105; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_4, __pyx_t_3, __pyx_t_1); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 105; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_2);
       __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
       __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
       __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
       __pyx_t_20 = __Pyx_PyObject_to_MemoryviewSlice_d_dc_float(__pyx_t_2);
-      if (unlikely(!__pyx_t_20.memview)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 103; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      if (unlikely(!__pyx_t_20.memview)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 105; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
       __PYX_XDEC_MEMVIEW(&__pyx_v_self->tot_Sum, 0);
       __pyx_v_self->tot_Sum = __pyx_t_20;
@@ -2990,23 +3022,23 @@ __PYX_XDEC_MEMVIEW(&__pyx_t_20, 1);
     }
     __pyx_L16:;
 
-    /* "temporal\core\temporal.pyx":104
+    /* "temporal\core\temporal.pyx":106
  *             if generateSynoptic:
  *                 self.tot_Sum = np.zeros((height, width), dtype='float32')
  *             self.step_Sum = np.zeros((height, width), dtype='float32')             # <<<<<<<<<<<<<<
  * 
  *         self.ndv = ndv
  */
-    __pyx_t_2 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 104; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_2 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 106; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_2);
-    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_zeros); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 104; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_zeros); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 106; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-    __pyx_t_2 = PyInt_FromSsize_t(__pyx_v_height); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 104; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_2 = PyInt_FromSsize_t(__pyx_v_height); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 106; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_2);
-    __pyx_t_3 = PyInt_FromSsize_t(__pyx_v_width); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 104; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_3 = PyInt_FromSsize_t(__pyx_v_width); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 106; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_3);
-    __pyx_t_4 = PyTuple_New(2); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 104; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_4 = PyTuple_New(2); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 106; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_4);
     PyTuple_SET_ITEM(__pyx_t_4, 0, __pyx_t_2);
     __Pyx_GIVEREF(__pyx_t_2);
@@ -3014,21 +3046,21 @@ __PYX_XDEC_MEMVIEW(&__pyx_t_20, 1);
     __Pyx_GIVEREF(__pyx_t_3);
     __pyx_t_2 = 0;
     __pyx_t_3 = 0;
-    __pyx_t_3 = PyTuple_New(1); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 104; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_3 = PyTuple_New(1); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 106; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_3);
     PyTuple_SET_ITEM(__pyx_t_3, 0, __pyx_t_4);
     __Pyx_GIVEREF(__pyx_t_4);
     __pyx_t_4 = 0;
-    __pyx_t_4 = PyDict_New(); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 104; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_4 = PyDict_New(); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 106; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_4);
-    if (PyDict_SetItem(__pyx_t_4, __pyx_n_s_dtype, __pyx_n_s_float32) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 104; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-    __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_t_3, __pyx_t_4); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 104; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    if (PyDict_SetItem(__pyx_t_4, __pyx_n_s_dtype, __pyx_n_s_float32) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 106; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_t_3, __pyx_t_4); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 106; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_2);
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
     __pyx_t_20 = __Pyx_PyObject_to_MemoryviewSlice_d_dc_float(__pyx_t_2);
-    if (unlikely(!__pyx_t_20.memview)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 104; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    if (unlikely(!__pyx_t_20.memview)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 106; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
     __PYX_XDEC_MEMVIEW(&__pyx_v_self->step_Sum, 0);
     __pyx_v_self->step_Sum = __pyx_t_20;
@@ -3038,7 +3070,7 @@ __PYX_XDEC_MEMVIEW(&__pyx_t_20, 1);
   }
   __pyx_L15:;
 
-  /* "temporal\core\temporal.pyx":106
+  /* "temporal\core\temporal.pyx":108
  *             self.step_Sum = np.zeros((height, width), dtype='float32')
  * 
  *         self.ndv = ndv             # <<<<<<<<<<<<<<
@@ -3047,7 +3079,7 @@ __PYX_XDEC_MEMVIEW(&__pyx_t_20, 1);
  */
   __pyx_v_self->ndv = __pyx_v_ndv;
 
-  /* "temporal\core\temporal.pyx":107
+  /* "temporal\core\temporal.pyx":109
  * 
  *         self.ndv = ndv
  *         self.height = height             # <<<<<<<<<<<<<<
@@ -3056,7 +3088,7 @@ __PYX_XDEC_MEMVIEW(&__pyx_t_20, 1);
  */
   __pyx_v_self->height = __pyx_v_height;
 
-  /* "temporal\core\temporal.pyx":108
+  /* "temporal\core\temporal.pyx":110
  *         self.ndv = ndv
  *         self.height = height
  *         self.width = width             # <<<<<<<<<<<<<<
@@ -3065,7 +3097,7 @@ __PYX_XDEC_MEMVIEW(&__pyx_t_20, 1);
  */
   __pyx_v_self->width = __pyx_v_width;
 
-  /* "temporal\core\temporal.pyx":109
+  /* "temporal\core\temporal.pyx":111
  *         self.height = height
  *         self.width = width
  *         self._startNewStep = 1             # <<<<<<<<<<<<<<
@@ -3074,30 +3106,45 @@ __PYX_XDEC_MEMVIEW(&__pyx_t_20, 1);
  */
   __pyx_v_self->_startNewStep = 1;
 
-  /* "temporal\core\temporal.pyx":110
+  /* "temporal\core\temporal.pyx":112
  *         self.width = width
  *         self._startNewStep = 1
  *         if generateSynoptic:             # <<<<<<<<<<<<<<
  *             self._generateSynoptic = 1
- * 
+ *             self._uniqueFileSet = set()
  */
-  __pyx_t_6 = __Pyx_PyObject_IsTrue(__pyx_v_generateSynoptic); if (unlikely(__pyx_t_6 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 110; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_6 = __Pyx_PyObject_IsTrue(__pyx_v_generateSynoptic); if (unlikely(__pyx_t_6 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 112; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   if (__pyx_t_6) {
 
-    /* "temporal\core\temporal.pyx":111
+    /* "temporal\core\temporal.pyx":113
  *         self._startNewStep = 1
  *         if generateSynoptic:
  *             self._generateSynoptic = 1             # <<<<<<<<<<<<<<
+ *             self._uniqueFileSet = set()
+ * 
+ */
+    __pyx_v_self->_generateSynoptic = 1;
+
+    /* "temporal\core\temporal.pyx":114
+ *         if generateSynoptic:
+ *             self._generateSynoptic = 1
+ *             self._uniqueFileSet = set()             # <<<<<<<<<<<<<<
  * 
  *     @cython.boundscheck(False)
  */
-    __pyx_v_self->_generateSynoptic = 1;
+    __pyx_t_2 = PySet_New(0); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 114; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __Pyx_GOTREF(__pyx_t_2);
+    __Pyx_GIVEREF(__pyx_t_2);
+    __Pyx_GOTREF(__pyx_v_self->_uniqueFileSet);
+    __Pyx_DECREF(__pyx_v_self->_uniqueFileSet);
+    __pyx_v_self->_uniqueFileSet = ((PyObject*)__pyx_t_2);
+    __pyx_t_2 = 0;
     goto __pyx_L17;
   }
   __pyx_L17:;
 
-  /* "temporal\core\temporal.pyx":45
- *         unsigned char _generateSynoptic
+  /* "temporal\core\temporal.pyx":47
+ * 
  * 
  *     def __cinit__(self, Py_ssize_t height, Py_ssize_t width, double ndv,             # <<<<<<<<<<<<<<
  *                 stats, generateSynoptic = True):
@@ -3135,19 +3182,21 @@ __PYX_XDEC_MEMVIEW(&__pyx_t_20, 1);
   return __pyx_r;
 }
 
-/* "temporal\core\temporal.pyx":115
+/* "temporal\core\temporal.pyx":118
  *     @cython.boundscheck(False)
  *     @cython.cdivision(True)
- *     cpdef addFile(self, float[:,::1] data, float thisNdv):             # <<<<<<<<<<<<<<
+ *     cpdef addFile(self, float[:,::1] data, float thisNdv, fileTag = None):             # <<<<<<<<<<<<<<
  *         '''Add a tile of data to the running summaries. Data array must be of shape specified in startup.
  * 
  */
 
 static PyObject *__pyx_pw_8temporal_4core_8temporal_26TemporalAggregator_Dynamic_3addFile(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
-static PyObject *__pyx_f_8temporal_4core_8temporal_26TemporalAggregator_Dynamic_addFile(struct __pyx_obj_8temporal_4core_8temporal_TemporalAggregator_Dynamic *__pyx_v_self, __Pyx_memviewslice __pyx_v_data, float __pyx_v_thisNdv, int __pyx_skip_dispatch) {
+static PyObject *__pyx_f_8temporal_4core_8temporal_26TemporalAggregator_Dynamic_addFile(struct __pyx_obj_8temporal_4core_8temporal_TemporalAggregator_Dynamic *__pyx_v_self, __Pyx_memviewslice __pyx_v_data, float __pyx_v_thisNdv, int __pyx_skip_dispatch, struct __pyx_opt_args_8temporal_4core_8temporal_26TemporalAggregator_Dynamic_addFile *__pyx_optional_args) {
+  PyObject *__pyx_v_fileTag = ((PyObject *)Py_None);
   double __pyx_v_value;
   Py_ssize_t __pyx_v_y;
   Py_ssize_t __pyx_v_x;
+  unsigned char __pyx_v_useForSynoptic;
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
@@ -3171,9 +3220,9 @@ static PyObject *__pyx_f_8temporal_4core_8temporal_26TemporalAggregator_Dynamic_
   float __pyx_t_19;
   __Pyx_memviewslice __pyx_t_20 = { 0, 0, { 0 }, { 0 }, { 0 } };
   __Pyx_memviewslice __pyx_t_21 = { 0, 0, { 0 }, { 0 }, { 0 } };
-  Py_ssize_t __pyx_t_22;
-  Py_ssize_t __pyx_t_23;
-  Py_ssize_t __pyx_t_24;
+  int __pyx_t_22;
+  int __pyx_t_23;
+  int __pyx_t_24;
   Py_ssize_t __pyx_t_25;
   Py_ssize_t __pyx_t_26;
   Py_ssize_t __pyx_t_27;
@@ -3269,22 +3318,30 @@ static PyObject *__pyx_f_8temporal_4core_8temporal_26TemporalAggregator_Dynamic_
   Py_ssize_t __pyx_t_117;
   Py_ssize_t __pyx_t_118;
   Py_ssize_t __pyx_t_119;
+  Py_ssize_t __pyx_t_120;
+  Py_ssize_t __pyx_t_121;
+  Py_ssize_t __pyx_t_122;
   int __pyx_lineno = 0;
   const char *__pyx_filename = NULL;
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("addFile", 0);
+  if (__pyx_optional_args) {
+    if (__pyx_optional_args->__pyx_n > 0) {
+      __pyx_v_fileTag = __pyx_optional_args->fileTag;
+    }
+  }
   /* Check if called by wrapper */
   if (unlikely(__pyx_skip_dispatch)) ;
   /* Check if overridden in Python */
   else if (unlikely(Py_TYPE(((PyObject *)__pyx_v_self))->tp_dictoffset != 0)) {
-    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_addFile); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 115; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_addFile); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 118; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_1);
     if (!PyCFunction_Check(__pyx_t_1) || (PyCFunction_GET_FUNCTION(__pyx_t_1) != (PyCFunction)__pyx_pw_8temporal_4core_8temporal_26TemporalAggregator_Dynamic_3addFile)) {
       __Pyx_XDECREF(__pyx_r);
-      if (unlikely(!__pyx_v_data.memview)) { __Pyx_RaiseUnboundLocalError("data"); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 115; __pyx_clineno = __LINE__; goto __pyx_L1_error;} }
-      __pyx_t_3 = __pyx_memoryview_fromslice(__pyx_v_data, 2, (PyObject *(*)(char *)) __pyx_memview_get_float, (int (*)(char *, PyObject *)) __pyx_memview_set_float, 0);; if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 115; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      if (unlikely(!__pyx_v_data.memview)) { __Pyx_RaiseUnboundLocalError("data"); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 118; __pyx_clineno = __LINE__; goto __pyx_L1_error;} }
+      __pyx_t_3 = __pyx_memoryview_fromslice(__pyx_v_data, 2, (PyObject *(*)(char *)) __pyx_memview_get_float, (int (*)(char *, PyObject *)) __pyx_memview_set_float, 0);; if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 118; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_3);
-      __pyx_t_4 = PyFloat_FromDouble(__pyx_v_thisNdv); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 115; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_4 = PyFloat_FromDouble(__pyx_v_thisNdv); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 118; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_4);
       __Pyx_INCREF(__pyx_t_1);
       __pyx_t_5 = __pyx_t_1; __pyx_t_6 = NULL;
@@ -3299,7 +3356,7 @@ static PyObject *__pyx_f_8temporal_4core_8temporal_26TemporalAggregator_Dynamic_
           __pyx_t_7 = 1;
         }
       }
-      __pyx_t_8 = PyTuple_New(2+__pyx_t_7); if (unlikely(!__pyx_t_8)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 115; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_8 = PyTuple_New(3+__pyx_t_7); if (unlikely(!__pyx_t_8)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 118; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_8);
       if (__pyx_t_6) {
         PyTuple_SET_ITEM(__pyx_t_8, 0, __pyx_t_6); __Pyx_GIVEREF(__pyx_t_6); __pyx_t_6 = NULL;
@@ -3308,9 +3365,12 @@ static PyObject *__pyx_f_8temporal_4core_8temporal_26TemporalAggregator_Dynamic_
       __Pyx_GIVEREF(__pyx_t_3);
       PyTuple_SET_ITEM(__pyx_t_8, 1+__pyx_t_7, __pyx_t_4);
       __Pyx_GIVEREF(__pyx_t_4);
+      __Pyx_INCREF(__pyx_v_fileTag);
+      PyTuple_SET_ITEM(__pyx_t_8, 2+__pyx_t_7, __pyx_v_fileTag);
+      __Pyx_GIVEREF(__pyx_v_fileTag);
       __pyx_t_3 = 0;
       __pyx_t_4 = 0;
-      __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_5, __pyx_t_8, NULL); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 115; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_5, __pyx_t_8, NULL); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 118; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_2);
       __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
       __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
@@ -3322,8 +3382,17 @@ static PyObject *__pyx_f_8temporal_4core_8temporal_26TemporalAggregator_Dynamic_
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   }
 
-  /* "temporal\core\temporal.pyx":140
+  /* "temporal\core\temporal.pyx":142
+ *             double sd
  *             Py_ssize_t y, x, yShape, xShape, t, b
+ *             unsigned char useForSynoptic = 0             # <<<<<<<<<<<<<<
+ * 
+ *         assert self.height == data.shape[0]
+ */
+  __pyx_v_useForSynoptic = 0;
+
+  /* "temporal\core\temporal.pyx":144
+ *             unsigned char useForSynoptic = 0
  * 
  *         assert self.height == data.shape[0]             # <<<<<<<<<<<<<<
  *         assert self.width == data.shape[1]
@@ -3333,12 +3402,12 @@ static PyObject *__pyx_f_8temporal_4core_8temporal_26TemporalAggregator_Dynamic_
   if (unlikely(!Py_OptimizeFlag)) {
     if (unlikely(!((__pyx_v_self->height == (__pyx_v_data.shape[0])) != 0))) {
       PyErr_SetNone(PyExc_AssertionError);
-      {__pyx_filename = __pyx_f[0]; __pyx_lineno = 140; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      {__pyx_filename = __pyx_f[0]; __pyx_lineno = 144; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     }
   }
   #endif
 
-  /* "temporal\core\temporal.pyx":141
+  /* "temporal\core\temporal.pyx":145
  * 
  *         assert self.height == data.shape[0]
  *         assert self.width == data.shape[1]             # <<<<<<<<<<<<<<
@@ -3349,12 +3418,12 @@ static PyObject *__pyx_f_8temporal_4core_8temporal_26TemporalAggregator_Dynamic_
   if (unlikely(!Py_OptimizeFlag)) {
     if (unlikely(!((__pyx_v_self->width == (__pyx_v_data.shape[1])) != 0))) {
       PyErr_SetNone(PyExc_AssertionError);
-      {__pyx_filename = __pyx_f[0]; __pyx_lineno = 141; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      {__pyx_filename = __pyx_f[0]; __pyx_lineno = 145; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     }
   }
   #endif
 
-  /* "temporal\core\temporal.pyx":143
+  /* "temporal\core\temporal.pyx":147
  *         assert self.width == data.shape[1]
  * 
  *         if self._startNewStep:             # <<<<<<<<<<<<<<
@@ -3364,23 +3433,23 @@ static PyObject *__pyx_f_8temporal_4core_8temporal_26TemporalAggregator_Dynamic_
   __pyx_t_9 = (__pyx_v_self->_startNewStep != 0);
   if (__pyx_t_9) {
 
-    /* "temporal\core\temporal.pyx":145
+    /* "temporal\core\temporal.pyx":149
  *         if self._startNewStep:
  *             #initialise arrays to track this month
  *             self.step_n = np.zeros((self.height, self.width),dtype='Int16')             # <<<<<<<<<<<<<<
  *             if self._doMean: # will be set even if only sd was set
  *                 self.step_oldMean = np.zeros((self.height, self.width),dtype='float64')
  */
-    __pyx_t_1 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 145; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_1 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 149; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_1);
-    __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_zeros); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 145; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_zeros); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 149; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_2);
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-    __pyx_t_1 = PyInt_FromSsize_t(__pyx_v_self->height); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 145; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_1 = PyInt_FromSsize_t(__pyx_v_self->height); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 149; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_1);
-    __pyx_t_5 = PyInt_FromSsize_t(__pyx_v_self->width); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 145; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_5 = PyInt_FromSsize_t(__pyx_v_self->width); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 149; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_5);
-    __pyx_t_8 = PyTuple_New(2); if (unlikely(!__pyx_t_8)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 145; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_8 = PyTuple_New(2); if (unlikely(!__pyx_t_8)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 149; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_8);
     PyTuple_SET_ITEM(__pyx_t_8, 0, __pyx_t_1);
     __Pyx_GIVEREF(__pyx_t_1);
@@ -3388,28 +3457,28 @@ static PyObject *__pyx_f_8temporal_4core_8temporal_26TemporalAggregator_Dynamic_
     __Pyx_GIVEREF(__pyx_t_5);
     __pyx_t_1 = 0;
     __pyx_t_5 = 0;
-    __pyx_t_5 = PyTuple_New(1); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 145; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_5 = PyTuple_New(1); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 149; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_5);
     PyTuple_SET_ITEM(__pyx_t_5, 0, __pyx_t_8);
     __Pyx_GIVEREF(__pyx_t_8);
     __pyx_t_8 = 0;
-    __pyx_t_8 = PyDict_New(); if (unlikely(!__pyx_t_8)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 145; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_8 = PyDict_New(); if (unlikely(!__pyx_t_8)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 149; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_8);
-    if (PyDict_SetItem(__pyx_t_8, __pyx_n_s_dtype, __pyx_n_s_Int16) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 145; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-    __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_t_5, __pyx_t_8); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 145; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    if (PyDict_SetItem(__pyx_t_8, __pyx_n_s_dtype, __pyx_n_s_Int16) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 149; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_t_5, __pyx_t_8); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 149; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
     __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
     __pyx_t_10 = __Pyx_PyObject_to_MemoryviewSlice_d_dc_short(__pyx_t_1);
-    if (unlikely(!__pyx_t_10.memview)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 145; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    if (unlikely(!__pyx_t_10.memview)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 149; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
     __PYX_XDEC_MEMVIEW(&__pyx_v_self->step_n, 0);
     __pyx_v_self->step_n = __pyx_t_10;
     __pyx_t_10.memview = NULL;
     __pyx_t_10.data = NULL;
 
-    /* "temporal\core\temporal.pyx":146
+    /* "temporal\core\temporal.pyx":150
  *             #initialise arrays to track this month
  *             self.step_n = np.zeros((self.height, self.width),dtype='Int16')
  *             if self._doMean: # will be set even if only sd was set             # <<<<<<<<<<<<<<
@@ -3419,23 +3488,23 @@ static PyObject *__pyx_f_8temporal_4core_8temporal_26TemporalAggregator_Dynamic_
     __pyx_t_9 = (__pyx_v_self->_doMean != 0);
     if (__pyx_t_9) {
 
-      /* "temporal\core\temporal.pyx":147
+      /* "temporal\core\temporal.pyx":151
  *             self.step_n = np.zeros((self.height, self.width),dtype='Int16')
  *             if self._doMean: # will be set even if only sd was set
  *                 self.step_oldMean = np.zeros((self.height, self.width),dtype='float64')             # <<<<<<<<<<<<<<
  *                 self.step_newMean = np.zeros((self.height, self.width),dtype='float64')
  *                 self.step_oldMean[:] = self.ndv
  */
-      __pyx_t_1 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 147; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_1 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 151; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_1);
-      __pyx_t_8 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_zeros); if (unlikely(!__pyx_t_8)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 147; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_8 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_zeros); if (unlikely(!__pyx_t_8)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 151; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_8);
       __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-      __pyx_t_1 = PyInt_FromSsize_t(__pyx_v_self->height); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 147; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_1 = PyInt_FromSsize_t(__pyx_v_self->height); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 151; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_1);
-      __pyx_t_5 = PyInt_FromSsize_t(__pyx_v_self->width); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 147; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_5 = PyInt_FromSsize_t(__pyx_v_self->width); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 151; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_5);
-      __pyx_t_2 = PyTuple_New(2); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 147; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_2 = PyTuple_New(2); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 151; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_2);
       PyTuple_SET_ITEM(__pyx_t_2, 0, __pyx_t_1);
       __Pyx_GIVEREF(__pyx_t_1);
@@ -3443,44 +3512,44 @@ static PyObject *__pyx_f_8temporal_4core_8temporal_26TemporalAggregator_Dynamic_
       __Pyx_GIVEREF(__pyx_t_5);
       __pyx_t_1 = 0;
       __pyx_t_5 = 0;
-      __pyx_t_5 = PyTuple_New(1); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 147; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_5 = PyTuple_New(1); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 151; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_5);
       PyTuple_SET_ITEM(__pyx_t_5, 0, __pyx_t_2);
       __Pyx_GIVEREF(__pyx_t_2);
       __pyx_t_2 = 0;
-      __pyx_t_2 = PyDict_New(); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 147; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_2 = PyDict_New(); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 151; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_2);
-      if (PyDict_SetItem(__pyx_t_2, __pyx_n_s_dtype, __pyx_n_s_float64) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 147; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-      __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_8, __pyx_t_5, __pyx_t_2); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 147; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      if (PyDict_SetItem(__pyx_t_2, __pyx_n_s_dtype, __pyx_n_s_float64) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 151; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_8, __pyx_t_5, __pyx_t_2); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 151; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_1);
       __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
       __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
       __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
       __pyx_t_11 = __Pyx_PyObject_to_MemoryviewSlice_d_dc_double(__pyx_t_1);
-      if (unlikely(!__pyx_t_11.memview)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 147; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      if (unlikely(!__pyx_t_11.memview)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 151; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
       __PYX_XDEC_MEMVIEW(&__pyx_v_self->step_oldMean, 0);
       __pyx_v_self->step_oldMean = __pyx_t_11;
       __pyx_t_11.memview = NULL;
       __pyx_t_11.data = NULL;
 
-      /* "temporal\core\temporal.pyx":148
+      /* "temporal\core\temporal.pyx":152
  *             if self._doMean: # will be set even if only sd was set
  *                 self.step_oldMean = np.zeros((self.height, self.width),dtype='float64')
  *                 self.step_newMean = np.zeros((self.height, self.width),dtype='float64')             # <<<<<<<<<<<<<<
  *                 self.step_oldMean[:] = self.ndv
  *                 self.step_newMean[:] = self.ndv
  */
-      __pyx_t_1 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 148; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_1 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 152; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_1);
-      __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_zeros); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 148; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_zeros); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 152; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_2);
       __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-      __pyx_t_1 = PyInt_FromSsize_t(__pyx_v_self->height); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 148; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_1 = PyInt_FromSsize_t(__pyx_v_self->height); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 152; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_1);
-      __pyx_t_5 = PyInt_FromSsize_t(__pyx_v_self->width); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 148; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_5 = PyInt_FromSsize_t(__pyx_v_self->width); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 152; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_5);
-      __pyx_t_8 = PyTuple_New(2); if (unlikely(!__pyx_t_8)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 148; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_8 = PyTuple_New(2); if (unlikely(!__pyx_t_8)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 152; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_8);
       PyTuple_SET_ITEM(__pyx_t_8, 0, __pyx_t_1);
       __Pyx_GIVEREF(__pyx_t_1);
@@ -3488,28 +3557,28 @@ static PyObject *__pyx_f_8temporal_4core_8temporal_26TemporalAggregator_Dynamic_
       __Pyx_GIVEREF(__pyx_t_5);
       __pyx_t_1 = 0;
       __pyx_t_5 = 0;
-      __pyx_t_5 = PyTuple_New(1); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 148; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_5 = PyTuple_New(1); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 152; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_5);
       PyTuple_SET_ITEM(__pyx_t_5, 0, __pyx_t_8);
       __Pyx_GIVEREF(__pyx_t_8);
       __pyx_t_8 = 0;
-      __pyx_t_8 = PyDict_New(); if (unlikely(!__pyx_t_8)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 148; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_8 = PyDict_New(); if (unlikely(!__pyx_t_8)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 152; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_8);
-      if (PyDict_SetItem(__pyx_t_8, __pyx_n_s_dtype, __pyx_n_s_float64) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 148; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-      __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_t_5, __pyx_t_8); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 148; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      if (PyDict_SetItem(__pyx_t_8, __pyx_n_s_dtype, __pyx_n_s_float64) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 152; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_t_5, __pyx_t_8); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 152; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_1);
       __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
       __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
       __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
       __pyx_t_11 = __Pyx_PyObject_to_MemoryviewSlice_d_dc_double(__pyx_t_1);
-      if (unlikely(!__pyx_t_11.memview)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 148; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      if (unlikely(!__pyx_t_11.memview)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 152; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
       __PYX_XDEC_MEMVIEW(&__pyx_v_self->step_newMean, 0);
       __pyx_v_self->step_newMean = __pyx_t_11;
       __pyx_t_11.memview = NULL;
       __pyx_t_11.data = NULL;
 
-      /* "temporal\core\temporal.pyx":149
+      /* "temporal\core\temporal.pyx":153
  *                 self.step_oldMean = np.zeros((self.height, self.width),dtype='float64')
  *                 self.step_newMean = np.zeros((self.height, self.width),dtype='float64')
  *                 self.step_oldMean[:] = self.ndv             # <<<<<<<<<<<<<<
@@ -3517,7 +3586,7 @@ static PyObject *__pyx_f_8temporal_4core_8temporal_26TemporalAggregator_Dynamic_
  *             if self._doSD:
  */
       __pyx_t_12 = __pyx_v_self->ndv;
-      if (unlikely(!__pyx_v_self->step_oldMean.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 149; __pyx_clineno = __LINE__; goto __pyx_L1_error;}}
+      if (unlikely(!__pyx_v_self->step_oldMean.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 153; __pyx_clineno = __LINE__; goto __pyx_L1_error;}}
       __pyx_t_11 = __pyx_v_self->step_oldMean;
       __PYX_INC_MEMVIEW(&__pyx_t_11, 1);
       __pyx_t_14 = -1;
@@ -3547,7 +3616,7 @@ __PYX_XDEC_MEMVIEW(&__pyx_t_11, 1);
       }
       __PYX_XDEC_MEMVIEW(&__pyx_t_13, 1);
 
-      /* "temporal\core\temporal.pyx":150
+      /* "temporal\core\temporal.pyx":154
  *                 self.step_newMean = np.zeros((self.height, self.width),dtype='float64')
  *                 self.step_oldMean[:] = self.ndv
  *                 self.step_newMean[:] = self.ndv             # <<<<<<<<<<<<<<
@@ -3555,7 +3624,7 @@ __PYX_XDEC_MEMVIEW(&__pyx_t_11, 1);
  *                 self.step_oldSD = np.zeros((self.height, self.width),dtype='float64')
  */
       __pyx_t_12 = __pyx_v_self->ndv;
-      if (unlikely(!__pyx_v_self->step_newMean.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 150; __pyx_clineno = __LINE__; goto __pyx_L1_error;}}
+      if (unlikely(!__pyx_v_self->step_newMean.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 154; __pyx_clineno = __LINE__; goto __pyx_L1_error;}}
       __pyx_t_11 = __pyx_v_self->step_newMean;
       __PYX_INC_MEMVIEW(&__pyx_t_11, 1);
       __pyx_t_14 = -1;
@@ -3588,7 +3657,7 @@ __PYX_XDEC_MEMVIEW(&__pyx_t_11, 1);
     }
     __pyx_L4:;
 
-    /* "temporal\core\temporal.pyx":151
+    /* "temporal\core\temporal.pyx":155
  *                 self.step_oldMean[:] = self.ndv
  *                 self.step_newMean[:] = self.ndv
  *             if self._doSD:             # <<<<<<<<<<<<<<
@@ -3598,23 +3667,23 @@ __PYX_XDEC_MEMVIEW(&__pyx_t_11, 1);
     __pyx_t_9 = (__pyx_v_self->_doSD != 0);
     if (__pyx_t_9) {
 
-      /* "temporal\core\temporal.pyx":152
+      /* "temporal\core\temporal.pyx":156
  *                 self.step_newMean[:] = self.ndv
  *             if self._doSD:
  *                 self.step_oldSD = np.zeros((self.height, self.width),dtype='float64')             # <<<<<<<<<<<<<<
  *                 self.step_newSD = np.zeros((self.height, self.width),dtype='float64')
  *                 # don't have zero but no data instead because zero is valid. Counts remain at zero.
  */
-      __pyx_t_1 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 152; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_1 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 156; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_1);
-      __pyx_t_8 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_zeros); if (unlikely(!__pyx_t_8)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 152; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_8 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_zeros); if (unlikely(!__pyx_t_8)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 156; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_8);
       __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-      __pyx_t_1 = PyInt_FromSsize_t(__pyx_v_self->height); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 152; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_1 = PyInt_FromSsize_t(__pyx_v_self->height); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 156; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_1);
-      __pyx_t_5 = PyInt_FromSsize_t(__pyx_v_self->width); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 152; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_5 = PyInt_FromSsize_t(__pyx_v_self->width); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 156; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_5);
-      __pyx_t_2 = PyTuple_New(2); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 152; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_2 = PyTuple_New(2); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 156; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_2);
       PyTuple_SET_ITEM(__pyx_t_2, 0, __pyx_t_1);
       __Pyx_GIVEREF(__pyx_t_1);
@@ -3622,44 +3691,44 @@ __PYX_XDEC_MEMVIEW(&__pyx_t_11, 1);
       __Pyx_GIVEREF(__pyx_t_5);
       __pyx_t_1 = 0;
       __pyx_t_5 = 0;
-      __pyx_t_5 = PyTuple_New(1); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 152; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_5 = PyTuple_New(1); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 156; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_5);
       PyTuple_SET_ITEM(__pyx_t_5, 0, __pyx_t_2);
       __Pyx_GIVEREF(__pyx_t_2);
       __pyx_t_2 = 0;
-      __pyx_t_2 = PyDict_New(); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 152; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_2 = PyDict_New(); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 156; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_2);
-      if (PyDict_SetItem(__pyx_t_2, __pyx_n_s_dtype, __pyx_n_s_float64) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 152; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-      __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_8, __pyx_t_5, __pyx_t_2); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 152; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      if (PyDict_SetItem(__pyx_t_2, __pyx_n_s_dtype, __pyx_n_s_float64) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 156; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_8, __pyx_t_5, __pyx_t_2); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 156; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_1);
       __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
       __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
       __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
       __pyx_t_11 = __Pyx_PyObject_to_MemoryviewSlice_d_dc_double(__pyx_t_1);
-      if (unlikely(!__pyx_t_11.memview)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 152; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      if (unlikely(!__pyx_t_11.memview)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 156; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
       __PYX_XDEC_MEMVIEW(&__pyx_v_self->step_oldSD, 0);
       __pyx_v_self->step_oldSD = __pyx_t_11;
       __pyx_t_11.memview = NULL;
       __pyx_t_11.data = NULL;
 
-      /* "temporal\core\temporal.pyx":153
+      /* "temporal\core\temporal.pyx":157
  *             if self._doSD:
  *                 self.step_oldSD = np.zeros((self.height, self.width),dtype='float64')
  *                 self.step_newSD = np.zeros((self.height, self.width),dtype='float64')             # <<<<<<<<<<<<<<
  *                 # don't have zero but no data instead because zero is valid. Counts remain at zero.
  *                 self.step_oldSD[:] = self.ndv
  */
-      __pyx_t_1 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 153; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_1 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 157; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_1);
-      __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_zeros); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 153; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_zeros); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 157; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_2);
       __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-      __pyx_t_1 = PyInt_FromSsize_t(__pyx_v_self->height); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 153; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_1 = PyInt_FromSsize_t(__pyx_v_self->height); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 157; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_1);
-      __pyx_t_5 = PyInt_FromSsize_t(__pyx_v_self->width); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 153; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_5 = PyInt_FromSsize_t(__pyx_v_self->width); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 157; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_5);
-      __pyx_t_8 = PyTuple_New(2); if (unlikely(!__pyx_t_8)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 153; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_8 = PyTuple_New(2); if (unlikely(!__pyx_t_8)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 157; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_8);
       PyTuple_SET_ITEM(__pyx_t_8, 0, __pyx_t_1);
       __Pyx_GIVEREF(__pyx_t_1);
@@ -3667,28 +3736,28 @@ __PYX_XDEC_MEMVIEW(&__pyx_t_11, 1);
       __Pyx_GIVEREF(__pyx_t_5);
       __pyx_t_1 = 0;
       __pyx_t_5 = 0;
-      __pyx_t_5 = PyTuple_New(1); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 153; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_5 = PyTuple_New(1); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 157; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_5);
       PyTuple_SET_ITEM(__pyx_t_5, 0, __pyx_t_8);
       __Pyx_GIVEREF(__pyx_t_8);
       __pyx_t_8 = 0;
-      __pyx_t_8 = PyDict_New(); if (unlikely(!__pyx_t_8)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 153; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_8 = PyDict_New(); if (unlikely(!__pyx_t_8)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 157; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_8);
-      if (PyDict_SetItem(__pyx_t_8, __pyx_n_s_dtype, __pyx_n_s_float64) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 153; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-      __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_t_5, __pyx_t_8); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 153; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      if (PyDict_SetItem(__pyx_t_8, __pyx_n_s_dtype, __pyx_n_s_float64) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 157; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_t_5, __pyx_t_8); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 157; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_1);
       __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
       __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
       __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
       __pyx_t_11 = __Pyx_PyObject_to_MemoryviewSlice_d_dc_double(__pyx_t_1);
-      if (unlikely(!__pyx_t_11.memview)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 153; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      if (unlikely(!__pyx_t_11.memview)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 157; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
       __PYX_XDEC_MEMVIEW(&__pyx_v_self->step_newSD, 0);
       __pyx_v_self->step_newSD = __pyx_t_11;
       __pyx_t_11.memview = NULL;
       __pyx_t_11.data = NULL;
 
-      /* "temporal\core\temporal.pyx":155
+      /* "temporal\core\temporal.pyx":159
  *                 self.step_newSD = np.zeros((self.height, self.width),dtype='float64')
  *                 # don't have zero but no data instead because zero is valid. Counts remain at zero.
  *                 self.step_oldSD[:] = self.ndv             # <<<<<<<<<<<<<<
@@ -3696,7 +3765,7 @@ __PYX_XDEC_MEMVIEW(&__pyx_t_11, 1);
  *             if self._doMin:
  */
       __pyx_t_12 = __pyx_v_self->ndv;
-      if (unlikely(!__pyx_v_self->step_oldSD.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 155; __pyx_clineno = __LINE__; goto __pyx_L1_error;}}
+      if (unlikely(!__pyx_v_self->step_oldSD.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 159; __pyx_clineno = __LINE__; goto __pyx_L1_error;}}
       __pyx_t_11 = __pyx_v_self->step_oldSD;
       __PYX_INC_MEMVIEW(&__pyx_t_11, 1);
       __pyx_t_14 = -1;
@@ -3726,7 +3795,7 @@ __PYX_XDEC_MEMVIEW(&__pyx_t_11, 1);
       }
       __PYX_XDEC_MEMVIEW(&__pyx_t_16, 1);
 
-      /* "temporal\core\temporal.pyx":156
+      /* "temporal\core\temporal.pyx":160
  *                 # don't have zero but no data instead because zero is valid. Counts remain at zero.
  *                 self.step_oldSD[:] = self.ndv
  *                 self.step_newSD[:] = self.ndv             # <<<<<<<<<<<<<<
@@ -3734,7 +3803,7 @@ __PYX_XDEC_MEMVIEW(&__pyx_t_11, 1);
  *                 self.step_Min = np.zeros((self.height, self.width), dtype='float32')
  */
       __pyx_t_12 = __pyx_v_self->ndv;
-      if (unlikely(!__pyx_v_self->step_newSD.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 156; __pyx_clineno = __LINE__; goto __pyx_L1_error;}}
+      if (unlikely(!__pyx_v_self->step_newSD.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 160; __pyx_clineno = __LINE__; goto __pyx_L1_error;}}
       __pyx_t_11 = __pyx_v_self->step_newSD;
       __PYX_INC_MEMVIEW(&__pyx_t_11, 1);
       __pyx_t_14 = -1;
@@ -3767,7 +3836,7 @@ __PYX_XDEC_MEMVIEW(&__pyx_t_11, 1);
     }
     __pyx_L5:;
 
-    /* "temporal\core\temporal.pyx":157
+    /* "temporal\core\temporal.pyx":161
  *                 self.step_oldSD[:] = self.ndv
  *                 self.step_newSD[:] = self.ndv
  *             if self._doMin:             # <<<<<<<<<<<<<<
@@ -3777,23 +3846,23 @@ __PYX_XDEC_MEMVIEW(&__pyx_t_11, 1);
     __pyx_t_9 = (__pyx_v_self->_doMin != 0);
     if (__pyx_t_9) {
 
-      /* "temporal\core\temporal.pyx":158
+      /* "temporal\core\temporal.pyx":162
  *                 self.step_newSD[:] = self.ndv
  *             if self._doMin:
  *                 self.step_Min = np.zeros((self.height, self.width), dtype='float32')             # <<<<<<<<<<<<<<
  *                 self.step_Min[:] = np.inf
  *             if self._doMax:
  */
-      __pyx_t_1 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 158; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_1 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 162; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_1);
-      __pyx_t_8 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_zeros); if (unlikely(!__pyx_t_8)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 158; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_8 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_zeros); if (unlikely(!__pyx_t_8)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 162; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_8);
       __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-      __pyx_t_1 = PyInt_FromSsize_t(__pyx_v_self->height); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 158; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_1 = PyInt_FromSsize_t(__pyx_v_self->height); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 162; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_1);
-      __pyx_t_5 = PyInt_FromSsize_t(__pyx_v_self->width); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 158; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_5 = PyInt_FromSsize_t(__pyx_v_self->width); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 162; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_5);
-      __pyx_t_2 = PyTuple_New(2); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 158; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_2 = PyTuple_New(2); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 162; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_2);
       PyTuple_SET_ITEM(__pyx_t_2, 0, __pyx_t_1);
       __Pyx_GIVEREF(__pyx_t_1);
@@ -3801,42 +3870,42 @@ __PYX_XDEC_MEMVIEW(&__pyx_t_11, 1);
       __Pyx_GIVEREF(__pyx_t_5);
       __pyx_t_1 = 0;
       __pyx_t_5 = 0;
-      __pyx_t_5 = PyTuple_New(1); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 158; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_5 = PyTuple_New(1); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 162; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_5);
       PyTuple_SET_ITEM(__pyx_t_5, 0, __pyx_t_2);
       __Pyx_GIVEREF(__pyx_t_2);
       __pyx_t_2 = 0;
-      __pyx_t_2 = PyDict_New(); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 158; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_2 = PyDict_New(); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 162; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_2);
-      if (PyDict_SetItem(__pyx_t_2, __pyx_n_s_dtype, __pyx_n_s_float32) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 158; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-      __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_8, __pyx_t_5, __pyx_t_2); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 158; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      if (PyDict_SetItem(__pyx_t_2, __pyx_n_s_dtype, __pyx_n_s_float32) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 162; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_8, __pyx_t_5, __pyx_t_2); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 162; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_1);
       __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
       __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
       __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
       __pyx_t_18 = __Pyx_PyObject_to_MemoryviewSlice_d_dc_float(__pyx_t_1);
-      if (unlikely(!__pyx_t_18.memview)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 158; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      if (unlikely(!__pyx_t_18.memview)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 162; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
       __PYX_XDEC_MEMVIEW(&__pyx_v_self->step_Min, 0);
       __pyx_v_self->step_Min = __pyx_t_18;
       __pyx_t_18.memview = NULL;
       __pyx_t_18.data = NULL;
 
-      /* "temporal\core\temporal.pyx":159
+      /* "temporal\core\temporal.pyx":163
  *             if self._doMin:
  *                 self.step_Min = np.zeros((self.height, self.width), dtype='float32')
  *                 self.step_Min[:] = np.inf             # <<<<<<<<<<<<<<
  *             if self._doMax:
  *                 self.step_Max = np.zeros((self.height, self.width), dtype='float32')
  */
-      __pyx_t_1 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 159; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_1 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 163; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_1);
-      __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_inf); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 159; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_inf); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 163; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_2);
       __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-      __pyx_t_19 = __pyx_PyFloat_AsFloat(__pyx_t_2); if (unlikely((__pyx_t_19 == (float)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 159; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_19 = __pyx_PyFloat_AsFloat(__pyx_t_2); if (unlikely((__pyx_t_19 == (float)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 163; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-      if (unlikely(!__pyx_v_self->step_Min.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 159; __pyx_clineno = __LINE__; goto __pyx_L1_error;}}
+      if (unlikely(!__pyx_v_self->step_Min.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 163; __pyx_clineno = __LINE__; goto __pyx_L1_error;}}
       __pyx_t_18 = __pyx_v_self->step_Min;
       __PYX_INC_MEMVIEW(&__pyx_t_18, 1);
       __pyx_t_14 = -1;
@@ -3869,7 +3938,7 @@ __PYX_XDEC_MEMVIEW(&__pyx_t_18, 1);
     }
     __pyx_L6:;
 
-    /* "temporal\core\temporal.pyx":160
+    /* "temporal\core\temporal.pyx":164
  *                 self.step_Min = np.zeros((self.height, self.width), dtype='float32')
  *                 self.step_Min[:] = np.inf
  *             if self._doMax:             # <<<<<<<<<<<<<<
@@ -3879,23 +3948,23 @@ __PYX_XDEC_MEMVIEW(&__pyx_t_18, 1);
     __pyx_t_9 = (__pyx_v_self->_doMax != 0);
     if (__pyx_t_9) {
 
-      /* "temporal\core\temporal.pyx":161
+      /* "temporal\core\temporal.pyx":165
  *                 self.step_Min[:] = np.inf
  *             if self._doMax:
  *                 self.step_Max = np.zeros((self.height, self.width), dtype='float32')             # <<<<<<<<<<<<<<
  *                 self.step_Max[:] = -np.inf
  *             if self._doSum:
  */
-      __pyx_t_2 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 161; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_2 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 165; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_2);
-      __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_zeros); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 161; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_zeros); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 165; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_1);
       __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-      __pyx_t_2 = PyInt_FromSsize_t(__pyx_v_self->height); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 161; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_2 = PyInt_FromSsize_t(__pyx_v_self->height); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 165; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_2);
-      __pyx_t_5 = PyInt_FromSsize_t(__pyx_v_self->width); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 161; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_5 = PyInt_FromSsize_t(__pyx_v_self->width); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 165; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_5);
-      __pyx_t_8 = PyTuple_New(2); if (unlikely(!__pyx_t_8)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 161; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_8 = PyTuple_New(2); if (unlikely(!__pyx_t_8)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 165; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_8);
       PyTuple_SET_ITEM(__pyx_t_8, 0, __pyx_t_2);
       __Pyx_GIVEREF(__pyx_t_2);
@@ -3903,45 +3972,45 @@ __PYX_XDEC_MEMVIEW(&__pyx_t_18, 1);
       __Pyx_GIVEREF(__pyx_t_5);
       __pyx_t_2 = 0;
       __pyx_t_5 = 0;
-      __pyx_t_5 = PyTuple_New(1); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 161; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_5 = PyTuple_New(1); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 165; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_5);
       PyTuple_SET_ITEM(__pyx_t_5, 0, __pyx_t_8);
       __Pyx_GIVEREF(__pyx_t_8);
       __pyx_t_8 = 0;
-      __pyx_t_8 = PyDict_New(); if (unlikely(!__pyx_t_8)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 161; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_8 = PyDict_New(); if (unlikely(!__pyx_t_8)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 165; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_8);
-      if (PyDict_SetItem(__pyx_t_8, __pyx_n_s_dtype, __pyx_n_s_float32) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 161; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-      __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_t_5, __pyx_t_8); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 161; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      if (PyDict_SetItem(__pyx_t_8, __pyx_n_s_dtype, __pyx_n_s_float32) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 165; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_t_5, __pyx_t_8); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 165; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_2);
       __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
       __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
       __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
       __pyx_t_18 = __Pyx_PyObject_to_MemoryviewSlice_d_dc_float(__pyx_t_2);
-      if (unlikely(!__pyx_t_18.memview)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 161; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      if (unlikely(!__pyx_t_18.memview)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 165; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
       __PYX_XDEC_MEMVIEW(&__pyx_v_self->step_Max, 0);
       __pyx_v_self->step_Max = __pyx_t_18;
       __pyx_t_18.memview = NULL;
       __pyx_t_18.data = NULL;
 
-      /* "temporal\core\temporal.pyx":162
+      /* "temporal\core\temporal.pyx":166
  *             if self._doMax:
  *                 self.step_Max = np.zeros((self.height, self.width), dtype='float32')
  *                 self.step_Max[:] = -np.inf             # <<<<<<<<<<<<<<
  *             if self._doSum:
  *                 self.step_Sum = np.zeros((self.height, self.width), dtype='float32')
  */
-      __pyx_t_2 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 162; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_2 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 166; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_2);
-      __pyx_t_8 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_inf); if (unlikely(!__pyx_t_8)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 162; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_8 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_inf); if (unlikely(!__pyx_t_8)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 166; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_8);
       __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-      __pyx_t_2 = PyNumber_Negative(__pyx_t_8); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 162; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_2 = PyNumber_Negative(__pyx_t_8); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 166; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_2);
       __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
-      __pyx_t_19 = __pyx_PyFloat_AsFloat(__pyx_t_2); if (unlikely((__pyx_t_19 == (float)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 162; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_19 = __pyx_PyFloat_AsFloat(__pyx_t_2); if (unlikely((__pyx_t_19 == (float)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 166; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-      if (unlikely(!__pyx_v_self->step_Max.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 162; __pyx_clineno = __LINE__; goto __pyx_L1_error;}}
+      if (unlikely(!__pyx_v_self->step_Max.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 166; __pyx_clineno = __LINE__; goto __pyx_L1_error;}}
       __pyx_t_18 = __pyx_v_self->step_Max;
       __PYX_INC_MEMVIEW(&__pyx_t_18, 1);
       __pyx_t_14 = -1;
@@ -3974,7 +4043,7 @@ __PYX_XDEC_MEMVIEW(&__pyx_t_18, 1);
     }
     __pyx_L7:;
 
-    /* "temporal\core\temporal.pyx":163
+    /* "temporal\core\temporal.pyx":167
  *                 self.step_Max = np.zeros((self.height, self.width), dtype='float32')
  *                 self.step_Max[:] = -np.inf
  *             if self._doSum:             # <<<<<<<<<<<<<<
@@ -3984,23 +4053,23 @@ __PYX_XDEC_MEMVIEW(&__pyx_t_18, 1);
     __pyx_t_9 = (__pyx_v_self->_doSum != 0);
     if (__pyx_t_9) {
 
-      /* "temporal\core\temporal.pyx":164
+      /* "temporal\core\temporal.pyx":168
  *                 self.step_Max[:] = -np.inf
  *             if self._doSum:
  *                 self.step_Sum = np.zeros((self.height, self.width), dtype='float32')             # <<<<<<<<<<<<<<
  *             self._startNewStep = 0
  * 
  */
-      __pyx_t_2 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 164; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_2 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 168; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_2);
-      __pyx_t_8 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_zeros); if (unlikely(!__pyx_t_8)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 164; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_8 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_zeros); if (unlikely(!__pyx_t_8)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 168; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_8);
       __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-      __pyx_t_2 = PyInt_FromSsize_t(__pyx_v_self->height); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 164; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_2 = PyInt_FromSsize_t(__pyx_v_self->height); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 168; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_2);
-      __pyx_t_5 = PyInt_FromSsize_t(__pyx_v_self->width); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 164; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_5 = PyInt_FromSsize_t(__pyx_v_self->width); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 168; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_5);
-      __pyx_t_1 = PyTuple_New(2); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 164; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_1 = PyTuple_New(2); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 168; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_1);
       PyTuple_SET_ITEM(__pyx_t_1, 0, __pyx_t_2);
       __Pyx_GIVEREF(__pyx_t_2);
@@ -4008,21 +4077,21 @@ __PYX_XDEC_MEMVIEW(&__pyx_t_18, 1);
       __Pyx_GIVEREF(__pyx_t_5);
       __pyx_t_2 = 0;
       __pyx_t_5 = 0;
-      __pyx_t_5 = PyTuple_New(1); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 164; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_5 = PyTuple_New(1); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 168; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_5);
       PyTuple_SET_ITEM(__pyx_t_5, 0, __pyx_t_1);
       __Pyx_GIVEREF(__pyx_t_1);
       __pyx_t_1 = 0;
-      __pyx_t_1 = PyDict_New(); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 164; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_1 = PyDict_New(); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 168; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_1);
-      if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_dtype, __pyx_n_s_float32) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 164; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-      __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_8, __pyx_t_5, __pyx_t_1); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 164; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_dtype, __pyx_n_s_float32) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 168; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_8, __pyx_t_5, __pyx_t_1); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 168; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_2);
       __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
       __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
       __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
       __pyx_t_18 = __Pyx_PyObject_to_MemoryviewSlice_d_dc_float(__pyx_t_2);
-      if (unlikely(!__pyx_t_18.memview)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 164; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      if (unlikely(!__pyx_t_18.memview)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 168; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
       __PYX_XDEC_MEMVIEW(&__pyx_v_self->step_Sum, 0);
       __pyx_v_self->step_Sum = __pyx_t_18;
@@ -4032,19 +4101,127 @@ __PYX_XDEC_MEMVIEW(&__pyx_t_18, 1);
     }
     __pyx_L8:;
 
-    /* "temporal\core\temporal.pyx":165
+    /* "temporal\core\temporal.pyx":169
  *             if self._doSum:
  *                 self.step_Sum = np.zeros((self.height, self.width), dtype='float32')
  *             self._startNewStep = 0             # <<<<<<<<<<<<<<
  * 
- *         # hardcode to 6 threads which is fast enough for anything that can
+ *         if self._generateSynoptic:
  */
     __pyx_v_self->_startNewStep = 0;
     goto __pyx_L3;
   }
   __pyx_L3:;
 
-  /* "temporal\core\temporal.pyx":169
+  /* "temporal\core\temporal.pyx":171
+ *             self._startNewStep = 0
+ * 
+ *         if self._generateSynoptic:             # <<<<<<<<<<<<<<
+ *             if ((fileTag is None) or (not fileTag in self._uniqueFileSet)):
+ *                 self._uniqueFileSet.add(fileTag)
+ */
+  __pyx_t_9 = (__pyx_v_self->_generateSynoptic != 0);
+  if (__pyx_t_9) {
+
+    /* "temporal\core\temporal.pyx":172
+ * 
+ *         if self._generateSynoptic:
+ *             if ((fileTag is None) or (not fileTag in self._uniqueFileSet)):             # <<<<<<<<<<<<<<
+ *                 self._uniqueFileSet.add(fileTag)
+ *                 useForSynoptic = 1
+ */
+    __pyx_t_22 = (__pyx_v_fileTag == Py_None);
+    __pyx_t_23 = (__pyx_t_22 != 0);
+    if (!__pyx_t_23) {
+    } else {
+      __pyx_t_9 = __pyx_t_23;
+      goto __pyx_L11_bool_binop_done;
+    }
+    __pyx_t_23 = (__Pyx_PySequence_Contains(__pyx_v_fileTag, __pyx_v_self->_uniqueFileSet, Py_NE)); if (unlikely(__pyx_t_23 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 172; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_22 = (__pyx_t_23 != 0);
+    __pyx_t_9 = __pyx_t_22;
+    __pyx_L11_bool_binop_done:;
+    if (__pyx_t_9) {
+
+      /* "temporal\core\temporal.pyx":173
+ *         if self._generateSynoptic:
+ *             if ((fileTag is None) or (not fileTag in self._uniqueFileSet)):
+ *                 self._uniqueFileSet.add(fileTag)             # <<<<<<<<<<<<<<
+ *                 useForSynoptic = 1
+ *             elif fileTag is not None:
+ */
+      if (unlikely(__pyx_v_self->_uniqueFileSet == Py_None)) {
+        PyErr_Format(PyExc_AttributeError, "'NoneType' object has no attribute '%s'", "add");
+        {__pyx_filename = __pyx_f[0]; __pyx_lineno = 173; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      }
+      __pyx_t_24 = PySet_Add(__pyx_v_self->_uniqueFileSet, __pyx_v_fileTag); if (unlikely(__pyx_t_24 == -1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 173; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+
+      /* "temporal\core\temporal.pyx":174
+ *             if ((fileTag is None) or (not fileTag in self._uniqueFileSet)):
+ *                 self._uniqueFileSet.add(fileTag)
+ *                 useForSynoptic = 1             # <<<<<<<<<<<<<<
+ *             elif fileTag is not None:
+ *                 print("Already added {0!S} to synoptic total, skipping. ".format(fileTag))
+ */
+      __pyx_v_useForSynoptic = 1;
+      goto __pyx_L10;
+    }
+
+    /* "temporal\core\temporal.pyx":175
+ *                 self._uniqueFileSet.add(fileTag)
+ *                 useForSynoptic = 1
+ *             elif fileTag is not None:             # <<<<<<<<<<<<<<
+ *                 print("Already added {0!S} to synoptic total, skipping. ".format(fileTag))
+ * 
+ */
+    __pyx_t_9 = (__pyx_v_fileTag != Py_None);
+    __pyx_t_22 = (__pyx_t_9 != 0);
+    if (__pyx_t_22) {
+
+      /* "temporal\core\temporal.pyx":176
+ *                 useForSynoptic = 1
+ *             elif fileTag is not None:
+ *                 print("Already added {0!S} to synoptic total, skipping. ".format(fileTag))             # <<<<<<<<<<<<<<
+ * 
+ *         # hardcode to 6 threads which is fast enough for anything that can
+ */
+      __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_kp_s_Already_added_0_S_to_synoptic_to, __pyx_n_s_format); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 176; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __Pyx_GOTREF(__pyx_t_1);
+      __pyx_t_5 = NULL;
+      if (CYTHON_COMPILING_IN_CPYTHON && likely(PyMethod_Check(__pyx_t_1))) {
+        __pyx_t_5 = PyMethod_GET_SELF(__pyx_t_1);
+        if (likely(__pyx_t_5)) {
+          PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_1);
+          __Pyx_INCREF(__pyx_t_5);
+          __Pyx_INCREF(function);
+          __Pyx_DECREF_SET(__pyx_t_1, function);
+        }
+      }
+      if (!__pyx_t_5) {
+        __pyx_t_2 = __Pyx_PyObject_CallOneArg(__pyx_t_1, __pyx_v_fileTag); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 176; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+        __Pyx_GOTREF(__pyx_t_2);
+      } else {
+        __pyx_t_8 = PyTuple_New(1+1); if (unlikely(!__pyx_t_8)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 176; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+        __Pyx_GOTREF(__pyx_t_8);
+        PyTuple_SET_ITEM(__pyx_t_8, 0, __pyx_t_5); __Pyx_GIVEREF(__pyx_t_5); __pyx_t_5 = NULL;
+        __Pyx_INCREF(__pyx_v_fileTag);
+        PyTuple_SET_ITEM(__pyx_t_8, 0+1, __pyx_v_fileTag);
+        __Pyx_GIVEREF(__pyx_v_fileTag);
+        __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_t_8, NULL); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 176; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+        __Pyx_GOTREF(__pyx_t_2);
+        __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
+      }
+      __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+      if (__Pyx_PrintOne(0, __pyx_t_2) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 176; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+      goto __pyx_L10;
+    }
+    __pyx_L10:;
+    goto __pyx_L9;
+  }
+  __pyx_L9:;
+
+  /* "temporal\core\temporal.pyx":180
  *         # hardcode to 6 threads which is fast enough for anything that can
  *         # feasibly fit in RAM anyway and is ok on most machines
  *         with nogil, cython.wraparound(False), parallel(num_threads=6):             # <<<<<<<<<<<<<<
@@ -4069,7 +4246,7 @@ __PYX_XDEC_MEMVIEW(&__pyx_t_18, 1);
                 #define unlikely(x) (x)
             #endif
             #ifdef _OPENMP
-            #pragma omp parallel  private(__pyx_t_79, __pyx_t_76, __pyx_t_48, __pyx_t_107, __pyx_t_100, __pyx_t_60, __pyx_t_39, __pyx_t_73, __pyx_t_77, __pyx_t_106, __pyx_t_27, __pyx_t_9, __pyx_t_33, __pyx_t_26, __pyx_t_34, __pyx_t_113, __pyx_t_109, __pyx_t_59, __pyx_t_52, __pyx_t_65, __pyx_t_118, __pyx_t_68, __pyx_t_115, __pyx_t_108, __pyx_t_90, __pyx_t_103, __pyx_t_94, __pyx_t_53, __pyx_t_63, __pyx_t_64, __pyx_t_116, __pyx_t_85, __pyx_t_91, __pyx_t_102, __pyx_t_95, __pyx_t_28, __pyx_t_54, __pyx_t_23, __pyx_t_62, __pyx_t_22, __pyx_t_88, __pyx_t_40, __pyx_t_56, __pyx_t_82, __pyx_t_111, __pyx_t_86, __pyx_t_47, __pyx_t_43, __pyx_t_57, __pyx_t_81, __pyx_t_74, __pyx_t_46, __pyx_t_58, __pyx_t_37, __pyx_t_78, __pyx_t_75, __pyx_t_31, __pyx_t_38, __pyx_t_72, __pyx_t_44, __pyx_t_32, __pyx_t_67, __pyx_t_112, __pyx_t_70, __pyx_t_105, __pyx_t_96, __pyx_t_66, __pyx_t_69, __pyx_t_114, __pyx_t_71, __pyx_t_104, __pyx_t_97, __pyx_t_25, __pyx_t_35, __pyx_t_29, __pyx_t_24, __pyx_t_119, __pyx_t_98, __pyx_t_50, __pyx_t_89, __pyx_t_117, __pyx_t_84, __pyx_t_99, __pyx_t_92, __pyx_t_41, __pyx_t_55, __pyx_t_51, __pyx_t_61, __pyx_t_83, __pyx_t_110, __pyx_t_87, __pyx_t_93, __pyx_t_36, __pyx_t_42, __pyx_t_7, __pyx_t_30, __pyx_t_80, __pyx_t_49, __pyx_t_101, __pyx_t_45) private(__pyx_filename, __pyx_lineno, __pyx_clineno) shared(__pyx_parallel_why, __pyx_parallel_exc_type, __pyx_parallel_exc_value, __pyx_parallel_exc_tb) num_threads(6)
+            #pragma omp parallel  private(__pyx_t_67, __pyx_t_30, __pyx_t_59, __pyx_t_58, __pyx_t_52, __pyx_t_113, __pyx_t_72, __pyx_t_71, __pyx_t_48, __pyx_t_85, __pyx_t_106, __pyx_t_27, __pyx_t_73, __pyx_t_41, __pyx_t_89, __pyx_t_109, __pyx_t_104, __pyx_t_105, __pyx_t_120, __pyx_t_115, __pyx_t_90, __pyx_t_93, __pyx_t_63, __pyx_t_36, __pyx_t_35, __pyx_t_108, __pyx_t_103, __pyx_t_54, __pyx_t_57, __pyx_t_122, __pyx_t_119, __pyx_t_117, __pyx_t_116, __pyx_t_75, __pyx_t_91, __pyx_t_7, __pyx_t_38, __pyx_t_37, __pyx_t_83, __pyx_t_80, __pyx_t_55, __pyx_t_79, __pyx_t_110, __pyx_t_77, __pyx_t_76, __pyx_t_47, __pyx_t_44, __pyx_t_82, __pyx_t_22, __pyx_t_70, __pyx_t_97, __pyx_t_49, __pyx_t_46, __pyx_t_65, __pyx_t_66, __pyx_t_68, __pyx_t_69, __pyx_t_31, __pyx_t_107, __pyx_t_53, __pyx_t_98, __pyx_t_95, __pyx_t_94, __pyx_t_64, __pyx_t_33, __pyx_t_32, __pyx_t_84, __pyx_t_51, __pyx_t_50, __pyx_t_26, __pyx_t_121, __pyx_t_114, __pyx_t_99, __pyx_t_92, __pyx_t_40, __pyx_t_88, __pyx_t_34, __pyx_t_86, __pyx_t_87, __pyx_t_29, __pyx_t_56, __pyx_t_25, __pyx_t_118, __pyx_t_74, __pyx_t_42, __pyx_t_43, __pyx_t_62, __pyx_t_81, __pyx_t_101, __pyx_t_102, __pyx_t_28, __pyx_t_78, __pyx_t_45, __pyx_t_60, __pyx_t_61, __pyx_t_39, __pyx_t_100, __pyx_t_112, __pyx_t_111, __pyx_t_96) private(__pyx_filename, __pyx_lineno, __pyx_clineno) shared(__pyx_parallel_why, __pyx_parallel_exc_type, __pyx_parallel_exc_value, __pyx_parallel_exc_tb) num_threads(6)
             #endif /* _OPENMP */
             {
                 #ifdef _OPENMP
@@ -4079,7 +4256,7 @@ __PYX_XDEC_MEMVIEW(&__pyx_t_18, 1);
                 Py_BEGIN_ALLOW_THREADS
                 #endif /* _OPENMP */
 
-                /* "temporal\core\temporal.pyx":170
+                /* "temporal\core\temporal.pyx":181
  *         # feasibly fit in RAM anyway and is ok on most machines
  *         with nogil, cython.wraparound(False), parallel(num_threads=6):
  *             for y in prange (self.height, schedule='static'):             # <<<<<<<<<<<<<<
@@ -4089,28 +4266,28 @@ __PYX_XDEC_MEMVIEW(&__pyx_t_18, 1);
                 __pyx_t_7 = __pyx_v_self->height;
                 if (1 == 0) abort();
                 {
-                    Py_ssize_t __pyx_parallel_temp0 = 0xbad0bad0;
+                    double __pyx_parallel_temp0 = __PYX_NAN();
                     Py_ssize_t __pyx_parallel_temp1 = 0xbad0bad0;
-                    double __pyx_parallel_temp2 = __PYX_NAN();
+                    Py_ssize_t __pyx_parallel_temp2 = 0xbad0bad0;
                     const char *__pyx_parallel_filename = NULL; int __pyx_parallel_lineno = 0, __pyx_parallel_clineno = 0;
                     PyObject *__pyx_parallel_exc_type = NULL, *__pyx_parallel_exc_value = NULL, *__pyx_parallel_exc_tb = NULL;
                     int __pyx_parallel_why;
                     __pyx_parallel_why = 0;
-                    __pyx_t_23 = (__pyx_t_7 - 0) / 1;
-                    if (__pyx_t_23 > 0)
+                    __pyx_t_26 = (__pyx_t_7 - 0) / 1;
+                    if (__pyx_t_26 > 0)
                     {
                         #ifdef _OPENMP
-                        #pragma omp for lastprivate(__pyx_v_x) firstprivate(__pyx_v_y) lastprivate(__pyx_v_y) lastprivate(__pyx_v_value) schedule(static)
+                        #pragma omp for lastprivate(__pyx_v_value) lastprivate(__pyx_v_x) firstprivate(__pyx_v_y) lastprivate(__pyx_v_y) schedule(static)
                         #endif /* _OPENMP */
-                        for (__pyx_t_22 = 0; __pyx_t_22 < __pyx_t_23; __pyx_t_22++){
+                        for (__pyx_t_25 = 0; __pyx_t_25 < __pyx_t_26; __pyx_t_25++){
                             if (__pyx_parallel_why < 2)
                             {
-                                __pyx_v_y = 0 + 1 * __pyx_t_22;
+                                __pyx_v_y = 0 + 1 * __pyx_t_25;
                                 /* Initialize private variables to invalid values */
-                                __pyx_v_x = ((Py_ssize_t)0xbad0bad0);
                                 __pyx_v_value = ((double)__PYX_NAN());
+                                __pyx_v_x = ((Py_ssize_t)0xbad0bad0);
 
-                                /* "temporal\core\temporal.pyx":171
+                                /* "temporal\core\temporal.pyx":182
  *         with nogil, cython.wraparound(False), parallel(num_threads=6):
  *             for y in prange (self.height, schedule='static'):
  *                 value = thisNdv             # <<<<<<<<<<<<<<
@@ -4119,7 +4296,7 @@ __PYX_XDEC_MEMVIEW(&__pyx_t_18, 1);
  */
                                 __pyx_v_value = __pyx_v_thisNdv;
 
-                                /* "temporal\core\temporal.pyx":172
+                                /* "temporal\core\temporal.pyx":183
  *             for y in prange (self.height, schedule='static'):
  *                 value = thisNdv
  *                 x = -1             # <<<<<<<<<<<<<<
@@ -4128,814 +4305,814 @@ __PYX_XDEC_MEMVIEW(&__pyx_t_18, 1);
  */
                                 __pyx_v_x = -1;
 
-                                /* "temporal\core\temporal.pyx":173
+                                /* "temporal\core\temporal.pyx":184
  *                 value = thisNdv
  *                 x = -1
  *                 for x in range(0, self.width):             # <<<<<<<<<<<<<<
  *                     value = data[y, x]
  *                     if value == thisNdv:
  */
-                                __pyx_t_24 = __pyx_v_self->width;
-                                for (__pyx_t_25 = 0; __pyx_t_25 < __pyx_t_24; __pyx_t_25+=1) {
-                                  __pyx_v_x = __pyx_t_25;
+                                __pyx_t_27 = __pyx_v_self->width;
+                                for (__pyx_t_28 = 0; __pyx_t_28 < __pyx_t_27; __pyx_t_28+=1) {
+                                  __pyx_v_x = __pyx_t_28;
 
-                                  /* "temporal\core\temporal.pyx":174
+                                  /* "temporal\core\temporal.pyx":185
  *                 x = -1
  *                 for x in range(0, self.width):
  *                     value = data[y, x]             # <<<<<<<<<<<<<<
  *                     if value == thisNdv:
  *                         continue
  */
-                                  __pyx_t_26 = __pyx_v_y;
-                                  __pyx_t_27 = __pyx_v_x;
-                                  __pyx_v_value = (*((float *) ( /* dim=1 */ ((char *) (((float *) ( /* dim=0 */ (__pyx_v_data.data + __pyx_t_26 * __pyx_v_data.strides[0]) )) + __pyx_t_27)) )));
+                                  __pyx_t_29 = __pyx_v_y;
+                                  __pyx_t_30 = __pyx_v_x;
+                                  __pyx_v_value = (*((float *) ( /* dim=1 */ ((char *) (((float *) ( /* dim=0 */ (__pyx_v_data.data + __pyx_t_29 * __pyx_v_data.strides[0]) )) + __pyx_t_30)) )));
 
-                                  /* "temporal\core\temporal.pyx":175
+                                  /* "temporal\core\temporal.pyx":186
  *                 for x in range(0, self.width):
  *                     value = data[y, x]
  *                     if value == thisNdv:             # <<<<<<<<<<<<<<
  *                         continue
  *                     # always track a count
  */
-                                  __pyx_t_9 = ((__pyx_v_value == __pyx_v_thisNdv) != 0);
-                                  if (__pyx_t_9) {
+                                  __pyx_t_22 = ((__pyx_v_value == __pyx_v_thisNdv) != 0);
+                                  if (__pyx_t_22) {
 
-                                    /* "temporal\core\temporal.pyx":176
+                                    /* "temporal\core\temporal.pyx":187
  *                     value = data[y, x]
  *                     if value == thisNdv:
  *                         continue             # <<<<<<<<<<<<<<
  *                     # always track a count
- *                     self.tot_n[y, x] +=1
+ *                     self.step_n[y, x] += 1
  */
-                                    goto __pyx_L20_continue;
+                                    goto __pyx_L24_continue;
                                   }
 
-                                  /* "temporal\core\temporal.pyx":178
+                                  /* "temporal\core\temporal.pyx":189
  *                         continue
  *                     # always track a count
- *                     self.tot_n[y, x] +=1             # <<<<<<<<<<<<<<
- *                     self.step_n[y, x] += 1
- * 
- */
-                                  if (unlikely(!__pyx_v_self->tot_n.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 178; __pyx_clineno = __LINE__; goto __pyx_L18_error;}}
-                                  __pyx_t_28 = __pyx_v_y;
-                                  __pyx_t_29 = __pyx_v_x;
-                                  *((short *) ( /* dim=1 */ ((char *) (((short *) ( /* dim=0 */ (__pyx_v_self->tot_n.data + __pyx_t_28 * __pyx_v_self->tot_n.strides[0]) )) + __pyx_t_29)) )) += 1;
-
-                                  /* "temporal\core\temporal.pyx":179
- *                     # always track a count
- *                     self.tot_n[y, x] +=1
  *                     self.step_n[y, x] += 1             # <<<<<<<<<<<<<<
  * 
  *                     # do all the calcs for the overall result, if required
  */
-                                  if (unlikely(!__pyx_v_self->step_n.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 179; __pyx_clineno = __LINE__; goto __pyx_L18_error;}}
-                                  __pyx_t_30 = __pyx_v_y;
-                                  __pyx_t_31 = __pyx_v_x;
-                                  *((short *) ( /* dim=1 */ ((char *) (((short *) ( /* dim=0 */ (__pyx_v_self->step_n.data + __pyx_t_30 * __pyx_v_self->step_n.strides[0]) )) + __pyx_t_31)) )) += 1;
+                                  if (unlikely(!__pyx_v_self->step_n.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 189; __pyx_clineno = __LINE__; goto __pyx_L22_error;}}
+                                  __pyx_t_31 = __pyx_v_y;
+                                  __pyx_t_32 = __pyx_v_x;
+                                  *((short *) ( /* dim=1 */ ((char *) (((short *) ( /* dim=0 */ (__pyx_v_self->step_n.data + __pyx_t_31 * __pyx_v_self->step_n.strides[0]) )) + __pyx_t_32)) )) += 1;
 
-                                  /* "temporal\core\temporal.pyx":182
+                                  /* "temporal\core\temporal.pyx":192
  * 
  *                     # do all the calcs for the overall result, if required
- *                     if self._generateSynoptic:             # <<<<<<<<<<<<<<
+ *                     if useForSynoptic:             # <<<<<<<<<<<<<<
+ *                         self.tot_n[y, x] +=1
+ *                         if self.tot_n[y, x] == 1:
+ */
+                                  __pyx_t_22 = (__pyx_v_useForSynoptic != 0);
+                                  if (__pyx_t_22) {
+
+                                    /* "temporal\core\temporal.pyx":193
+ *                     # do all the calcs for the overall result, if required
+ *                     if useForSynoptic:
+ *                         self.tot_n[y, x] +=1             # <<<<<<<<<<<<<<
  *                         if self.tot_n[y, x] == 1:
  *                             if self._doMean: # nb this is set even if we're only doing sd as mean is needed for that
  */
-                                  __pyx_t_9 = (__pyx_v_self->_generateSynoptic != 0);
-                                  if (__pyx_t_9) {
+                                    if (unlikely(!__pyx_v_self->tot_n.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 193; __pyx_clineno = __LINE__; goto __pyx_L22_error;}}
+                                    __pyx_t_33 = __pyx_v_y;
+                                    __pyx_t_34 = __pyx_v_x;
+                                    *((short *) ( /* dim=1 */ ((char *) (((short *) ( /* dim=0 */ (__pyx_v_self->tot_n.data + __pyx_t_33 * __pyx_v_self->tot_n.strides[0]) )) + __pyx_t_34)) )) += 1;
 
-                                    /* "temporal\core\temporal.pyx":183
- *                     # do all the calcs for the overall result, if required
- *                     if self._generateSynoptic:
+                                    /* "temporal\core\temporal.pyx":194
+ *                     if useForSynoptic:
+ *                         self.tot_n[y, x] +=1
  *                         if self.tot_n[y, x] == 1:             # <<<<<<<<<<<<<<
  *                             if self._doMean: # nb this is set even if we're only doing sd as mean is needed for that
  *                                 self.tot_oldMean[y, x] = value
  */
-                                    if (unlikely(!__pyx_v_self->tot_n.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 183; __pyx_clineno = __LINE__; goto __pyx_L18_error;}}
-                                    __pyx_t_32 = __pyx_v_y;
-                                    __pyx_t_33 = __pyx_v_x;
-                                    __pyx_t_9 = (((*((short *) ( /* dim=1 */ ((char *) (((short *) ( /* dim=0 */ (__pyx_v_self->tot_n.data + __pyx_t_32 * __pyx_v_self->tot_n.strides[0]) )) + __pyx_t_33)) ))) == 1) != 0);
-                                    if (__pyx_t_9) {
+                                    if (unlikely(!__pyx_v_self->tot_n.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 194; __pyx_clineno = __LINE__; goto __pyx_L22_error;}}
+                                    __pyx_t_35 = __pyx_v_y;
+                                    __pyx_t_36 = __pyx_v_x;
+                                    __pyx_t_22 = (((*((short *) ( /* dim=1 */ ((char *) (((short *) ( /* dim=0 */ (__pyx_v_self->tot_n.data + __pyx_t_35 * __pyx_v_self->tot_n.strides[0]) )) + __pyx_t_36)) ))) == 1) != 0);
+                                    if (__pyx_t_22) {
 
-                                      /* "temporal\core\temporal.pyx":184
- *                     if self._generateSynoptic:
+                                      /* "temporal\core\temporal.pyx":195
+ *                         self.tot_n[y, x] +=1
  *                         if self.tot_n[y, x] == 1:
  *                             if self._doMean: # nb this is set even if we're only doing sd as mean is needed for that             # <<<<<<<<<<<<<<
  *                                 self.tot_oldMean[y, x] = value
  *                                 self.tot_newMean[y, x] = value
  */
-                                      __pyx_t_9 = (__pyx_v_self->_doMean != 0);
-                                      if (__pyx_t_9) {
+                                      __pyx_t_22 = (__pyx_v_self->_doMean != 0);
+                                      if (__pyx_t_22) {
 
-                                        /* "temporal\core\temporal.pyx":185
+                                        /* "temporal\core\temporal.pyx":196
  *                         if self.tot_n[y, x] == 1:
  *                             if self._doMean: # nb this is set even if we're only doing sd as mean is needed for that
  *                                 self.tot_oldMean[y, x] = value             # <<<<<<<<<<<<<<
  *                                 self.tot_newMean[y, x] = value
  *                             if self._doSD:
  */
-                                        if (unlikely(!__pyx_v_self->tot_oldMean.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 185; __pyx_clineno = __LINE__; goto __pyx_L18_error;}}
-                                        __pyx_t_34 = __pyx_v_y;
-                                        __pyx_t_35 = __pyx_v_x;
-                                        *((double *) ( /* dim=1 */ ((char *) (((double *) ( /* dim=0 */ (__pyx_v_self->tot_oldMean.data + __pyx_t_34 * __pyx_v_self->tot_oldMean.strides[0]) )) + __pyx_t_35)) )) = __pyx_v_value;
+                                        if (unlikely(!__pyx_v_self->tot_oldMean.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 196; __pyx_clineno = __LINE__; goto __pyx_L22_error;}}
+                                        __pyx_t_37 = __pyx_v_y;
+                                        __pyx_t_38 = __pyx_v_x;
+                                        *((double *) ( /* dim=1 */ ((char *) (((double *) ( /* dim=0 */ (__pyx_v_self->tot_oldMean.data + __pyx_t_37 * __pyx_v_self->tot_oldMean.strides[0]) )) + __pyx_t_38)) )) = __pyx_v_value;
 
-                                        /* "temporal\core\temporal.pyx":186
+                                        /* "temporal\core\temporal.pyx":197
  *                             if self._doMean: # nb this is set even if we're only doing sd as mean is needed for that
  *                                 self.tot_oldMean[y, x] = value
  *                                 self.tot_newMean[y, x] = value             # <<<<<<<<<<<<<<
  *                             if self._doSD:
  *                                 self.tot_oldSD[y, x] = 0
  */
-                                        if (unlikely(!__pyx_v_self->tot_newMean.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 186; __pyx_clineno = __LINE__; goto __pyx_L18_error;}}
-                                        __pyx_t_36 = __pyx_v_y;
-                                        __pyx_t_37 = __pyx_v_x;
-                                        *((double *) ( /* dim=1 */ ((char *) (((double *) ( /* dim=0 */ (__pyx_v_self->tot_newMean.data + __pyx_t_36 * __pyx_v_self->tot_newMean.strides[0]) )) + __pyx_t_37)) )) = __pyx_v_value;
-                                        goto __pyx_L25;
+                                        if (unlikely(!__pyx_v_self->tot_newMean.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 197; __pyx_clineno = __LINE__; goto __pyx_L22_error;}}
+                                        __pyx_t_39 = __pyx_v_y;
+                                        __pyx_t_40 = __pyx_v_x;
+                                        *((double *) ( /* dim=1 */ ((char *) (((double *) ( /* dim=0 */ (__pyx_v_self->tot_newMean.data + __pyx_t_39 * __pyx_v_self->tot_newMean.strides[0]) )) + __pyx_t_40)) )) = __pyx_v_value;
+                                        goto __pyx_L29;
                                       }
-                                      __pyx_L25:;
+                                      __pyx_L29:;
 
-                                      /* "temporal\core\temporal.pyx":187
+                                      /* "temporal\core\temporal.pyx":198
  *                                 self.tot_oldMean[y, x] = value
  *                                 self.tot_newMean[y, x] = value
  *                             if self._doSD:             # <<<<<<<<<<<<<<
  *                                 self.tot_oldSD[y, x] = 0
  *                                 self.tot_newSD[y, x] = 0
  */
-                                      __pyx_t_9 = (__pyx_v_self->_doSD != 0);
-                                      if (__pyx_t_9) {
+                                      __pyx_t_22 = (__pyx_v_self->_doSD != 0);
+                                      if (__pyx_t_22) {
 
-                                        /* "temporal\core\temporal.pyx":188
+                                        /* "temporal\core\temporal.pyx":199
  *                                 self.tot_newMean[y, x] = value
  *                             if self._doSD:
  *                                 self.tot_oldSD[y, x] = 0             # <<<<<<<<<<<<<<
  *                                 self.tot_newSD[y, x] = 0
  *                         else:
  */
-                                        if (unlikely(!__pyx_v_self->tot_oldSD.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 188; __pyx_clineno = __LINE__; goto __pyx_L18_error;}}
-                                        __pyx_t_38 = __pyx_v_y;
-                                        __pyx_t_39 = __pyx_v_x;
-                                        *((double *) ( /* dim=1 */ ((char *) (((double *) ( /* dim=0 */ (__pyx_v_self->tot_oldSD.data + __pyx_t_38 * __pyx_v_self->tot_oldSD.strides[0]) )) + __pyx_t_39)) )) = 0.0;
+                                        if (unlikely(!__pyx_v_self->tot_oldSD.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 199; __pyx_clineno = __LINE__; goto __pyx_L22_error;}}
+                                        __pyx_t_41 = __pyx_v_y;
+                                        __pyx_t_42 = __pyx_v_x;
+                                        *((double *) ( /* dim=1 */ ((char *) (((double *) ( /* dim=0 */ (__pyx_v_self->tot_oldSD.data + __pyx_t_41 * __pyx_v_self->tot_oldSD.strides[0]) )) + __pyx_t_42)) )) = 0.0;
 
-                                        /* "temporal\core\temporal.pyx":189
+                                        /* "temporal\core\temporal.pyx":200
  *                             if self._doSD:
  *                                 self.tot_oldSD[y, x] = 0
  *                                 self.tot_newSD[y, x] = 0             # <<<<<<<<<<<<<<
  *                         else:
  *                             if self._doMean:
  */
-                                        if (unlikely(!__pyx_v_self->tot_newSD.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 189; __pyx_clineno = __LINE__; goto __pyx_L18_error;}}
-                                        __pyx_t_40 = __pyx_v_y;
-                                        __pyx_t_41 = __pyx_v_x;
-                                        *((double *) ( /* dim=1 */ ((char *) (((double *) ( /* dim=0 */ (__pyx_v_self->tot_newSD.data + __pyx_t_40 * __pyx_v_self->tot_newSD.strides[0]) )) + __pyx_t_41)) )) = 0.0;
-                                        goto __pyx_L26;
+                                        if (unlikely(!__pyx_v_self->tot_newSD.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 200; __pyx_clineno = __LINE__; goto __pyx_L22_error;}}
+                                        __pyx_t_43 = __pyx_v_y;
+                                        __pyx_t_44 = __pyx_v_x;
+                                        *((double *) ( /* dim=1 */ ((char *) (((double *) ( /* dim=0 */ (__pyx_v_self->tot_newSD.data + __pyx_t_43 * __pyx_v_self->tot_newSD.strides[0]) )) + __pyx_t_44)) )) = 0.0;
+                                        goto __pyx_L30;
                                       }
-                                      __pyx_L26:;
-                                      goto __pyx_L24;
+                                      __pyx_L30:;
+                                      goto __pyx_L28;
                                     }
                                     /*else*/ {
 
-                                      /* "temporal\core\temporal.pyx":191
+                                      /* "temporal\core\temporal.pyx":202
  *                                 self.tot_newSD[y, x] = 0
  *                         else:
  *                             if self._doMean:             # <<<<<<<<<<<<<<
  *                                 self.tot_newMean[y,x] = (self.tot_oldMean[y,x] +
  *                                     ((value - self.tot_oldMean[y,x]) / self.tot_n[y,x]))
  */
-                                      __pyx_t_9 = (__pyx_v_self->_doMean != 0);
-                                      if (__pyx_t_9) {
+                                      __pyx_t_22 = (__pyx_v_self->_doMean != 0);
+                                      if (__pyx_t_22) {
 
-                                        /* "temporal\core\temporal.pyx":192
+                                        /* "temporal\core\temporal.pyx":203
  *                         else:
  *                             if self._doMean:
  *                                 self.tot_newMean[y,x] = (self.tot_oldMean[y,x] +             # <<<<<<<<<<<<<<
  *                                     ((value - self.tot_oldMean[y,x]) / self.tot_n[y,x]))
  *                             if self._doSD:
  */
-                                        if (unlikely(!__pyx_v_self->tot_oldMean.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 192; __pyx_clineno = __LINE__; goto __pyx_L18_error;}}
-                                        __pyx_t_42 = __pyx_v_y;
-                                        __pyx_t_43 = __pyx_v_x;
+                                        if (unlikely(!__pyx_v_self->tot_oldMean.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 203; __pyx_clineno = __LINE__; goto __pyx_L22_error;}}
+                                        __pyx_t_45 = __pyx_v_y;
+                                        __pyx_t_46 = __pyx_v_x;
 
-                                        /* "temporal\core\temporal.pyx":193
+                                        /* "temporal\core\temporal.pyx":204
  *                             if self._doMean:
  *                                 self.tot_newMean[y,x] = (self.tot_oldMean[y,x] +
  *                                     ((value - self.tot_oldMean[y,x]) / self.tot_n[y,x]))             # <<<<<<<<<<<<<<
  *                             if self._doSD:
  *                                 self.tot_newSD[y,x] = (self.tot_oldSD[y,x] +
  */
-                                        if (unlikely(!__pyx_v_self->tot_oldMean.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 193; __pyx_clineno = __LINE__; goto __pyx_L18_error;}}
-                                        __pyx_t_44 = __pyx_v_y;
-                                        __pyx_t_45 = __pyx_v_x;
-                                        if (unlikely(!__pyx_v_self->tot_n.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 193; __pyx_clineno = __LINE__; goto __pyx_L18_error;}}
-                                        __pyx_t_46 = __pyx_v_y;
-                                        __pyx_t_47 = __pyx_v_x;
+                                        if (unlikely(!__pyx_v_self->tot_oldMean.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 204; __pyx_clineno = __LINE__; goto __pyx_L22_error;}}
+                                        __pyx_t_47 = __pyx_v_y;
+                                        __pyx_t_48 = __pyx_v_x;
+                                        if (unlikely(!__pyx_v_self->tot_n.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 204; __pyx_clineno = __LINE__; goto __pyx_L22_error;}}
+                                        __pyx_t_49 = __pyx_v_y;
+                                        __pyx_t_50 = __pyx_v_x;
 
-                                        /* "temporal\core\temporal.pyx":192
+                                        /* "temporal\core\temporal.pyx":203
  *                         else:
  *                             if self._doMean:
  *                                 self.tot_newMean[y,x] = (self.tot_oldMean[y,x] +             # <<<<<<<<<<<<<<
  *                                     ((value - self.tot_oldMean[y,x]) / self.tot_n[y,x]))
  *                             if self._doSD:
  */
-                                        if (unlikely(!__pyx_v_self->tot_newMean.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 192; __pyx_clineno = __LINE__; goto __pyx_L18_error;}}
-                                        __pyx_t_48 = __pyx_v_y;
-                                        __pyx_t_49 = __pyx_v_x;
-                                        *((double *) ( /* dim=1 */ ((char *) (((double *) ( /* dim=0 */ (__pyx_v_self->tot_newMean.data + __pyx_t_48 * __pyx_v_self->tot_newMean.strides[0]) )) + __pyx_t_49)) )) = ((*((double *) ( /* dim=1 */ ((char *) (((double *) ( /* dim=0 */ (__pyx_v_self->tot_oldMean.data + __pyx_t_42 * __pyx_v_self->tot_oldMean.strides[0]) )) + __pyx_t_43)) ))) + ((__pyx_v_value - (*((double *) ( /* dim=1 */ ((char *) (((double *) ( /* dim=0 */ (__pyx_v_self->tot_oldMean.data + __pyx_t_44 * __pyx_v_self->tot_oldMean.strides[0]) )) + __pyx_t_45)) )))) / (*((short *) ( /* dim=1 */ ((char *) (((short *) ( /* dim=0 */ (__pyx_v_self->tot_n.data + __pyx_t_46 * __pyx_v_self->tot_n.strides[0]) )) + __pyx_t_47)) )))));
-                                        goto __pyx_L27;
+                                        if (unlikely(!__pyx_v_self->tot_newMean.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 203; __pyx_clineno = __LINE__; goto __pyx_L22_error;}}
+                                        __pyx_t_51 = __pyx_v_y;
+                                        __pyx_t_52 = __pyx_v_x;
+                                        *((double *) ( /* dim=1 */ ((char *) (((double *) ( /* dim=0 */ (__pyx_v_self->tot_newMean.data + __pyx_t_51 * __pyx_v_self->tot_newMean.strides[0]) )) + __pyx_t_52)) )) = ((*((double *) ( /* dim=1 */ ((char *) (((double *) ( /* dim=0 */ (__pyx_v_self->tot_oldMean.data + __pyx_t_45 * __pyx_v_self->tot_oldMean.strides[0]) )) + __pyx_t_46)) ))) + ((__pyx_v_value - (*((double *) ( /* dim=1 */ ((char *) (((double *) ( /* dim=0 */ (__pyx_v_self->tot_oldMean.data + __pyx_t_47 * __pyx_v_self->tot_oldMean.strides[0]) )) + __pyx_t_48)) )))) / (*((short *) ( /* dim=1 */ ((char *) (((short *) ( /* dim=0 */ (__pyx_v_self->tot_n.data + __pyx_t_49 * __pyx_v_self->tot_n.strides[0]) )) + __pyx_t_50)) )))));
+                                        goto __pyx_L31;
                                       }
-                                      __pyx_L27:;
+                                      __pyx_L31:;
 
-                                      /* "temporal\core\temporal.pyx":194
+                                      /* "temporal\core\temporal.pyx":205
  *                                 self.tot_newMean[y,x] = (self.tot_oldMean[y,x] +
  *                                     ((value - self.tot_oldMean[y,x]) / self.tot_n[y,x]))
  *                             if self._doSD:             # <<<<<<<<<<<<<<
  *                                 self.tot_newSD[y,x] = (self.tot_oldSD[y,x] +
  *                                     ((value - self.tot_oldMean[y,x]) *
  */
-                                      __pyx_t_9 = (__pyx_v_self->_doSD != 0);
-                                      if (__pyx_t_9) {
+                                      __pyx_t_22 = (__pyx_v_self->_doSD != 0);
+                                      if (__pyx_t_22) {
 
-                                        /* "temporal\core\temporal.pyx":195
+                                        /* "temporal\core\temporal.pyx":206
  *                                     ((value - self.tot_oldMean[y,x]) / self.tot_n[y,x]))
  *                             if self._doSD:
  *                                 self.tot_newSD[y,x] = (self.tot_oldSD[y,x] +             # <<<<<<<<<<<<<<
  *                                     ((value - self.tot_oldMean[y,x]) *
  *                                      (value - self.tot_newMean[y,x])
  */
-                                        if (unlikely(!__pyx_v_self->tot_oldSD.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 195; __pyx_clineno = __LINE__; goto __pyx_L18_error;}}
-                                        __pyx_t_50 = __pyx_v_y;
-                                        __pyx_t_51 = __pyx_v_x;
+                                        if (unlikely(!__pyx_v_self->tot_oldSD.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 206; __pyx_clineno = __LINE__; goto __pyx_L22_error;}}
+                                        __pyx_t_53 = __pyx_v_y;
+                                        __pyx_t_54 = __pyx_v_x;
 
-                                        /* "temporal\core\temporal.pyx":196
+                                        /* "temporal\core\temporal.pyx":207
  *                             if self._doSD:
  *                                 self.tot_newSD[y,x] = (self.tot_oldSD[y,x] +
  *                                     ((value - self.tot_oldMean[y,x]) *             # <<<<<<<<<<<<<<
  *                                      (value - self.tot_newMean[y,x])
  *                                       ))
  */
-                                        if (unlikely(!__pyx_v_self->tot_oldMean.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 196; __pyx_clineno = __LINE__; goto __pyx_L18_error;}}
-                                        __pyx_t_52 = __pyx_v_y;
-                                        __pyx_t_53 = __pyx_v_x;
+                                        if (unlikely(!__pyx_v_self->tot_oldMean.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 207; __pyx_clineno = __LINE__; goto __pyx_L22_error;}}
+                                        __pyx_t_55 = __pyx_v_y;
+                                        __pyx_t_56 = __pyx_v_x;
 
-                                        /* "temporal\core\temporal.pyx":197
+                                        /* "temporal\core\temporal.pyx":208
  *                                 self.tot_newSD[y,x] = (self.tot_oldSD[y,x] +
  *                                     ((value - self.tot_oldMean[y,x]) *
  *                                      (value - self.tot_newMean[y,x])             # <<<<<<<<<<<<<<
  *                                       ))
  *                             # the SD calc above uses the old and new mean, so have to repeat the check now
  */
-                                        if (unlikely(!__pyx_v_self->tot_newMean.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 197; __pyx_clineno = __LINE__; goto __pyx_L18_error;}}
-                                        __pyx_t_54 = __pyx_v_y;
-                                        __pyx_t_55 = __pyx_v_x;
+                                        if (unlikely(!__pyx_v_self->tot_newMean.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 208; __pyx_clineno = __LINE__; goto __pyx_L22_error;}}
+                                        __pyx_t_57 = __pyx_v_y;
+                                        __pyx_t_58 = __pyx_v_x;
 
-                                        /* "temporal\core\temporal.pyx":195
+                                        /* "temporal\core\temporal.pyx":206
  *                                     ((value - self.tot_oldMean[y,x]) / self.tot_n[y,x]))
  *                             if self._doSD:
  *                                 self.tot_newSD[y,x] = (self.tot_oldSD[y,x] +             # <<<<<<<<<<<<<<
  *                                     ((value - self.tot_oldMean[y,x]) *
  *                                      (value - self.tot_newMean[y,x])
  */
-                                        if (unlikely(!__pyx_v_self->tot_newSD.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 195; __pyx_clineno = __LINE__; goto __pyx_L18_error;}}
-                                        __pyx_t_56 = __pyx_v_y;
-                                        __pyx_t_57 = __pyx_v_x;
-                                        *((double *) ( /* dim=1 */ ((char *) (((double *) ( /* dim=0 */ (__pyx_v_self->tot_newSD.data + __pyx_t_56 * __pyx_v_self->tot_newSD.strides[0]) )) + __pyx_t_57)) )) = ((*((double *) ( /* dim=1 */ ((char *) (((double *) ( /* dim=0 */ (__pyx_v_self->tot_oldSD.data + __pyx_t_50 * __pyx_v_self->tot_oldSD.strides[0]) )) + __pyx_t_51)) ))) + ((__pyx_v_value - (*((double *) ( /* dim=1 */ ((char *) (((double *) ( /* dim=0 */ (__pyx_v_self->tot_oldMean.data + __pyx_t_52 * __pyx_v_self->tot_oldMean.strides[0]) )) + __pyx_t_53)) )))) * (__pyx_v_value - (*((double *) ( /* dim=1 */ ((char *) (((double *) ( /* dim=0 */ (__pyx_v_self->tot_newMean.data + __pyx_t_54 * __pyx_v_self->tot_newMean.strides[0]) )) + __pyx_t_55)) ))))));
-                                        goto __pyx_L28;
+                                        if (unlikely(!__pyx_v_self->tot_newSD.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 206; __pyx_clineno = __LINE__; goto __pyx_L22_error;}}
+                                        __pyx_t_59 = __pyx_v_y;
+                                        __pyx_t_60 = __pyx_v_x;
+                                        *((double *) ( /* dim=1 */ ((char *) (((double *) ( /* dim=0 */ (__pyx_v_self->tot_newSD.data + __pyx_t_59 * __pyx_v_self->tot_newSD.strides[0]) )) + __pyx_t_60)) )) = ((*((double *) ( /* dim=1 */ ((char *) (((double *) ( /* dim=0 */ (__pyx_v_self->tot_oldSD.data + __pyx_t_53 * __pyx_v_self->tot_oldSD.strides[0]) )) + __pyx_t_54)) ))) + ((__pyx_v_value - (*((double *) ( /* dim=1 */ ((char *) (((double *) ( /* dim=0 */ (__pyx_v_self->tot_oldMean.data + __pyx_t_55 * __pyx_v_self->tot_oldMean.strides[0]) )) + __pyx_t_56)) )))) * (__pyx_v_value - (*((double *) ( /* dim=1 */ ((char *) (((double *) ( /* dim=0 */ (__pyx_v_self->tot_newMean.data + __pyx_t_57 * __pyx_v_self->tot_newMean.strides[0]) )) + __pyx_t_58)) ))))));
+                                        goto __pyx_L32;
                                       }
-                                      __pyx_L28:;
+                                      __pyx_L32:;
 
-                                      /* "temporal\core\temporal.pyx":201
+                                      /* "temporal\core\temporal.pyx":212
  *                             # the SD calc above uses the old and new mean, so have to repeat the check now
  *                             # rather than move this line up
  *                             if self._doMean:             # <<<<<<<<<<<<<<
  *                                 self.tot_oldMean[y,x] = self.tot_newMean[y,x]
  *                             if self._doSD:
  */
-                                      __pyx_t_9 = (__pyx_v_self->_doMean != 0);
-                                      if (__pyx_t_9) {
+                                      __pyx_t_22 = (__pyx_v_self->_doMean != 0);
+                                      if (__pyx_t_22) {
 
-                                        /* "temporal\core\temporal.pyx":202
+                                        /* "temporal\core\temporal.pyx":213
  *                             # rather than move this line up
  *                             if self._doMean:
  *                                 self.tot_oldMean[y,x] = self.tot_newMean[y,x]             # <<<<<<<<<<<<<<
  *                             if self._doSD:
  *                                 self.tot_oldSD[y,x] = self.tot_newSD[y,x]
  */
-                                        if (unlikely(!__pyx_v_self->tot_newMean.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 202; __pyx_clineno = __LINE__; goto __pyx_L18_error;}}
-                                        __pyx_t_58 = __pyx_v_y;
-                                        __pyx_t_59 = __pyx_v_x;
-                                        if (unlikely(!__pyx_v_self->tot_oldMean.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 202; __pyx_clineno = __LINE__; goto __pyx_L18_error;}}
-                                        __pyx_t_60 = __pyx_v_y;
-                                        __pyx_t_61 = __pyx_v_x;
-                                        *((double *) ( /* dim=1 */ ((char *) (((double *) ( /* dim=0 */ (__pyx_v_self->tot_oldMean.data + __pyx_t_60 * __pyx_v_self->tot_oldMean.strides[0]) )) + __pyx_t_61)) )) = (*((double *) ( /* dim=1 */ ((char *) (((double *) ( /* dim=0 */ (__pyx_v_self->tot_newMean.data + __pyx_t_58 * __pyx_v_self->tot_newMean.strides[0]) )) + __pyx_t_59)) )));
-                                        goto __pyx_L29;
+                                        if (unlikely(!__pyx_v_self->tot_newMean.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 213; __pyx_clineno = __LINE__; goto __pyx_L22_error;}}
+                                        __pyx_t_61 = __pyx_v_y;
+                                        __pyx_t_62 = __pyx_v_x;
+                                        if (unlikely(!__pyx_v_self->tot_oldMean.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 213; __pyx_clineno = __LINE__; goto __pyx_L22_error;}}
+                                        __pyx_t_63 = __pyx_v_y;
+                                        __pyx_t_64 = __pyx_v_x;
+                                        *((double *) ( /* dim=1 */ ((char *) (((double *) ( /* dim=0 */ (__pyx_v_self->tot_oldMean.data + __pyx_t_63 * __pyx_v_self->tot_oldMean.strides[0]) )) + __pyx_t_64)) )) = (*((double *) ( /* dim=1 */ ((char *) (((double *) ( /* dim=0 */ (__pyx_v_self->tot_newMean.data + __pyx_t_61 * __pyx_v_self->tot_newMean.strides[0]) )) + __pyx_t_62)) )));
+                                        goto __pyx_L33;
                                       }
-                                      __pyx_L29:;
+                                      __pyx_L33:;
 
-                                      /* "temporal\core\temporal.pyx":203
+                                      /* "temporal\core\temporal.pyx":214
  *                             if self._doMean:
  *                                 self.tot_oldMean[y,x] = self.tot_newMean[y,x]
  *                             if self._doSD:             # <<<<<<<<<<<<<<
  *                                 self.tot_oldSD[y,x] = self.tot_newSD[y,x]
  *                         if self._doMax:
  */
-                                      __pyx_t_9 = (__pyx_v_self->_doSD != 0);
-                                      if (__pyx_t_9) {
+                                      __pyx_t_22 = (__pyx_v_self->_doSD != 0);
+                                      if (__pyx_t_22) {
 
-                                        /* "temporal\core\temporal.pyx":204
+                                        /* "temporal\core\temporal.pyx":215
  *                                 self.tot_oldMean[y,x] = self.tot_newMean[y,x]
  *                             if self._doSD:
  *                                 self.tot_oldSD[y,x] = self.tot_newSD[y,x]             # <<<<<<<<<<<<<<
  *                         if self._doMax:
  *                             if value > self.tot_Max[y,x]:
  */
-                                        if (unlikely(!__pyx_v_self->tot_newSD.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 204; __pyx_clineno = __LINE__; goto __pyx_L18_error;}}
-                                        __pyx_t_62 = __pyx_v_y;
-                                        __pyx_t_63 = __pyx_v_x;
-                                        if (unlikely(!__pyx_v_self->tot_oldSD.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 204; __pyx_clineno = __LINE__; goto __pyx_L18_error;}}
-                                        __pyx_t_64 = __pyx_v_y;
-                                        __pyx_t_65 = __pyx_v_x;
-                                        *((double *) ( /* dim=1 */ ((char *) (((double *) ( /* dim=0 */ (__pyx_v_self->tot_oldSD.data + __pyx_t_64 * __pyx_v_self->tot_oldSD.strides[0]) )) + __pyx_t_65)) )) = (*((double *) ( /* dim=1 */ ((char *) (((double *) ( /* dim=0 */ (__pyx_v_self->tot_newSD.data + __pyx_t_62 * __pyx_v_self->tot_newSD.strides[0]) )) + __pyx_t_63)) )));
-                                        goto __pyx_L30;
+                                        if (unlikely(!__pyx_v_self->tot_newSD.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 215; __pyx_clineno = __LINE__; goto __pyx_L22_error;}}
+                                        __pyx_t_65 = __pyx_v_y;
+                                        __pyx_t_66 = __pyx_v_x;
+                                        if (unlikely(!__pyx_v_self->tot_oldSD.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 215; __pyx_clineno = __LINE__; goto __pyx_L22_error;}}
+                                        __pyx_t_67 = __pyx_v_y;
+                                        __pyx_t_68 = __pyx_v_x;
+                                        *((double *) ( /* dim=1 */ ((char *) (((double *) ( /* dim=0 */ (__pyx_v_self->tot_oldSD.data + __pyx_t_67 * __pyx_v_self->tot_oldSD.strides[0]) )) + __pyx_t_68)) )) = (*((double *) ( /* dim=1 */ ((char *) (((double *) ( /* dim=0 */ (__pyx_v_self->tot_newSD.data + __pyx_t_65 * __pyx_v_self->tot_newSD.strides[0]) )) + __pyx_t_66)) )));
+                                        goto __pyx_L34;
                                       }
-                                      __pyx_L30:;
+                                      __pyx_L34:;
                                     }
-                                    __pyx_L24:;
+                                    __pyx_L28:;
 
-                                    /* "temporal\core\temporal.pyx":205
+                                    /* "temporal\core\temporal.pyx":216
  *                             if self._doSD:
  *                                 self.tot_oldSD[y,x] = self.tot_newSD[y,x]
  *                         if self._doMax:             # <<<<<<<<<<<<<<
  *                             if value > self.tot_Max[y,x]:
  *                                 self.tot_Max[y,x] = value
  */
-                                    __pyx_t_9 = (__pyx_v_self->_doMax != 0);
-                                    if (__pyx_t_9) {
+                                    __pyx_t_22 = (__pyx_v_self->_doMax != 0);
+                                    if (__pyx_t_22) {
 
-                                      /* "temporal\core\temporal.pyx":206
+                                      /* "temporal\core\temporal.pyx":217
  *                                 self.tot_oldSD[y,x] = self.tot_newSD[y,x]
  *                         if self._doMax:
  *                             if value > self.tot_Max[y,x]:             # <<<<<<<<<<<<<<
  *                                 self.tot_Max[y,x] = value
  *                         if self._doMin:
  */
-                                      if (unlikely(!__pyx_v_self->tot_Max.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 206; __pyx_clineno = __LINE__; goto __pyx_L18_error;}}
-                                      __pyx_t_66 = __pyx_v_y;
-                                      __pyx_t_67 = __pyx_v_x;
-                                      __pyx_t_9 = ((__pyx_v_value > (*((float *) ( /* dim=1 */ ((char *) (((float *) ( /* dim=0 */ (__pyx_v_self->tot_Max.data + __pyx_t_66 * __pyx_v_self->tot_Max.strides[0]) )) + __pyx_t_67)) )))) != 0);
-                                      if (__pyx_t_9) {
+                                      if (unlikely(!__pyx_v_self->tot_Max.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 217; __pyx_clineno = __LINE__; goto __pyx_L22_error;}}
+                                      __pyx_t_69 = __pyx_v_y;
+                                      __pyx_t_70 = __pyx_v_x;
+                                      __pyx_t_22 = ((__pyx_v_value > (*((float *) ( /* dim=1 */ ((char *) (((float *) ( /* dim=0 */ (__pyx_v_self->tot_Max.data + __pyx_t_69 * __pyx_v_self->tot_Max.strides[0]) )) + __pyx_t_70)) )))) != 0);
+                                      if (__pyx_t_22) {
 
-                                        /* "temporal\core\temporal.pyx":207
+                                        /* "temporal\core\temporal.pyx":218
  *                         if self._doMax:
  *                             if value > self.tot_Max[y,x]:
  *                                 self.tot_Max[y,x] = value             # <<<<<<<<<<<<<<
  *                         if self._doMin:
  *                             if value < self.tot_Min[y,x]:
  */
-                                        if (unlikely(!__pyx_v_self->tot_Max.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 207; __pyx_clineno = __LINE__; goto __pyx_L18_error;}}
-                                        __pyx_t_68 = __pyx_v_y;
-                                        __pyx_t_69 = __pyx_v_x;
-                                        *((float *) ( /* dim=1 */ ((char *) (((float *) ( /* dim=0 */ (__pyx_v_self->tot_Max.data + __pyx_t_68 * __pyx_v_self->tot_Max.strides[0]) )) + __pyx_t_69)) )) = __pyx_v_value;
-                                        goto __pyx_L32;
+                                        if (unlikely(!__pyx_v_self->tot_Max.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 218; __pyx_clineno = __LINE__; goto __pyx_L22_error;}}
+                                        __pyx_t_71 = __pyx_v_y;
+                                        __pyx_t_72 = __pyx_v_x;
+                                        *((float *) ( /* dim=1 */ ((char *) (((float *) ( /* dim=0 */ (__pyx_v_self->tot_Max.data + __pyx_t_71 * __pyx_v_self->tot_Max.strides[0]) )) + __pyx_t_72)) )) = __pyx_v_value;
+                                        goto __pyx_L36;
                                       }
-                                      __pyx_L32:;
-                                      goto __pyx_L31;
+                                      __pyx_L36:;
+                                      goto __pyx_L35;
                                     }
-                                    __pyx_L31:;
+                                    __pyx_L35:;
 
-                                    /* "temporal\core\temporal.pyx":208
+                                    /* "temporal\core\temporal.pyx":219
  *                             if value > self.tot_Max[y,x]:
  *                                 self.tot_Max[y,x] = value
  *                         if self._doMin:             # <<<<<<<<<<<<<<
  *                             if value < self.tot_Min[y,x]:
  *                                 self.tot_Min[y,x] = value
  */
-                                    __pyx_t_9 = (__pyx_v_self->_doMin != 0);
-                                    if (__pyx_t_9) {
+                                    __pyx_t_22 = (__pyx_v_self->_doMin != 0);
+                                    if (__pyx_t_22) {
 
-                                      /* "temporal\core\temporal.pyx":209
+                                      /* "temporal\core\temporal.pyx":220
  *                                 self.tot_Max[y,x] = value
  *                         if self._doMin:
  *                             if value < self.tot_Min[y,x]:             # <<<<<<<<<<<<<<
  *                                 self.tot_Min[y,x] = value
  *                         if self._doSum:
  */
-                                      if (unlikely(!__pyx_v_self->tot_Min.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 209; __pyx_clineno = __LINE__; goto __pyx_L18_error;}}
-                                      __pyx_t_70 = __pyx_v_y;
-                                      __pyx_t_71 = __pyx_v_x;
-                                      __pyx_t_9 = ((__pyx_v_value < (*((float *) ( /* dim=1 */ ((char *) (((float *) ( /* dim=0 */ (__pyx_v_self->tot_Min.data + __pyx_t_70 * __pyx_v_self->tot_Min.strides[0]) )) + __pyx_t_71)) )))) != 0);
-                                      if (__pyx_t_9) {
+                                      if (unlikely(!__pyx_v_self->tot_Min.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 220; __pyx_clineno = __LINE__; goto __pyx_L22_error;}}
+                                      __pyx_t_73 = __pyx_v_y;
+                                      __pyx_t_74 = __pyx_v_x;
+                                      __pyx_t_22 = ((__pyx_v_value < (*((float *) ( /* dim=1 */ ((char *) (((float *) ( /* dim=0 */ (__pyx_v_self->tot_Min.data + __pyx_t_73 * __pyx_v_self->tot_Min.strides[0]) )) + __pyx_t_74)) )))) != 0);
+                                      if (__pyx_t_22) {
 
-                                        /* "temporal\core\temporal.pyx":210
+                                        /* "temporal\core\temporal.pyx":221
  *                         if self._doMin:
  *                             if value < self.tot_Min[y,x]:
  *                                 self.tot_Min[y,x] = value             # <<<<<<<<<<<<<<
  *                         if self._doSum:
  *                             self.tot_Sum[y,x] += value
  */
-                                        if (unlikely(!__pyx_v_self->tot_Min.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 210; __pyx_clineno = __LINE__; goto __pyx_L18_error;}}
-                                        __pyx_t_72 = __pyx_v_y;
-                                        __pyx_t_73 = __pyx_v_x;
-                                        *((float *) ( /* dim=1 */ ((char *) (((float *) ( /* dim=0 */ (__pyx_v_self->tot_Min.data + __pyx_t_72 * __pyx_v_self->tot_Min.strides[0]) )) + __pyx_t_73)) )) = __pyx_v_value;
-                                        goto __pyx_L34;
+                                        if (unlikely(!__pyx_v_self->tot_Min.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 221; __pyx_clineno = __LINE__; goto __pyx_L22_error;}}
+                                        __pyx_t_75 = __pyx_v_y;
+                                        __pyx_t_76 = __pyx_v_x;
+                                        *((float *) ( /* dim=1 */ ((char *) (((float *) ( /* dim=0 */ (__pyx_v_self->tot_Min.data + __pyx_t_75 * __pyx_v_self->tot_Min.strides[0]) )) + __pyx_t_76)) )) = __pyx_v_value;
+                                        goto __pyx_L38;
                                       }
-                                      __pyx_L34:;
-                                      goto __pyx_L33;
+                                      __pyx_L38:;
+                                      goto __pyx_L37;
                                     }
-                                    __pyx_L33:;
+                                    __pyx_L37:;
 
-                                    /* "temporal\core\temporal.pyx":211
+                                    /* "temporal\core\temporal.pyx":222
  *                             if value < self.tot_Min[y,x]:
  *                                 self.tot_Min[y,x] = value
  *                         if self._doSum:             # <<<<<<<<<<<<<<
  *                             self.tot_Sum[y,x] += value
  * 
  */
-                                    __pyx_t_9 = (__pyx_v_self->_doSum != 0);
-                                    if (__pyx_t_9) {
+                                    __pyx_t_22 = (__pyx_v_self->_doSum != 0);
+                                    if (__pyx_t_22) {
 
-                                      /* "temporal\core\temporal.pyx":212
+                                      /* "temporal\core\temporal.pyx":223
  *                                 self.tot_Min[y,x] = value
  *                         if self._doSum:
  *                             self.tot_Sum[y,x] += value             # <<<<<<<<<<<<<<
  * 
  *                     # do it all again for the subtotals
  */
-                                      if (unlikely(!__pyx_v_self->tot_Sum.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 212; __pyx_clineno = __LINE__; goto __pyx_L18_error;}}
-                                      __pyx_t_74 = __pyx_v_y;
-                                      __pyx_t_75 = __pyx_v_x;
-                                      *((float *) ( /* dim=1 */ ((char *) (((float *) ( /* dim=0 */ (__pyx_v_self->tot_Sum.data + __pyx_t_74 * __pyx_v_self->tot_Sum.strides[0]) )) + __pyx_t_75)) )) += __pyx_v_value;
-                                      goto __pyx_L35;
+                                      if (unlikely(!__pyx_v_self->tot_Sum.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 223; __pyx_clineno = __LINE__; goto __pyx_L22_error;}}
+                                      __pyx_t_77 = __pyx_v_y;
+                                      __pyx_t_78 = __pyx_v_x;
+                                      *((float *) ( /* dim=1 */ ((char *) (((float *) ( /* dim=0 */ (__pyx_v_self->tot_Sum.data + __pyx_t_77 * __pyx_v_self->tot_Sum.strides[0]) )) + __pyx_t_78)) )) += __pyx_v_value;
+                                      goto __pyx_L39;
                                     }
-                                    __pyx_L35:;
-                                    goto __pyx_L23;
+                                    __pyx_L39:;
+                                    goto __pyx_L27;
                                   }
-                                  __pyx_L23:;
+                                  __pyx_L27:;
 
-                                  /* "temporal\core\temporal.pyx":215
+                                  /* "temporal\core\temporal.pyx":226
  * 
  *                     # do it all again for the subtotals
  *                     if self.step_n[y, x] == 1:             # <<<<<<<<<<<<<<
  *                         if self._doMean: # nb this is set even if we're only doing sd as mean is needed for that
  *                             self.step_oldMean[y, x] = value
  */
-                                  if (unlikely(!__pyx_v_self->step_n.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 215; __pyx_clineno = __LINE__; goto __pyx_L18_error;}}
-                                  __pyx_t_76 = __pyx_v_y;
-                                  __pyx_t_77 = __pyx_v_x;
-                                  __pyx_t_9 = (((*((short *) ( /* dim=1 */ ((char *) (((short *) ( /* dim=0 */ (__pyx_v_self->step_n.data + __pyx_t_76 * __pyx_v_self->step_n.strides[0]) )) + __pyx_t_77)) ))) == 1) != 0);
-                                  if (__pyx_t_9) {
+                                  if (unlikely(!__pyx_v_self->step_n.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 226; __pyx_clineno = __LINE__; goto __pyx_L22_error;}}
+                                  __pyx_t_79 = __pyx_v_y;
+                                  __pyx_t_80 = __pyx_v_x;
+                                  __pyx_t_22 = (((*((short *) ( /* dim=1 */ ((char *) (((short *) ( /* dim=0 */ (__pyx_v_self->step_n.data + __pyx_t_79 * __pyx_v_self->step_n.strides[0]) )) + __pyx_t_80)) ))) == 1) != 0);
+                                  if (__pyx_t_22) {
 
-                                    /* "temporal\core\temporal.pyx":216
+                                    /* "temporal\core\temporal.pyx":227
  *                     # do it all again for the subtotals
  *                     if self.step_n[y, x] == 1:
  *                         if self._doMean: # nb this is set even if we're only doing sd as mean is needed for that             # <<<<<<<<<<<<<<
  *                             self.step_oldMean[y, x] = value
  *                             self.step_newMean[y, x] = value
  */
-                                    __pyx_t_9 = (__pyx_v_self->_doMean != 0);
-                                    if (__pyx_t_9) {
+                                    __pyx_t_22 = (__pyx_v_self->_doMean != 0);
+                                    if (__pyx_t_22) {
 
-                                      /* "temporal\core\temporal.pyx":217
+                                      /* "temporal\core\temporal.pyx":228
  *                     if self.step_n[y, x] == 1:
  *                         if self._doMean: # nb this is set even if we're only doing sd as mean is needed for that
  *                             self.step_oldMean[y, x] = value             # <<<<<<<<<<<<<<
  *                             self.step_newMean[y, x] = value
  *                         if self._doSD:
  */
-                                      if (unlikely(!__pyx_v_self->step_oldMean.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 217; __pyx_clineno = __LINE__; goto __pyx_L18_error;}}
-                                      __pyx_t_78 = __pyx_v_y;
-                                      __pyx_t_79 = __pyx_v_x;
-                                      *((double *) ( /* dim=1 */ ((char *) (((double *) ( /* dim=0 */ (__pyx_v_self->step_oldMean.data + __pyx_t_78 * __pyx_v_self->step_oldMean.strides[0]) )) + __pyx_t_79)) )) = __pyx_v_value;
+                                      if (unlikely(!__pyx_v_self->step_oldMean.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 228; __pyx_clineno = __LINE__; goto __pyx_L22_error;}}
+                                      __pyx_t_81 = __pyx_v_y;
+                                      __pyx_t_82 = __pyx_v_x;
+                                      *((double *) ( /* dim=1 */ ((char *) (((double *) ( /* dim=0 */ (__pyx_v_self->step_oldMean.data + __pyx_t_81 * __pyx_v_self->step_oldMean.strides[0]) )) + __pyx_t_82)) )) = __pyx_v_value;
 
-                                      /* "temporal\core\temporal.pyx":218
+                                      /* "temporal\core\temporal.pyx":229
  *                         if self._doMean: # nb this is set even if we're only doing sd as mean is needed for that
  *                             self.step_oldMean[y, x] = value
  *                             self.step_newMean[y, x] = value             # <<<<<<<<<<<<<<
  *                         if self._doSD:
  *                             self.step_oldSD[y, x] = 0
  */
-                                      if (unlikely(!__pyx_v_self->step_newMean.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 218; __pyx_clineno = __LINE__; goto __pyx_L18_error;}}
-                                      __pyx_t_80 = __pyx_v_y;
-                                      __pyx_t_81 = __pyx_v_x;
-                                      *((double *) ( /* dim=1 */ ((char *) (((double *) ( /* dim=0 */ (__pyx_v_self->step_newMean.data + __pyx_t_80 * __pyx_v_self->step_newMean.strides[0]) )) + __pyx_t_81)) )) = __pyx_v_value;
-                                      goto __pyx_L37;
+                                      if (unlikely(!__pyx_v_self->step_newMean.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 229; __pyx_clineno = __LINE__; goto __pyx_L22_error;}}
+                                      __pyx_t_83 = __pyx_v_y;
+                                      __pyx_t_84 = __pyx_v_x;
+                                      *((double *) ( /* dim=1 */ ((char *) (((double *) ( /* dim=0 */ (__pyx_v_self->step_newMean.data + __pyx_t_83 * __pyx_v_self->step_newMean.strides[0]) )) + __pyx_t_84)) )) = __pyx_v_value;
+                                      goto __pyx_L41;
                                     }
-                                    __pyx_L37:;
+                                    __pyx_L41:;
 
-                                    /* "temporal\core\temporal.pyx":219
+                                    /* "temporal\core\temporal.pyx":230
  *                             self.step_oldMean[y, x] = value
  *                             self.step_newMean[y, x] = value
  *                         if self._doSD:             # <<<<<<<<<<<<<<
  *                             self.step_oldSD[y, x] = 0
  *                             self.step_newSD[y, x] = 0
  */
-                                    __pyx_t_9 = (__pyx_v_self->_doSD != 0);
-                                    if (__pyx_t_9) {
+                                    __pyx_t_22 = (__pyx_v_self->_doSD != 0);
+                                    if (__pyx_t_22) {
 
-                                      /* "temporal\core\temporal.pyx":220
+                                      /* "temporal\core\temporal.pyx":231
  *                             self.step_newMean[y, x] = value
  *                         if self._doSD:
  *                             self.step_oldSD[y, x] = 0             # <<<<<<<<<<<<<<
  *                             self.step_newSD[y, x] = 0
  *                     else:
  */
-                                      if (unlikely(!__pyx_v_self->step_oldSD.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 220; __pyx_clineno = __LINE__; goto __pyx_L18_error;}}
-                                      __pyx_t_82 = __pyx_v_y;
-                                      __pyx_t_83 = __pyx_v_x;
-                                      *((double *) ( /* dim=1 */ ((char *) (((double *) ( /* dim=0 */ (__pyx_v_self->step_oldSD.data + __pyx_t_82 * __pyx_v_self->step_oldSD.strides[0]) )) + __pyx_t_83)) )) = 0.0;
+                                      if (unlikely(!__pyx_v_self->step_oldSD.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 231; __pyx_clineno = __LINE__; goto __pyx_L22_error;}}
+                                      __pyx_t_85 = __pyx_v_y;
+                                      __pyx_t_86 = __pyx_v_x;
+                                      *((double *) ( /* dim=1 */ ((char *) (((double *) ( /* dim=0 */ (__pyx_v_self->step_oldSD.data + __pyx_t_85 * __pyx_v_self->step_oldSD.strides[0]) )) + __pyx_t_86)) )) = 0.0;
 
-                                      /* "temporal\core\temporal.pyx":221
+                                      /* "temporal\core\temporal.pyx":232
  *                         if self._doSD:
  *                             self.step_oldSD[y, x] = 0
  *                             self.step_newSD[y, x] = 0             # <<<<<<<<<<<<<<
  *                     else:
  *                         if self._doMean:
  */
-                                      if (unlikely(!__pyx_v_self->step_newSD.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 221; __pyx_clineno = __LINE__; goto __pyx_L18_error;}}
-                                      __pyx_t_84 = __pyx_v_y;
-                                      __pyx_t_85 = __pyx_v_x;
-                                      *((double *) ( /* dim=1 */ ((char *) (((double *) ( /* dim=0 */ (__pyx_v_self->step_newSD.data + __pyx_t_84 * __pyx_v_self->step_newSD.strides[0]) )) + __pyx_t_85)) )) = 0.0;
-                                      goto __pyx_L38;
+                                      if (unlikely(!__pyx_v_self->step_newSD.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 232; __pyx_clineno = __LINE__; goto __pyx_L22_error;}}
+                                      __pyx_t_87 = __pyx_v_y;
+                                      __pyx_t_88 = __pyx_v_x;
+                                      *((double *) ( /* dim=1 */ ((char *) (((double *) ( /* dim=0 */ (__pyx_v_self->step_newSD.data + __pyx_t_87 * __pyx_v_self->step_newSD.strides[0]) )) + __pyx_t_88)) )) = 0.0;
+                                      goto __pyx_L42;
                                     }
-                                    __pyx_L38:;
-                                    goto __pyx_L36;
+                                    __pyx_L42:;
+                                    goto __pyx_L40;
                                   }
                                   /*else*/ {
 
-                                    /* "temporal\core\temporal.pyx":223
+                                    /* "temporal\core\temporal.pyx":234
  *                             self.step_newSD[y, x] = 0
  *                     else:
  *                         if self._doMean:             # <<<<<<<<<<<<<<
  *                             self.step_newMean[y, x] = (self.step_oldMean[y, x] +
  *                                             ((value - self.step_oldMean[y, x]) / self.step_n[y, x]))
  */
-                                    __pyx_t_9 = (__pyx_v_self->_doMean != 0);
-                                    if (__pyx_t_9) {
+                                    __pyx_t_22 = (__pyx_v_self->_doMean != 0);
+                                    if (__pyx_t_22) {
 
-                                      /* "temporal\core\temporal.pyx":224
+                                      /* "temporal\core\temporal.pyx":235
  *                     else:
  *                         if self._doMean:
  *                             self.step_newMean[y, x] = (self.step_oldMean[y, x] +             # <<<<<<<<<<<<<<
  *                                             ((value - self.step_oldMean[y, x]) / self.step_n[y, x]))
  *                         if self._doSD:
  */
-                                      if (unlikely(!__pyx_v_self->step_oldMean.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 224; __pyx_clineno = __LINE__; goto __pyx_L18_error;}}
-                                      __pyx_t_86 = __pyx_v_y;
-                                      __pyx_t_87 = __pyx_v_x;
+                                      if (unlikely(!__pyx_v_self->step_oldMean.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 235; __pyx_clineno = __LINE__; goto __pyx_L22_error;}}
+                                      __pyx_t_89 = __pyx_v_y;
+                                      __pyx_t_90 = __pyx_v_x;
 
-                                      /* "temporal\core\temporal.pyx":225
+                                      /* "temporal\core\temporal.pyx":236
  *                         if self._doMean:
  *                             self.step_newMean[y, x] = (self.step_oldMean[y, x] +
  *                                             ((value - self.step_oldMean[y, x]) / self.step_n[y, x]))             # <<<<<<<<<<<<<<
  *                         if self._doSD:
  *                             self.step_newSD[y, x] = (self.step_oldSD[y, x] +
  */
-                                      if (unlikely(!__pyx_v_self->step_oldMean.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 225; __pyx_clineno = __LINE__; goto __pyx_L18_error;}}
-                                      __pyx_t_88 = __pyx_v_y;
-                                      __pyx_t_89 = __pyx_v_x;
-                                      if (unlikely(!__pyx_v_self->step_n.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 225; __pyx_clineno = __LINE__; goto __pyx_L18_error;}}
-                                      __pyx_t_90 = __pyx_v_y;
-                                      __pyx_t_91 = __pyx_v_x;
+                                      if (unlikely(!__pyx_v_self->step_oldMean.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 236; __pyx_clineno = __LINE__; goto __pyx_L22_error;}}
+                                      __pyx_t_91 = __pyx_v_y;
+                                      __pyx_t_92 = __pyx_v_x;
+                                      if (unlikely(!__pyx_v_self->step_n.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 236; __pyx_clineno = __LINE__; goto __pyx_L22_error;}}
+                                      __pyx_t_93 = __pyx_v_y;
+                                      __pyx_t_94 = __pyx_v_x;
 
-                                      /* "temporal\core\temporal.pyx":224
+                                      /* "temporal\core\temporal.pyx":235
  *                     else:
  *                         if self._doMean:
  *                             self.step_newMean[y, x] = (self.step_oldMean[y, x] +             # <<<<<<<<<<<<<<
  *                                             ((value - self.step_oldMean[y, x]) / self.step_n[y, x]))
  *                         if self._doSD:
  */
-                                      if (unlikely(!__pyx_v_self->step_newMean.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 224; __pyx_clineno = __LINE__; goto __pyx_L18_error;}}
-                                      __pyx_t_92 = __pyx_v_y;
-                                      __pyx_t_93 = __pyx_v_x;
-                                      *((double *) ( /* dim=1 */ ((char *) (((double *) ( /* dim=0 */ (__pyx_v_self->step_newMean.data + __pyx_t_92 * __pyx_v_self->step_newMean.strides[0]) )) + __pyx_t_93)) )) = ((*((double *) ( /* dim=1 */ ((char *) (((double *) ( /* dim=0 */ (__pyx_v_self->step_oldMean.data + __pyx_t_86 * __pyx_v_self->step_oldMean.strides[0]) )) + __pyx_t_87)) ))) + ((__pyx_v_value - (*((double *) ( /* dim=1 */ ((char *) (((double *) ( /* dim=0 */ (__pyx_v_self->step_oldMean.data + __pyx_t_88 * __pyx_v_self->step_oldMean.strides[0]) )) + __pyx_t_89)) )))) / (*((short *) ( /* dim=1 */ ((char *) (((short *) ( /* dim=0 */ (__pyx_v_self->step_n.data + __pyx_t_90 * __pyx_v_self->step_n.strides[0]) )) + __pyx_t_91)) )))));
-                                      goto __pyx_L39;
+                                      if (unlikely(!__pyx_v_self->step_newMean.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 235; __pyx_clineno = __LINE__; goto __pyx_L22_error;}}
+                                      __pyx_t_95 = __pyx_v_y;
+                                      __pyx_t_96 = __pyx_v_x;
+                                      *((double *) ( /* dim=1 */ ((char *) (((double *) ( /* dim=0 */ (__pyx_v_self->step_newMean.data + __pyx_t_95 * __pyx_v_self->step_newMean.strides[0]) )) + __pyx_t_96)) )) = ((*((double *) ( /* dim=1 */ ((char *) (((double *) ( /* dim=0 */ (__pyx_v_self->step_oldMean.data + __pyx_t_89 * __pyx_v_self->step_oldMean.strides[0]) )) + __pyx_t_90)) ))) + ((__pyx_v_value - (*((double *) ( /* dim=1 */ ((char *) (((double *) ( /* dim=0 */ (__pyx_v_self->step_oldMean.data + __pyx_t_91 * __pyx_v_self->step_oldMean.strides[0]) )) + __pyx_t_92)) )))) / (*((short *) ( /* dim=1 */ ((char *) (((short *) ( /* dim=0 */ (__pyx_v_self->step_n.data + __pyx_t_93 * __pyx_v_self->step_n.strides[0]) )) + __pyx_t_94)) )))));
+                                      goto __pyx_L43;
                                     }
-                                    __pyx_L39:;
+                                    __pyx_L43:;
 
-                                    /* "temporal\core\temporal.pyx":226
+                                    /* "temporal\core\temporal.pyx":237
  *                             self.step_newMean[y, x] = (self.step_oldMean[y, x] +
  *                                             ((value - self.step_oldMean[y, x]) / self.step_n[y, x]))
  *                         if self._doSD:             # <<<<<<<<<<<<<<
  *                             self.step_newSD[y, x] = (self.step_oldSD[y, x] +
  *                                          ((value - self.step_oldMean[y, x]) *
  */
-                                    __pyx_t_9 = (__pyx_v_self->_doSD != 0);
-                                    if (__pyx_t_9) {
+                                    __pyx_t_22 = (__pyx_v_self->_doSD != 0);
+                                    if (__pyx_t_22) {
 
-                                      /* "temporal\core\temporal.pyx":227
+                                      /* "temporal\core\temporal.pyx":238
  *                                             ((value - self.step_oldMean[y, x]) / self.step_n[y, x]))
  *                         if self._doSD:
  *                             self.step_newSD[y, x] = (self.step_oldSD[y, x] +             # <<<<<<<<<<<<<<
  *                                          ((value - self.step_oldMean[y, x]) *
  *                                           (value - self.step_newMean[y, x])
  */
-                                      if (unlikely(!__pyx_v_self->step_oldSD.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 227; __pyx_clineno = __LINE__; goto __pyx_L18_error;}}
-                                      __pyx_t_94 = __pyx_v_y;
-                                      __pyx_t_95 = __pyx_v_x;
+                                      if (unlikely(!__pyx_v_self->step_oldSD.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 238; __pyx_clineno = __LINE__; goto __pyx_L22_error;}}
+                                      __pyx_t_97 = __pyx_v_y;
+                                      __pyx_t_98 = __pyx_v_x;
 
-                                      /* "temporal\core\temporal.pyx":228
+                                      /* "temporal\core\temporal.pyx":239
  *                         if self._doSD:
  *                             self.step_newSD[y, x] = (self.step_oldSD[y, x] +
  *                                          ((value - self.step_oldMean[y, x]) *             # <<<<<<<<<<<<<<
  *                                           (value - self.step_newMean[y, x])
  *                                           ))
  */
-                                      if (unlikely(!__pyx_v_self->step_oldMean.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 228; __pyx_clineno = __LINE__; goto __pyx_L18_error;}}
-                                      __pyx_t_96 = __pyx_v_y;
-                                      __pyx_t_97 = __pyx_v_x;
+                                      if (unlikely(!__pyx_v_self->step_oldMean.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 239; __pyx_clineno = __LINE__; goto __pyx_L22_error;}}
+                                      __pyx_t_99 = __pyx_v_y;
+                                      __pyx_t_100 = __pyx_v_x;
 
-                                      /* "temporal\core\temporal.pyx":229
+                                      /* "temporal\core\temporal.pyx":240
  *                             self.step_newSD[y, x] = (self.step_oldSD[y, x] +
  *                                          ((value - self.step_oldMean[y, x]) *
  *                                           (value - self.step_newMean[y, x])             # <<<<<<<<<<<<<<
  *                                           ))
  *                         if self._doMean:
  */
-                                      if (unlikely(!__pyx_v_self->step_newMean.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 229; __pyx_clineno = __LINE__; goto __pyx_L18_error;}}
-                                      __pyx_t_98 = __pyx_v_y;
-                                      __pyx_t_99 = __pyx_v_x;
+                                      if (unlikely(!__pyx_v_self->step_newMean.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 240; __pyx_clineno = __LINE__; goto __pyx_L22_error;}}
+                                      __pyx_t_101 = __pyx_v_y;
+                                      __pyx_t_102 = __pyx_v_x;
 
-                                      /* "temporal\core\temporal.pyx":227
+                                      /* "temporal\core\temporal.pyx":238
  *                                             ((value - self.step_oldMean[y, x]) / self.step_n[y, x]))
  *                         if self._doSD:
  *                             self.step_newSD[y, x] = (self.step_oldSD[y, x] +             # <<<<<<<<<<<<<<
  *                                          ((value - self.step_oldMean[y, x]) *
  *                                           (value - self.step_newMean[y, x])
  */
-                                      if (unlikely(!__pyx_v_self->step_newSD.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 227; __pyx_clineno = __LINE__; goto __pyx_L18_error;}}
-                                      __pyx_t_100 = __pyx_v_y;
-                                      __pyx_t_101 = __pyx_v_x;
-                                      *((double *) ( /* dim=1 */ ((char *) (((double *) ( /* dim=0 */ (__pyx_v_self->step_newSD.data + __pyx_t_100 * __pyx_v_self->step_newSD.strides[0]) )) + __pyx_t_101)) )) = ((*((double *) ( /* dim=1 */ ((char *) (((double *) ( /* dim=0 */ (__pyx_v_self->step_oldSD.data + __pyx_t_94 * __pyx_v_self->step_oldSD.strides[0]) )) + __pyx_t_95)) ))) + ((__pyx_v_value - (*((double *) ( /* dim=1 */ ((char *) (((double *) ( /* dim=0 */ (__pyx_v_self->step_oldMean.data + __pyx_t_96 * __pyx_v_self->step_oldMean.strides[0]) )) + __pyx_t_97)) )))) * (__pyx_v_value - (*((double *) ( /* dim=1 */ ((char *) (((double *) ( /* dim=0 */ (__pyx_v_self->step_newMean.data + __pyx_t_98 * __pyx_v_self->step_newMean.strides[0]) )) + __pyx_t_99)) ))))));
-                                      goto __pyx_L40;
+                                      if (unlikely(!__pyx_v_self->step_newSD.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 238; __pyx_clineno = __LINE__; goto __pyx_L22_error;}}
+                                      __pyx_t_103 = __pyx_v_y;
+                                      __pyx_t_104 = __pyx_v_x;
+                                      *((double *) ( /* dim=1 */ ((char *) (((double *) ( /* dim=0 */ (__pyx_v_self->step_newSD.data + __pyx_t_103 * __pyx_v_self->step_newSD.strides[0]) )) + __pyx_t_104)) )) = ((*((double *) ( /* dim=1 */ ((char *) (((double *) ( /* dim=0 */ (__pyx_v_self->step_oldSD.data + __pyx_t_97 * __pyx_v_self->step_oldSD.strides[0]) )) + __pyx_t_98)) ))) + ((__pyx_v_value - (*((double *) ( /* dim=1 */ ((char *) (((double *) ( /* dim=0 */ (__pyx_v_self->step_oldMean.data + __pyx_t_99 * __pyx_v_self->step_oldMean.strides[0]) )) + __pyx_t_100)) )))) * (__pyx_v_value - (*((double *) ( /* dim=1 */ ((char *) (((double *) ( /* dim=0 */ (__pyx_v_self->step_newMean.data + __pyx_t_101 * __pyx_v_self->step_newMean.strides[0]) )) + __pyx_t_102)) ))))));
+                                      goto __pyx_L44;
                                     }
-                                    __pyx_L40:;
+                                    __pyx_L44:;
 
-                                    /* "temporal\core\temporal.pyx":231
+                                    /* "temporal\core\temporal.pyx":242
  *                                           (value - self.step_newMean[y, x])
  *                                           ))
  *                         if self._doMean:             # <<<<<<<<<<<<<<
  *                             self.step_oldMean[y, x] = self.step_newMean[y, x]
  *                         if self._doSD:
  */
-                                    __pyx_t_9 = (__pyx_v_self->_doMean != 0);
-                                    if (__pyx_t_9) {
+                                    __pyx_t_22 = (__pyx_v_self->_doMean != 0);
+                                    if (__pyx_t_22) {
 
-                                      /* "temporal\core\temporal.pyx":232
+                                      /* "temporal\core\temporal.pyx":243
  *                                           ))
  *                         if self._doMean:
  *                             self.step_oldMean[y, x] = self.step_newMean[y, x]             # <<<<<<<<<<<<<<
  *                         if self._doSD:
  *                             self.step_oldSD[y, x] = self.step_newSD[y, x]
  */
-                                      if (unlikely(!__pyx_v_self->step_newMean.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 232; __pyx_clineno = __LINE__; goto __pyx_L18_error;}}
-                                      __pyx_t_102 = __pyx_v_y;
-                                      __pyx_t_103 = __pyx_v_x;
-                                      if (unlikely(!__pyx_v_self->step_oldMean.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 232; __pyx_clineno = __LINE__; goto __pyx_L18_error;}}
-                                      __pyx_t_104 = __pyx_v_y;
-                                      __pyx_t_105 = __pyx_v_x;
-                                      *((double *) ( /* dim=1 */ ((char *) (((double *) ( /* dim=0 */ (__pyx_v_self->step_oldMean.data + __pyx_t_104 * __pyx_v_self->step_oldMean.strides[0]) )) + __pyx_t_105)) )) = (*((double *) ( /* dim=1 */ ((char *) (((double *) ( /* dim=0 */ (__pyx_v_self->step_newMean.data + __pyx_t_102 * __pyx_v_self->step_newMean.strides[0]) )) + __pyx_t_103)) )));
-                                      goto __pyx_L41;
+                                      if (unlikely(!__pyx_v_self->step_newMean.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 243; __pyx_clineno = __LINE__; goto __pyx_L22_error;}}
+                                      __pyx_t_105 = __pyx_v_y;
+                                      __pyx_t_106 = __pyx_v_x;
+                                      if (unlikely(!__pyx_v_self->step_oldMean.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 243; __pyx_clineno = __LINE__; goto __pyx_L22_error;}}
+                                      __pyx_t_107 = __pyx_v_y;
+                                      __pyx_t_108 = __pyx_v_x;
+                                      *((double *) ( /* dim=1 */ ((char *) (((double *) ( /* dim=0 */ (__pyx_v_self->step_oldMean.data + __pyx_t_107 * __pyx_v_self->step_oldMean.strides[0]) )) + __pyx_t_108)) )) = (*((double *) ( /* dim=1 */ ((char *) (((double *) ( /* dim=0 */ (__pyx_v_self->step_newMean.data + __pyx_t_105 * __pyx_v_self->step_newMean.strides[0]) )) + __pyx_t_106)) )));
+                                      goto __pyx_L45;
                                     }
-                                    __pyx_L41:;
+                                    __pyx_L45:;
 
-                                    /* "temporal\core\temporal.pyx":233
+                                    /* "temporal\core\temporal.pyx":244
  *                         if self._doMean:
  *                             self.step_oldMean[y, x] = self.step_newMean[y, x]
  *                         if self._doSD:             # <<<<<<<<<<<<<<
  *                             self.step_oldSD[y, x] = self.step_newSD[y, x]
  *                     if self._doMax:
  */
-                                    __pyx_t_9 = (__pyx_v_self->_doSD != 0);
-                                    if (__pyx_t_9) {
+                                    __pyx_t_22 = (__pyx_v_self->_doSD != 0);
+                                    if (__pyx_t_22) {
 
-                                      /* "temporal\core\temporal.pyx":234
+                                      /* "temporal\core\temporal.pyx":245
  *                             self.step_oldMean[y, x] = self.step_newMean[y, x]
  *                         if self._doSD:
  *                             self.step_oldSD[y, x] = self.step_newSD[y, x]             # <<<<<<<<<<<<<<
  *                     if self._doMax:
  *                         if value > self.step_Max[y,x]:
  */
-                                      if (unlikely(!__pyx_v_self->step_newSD.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 234; __pyx_clineno = __LINE__; goto __pyx_L18_error;}}
-                                      __pyx_t_106 = __pyx_v_y;
-                                      __pyx_t_107 = __pyx_v_x;
-                                      if (unlikely(!__pyx_v_self->step_oldSD.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 234; __pyx_clineno = __LINE__; goto __pyx_L18_error;}}
-                                      __pyx_t_108 = __pyx_v_y;
-                                      __pyx_t_109 = __pyx_v_x;
-                                      *((double *) ( /* dim=1 */ ((char *) (((double *) ( /* dim=0 */ (__pyx_v_self->step_oldSD.data + __pyx_t_108 * __pyx_v_self->step_oldSD.strides[0]) )) + __pyx_t_109)) )) = (*((double *) ( /* dim=1 */ ((char *) (((double *) ( /* dim=0 */ (__pyx_v_self->step_newSD.data + __pyx_t_106 * __pyx_v_self->step_newSD.strides[0]) )) + __pyx_t_107)) )));
-                                      goto __pyx_L42;
+                                      if (unlikely(!__pyx_v_self->step_newSD.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 245; __pyx_clineno = __LINE__; goto __pyx_L22_error;}}
+                                      __pyx_t_109 = __pyx_v_y;
+                                      __pyx_t_110 = __pyx_v_x;
+                                      if (unlikely(!__pyx_v_self->step_oldSD.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 245; __pyx_clineno = __LINE__; goto __pyx_L22_error;}}
+                                      __pyx_t_111 = __pyx_v_y;
+                                      __pyx_t_112 = __pyx_v_x;
+                                      *((double *) ( /* dim=1 */ ((char *) (((double *) ( /* dim=0 */ (__pyx_v_self->step_oldSD.data + __pyx_t_111 * __pyx_v_self->step_oldSD.strides[0]) )) + __pyx_t_112)) )) = (*((double *) ( /* dim=1 */ ((char *) (((double *) ( /* dim=0 */ (__pyx_v_self->step_newSD.data + __pyx_t_109 * __pyx_v_self->step_newSD.strides[0]) )) + __pyx_t_110)) )));
+                                      goto __pyx_L46;
                                     }
-                                    __pyx_L42:;
+                                    __pyx_L46:;
                                   }
-                                  __pyx_L36:;
+                                  __pyx_L40:;
 
-                                  /* "temporal\core\temporal.pyx":235
+                                  /* "temporal\core\temporal.pyx":246
  *                         if self._doSD:
  *                             self.step_oldSD[y, x] = self.step_newSD[y, x]
  *                     if self._doMax:             # <<<<<<<<<<<<<<
  *                         if value > self.step_Max[y,x]:
  *                             self.step_Max[y,x] = value
  */
-                                  __pyx_t_9 = (__pyx_v_self->_doMax != 0);
-                                  if (__pyx_t_9) {
+                                  __pyx_t_22 = (__pyx_v_self->_doMax != 0);
+                                  if (__pyx_t_22) {
 
-                                    /* "temporal\core\temporal.pyx":236
+                                    /* "temporal\core\temporal.pyx":247
  *                             self.step_oldSD[y, x] = self.step_newSD[y, x]
  *                     if self._doMax:
  *                         if value > self.step_Max[y,x]:             # <<<<<<<<<<<<<<
  *                             self.step_Max[y,x] = value
  *                     if self._doMin:
  */
-                                    if (unlikely(!__pyx_v_self->step_Max.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 236; __pyx_clineno = __LINE__; goto __pyx_L18_error;}}
-                                    __pyx_t_110 = __pyx_v_y;
-                                    __pyx_t_111 = __pyx_v_x;
-                                    __pyx_t_9 = ((__pyx_v_value > (*((float *) ( /* dim=1 */ ((char *) (((float *) ( /* dim=0 */ (__pyx_v_self->step_Max.data + __pyx_t_110 * __pyx_v_self->step_Max.strides[0]) )) + __pyx_t_111)) )))) != 0);
-                                    if (__pyx_t_9) {
+                                    if (unlikely(!__pyx_v_self->step_Max.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 247; __pyx_clineno = __LINE__; goto __pyx_L22_error;}}
+                                    __pyx_t_113 = __pyx_v_y;
+                                    __pyx_t_114 = __pyx_v_x;
+                                    __pyx_t_22 = ((__pyx_v_value > (*((float *) ( /* dim=1 */ ((char *) (((float *) ( /* dim=0 */ (__pyx_v_self->step_Max.data + __pyx_t_113 * __pyx_v_self->step_Max.strides[0]) )) + __pyx_t_114)) )))) != 0);
+                                    if (__pyx_t_22) {
 
-                                      /* "temporal\core\temporal.pyx":237
+                                      /* "temporal\core\temporal.pyx":248
  *                     if self._doMax:
  *                         if value > self.step_Max[y,x]:
  *                             self.step_Max[y,x] = value             # <<<<<<<<<<<<<<
  *                     if self._doMin:
  *                         if value < self.step_Min[y,x]:
  */
-                                      if (unlikely(!__pyx_v_self->step_Max.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 237; __pyx_clineno = __LINE__; goto __pyx_L18_error;}}
-                                      __pyx_t_112 = __pyx_v_y;
-                                      __pyx_t_113 = __pyx_v_x;
-                                      *((float *) ( /* dim=1 */ ((char *) (((float *) ( /* dim=0 */ (__pyx_v_self->step_Max.data + __pyx_t_112 * __pyx_v_self->step_Max.strides[0]) )) + __pyx_t_113)) )) = __pyx_v_value;
-                                      goto __pyx_L44;
+                                      if (unlikely(!__pyx_v_self->step_Max.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 248; __pyx_clineno = __LINE__; goto __pyx_L22_error;}}
+                                      __pyx_t_115 = __pyx_v_y;
+                                      __pyx_t_116 = __pyx_v_x;
+                                      *((float *) ( /* dim=1 */ ((char *) (((float *) ( /* dim=0 */ (__pyx_v_self->step_Max.data + __pyx_t_115 * __pyx_v_self->step_Max.strides[0]) )) + __pyx_t_116)) )) = __pyx_v_value;
+                                      goto __pyx_L48;
                                     }
-                                    __pyx_L44:;
-                                    goto __pyx_L43;
+                                    __pyx_L48:;
+                                    goto __pyx_L47;
                                   }
-                                  __pyx_L43:;
+                                  __pyx_L47:;
 
-                                  /* "temporal\core\temporal.pyx":238
+                                  /* "temporal\core\temporal.pyx":249
  *                         if value > self.step_Max[y,x]:
  *                             self.step_Max[y,x] = value
  *                     if self._doMin:             # <<<<<<<<<<<<<<
  *                         if value < self.step_Min[y,x]:
  *                             self.step_Min[y,x] = value
  */
-                                  __pyx_t_9 = (__pyx_v_self->_doMin != 0);
-                                  if (__pyx_t_9) {
+                                  __pyx_t_22 = (__pyx_v_self->_doMin != 0);
+                                  if (__pyx_t_22) {
 
-                                    /* "temporal\core\temporal.pyx":239
+                                    /* "temporal\core\temporal.pyx":250
  *                             self.step_Max[y,x] = value
  *                     if self._doMin:
  *                         if value < self.step_Min[y,x]:             # <<<<<<<<<<<<<<
  *                             self.step_Min[y,x] = value
  *                     if self._doSum:
  */
-                                    if (unlikely(!__pyx_v_self->step_Min.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 239; __pyx_clineno = __LINE__; goto __pyx_L18_error;}}
-                                    __pyx_t_114 = __pyx_v_y;
-                                    __pyx_t_115 = __pyx_v_x;
-                                    __pyx_t_9 = ((__pyx_v_value < (*((float *) ( /* dim=1 */ ((char *) (((float *) ( /* dim=0 */ (__pyx_v_self->step_Min.data + __pyx_t_114 * __pyx_v_self->step_Min.strides[0]) )) + __pyx_t_115)) )))) != 0);
-                                    if (__pyx_t_9) {
+                                    if (unlikely(!__pyx_v_self->step_Min.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 250; __pyx_clineno = __LINE__; goto __pyx_L22_error;}}
+                                    __pyx_t_117 = __pyx_v_y;
+                                    __pyx_t_118 = __pyx_v_x;
+                                    __pyx_t_22 = ((__pyx_v_value < (*((float *) ( /* dim=1 */ ((char *) (((float *) ( /* dim=0 */ (__pyx_v_self->step_Min.data + __pyx_t_117 * __pyx_v_self->step_Min.strides[0]) )) + __pyx_t_118)) )))) != 0);
+                                    if (__pyx_t_22) {
 
-                                      /* "temporal\core\temporal.pyx":240
+                                      /* "temporal\core\temporal.pyx":251
  *                     if self._doMin:
  *                         if value < self.step_Min[y,x]:
  *                             self.step_Min[y,x] = value             # <<<<<<<<<<<<<<
  *                     if self._doSum:
  *                         self.step_Sum[y,x] += value
  */
-                                      if (unlikely(!__pyx_v_self->step_Min.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 240; __pyx_clineno = __LINE__; goto __pyx_L18_error;}}
-                                      __pyx_t_116 = __pyx_v_y;
-                                      __pyx_t_117 = __pyx_v_x;
-                                      *((float *) ( /* dim=1 */ ((char *) (((float *) ( /* dim=0 */ (__pyx_v_self->step_Min.data + __pyx_t_116 * __pyx_v_self->step_Min.strides[0]) )) + __pyx_t_117)) )) = __pyx_v_value;
-                                      goto __pyx_L46;
+                                      if (unlikely(!__pyx_v_self->step_Min.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 251; __pyx_clineno = __LINE__; goto __pyx_L22_error;}}
+                                      __pyx_t_119 = __pyx_v_y;
+                                      __pyx_t_120 = __pyx_v_x;
+                                      *((float *) ( /* dim=1 */ ((char *) (((float *) ( /* dim=0 */ (__pyx_v_self->step_Min.data + __pyx_t_119 * __pyx_v_self->step_Min.strides[0]) )) + __pyx_t_120)) )) = __pyx_v_value;
+                                      goto __pyx_L50;
                                     }
-                                    __pyx_L46:;
-                                    goto __pyx_L45;
+                                    __pyx_L50:;
+                                    goto __pyx_L49;
                                   }
-                                  __pyx_L45:;
+                                  __pyx_L49:;
 
-                                  /* "temporal\core\temporal.pyx":241
+                                  /* "temporal\core\temporal.pyx":252
  *                         if value < self.step_Min[y,x]:
  *                             self.step_Min[y,x] = value
  *                     if self._doSum:             # <<<<<<<<<<<<<<
  *                         self.step_Sum[y,x] += value
  * 
  */
-                                  __pyx_t_9 = (__pyx_v_self->_doSum != 0);
-                                  if (__pyx_t_9) {
+                                  __pyx_t_22 = (__pyx_v_self->_doSum != 0);
+                                  if (__pyx_t_22) {
 
-                                    /* "temporal\core\temporal.pyx":242
+                                    /* "temporal\core\temporal.pyx":253
  *                             self.step_Min[y,x] = value
  *                     if self._doSum:
  *                         self.step_Sum[y,x] += value             # <<<<<<<<<<<<<<
  * 
  *     @cython.boundscheck(False)
  */
-                                    if (unlikely(!__pyx_v_self->step_Sum.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 242; __pyx_clineno = __LINE__; goto __pyx_L18_error;}}
-                                    __pyx_t_118 = __pyx_v_y;
-                                    __pyx_t_119 = __pyx_v_x;
-                                    *((float *) ( /* dim=1 */ ((char *) (((float *) ( /* dim=0 */ (__pyx_v_self->step_Sum.data + __pyx_t_118 * __pyx_v_self->step_Sum.strides[0]) )) + __pyx_t_119)) )) += __pyx_v_value;
-                                    goto __pyx_L47;
+                                    if (unlikely(!__pyx_v_self->step_Sum.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 253; __pyx_clineno = __LINE__; goto __pyx_L22_error;}}
+                                    __pyx_t_121 = __pyx_v_y;
+                                    __pyx_t_122 = __pyx_v_x;
+                                    *((float *) ( /* dim=1 */ ((char *) (((float *) ( /* dim=0 */ (__pyx_v_self->step_Sum.data + __pyx_t_121 * __pyx_v_self->step_Sum.strides[0]) )) + __pyx_t_122)) )) += __pyx_v_value;
+                                    goto __pyx_L51;
                                   }
-                                  __pyx_L47:;
-                                  __pyx_L20_continue:;
+                                  __pyx_L51:;
+                                  __pyx_L24_continue:;
                                 }
-                                goto __pyx_L49;
-                                __pyx_L18_error:;
+                                goto __pyx_L53;
+                                __pyx_L22_error:;
                                 {
                                     #ifdef WITH_THREAD
                                     PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
@@ -4953,17 +5130,17 @@ __PYX_XDEC_MEMVIEW(&__pyx_t_18, 1);
                                     #endif
                                 }
                                 __pyx_parallel_why = 4;
-                                goto __pyx_L48;
-                                __pyx_L48:;
+                                goto __pyx_L52;
+                                __pyx_L52:;
                                 #ifdef _OPENMP
-                                #pragma omp critical(__pyx_parallel_lastprivates2)
+                                #pragma omp critical(__pyx_parallel_lastprivates0)
                                 #endif /* _OPENMP */
                                 {
-                                    __pyx_parallel_temp0 = __pyx_v_x;
-                                    __pyx_parallel_temp1 = __pyx_v_y;
-                                    __pyx_parallel_temp2 = __pyx_v_value;
+                                    __pyx_parallel_temp0 = __pyx_v_value;
+                                    __pyx_parallel_temp1 = __pyx_v_x;
+                                    __pyx_parallel_temp2 = __pyx_v_y;
                                 }
-                                __pyx_L49:;
+                                __pyx_L53:;
                                 #ifdef _OPENMP
                                 #pragma omp flush(__pyx_parallel_why)
                                 #endif /* _OPENMP */
@@ -4975,11 +5152,11 @@ __PYX_XDEC_MEMVIEW(&__pyx_t_18, 1);
                       __pyx_parallel_why = 4;
                     }
                     if (__pyx_parallel_why) {
-                      __pyx_v_x = __pyx_parallel_temp0;
-                      __pyx_v_y = __pyx_parallel_temp1;
-                      __pyx_v_value = __pyx_parallel_temp2;
+                      __pyx_v_value = __pyx_parallel_temp0;
+                      __pyx_v_x = __pyx_parallel_temp1;
+                      __pyx_v_y = __pyx_parallel_temp2;
                       switch (__pyx_parallel_why) {
-                            case 3: goto __pyx_L15_return;
+                            case 3: goto __pyx_L19_return;
                             case 4:
                         {
                             #ifdef WITH_THREAD
@@ -4992,15 +5169,15 @@ __PYX_XDEC_MEMVIEW(&__pyx_t_18, 1);
                             PyGILState_Release(__pyx_gilstate_save);
                             #endif
                         }
-                        goto __pyx_L14_error;
+                        goto __pyx_L18_error;
                       }
                     }
                 }
-                goto __pyx_L51;
-                __pyx_L15_return:;
+                goto __pyx_L55;
+                __pyx_L19_return:;
                 __pyx_parallel_why = 3;
-                goto __pyx_L51;
-                __pyx_L14_error:;
+                goto __pyx_L55;
+                __pyx_L18_error:;
                 {
                     #ifdef WITH_THREAD
                     PyGILState_STATE __pyx_gilstate_save = PyGILState_Ensure();
@@ -5018,8 +5195,8 @@ __PYX_XDEC_MEMVIEW(&__pyx_t_18, 1);
                     #endif
                 }
                 __pyx_parallel_why = 4;
-                goto __pyx_L51;
-                __pyx_L51:;
+                goto __pyx_L55;
+                __pyx_L55:;
                 #ifdef _OPENMP
                 Py_END_ALLOW_THREADS
                 #else
@@ -5042,7 +5219,7 @@ __PYX_XDEC_MEMVIEW(&__pyx_t_18, 1);
             }
             if (__pyx_parallel_why) {
               switch (__pyx_parallel_why) {
-                    case 3: goto __pyx_L9_return;
+                    case 3: goto __pyx_L13_return;
                     case 4:
                 {
                     #ifdef WITH_THREAD
@@ -5055,7 +5232,7 @@ __PYX_XDEC_MEMVIEW(&__pyx_t_18, 1);
                     PyGILState_Release(__pyx_gilstate_save);
                     #endif
                 }
-                goto __pyx_L10_error;
+                goto __pyx_L14_error;
               }
             }
         }
@@ -5067,7 +5244,7 @@ __PYX_XDEC_MEMVIEW(&__pyx_t_18, 1);
         #endif
       }
 
-      /* "temporal\core\temporal.pyx":169
+      /* "temporal\core\temporal.pyx":180
  *         # hardcode to 6 threads which is fast enough for anything that can
  *         # feasibly fit in RAM anyway and is ok on most machines
  *         with nogil, cython.wraparound(False), parallel(num_threads=6):             # <<<<<<<<<<<<<<
@@ -5079,28 +5256,28 @@ __PYX_XDEC_MEMVIEW(&__pyx_t_18, 1);
           #ifdef WITH_THREAD
           Py_BLOCK_THREADS
           #endif
-          goto __pyx_L11;
+          goto __pyx_L15;
         }
-        __pyx_L9_return: {
+        __pyx_L13_return: {
           #ifdef WITH_THREAD
           Py_BLOCK_THREADS
           #endif
           goto __pyx_L0;
         }
-        __pyx_L10_error: {
+        __pyx_L14_error: {
           #ifdef WITH_THREAD
           Py_BLOCK_THREADS
           #endif
           goto __pyx_L1_error;
         }
-        __pyx_L11:;
+        __pyx_L15:;
       }
   }
 
-  /* "temporal\core\temporal.pyx":115
+  /* "temporal\core\temporal.pyx":118
  *     @cython.boundscheck(False)
  *     @cython.cdivision(True)
- *     cpdef addFile(self, float[:,::1] data, float thisNdv):             # <<<<<<<<<<<<<<
+ *     cpdef addFile(self, float[:,::1] data, float thisNdv, fileTag = None):             # <<<<<<<<<<<<<<
  *         '''Add a tile of data to the running summaries. Data array must be of shape specified in startup.
  * 
  */
@@ -5139,6 +5316,7 @@ static char __pyx_doc_8temporal_4core_8temporal_26TemporalAggregator_Dynamic_2ad
 static PyObject *__pyx_pw_8temporal_4core_8temporal_26TemporalAggregator_Dynamic_3addFile(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
   __Pyx_memviewslice __pyx_v_data = { 0, 0, { 0 }, { 0 }, { 0 } };
   float __pyx_v_thisNdv;
+  PyObject *__pyx_v_fileTag = 0;
   int __pyx_lineno = 0;
   const char *__pyx_filename = NULL;
   int __pyx_clineno = 0;
@@ -5146,12 +5324,14 @@ static PyObject *__pyx_pw_8temporal_4core_8temporal_26TemporalAggregator_Dynamic
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("addFile (wrapper)", 0);
   {
-    static PyObject **__pyx_pyargnames[] = {&__pyx_n_s_data,&__pyx_n_s_thisNdv,0};
-    PyObject* values[2] = {0,0};
+    static PyObject **__pyx_pyargnames[] = {&__pyx_n_s_data,&__pyx_n_s_thisNdv,&__pyx_n_s_fileTag,0};
+    PyObject* values[3] = {0,0,0};
+    values[2] = ((PyObject *)Py_None);
     if (unlikely(__pyx_kwds)) {
       Py_ssize_t kw_args;
       const Py_ssize_t pos_args = PyTuple_GET_SIZE(__pyx_args);
       switch (pos_args) {
+        case  3: values[2] = PyTuple_GET_ITEM(__pyx_args, 2);
         case  2: values[1] = PyTuple_GET_ITEM(__pyx_args, 1);
         case  1: values[0] = PyTuple_GET_ITEM(__pyx_args, 0);
         case  0: break;
@@ -5165,47 +5345,59 @@ static PyObject *__pyx_pw_8temporal_4core_8temporal_26TemporalAggregator_Dynamic
         case  1:
         if (likely((values[1] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_thisNdv)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("addFile", 1, 2, 2, 1); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 115; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+          __Pyx_RaiseArgtupleInvalid("addFile", 0, 2, 3, 1); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 118; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+        }
+        case  2:
+        if (kw_args > 0) {
+          PyObject* value = PyDict_GetItem(__pyx_kwds, __pyx_n_s_fileTag);
+          if (value) { values[2] = value; kw_args--; }
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "addFile") < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 115; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "addFile") < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 118; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
       }
-    } else if (PyTuple_GET_SIZE(__pyx_args) != 2) {
-      goto __pyx_L5_argtuple_error;
     } else {
-      values[0] = PyTuple_GET_ITEM(__pyx_args, 0);
-      values[1] = PyTuple_GET_ITEM(__pyx_args, 1);
+      switch (PyTuple_GET_SIZE(__pyx_args)) {
+        case  3: values[2] = PyTuple_GET_ITEM(__pyx_args, 2);
+        case  2: values[1] = PyTuple_GET_ITEM(__pyx_args, 1);
+        values[0] = PyTuple_GET_ITEM(__pyx_args, 0);
+        break;
+        default: goto __pyx_L5_argtuple_error;
+      }
     }
-    __pyx_v_data = __Pyx_PyObject_to_MemoryviewSlice_d_dc_float(values[0]); if (unlikely(!__pyx_v_data.memview)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 115; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
-    __pyx_v_thisNdv = __pyx_PyFloat_AsFloat(values[1]); if (unlikely((__pyx_v_thisNdv == (float)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 115; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+    __pyx_v_data = __Pyx_PyObject_to_MemoryviewSlice_d_dc_float(values[0]); if (unlikely(!__pyx_v_data.memview)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 118; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+    __pyx_v_thisNdv = __pyx_PyFloat_AsFloat(values[1]); if (unlikely((__pyx_v_thisNdv == (float)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 118; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+    __pyx_v_fileTag = values[2];
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("addFile", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 115; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+  __Pyx_RaiseArgtupleInvalid("addFile", 0, 2, 3, PyTuple_GET_SIZE(__pyx_args)); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 118; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
   __pyx_L3_error:;
   __Pyx_AddTraceback("temporal.core.temporal.TemporalAggregator_Dynamic.addFile", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  __pyx_r = __pyx_pf_8temporal_4core_8temporal_26TemporalAggregator_Dynamic_2addFile(((struct __pyx_obj_8temporal_4core_8temporal_TemporalAggregator_Dynamic *)__pyx_v_self), __pyx_v_data, __pyx_v_thisNdv);
+  __pyx_r = __pyx_pf_8temporal_4core_8temporal_26TemporalAggregator_Dynamic_2addFile(((struct __pyx_obj_8temporal_4core_8temporal_TemporalAggregator_Dynamic *)__pyx_v_self), __pyx_v_data, __pyx_v_thisNdv, __pyx_v_fileTag);
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_8temporal_4core_8temporal_26TemporalAggregator_Dynamic_2addFile(struct __pyx_obj_8temporal_4core_8temporal_TemporalAggregator_Dynamic *__pyx_v_self, __Pyx_memviewslice __pyx_v_data, float __pyx_v_thisNdv) {
+static PyObject *__pyx_pf_8temporal_4core_8temporal_26TemporalAggregator_Dynamic_2addFile(struct __pyx_obj_8temporal_4core_8temporal_TemporalAggregator_Dynamic *__pyx_v_self, __Pyx_memviewslice __pyx_v_data, float __pyx_v_thisNdv, PyObject *__pyx_v_fileTag) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
+  struct __pyx_opt_args_8temporal_4core_8temporal_26TemporalAggregator_Dynamic_addFile __pyx_t_2;
   int __pyx_lineno = 0;
   const char *__pyx_filename = NULL;
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("addFile", 0);
   __Pyx_XDECREF(__pyx_r);
-  if (unlikely(!__pyx_v_data.memview)) { __Pyx_RaiseUnboundLocalError("data"); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 115; __pyx_clineno = __LINE__; goto __pyx_L1_error;} }
-  __pyx_t_1 = __pyx_f_8temporal_4core_8temporal_26TemporalAggregator_Dynamic_addFile(__pyx_v_self, __pyx_v_data, __pyx_v_thisNdv, 1); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 115; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (unlikely(!__pyx_v_data.memview)) { __Pyx_RaiseUnboundLocalError("data"); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 118; __pyx_clineno = __LINE__; goto __pyx_L1_error;} }
+  __pyx_t_2.__pyx_n = 1;
+  __pyx_t_2.fileTag = __pyx_v_fileTag;
+  __pyx_t_1 = __pyx_vtabptr_8temporal_4core_8temporal_TemporalAggregator_Dynamic->addFile(__pyx_v_self, __pyx_v_data, __pyx_v_thisNdv, 1, &__pyx_t_2); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 118; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -5223,7 +5415,7 @@ static PyObject *__pyx_pf_8temporal_4core_8temporal_26TemporalAggregator_Dynamic
   return __pyx_r;
 }
 
-/* "temporal\core\temporal.pyx":246
+/* "temporal\core\temporal.pyx":257
  *     @cython.boundscheck(False)
  *     @cython.cdivision(True)
  *     cpdef emitStep(self):             # <<<<<<<<<<<<<<
@@ -5277,7 +5469,7 @@ static PyObject *__pyx_f_8temporal_4core_8temporal_26TemporalAggregator_Dynamic_
   if (unlikely(__pyx_skip_dispatch)) ;
   /* Check if overridden in Python */
   else if (unlikely(Py_TYPE(((PyObject *)__pyx_v_self))->tp_dictoffset != 0)) {
-    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_emitStep); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 246; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_emitStep); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 257; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_1);
     if (!PyCFunction_Check(__pyx_t_1) || (PyCFunction_GET_FUNCTION(__pyx_t_1) != (PyCFunction)__pyx_pw_8temporal_4core_8temporal_26TemporalAggregator_Dynamic_5emitStep)) {
       __Pyx_XDECREF(__pyx_r);
@@ -5293,10 +5485,10 @@ static PyObject *__pyx_f_8temporal_4core_8temporal_26TemporalAggregator_Dynamic_
         }
       }
       if (__pyx_t_4) {
-        __pyx_t_2 = __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_t_4); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 246; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+        __pyx_t_2 = __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_t_4); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 257; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
         __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
       } else {
-        __pyx_t_2 = __Pyx_PyObject_CallNoArg(__pyx_t_3); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 246; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+        __pyx_t_2 = __Pyx_PyObject_CallNoArg(__pyx_t_3); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 257; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       }
       __Pyx_GOTREF(__pyx_t_2);
       __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
@@ -5308,7 +5500,7 @@ static PyObject *__pyx_f_8temporal_4core_8temporal_26TemporalAggregator_Dynamic_
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   }
 
-  /* "temporal\core\temporal.pyx":251
+  /* "temporal\core\temporal.pyx":262
  *             double variance
  *             Py_ssize_t x, y
  *         if self._doSD:             # <<<<<<<<<<<<<<
@@ -5318,7 +5510,7 @@ static PyObject *__pyx_f_8temporal_4core_8temporal_26TemporalAggregator_Dynamic_
   __pyx_t_5 = (__pyx_v_self->_doSD != 0);
   if (__pyx_t_5) {
 
-    /* "temporal\core\temporal.pyx":252
+    /* "temporal\core\temporal.pyx":263
  *             Py_ssize_t x, y
  *         if self._doSD:
  *             with nogil, cython.wraparound(False), parallel(num_threads=6):             # <<<<<<<<<<<<<<
@@ -5343,7 +5535,7 @@ static PyObject *__pyx_f_8temporal_4core_8temporal_26TemporalAggregator_Dynamic_
                   #define unlikely(x) (x)
               #endif
               #ifdef _OPENMP
-              #pragma omp parallel  private(__pyx_t_14, __pyx_t_18, __pyx_t_13, __pyx_t_17, __pyx_t_12, __pyx_t_7, __pyx_t_15, __pyx_t_16, __pyx_t_11, __pyx_t_9, __pyx_t_5, __pyx_t_6, __pyx_t_10, __pyx_t_8) private(__pyx_filename, __pyx_lineno, __pyx_clineno) shared(__pyx_parallel_why, __pyx_parallel_exc_type, __pyx_parallel_exc_value, __pyx_parallel_exc_tb) num_threads(6)
+              #pragma omp parallel  private(__pyx_t_10, __pyx_t_13, __pyx_t_5, __pyx_t_18, __pyx_t_12, __pyx_t_17, __pyx_t_11, __pyx_t_9, __pyx_t_7, __pyx_t_6, __pyx_t_16, __pyx_t_8, __pyx_t_15, __pyx_t_14) private(__pyx_filename, __pyx_lineno, __pyx_clineno) shared(__pyx_parallel_why, __pyx_parallel_exc_type, __pyx_parallel_exc_value, __pyx_parallel_exc_tb) num_threads(6)
               #endif /* _OPENMP */
               {
                   #ifdef _OPENMP
@@ -5353,7 +5545,7 @@ static PyObject *__pyx_f_8temporal_4core_8temporal_26TemporalAggregator_Dynamic_
                   Py_BEGIN_ALLOW_THREADS
                   #endif /* _OPENMP */
 
-                  /* "temporal\core\temporal.pyx":253
+                  /* "temporal\core\temporal.pyx":264
  *         if self._doSD:
  *             with nogil, cython.wraparound(False), parallel(num_threads=6):
  *                 for y in prange(self.height, schedule='static'):             # <<<<<<<<<<<<<<
@@ -5363,9 +5555,9 @@ static PyObject *__pyx_f_8temporal_4core_8temporal_26TemporalAggregator_Dynamic_
                   __pyx_t_6 = __pyx_v_self->height;
                   if (1 == 0) abort();
                   {
-                      Py_ssize_t __pyx_parallel_temp0 = 0xbad0bad0;
+                      double __pyx_parallel_temp0 = __PYX_NAN();
                       Py_ssize_t __pyx_parallel_temp1 = 0xbad0bad0;
-                      double __pyx_parallel_temp2 = __PYX_NAN();
+                      Py_ssize_t __pyx_parallel_temp2 = 0xbad0bad0;
                       const char *__pyx_parallel_filename = NULL; int __pyx_parallel_lineno = 0, __pyx_parallel_clineno = 0;
                       PyObject *__pyx_parallel_exc_type = NULL, *__pyx_parallel_exc_value = NULL, *__pyx_parallel_exc_tb = NULL;
                       int __pyx_parallel_why;
@@ -5374,17 +5566,17 @@ static PyObject *__pyx_f_8temporal_4core_8temporal_26TemporalAggregator_Dynamic_
                       if (__pyx_t_8 > 0)
                       {
                           #ifdef _OPENMP
-                          #pragma omp for firstprivate(__pyx_v_y) lastprivate(__pyx_v_y) lastprivate(__pyx_v_x) lastprivate(__pyx_v_variance) schedule(static)
+                          #pragma omp for lastprivate(__pyx_v_variance) firstprivate(__pyx_v_y) lastprivate(__pyx_v_y) lastprivate(__pyx_v_x) schedule(static)
                           #endif /* _OPENMP */
                           for (__pyx_t_7 = 0; __pyx_t_7 < __pyx_t_8; __pyx_t_7++){
                               if (__pyx_parallel_why < 2)
                               {
                                   __pyx_v_y = 0 + 1 * __pyx_t_7;
                                   /* Initialize private variables to invalid values */
-                                  __pyx_v_x = ((Py_ssize_t)0xbad0bad0);
                                   __pyx_v_variance = ((double)__PYX_NAN());
+                                  __pyx_v_x = ((Py_ssize_t)0xbad0bad0);
 
-                                  /* "temporal\core\temporal.pyx":254
+                                  /* "temporal\core\temporal.pyx":265
  *             with nogil, cython.wraparound(False), parallel(num_threads=6):
  *                 for y in prange(self.height, schedule='static'):
  *                     x = -1             # <<<<<<<<<<<<<<
@@ -5393,7 +5585,7 @@ static PyObject *__pyx_f_8temporal_4core_8temporal_26TemporalAggregator_Dynamic_
  */
                                   __pyx_v_x = -1;
 
-                                  /* "temporal\core\temporal.pyx":255
+                                  /* "temporal\core\temporal.pyx":266
  *                 for y in prange(self.height, schedule='static'):
  *                     x = -1
  *                     for x in range (0, self.width):             # <<<<<<<<<<<<<<
@@ -5404,20 +5596,20 @@ static PyObject *__pyx_f_8temporal_4core_8temporal_26TemporalAggregator_Dynamic_
                                   for (__pyx_t_10 = 0; __pyx_t_10 < __pyx_t_9; __pyx_t_10+=1) {
                                     __pyx_v_x = __pyx_t_10;
 
-                                    /* "temporal\core\temporal.pyx":256
+                                    /* "temporal\core\temporal.pyx":267
  *                     x = -1
  *                     for x in range (0, self.width):
  *                         if self.step_n[y, x] <=1:             # <<<<<<<<<<<<<<
  *                             continue
  *                         variance = self.step_newSD[y, x] / (self.step_n[y, x] - 1)
  */
-                                    if (unlikely(!__pyx_v_self->step_n.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 256; __pyx_clineno = __LINE__; goto __pyx_L13_error;}}
+                                    if (unlikely(!__pyx_v_self->step_n.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 267; __pyx_clineno = __LINE__; goto __pyx_L13_error;}}
                                     __pyx_t_11 = __pyx_v_y;
                                     __pyx_t_12 = __pyx_v_x;
                                     __pyx_t_5 = (((*((short *) ( /* dim=1 */ ((char *) (((short *) ( /* dim=0 */ (__pyx_v_self->step_n.data + __pyx_t_11 * __pyx_v_self->step_n.strides[0]) )) + __pyx_t_12)) ))) <= 1) != 0);
                                     if (__pyx_t_5) {
 
-                                      /* "temporal\core\temporal.pyx":257
+                                      /* "temporal\core\temporal.pyx":268
  *                     for x in range (0, self.width):
  *                         if self.step_n[y, x] <=1:
  *                             continue             # <<<<<<<<<<<<<<
@@ -5427,29 +5619,29 @@ static PyObject *__pyx_f_8temporal_4core_8temporal_26TemporalAggregator_Dynamic_
                                       goto __pyx_L15_continue;
                                     }
 
-                                    /* "temporal\core\temporal.pyx":258
+                                    /* "temporal\core\temporal.pyx":269
  *                         if self.step_n[y, x] <=1:
  *                             continue
  *                         variance = self.step_newSD[y, x] / (self.step_n[y, x] - 1)             # <<<<<<<<<<<<<<
  *                         self.step_newSD[y, x] = sqrt(variance)
  *         self._startNewStep = 1
  */
-                                    if (unlikely(!__pyx_v_self->step_newSD.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 258; __pyx_clineno = __LINE__; goto __pyx_L13_error;}}
+                                    if (unlikely(!__pyx_v_self->step_newSD.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 269; __pyx_clineno = __LINE__; goto __pyx_L13_error;}}
                                     __pyx_t_13 = __pyx_v_y;
                                     __pyx_t_14 = __pyx_v_x;
-                                    if (unlikely(!__pyx_v_self->step_n.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 258; __pyx_clineno = __LINE__; goto __pyx_L13_error;}}
+                                    if (unlikely(!__pyx_v_self->step_n.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 269; __pyx_clineno = __LINE__; goto __pyx_L13_error;}}
                                     __pyx_t_15 = __pyx_v_y;
                                     __pyx_t_16 = __pyx_v_x;
                                     __pyx_v_variance = ((*((double *) ( /* dim=1 */ ((char *) (((double *) ( /* dim=0 */ (__pyx_v_self->step_newSD.data + __pyx_t_13 * __pyx_v_self->step_newSD.strides[0]) )) + __pyx_t_14)) ))) / ((*((short *) ( /* dim=1 */ ((char *) (((short *) ( /* dim=0 */ (__pyx_v_self->step_n.data + __pyx_t_15 * __pyx_v_self->step_n.strides[0]) )) + __pyx_t_16)) ))) - 1));
 
-                                    /* "temporal\core\temporal.pyx":259
+                                    /* "temporal\core\temporal.pyx":270
  *                             continue
  *                         variance = self.step_newSD[y, x] / (self.step_n[y, x] - 1)
  *                         self.step_newSD[y, x] = sqrt(variance)             # <<<<<<<<<<<<<<
  *         self._startNewStep = 1
  *         returnObj = {
  */
-                                    if (unlikely(!__pyx_v_self->step_newSD.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 259; __pyx_clineno = __LINE__; goto __pyx_L13_error;}}
+                                    if (unlikely(!__pyx_v_self->step_newSD.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 270; __pyx_clineno = __LINE__; goto __pyx_L13_error;}}
                                     __pyx_t_17 = __pyx_v_y;
                                     __pyx_t_18 = __pyx_v_x;
                                     *((double *) ( /* dim=1 */ ((char *) (((double *) ( /* dim=0 */ (__pyx_v_self->step_newSD.data + __pyx_t_17 * __pyx_v_self->step_newSD.strides[0]) )) + __pyx_t_18)) )) = sqrt(__pyx_v_variance);
@@ -5477,12 +5669,12 @@ static PyObject *__pyx_f_8temporal_4core_8temporal_26TemporalAggregator_Dynamic_
                                   goto __pyx_L18;
                                   __pyx_L18:;
                                   #ifdef _OPENMP
-                                  #pragma omp critical(__pyx_parallel_lastprivates3)
+                                  #pragma omp critical(__pyx_parallel_lastprivates1)
                                   #endif /* _OPENMP */
                                   {
-                                      __pyx_parallel_temp0 = __pyx_v_y;
-                                      __pyx_parallel_temp1 = __pyx_v_x;
-                                      __pyx_parallel_temp2 = __pyx_v_variance;
+                                      __pyx_parallel_temp0 = __pyx_v_variance;
+                                      __pyx_parallel_temp1 = __pyx_v_y;
+                                      __pyx_parallel_temp2 = __pyx_v_x;
                                   }
                                   __pyx_L19:;
                                   #ifdef _OPENMP
@@ -5496,9 +5688,9 @@ static PyObject *__pyx_f_8temporal_4core_8temporal_26TemporalAggregator_Dynamic_
                         __pyx_parallel_why = 4;
                       }
                       if (__pyx_parallel_why) {
-                        __pyx_v_y = __pyx_parallel_temp0;
-                        __pyx_v_x = __pyx_parallel_temp1;
-                        __pyx_v_variance = __pyx_parallel_temp2;
+                        __pyx_v_variance = __pyx_parallel_temp0;
+                        __pyx_v_y = __pyx_parallel_temp1;
+                        __pyx_v_x = __pyx_parallel_temp2;
                         switch (__pyx_parallel_why) {
                               case 3: goto __pyx_L10_return;
                               case 4:
@@ -5588,7 +5780,7 @@ static PyObject *__pyx_f_8temporal_4core_8temporal_26TemporalAggregator_Dynamic_
           #endif
         }
 
-        /* "temporal\core\temporal.pyx":252
+        /* "temporal\core\temporal.pyx":263
  *             Py_ssize_t x, y
  *         if self._doSD:
  *             with nogil, cython.wraparound(False), parallel(num_threads=6):             # <<<<<<<<<<<<<<
@@ -5621,7 +5813,7 @@ static PyObject *__pyx_f_8temporal_4core_8temporal_26TemporalAggregator_Dynamic_
   }
   __pyx_L3:;
 
-  /* "temporal\core\temporal.pyx":260
+  /* "temporal\core\temporal.pyx":271
  *                         variance = self.step_newSD[y, x] / (self.step_n[y, x] - 1)
  *                         self.step_newSD[y, x] = sqrt(variance)
  *         self._startNewStep = 1             # <<<<<<<<<<<<<<
@@ -5630,35 +5822,35 @@ static PyObject *__pyx_f_8temporal_4core_8temporal_26TemporalAggregator_Dynamic_
  */
   __pyx_v_self->_startNewStep = 1;
 
-  /* "temporal\core\temporal.pyx":261
+  /* "temporal\core\temporal.pyx":272
  *                         self.step_newSD[y, x] = sqrt(variance)
  *         self._startNewStep = 1
  *         returnObj = {             # <<<<<<<<<<<<<<
  *             tempstats.COUNT: np.asarray(self.step_n)
  *         }
  */
-  __pyx_t_1 = PyDict_New(); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 261; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = PyDict_New(); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 272; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
 
-  /* "temporal\core\temporal.pyx":262
+  /* "temporal\core\temporal.pyx":273
  *         self._startNewStep = 1
  *         returnObj = {
  *             tempstats.COUNT: np.asarray(self.step_n)             # <<<<<<<<<<<<<<
  *         }
  *         if self._outputMean:
  */
-  __pyx_t_2 = __Pyx_GetModuleGlobalName(__pyx_n_s_tempstats); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 262; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_2 = __Pyx_GetModuleGlobalName(__pyx_n_s_tempstats); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 273; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_COUNT); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 262; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_COUNT); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 273; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_4 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 262; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_4 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 273; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_4);
-  __pyx_t_19 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_n_s_asarray); if (unlikely(!__pyx_t_19)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 262; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_19 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_n_s_asarray); if (unlikely(!__pyx_t_19)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 273; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_19);
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  if (unlikely(!__pyx_v_self->step_n.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 262; __pyx_clineno = __LINE__; goto __pyx_L1_error;}}
-  __pyx_t_4 = __pyx_memoryview_fromslice(__pyx_v_self->step_n, 2, (PyObject *(*)(char *)) __pyx_memview_get_short, (int (*)(char *, PyObject *)) __pyx_memview_set_short, 0);; if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 262; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (unlikely(!__pyx_v_self->step_n.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 273; __pyx_clineno = __LINE__; goto __pyx_L1_error;}}
+  __pyx_t_4 = __pyx_memoryview_fromslice(__pyx_v_self->step_n, 2, (PyObject *(*)(char *)) __pyx_memview_get_short, (int (*)(char *, PyObject *)) __pyx_memview_set_short, 0);; if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 273; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_4);
   __pyx_t_20 = NULL;
   if (CYTHON_COMPILING_IN_CPYTHON && unlikely(PyMethod_Check(__pyx_t_19))) {
@@ -5671,28 +5863,28 @@ static PyObject *__pyx_f_8temporal_4core_8temporal_26TemporalAggregator_Dynamic_
     }
   }
   if (!__pyx_t_20) {
-    __pyx_t_2 = __Pyx_PyObject_CallOneArg(__pyx_t_19, __pyx_t_4); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 262; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_2 = __Pyx_PyObject_CallOneArg(__pyx_t_19, __pyx_t_4); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 273; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
     __Pyx_GOTREF(__pyx_t_2);
   } else {
-    __pyx_t_21 = PyTuple_New(1+1); if (unlikely(!__pyx_t_21)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 262; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_21 = PyTuple_New(1+1); if (unlikely(!__pyx_t_21)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 273; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_21);
     PyTuple_SET_ITEM(__pyx_t_21, 0, __pyx_t_20); __Pyx_GIVEREF(__pyx_t_20); __pyx_t_20 = NULL;
     PyTuple_SET_ITEM(__pyx_t_21, 0+1, __pyx_t_4);
     __Pyx_GIVEREF(__pyx_t_4);
     __pyx_t_4 = 0;
-    __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_19, __pyx_t_21, NULL); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 262; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_19, __pyx_t_21, NULL); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 273; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_2);
     __Pyx_DECREF(__pyx_t_21); __pyx_t_21 = 0;
   }
   __Pyx_DECREF(__pyx_t_19); __pyx_t_19 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_t_3, __pyx_t_2) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 261; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (PyDict_SetItem(__pyx_t_1, __pyx_t_3, __pyx_t_2) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 272; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __pyx_v_returnObj = ((PyObject*)__pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "temporal\core\temporal.pyx":264
+  /* "temporal\core\temporal.pyx":275
  *             tempstats.COUNT: np.asarray(self.step_n)
  *         }
  *         if self._outputMean:             # <<<<<<<<<<<<<<
@@ -5702,20 +5894,20 @@ static PyObject *__pyx_f_8temporal_4core_8temporal_26TemporalAggregator_Dynamic_
   __pyx_t_5 = (__pyx_v_self->_outputMean != 0);
   if (__pyx_t_5) {
 
-    /* "temporal\core\temporal.pyx":265
+    /* "temporal\core\temporal.pyx":276
  *         }
  *         if self._outputMean:
  *             returnObj[tempstats.MEAN] = np.asarray(self.step_newMean).astype('float32')             # <<<<<<<<<<<<<<
  *         if self._doSD:
  *             returnObj[tempstats.SD] = np.asarray(self.step_newSD).astype('float32')
  */
-    __pyx_t_2 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 265; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_2 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 276; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_2);
-    __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_asarray); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 265; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_asarray); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 276; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_3);
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-    if (unlikely(!__pyx_v_self->step_newMean.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 265; __pyx_clineno = __LINE__; goto __pyx_L1_error;}}
-    __pyx_t_2 = __pyx_memoryview_fromslice(__pyx_v_self->step_newMean, 2, (PyObject *(*)(char *)) __pyx_memview_get_double, (int (*)(char *, PyObject *)) __pyx_memview_set_double, 0);; if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 265; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    if (unlikely(!__pyx_v_self->step_newMean.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 276; __pyx_clineno = __LINE__; goto __pyx_L1_error;}}
+    __pyx_t_2 = __pyx_memoryview_fromslice(__pyx_v_self->step_newMean, 2, (PyObject *(*)(char *)) __pyx_memview_get_double, (int (*)(char *, PyObject *)) __pyx_memview_set_double, 0);; if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 276; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_2);
     __pyx_t_19 = NULL;
     if (CYTHON_COMPILING_IN_CPYTHON && unlikely(PyMethod_Check(__pyx_t_3))) {
@@ -5728,40 +5920,40 @@ static PyObject *__pyx_f_8temporal_4core_8temporal_26TemporalAggregator_Dynamic_
       }
     }
     if (!__pyx_t_19) {
-      __pyx_t_1 = __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_t_2); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 265; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_1 = __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_t_2); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 276; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
       __Pyx_GOTREF(__pyx_t_1);
     } else {
-      __pyx_t_21 = PyTuple_New(1+1); if (unlikely(!__pyx_t_21)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 265; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_21 = PyTuple_New(1+1); if (unlikely(!__pyx_t_21)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 276; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_21);
       PyTuple_SET_ITEM(__pyx_t_21, 0, __pyx_t_19); __Pyx_GIVEREF(__pyx_t_19); __pyx_t_19 = NULL;
       PyTuple_SET_ITEM(__pyx_t_21, 0+1, __pyx_t_2);
       __Pyx_GIVEREF(__pyx_t_2);
       __pyx_t_2 = 0;
-      __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_t_21, NULL); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 265; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_t_21, NULL); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 276; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_1);
       __Pyx_DECREF(__pyx_t_21); __pyx_t_21 = 0;
     }
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-    __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_astype); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 265; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_astype); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 276; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_3);
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-    __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_tuple_, NULL); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 265; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_tuple_, NULL); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 276; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-    __pyx_t_3 = __Pyx_GetModuleGlobalName(__pyx_n_s_tempstats); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 265; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_3 = __Pyx_GetModuleGlobalName(__pyx_n_s_tempstats); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 276; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_3);
-    __pyx_t_21 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_MEAN); if (unlikely(!__pyx_t_21)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 265; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_21 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_MEAN); if (unlikely(!__pyx_t_21)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 276; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_21);
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-    if (unlikely(PyDict_SetItem(__pyx_v_returnObj, __pyx_t_21, __pyx_t_1) < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 265; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    if (unlikely(PyDict_SetItem(__pyx_v_returnObj, __pyx_t_21, __pyx_t_1) < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 276; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_DECREF(__pyx_t_21); __pyx_t_21 = 0;
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
     goto __pyx_L22;
   }
   __pyx_L22:;
 
-  /* "temporal\core\temporal.pyx":266
+  /* "temporal\core\temporal.pyx":277
  *         if self._outputMean:
  *             returnObj[tempstats.MEAN] = np.asarray(self.step_newMean).astype('float32')
  *         if self._doSD:             # <<<<<<<<<<<<<<
@@ -5771,20 +5963,20 @@ static PyObject *__pyx_f_8temporal_4core_8temporal_26TemporalAggregator_Dynamic_
   __pyx_t_5 = (__pyx_v_self->_doSD != 0);
   if (__pyx_t_5) {
 
-    /* "temporal\core\temporal.pyx":267
+    /* "temporal\core\temporal.pyx":278
  *             returnObj[tempstats.MEAN] = np.asarray(self.step_newMean).astype('float32')
  *         if self._doSD:
  *             returnObj[tempstats.SD] = np.asarray(self.step_newSD).astype('float32')             # <<<<<<<<<<<<<<
  *         if self._doMin:
  *             # get rid of the infinities
  */
-    __pyx_t_21 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_21)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 267; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_21 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_21)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 278; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_21);
-    __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_21, __pyx_n_s_asarray); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 267; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_21, __pyx_n_s_asarray); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 278; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_3);
     __Pyx_DECREF(__pyx_t_21); __pyx_t_21 = 0;
-    if (unlikely(!__pyx_v_self->step_newSD.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 267; __pyx_clineno = __LINE__; goto __pyx_L1_error;}}
-    __pyx_t_21 = __pyx_memoryview_fromslice(__pyx_v_self->step_newSD, 2, (PyObject *(*)(char *)) __pyx_memview_get_double, (int (*)(char *, PyObject *)) __pyx_memview_set_double, 0);; if (unlikely(!__pyx_t_21)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 267; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    if (unlikely(!__pyx_v_self->step_newSD.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 278; __pyx_clineno = __LINE__; goto __pyx_L1_error;}}
+    __pyx_t_21 = __pyx_memoryview_fromslice(__pyx_v_self->step_newSD, 2, (PyObject *(*)(char *)) __pyx_memview_get_double, (int (*)(char *, PyObject *)) __pyx_memview_set_double, 0);; if (unlikely(!__pyx_t_21)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 278; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_21);
     __pyx_t_2 = NULL;
     if (CYTHON_COMPILING_IN_CPYTHON && unlikely(PyMethod_Check(__pyx_t_3))) {
@@ -5797,40 +5989,40 @@ static PyObject *__pyx_f_8temporal_4core_8temporal_26TemporalAggregator_Dynamic_
       }
     }
     if (!__pyx_t_2) {
-      __pyx_t_1 = __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_t_21); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 267; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_1 = __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_t_21); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 278; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_DECREF(__pyx_t_21); __pyx_t_21 = 0;
       __Pyx_GOTREF(__pyx_t_1);
     } else {
-      __pyx_t_19 = PyTuple_New(1+1); if (unlikely(!__pyx_t_19)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 267; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_19 = PyTuple_New(1+1); if (unlikely(!__pyx_t_19)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 278; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_19);
       PyTuple_SET_ITEM(__pyx_t_19, 0, __pyx_t_2); __Pyx_GIVEREF(__pyx_t_2); __pyx_t_2 = NULL;
       PyTuple_SET_ITEM(__pyx_t_19, 0+1, __pyx_t_21);
       __Pyx_GIVEREF(__pyx_t_21);
       __pyx_t_21 = 0;
-      __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_t_19, NULL); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 267; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_t_19, NULL); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 278; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_1);
       __Pyx_DECREF(__pyx_t_19); __pyx_t_19 = 0;
     }
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-    __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_astype); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 267; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_astype); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 278; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_3);
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-    __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_tuple__2, NULL); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 267; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_tuple__2, NULL); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 278; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-    __pyx_t_3 = __Pyx_GetModuleGlobalName(__pyx_n_s_tempstats); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 267; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_3 = __Pyx_GetModuleGlobalName(__pyx_n_s_tempstats); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 278; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_3);
-    __pyx_t_19 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_SD); if (unlikely(!__pyx_t_19)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 267; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_19 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_SD); if (unlikely(!__pyx_t_19)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 278; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_19);
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-    if (unlikely(PyDict_SetItem(__pyx_v_returnObj, __pyx_t_19, __pyx_t_1) < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 267; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    if (unlikely(PyDict_SetItem(__pyx_v_returnObj, __pyx_t_19, __pyx_t_1) < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 278; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_DECREF(__pyx_t_19); __pyx_t_19 = 0;
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
     goto __pyx_L23;
   }
   __pyx_L23:;
 
-  /* "temporal\core\temporal.pyx":268
+  /* "temporal\core\temporal.pyx":279
  *         if self._doSD:
  *             returnObj[tempstats.SD] = np.asarray(self.step_newSD).astype('float32')
  *         if self._doMin:             # <<<<<<<<<<<<<<
@@ -5840,7 +6032,7 @@ static PyObject *__pyx_f_8temporal_4core_8temporal_26TemporalAggregator_Dynamic_
   __pyx_t_5 = (__pyx_v_self->_doMin != 0);
   if (__pyx_t_5) {
 
-    /* "temporal\core\temporal.pyx":270
+    /* "temporal\core\temporal.pyx":281
  *         if self._doMin:
  *             # get rid of the infinities
  *             with nogil, cython.wraparound(False), parallel(num_threads=6):             # <<<<<<<<<<<<<<
@@ -5865,7 +6057,7 @@ static PyObject *__pyx_f_8temporal_4core_8temporal_26TemporalAggregator_Dynamic_
                   #define unlikely(x) (x)
               #endif
               #ifdef _OPENMP
-              #pragma omp parallel  private(__pyx_t_26, __pyx_t_23, __pyx_t_7, __pyx_t_24, __pyx_t_9, __pyx_t_25, __pyx_t_5, __pyx_t_6, __pyx_t_10, __pyx_t_22, __pyx_t_8) private(__pyx_filename, __pyx_lineno, __pyx_clineno) shared(__pyx_parallel_why, __pyx_parallel_exc_type, __pyx_parallel_exc_value, __pyx_parallel_exc_tb) num_threads(6)
+              #pragma omp parallel  private(__pyx_t_10, __pyx_t_24, __pyx_t_23, __pyx_t_26, __pyx_t_5, __pyx_t_9, __pyx_t_7, __pyx_t_6, __pyx_t_22, __pyx_t_8, __pyx_t_25) private(__pyx_filename, __pyx_lineno, __pyx_clineno) shared(__pyx_parallel_why, __pyx_parallel_exc_type, __pyx_parallel_exc_value, __pyx_parallel_exc_tb) num_threads(6)
               #endif /* _OPENMP */
               {
                   #ifdef _OPENMP
@@ -5875,7 +6067,7 @@ static PyObject *__pyx_f_8temporal_4core_8temporal_26TemporalAggregator_Dynamic_
                   Py_BEGIN_ALLOW_THREADS
                   #endif /* _OPENMP */
 
-                  /* "temporal\core\temporal.pyx":271
+                  /* "temporal\core\temporal.pyx":282
  *             # get rid of the infinities
  *             with nogil, cython.wraparound(False), parallel(num_threads=6):
  *                 for y in prange(self.height, schedule='static'):             # <<<<<<<<<<<<<<
@@ -5904,7 +6096,7 @@ static PyObject *__pyx_f_8temporal_4core_8temporal_26TemporalAggregator_Dynamic_
                                   /* Initialize private variables to invalid values */
                                   __pyx_v_x = ((Py_ssize_t)0xbad0bad0);
 
-                                  /* "temporal\core\temporal.pyx":272
+                                  /* "temporal\core\temporal.pyx":283
  *             with nogil, cython.wraparound(False), parallel(num_threads=6):
  *                 for y in prange(self.height, schedule='static'):
  *                     x = -1             # <<<<<<<<<<<<<<
@@ -5913,7 +6105,7 @@ static PyObject *__pyx_f_8temporal_4core_8temporal_26TemporalAggregator_Dynamic_
  */
                                   __pyx_v_x = -1;
 
-                                  /* "temporal\core\temporal.pyx":273
+                                  /* "temporal\core\temporal.pyx":284
  *                 for y in prange(self.height, schedule='static'):
  *                     x = -1
  *                     for x in range(0, self.width):             # <<<<<<<<<<<<<<
@@ -5924,20 +6116,20 @@ static PyObject *__pyx_f_8temporal_4core_8temporal_26TemporalAggregator_Dynamic_
                                   for (__pyx_t_10 = 0; __pyx_t_10 < __pyx_t_9; __pyx_t_10+=1) {
                                     __pyx_v_x = __pyx_t_10;
 
-                                    /* "temporal\core\temporal.pyx":274
+                                    /* "temporal\core\temporal.pyx":285
  *                     x = -1
  *                     for x in range(0, self.width):
  *                         if self.step_n[y, x] == 0:             # <<<<<<<<<<<<<<
  *                             self.step_Min[y, x] = self.ndv
  *             returnObj[tempstats.MIN] = np.asarray(self.step_Min)
  */
-                                    if (unlikely(!__pyx_v_self->step_n.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 274; __pyx_clineno = __LINE__; goto __pyx_L34_error;}}
+                                    if (unlikely(!__pyx_v_self->step_n.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 285; __pyx_clineno = __LINE__; goto __pyx_L34_error;}}
                                     __pyx_t_22 = __pyx_v_y;
                                     __pyx_t_23 = __pyx_v_x;
                                     __pyx_t_5 = (((*((short *) ( /* dim=1 */ ((char *) (((short *) ( /* dim=0 */ (__pyx_v_self->step_n.data + __pyx_t_22 * __pyx_v_self->step_n.strides[0]) )) + __pyx_t_23)) ))) == 0) != 0);
                                     if (__pyx_t_5) {
 
-                                      /* "temporal\core\temporal.pyx":275
+                                      /* "temporal\core\temporal.pyx":286
  *                     for x in range(0, self.width):
  *                         if self.step_n[y, x] == 0:
  *                             self.step_Min[y, x] = self.ndv             # <<<<<<<<<<<<<<
@@ -5945,7 +6137,7 @@ static PyObject *__pyx_f_8temporal_4core_8temporal_26TemporalAggregator_Dynamic_
  *         if self._doMax:
  */
                                       __pyx_t_24 = __pyx_v_self->ndv;
-                                      if (unlikely(!__pyx_v_self->step_Min.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 275; __pyx_clineno = __LINE__; goto __pyx_L34_error;}}
+                                      if (unlikely(!__pyx_v_self->step_Min.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 286; __pyx_clineno = __LINE__; goto __pyx_L34_error;}}
                                       __pyx_t_25 = __pyx_v_y;
                                       __pyx_t_26 = __pyx_v_x;
                                       *((float *) ( /* dim=1 */ ((char *) (((float *) ( /* dim=0 */ (__pyx_v_self->step_Min.data + __pyx_t_25 * __pyx_v_self->step_Min.strides[0]) )) + __pyx_t_26)) )) = __pyx_t_24;
@@ -5975,7 +6167,7 @@ static PyObject *__pyx_f_8temporal_4core_8temporal_26TemporalAggregator_Dynamic_
                                   goto __pyx_L39;
                                   __pyx_L39:;
                                   #ifdef _OPENMP
-                                  #pragma omp critical(__pyx_parallel_lastprivates4)
+                                  #pragma omp critical(__pyx_parallel_lastprivates2)
                                   #endif /* _OPENMP */
                                   {
                                       __pyx_parallel_temp0 = __pyx_v_y;
@@ -6084,7 +6276,7 @@ static PyObject *__pyx_f_8temporal_4core_8temporal_26TemporalAggregator_Dynamic_
           #endif
         }
 
-        /* "temporal\core\temporal.pyx":270
+        /* "temporal\core\temporal.pyx":281
  *         if self._doMin:
  *             # get rid of the infinities
  *             with nogil, cython.wraparound(False), parallel(num_threads=6):             # <<<<<<<<<<<<<<
@@ -6114,20 +6306,20 @@ static PyObject *__pyx_f_8temporal_4core_8temporal_26TemporalAggregator_Dynamic_
         }
     }
 
-    /* "temporal\core\temporal.pyx":276
+    /* "temporal\core\temporal.pyx":287
  *                         if self.step_n[y, x] == 0:
  *                             self.step_Min[y, x] = self.ndv
  *             returnObj[tempstats.MIN] = np.asarray(self.step_Min)             # <<<<<<<<<<<<<<
  *         if self._doMax:
  *             # get rid of the infinities
  */
-    __pyx_t_19 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_19)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 276; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_19 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_19)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 287; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_19);
-    __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_19, __pyx_n_s_asarray); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 276; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_19, __pyx_n_s_asarray); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 287; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_3);
     __Pyx_DECREF(__pyx_t_19); __pyx_t_19 = 0;
-    if (unlikely(!__pyx_v_self->step_Min.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 276; __pyx_clineno = __LINE__; goto __pyx_L1_error;}}
-    __pyx_t_19 = __pyx_memoryview_fromslice(__pyx_v_self->step_Min, 2, (PyObject *(*)(char *)) __pyx_memview_get_float, (int (*)(char *, PyObject *)) __pyx_memview_set_float, 0);; if (unlikely(!__pyx_t_19)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 276; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    if (unlikely(!__pyx_v_self->step_Min.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 287; __pyx_clineno = __LINE__; goto __pyx_L1_error;}}
+    __pyx_t_19 = __pyx_memoryview_fromslice(__pyx_v_self->step_Min, 2, (PyObject *(*)(char *)) __pyx_memview_get_float, (int (*)(char *, PyObject *)) __pyx_memview_set_float, 0);; if (unlikely(!__pyx_t_19)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 287; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_19);
     __pyx_t_21 = NULL;
     if (CYTHON_COMPILING_IN_CPYTHON && unlikely(PyMethod_Check(__pyx_t_3))) {
@@ -6140,34 +6332,34 @@ static PyObject *__pyx_f_8temporal_4core_8temporal_26TemporalAggregator_Dynamic_
       }
     }
     if (!__pyx_t_21) {
-      __pyx_t_1 = __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_t_19); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 276; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_1 = __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_t_19); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 287; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_DECREF(__pyx_t_19); __pyx_t_19 = 0;
       __Pyx_GOTREF(__pyx_t_1);
     } else {
-      __pyx_t_2 = PyTuple_New(1+1); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 276; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_2 = PyTuple_New(1+1); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 287; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_2);
       PyTuple_SET_ITEM(__pyx_t_2, 0, __pyx_t_21); __Pyx_GIVEREF(__pyx_t_21); __pyx_t_21 = NULL;
       PyTuple_SET_ITEM(__pyx_t_2, 0+1, __pyx_t_19);
       __Pyx_GIVEREF(__pyx_t_19);
       __pyx_t_19 = 0;
-      __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_t_2, NULL); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 276; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_t_2, NULL); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 287; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_1);
       __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
     }
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-    __pyx_t_3 = __Pyx_GetModuleGlobalName(__pyx_n_s_tempstats); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 276; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_3 = __Pyx_GetModuleGlobalName(__pyx_n_s_tempstats); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 287; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_3);
-    __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_MIN); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 276; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_MIN); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 287; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_2);
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-    if (unlikely(PyDict_SetItem(__pyx_v_returnObj, __pyx_t_2, __pyx_t_1) < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 276; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    if (unlikely(PyDict_SetItem(__pyx_v_returnObj, __pyx_t_2, __pyx_t_1) < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 287; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
     goto __pyx_L24;
   }
   __pyx_L24:;
 
-  /* "temporal\core\temporal.pyx":277
+  /* "temporal\core\temporal.pyx":288
  *                             self.step_Min[y, x] = self.ndv
  *             returnObj[tempstats.MIN] = np.asarray(self.step_Min)
  *         if self._doMax:             # <<<<<<<<<<<<<<
@@ -6177,7 +6369,7 @@ static PyObject *__pyx_f_8temporal_4core_8temporal_26TemporalAggregator_Dynamic_
   __pyx_t_5 = (__pyx_v_self->_doMax != 0);
   if (__pyx_t_5) {
 
-    /* "temporal\core\temporal.pyx":279
+    /* "temporal\core\temporal.pyx":290
  *         if self._doMax:
  *             # get rid of the infinities
  *             with nogil, cython.wraparound(False), parallel(num_threads=6):             # <<<<<<<<<<<<<<
@@ -6202,7 +6394,7 @@ static PyObject *__pyx_f_8temporal_4core_8temporal_26TemporalAggregator_Dynamic_
                   #define unlikely(x) (x)
               #endif
               #ifdef _OPENMP
-              #pragma omp parallel  private(__pyx_t_30, __pyx_t_28, __pyx_t_27, __pyx_t_29, __pyx_t_7, __pyx_t_24, __pyx_t_9, __pyx_t_5, __pyx_t_6, __pyx_t_10, __pyx_t_8) private(__pyx_filename, __pyx_lineno, __pyx_clineno) shared(__pyx_parallel_why, __pyx_parallel_exc_type, __pyx_parallel_exc_value, __pyx_parallel_exc_tb) num_threads(6)
+              #pragma omp parallel  private(__pyx_t_28, __pyx_t_10, __pyx_t_24, __pyx_t_5, __pyx_t_27, __pyx_t_29, __pyx_t_9, __pyx_t_7, __pyx_t_6, __pyx_t_30, __pyx_t_8) private(__pyx_filename, __pyx_lineno, __pyx_clineno) shared(__pyx_parallel_why, __pyx_parallel_exc_type, __pyx_parallel_exc_value, __pyx_parallel_exc_tb) num_threads(6)
               #endif /* _OPENMP */
               {
                   #ifdef _OPENMP
@@ -6212,7 +6404,7 @@ static PyObject *__pyx_f_8temporal_4core_8temporal_26TemporalAggregator_Dynamic_
                   Py_BEGIN_ALLOW_THREADS
                   #endif /* _OPENMP */
 
-                  /* "temporal\core\temporal.pyx":280
+                  /* "temporal\core\temporal.pyx":291
  *             # get rid of the infinities
  *             with nogil, cython.wraparound(False), parallel(num_threads=6):
  *                 for y in prange(self.height, schedule='static'):             # <<<<<<<<<<<<<<
@@ -6241,7 +6433,7 @@ static PyObject *__pyx_f_8temporal_4core_8temporal_26TemporalAggregator_Dynamic_
                                   /* Initialize private variables to invalid values */
                                   __pyx_v_x = ((Py_ssize_t)0xbad0bad0);
 
-                                  /* "temporal\core\temporal.pyx":281
+                                  /* "temporal\core\temporal.pyx":292
  *             with nogil, cython.wraparound(False), parallel(num_threads=6):
  *                 for y in prange(self.height, schedule='static'):
  *                     x = -1             # <<<<<<<<<<<<<<
@@ -6250,7 +6442,7 @@ static PyObject *__pyx_f_8temporal_4core_8temporal_26TemporalAggregator_Dynamic_
  */
                                   __pyx_v_x = -1;
 
-                                  /* "temporal\core\temporal.pyx":282
+                                  /* "temporal\core\temporal.pyx":293
  *                 for y in prange(self.height, schedule='static'):
  *                     x = -1
  *                     for x in range(0, self.width):             # <<<<<<<<<<<<<<
@@ -6261,20 +6453,20 @@ static PyObject *__pyx_f_8temporal_4core_8temporal_26TemporalAggregator_Dynamic_
                                   for (__pyx_t_10 = 0; __pyx_t_10 < __pyx_t_9; __pyx_t_10+=1) {
                                     __pyx_v_x = __pyx_t_10;
 
-                                    /* "temporal\core\temporal.pyx":283
+                                    /* "temporal\core\temporal.pyx":294
  *                     x = -1
  *                     for x in range(0, self.width):
  *                         if self.step_n[y, x] == 0:             # <<<<<<<<<<<<<<
  *                             self.step_Max[y, x] = self.ndv
  *             returnObj[tempstats.MAX] = np.asarray(self.step_Max)
  */
-                                    if (unlikely(!__pyx_v_self->step_n.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 283; __pyx_clineno = __LINE__; goto __pyx_L53_error;}}
+                                    if (unlikely(!__pyx_v_self->step_n.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 294; __pyx_clineno = __LINE__; goto __pyx_L53_error;}}
                                     __pyx_t_27 = __pyx_v_y;
                                     __pyx_t_28 = __pyx_v_x;
                                     __pyx_t_5 = (((*((short *) ( /* dim=1 */ ((char *) (((short *) ( /* dim=0 */ (__pyx_v_self->step_n.data + __pyx_t_27 * __pyx_v_self->step_n.strides[0]) )) + __pyx_t_28)) ))) == 0) != 0);
                                     if (__pyx_t_5) {
 
-                                      /* "temporal\core\temporal.pyx":284
+                                      /* "temporal\core\temporal.pyx":295
  *                     for x in range(0, self.width):
  *                         if self.step_n[y, x] == 0:
  *                             self.step_Max[y, x] = self.ndv             # <<<<<<<<<<<<<<
@@ -6282,7 +6474,7 @@ static PyObject *__pyx_f_8temporal_4core_8temporal_26TemporalAggregator_Dynamic_
  *         if self._doSum:
  */
                                       __pyx_t_24 = __pyx_v_self->ndv;
-                                      if (unlikely(!__pyx_v_self->step_Max.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 284; __pyx_clineno = __LINE__; goto __pyx_L53_error;}}
+                                      if (unlikely(!__pyx_v_self->step_Max.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 295; __pyx_clineno = __LINE__; goto __pyx_L53_error;}}
                                       __pyx_t_29 = __pyx_v_y;
                                       __pyx_t_30 = __pyx_v_x;
                                       *((float *) ( /* dim=1 */ ((char *) (((float *) ( /* dim=0 */ (__pyx_v_self->step_Max.data + __pyx_t_29 * __pyx_v_self->step_Max.strides[0]) )) + __pyx_t_30)) )) = __pyx_t_24;
@@ -6312,7 +6504,7 @@ static PyObject *__pyx_f_8temporal_4core_8temporal_26TemporalAggregator_Dynamic_
                                   goto __pyx_L58;
                                   __pyx_L58:;
                                   #ifdef _OPENMP
-                                  #pragma omp critical(__pyx_parallel_lastprivates5)
+                                  #pragma omp critical(__pyx_parallel_lastprivates3)
                                   #endif /* _OPENMP */
                                   {
                                       __pyx_parallel_temp0 = __pyx_v_y;
@@ -6421,7 +6613,7 @@ static PyObject *__pyx_f_8temporal_4core_8temporal_26TemporalAggregator_Dynamic_
           #endif
         }
 
-        /* "temporal\core\temporal.pyx":279
+        /* "temporal\core\temporal.pyx":290
  *         if self._doMax:
  *             # get rid of the infinities
  *             with nogil, cython.wraparound(False), parallel(num_threads=6):             # <<<<<<<<<<<<<<
@@ -6451,20 +6643,20 @@ static PyObject *__pyx_f_8temporal_4core_8temporal_26TemporalAggregator_Dynamic_
         }
     }
 
-    /* "temporal\core\temporal.pyx":285
+    /* "temporal\core\temporal.pyx":296
  *                         if self.step_n[y, x] == 0:
  *                             self.step_Max[y, x] = self.ndv
  *             returnObj[tempstats.MAX] = np.asarray(self.step_Max)             # <<<<<<<<<<<<<<
  *         if self._doSum:
  *             returnObj[tempstats.SUM] = np.asarray(self.step_Sum)
  */
-    __pyx_t_2 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 285; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_2 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 296; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_2);
-    __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_asarray); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 285; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_asarray); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 296; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_3);
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-    if (unlikely(!__pyx_v_self->step_Max.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 285; __pyx_clineno = __LINE__; goto __pyx_L1_error;}}
-    __pyx_t_2 = __pyx_memoryview_fromslice(__pyx_v_self->step_Max, 2, (PyObject *(*)(char *)) __pyx_memview_get_float, (int (*)(char *, PyObject *)) __pyx_memview_set_float, 0);; if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 285; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    if (unlikely(!__pyx_v_self->step_Max.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 296; __pyx_clineno = __LINE__; goto __pyx_L1_error;}}
+    __pyx_t_2 = __pyx_memoryview_fromslice(__pyx_v_self->step_Max, 2, (PyObject *(*)(char *)) __pyx_memview_get_float, (int (*)(char *, PyObject *)) __pyx_memview_set_float, 0);; if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 296; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_2);
     __pyx_t_19 = NULL;
     if (CYTHON_COMPILING_IN_CPYTHON && unlikely(PyMethod_Check(__pyx_t_3))) {
@@ -6477,34 +6669,34 @@ static PyObject *__pyx_f_8temporal_4core_8temporal_26TemporalAggregator_Dynamic_
       }
     }
     if (!__pyx_t_19) {
-      __pyx_t_1 = __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_t_2); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 285; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_1 = __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_t_2); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 296; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
       __Pyx_GOTREF(__pyx_t_1);
     } else {
-      __pyx_t_21 = PyTuple_New(1+1); if (unlikely(!__pyx_t_21)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 285; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_21 = PyTuple_New(1+1); if (unlikely(!__pyx_t_21)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 296; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_21);
       PyTuple_SET_ITEM(__pyx_t_21, 0, __pyx_t_19); __Pyx_GIVEREF(__pyx_t_19); __pyx_t_19 = NULL;
       PyTuple_SET_ITEM(__pyx_t_21, 0+1, __pyx_t_2);
       __Pyx_GIVEREF(__pyx_t_2);
       __pyx_t_2 = 0;
-      __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_t_21, NULL); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 285; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_t_21, NULL); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 296; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_1);
       __Pyx_DECREF(__pyx_t_21); __pyx_t_21 = 0;
     }
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-    __pyx_t_3 = __Pyx_GetModuleGlobalName(__pyx_n_s_tempstats); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 285; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_3 = __Pyx_GetModuleGlobalName(__pyx_n_s_tempstats); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 296; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_3);
-    __pyx_t_21 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_MAX); if (unlikely(!__pyx_t_21)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 285; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_21 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_MAX); if (unlikely(!__pyx_t_21)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 296; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_21);
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-    if (unlikely(PyDict_SetItem(__pyx_v_returnObj, __pyx_t_21, __pyx_t_1) < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 285; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    if (unlikely(PyDict_SetItem(__pyx_v_returnObj, __pyx_t_21, __pyx_t_1) < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 296; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_DECREF(__pyx_t_21); __pyx_t_21 = 0;
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
     goto __pyx_L43;
   }
   __pyx_L43:;
 
-  /* "temporal\core\temporal.pyx":286
+  /* "temporal\core\temporal.pyx":297
  *                             self.step_Max[y, x] = self.ndv
  *             returnObj[tempstats.MAX] = np.asarray(self.step_Max)
  *         if self._doSum:             # <<<<<<<<<<<<<<
@@ -6514,20 +6706,20 @@ static PyObject *__pyx_f_8temporal_4core_8temporal_26TemporalAggregator_Dynamic_
   __pyx_t_5 = (__pyx_v_self->_doSum != 0);
   if (__pyx_t_5) {
 
-    /* "temporal\core\temporal.pyx":287
+    /* "temporal\core\temporal.pyx":298
  *             returnObj[tempstats.MAX] = np.asarray(self.step_Max)
  *         if self._doSum:
  *             returnObj[tempstats.SUM] = np.asarray(self.step_Sum)             # <<<<<<<<<<<<<<
  * 
  *         return returnObj
  */
-    __pyx_t_21 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_21)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 287; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_21 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_21)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 298; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_21);
-    __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_21, __pyx_n_s_asarray); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 287; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_21, __pyx_n_s_asarray); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 298; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_3);
     __Pyx_DECREF(__pyx_t_21); __pyx_t_21 = 0;
-    if (unlikely(!__pyx_v_self->step_Sum.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 287; __pyx_clineno = __LINE__; goto __pyx_L1_error;}}
-    __pyx_t_21 = __pyx_memoryview_fromslice(__pyx_v_self->step_Sum, 2, (PyObject *(*)(char *)) __pyx_memview_get_float, (int (*)(char *, PyObject *)) __pyx_memview_set_float, 0);; if (unlikely(!__pyx_t_21)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 287; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    if (unlikely(!__pyx_v_self->step_Sum.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 298; __pyx_clineno = __LINE__; goto __pyx_L1_error;}}
+    __pyx_t_21 = __pyx_memoryview_fromslice(__pyx_v_self->step_Sum, 2, (PyObject *(*)(char *)) __pyx_memview_get_float, (int (*)(char *, PyObject *)) __pyx_memview_set_float, 0);; if (unlikely(!__pyx_t_21)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 298; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_21);
     __pyx_t_2 = NULL;
     if (CYTHON_COMPILING_IN_CPYTHON && unlikely(PyMethod_Check(__pyx_t_3))) {
@@ -6540,34 +6732,34 @@ static PyObject *__pyx_f_8temporal_4core_8temporal_26TemporalAggregator_Dynamic_
       }
     }
     if (!__pyx_t_2) {
-      __pyx_t_1 = __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_t_21); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 287; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_1 = __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_t_21); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 298; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_DECREF(__pyx_t_21); __pyx_t_21 = 0;
       __Pyx_GOTREF(__pyx_t_1);
     } else {
-      __pyx_t_19 = PyTuple_New(1+1); if (unlikely(!__pyx_t_19)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 287; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_19 = PyTuple_New(1+1); if (unlikely(!__pyx_t_19)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 298; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_19);
       PyTuple_SET_ITEM(__pyx_t_19, 0, __pyx_t_2); __Pyx_GIVEREF(__pyx_t_2); __pyx_t_2 = NULL;
       PyTuple_SET_ITEM(__pyx_t_19, 0+1, __pyx_t_21);
       __Pyx_GIVEREF(__pyx_t_21);
       __pyx_t_21 = 0;
-      __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_t_19, NULL); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 287; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_t_19, NULL); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 298; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_1);
       __Pyx_DECREF(__pyx_t_19); __pyx_t_19 = 0;
     }
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-    __pyx_t_3 = __Pyx_GetModuleGlobalName(__pyx_n_s_tempstats); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 287; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_3 = __Pyx_GetModuleGlobalName(__pyx_n_s_tempstats); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 298; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_3);
-    __pyx_t_19 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_SUM); if (unlikely(!__pyx_t_19)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 287; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_19 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_SUM); if (unlikely(!__pyx_t_19)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 298; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_19);
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-    if (unlikely(PyDict_SetItem(__pyx_v_returnObj, __pyx_t_19, __pyx_t_1) < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 287; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    if (unlikely(PyDict_SetItem(__pyx_v_returnObj, __pyx_t_19, __pyx_t_1) < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 298; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_DECREF(__pyx_t_19); __pyx_t_19 = 0;
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
     goto __pyx_L62;
   }
   __pyx_L62:;
 
-  /* "temporal\core\temporal.pyx":289
+  /* "temporal\core\temporal.pyx":300
  *             returnObj[tempstats.SUM] = np.asarray(self.step_Sum)
  * 
  *         return returnObj             # <<<<<<<<<<<<<<
@@ -6579,7 +6771,7 @@ static PyObject *__pyx_f_8temporal_4core_8temporal_26TemporalAggregator_Dynamic_
   __pyx_r = __pyx_v_returnObj;
   goto __pyx_L0;
 
-  /* "temporal\core\temporal.pyx":246
+  /* "temporal\core\temporal.pyx":257
  *     @cython.boundscheck(False)
  *     @cython.cdivision(True)
  *     cpdef emitStep(self):             # <<<<<<<<<<<<<<
@@ -6628,7 +6820,7 @@ static PyObject *__pyx_pf_8temporal_4core_8temporal_26TemporalAggregator_Dynamic
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("emitStep", 0);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __pyx_f_8temporal_4core_8temporal_26TemporalAggregator_Dynamic_emitStep(__pyx_v_self, 1); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 246; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __pyx_f_8temporal_4core_8temporal_26TemporalAggregator_Dynamic_emitStep(__pyx_v_self, 1); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 257; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -6645,7 +6837,7 @@ static PyObject *__pyx_pf_8temporal_4core_8temporal_26TemporalAggregator_Dynamic
   return __pyx_r;
 }
 
-/* "temporal\core\temporal.pyx":293
+/* "temporal\core\temporal.pyx":304
  *     @cython.boundscheck(False)
  *     @cython.cdivision(True)
  *     cpdef emitTotal(self):             # <<<<<<<<<<<<<<
@@ -6698,7 +6890,7 @@ static PyObject *__pyx_f_8temporal_4core_8temporal_26TemporalAggregator_Dynamic_
   if (unlikely(__pyx_skip_dispatch)) ;
   /* Check if overridden in Python */
   else if (unlikely(Py_TYPE(((PyObject *)__pyx_v_self))->tp_dictoffset != 0)) {
-    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_emitTotal); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 293; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_emitTotal); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 304; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_1);
     if (!PyCFunction_Check(__pyx_t_1) || (PyCFunction_GET_FUNCTION(__pyx_t_1) != (PyCFunction)__pyx_pw_8temporal_4core_8temporal_26TemporalAggregator_Dynamic_7emitTotal)) {
       __Pyx_XDECREF(__pyx_r);
@@ -6714,10 +6906,10 @@ static PyObject *__pyx_f_8temporal_4core_8temporal_26TemporalAggregator_Dynamic_
         }
       }
       if (__pyx_t_4) {
-        __pyx_t_2 = __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_t_4); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 293; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+        __pyx_t_2 = __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_t_4); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 304; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
         __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
       } else {
-        __pyx_t_2 = __Pyx_PyObject_CallNoArg(__pyx_t_3); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 293; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+        __pyx_t_2 = __Pyx_PyObject_CallNoArg(__pyx_t_3); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 304; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       }
       __Pyx_GOTREF(__pyx_t_2);
       __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
@@ -6729,7 +6921,7 @@ static PyObject *__pyx_f_8temporal_4core_8temporal_26TemporalAggregator_Dynamic_
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   }
 
-  /* "temporal\core\temporal.pyx":295
+  /* "temporal\core\temporal.pyx":306
  *     cpdef emitTotal(self):
  *         ''' Return the stats arrays accumulated *since the class was instantiated* '''
  *         if not self._generateSynoptic:             # <<<<<<<<<<<<<<
@@ -6739,7 +6931,7 @@ static PyObject *__pyx_f_8temporal_4core_8temporal_26TemporalAggregator_Dynamic_
   __pyx_t_5 = ((!(__pyx_v_self->_generateSynoptic != 0)) != 0);
   if (__pyx_t_5) {
 
-    /* "temporal\core\temporal.pyx":296
+    /* "temporal\core\temporal.pyx":307
  *         ''' Return the stats arrays accumulated *since the class was instantiated* '''
  *         if not self._generateSynoptic:
  *             return {             # <<<<<<<<<<<<<<
@@ -6747,15 +6939,15 @@ static PyObject *__pyx_f_8temporal_4core_8temporal_26TemporalAggregator_Dynamic_
  *             }
  */
     __Pyx_XDECREF(__pyx_r);
-    __pyx_t_1 = PyDict_New(); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 296; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_1 = PyDict_New(); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 307; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_1);
-    if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_error, __pyx_kp_s_Generation_of_synoptic_outputs_w) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 296; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_error, __pyx_kp_s_Generation_of_synoptic_outputs_w) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 307; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __pyx_r = __pyx_t_1;
     __pyx_t_1 = 0;
     goto __pyx_L0;
   }
 
-  /* "temporal\core\temporal.pyx":302
+  /* "temporal\core\temporal.pyx":313
  *             double variance
  *             Py_ssize_t x, y
  *         if self._doSD:             # <<<<<<<<<<<<<<
@@ -6765,7 +6957,7 @@ static PyObject *__pyx_f_8temporal_4core_8temporal_26TemporalAggregator_Dynamic_
   __pyx_t_5 = (__pyx_v_self->_doSD != 0);
   if (__pyx_t_5) {
 
-    /* "temporal\core\temporal.pyx":303
+    /* "temporal\core\temporal.pyx":314
  *             Py_ssize_t x, y
  *         if self._doSD:
  *             with nogil, cython.wraparound(False), parallel(num_threads=6):             # <<<<<<<<<<<<<<
@@ -6790,7 +6982,7 @@ static PyObject *__pyx_f_8temporal_4core_8temporal_26TemporalAggregator_Dynamic_
                   #define unlikely(x) (x)
               #endif
               #ifdef _OPENMP
-              #pragma omp parallel  private(__pyx_t_14, __pyx_t_18, __pyx_t_13, __pyx_t_17, __pyx_t_12, __pyx_t_7, __pyx_t_15, __pyx_t_16, __pyx_t_11, __pyx_t_9, __pyx_t_5, __pyx_t_6, __pyx_t_10, __pyx_t_8) private(__pyx_filename, __pyx_lineno, __pyx_clineno) shared(__pyx_parallel_why, __pyx_parallel_exc_type, __pyx_parallel_exc_value, __pyx_parallel_exc_tb) num_threads(6)
+              #pragma omp parallel  private(__pyx_t_10, __pyx_t_13, __pyx_t_5, __pyx_t_18, __pyx_t_12, __pyx_t_17, __pyx_t_11, __pyx_t_9, __pyx_t_7, __pyx_t_6, __pyx_t_16, __pyx_t_8, __pyx_t_15, __pyx_t_14) private(__pyx_filename, __pyx_lineno, __pyx_clineno) shared(__pyx_parallel_why, __pyx_parallel_exc_type, __pyx_parallel_exc_value, __pyx_parallel_exc_tb) num_threads(6)
               #endif /* _OPENMP */
               {
                   #ifdef _OPENMP
@@ -6800,7 +6992,7 @@ static PyObject *__pyx_f_8temporal_4core_8temporal_26TemporalAggregator_Dynamic_
                   Py_BEGIN_ALLOW_THREADS
                   #endif /* _OPENMP */
 
-                  /* "temporal\core\temporal.pyx":304
+                  /* "temporal\core\temporal.pyx":315
  *         if self._doSD:
  *             with nogil, cython.wraparound(False), parallel(num_threads=6):
  *                 for y in prange(self.height, schedule='static'):             # <<<<<<<<<<<<<<
@@ -6831,7 +7023,7 @@ static PyObject *__pyx_f_8temporal_4core_8temporal_26TemporalAggregator_Dynamic_
                                   __pyx_v_x = ((Py_ssize_t)0xbad0bad0);
                                   __pyx_v_variance = ((double)__PYX_NAN());
 
-                                  /* "temporal\core\temporal.pyx":305
+                                  /* "temporal\core\temporal.pyx":316
  *             with nogil, cython.wraparound(False), parallel(num_threads=6):
  *                 for y in prange(self.height, schedule='static'):
  *                     x = -1             # <<<<<<<<<<<<<<
@@ -6840,7 +7032,7 @@ static PyObject *__pyx_f_8temporal_4core_8temporal_26TemporalAggregator_Dynamic_
  */
                                   __pyx_v_x = -1;
 
-                                  /* "temporal\core\temporal.pyx":306
+                                  /* "temporal\core\temporal.pyx":317
  *                 for y in prange(self.height, schedule='static'):
  *                     x = -1
  *                     for x in range(0, self.width):             # <<<<<<<<<<<<<<
@@ -6851,20 +7043,20 @@ static PyObject *__pyx_f_8temporal_4core_8temporal_26TemporalAggregator_Dynamic_
                                   for (__pyx_t_10 = 0; __pyx_t_10 < __pyx_t_9; __pyx_t_10+=1) {
                                     __pyx_v_x = __pyx_t_10;
 
-                                    /* "temporal\core\temporal.pyx":307
+                                    /* "temporal\core\temporal.pyx":318
  *                     x = -1
  *                     for x in range(0, self.width):
  *                         if self.tot_n[y, x] <= 1:             # <<<<<<<<<<<<<<
  *                             continue
  *                         variance = self.tot_newSD[y, x] / (self.tot_n[y, x] - 1)
  */
-                                    if (unlikely(!__pyx_v_self->tot_n.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 307; __pyx_clineno = __LINE__; goto __pyx_L14_error;}}
+                                    if (unlikely(!__pyx_v_self->tot_n.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 318; __pyx_clineno = __LINE__; goto __pyx_L14_error;}}
                                     __pyx_t_11 = __pyx_v_y;
                                     __pyx_t_12 = __pyx_v_x;
                                     __pyx_t_5 = (((*((short *) ( /* dim=1 */ ((char *) (((short *) ( /* dim=0 */ (__pyx_v_self->tot_n.data + __pyx_t_11 * __pyx_v_self->tot_n.strides[0]) )) + __pyx_t_12)) ))) <= 1) != 0);
                                     if (__pyx_t_5) {
 
-                                      /* "temporal\core\temporal.pyx":308
+                                      /* "temporal\core\temporal.pyx":319
  *                     for x in range(0, self.width):
  *                         if self.tot_n[y, x] <= 1:
  *                             continue             # <<<<<<<<<<<<<<
@@ -6874,29 +7066,29 @@ static PyObject *__pyx_f_8temporal_4core_8temporal_26TemporalAggregator_Dynamic_
                                       goto __pyx_L16_continue;
                                     }
 
-                                    /* "temporal\core\temporal.pyx":309
+                                    /* "temporal\core\temporal.pyx":320
  *                         if self.tot_n[y, x] <= 1:
  *                             continue
  *                         variance = self.tot_newSD[y, x] / (self.tot_n[y, x] - 1)             # <<<<<<<<<<<<<<
  *                         self.tot_newSD[y, x] = sqrt(variance)
  *         returnObj = {
  */
-                                    if (unlikely(!__pyx_v_self->tot_newSD.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 309; __pyx_clineno = __LINE__; goto __pyx_L14_error;}}
+                                    if (unlikely(!__pyx_v_self->tot_newSD.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 320; __pyx_clineno = __LINE__; goto __pyx_L14_error;}}
                                     __pyx_t_13 = __pyx_v_y;
                                     __pyx_t_14 = __pyx_v_x;
-                                    if (unlikely(!__pyx_v_self->tot_n.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 309; __pyx_clineno = __LINE__; goto __pyx_L14_error;}}
+                                    if (unlikely(!__pyx_v_self->tot_n.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 320; __pyx_clineno = __LINE__; goto __pyx_L14_error;}}
                                     __pyx_t_15 = __pyx_v_y;
                                     __pyx_t_16 = __pyx_v_x;
                                     __pyx_v_variance = ((*((double *) ( /* dim=1 */ ((char *) (((double *) ( /* dim=0 */ (__pyx_v_self->tot_newSD.data + __pyx_t_13 * __pyx_v_self->tot_newSD.strides[0]) )) + __pyx_t_14)) ))) / ((*((short *) ( /* dim=1 */ ((char *) (((short *) ( /* dim=0 */ (__pyx_v_self->tot_n.data + __pyx_t_15 * __pyx_v_self->tot_n.strides[0]) )) + __pyx_t_16)) ))) - 1));
 
-                                    /* "temporal\core\temporal.pyx":310
+                                    /* "temporal\core\temporal.pyx":321
  *                             continue
  *                         variance = self.tot_newSD[y, x] / (self.tot_n[y, x] - 1)
  *                         self.tot_newSD[y, x] = sqrt(variance)             # <<<<<<<<<<<<<<
  *         returnObj = {
  *             "count": np.asarray(self.tot_n)
  */
-                                    if (unlikely(!__pyx_v_self->tot_newSD.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 310; __pyx_clineno = __LINE__; goto __pyx_L14_error;}}
+                                    if (unlikely(!__pyx_v_self->tot_newSD.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 321; __pyx_clineno = __LINE__; goto __pyx_L14_error;}}
                                     __pyx_t_17 = __pyx_v_y;
                                     __pyx_t_18 = __pyx_v_x;
                                     *((double *) ( /* dim=1 */ ((char *) (((double *) ( /* dim=0 */ (__pyx_v_self->tot_newSD.data + __pyx_t_17 * __pyx_v_self->tot_newSD.strides[0]) )) + __pyx_t_18)) )) = sqrt(__pyx_v_variance);
@@ -6924,7 +7116,7 @@ static PyObject *__pyx_f_8temporal_4core_8temporal_26TemporalAggregator_Dynamic_
                                   goto __pyx_L19;
                                   __pyx_L19:;
                                   #ifdef _OPENMP
-                                  #pragma omp critical(__pyx_parallel_lastprivates6)
+                                  #pragma omp critical(__pyx_parallel_lastprivates4)
                                   #endif /* _OPENMP */
                                   {
                                       __pyx_parallel_temp0 = __pyx_v_x;
@@ -7035,7 +7227,7 @@ static PyObject *__pyx_f_8temporal_4core_8temporal_26TemporalAggregator_Dynamic_
           #endif
         }
 
-        /* "temporal\core\temporal.pyx":303
+        /* "temporal\core\temporal.pyx":314
  *             Py_ssize_t x, y
  *         if self._doSD:
  *             with nogil, cython.wraparound(False), parallel(num_threads=6):             # <<<<<<<<<<<<<<
@@ -7068,30 +7260,30 @@ static PyObject *__pyx_f_8temporal_4core_8temporal_26TemporalAggregator_Dynamic_
   }
   __pyx_L4:;
 
-  /* "temporal\core\temporal.pyx":311
+  /* "temporal\core\temporal.pyx":322
  *                         variance = self.tot_newSD[y, x] / (self.tot_n[y, x] - 1)
  *                         self.tot_newSD[y, x] = sqrt(variance)
  *         returnObj = {             # <<<<<<<<<<<<<<
  *             "count": np.asarray(self.tot_n)
  *         }
  */
-  __pyx_t_1 = PyDict_New(); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 311; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = PyDict_New(); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 322; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
 
-  /* "temporal\core\temporal.pyx":312
+  /* "temporal\core\temporal.pyx":323
  *                         self.tot_newSD[y, x] = sqrt(variance)
  *         returnObj = {
  *             "count": np.asarray(self.tot_n)             # <<<<<<<<<<<<<<
  *         }
  *         if self._outputMean:
  */
-  __pyx_t_3 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 312; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_3 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 323; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_asarray); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 312; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_asarray); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 323; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (unlikely(!__pyx_v_self->tot_n.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 312; __pyx_clineno = __LINE__; goto __pyx_L1_error;}}
-  __pyx_t_3 = __pyx_memoryview_fromslice(__pyx_v_self->tot_n, 2, (PyObject *(*)(char *)) __pyx_memview_get_short, (int (*)(char *, PyObject *)) __pyx_memview_set_short, 0);; if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 312; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (unlikely(!__pyx_v_self->tot_n.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 323; __pyx_clineno = __LINE__; goto __pyx_L1_error;}}
+  __pyx_t_3 = __pyx_memoryview_fromslice(__pyx_v_self->tot_n, 2, (PyObject *(*)(char *)) __pyx_memview_get_short, (int (*)(char *, PyObject *)) __pyx_memview_set_short, 0);; if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 323; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_3);
   __pyx_t_19 = NULL;
   if (CYTHON_COMPILING_IN_CPYTHON && unlikely(PyMethod_Check(__pyx_t_4))) {
@@ -7104,27 +7296,27 @@ static PyObject *__pyx_f_8temporal_4core_8temporal_26TemporalAggregator_Dynamic_
     }
   }
   if (!__pyx_t_19) {
-    __pyx_t_2 = __Pyx_PyObject_CallOneArg(__pyx_t_4, __pyx_t_3); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 312; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_2 = __Pyx_PyObject_CallOneArg(__pyx_t_4, __pyx_t_3); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 323; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
     __Pyx_GOTREF(__pyx_t_2);
   } else {
-    __pyx_t_20 = PyTuple_New(1+1); if (unlikely(!__pyx_t_20)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 312; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_20 = PyTuple_New(1+1); if (unlikely(!__pyx_t_20)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 323; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_20);
     PyTuple_SET_ITEM(__pyx_t_20, 0, __pyx_t_19); __Pyx_GIVEREF(__pyx_t_19); __pyx_t_19 = NULL;
     PyTuple_SET_ITEM(__pyx_t_20, 0+1, __pyx_t_3);
     __Pyx_GIVEREF(__pyx_t_3);
     __pyx_t_3 = 0;
-    __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_4, __pyx_t_20, NULL); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 312; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_4, __pyx_t_20, NULL); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 323; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_2);
     __Pyx_DECREF(__pyx_t_20); __pyx_t_20 = 0;
   }
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_count, __pyx_t_2) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 311; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_count, __pyx_t_2) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 322; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __pyx_v_returnObj = ((PyObject*)__pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "temporal\core\temporal.pyx":314
+  /* "temporal\core\temporal.pyx":325
  *             "count": np.asarray(self.tot_n)
  *         }
  *         if self._outputMean:             # <<<<<<<<<<<<<<
@@ -7134,20 +7326,20 @@ static PyObject *__pyx_f_8temporal_4core_8temporal_26TemporalAggregator_Dynamic_
   __pyx_t_5 = (__pyx_v_self->_outputMean != 0);
   if (__pyx_t_5) {
 
-    /* "temporal\core\temporal.pyx":315
+    /* "temporal\core\temporal.pyx":326
  *         }
  *         if self._outputMean:
  *             returnObj[tempstats.MEAN] = np.asarray(self.tot_newMean).astype('float32')             # <<<<<<<<<<<<<<
  *         if self._doSD:
  *             returnObj[tempstats.SD] = np.asarray(self.tot_newSD).astype('float32')
  */
-    __pyx_t_2 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 315; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_2 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 326; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_2);
-    __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_asarray); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 315; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_asarray); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 326; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_4);
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-    if (unlikely(!__pyx_v_self->tot_newMean.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 315; __pyx_clineno = __LINE__; goto __pyx_L1_error;}}
-    __pyx_t_2 = __pyx_memoryview_fromslice(__pyx_v_self->tot_newMean, 2, (PyObject *(*)(char *)) __pyx_memview_get_double, (int (*)(char *, PyObject *)) __pyx_memview_set_double, 0);; if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 315; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    if (unlikely(!__pyx_v_self->tot_newMean.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 326; __pyx_clineno = __LINE__; goto __pyx_L1_error;}}
+    __pyx_t_2 = __pyx_memoryview_fromslice(__pyx_v_self->tot_newMean, 2, (PyObject *(*)(char *)) __pyx_memview_get_double, (int (*)(char *, PyObject *)) __pyx_memview_set_double, 0);; if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 326; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_2);
     __pyx_t_20 = NULL;
     if (CYTHON_COMPILING_IN_CPYTHON && unlikely(PyMethod_Check(__pyx_t_4))) {
@@ -7160,40 +7352,40 @@ static PyObject *__pyx_f_8temporal_4core_8temporal_26TemporalAggregator_Dynamic_
       }
     }
     if (!__pyx_t_20) {
-      __pyx_t_1 = __Pyx_PyObject_CallOneArg(__pyx_t_4, __pyx_t_2); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 315; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_1 = __Pyx_PyObject_CallOneArg(__pyx_t_4, __pyx_t_2); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 326; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
       __Pyx_GOTREF(__pyx_t_1);
     } else {
-      __pyx_t_3 = PyTuple_New(1+1); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 315; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_3 = PyTuple_New(1+1); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 326; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_3);
       PyTuple_SET_ITEM(__pyx_t_3, 0, __pyx_t_20); __Pyx_GIVEREF(__pyx_t_20); __pyx_t_20 = NULL;
       PyTuple_SET_ITEM(__pyx_t_3, 0+1, __pyx_t_2);
       __Pyx_GIVEREF(__pyx_t_2);
       __pyx_t_2 = 0;
-      __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_4, __pyx_t_3, NULL); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 315; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_4, __pyx_t_3, NULL); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 326; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_1);
       __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
     }
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-    __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_astype); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 315; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_astype); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 326; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_4);
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-    __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_4, __pyx_tuple__3, NULL); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 315; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_4, __pyx_tuple__3, NULL); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 326; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-    __pyx_t_4 = __Pyx_GetModuleGlobalName(__pyx_n_s_tempstats); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 315; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_4 = __Pyx_GetModuleGlobalName(__pyx_n_s_tempstats); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 326; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_4);
-    __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_n_s_MEAN); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 315; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_n_s_MEAN); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 326; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_3);
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-    if (unlikely(PyDict_SetItem(__pyx_v_returnObj, __pyx_t_3, __pyx_t_1) < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 315; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    if (unlikely(PyDict_SetItem(__pyx_v_returnObj, __pyx_t_3, __pyx_t_1) < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 326; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
     goto __pyx_L23;
   }
   __pyx_L23:;
 
-  /* "temporal\core\temporal.pyx":316
+  /* "temporal\core\temporal.pyx":327
  *         if self._outputMean:
  *             returnObj[tempstats.MEAN] = np.asarray(self.tot_newMean).astype('float32')
  *         if self._doSD:             # <<<<<<<<<<<<<<
@@ -7203,20 +7395,20 @@ static PyObject *__pyx_f_8temporal_4core_8temporal_26TemporalAggregator_Dynamic_
   __pyx_t_5 = (__pyx_v_self->_doSD != 0);
   if (__pyx_t_5) {
 
-    /* "temporal\core\temporal.pyx":317
+    /* "temporal\core\temporal.pyx":328
  *             returnObj[tempstats.MEAN] = np.asarray(self.tot_newMean).astype('float32')
  *         if self._doSD:
  *             returnObj[tempstats.SD] = np.asarray(self.tot_newSD).astype('float32')             # <<<<<<<<<<<<<<
  *         if self._doMin:
  *             # get rid of the infinities
  */
-    __pyx_t_3 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 317; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_3 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 328; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_3);
-    __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_asarray); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 317; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_asarray); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 328; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_4);
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-    if (unlikely(!__pyx_v_self->tot_newSD.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 317; __pyx_clineno = __LINE__; goto __pyx_L1_error;}}
-    __pyx_t_3 = __pyx_memoryview_fromslice(__pyx_v_self->tot_newSD, 2, (PyObject *(*)(char *)) __pyx_memview_get_double, (int (*)(char *, PyObject *)) __pyx_memview_set_double, 0);; if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 317; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    if (unlikely(!__pyx_v_self->tot_newSD.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 328; __pyx_clineno = __LINE__; goto __pyx_L1_error;}}
+    __pyx_t_3 = __pyx_memoryview_fromslice(__pyx_v_self->tot_newSD, 2, (PyObject *(*)(char *)) __pyx_memview_get_double, (int (*)(char *, PyObject *)) __pyx_memview_set_double, 0);; if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 328; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_3);
     __pyx_t_2 = NULL;
     if (CYTHON_COMPILING_IN_CPYTHON && unlikely(PyMethod_Check(__pyx_t_4))) {
@@ -7229,40 +7421,40 @@ static PyObject *__pyx_f_8temporal_4core_8temporal_26TemporalAggregator_Dynamic_
       }
     }
     if (!__pyx_t_2) {
-      __pyx_t_1 = __Pyx_PyObject_CallOneArg(__pyx_t_4, __pyx_t_3); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 317; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_1 = __Pyx_PyObject_CallOneArg(__pyx_t_4, __pyx_t_3); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 328; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
       __Pyx_GOTREF(__pyx_t_1);
     } else {
-      __pyx_t_20 = PyTuple_New(1+1); if (unlikely(!__pyx_t_20)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 317; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_20 = PyTuple_New(1+1); if (unlikely(!__pyx_t_20)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 328; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_20);
       PyTuple_SET_ITEM(__pyx_t_20, 0, __pyx_t_2); __Pyx_GIVEREF(__pyx_t_2); __pyx_t_2 = NULL;
       PyTuple_SET_ITEM(__pyx_t_20, 0+1, __pyx_t_3);
       __Pyx_GIVEREF(__pyx_t_3);
       __pyx_t_3 = 0;
-      __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_4, __pyx_t_20, NULL); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 317; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_4, __pyx_t_20, NULL); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 328; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_1);
       __Pyx_DECREF(__pyx_t_20); __pyx_t_20 = 0;
     }
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-    __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_astype); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 317; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_astype); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 328; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_4);
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-    __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_4, __pyx_tuple__4, NULL); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 317; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_4, __pyx_tuple__4, NULL); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 328; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-    __pyx_t_4 = __Pyx_GetModuleGlobalName(__pyx_n_s_tempstats); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 317; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_4 = __Pyx_GetModuleGlobalName(__pyx_n_s_tempstats); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 328; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_4);
-    __pyx_t_20 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_n_s_SD); if (unlikely(!__pyx_t_20)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 317; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_20 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_n_s_SD); if (unlikely(!__pyx_t_20)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 328; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_20);
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-    if (unlikely(PyDict_SetItem(__pyx_v_returnObj, __pyx_t_20, __pyx_t_1) < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 317; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    if (unlikely(PyDict_SetItem(__pyx_v_returnObj, __pyx_t_20, __pyx_t_1) < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 328; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_DECREF(__pyx_t_20); __pyx_t_20 = 0;
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
     goto __pyx_L24;
   }
   __pyx_L24:;
 
-  /* "temporal\core\temporal.pyx":318
+  /* "temporal\core\temporal.pyx":329
  *         if self._doSD:
  *             returnObj[tempstats.SD] = np.asarray(self.tot_newSD).astype('float32')
  *         if self._doMin:             # <<<<<<<<<<<<<<
@@ -7272,7 +7464,7 @@ static PyObject *__pyx_f_8temporal_4core_8temporal_26TemporalAggregator_Dynamic_
   __pyx_t_5 = (__pyx_v_self->_doMin != 0);
   if (__pyx_t_5) {
 
-    /* "temporal\core\temporal.pyx":320
+    /* "temporal\core\temporal.pyx":331
  *         if self._doMin:
  *             # get rid of the infinities
  *             with nogil, cython.wraparound(False), parallel(num_threads=6):             # <<<<<<<<<<<<<<
@@ -7297,7 +7489,7 @@ static PyObject *__pyx_f_8temporal_4core_8temporal_26TemporalAggregator_Dynamic_
                   #define unlikely(x) (x)
               #endif
               #ifdef _OPENMP
-              #pragma omp parallel  private(__pyx_t_24, __pyx_t_23, __pyx_t_7, __pyx_t_21, __pyx_t_9, __pyx_t_25, __pyx_t_5, __pyx_t_6, __pyx_t_10, __pyx_t_22, __pyx_t_8) private(__pyx_filename, __pyx_lineno, __pyx_clineno) shared(__pyx_parallel_why, __pyx_parallel_exc_type, __pyx_parallel_exc_value, __pyx_parallel_exc_tb) num_threads(6)
+              #pragma omp parallel  private(__pyx_t_10, __pyx_t_5, __pyx_t_24, __pyx_t_9, __pyx_t_7, __pyx_t_6, __pyx_t_23, __pyx_t_21, __pyx_t_22, __pyx_t_8, __pyx_t_25) private(__pyx_filename, __pyx_lineno, __pyx_clineno) shared(__pyx_parallel_why, __pyx_parallel_exc_type, __pyx_parallel_exc_value, __pyx_parallel_exc_tb) num_threads(6)
               #endif /* _OPENMP */
               {
                   #ifdef _OPENMP
@@ -7307,7 +7499,7 @@ static PyObject *__pyx_f_8temporal_4core_8temporal_26TemporalAggregator_Dynamic_
                   Py_BEGIN_ALLOW_THREADS
                   #endif /* _OPENMP */
 
-                  /* "temporal\core\temporal.pyx":321
+                  /* "temporal\core\temporal.pyx":332
  *             # get rid of the infinities
  *             with nogil, cython.wraparound(False), parallel(num_threads=6):
  *                 for y in prange(self.height, schedule='static'):             # <<<<<<<<<<<<<<
@@ -7336,7 +7528,7 @@ static PyObject *__pyx_f_8temporal_4core_8temporal_26TemporalAggregator_Dynamic_
                                   /* Initialize private variables to invalid values */
                                   __pyx_v_x = ((Py_ssize_t)0xbad0bad0);
 
-                                  /* "temporal\core\temporal.pyx":322
+                                  /* "temporal\core\temporal.pyx":333
  *             with nogil, cython.wraparound(False), parallel(num_threads=6):
  *                 for y in prange(self.height, schedule='static'):
  *                     x = -1             # <<<<<<<<<<<<<<
@@ -7345,7 +7537,7 @@ static PyObject *__pyx_f_8temporal_4core_8temporal_26TemporalAggregator_Dynamic_
  */
                                   __pyx_v_x = -1;
 
-                                  /* "temporal\core\temporal.pyx":323
+                                  /* "temporal\core\temporal.pyx":334
  *                 for y in prange(self.height, schedule='static'):
  *                     x = -1
  *                     for x in range(0, self.width):             # <<<<<<<<<<<<<<
@@ -7356,20 +7548,20 @@ static PyObject *__pyx_f_8temporal_4core_8temporal_26TemporalAggregator_Dynamic_
                                   for (__pyx_t_10 = 0; __pyx_t_10 < __pyx_t_9; __pyx_t_10+=1) {
                                     __pyx_v_x = __pyx_t_10;
 
-                                    /* "temporal\core\temporal.pyx":324
+                                    /* "temporal\core\temporal.pyx":335
  *                     x = -1
  *                     for x in range(0, self.width):
  *                         if self.tot_n[y, x] == 0:             # <<<<<<<<<<<<<<
  *                             self.tot_Min[y, x] = self.ndv
  *             returnObj[tempstats.MIN] = np.asarray(self.tot_Min)
  */
-                                    if (unlikely(!__pyx_v_self->tot_n.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 324; __pyx_clineno = __LINE__; goto __pyx_L35_error;}}
+                                    if (unlikely(!__pyx_v_self->tot_n.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 335; __pyx_clineno = __LINE__; goto __pyx_L35_error;}}
                                     __pyx_t_21 = __pyx_v_y;
                                     __pyx_t_22 = __pyx_v_x;
                                     __pyx_t_5 = (((*((short *) ( /* dim=1 */ ((char *) (((short *) ( /* dim=0 */ (__pyx_v_self->tot_n.data + __pyx_t_21 * __pyx_v_self->tot_n.strides[0]) )) + __pyx_t_22)) ))) == 0) != 0);
                                     if (__pyx_t_5) {
 
-                                      /* "temporal\core\temporal.pyx":325
+                                      /* "temporal\core\temporal.pyx":336
  *                     for x in range(0, self.width):
  *                         if self.tot_n[y, x] == 0:
  *                             self.tot_Min[y, x] = self.ndv             # <<<<<<<<<<<<<<
@@ -7377,7 +7569,7 @@ static PyObject *__pyx_f_8temporal_4core_8temporal_26TemporalAggregator_Dynamic_
  *         if self._doMax:
  */
                                       __pyx_t_23 = __pyx_v_self->ndv;
-                                      if (unlikely(!__pyx_v_self->tot_Min.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 325; __pyx_clineno = __LINE__; goto __pyx_L35_error;}}
+                                      if (unlikely(!__pyx_v_self->tot_Min.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 336; __pyx_clineno = __LINE__; goto __pyx_L35_error;}}
                                       __pyx_t_24 = __pyx_v_y;
                                       __pyx_t_25 = __pyx_v_x;
                                       *((float *) ( /* dim=1 */ ((char *) (((float *) ( /* dim=0 */ (__pyx_v_self->tot_Min.data + __pyx_t_24 * __pyx_v_self->tot_Min.strides[0]) )) + __pyx_t_25)) )) = __pyx_t_23;
@@ -7407,7 +7599,7 @@ static PyObject *__pyx_f_8temporal_4core_8temporal_26TemporalAggregator_Dynamic_
                                   goto __pyx_L40;
                                   __pyx_L40:;
                                   #ifdef _OPENMP
-                                  #pragma omp critical(__pyx_parallel_lastprivates7)
+                                  #pragma omp critical(__pyx_parallel_lastprivates5)
                                   #endif /* _OPENMP */
                                   {
                                       __pyx_parallel_temp0 = __pyx_v_x;
@@ -7516,7 +7708,7 @@ static PyObject *__pyx_f_8temporal_4core_8temporal_26TemporalAggregator_Dynamic_
           #endif
         }
 
-        /* "temporal\core\temporal.pyx":320
+        /* "temporal\core\temporal.pyx":331
  *         if self._doMin:
  *             # get rid of the infinities
  *             with nogil, cython.wraparound(False), parallel(num_threads=6):             # <<<<<<<<<<<<<<
@@ -7546,20 +7738,20 @@ static PyObject *__pyx_f_8temporal_4core_8temporal_26TemporalAggregator_Dynamic_
         }
     }
 
-    /* "temporal\core\temporal.pyx":326
+    /* "temporal\core\temporal.pyx":337
  *                         if self.tot_n[y, x] == 0:
  *                             self.tot_Min[y, x] = self.ndv
  *             returnObj[tempstats.MIN] = np.asarray(self.tot_Min)             # <<<<<<<<<<<<<<
  *         if self._doMax:
  *             # get rid of the infinities
  */
-    __pyx_t_20 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_20)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 326; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_20 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_20)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 337; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_20);
-    __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_20, __pyx_n_s_asarray); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 326; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_20, __pyx_n_s_asarray); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 337; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_4);
     __Pyx_DECREF(__pyx_t_20); __pyx_t_20 = 0;
-    if (unlikely(!__pyx_v_self->tot_Min.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 326; __pyx_clineno = __LINE__; goto __pyx_L1_error;}}
-    __pyx_t_20 = __pyx_memoryview_fromslice(__pyx_v_self->tot_Min, 2, (PyObject *(*)(char *)) __pyx_memview_get_float, (int (*)(char *, PyObject *)) __pyx_memview_set_float, 0);; if (unlikely(!__pyx_t_20)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 326; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    if (unlikely(!__pyx_v_self->tot_Min.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 337; __pyx_clineno = __LINE__; goto __pyx_L1_error;}}
+    __pyx_t_20 = __pyx_memoryview_fromslice(__pyx_v_self->tot_Min, 2, (PyObject *(*)(char *)) __pyx_memview_get_float, (int (*)(char *, PyObject *)) __pyx_memview_set_float, 0);; if (unlikely(!__pyx_t_20)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 337; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_20);
     __pyx_t_3 = NULL;
     if (CYTHON_COMPILING_IN_CPYTHON && unlikely(PyMethod_Check(__pyx_t_4))) {
@@ -7572,34 +7764,34 @@ static PyObject *__pyx_f_8temporal_4core_8temporal_26TemporalAggregator_Dynamic_
       }
     }
     if (!__pyx_t_3) {
-      __pyx_t_1 = __Pyx_PyObject_CallOneArg(__pyx_t_4, __pyx_t_20); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 326; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_1 = __Pyx_PyObject_CallOneArg(__pyx_t_4, __pyx_t_20); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 337; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_DECREF(__pyx_t_20); __pyx_t_20 = 0;
       __Pyx_GOTREF(__pyx_t_1);
     } else {
-      __pyx_t_2 = PyTuple_New(1+1); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 326; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_2 = PyTuple_New(1+1); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 337; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_2);
       PyTuple_SET_ITEM(__pyx_t_2, 0, __pyx_t_3); __Pyx_GIVEREF(__pyx_t_3); __pyx_t_3 = NULL;
       PyTuple_SET_ITEM(__pyx_t_2, 0+1, __pyx_t_20);
       __Pyx_GIVEREF(__pyx_t_20);
       __pyx_t_20 = 0;
-      __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_4, __pyx_t_2, NULL); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 326; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_4, __pyx_t_2, NULL); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 337; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_1);
       __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
     }
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-    __pyx_t_4 = __Pyx_GetModuleGlobalName(__pyx_n_s_tempstats); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 326; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_4 = __Pyx_GetModuleGlobalName(__pyx_n_s_tempstats); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 337; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_4);
-    __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_n_s_MIN); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 326; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_n_s_MIN); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 337; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_2);
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-    if (unlikely(PyDict_SetItem(__pyx_v_returnObj, __pyx_t_2, __pyx_t_1) < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 326; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    if (unlikely(PyDict_SetItem(__pyx_v_returnObj, __pyx_t_2, __pyx_t_1) < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 337; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
     goto __pyx_L25;
   }
   __pyx_L25:;
 
-  /* "temporal\core\temporal.pyx":327
+  /* "temporal\core\temporal.pyx":338
  *                             self.tot_Min[y, x] = self.ndv
  *             returnObj[tempstats.MIN] = np.asarray(self.tot_Min)
  *         if self._doMax:             # <<<<<<<<<<<<<<
@@ -7609,7 +7801,7 @@ static PyObject *__pyx_f_8temporal_4core_8temporal_26TemporalAggregator_Dynamic_
   __pyx_t_5 = (__pyx_v_self->_doMax != 0);
   if (__pyx_t_5) {
 
-    /* "temporal\core\temporal.pyx":329
+    /* "temporal\core\temporal.pyx":340
  *         if self._doMax:
  *             # get rid of the infinities
  *             with nogil, cython.wraparound(False), parallel(num_threads=6):             # <<<<<<<<<<<<<<
@@ -7634,7 +7826,7 @@ static PyObject *__pyx_f_8temporal_4core_8temporal_26TemporalAggregator_Dynamic_
                   #define unlikely(x) (x)
               #endif
               #ifdef _OPENMP
-              #pragma omp parallel  private(__pyx_t_26, __pyx_t_28, __pyx_t_23, __pyx_t_27, __pyx_t_29, __pyx_t_7, __pyx_t_9, __pyx_t_5, __pyx_t_6, __pyx_t_10, __pyx_t_8) private(__pyx_filename, __pyx_lineno, __pyx_clineno) shared(__pyx_parallel_why, __pyx_parallel_exc_type, __pyx_parallel_exc_value, __pyx_parallel_exc_tb) num_threads(6)
+              #pragma omp parallel  private(__pyx_t_28, __pyx_t_10, __pyx_t_26, __pyx_t_5, __pyx_t_27, __pyx_t_29, __pyx_t_9, __pyx_t_7, __pyx_t_6, __pyx_t_23, __pyx_t_8) private(__pyx_filename, __pyx_lineno, __pyx_clineno) shared(__pyx_parallel_why, __pyx_parallel_exc_type, __pyx_parallel_exc_value, __pyx_parallel_exc_tb) num_threads(6)
               #endif /* _OPENMP */
               {
                   #ifdef _OPENMP
@@ -7644,7 +7836,7 @@ static PyObject *__pyx_f_8temporal_4core_8temporal_26TemporalAggregator_Dynamic_
                   Py_BEGIN_ALLOW_THREADS
                   #endif /* _OPENMP */
 
-                  /* "temporal\core\temporal.pyx":330
+                  /* "temporal\core\temporal.pyx":341
  *             # get rid of the infinities
  *             with nogil, cython.wraparound(False), parallel(num_threads=6):
  *                 for y in prange(self.height, schedule='static'):             # <<<<<<<<<<<<<<
@@ -7673,7 +7865,7 @@ static PyObject *__pyx_f_8temporal_4core_8temporal_26TemporalAggregator_Dynamic_
                                   /* Initialize private variables to invalid values */
                                   __pyx_v_x = ((Py_ssize_t)0xbad0bad0);
 
-                                  /* "temporal\core\temporal.pyx":331
+                                  /* "temporal\core\temporal.pyx":342
  *             with nogil, cython.wraparound(False), parallel(num_threads=6):
  *                 for y in prange(self.height, schedule='static'):
  *                     x = -1             # <<<<<<<<<<<<<<
@@ -7682,7 +7874,7 @@ static PyObject *__pyx_f_8temporal_4core_8temporal_26TemporalAggregator_Dynamic_
  */
                                   __pyx_v_x = -1;
 
-                                  /* "temporal\core\temporal.pyx":332
+                                  /* "temporal\core\temporal.pyx":343
  *                 for y in prange(self.height, schedule='static'):
  *                     x = -1
  *                     for x in range(0, self.width):             # <<<<<<<<<<<<<<
@@ -7693,20 +7885,20 @@ static PyObject *__pyx_f_8temporal_4core_8temporal_26TemporalAggregator_Dynamic_
                                   for (__pyx_t_10 = 0; __pyx_t_10 < __pyx_t_9; __pyx_t_10+=1) {
                                     __pyx_v_x = __pyx_t_10;
 
-                                    /* "temporal\core\temporal.pyx":333
+                                    /* "temporal\core\temporal.pyx":344
  *                     x = -1
  *                     for x in range(0, self.width):
  *                         if self.tot_n[y, x] == 0:             # <<<<<<<<<<<<<<
  *                             self.tot_Max[y, x] = self.ndv
  *             returnObj[tempstats.MAX] = np.asarray(self.tot_Max)
  */
-                                    if (unlikely(!__pyx_v_self->tot_n.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 333; __pyx_clineno = __LINE__; goto __pyx_L54_error;}}
+                                    if (unlikely(!__pyx_v_self->tot_n.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 344; __pyx_clineno = __LINE__; goto __pyx_L54_error;}}
                                     __pyx_t_26 = __pyx_v_y;
                                     __pyx_t_27 = __pyx_v_x;
                                     __pyx_t_5 = (((*((short *) ( /* dim=1 */ ((char *) (((short *) ( /* dim=0 */ (__pyx_v_self->tot_n.data + __pyx_t_26 * __pyx_v_self->tot_n.strides[0]) )) + __pyx_t_27)) ))) == 0) != 0);
                                     if (__pyx_t_5) {
 
-                                      /* "temporal\core\temporal.pyx":334
+                                      /* "temporal\core\temporal.pyx":345
  *                     for x in range(0, self.width):
  *                         if self.tot_n[y, x] == 0:
  *                             self.tot_Max[y, x] = self.ndv             # <<<<<<<<<<<<<<
@@ -7714,7 +7906,7 @@ static PyObject *__pyx_f_8temporal_4core_8temporal_26TemporalAggregator_Dynamic_
  *         if self._doSum:
  */
                                       __pyx_t_23 = __pyx_v_self->ndv;
-                                      if (unlikely(!__pyx_v_self->tot_Max.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 334; __pyx_clineno = __LINE__; goto __pyx_L54_error;}}
+                                      if (unlikely(!__pyx_v_self->tot_Max.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 345; __pyx_clineno = __LINE__; goto __pyx_L54_error;}}
                                       __pyx_t_28 = __pyx_v_y;
                                       __pyx_t_29 = __pyx_v_x;
                                       *((float *) ( /* dim=1 */ ((char *) (((float *) ( /* dim=0 */ (__pyx_v_self->tot_Max.data + __pyx_t_28 * __pyx_v_self->tot_Max.strides[0]) )) + __pyx_t_29)) )) = __pyx_t_23;
@@ -7744,7 +7936,7 @@ static PyObject *__pyx_f_8temporal_4core_8temporal_26TemporalAggregator_Dynamic_
                                   goto __pyx_L59;
                                   __pyx_L59:;
                                   #ifdef _OPENMP
-                                  #pragma omp critical(__pyx_parallel_lastprivates8)
+                                  #pragma omp critical(__pyx_parallel_lastprivates6)
                                   #endif /* _OPENMP */
                                   {
                                       __pyx_parallel_temp0 = __pyx_v_x;
@@ -7853,7 +8045,7 @@ static PyObject *__pyx_f_8temporal_4core_8temporal_26TemporalAggregator_Dynamic_
           #endif
         }
 
-        /* "temporal\core\temporal.pyx":329
+        /* "temporal\core\temporal.pyx":340
  *         if self._doMax:
  *             # get rid of the infinities
  *             with nogil, cython.wraparound(False), parallel(num_threads=6):             # <<<<<<<<<<<<<<
@@ -7883,20 +8075,20 @@ static PyObject *__pyx_f_8temporal_4core_8temporal_26TemporalAggregator_Dynamic_
         }
     }
 
-    /* "temporal\core\temporal.pyx":335
+    /* "temporal\core\temporal.pyx":346
  *                         if self.tot_n[y, x] == 0:
  *                             self.tot_Max[y, x] = self.ndv
  *             returnObj[tempstats.MAX] = np.asarray(self.tot_Max)             # <<<<<<<<<<<<<<
  *         if self._doSum:
  *             returnObj[tempstats.SUM] = np.asarray(self.tot_Sum)
  */
-    __pyx_t_2 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 335; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_2 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 346; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_2);
-    __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_asarray); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 335; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_asarray); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 346; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_4);
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-    if (unlikely(!__pyx_v_self->tot_Max.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 335; __pyx_clineno = __LINE__; goto __pyx_L1_error;}}
-    __pyx_t_2 = __pyx_memoryview_fromslice(__pyx_v_self->tot_Max, 2, (PyObject *(*)(char *)) __pyx_memview_get_float, (int (*)(char *, PyObject *)) __pyx_memview_set_float, 0);; if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 335; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    if (unlikely(!__pyx_v_self->tot_Max.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 346; __pyx_clineno = __LINE__; goto __pyx_L1_error;}}
+    __pyx_t_2 = __pyx_memoryview_fromslice(__pyx_v_self->tot_Max, 2, (PyObject *(*)(char *)) __pyx_memview_get_float, (int (*)(char *, PyObject *)) __pyx_memview_set_float, 0);; if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 346; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_2);
     __pyx_t_20 = NULL;
     if (CYTHON_COMPILING_IN_CPYTHON && unlikely(PyMethod_Check(__pyx_t_4))) {
@@ -7909,34 +8101,34 @@ static PyObject *__pyx_f_8temporal_4core_8temporal_26TemporalAggregator_Dynamic_
       }
     }
     if (!__pyx_t_20) {
-      __pyx_t_1 = __Pyx_PyObject_CallOneArg(__pyx_t_4, __pyx_t_2); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 335; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_1 = __Pyx_PyObject_CallOneArg(__pyx_t_4, __pyx_t_2); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 346; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
       __Pyx_GOTREF(__pyx_t_1);
     } else {
-      __pyx_t_3 = PyTuple_New(1+1); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 335; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_3 = PyTuple_New(1+1); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 346; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_3);
       PyTuple_SET_ITEM(__pyx_t_3, 0, __pyx_t_20); __Pyx_GIVEREF(__pyx_t_20); __pyx_t_20 = NULL;
       PyTuple_SET_ITEM(__pyx_t_3, 0+1, __pyx_t_2);
       __Pyx_GIVEREF(__pyx_t_2);
       __pyx_t_2 = 0;
-      __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_4, __pyx_t_3, NULL); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 335; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_4, __pyx_t_3, NULL); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 346; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_1);
       __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
     }
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-    __pyx_t_4 = __Pyx_GetModuleGlobalName(__pyx_n_s_tempstats); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 335; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_4 = __Pyx_GetModuleGlobalName(__pyx_n_s_tempstats); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 346; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_4);
-    __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_n_s_MAX); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 335; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_n_s_MAX); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 346; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_3);
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-    if (unlikely(PyDict_SetItem(__pyx_v_returnObj, __pyx_t_3, __pyx_t_1) < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 335; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    if (unlikely(PyDict_SetItem(__pyx_v_returnObj, __pyx_t_3, __pyx_t_1) < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 346; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
     goto __pyx_L44;
   }
   __pyx_L44:;
 
-  /* "temporal\core\temporal.pyx":336
+  /* "temporal\core\temporal.pyx":347
  *                             self.tot_Max[y, x] = self.ndv
  *             returnObj[tempstats.MAX] = np.asarray(self.tot_Max)
  *         if self._doSum:             # <<<<<<<<<<<<<<
@@ -7946,20 +8138,20 @@ static PyObject *__pyx_f_8temporal_4core_8temporal_26TemporalAggregator_Dynamic_
   __pyx_t_5 = (__pyx_v_self->_doSum != 0);
   if (__pyx_t_5) {
 
-    /* "temporal\core\temporal.pyx":337
+    /* "temporal\core\temporal.pyx":348
  *             returnObj[tempstats.MAX] = np.asarray(self.tot_Max)
  *         if self._doSum:
  *             returnObj[tempstats.SUM] = np.asarray(self.tot_Sum)             # <<<<<<<<<<<<<<
  * 
  *         return returnObj
  */
-    __pyx_t_3 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 337; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_3 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 348; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_3);
-    __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_asarray); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 337; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_asarray); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 348; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_4);
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-    if (unlikely(!__pyx_v_self->tot_Sum.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 337; __pyx_clineno = __LINE__; goto __pyx_L1_error;}}
-    __pyx_t_3 = __pyx_memoryview_fromslice(__pyx_v_self->tot_Sum, 2, (PyObject *(*)(char *)) __pyx_memview_get_float, (int (*)(char *, PyObject *)) __pyx_memview_set_float, 0);; if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 337; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    if (unlikely(!__pyx_v_self->tot_Sum.memview)) {PyErr_SetString(PyExc_AttributeError,"Memoryview is not initialized");{__pyx_filename = __pyx_f[0]; __pyx_lineno = 348; __pyx_clineno = __LINE__; goto __pyx_L1_error;}}
+    __pyx_t_3 = __pyx_memoryview_fromslice(__pyx_v_self->tot_Sum, 2, (PyObject *(*)(char *)) __pyx_memview_get_float, (int (*)(char *, PyObject *)) __pyx_memview_set_float, 0);; if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 348; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_3);
     __pyx_t_2 = NULL;
     if (CYTHON_COMPILING_IN_CPYTHON && unlikely(PyMethod_Check(__pyx_t_4))) {
@@ -7972,34 +8164,34 @@ static PyObject *__pyx_f_8temporal_4core_8temporal_26TemporalAggregator_Dynamic_
       }
     }
     if (!__pyx_t_2) {
-      __pyx_t_1 = __Pyx_PyObject_CallOneArg(__pyx_t_4, __pyx_t_3); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 337; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_1 = __Pyx_PyObject_CallOneArg(__pyx_t_4, __pyx_t_3); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 348; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
       __Pyx_GOTREF(__pyx_t_1);
     } else {
-      __pyx_t_20 = PyTuple_New(1+1); if (unlikely(!__pyx_t_20)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 337; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_20 = PyTuple_New(1+1); if (unlikely(!__pyx_t_20)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 348; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_20);
       PyTuple_SET_ITEM(__pyx_t_20, 0, __pyx_t_2); __Pyx_GIVEREF(__pyx_t_2); __pyx_t_2 = NULL;
       PyTuple_SET_ITEM(__pyx_t_20, 0+1, __pyx_t_3);
       __Pyx_GIVEREF(__pyx_t_3);
       __pyx_t_3 = 0;
-      __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_4, __pyx_t_20, NULL); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 337; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_4, __pyx_t_20, NULL); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 348; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_1);
       __Pyx_DECREF(__pyx_t_20); __pyx_t_20 = 0;
     }
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-    __pyx_t_4 = __Pyx_GetModuleGlobalName(__pyx_n_s_tempstats); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 337; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_4 = __Pyx_GetModuleGlobalName(__pyx_n_s_tempstats); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 348; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_4);
-    __pyx_t_20 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_n_s_SUM); if (unlikely(!__pyx_t_20)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 337; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_20 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_n_s_SUM); if (unlikely(!__pyx_t_20)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 348; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_20);
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-    if (unlikely(PyDict_SetItem(__pyx_v_returnObj, __pyx_t_20, __pyx_t_1) < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 337; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    if (unlikely(PyDict_SetItem(__pyx_v_returnObj, __pyx_t_20, __pyx_t_1) < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 348; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_DECREF(__pyx_t_20); __pyx_t_20 = 0;
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
     goto __pyx_L63;
   }
   __pyx_L63:;
 
-  /* "temporal\core\temporal.pyx":339
+  /* "temporal\core\temporal.pyx":350
  *             returnObj[tempstats.SUM] = np.asarray(self.tot_Sum)
  * 
  *         return returnObj             # <<<<<<<<<<<<<<
@@ -8011,7 +8203,7 @@ static PyObject *__pyx_f_8temporal_4core_8temporal_26TemporalAggregator_Dynamic_
   __pyx_r = __pyx_v_returnObj;
   goto __pyx_L0;
 
-  /* "temporal\core\temporal.pyx":293
+  /* "temporal\core\temporal.pyx":304
  *     @cython.boundscheck(False)
  *     @cython.cdivision(True)
  *     cpdef emitTotal(self):             # <<<<<<<<<<<<<<
@@ -8059,7 +8251,7 @@ static PyObject *__pyx_pf_8temporal_4core_8temporal_26TemporalAggregator_Dynamic
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("emitTotal", 0);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __pyx_f_8temporal_4core_8temporal_26TemporalAggregator_Dynamic_emitTotal(__pyx_v_self, 1); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 293; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __pyx_f_8temporal_4core_8temporal_26TemporalAggregator_Dynamic_emitTotal(__pyx_v_self, 1); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 304; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -18722,6 +18914,7 @@ static PyObject *__pyx_tp_new_8temporal_4core_8temporal_TemporalAggregator_Dynam
   if (unlikely(!o)) return 0;
   p = ((struct __pyx_obj_8temporal_4core_8temporal_TemporalAggregator_Dynamic *)o);
   p->__pyx_vtab = __pyx_vtabptr_8temporal_4core_8temporal_TemporalAggregator_Dynamic;
+  p->_uniqueFileSet = ((PyObject*)Py_None); Py_INCREF(Py_None);
   p->step_n.data = NULL;
   p->step_n.memview = NULL;
   p->tot_n.data = NULL;
@@ -18763,10 +18956,12 @@ static PyObject *__pyx_tp_new_8temporal_4core_8temporal_TemporalAggregator_Dynam
 static void __pyx_tp_dealloc_8temporal_4core_8temporal_TemporalAggregator_Dynamic(PyObject *o) {
   struct __pyx_obj_8temporal_4core_8temporal_TemporalAggregator_Dynamic *p = (struct __pyx_obj_8temporal_4core_8temporal_TemporalAggregator_Dynamic *)o;
   #if PY_VERSION_HEX >= 0x030400a1
-  if (unlikely(Py_TYPE(o)->tp_finalize) && (!PyType_IS_GC(Py_TYPE(o)) || !_PyGC_FINALIZED(o))) {
+  if (unlikely(Py_TYPE(o)->tp_finalize) && !_PyGC_FINALIZED(o)) {
     if (PyObject_CallFinalizerFromDealloc(o)) return;
   }
   #endif
+  PyObject_GC_UnTrack(o);
+  Py_CLEAR(p->_uniqueFileSet);
   __PYX_XDEC_MEMVIEW(&p->step_n, 1);
   __PYX_XDEC_MEMVIEW(&p->tot_n, 1);
   __PYX_XDEC_MEMVIEW(&p->step_oldMean, 1);
@@ -18784,6 +18979,24 @@ static void __pyx_tp_dealloc_8temporal_4core_8temporal_TemporalAggregator_Dynami
   __PYX_XDEC_MEMVIEW(&p->tot_Min, 1);
   __PYX_XDEC_MEMVIEW(&p->tot_Sum, 1);
   (*Py_TYPE(o)->tp_free)(o);
+}
+
+static int __pyx_tp_traverse_8temporal_4core_8temporal_TemporalAggregator_Dynamic(PyObject *o, visitproc v, void *a) {
+  int e;
+  struct __pyx_obj_8temporal_4core_8temporal_TemporalAggregator_Dynamic *p = (struct __pyx_obj_8temporal_4core_8temporal_TemporalAggregator_Dynamic *)o;
+  if (p->_uniqueFileSet) {
+    e = (*v)(p->_uniqueFileSet, a); if (e) return e;
+  }
+  return 0;
+}
+
+static int __pyx_tp_clear_8temporal_4core_8temporal_TemporalAggregator_Dynamic(PyObject *o) {
+  PyObject* tmp;
+  struct __pyx_obj_8temporal_4core_8temporal_TemporalAggregator_Dynamic *p = (struct __pyx_obj_8temporal_4core_8temporal_TemporalAggregator_Dynamic *)o;
+  tmp = ((PyObject*)p->_uniqueFileSet);
+  p->_uniqueFileSet = ((PyObject*)Py_None); Py_INCREF(Py_None);
+  Py_XDECREF(tmp);
+  return 0;
 }
 
 static PyMethodDef __pyx_methods_8temporal_4core_8temporal_TemporalAggregator_Dynamic[] = {
@@ -18817,10 +19030,10 @@ static PyTypeObject __pyx_type_8temporal_4core_8temporal_TemporalAggregator_Dyna
   0, /*tp_getattro*/
   0, /*tp_setattro*/
   0, /*tp_as_buffer*/
-  Py_TPFLAGS_DEFAULT|Py_TPFLAGS_HAVE_VERSION_TAG|Py_TPFLAGS_CHECKTYPES|Py_TPFLAGS_HAVE_NEWBUFFER|Py_TPFLAGS_BASETYPE, /*tp_flags*/
+  Py_TPFLAGS_DEFAULT|Py_TPFLAGS_HAVE_VERSION_TAG|Py_TPFLAGS_CHECKTYPES|Py_TPFLAGS_HAVE_NEWBUFFER|Py_TPFLAGS_BASETYPE|Py_TPFLAGS_HAVE_GC, /*tp_flags*/
   "Calculates running local statistics of a series of incoming arrays\n\n    For a given array shape, determined at initialisation, this class creates arrays, for\n    each requested statistic, of the local values of that statistic in the incoming arrays.\n    Two arrays are created for each statistic, representing a subtotal (which can be retrieved and\n    reset) and an overall (synoptic) total. The incoming arrays should then be supplied sequentially.\n\n    The variance (and thus SD) are computed using the method of Donald Knuth which is robust against\n    numerical errors that can otherwise occur for large values with small differences.\n\n    Output arrays are generated simultaneously for both all data received, and for all data\n    received since the value of the \"month\" parameter changed. This enables the class to be\n    used to calculate monthly and overall statistics in a single pass.\n\n    The calculation is implemented in optimised multithreaded C code generated using Cython. By\n    default this will use 6 threads although this can be changed in the code.\n\n    This class has been used to generate \"synoptic\" outputs from the MODIS variables used in MAP\n    but of course can be used for any other suitable series of arrays where efficient flattening to\n    mean/sd/count is required.\n    ", /*tp_doc*/
-  0, /*tp_traverse*/
-  0, /*tp_clear*/
+  __pyx_tp_traverse_8temporal_4core_8temporal_TemporalAggregator_Dynamic, /*tp_traverse*/
+  __pyx_tp_clear_8temporal_4core_8temporal_TemporalAggregator_Dynamic, /*tp_clear*/
   0, /*tp_richcompare*/
   0, /*tp_weaklistoffset*/
   0, /*tp_iter*/
@@ -19528,6 +19741,7 @@ static struct PyModuleDef __pyx_moduledef = {
 #endif
 
 static __Pyx_StringTabEntry __pyx_string_tab[] = {
+  {&__pyx_kp_s_Already_added_0_S_to_synoptic_to, __pyx_k_Already_added_0_S_to_synoptic_to, sizeof(__pyx_k_Already_added_0_S_to_synoptic_to), 0, 0, 1, 0},
   {&__pyx_kp_s_Buffer_view_does_not_expose_stri, __pyx_k_Buffer_view_does_not_expose_stri, sizeof(__pyx_k_Buffer_view_does_not_expose_stri), 0, 0, 1, 0},
   {&__pyx_n_s_COUNT, __pyx_k_COUNT, sizeof(__pyx_k_COUNT), 0, 0, 1, 1},
   {&__pyx_kp_s_Can_only_create_a_buffer_that_is, __pyx_k_Can_only_create_a_buffer_that_is, sizeof(__pyx_k_Can_only_create_a_buffer_that_is), 0, 0, 1, 0},
@@ -19570,8 +19784,11 @@ static __Pyx_StringTabEntry __pyx_string_tab[] = {
   {&__pyx_n_s_dtype_is_object, __pyx_k_dtype_is_object, sizeof(__pyx_k_dtype_is_object), 0, 0, 1, 1},
   {&__pyx_n_s_emitStep, __pyx_k_emitStep, sizeof(__pyx_k_emitStep), 0, 0, 1, 1},
   {&__pyx_n_s_emitTotal, __pyx_k_emitTotal, sizeof(__pyx_k_emitTotal), 0, 0, 1, 1},
+  {&__pyx_n_s_end, __pyx_k_end, sizeof(__pyx_k_end), 0, 0, 1, 1},
   {&__pyx_n_s_enumerate, __pyx_k_enumerate, sizeof(__pyx_k_enumerate), 0, 0, 1, 1},
   {&__pyx_n_s_error, __pyx_k_error, sizeof(__pyx_k_error), 0, 0, 1, 1},
+  {&__pyx_n_s_file, __pyx_k_file, sizeof(__pyx_k_file), 0, 0, 1, 1},
+  {&__pyx_n_s_fileTag, __pyx_k_fileTag, sizeof(__pyx_k_fileTag), 0, 0, 1, 1},
   {&__pyx_n_s_flags, __pyx_k_flags, sizeof(__pyx_k_flags), 0, 0, 1, 1},
   {&__pyx_n_s_float32, __pyx_k_float32, sizeof(__pyx_k_float32), 0, 0, 1, 1},
   {&__pyx_n_s_float64, __pyx_k_float64, sizeof(__pyx_k_float64), 0, 0, 1, 1},
@@ -19597,6 +19814,7 @@ static __Pyx_StringTabEntry __pyx_string_tab[] = {
   {&__pyx_n_s_numpy, __pyx_k_numpy, sizeof(__pyx_k_numpy), 0, 0, 1, 1},
   {&__pyx_n_s_obj, __pyx_k_obj, sizeof(__pyx_k_obj), 0, 0, 1, 1},
   {&__pyx_n_s_pack, __pyx_k_pack, sizeof(__pyx_k_pack), 0, 0, 1, 1},
+  {&__pyx_n_s_print, __pyx_k_print, sizeof(__pyx_k_print), 0, 0, 1, 1},
   {&__pyx_n_s_pyx_getbuffer, __pyx_k_pyx_getbuffer, sizeof(__pyx_k_pyx_getbuffer), 0, 0, 1, 1},
   {&__pyx_n_s_pyx_vtable, __pyx_k_pyx_vtable, sizeof(__pyx_k_pyx_vtable), 0, 0, 1, 1},
   {&__pyx_n_s_range, __pyx_k_range, sizeof(__pyx_k_range), 0, 0, 1, 1},
@@ -19623,7 +19841,7 @@ static __Pyx_StringTabEntry __pyx_string_tab[] = {
   {0, 0, 0, 0, 0, 0, 0}
 };
 static int __Pyx_InitCachedBuiltins(void) {
-  __pyx_builtin_range = __Pyx_GetBuiltinName(__pyx_n_s_range); if (!__pyx_builtin_range) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 173; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_builtin_range = __Pyx_GetBuiltinName(__pyx_n_s_range); if (!__pyx_builtin_range) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 184; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __pyx_builtin_ValueError = __Pyx_GetBuiltinName(__pyx_n_s_ValueError); if (!__pyx_builtin_ValueError) {__pyx_filename = __pyx_f[1]; __pyx_lineno = 127; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __pyx_builtin_MemoryError = __Pyx_GetBuiltinName(__pyx_n_s_MemoryError); if (!__pyx_builtin_MemoryError) {__pyx_filename = __pyx_f[1]; __pyx_lineno = 142; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __pyx_builtin_enumerate = __Pyx_GetBuiltinName(__pyx_n_s_enumerate); if (!__pyx_builtin_enumerate) {__pyx_filename = __pyx_f[1]; __pyx_lineno = 145; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
@@ -19645,47 +19863,47 @@ static int __Pyx_InitCachedConstants(void) {
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("__Pyx_InitCachedConstants", 0);
 
-  /* "temporal\core\temporal.pyx":265
+  /* "temporal\core\temporal.pyx":276
  *         }
  *         if self._outputMean:
  *             returnObj[tempstats.MEAN] = np.asarray(self.step_newMean).astype('float32')             # <<<<<<<<<<<<<<
  *         if self._doSD:
  *             returnObj[tempstats.SD] = np.asarray(self.step_newSD).astype('float32')
  */
-  __pyx_tuple_ = PyTuple_Pack(1, __pyx_n_s_float32); if (unlikely(!__pyx_tuple_)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 265; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_tuple_ = PyTuple_Pack(1, __pyx_n_s_float32); if (unlikely(!__pyx_tuple_)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 276; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_tuple_);
   __Pyx_GIVEREF(__pyx_tuple_);
 
-  /* "temporal\core\temporal.pyx":267
+  /* "temporal\core\temporal.pyx":278
  *             returnObj[tempstats.MEAN] = np.asarray(self.step_newMean).astype('float32')
  *         if self._doSD:
  *             returnObj[tempstats.SD] = np.asarray(self.step_newSD).astype('float32')             # <<<<<<<<<<<<<<
  *         if self._doMin:
  *             # get rid of the infinities
  */
-  __pyx_tuple__2 = PyTuple_Pack(1, __pyx_n_s_float32); if (unlikely(!__pyx_tuple__2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 267; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_tuple__2 = PyTuple_Pack(1, __pyx_n_s_float32); if (unlikely(!__pyx_tuple__2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 278; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_tuple__2);
   __Pyx_GIVEREF(__pyx_tuple__2);
 
-  /* "temporal\core\temporal.pyx":315
+  /* "temporal\core\temporal.pyx":326
  *         }
  *         if self._outputMean:
  *             returnObj[tempstats.MEAN] = np.asarray(self.tot_newMean).astype('float32')             # <<<<<<<<<<<<<<
  *         if self._doSD:
  *             returnObj[tempstats.SD] = np.asarray(self.tot_newSD).astype('float32')
  */
-  __pyx_tuple__3 = PyTuple_Pack(1, __pyx_n_s_float32); if (unlikely(!__pyx_tuple__3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 315; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_tuple__3 = PyTuple_Pack(1, __pyx_n_s_float32); if (unlikely(!__pyx_tuple__3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 326; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_tuple__3);
   __Pyx_GIVEREF(__pyx_tuple__3);
 
-  /* "temporal\core\temporal.pyx":317
+  /* "temporal\core\temporal.pyx":328
  *             returnObj[tempstats.MEAN] = np.asarray(self.tot_newMean).astype('float32')
  *         if self._doSD:
  *             returnObj[tempstats.SD] = np.asarray(self.tot_newSD).astype('float32')             # <<<<<<<<<<<<<<
  *         if self._doMin:
  *             # get rid of the infinities
  */
-  __pyx_tuple__4 = PyTuple_Pack(1, __pyx_n_s_float32); if (unlikely(!__pyx_tuple__4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 317; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_tuple__4 = PyTuple_Pack(1, __pyx_n_s_float32); if (unlikely(!__pyx_tuple__4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 328; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_tuple__4);
   __Pyx_GIVEREF(__pyx_tuple__4);
 
@@ -19975,7 +20193,7 @@ PyMODINIT_FUNC PyInit_temporal(void)
   /*--- Function export code ---*/
   /*--- Type init code ---*/
   __pyx_vtabptr_8temporal_4core_8temporal_TemporalAggregator_Dynamic = &__pyx_vtable_8temporal_4core_8temporal_TemporalAggregator_Dynamic;
-  __pyx_vtable_8temporal_4core_8temporal_TemporalAggregator_Dynamic.addFile = (PyObject *(*)(struct __pyx_obj_8temporal_4core_8temporal_TemporalAggregator_Dynamic *, __Pyx_memviewslice, float, int __pyx_skip_dispatch))__pyx_f_8temporal_4core_8temporal_26TemporalAggregator_Dynamic_addFile;
+  __pyx_vtable_8temporal_4core_8temporal_TemporalAggregator_Dynamic.addFile = (PyObject *(*)(struct __pyx_obj_8temporal_4core_8temporal_TemporalAggregator_Dynamic *, __Pyx_memviewslice, float, int __pyx_skip_dispatch, struct __pyx_opt_args_8temporal_4core_8temporal_26TemporalAggregator_Dynamic_addFile *__pyx_optional_args))__pyx_f_8temporal_4core_8temporal_26TemporalAggregator_Dynamic_addFile;
   __pyx_vtable_8temporal_4core_8temporal_TemporalAggregator_Dynamic.emitStep = (PyObject *(*)(struct __pyx_obj_8temporal_4core_8temporal_TemporalAggregator_Dynamic *, int __pyx_skip_dispatch))__pyx_f_8temporal_4core_8temporal_26TemporalAggregator_Dynamic_emitStep;
   __pyx_vtable_8temporal_4core_8temporal_TemporalAggregator_Dynamic.emitTotal = (PyObject *(*)(struct __pyx_obj_8temporal_4core_8temporal_TemporalAggregator_Dynamic *, int __pyx_skip_dispatch))__pyx_f_8temporal_4core_8temporal_26TemporalAggregator_Dynamic_emitTotal;
   if (PyType_Ready(&__pyx_type_8temporal_4core_8temporal_TemporalAggregator_Dynamic) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 8; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
@@ -21091,37 +21309,6 @@ static CYTHON_INLINE void __Pyx_RaiseUnboundLocalError(const char *varname) {
     PyErr_Format(PyExc_UnboundLocalError, "local variable '%s' referenced before assignment", varname);
 }
 
-static CYTHON_INLINE void __Pyx_ErrRestore(PyObject *type, PyObject *value, PyObject *tb) {
-#if CYTHON_COMPILING_IN_CPYTHON
-    PyObject *tmp_type, *tmp_value, *tmp_tb;
-    PyThreadState *tstate = PyThreadState_GET();
-    tmp_type = tstate->curexc_type;
-    tmp_value = tstate->curexc_value;
-    tmp_tb = tstate->curexc_traceback;
-    tstate->curexc_type = type;
-    tstate->curexc_value = value;
-    tstate->curexc_traceback = tb;
-    Py_XDECREF(tmp_type);
-    Py_XDECREF(tmp_value);
-    Py_XDECREF(tmp_tb);
-#else
-    PyErr_Restore(type, value, tb);
-#endif
-}
-static CYTHON_INLINE void __Pyx_ErrFetch(PyObject **type, PyObject **value, PyObject **tb) {
-#if CYTHON_COMPILING_IN_CPYTHON
-    PyThreadState *tstate = PyThreadState_GET();
-    *type = tstate->curexc_type;
-    *value = tstate->curexc_value;
-    *tb = tstate->curexc_traceback;
-    tstate->curexc_type = 0;
-    tstate->curexc_value = 0;
-    tstate->curexc_traceback = 0;
-#else
-    PyErr_Fetch(type, value, tb);
-#endif
-}
-
 #if CYTHON_COMPILING_IN_CPYTHON
 static CYTHON_INLINE PyObject* __Pyx_PyObject_CallMethO(PyObject *func, PyObject *arg) {
     PyObject *self, *result;
@@ -21170,6 +21357,37 @@ static CYTHON_INLINE PyObject* __Pyx_PyObject_CallOneArg(PyObject *func, PyObjec
     return (likely(args)) ? __Pyx_PyObject_Call(func, args, NULL) : NULL;
 }
 #endif
+
+static CYTHON_INLINE void __Pyx_ErrRestore(PyObject *type, PyObject *value, PyObject *tb) {
+#if CYTHON_COMPILING_IN_CPYTHON
+    PyObject *tmp_type, *tmp_value, *tmp_tb;
+    PyThreadState *tstate = PyThreadState_GET();
+    tmp_type = tstate->curexc_type;
+    tmp_value = tstate->curexc_value;
+    tmp_tb = tstate->curexc_traceback;
+    tstate->curexc_type = type;
+    tstate->curexc_value = value;
+    tstate->curexc_traceback = tb;
+    Py_XDECREF(tmp_type);
+    Py_XDECREF(tmp_value);
+    Py_XDECREF(tmp_tb);
+#else
+    PyErr_Restore(type, value, tb);
+#endif
+}
+static CYTHON_INLINE void __Pyx_ErrFetch(PyObject **type, PyObject **value, PyObject **tb) {
+#if CYTHON_COMPILING_IN_CPYTHON
+    PyThreadState *tstate = PyThreadState_GET();
+    *type = tstate->curexc_type;
+    *value = tstate->curexc_value;
+    *tb = tstate->curexc_traceback;
+    tstate->curexc_type = 0;
+    tstate->curexc_value = 0;
+    tstate->curexc_traceback = 0;
+#else
+    PyErr_Fetch(type, value, tb);
+#endif
+}
 
 #if CYTHON_COMPILING_IN_CPYTHON
 static CYTHON_INLINE PyObject* __Pyx_PyObject_CallNoArg(PyObject *func) {
@@ -22316,6 +22534,147 @@ static int __pyx_memview_set_float(const char *itemp, PyObject *obj) {
     *(float *) itemp = value;
     return 1;
 }
+
+#if !CYTHON_COMPILING_IN_PYPY && PY_MAJOR_VERSION < 3
+static PyObject *__Pyx_GetStdout(void) {
+    PyObject *f = PySys_GetObject((char *)"stdout");
+    if (!f) {
+        PyErr_SetString(PyExc_RuntimeError, "lost sys.stdout");
+    }
+    return f;
+}
+static int __Pyx_Print(PyObject* f, PyObject *arg_tuple, int newline) {
+    int i;
+    if (!f) {
+        if (!(f = __Pyx_GetStdout()))
+            return -1;
+    }
+    Py_INCREF(f);
+    for (i=0; i < PyTuple_GET_SIZE(arg_tuple); i++) {
+        PyObject* v;
+        if (PyFile_SoftSpace(f, 1)) {
+            if (PyFile_WriteString(" ", f) < 0)
+                goto error;
+        }
+        v = PyTuple_GET_ITEM(arg_tuple, i);
+        if (PyFile_WriteObject(v, f, Py_PRINT_RAW) < 0)
+            goto error;
+        if (PyString_Check(v)) {
+            char *s = PyString_AsString(v);
+            Py_ssize_t len = PyString_Size(v);
+            if (len > 0) {
+                switch (s[len-1]) {
+                    case ' ': break;
+                    case '\f': case '\r': case '\n': case '\t': case '\v':
+                        PyFile_SoftSpace(f, 0);
+                        break;
+                    default:  break;
+                }
+            }
+        }
+    }
+    if (newline) {
+        if (PyFile_WriteString("\n", f) < 0)
+            goto error;
+        PyFile_SoftSpace(f, 0);
+    }
+    Py_DECREF(f);
+    return 0;
+error:
+    Py_DECREF(f);
+    return -1;
+}
+#else
+static int __Pyx_Print(PyObject* stream, PyObject *arg_tuple, int newline) {
+    PyObject* kwargs = 0;
+    PyObject* result = 0;
+    PyObject* end_string;
+    if (unlikely(!__pyx_print)) {
+        __pyx_print = PyObject_GetAttr(__pyx_b, __pyx_n_s_print);
+        if (!__pyx_print)
+            return -1;
+    }
+    if (stream) {
+        kwargs = PyDict_New();
+        if (unlikely(!kwargs))
+            return -1;
+        if (unlikely(PyDict_SetItem(kwargs, __pyx_n_s_file, stream) < 0))
+            goto bad;
+        if (!newline) {
+            end_string = PyUnicode_FromStringAndSize(" ", 1);
+            if (unlikely(!end_string))
+                goto bad;
+            if (PyDict_SetItem(kwargs, __pyx_n_s_end, end_string) < 0) {
+                Py_DECREF(end_string);
+                goto bad;
+            }
+            Py_DECREF(end_string);
+        }
+    } else if (!newline) {
+        if (unlikely(!__pyx_print_kwargs)) {
+            __pyx_print_kwargs = PyDict_New();
+            if (unlikely(!__pyx_print_kwargs))
+                return -1;
+            end_string = PyUnicode_FromStringAndSize(" ", 1);
+            if (unlikely(!end_string))
+                return -1;
+            if (PyDict_SetItem(__pyx_print_kwargs, __pyx_n_s_end, end_string) < 0) {
+                Py_DECREF(end_string);
+                return -1;
+            }
+            Py_DECREF(end_string);
+        }
+        kwargs = __pyx_print_kwargs;
+    }
+    result = PyObject_Call(__pyx_print, arg_tuple, kwargs);
+    if (unlikely(kwargs) && (kwargs != __pyx_print_kwargs))
+        Py_DECREF(kwargs);
+    if (!result)
+        return -1;
+    Py_DECREF(result);
+    return 0;
+bad:
+    if (kwargs != __pyx_print_kwargs)
+        Py_XDECREF(kwargs);
+    return -1;
+}
+#endif
+
+#if !CYTHON_COMPILING_IN_PYPY && PY_MAJOR_VERSION < 3
+static int __Pyx_PrintOne(PyObject* f, PyObject *o) {
+    if (!f) {
+        if (!(f = __Pyx_GetStdout()))
+            return -1;
+    }
+    Py_INCREF(f);
+    if (PyFile_SoftSpace(f, 0)) {
+        if (PyFile_WriteString(" ", f) < 0)
+            goto error;
+    }
+    if (PyFile_WriteObject(o, f, Py_PRINT_RAW) < 0)
+        goto error;
+    if (PyFile_WriteString("\n", f) < 0)
+        goto error;
+    Py_DECREF(f);
+    return 0;
+error:
+    Py_DECREF(f);
+    return -1;
+    /* the line below is just to avoid C compiler
+     * warnings about unused functions */
+    return __Pyx_Print(f, NULL, 0);
+}
+#else
+static int __Pyx_PrintOne(PyObject* stream, PyObject *o) {
+    int res;
+    PyObject* arg_tuple = PyTuple_Pack(1, o);
+    if (unlikely(!arg_tuple))
+        return -1;
+    res = __Pyx_Print(stream, arg_tuple, 1);
+    Py_DECREF(arg_tuple);
+    return res;
+}
+#endif
 
 static CYTHON_INLINE PyObject* __Pyx_PyInt_From_short(short value) {
     const short neg_one = (short) -1, const_zero = 0;

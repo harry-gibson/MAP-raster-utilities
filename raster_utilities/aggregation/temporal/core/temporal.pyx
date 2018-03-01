@@ -41,6 +41,8 @@ cdef class TemporalAggregator_Dynamic:
         unsigned char _outputCount, _outputMean
         # allow skipping of synoptic outputs to only track one set of data and halve memory use
         unsigned char _generateSynoptic
+        set _uniqueFileSet
+
 
     def __cinit__(self, Py_ssize_t height, Py_ssize_t width, double ndv, 
                 stats, generateSynoptic = True):
@@ -109,10 +111,11 @@ cdef class TemporalAggregator_Dynamic:
         self._startNewStep = 1
         if generateSynoptic:
             self._generateSynoptic = 1
+            self._uniqueFileSet = set()
 
     @cython.boundscheck(False)
     @cython.cdivision(True)
-    cpdef addFile(self, float[:,::1] data, float thisNdv):
+    cpdef addFile(self, float[:,::1] data, float thisNdv, fileTag = None):
         '''Add a tile of data to the running summaries. Data array must be of shape specified in startup.
 
         Specify the value in the data that should be treated as nodata (does not have to be the same
@@ -136,6 +139,7 @@ cdef class TemporalAggregator_Dynamic:
             double test_ndv
             double sd
             Py_ssize_t y, x, yShape, xShape, t, b
+            unsigned char useForSynoptic = 0
 
         assert self.height == data.shape[0]
         assert self.width == data.shape[1]
@@ -164,6 +168,16 @@ cdef class TemporalAggregator_Dynamic:
                 self.step_Sum = np.zeros((self.height, self.width), dtype='float32')
             self._startNewStep = 0
 
+        if self._generateSynoptic:
+            # Every file (distinguished by fileTag parameter) will only be counted once towards
+            # the synoptic stats, so whether we calculate them each time depends on whether we
+            # are generating them at all, and whether we've had this file before.
+            if ((fileTag is None) or (not fileTag in self._uniqueFileSet)):
+                self._uniqueFileSet.add(fileTag)
+                useForSynoptic = 1
+            elif fileTag is not None:
+                print("Already added {0!s} to synoptic total, skipping. ".format(fileTag))
+
         # hardcode to 6 threads which is fast enough for anything that can 
         # feasibly fit in RAM anyway and is ok on most machines
         with nogil, cython.wraparound(False), parallel(num_threads=6):
@@ -175,11 +189,11 @@ cdef class TemporalAggregator_Dynamic:
                     if value == thisNdv:
                         continue
                     # always track a count
-                    self.tot_n[y, x] +=1
                     self.step_n[y, x] += 1
                     
                     # do all the calcs for the overall result, if required
-                    if self._generateSynoptic:
+                    if useForSynoptic:
+                        self.tot_n[y, x] +=1
                         if self.tot_n[y, x] == 1:
                             if self._doMean: # nb this is set even if we're only doing sd as mean is needed for that
                                 self.tot_oldMean[y, x] = value

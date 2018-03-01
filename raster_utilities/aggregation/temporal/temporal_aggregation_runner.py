@@ -22,7 +22,7 @@ class TemporalAggregator:
         self.stats = stats
 
         self.doSynoptic = doSynoptic == True
-
+        self.synopticFileSet = set()
         aFilename = self.filesDict.iteritems().next()[1][0]
         props = GetRasterProperties(aFilename)
         self.InputProperties = props
@@ -54,14 +54,14 @@ class TemporalAggregator:
         bTot = bppTot * nPix
         if self.doSynoptic:
             bTot *= 2
-        bTot += 4 * nPix # the input data tile
+        bTot += 8 * nPix # the input data tile
         return bTot
 
     def RunAggregation(self):
         '''For each key in filesDict, aggregates the files on the associated value to the specified stats.
 
         Returns true if the aggregation needed to be done in multiple tiles for memory reasons in
-        which case you will need to mosaic the output tiles afterwards.
+        which case you will need to mosaic the out  put tiles afterwards.
 
         Files should be provided in filesDict; each item should be a key representing an
         output point (timespan) and a value representing the file paths for that point in time.
@@ -93,7 +93,7 @@ class TemporalAggregator:
         h = self.InputProperties.height
         runHeight = h
         bytesFull = self._estimateTemporalAggregationMemory(runHeight)
-        while bytesFull > 2e30:
+        while bytesFull > 40e9:
             runHeight = runHeight // 2 # force integer division on python 2.x
             bytesFull = self._estimateTemporalAggregationMemory(runHeight)
         slices = sorted(list(set([s[1] for s in getTiles(w, h, runHeight)])))
@@ -119,16 +119,19 @@ class TemporalAggregator:
         vrtBuilder = "gdalbuildvrt {0} {1}"
         transBuilder = "gdal_translate -of GTiff -co COMPRESS=LZW " + \
                        "-co PREDICTOR=2 -co TILED=YES -co SPARSE_OK=TRUE -co BIGTIFF=YES " + \
-                       "--config GDAL_CACHEMAX 8000 {0} {1}"
+                       "-co NUM_THREADS=ALL_CPUS --config GDAL_CACHEMAX 8000 {0} {1}"
         ovBuilder = "gdaladdo -ro --config COMPRESS_OVERVIEW LZW --config USE_RRD NO " + \
                     "--config TILED YES {0} 2 4 8 16 32 64 128 256 --config GDAL_CACHEMAX 8000"
         statBuilder = "gdalinfo -stats {0} >nul"
         vrts = []
         tifs = []
-        tileFolder = self.outFolder
         for stat in self.stats:
             statname = stat
-            for timeKey in self._timePoints():
+            timeKeys = self._timePoints()
+            ranSynoptic = (len(self.filesDict.keys()) > 1) and self.doSynoptic
+            if ranSynoptic and ("Overall" not in timeKeys):
+                timeKeys.add("Overall")
+            for timeKey in timeKeys:
                 tiffWildCard = self._fnGetter(str(timeKey), stat,  "*")
                 sliceTiffs = os.path.join(self._tileFolder, tiffWildCard)
                 vrtName = timeKey + "." + statname + ".vrt"
@@ -137,6 +140,8 @@ class TemporalAggregator:
                 logMessage("Building vrt " + vrtFile)
                 vrts.append(vrtFile)
                 subprocess.call(vrtCommand)
+
+
         for vrt in vrts:
             tif = vrt.replace("vrt", "tif")
             translateCommand = transBuilder.format(vrt, tif)
@@ -210,7 +215,11 @@ class TemporalAggregator:
                     if sliceGT != thisGT or sliceProj != thisProj:
                         raise ValueError("File " + timeFile +
                                          " has a different geotransform or projection - cannot continue!")
-                statsCalculator.addFile(data, thisNdv)
+                # pass the filename as a tag so the aggregator can avoid using the same file
+                # multiple times in calculating overall values. E.g. we might be calculating annual
+                # and, separately, monthly means, involving reading each file twice, but only want
+                # to count each one once towards overall totals.
+                statsCalculator.addFile(data, thisNdv, timeFile)
             periodResults = statsCalculator.emitStep()
             if isFullFile:
                 where = -1
@@ -227,7 +236,7 @@ class TemporalAggregator:
                 where = top
             for stat in self.stats:
                 SaveLZWTiff(overallResults[stat], self.outputNDV, sliceGT, sliceProj, outFolder,
-                            self._fnGetter(str(timeKey), stat,  where))
+                            self._fnGetter("Overall", stat,  where))
 
 
 
