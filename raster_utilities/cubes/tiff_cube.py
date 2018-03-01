@@ -3,9 +3,13 @@ from datetime import date
 from collections import  defaultdict
 from cube_constants import  CubeResolutions, CubeLevels
 from ..aggregation.aggregation_values import TemporalAggregationStats, ContinuousAggregationStats
-from ..io.tiff_management import ReadAOI_PixelLims
+from ..io.tiff_management import ReadAOI_PixelLims, GetRasterProperties
+from ..utils.geotransform_calcs import CalculatePixelLims
+
 class TiffCube:
-    '''
+    ''' Represents a view of a MAP mastergrids data cube folder for a single variable
+
+    Based on a
 
     {
         resolution (1km / 5km):
@@ -31,13 +35,27 @@ class TiffCube:
         pass
 
     def __InitialiseFiles(self, resolution, temporalsummary, spatialsummary):
-        # set the constants to be defined as numeric values, maybe could have done them as these strings
+        ''' Parse all the monthly, annual, and synoptic files for this cube
+
+        Selects the files from a mastergrid cube folder structure corresponding
+        to the specified resolution, temporal summary (how derived from 8-daily
+        source) and spatial summary (how aggregated to 5k or 10k, if at all), and
+        parses them into dictionaries keyed by time
+
+        :param resolution:
+        :param temporalsummary:
+        :param spatialsummary:
+        :return:
+        '''
+        # the constants are defined as numeric values, maybe could have done them as these strings
         if resolution == CubeResolutions.ONE_K:
             res = "1k"
         elif resolution == CubeResolutions.FIVE_K:
             res = "5k"
-        else:
+        elif resolution == CubeResolutions.TEN_K:
             res = "10k"
+        else:
+            raise ValueError("resoluion of " + resolution + " not recognised!")
 
         # this cube object represents one of the (maybe) available resolutions
         resFolderPath = os.path.join(self.MasterFolder, res)
@@ -111,18 +129,21 @@ class TiffCube:
             raise ValueError("Filename {0!s} has variable inconsistent with {1!s}".format(filename, self.VariableName))
         return variablename, yearOrSynoptic, monthOrOverall, temporalType, resolution, spatialType
 
-    def ReadMonthlyData(self, date, latLims, lonLims):
-        pass
+    def ReadMonthlyDataForDate(self, RequiredDate, latLims, lonLims):
+        return self.ReadDataForDate(CubeLevels.MONTHLY, RequiredDate, latLims, lonLims)
 
-    def ReadAnnualData(self, date, latLims, lonLims):
-        pass
+    def ReadAnnualDataForDate(self, RequiredDate, latLims, lonLims):
+        return self.ReadDataForDate(CubeLevels.ANNUAL, RequiredDate, latLims, lonLims)
 
-    def ReadDataForDate(self, CubeLevel, RequiredDate):
+    def ReadSynopticDataForDate(self, RequiredDate, latLims, lonLims):
+        '''RequiredDate may be None for overall synoptic, or a date for the matching synoptic month'''
+        return self.ReadDataForDate(CubeLevels.SYNOPTIC, RequiredDate, latLims, lonLims)
+
+    def ReadDataForDate(self, CubeLevel, RequiredDate, latLims, lonLims):
         '''produces an array of data representing the content of the required term for this date
 
-        This takes into account the temporal summary, anomaly, and lag as appropriate for this term
-
-        TODO - specify a subset bounding box'''
+        This takes into account the temporal summary, anomaly, as appropriate for this term
+        '''
         rasterFilename = None
         if CubeLevel == CubeLevels.MONTHLY:
             firstOfMonth = date(RequiredDate.year, RequiredDate.month, 1)
@@ -142,8 +163,10 @@ class TiffCube:
         else:
             self.log("Unknown value for CubeLevel parameter")
         if rasterFilename is not None:
-            dataArr, dataGT, dataProj, dataNDV = ReadAOI_PixelLims(rasterFilename)
-            return dataArr
+            inGT, inProj, inNDV, inWidth, inHeight, inRes, inDT = GetRasterProperties(rasterFilename)
+            pixelLims = CalculatePixelLims(inGT, lonLims, latLims)
+            dataArr, subsetGT, _, _ = ReadAOI_PixelLims(rasterFilename, pixelLims[0], pixelLims[1])
+            return (dataArr, subsetGT, inProj, inNDV)
         else:
             self.log("No matching filename found")
             return None
