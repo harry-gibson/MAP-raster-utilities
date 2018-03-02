@@ -38,10 +38,11 @@ class TiffCube:
         self.MonthlyDictionary = {}
         self.AnnualDictionary = {}
         self.SynopticDictionary = {}
-        self.__InitialiseFiles(resolution, temporalsummary, spatialsummary)
+        self.VariableName = os.path.basename(MasterFolder)
+        self.__InitialiseFiles(resolution, temporalsummary.value, spatialsummary.value)
 
     def log(self, msg):
-        pass
+        print(msg)
 
     def __InitialiseFiles(self, resolution, temporalsummary, spatialsummary):
         ''' Parse all the monthly, annual, and synoptic files for this cube
@@ -58,11 +59,11 @@ class TiffCube:
         '''
         # the constants are defined as numeric values, maybe could have done them as these strings
         if resolution == CubeResolutions.ONE_K:
-            res = "1k"
+            res = "1km"
         elif resolution == CubeResolutions.FIVE_K:
-            res = "5k"
+            res = "5km"
         elif resolution == CubeResolutions.TEN_K:
-            res = "10k"
+            res = "10km"
         else:
             raise ValueError("resoluion of " + resolution + " not recognised!")
 
@@ -80,7 +81,10 @@ class TiffCube:
             monthlyWildcard = filenameTemplate.format(self.VariableName,
                                                       "*", "*",
                                                       temporalsummary, res, spatialsummary)
-            monthlyFiles = glob.glob(os.path.join(monthlyFolderPath, monthlyWildcard))
+            monthlyWildcardPath = os.path.join(monthlyFolderPath, monthlyWildcard)
+            monthlyFiles = glob.glob(monthlyWildcardPath)
+            if len(monthlyFiles) == 0:
+                self.log('No monthly files found with wildcard ' + monthlyWildcardPath)
             for f in monthlyFiles:
                 (variablename, yearOrSynoptic, monthOrOverall, temporalType,
                  resolution, spatialType) = self._TryParseCubeFilename(f)
@@ -90,6 +94,8 @@ class TiffCube:
                 else:
                     self.log("File {0!s} is in monthly folder but filename does not match format"
                              .format(f))
+        else:
+            self.log("Monthly folder path of {0!s} not found".format(monthlyFolderPath))
 
         # if an annual folder is present store all matching files against a dictionary keyed by an
         # int - the year in question
@@ -98,7 +104,10 @@ class TiffCube:
             annualWildcard = filenameTemplate.format(self.VariableName,
                                                      "*", "Annual",
                                                      temporalsummary, res, spatialsummary)
-            annualFiles = glob.glob(os.path.join(annualFolderPath, annualWildcard))
+            annualWildcardPath = os.path.join(annualFolderPath, annualWildcard)
+            annualFiles = glob.glob(annualWildcardPath)
+            if len(annualFiles) == 0:
+                self.log('No annual files found with wildcard ' + annualWildcardPath)
             for f in annualFiles:
                 (variablename, yearOrSynoptic, monthOrOverall, temporalType,
                  resolution, spatialType) = self._TryParseCubeFilename(f)
@@ -107,6 +116,8 @@ class TiffCube:
                 else:
                     self.log("File {0!s} is in annual folder but filename does not match format"
                              .format(f))
+        else:
+            self.log("Annual folder path of {0!s} not found".format(annualFolderPath))
 
         # if a synoptic folder is present store all matching files against a dictionary keyed by a
         # string - the 2-digits month number or the constant "Overall"
@@ -115,7 +126,11 @@ class TiffCube:
             synopticWildcard = filenameTemplate.format(self.VariableName,
                                                        "Synoptic", "*",
                                                        temporalsummary, res, spatialsummary)
-            synopticFiles = glob.glob(os.path.join(synopticFolderPath, synopticWildcard))
+            synopticWildcardPath = os.path.join(synopticFolderPath, synopticWildcard)
+            synopticFiles = glob.glob(synopticWildcardPath)
+            if len(synopticFiles) == 0:
+                self.log('No synoptic files found with wildcard ' + synopticWildcardPath)
+
             for f in synopticFiles:
                 (variablename, yearOrSynoptic, monthOrOverall, temporalType,
                  resolution, spatialType) = self._TryParseCubeFilename(f)
@@ -124,6 +139,8 @@ class TiffCube:
                 else:
                     self.log("File {0!s} is in synoptic folder but filename does not match format"
                              .format(f))
+        else:
+            self.log("Synoptic folder path of {0!s} not found".format(synopticFolderPath))
 
 
     def _TryParseCubeFilename(self, filePath):
