@@ -1,13 +1,14 @@
-class AggregationModes:
+from enum import Enum
+class AggregationModes(Enum):
     CONTINUOUS = "continuous"
     CATEGORICAL = "categorical"
 
-class AggregationTypes:
+class AggregationTypes(Enum):
     RESOLUTION = "resolution"
     FACTOR = "factor"
     SIZE = "size"
 
-class TemporalAggregationStats:
+class TemporalAggregationStats(Enum):
     MIN = "min"
     MAX = "max"
     RANGE = "range"
@@ -17,7 +18,7 @@ class TemporalAggregationStats:
     COUNT = "count"
     ALL = [MIN, MAX, RANGE, SUM, MEAN, SD, COUNT]
 
-class ContinuousAggregationStats:
+class ContinuousAggregationStats(Enum):
     MIN = "min"
     MAX = "max"
     RANGE = "range"
@@ -27,7 +28,7 @@ class ContinuousAggregationStats:
     COUNT = "count"
     ALL = [MIN, MAX, RANGE, SUM, MEAN, SD, COUNT]
 
-class CategoricalAggregationStats:
+class CategoricalAggregationStats(Enum):
     MAJORITY = "MajorityClass"
     FRACTIONS = "fraction"
     LIKEADJACENCIES = "like-adjacency"

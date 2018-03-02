@@ -18,8 +18,9 @@ class TemporalAggregator:
         self.outputNDV = outputNDV
 
         assert isinstance(stats, list)
-        assert (all([s in tempstats.ALL for s in stats]))
-        self.stats = stats
+        assert (all([s in tempstats.ALL.value or isinstance(s, tempstats)
+                     for s in stats]))
+        self.stats = [tempstats(s) for s in stats]
 
         self.doSynoptic = doSynoptic == True
         self.synopticFileSet = set()
@@ -31,7 +32,7 @@ class TemporalAggregator:
         return sorted(self.filesDict.keys())
 
     def _fnGetter(self, whatandwhen, stat, where):
-        statname = stat
+        statname = stat.value
         if where == -1:
             return ".".join([str(whatandwhen), statname,
                              str(self.InputProperties.res), "tif"])
@@ -126,7 +127,7 @@ class TemporalAggregator:
         vrts = []
         tifs = []
         for stat in self.stats:
-            statname = stat
+            statname = stat.value
             timeKeys = self._timePoints()
             ranSynoptic = (len(self.filesDict.keys()) > 1) and self.doSynoptic
             if ranSynoptic and ("Overall" not in timeKeys):
