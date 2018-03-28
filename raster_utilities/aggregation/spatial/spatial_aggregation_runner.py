@@ -51,13 +51,40 @@ class SpatialAggregator:
         self.filesList = filesList
         self.outFolder = outFolder
         self.ndvOut = ndvOut
-
-        assert (all([s in contstats.ALL for s in stats]) or
-                all([s in catstats.ALL for s in stats]))
-        if stats[0] in contstats.ALL:
-            self._mode = AggregationModes.CONTINUOUS
-        else:
-            self._mode = AggregationModes.CATEGORICAL
+        mystats = []
+        self._mode = None
+        for s in stats:
+            if isinstance(s, contstats):
+                assert s.value in contstats.ALL.value
+                if self._mode is None:
+                    self._mode = AggregationModes.CONTINUOUS
+                else:
+                    assert self._mode == AggregationModes.CONTINUOUS
+                mystats.append(s)
+            elif isinstance(s, catstats):
+                assert s.value in catstats.ALL.value
+                if self._mode is None:
+                    self._mode = AggregationModes.CATEGORICAL
+                else:
+                    assert self._mode == AggregationModes.CATEGORICAL
+                mystats.append(s)
+            else:
+                try:
+                    sCast = contstats(s)
+                    if self._mode is None:
+                        self._mode = AggregationModes.CONTINUOUS
+                    else:
+                        assert self._mode == AggregationModes.CONTINUOUS
+                    mystats.append(sCast)
+                except ValueError:
+                    sCast = catstats(s) # and except if it fails again
+                    if self._mode is None:
+                        self._mode = AggregationModes.CATEGORICAL
+                    else:
+                        assert self._mode == AggregationModes.CATEGORICAL
+                    mystats.append(sCast)
+        self.stats = mystats
+        if self._mode == AggregationModes.CATEGORICAL:
             assert aggregationArgs.has_key("categories")
             categories = aggregationArgs["categories"]
             if isinstance(categories, int):
@@ -75,7 +102,7 @@ class SpatialAggregator:
                 self.nCategories = len(categories)
                 self.categories = categories
 
-        self.stats = stats
+
 
         self._aggResolution = None
         self._aggFactor = None
@@ -111,7 +138,7 @@ class SpatialAggregator:
 
     def _fnGetter(self, filename, stat, cat=None):
         if self._mode == AggregationModes.CONTINUOUS:
-            statname = stat
+            statname = stat.value
             return (os.path.basename(filename).replace(".tif", "") + "."
                     + self._resName + "." + statname + ".tif")
 
@@ -121,14 +148,14 @@ class SpatialAggregator:
                     (stat == catstats.MAJORITY))
             if stat == catstats.MAJORITY:
                 outNameTemplate = r'{0!s}.{1!s}.{2!s}.tif'
-                statname = stat
+                statname = stat.value
                 fOut = outNameTemplate.format(
                     os.path.basename(filename).replace(".tif", ""),
                     self._resName,
                     statname)
             else:
                 outNameTemplate = r'{0!s}.{1!s}.{2!s}.{3!s}.tif'
-                statname = stat
+                statname = stat.value
                 fOut = outNameTemplate.format(
                     os.path.basename(filename).replace(".tif", ""),
                     "Class-" + str(cat),
@@ -266,7 +293,7 @@ class SpatialAggregator:
         # all tiles added, get results
         r = aggregator.GetResults()
         for stat in self.stats:
-            logMessage("Saving outputs: " + stat)
+            logMessage("Saving outputs: " + stat.value)
             if self._mode == AggregationModes.CONTINUOUS:
                 fnOut = self._fnGetter(os.path.basename(filename), stat)
                 if stat in [contstats.MIN, contstats.MAX, contstats.RANGE]:
