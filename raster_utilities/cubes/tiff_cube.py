@@ -32,12 +32,20 @@ class TiffCube:
     def __init__(self, MasterFolder,
                  resolution = CubeResolutions.ONE_K,
                  temporalsummary = TemporalAggregationStats.MEAN,
-                 spatialsummary = ContinuousAggregationStats.MEAN):
+                 spatialsummary = ContinuousAggregationStats.MEAN,
+                 allowGlobalCache = True):
         self.MasterFolder = MasterFolder
         self.VariableName = ""
         self.MonthlyDictionary = {}
         self.AnnualDictionary = {}
         self.SynopticDictionary = {}
+        self.__HasMonthly = False
+        self.__HasAnnual = False
+        self.__HasSynoptic = False
+        self.__HasStatic = False
+        self.__SynopticOrStaticDataCache = {"None": None}
+        self.__DynamicDataCache = {"None": None}
+        self.__CacheData = allowGlobalCache
         self.VariableName = os.path.basename(MasterFolder)
         self.__InitialiseFiles(resolution, temporalsummary.value, spatialsummary.value)
 
@@ -76,7 +84,7 @@ class TiffCube:
 
         # if a monthly folder is present store all matching files against a dictionary keyed by a
         # date object (first of the month in question)
-        monthlyFolderPath = os.path.join(resFolderPath, 'Monthly')
+        monthlyFolderPath = os.path.join(resFolderPath, CubeLevels.MONTHLY.value)
         if os.path.isdir(monthlyFolderPath):
             monthlyWildcard = filenameTemplate.format(self.VariableName,
                                                       "*", "*",
@@ -91,6 +99,7 @@ class TiffCube:
                 if self.__isInt(yearOrSynoptic) and self.__isInt(monthOrOverall):
                     filedate = date(int(yearOrSynoptic), int(monthOrOverall), 1)
                     self.MonthlyDictionary[filedate] = f
+                    self.__HasMonthly = True
                 else:
                     self.log("File {0!s} is in monthly folder but filename does not match format"
                              .format(f))
@@ -99,7 +108,7 @@ class TiffCube:
 
         # if an annual folder is present store all matching files against a dictionary keyed by an
         # int - the year in question
-        annualFolderPath = os.path.join(resFolderPath, 'Annual')
+        annualFolderPath = os.path.join(resFolderPath, CubeLevels.ANNUAL.value)
         if os.path.isdir(annualFolderPath):
             annualWildcard = filenameTemplate.format(self.VariableName,
                                                      "*", "Annual",
@@ -113,6 +122,7 @@ class TiffCube:
                  resolution, spatialType) = self._TryParseCubeFilename(f)
                 if self.__isInt(yearOrSynoptic) and monthOrOverall == "Annual":
                     self.AnnualDictionary[int(yearOrSynoptic)] = f
+                    self.__HasAnnual = True
                 else:
                     self.log("File {0!s} is in annual folder but filename does not match format"
                              .format(f))
@@ -121,7 +131,7 @@ class TiffCube:
 
         # if a synoptic folder is present store all matching files against a dictionary keyed by a
         # string - the 2-digits month number or the constant "Overall"
-        synopticFolderPath = os.path.join(resFolderPath, 'Synoptic')
+        synopticFolderPath = os.path.join(resFolderPath, CubeLevels.SYNOPTIC.value)
         if os.path.isdir(synopticFolderPath):
             synopticWildcard = filenameTemplate.format(self.VariableName,
                                                        "Synoptic", "*",
@@ -136,11 +146,34 @@ class TiffCube:
                  resolution, spatialType) = self._TryParseCubeFilename(f)
                 if yearOrSynoptic == "Synoptic":
                     self.SynopticDictionary[monthOrOverall.zfill(2)] = f
+                    self.__HasSynoptic = True
                 else:
                     self.log("File {0!s} is in synoptic folder but filename does not match format"
                              .format(f))
         else:
             self.log("Synoptic folder path of {0!s} not found".format(synopticFolderPath))
+
+        staticFolderPath = os.path.join(resFolderPath, CubeLevels.STATIC.value)
+        if os.path.isdir(staticFolderPath):
+            # static filenames should be "X.Synoptic.Overall.Data.res.spatial"
+            staticWildcard = filenameTemplate.format(self.VariableName,
+                                                     "Synoptic", "Overall",
+                                                     "Data", res, spatialsummary)
+            staticWildcardPath = os.path.join(staticFolderPath, staticWildcard)
+            staticFiles = glob.glob(staticWildcardPath)
+            if len(staticFiles) == 0:
+                self.log('No static files found with wildcard ' + staticWildcardPath)
+                if not (self.__HasAnnual or self.__HasMonthly or self.__HasSynoptic):
+                    self.log('No matching files of any type have been located: aborting')
+                    assert False
+            elif len(staticFiles > 0):
+                self.log('More than one static file found with wildcard ' + staticWildcardPath)
+                assert False
+            elif (self.__HasAnnual or self.__HasMonthly or self.__HasSynoptic):
+                self.log('Found a static file as well as tmeporal ones: not supported! Skipping static file')
+            else:
+                self.__StaticFilename = staticFiles[0]
+                self.__HasStatic = True
 
 
     def _TryParseCubeFilename(self, filePath):
@@ -155,22 +188,40 @@ class TiffCube:
             raise ValueError("Filename {0!s} has variable inconsistent with {1!s}".format(filename, self.VariableName))
         return variablename, yearOrSynoptic, monthOrOverall, temporalType, resolution, spatialType
 
-    def ReadMonthlyDataForDate(self, RequiredDate, latLims, lonLims):
+    def CubeLevelIsAvailable(self, CubeLevel):
+        assert isinstance (CubeLevel, CubeLevels)
+        if CubeLevel == CubeLevels.MONTHLY:
+            return self.__HasMonthly
+        elif CubeLevel == CubeLevels.ANNUAL:
+            return self.__HasAnnual
+        elif CubeLevel == CubeLevels.SYNOPTIC:
+            return self.__HasSynoptic
+        elif CubeLevel == CubeLevels.STATIC:
+            return self.__HasStatic
+        else:
+            return False
+
+    def ReadMonthlyDataForDate(self, RequiredDate, latLims=None, lonLims=None):
         return self.ReadDataForDate(CubeLevels.MONTHLY, RequiredDate, latLims, lonLims)
 
-    def ReadAnnualDataForDate(self, RequiredDate, latLims, lonLims):
+    def ReadAnnualDataForDate(self, RequiredDate, latLims=None, lonLims=None):
         return self.ReadDataForDate(CubeLevels.ANNUAL, RequiredDate, latLims, lonLims)
 
-    def ReadSynopticDataForDate(self, RequiredDate, latLims, lonLims):
+    def ReadSynopticDataForDate(self, RequiredDate, latLims=None, lonLims=None):
         '''RequiredDate may be None for overall synoptic, or a date for the matching synoptic month'''
         return self.ReadDataForDate(CubeLevels.SYNOPTIC, RequiredDate, latLims, lonLims)
 
-    def ReadDataForDate(self, CubeLevel, RequiredDate, latLims = None, lonLims = None):
-        '''produces an array of data representing the content of the required term for this date
+    def ReadDataForDate(self, CubeLevel, RequiredDate, latLims=None, lonLims=None, maskNoData=False):
+        '''Reads the data representing the given "cube level" i.e. type of summary (monthly, annual, synoptic, static)
 
-        This takes into account the temporal summary, anomaly, as appropriate for this term
+
         '''
         rasterFilename = None
+        if CubeLevel is None:
+            CubeLevel = CubeLevels.STATIC
+        isAvail = self.CubeLevelIsAvailable(CubeLevel)
+        if not isAvail:
+            raise ValueError("No files are present of the requested CubeLevel type")
         if CubeLevel == CubeLevels.MONTHLY:
             firstOfMonth = date(RequiredDate.year, RequiredDate.month, 1)
             if self.MonthlyDictionary.has_key(firstOfMonth):
@@ -187,15 +238,23 @@ class TiffCube:
             if self.SynopticDictionary.has_key(mth):
                 rasterFilename = self.SynopticDictionary[mth]
         elif CubeLevel == CubeLevels.STATIC:
-            if self.SynopticDictionary.has_key("STATIC"):
-                rasterFilename = self.SynopticDictionary["STATIC"]
+            rasterFilename = self.__StaticFilename
         else:
             self.log("Unknown value for CubeLevel parameter")
+        if latLims is None:
+            # pass both or neither
+            assert lonLims is None
         if rasterFilename is not None:
-            self.log("Reading data from file " + rasterFilename)
             inGT, inProj, inNDV, inWidth, inHeight, inRes, inDT = GetRasterProperties(rasterFilename)
-            pixelLims = CalculatePixelLims(inGT, lonLims, latLims)
-            dataArr, subsetGT, _, _ = ReadAOI_PixelLims(rasterFilename, pixelLims[0], pixelLims[1])
+            if latLims is None:
+                pixelLimsLat = None
+                pixelLimsLon = None
+                self.log("Reading data from complete file " + rasterFilename)
+            else:
+                pixelLimsLon,pixelLimsLat = CalculatePixelLims(inGT, lonLims, latLims)
+                self.log("Reading data from part of file " + rasterFilename)
+
+            dataArr, subsetGT, _, _ = ReadAOI_PixelLims(rasterFilename, pixelLimsLon, pixelLimsLat, maskNoData=maskNoData)
             return (dataArr, subsetGT, inProj, inNDV)
         else:
             self.log("No matching filename found")

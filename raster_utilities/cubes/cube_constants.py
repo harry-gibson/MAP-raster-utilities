@@ -11,12 +11,13 @@ class SpatialSummaryTypes(Enum):
     FRACTIONAL = "ss_fractionalbinary"
 
 class CubeResolutions(Enum):
-    ONE_K = 1.0 / 120.0
-    FIVE_K = 1.0 / 24.0
-    TEN_K = 1.0 / 12.0
+    ONE_K = "1km" # 1.0 / 120.0
+    FIVE_K = "5km" # 1.0 / 24.0
+    TEN_K = "10km" # 1.0 / 12.0
 
 class CubeLevels(Enum):
-    MONTHLY = "monthly"
-    ANNUAL = "annual"
-    SYNOPTIC = "synoptic"
-    STATIC = "static variable"
+    # string values of the enum give the names the folder must have
+    MONTHLY = "Monthly"
+    ANNUAL = "Annual"
+    SYNOPTIC = "Synoptic"
+    STATIC = "Static"
