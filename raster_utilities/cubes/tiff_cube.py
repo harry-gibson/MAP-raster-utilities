@@ -3,8 +3,7 @@ from datetime import date
 from collections import  defaultdict
 from cube_constants import  CubeResolutions, CubeLevels
 from ..aggregation.aggregation_values import TemporalAggregationStats, ContinuousAggregationStats
-from ..io.tiff_management import ReadAOI_PixelLims, GetRasterProperties
-from ..utils.geotransform_calcs import CalculatePixelLims
+from ..io.TiffFile import SingleBandTiffFile
 
 class TiffCube:
     ''' Represents a view of a MAP mastergrids data cube folder for a single variable
@@ -43,9 +42,10 @@ class TiffCube:
         self.__HasAnnual = False
         self.__HasSynoptic = False
         self.__HasStatic = False
-        self.__SynopticOrStaticDataCache = {"None": None}
-        self.__DynamicDataCache = {"None": None}
-        self.__CacheData = allowGlobalCache
+
+        self.__DataCache = {"Filename": None, "FileObject": None}
+        self.__CanCacheData = allowGlobalCache
+
         self.VariableName = os.path.basename(MasterFolder)
         self.__InitialiseFiles(resolution, temporalsummary.value, spatialsummary.value)
 
@@ -170,7 +170,7 @@ class TiffCube:
                 self.log('More than one static file found with wildcard ' + staticWildcardPath)
                 assert False
             elif (self.__HasAnnual or self.__HasMonthly or self.__HasSynoptic):
-                self.log('Found a static file as well as tmeporal ones: not supported! Skipping static file')
+                self.log('Found a static file as well as temporal ones: not supported! Skipping static file')
             else:
                 self.__StaticFilename = staticFiles[0]
                 self.__HasStatic = True
@@ -211,7 +211,7 @@ class TiffCube:
         '''RequiredDate may be None for overall synoptic, or a date for the matching synoptic month'''
         return self.ReadDataForDate(CubeLevels.SYNOPTIC, RequiredDate, latLims, lonLims)
 
-    def ReadDataForDate(self, CubeLevel, RequiredDate, latLims=None, lonLims=None, maskNoData=False):
+    def ReadDataForDate(self, CubeLevel, RequiredDate, latLims=None, lonLims=None, maskNoData=False, cacheThisRead=False):
         '''Reads the data representing the given "cube level" i.e. type of summary (monthly, annual, synoptic, static)
 
 
@@ -241,21 +241,31 @@ class TiffCube:
             rasterFilename = self.__StaticFilename
         else:
             self.log("Unknown value for CubeLevel parameter")
-        if latLims is None:
-            # pass both or neither
-            assert lonLims is None
         if rasterFilename is not None:
-            inGT, inProj, inNDV, inWidth, inHeight, inRes, inDT = GetRasterProperties(rasterFilename)
+            if self.__CanCacheData and cacheThisRead:
+                # the cube object can optionally maintain one TiffFile object with caching enabled (any more would
+                # be memory prohibitive). An example use case would be if we know we're going to read the synoptic data
+                # more than once and also read multiple dynamic files all from the same cube; we could cache the
+                # synoptic one
+                if self.__DataCache["Filename"] == rasterFilename:
+                    thisTiff = self.__DataCache["FileObject"]
+                else:
+                    thisTiff = SingleBandTiffFile(rasterFilename, shouldCache=True)
+                    thisTiff.PopulateCache()
+                    self.__DataCache["Filename"] = rasterFilename
+                    self.__DataCache["FileObject"] = thisTiff
+            else:
+                thisTiff = SingleBandTiffFile(rasterFilename, shouldCache=False)
+
             if latLims is None:
-                pixelLimsLat = None
-                pixelLimsLon = None
+                # currently neither or both of latLims and lonLims must be set
+                assert lonLims is None
                 self.log("Reading data from complete file " + rasterFilename)
             else:
-                pixelLimsLon,pixelLimsLat = CalculatePixelLims(inGT, lonLims, latLims)
                 self.log("Reading data from part of file " + rasterFilename)
+            return thisTiff.ReadForLatLonLims(lonLims, latLims, readAsMasked=maskNoData)
+            #dataArr, subsetGT, _, _ = ReadAOI_PixelLims(rasterFilename, pixelLimsLon, pixelLimsLat, maskNoData=maskNoData)
 
-            dataArr, subsetGT, _, _ = ReadAOI_PixelLims(rasterFilename, pixelLimsLon, pixelLimsLat, maskNoData=maskNoData)
-            return (dataArr, subsetGT, inProj, inNDV)
         else:
             self.log("No matching filename found")
             return None
