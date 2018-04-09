@@ -2,6 +2,7 @@ import os
 from osgeo import gdal_array, gdal
 from ..utils.geotransform_calcs   import  CalculateClippedGeoTransform, CalculateClippedGeoTransform_RoundedRes
 from collections import namedtuple
+import numpy as np
 def SaveLZWTiff(data, _NDV, geotransform, projection, outDir, outName,
                 cOpts=None,
                 outShape=None,
@@ -59,7 +60,7 @@ def SaveLZWTiffPart(data, shape, xOff, yOff, geotransform, projection, outDir, o
 
 
 def ReadAOI_PixelLims_Inplace(gdalDatasetName, xLims, yLims, dataBuffer, useRoundedResolution = False):
-    gdalDatasetIn = gdal.Open(gdalDatasetName)
+    gdalDatasetIn = gdal.Open(gdalDatasetName, gdal.GA_ReadOnly)
     assert isinstance(gdalDatasetIn, gdal.Dataset)
     if xLims is None:
         xLims = (0, gdalDatasetIn.RasterXSize)
@@ -71,13 +72,13 @@ def ReadAOI_PixelLims_Inplace(gdalDatasetName, xLims, yLims, dataBuffer, useRoun
     inputBnd.ReadAsArray(xLims[0], yLims[0], xLims[1] - xLims[0], yLims[1] - yLims[0], buf_obj=dataBuffer)
 
 
-def ReadAOI_PixelLims(gdalDatasetName, xLims, yLims, useRoundedResolution = False):
+def ReadAOI_PixelLims(gdalDatasetName, xLims, yLims, useRoundedResolution = False, maskNoData=False):
     ''' Read a subset of band 1 of a GDAL dataset, specified by bounding x and y coordinates.
 
     Returns a 4-tuple where item 0 is the data as a 2D array, item 1 is the geotransform,
     item 2 is the projection, and item 3 is the nodata value - items 1, 2, 3 can be used
     to save the data or another array representing same area/resolution to a tiff file'''
-    gdalDatasetIn = gdal.Open(gdalDatasetName)
+    gdalDatasetIn = gdal.Open(gdalDatasetName, gdal.GA_ReadOnly)
     assert isinstance(gdalDatasetIn, gdal.Dataset)
     if xLims is None:
         xLims = (0, gdalDatasetIn.RasterXSize)
@@ -88,7 +89,7 @@ def ReadAOI_PixelLims(gdalDatasetName, xLims, yLims, useRoundedResolution = Fals
     assert min(xLims) >= 0
     assert min(yLims) >= 0
     assert xLims[1] >= xLims[0]
-    assert yLims[1] >= xLims[0]
+    assert yLims[1] >= yLims[0]
 
     inputBnd = gdalDatasetIn.GetRasterBand(1)
 
@@ -101,6 +102,8 @@ def ReadAOI_PixelLims(gdalDatasetName, xLims, yLims, useRoundedResolution = Fals
 
     dsProj = gdalDatasetIn.GetProjection()
     ndv = inputBnd.GetNoDataValue()
+    if maskNoData and ndv is not None:
+        return(np.ma.masked_equal(inputArr, ndv), clippedGT, dsProj, ndv)
     return (inputArr, clippedGT, dsProj, ndv)
 
 

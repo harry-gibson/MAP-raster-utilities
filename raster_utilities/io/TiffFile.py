@@ -35,7 +35,7 @@ class SingleBandTiffFile:
         outDir = os.path.dirname(self._filePath)
         if not os.path.exists(outDir):
             os.makedirs(outDir)
-        gdType = gdal_array.NumericTypeCodeToGDALTypeCode(data.dtype)
+        gdType = gdal_array.NumericTypeCodeToGDALTypeCode(rProps.datatype)
 
         outDrv = gdal.GetDriverByName('GTiff')
         cOpts = ["TILED=YES", "SPARSE_OK=FALSE", "BIGTIFF=YES", "COMPRESS=LZW", "PREDICTOR=2",
@@ -46,14 +46,14 @@ class SingleBandTiffFile:
         if dataShape != outShape:
             raise ValueError("Provided array shape does not match expected file shape - use SavePart to write subsets")
 
-        outRaster = outDrv.create(self._filePath, outShape[1], outShape[0], 1, gdType, cOpts)
+        outRaster = outDrv.Create(self._filePath, outShape[1], outShape[0], 1, gdType, cOpts)
         outRaster.SetGeoTransform(rProps.gt)
         outRaster.SetProjection(rProps.proj)
         outBand = outRaster.GetRasterBand(1)
 
         if rProps.ndv is not None:
             outBand.SetNoDataValue(rProps.ndv)
-        outBand.writeArray(data)
+        outBand.WriteArray(data)
         outBand.FlushCache()
         del outBand
         outRaster = None
@@ -183,12 +183,17 @@ class SingleBandTiffFile:
             return (self._Properties.height, self._Properties.width)
         raise RuntimeError("Properties have not been set")
 
-    def ReadForLatLonLims(self, lonLims, latLims, readAsMasked=False):
+    def GetExtent(self):
+        pass
+        #todo return extent as a lonlim latlims pair of tuples
+
+    def ReadForLatLonLims(self, lonLims, latLims, readIntoLonLims = None, readIntoLatLims = None, readAsMasked=False):
         if lonLims is None or latLims is None:
             return self.ReadAll(readAsMasked)
         else:
-            pixelLimsLon, pixelLimsLat = CalculatePixelLims(self._Properties.gt, lonLims, latLims)
-            return self.ReadForPixelLims(xLims=pixelLimsLon, yLims=pixelLimsLat, readAsMasked=readAsMasked)
+            pixelLimsLonInput, pixelLimsLatInput = CalculatePixelLims(self._Properties.gt, longitudeLims=lonLims, latitudeLims=latLims)
+            # todo calculate output shape and window we are in
+            return self.ReadForPixelLims(xLims=pixelLimsLonInput, yLims=pixelLimsLatInput, readAsMasked=readAsMasked)
 
 
 
