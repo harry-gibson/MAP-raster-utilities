@@ -19,5 +19,6 @@ class CubeLevels(Enum):
     # string values of the enum give the names the folder must have
     MONTHLY = "Monthly"
     ANNUAL = "Annual"
-    SYNOPTIC = "Synoptic"
+    SYNOPTIC_MONTHLY = "Synoptic"
+    SYNOPTIC_OVERALL = "Synoptic_Overall" # the overall files will actually be stored in the "Synoptic" folder too
     STATIC = "Static"
