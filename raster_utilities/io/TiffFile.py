@@ -26,39 +26,77 @@ class SingleBandTiffFile:
     def log(self, msg):
         print(msg)
 
-    def Save(self, data):
+    def Save(self, data, cOpts=None):
         if self._Exists:
-            raise ValueError("Overwriting existing file not yet supported")
+            raise ValueError("Overwriting entire existing file not yet supported: use SavePart instead")
         if self._Properties is None:
             raise ValueError("File properties must be set first using SetProperties(RasterProps)")
         rProps = self._Properties
         outDir = os.path.dirname(self._filePath)
         if not os.path.exists(outDir):
             os.makedirs(outDir)
-        gdType = gdal_array.NumericTypeCodeToGDALTypeCode(rProps.datatype)
-
+        incomingType = gdal_array.NumericTypeCodeToGDALTypeCode(data.dtype)
+        if incomingType > rProps.datatype:
+            Warning("Array has higher type than configured file output, values may be truncated")
         outDrv = gdal.GetDriverByName('GTiff')
-        cOpts = ["TILED=YES", "SPARSE_OK=FALSE", "BIGTIFF=YES", "COMPRESS=LZW", "PREDICTOR=2",
+        if cOpts is None:
+            cOpts = ["TILED=YES", "SPARSE_OK=FALSE", "BIGTIFF=YES", "COMPRESS=LZW", "PREDICTOR=2",
                  "NUM_THREADS=ALL_CPUS"]
 
-        dataShape = data.shape
         outShape = (rProps.height, rProps.width)
-        if dataShape != outShape:
-            raise ValueError("Provided array shape does not match expected file shape - use SavePart to write subsets")
+        if data is not None:
+            dataShape = data.shape
+            if dataShape != outShape:
+                raise ValueError("Provided array shape does not match expected file shape - use SavePart to write subsets")
 
-        outRaster = outDrv.Create(self._filePath, outShape[1], outShape[0], 1, gdType, cOpts)
+        outRaster = outDrv.Create(self._filePath, outShape[1], outShape[0], 1, rProps.datatype, cOpts)
         outRaster.SetGeoTransform(rProps.gt)
         outRaster.SetProjection(rProps.proj)
         outBand = outRaster.GetRasterBand(1)
 
         if rProps.ndv is not None:
             outBand.SetNoDataValue(rProps.ndv)
-        outBand.WriteArray(data)
+        if data is not None:
+            outBand.WriteArray(data)
+        else:
+            self.log("Created empty file")
         outBand.FlushCache()
         del outBand
         outRaster = None
+        self._Exists = True
 
-    def SavePart(self, shape, xOff, yOff):
+    def SavePart(self, data, outOffsetYX):
+
+        if self._Properties is None:
+            raise ValueError("File properties must be set first using SetProperties(RasterProps)")
+        rProps = self._Properties
+
+        if outOffsetYX is None:
+            outOffset = (0, 0)
+
+        dataShape = data.shape
+        currentShape = (rProps.height, rProps.width)
+        if ((dataShape[0] + outOffsetYX[0]) > currentShape[0]) or ((dataShape[1] + outOffsetYX[1]) > currentShape[1]):
+            raise ValueError("data + offset are larger than the specified image size")
+
+        if self._Exists:
+            ds = gdal.Open(self._filePath, gdal.GA_Update)
+
+        else:
+            outDir = os.path.dirname(self._filePath)
+            if not os.path.exists(outDir):
+                os.makedirs(outDir)
+            incomingType = gdal_array.NumericTypeCodeToGDALTypeCode(data.dtype)
+            if incomingType > rProps.datatype:
+                Warning("Array has higher type than configured file output, values may be truncated")
+
+            outDrv = gdal.GetDriverByName('GTiff')
+            cOpts = ["TILED=YES", "SPARSE_OK=FALSE", "BIGTIFF=YES", "COMPRESS=LZW", "PREDICTOR=2",
+                         "NUM_THREADS=ALL_CPUS"]
+
+            # todo stuffs
+
+
         raise NotImplementedError("call back another time")
 
     def __tryGetExistingProperties(self, filePath):
@@ -90,7 +128,7 @@ class SingleBandTiffFile:
         # maintain the object associated with it and client code doesn't have to store the arrays etc explicitly
         return self.ReadForPixelLims(xLims=None, yLims=None, readAsMasked=readAsMasked)
 
-    def ReadForPixelLims(self, xLims=None, yLims=None, readAsMasked=False):
+    def ReadForPixelLims(self, xLims=None, yLims=None, readAsMasked=False, existingBuffer=None):
         ''' Read a subset of this 1-band dataset, specified by bounding x and y coordinates.
 
         Returns a 4-tuple where item 0 is the data as a 2D array, item 1 is the geotransform,
@@ -125,6 +163,7 @@ class SingleBandTiffFile:
             gdalDatasetIn = gdal.Open(self._filePath, gdal.GA_ReadOnly)
             assert isinstance(gdalDatasetIn, gdal.Dataset)
             inputBnd = gdalDatasetIn.GetRasterBand(1)
+            #inputBnd.ReadAsArray(xLims[0], yLims[0], xLims[1] - xLims[0], yLims[1] - yLims[0], buf_obj=dataBuffer)
             inputArr = inputBnd.ReadAsArray(xLims[0], yLims[0], xLims[1] - xLims[0], yLims[1] - yLims[0])
             if self._cacheReads and not hasLims:
                 self.log("Caching data for file " + self._filePath)
