@@ -6,26 +6,32 @@ from ..aggregation.aggregation_values import TemporalAggregationStats, Continuou
 from ..io.TiffFile import SingleBandTiffFile
 
 class TiffCube:
-    ''' Represents a view of a MAP mastergrids data cube folder for a single variable
+    ''' Represents a view of a subset of a MAP mastergrids data cube folder for a single variable and
+     a single resolution and spatial / temporal aggregation statistic
 
-    Based on a folder structure documented elsewhere. In summary the given Masterfolder should contain
-    subfolders for resolution: any / all of "1k", "5k", "10k". Each of these should contain subfolders named
-    any / all of "Monthly", "Annual", "Synoptic". Files within each of these folders should have base filenames
-    with six (or more) dot-delimited tokens, with the following meanings:
+     Based on a folder structure documented elsewhere, which in the present implementation must already exist
+     and be populated (the TiffCube is currently readonly).
+     In summary the given Masterfolder should contain subfolders for resolution: any / all of "1k", "5k", "10k".
+     Each of these should contain subfolders named
+     Files within each of these folders should have base filenames with six dot-delimited tokens,
+     with the following meanings:
 
     {VariableName}.{Year}.{Month}.{TemporalSummary}.{Res}.{SpatialSummary}.tif
+    - The first token can contain arbitrary description information with other delimiters, such as hyphens
     - The second token can be the string "Synoptic" instead of a year.
     - The third token can be a month number, or the string "Overall" iif "Synoptic" is in pos 2.
-    - The fourth token can be a value from TemporalAggregationStats, although only "mean" is generally available
-    - The sixth token can be a value from ContinuousAggregationStats, e.g. "mean", "max", "min"...
+    - The fourth token can be a value from the TemporalAggregationStats enum, although only "mean" and "Data" are
+      generally available
+    - The sixth token can be a value from the ContinuousAggregationStats or CategoricalAggregationStats enums,
+      e.g. "mean", "max", "min"...
 
-    {
-        resolution (1km / 5km):
-            {
-                temporal
+    The TiffCube object is created with a MasterFolder path and a required temporal and spatial summary type.
+    Assuming the folder matches the above structure the tree belowit will be searched for all the matching files
+    of the requested spatial and temporal summary type (e.g. temporal mean and spatial SD). The TiffCube will then
+    make available these data at whatever "CubeLevel" is requested (i.e. Monthly, Annual, Synoptic).
 
-            }
-    }
+    The key functionality of this class currently is to read data for a requested date.
+
     '''
 
     def __init__(self, MasterFolder,
