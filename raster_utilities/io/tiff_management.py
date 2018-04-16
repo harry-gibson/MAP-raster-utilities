@@ -1,13 +1,18 @@
 import os
-from osgeo import gdal_array, gdal
-from ..utils.geotransform_calcs   import  CalculateClippedGeoTransform, CalculateClippedGeoTransform_RoundedRes
-from collections import namedtuple
+import numpy as np
+from TiffFile import RasterProps, SingleBandTiffFile
+
 def SaveLZWTiff(data, _NDV, geotransform, projection, outDir, outName,
                 cOpts=None,
                 outShape=None,
                 outOffset=None):
     '''
     Save a numpy array to a single-band LZW-compressed tiff file in the specified folder
+
+    Deprecated, provided as a convenience wrapper to the SingleBandTiffFile object for
+    existing code.
+
+    The file should not already exist.
 
     The data-type of the tiff file depends on the input array.
     The file will be saved with LZW compression, predictor 2 , bigtiff yes.
@@ -17,114 +22,57 @@ def SaveLZWTiff(data, _NDV, geotransform, projection, outDir, outName,
     should be something retrieved from another file with dataset.GetProjection(), unless
     you like writing out really long complicated projection specifications by hand.
     '''
-    if not os.path.exists(outDir):
-        os.makedirs(outDir)
-    gdType = gdal_array.NumericTypeCodeToGDALTypeCode(data.dtype)
-
-    outDrv = gdal.GetDriverByName('GTiff')
-    outRasterName = os.path.join(outDir, outName)
-
-    if cOpts is None:
-        cOpts = ["TILED=YES", "SPARSE_OK=FALSE", "BIGTIFF=YES", "COMPRESS=LZW", "PREDICTOR=2",
-                 "NUM_THREADS=ALL_CPUS"]
 
     if outShape is None:
         outShape = data.shape
     if outOffset is None:
         outOffset = (0,0)
+    else:
+        raise NotImplementedError("call back another time")
 
     if outShape[0] < data.shape[0] or outShape[1] < data.shape[1]:
         raise ValueError("cannot write to a smaller image than the supplied data")
-
     if ((data.shape[0] + outOffset[0]) > outShape[0]) or ((data.shape[1] + outOffset[1]) > outShape[1]):
         raise ValueError("data + offset are larger than the specified image size")
 
-    outRaster = outDrv.Create(outRasterName, outShape[1], outShape[0], 1, gdType,
-                              cOpts)
-    outRaster.SetGeoTransform(geotransform)
-    outRaster.SetProjection(projection)
-    outBand = outRaster.GetRasterBand(1)
-    if _NDV:
-        outBand.SetNoDataValue(_NDV)
-    outBand.WriteArray(data, xoff=outOffset[1], yoff=outOffset[0])
-    outBand.FlushCache()
-    del outBand
-    outRaster = None
-
+    rprop = RasterProps(gt=geotransform, proj=projection, ndv=_NDV,
+                        width=outShape[1], height=outShape[0],
+                        res="5km", datatype=np.float32)
+    outPath = os.path.join(outDir, outName)
+    writer = SingleBandTiffFile(filePath=outPath)
+    writer.SetProperties(rprop)
+    writer.Save(data, cOpts)
 
 def SaveLZWTiffPart(data, shape, xOff, yOff, geotransform, projection, outDir, outName, cOpts=None):
-    if not os.path.exists(outDir):
-        os.makedirs(outDir)
-
-
+    raise  NotImplementedError()
+    #if not os.path.exists(outDir):
+    #    os.makedirs(outDir)
 
 def ReadAOI_PixelLims_Inplace(gdalDatasetName, xLims, yLims, dataBuffer, useRoundedResolution = False):
-    gdalDatasetIn = gdal.Open(gdalDatasetName)
-    assert isinstance(gdalDatasetIn, gdal.Dataset)
-    if xLims is None:
-        xLims = (0, gdalDatasetIn.RasterXSize)
-    if yLims is None:
-        yLims = (0, gdalDatasetIn.RasterYSize)
-    assert max(xLims) <= gdalDatasetIn.RasterXSize
-    assert max(yLims) <= gdalDatasetIn.RasterYSize
-    inputBnd = gdalDatasetIn.GetRasterBand(1)
-    inputBnd.ReadAsArray(xLims[0], yLims[0], xLims[1] - xLims[0], yLims[1] - yLims[0], buf_obj=dataBuffer)
+    raise NotImplementedError()
 
-
-def ReadAOI_PixelLims(gdalDatasetName, xLims, yLims, useRoundedResolution = False):
+def ReadAOI_PixelLims(gdalDatasetName, xLims, yLims, useRoundedResolution=False, maskNoData=False):
     ''' Read a subset of band 1 of a GDAL dataset, specified by bounding x and y coordinates.
 
     Returns a 4-tuple where item 0 is the data as a 2D array, item 1 is the geotransform,
     item 2 is the projection, and item 3 is the nodata value - items 1, 2, 3 can be used
-    to save the data or another array representing same area/resolution to a tiff file'''
-    gdalDatasetIn = gdal.Open(gdalDatasetName)
-    assert isinstance(gdalDatasetIn, gdal.Dataset)
-    if xLims is None:
-        xLims = (0, gdalDatasetIn.RasterXSize)
-    if yLims is None:
-        yLims = (0, gdalDatasetIn.RasterYSize)
-    assert max(xLims) <= gdalDatasetIn.RasterXSize
-    assert max(yLims) <= gdalDatasetIn.RasterYSize
-    assert min(xLims) >= 0
-    assert min(yLims) >= 0
-    assert xLims[1] >= xLims[0]
-    assert yLims[1] >= xLims[0]
+    to save the data or another array representing same area/resolution to a tiff file
 
-    inputBnd = gdalDatasetIn.GetRasterBand(1)
+    Deprecated, provided as a convenience wrapper for SingleBandTiffFile for compatibility with existing code'''
 
-    inputArr = inputBnd.ReadAsArray(xLims[0], yLims[0], xLims[1] - xLims[0], yLims[1] - yLims[0])
-
+    f = SingleBandTiffFile(gdalDatasetName)
+    if not f._Exists:
+        raise RuntimeError("File does not exist")
     if useRoundedResolution:
-        clippedGT = CalculateClippedGeoTransform_RoundedRes(gdalDatasetIn.GetGeoTransform(), xLims, yLims)
-    else:
-        clippedGT = CalculateClippedGeoTransform(gdalDatasetIn.GetGeoTransform(), xLims, yLims)
-
-    dsProj = gdalDatasetIn.GetProjection()
-    ndv = inputBnd.GetNoDataValue()
-    return (inputArr, clippedGT, dsProj, ndv)
-
-
-RasterProps = namedtuple("RasterProps", ["gt", "proj", "ndv", "width", "height", "res", "datatype"])
+        raise NotImplementedError("Sorry, the incorrectly-rounded coordinates are no longer supported")
+    return f.ReadForPixelLims(xLims=xLims, yLims=yLims, readAsMasked=maskNoData)
 
 def GetRasterProperties(gdalDatasetName):
-    gdalDatasetIn = gdal.Open(gdalDatasetName, gdal.GA_ReadOnly)
-    assert isinstance(gdalDatasetIn, gdal.Dataset)
-    inGT = gdalDatasetIn.GetGeoTransform()
-    inProj = gdalDatasetIn.GetProjection()
-    inBand = gdalDatasetIn.GetRasterBand(1)
-    inNDV = inBand.GetNoDataValue()
-    inWidth = gdalDatasetIn.RasterXSize
-    inHeight = gdalDatasetIn.RasterYSize
-    b = gdalDatasetIn.GetRasterBand(1)
-    gdalDType = b.DataType
-    res = inGT[1]
-    if abs(res - 0.008333333333333) < 1e-9:
-        res = "1km"
-    elif abs(res - 0.0416666666666667) < 1e-9:
-        res = "5km"
-    elif abs(res - 0.08333333333333) < 1e-9:
-        res = "10km"
+    '''Returns the properties of an existing geotiff file
 
-    outObj = RasterProps (inGT, inProj, inNDV, inWidth, inHeight, res, gdalDType)
-    gdalDatasetIn = None
-    return outObj
+    Return object is a RasterProps named tuple type, consisting of the following fields
+    "gt", "proj", "ndv", "width", "height", "res", "datatype"
+    '''
+    f = SingleBandTiffFile(gdalDatasetName)
+    return f._Properties
+
