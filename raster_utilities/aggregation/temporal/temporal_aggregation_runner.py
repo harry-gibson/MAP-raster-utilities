@@ -18,8 +18,26 @@ class TemporalAggregator:
         self.outputNDV = outputNDV
 
         assert isinstance(stats, list)
-        assert (all([s in tempstats.ALL for s in stats]))
-        self.stats = stats
+        mystats = []
+        for s in stats:
+            if isinstance(s, tempstats):
+                # the ALL property defines all the ones that we can produce through aggregation code
+                # (the enum includes others like "DATA" that we don't handle here)
+                assert s.value in tempstats.ALL.value
+                mystats.append(s)
+            else:
+                try:
+                    # see if it's a string representation of the stat, which it will be if the client has
+                    # actually passed in tempstats.ALL
+                    sCast = tempstats(s)
+                    mystats.append(sCast)
+                except ValueError:
+                    raise
+
+
+        assert (all([s in tempstats.ALL.value or isinstance(s, tempstats)
+                     for s in stats]))
+        self.stats = [tempstats(s) for s in stats]
 
         self.doSynoptic = doSynoptic == True
         self.synopticFileSet = set()
@@ -31,7 +49,7 @@ class TemporalAggregator:
         return sorted(self.filesDict.keys())
 
     def _fnGetter(self, whatandwhen, stat, where):
-        statname = stat
+        statname = stat.value
         if where == -1:
             return ".".join([str(whatandwhen), statname,
                              str(self.InputProperties.res), "tif"])
@@ -122,15 +140,15 @@ class TemporalAggregator:
                        "-co NUM_THREADS=ALL_CPUS --config GDAL_CACHEMAX 8000 {0} {1}"
         ovBuilder = "gdaladdo -ro --config COMPRESS_OVERVIEW LZW --config USE_RRD NO " + \
                     "--config TILED YES {0} 2 4 8 16 32 64 128 256 --config GDAL_CACHEMAX 8000"
-        statBuilder = "gdalinfo -stats {0} >nul"
+        statBuilder = "gdalinfo -stats {0}>nul"
         vrts = []
         tifs = []
         for stat in self.stats:
-            statname = stat
+            statname = stat.value
             timeKeys = self._timePoints()
             ranSynoptic = (len(self.filesDict.keys()) > 1) and self.doSynoptic
             if ranSynoptic and ("Overall" not in timeKeys):
-                timeKeys.add("Overall")
+                timeKeys.append("Overall")
             for timeKey in timeKeys:
                 tiffWildCard = self._fnGetter(str(timeKey), stat,  "*")
                 sliceTiffs = os.path.join(self._tileFolder, tiffWildCard)
@@ -153,7 +171,7 @@ class TemporalAggregator:
             ovCommand = ovBuilder.format(tif)
             statCommand = statBuilder.format(tif)
             subprocess.call(ovCommand)
-            subprocess.call(statCommand)
+            subprocess.check_output(statCommand)
 
     def _temporalAggregationSliceRunner(self,  top, bottom, outFolder):
         '''Runs temporal aggregation across a set of files.

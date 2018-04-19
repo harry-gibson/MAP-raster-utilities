@@ -323,7 +323,7 @@ cdef class TemporalAggregator_Dynamic:
                         variance = self.tot_newSD[y, x] / (self.tot_n[y, x] - 1)
                         self.tot_newSD[y, x] = sqrt(variance)
         returnObj = {
-            "count": np.asarray(self.tot_n)
+            tempstats.COUNT: np.asarray(self.tot_n)
         }
         if self._outputMean:
             returnObj[tempstats.MEAN] = np.asarray(self.tot_newMean).astype('float32')
