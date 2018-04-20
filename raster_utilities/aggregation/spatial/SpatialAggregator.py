@@ -87,21 +87,12 @@ class SpatialAggregator:
         if self._mode == AggregationModes.CATEGORICAL:
             assert aggregationArgs.has_key("categories")
             categories = aggregationArgs["categories"]
-            if isinstance(categories, int):
-                assert categories <= 256
-                assert categories < 256
-                assert categories >= 0
-                # todo set categories to range here
-                self.nCategories = categories
-                self.categories = None
-            else:
-                assert isinstance(categories, list)
-                assert len(categories) <= 256
-                assert max(categories) < 256
-                assert min(categories) >= 0
-                self.nCategories = len(categories)
-                self.categories = categories
-
+            assert isinstance(categories, list)
+            assert len(categories) <= 256
+            assert max(categories) < 256
+            assert min(categories) >= 0
+            self.nCategories = len(categories)
+            self.categories = categories
 
 
         self._aggResolution = None
@@ -136,32 +127,35 @@ class SpatialAggregator:
         else:
             self._gbLimit = 30
 
-    def _fnGetter(self, filename, stat, cat=None):
-        if self._mode == AggregationModes.CONTINUOUS:
-            statname = stat.value
-            return (os.path.basename(filename).replace(".tif", "") + "."
-                    + self._resName + "." + statname + ".tif")
 
+    def _fnGetter(self, filename, stat, cat=None):
+        outNameTemplate = "{0!s}.{1!s}.{2!s}.{3!s}.{4!s}.{5!s}.tif"\
+            #.format(
+            #"PF_" + variableRow['VariableID'],
+            #d.year,
+            #str(d.month).zfill(2),
+            #"Data", "5km", "Data")
+        statname = stat.value
+        existingParts = os.path.basename(filename).split(".")
+        if len(existingParts)==7:
+            # assume it's a 6-token mastergrid format name
+            varTag = existingParts[0]
+            yrTag = existingParts[1]
+            mthTag = existingParts[2]
+            temporalTag = existingParts[3]
         else:
-            assert self._mode == AggregationModes.CATEGORICAL
-            assert ((cat is not None) or
-                    (stat == catstats.MAJORITY))
-            if stat == catstats.MAJORITY:
-                outNameTemplate = r'{0!s}.{1!s}.{2!s}.tif'
-                statname = stat.value
-                fOut = outNameTemplate.format(
-                    os.path.basename(filename).replace(".tif", ""),
-                    self._resName,
-                    statname)
-            else:
-                outNameTemplate = r'{0!s}.{1!s}.{2!s}.{3!s}.tif'
-                statname = stat.value
-                fOut = outNameTemplate.format(
-                    os.path.basename(filename).replace(".tif", ""),
-                    "Class-" + str(cat),
-                    self._resName,
-                    statname)
-            return fOut
+            varTag = "-".join(existingParts[:-1])
+            yrTag = "YYYY"
+            mthTag = "MM"
+            temporalTag = "DATA"
+        if stat == catstats.LIKEADJACENCIES or stat == catstats.FRACTIONS:
+            assert cat is not None
+            varTag = varTag + "-Class-" + str(cat)
+        outname = outNameTemplate.format(
+            varTag, yrTag, mthTag, temporalTag,
+            self._resName, statname
+        )
+        return outname
 
 
     def _estimateAgggregationMemory(self, totalHeight, totalWidth, tileHeight, tileWidth):
