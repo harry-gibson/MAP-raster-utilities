@@ -201,8 +201,8 @@ class TemporalAggregator:
         per timestep - this doubles memory use. This has no effect if filesDict only has one item.
         '''
 
-        if not (isinstance(bottom, int) and isinstance(top, int)):
-            raise TypeError("top and bottom must be integer values")
+        #if not (isinstance(bottom, int) and isinstance(top, int)):
+         #   raise TypeError("top and bottom must be integer values")
         if not ((bottom > top ) and top >= 0):
             raise ValueError("bottom must be greater than top and top must be GTE zero " +
                              "(raster origin is the top-left corner)")
