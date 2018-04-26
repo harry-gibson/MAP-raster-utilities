@@ -1,12 +1,16 @@
-try:
-    from setuptools import setup
-    from setuptools import Extension
-except ImportError:
-    from distutils.core import setup
-    from distutils.extension import  Extension
+import os, sys
+from distutils.core import setup
+from distutils.extension import  Extension
 
-from Cython.Build import cythonize
-import os
+try:
+    from Cython.Distutils import build_ext
+except:
+    print("Cython does not seem to be installed")
+    sys.exit(1)
+
+
+#from Cython.Build import cythonize
+
 
 # https://github.com/cython/cython/wiki/PackageHierarchy
 def scandir(dir, files=[]):
@@ -26,8 +30,12 @@ def makeExtension(extName):
         extName,
         [extPath],
         include_dirs=["."],
-        extra_compile_args=['/openmp', '-O3'],
-        extra_link_args=['/openmp']
+        # LINUX:
+        extra_compile_args=['-fopenmp', '-O3'],
+        extra_link_args=['-fopenmp']
+        # WINDOWS:
+        # extra_compile_args=['/openmp', '-O3'],
+        # extra_link_args=['/openmp']
     )
 #
 # cythonexts = [
@@ -75,6 +83,7 @@ setup(
     packages=["spatial", "spatial.core", "temporal", "temporal.core"],
     #ext_modules = cythonize(cythonexts),
     ext_modules=extensions,
+    cmdclass={'build_ext':build_ext},
     py_modules=['aggregation_values',
                 'spatial.spatial_aggregation_runner',
                 'temporal.temporal_aggregation_runner']
