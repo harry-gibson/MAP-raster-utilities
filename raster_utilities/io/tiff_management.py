@@ -1,6 +1,7 @@
 import os
 import numpy as np
 from TiffFile import RasterProps, SingleBandTiffFile
+from osgeo import gdal_array
 
 def SaveLZWTiff(data, _NDV, geotransform, projection, outDir, outName,
                 cOpts=None,
@@ -37,7 +38,7 @@ def SaveLZWTiff(data, _NDV, geotransform, projection, outDir, outName,
 
     rprop = RasterProps(gt=geotransform, proj=projection, ndv=_NDV,
                         width=outShape[1], height=outShape[0],
-                        res="5km", datatype=np.float32)
+                        res="5km", datatype=gdal_array.NumericTypeCodeToGDALTypeCode(data.dtype))
     outPath = os.path.join(outDir, outName)
     writer = SingleBandTiffFile(filePath=outPath)
     writer.SetProperties(rprop)
