@@ -123,6 +123,7 @@ class SingleBandTiffFile:
         ds = None
         return outObj
 
+
     def ReadAll(self, readAsMasked=False):
         # we allow caching so that in situations where we want to read the same multiple times we can just
         # maintain the object associated with it and client code doesn't have to store the arrays etc explicitly
@@ -154,8 +155,25 @@ class SingleBandTiffFile:
         assert min(yLims) >= 0
         assert xLims[1] >= xLims[0]
         assert yLims[1] >= yLims[0]
+        x0 = xLims[0]
+        x1 = xLims[1]
+        y0 = yLims[0]
+        y1 = yLims[1]
 
-        clippedGT = CalculateClippedGeoTransform(self.GetGeoTransform(), xLims, yLims)
+        if not isinstance(x0, int):
+            x0 = int(x0)
+            assert x0 == xLims[0]
+        if not isinstance(x1, int):
+            x1 = int(x1)
+            assert x1 == xLims[1]
+        if not isinstance(y0, int):
+            y0 = int(y0)
+            assert y0 == yLims[0]
+        if not isinstance(y1, int):
+            y1 = int(y1)
+            assert y1 == yLims[1]
+
+        clippedGT = CalculateClippedGeoTransform(self.GetGeoTransform(), (x0,x1), (y0,y1))
         dsProj = self.GetProjection()
         ndv = self.GetNdv()
 
@@ -164,7 +182,7 @@ class SingleBandTiffFile:
             assert isinstance(gdalDatasetIn, gdal.Dataset)
             inputBnd = gdalDatasetIn.GetRasterBand(1)
             #inputBnd.ReadAsArray(xLims[0], yLims[0], xLims[1] - xLims[0], yLims[1] - yLims[0], buf_obj=dataBuffer)
-            inputArr = inputBnd.ReadAsArray(xLims[0], yLims[0], xLims[1] - xLims[0], yLims[1] - yLims[0])
+            inputArr = inputBnd.ReadAsArray(x0, y0, x1 - x0, y1 - y0)
             if self._cacheReads and not hasLims:
                 self.log("Caching data for file " + self._filePath)
                 self._cachedData = (inputArr, clippedGT, dsProj, ndv)
@@ -175,11 +193,11 @@ class SingleBandTiffFile:
         else:
             # the cache can only be populated by a full read so we can just return a slice of it
             if readAsMasked and ndv is not None:
-                return (np.ma.masked_equal(self._cachedData[0][yLims[0]:yLims[1],xLims[0]:xLims[1]], ndv),
+                return (np.ma.masked_equal(self._cachedData[0][y0:y1, x0:x1], ndv),
                         clippedGT, dsProj, ndv)
             else:
                 if hasLims:
-                    return(self._cachedData[0][yLims[0]:yLims[1],xLims[0]:xLims[1]], clippedGT, dsProj, ndv)
+                    return(self._cachedData[0][y0:y1, x0:x1], clippedGT, dsProj, ndv)
                 else:
                     return self._cachedData # avoid making another copy with an explicit check to only do so if needed
 
@@ -201,6 +219,12 @@ class SingleBandTiffFile:
         if not isinstance(props, RasterProps):
             raise ValueError("Props argument must be an instance of the RasterProps named tuple type")
         self._Properties = props
+
+    def GetProperties(self):
+        if self._Properties is not None:
+            return self._Properties
+        else:
+            raise RuntimeError("Properties have not been set")
 
     def GetProjection(self):
         if self._Properties is not None:
