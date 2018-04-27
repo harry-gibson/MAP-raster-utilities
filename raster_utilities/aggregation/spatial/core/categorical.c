@@ -2992,7 +2992,7 @@ static PyObject *__pyx_f_7spatial_4core_11categorical_22Categorical_Aggregator_a
                 #define unlikely(x) (x)
             #endif
             #ifdef _OPENMP
-            #pragma omp parallel  reduction(+:__pyx_v_likeAdjProp) private(__pyx_t_44, __pyx_t_8, __pyx_t_29, __pyx_t_40, __pyx_t_43, __pyx_t_22, __pyx_t_20, __pyx_t_14, __pyx_t_19, __pyx_t_26, __pyx_t_32, __pyx_t_18, __pyx_t_42, __pyx_t_28, __pyx_t_12, __pyx_t_34, __pyx_t_36, __pyx_t_10, __pyx_t_13, __pyx_t_30, __pyx_t_38, __pyx_t_16, __pyx_t_25, __pyx_t_37, __pyx_t_39, __pyx_t_24, __pyx_t_11, __pyx_t_31, __pyx_t_45, __pyx_t_35, __pyx_t_17, __pyx_t_15, __pyx_t_41, __pyx_t_23, __pyx_t_21, __pyx_t_27, __pyx_t_33) private(__pyx_filename, __pyx_lineno, __pyx_clineno) shared(__pyx_parallel_why, __pyx_parallel_exc_type, __pyx_parallel_exc_value, __pyx_parallel_exc_tb)
+            #pragma omp parallel  reduction(+:__pyx_v_likeAdjProp) private(__pyx_t_34, __pyx_t_43, __pyx_t_39, __pyx_t_26, __pyx_t_24, __pyx_t_17, __pyx_t_15, __pyx_t_36, __pyx_t_25, __pyx_t_38, __pyx_t_30, __pyx_t_37, __pyx_t_14, __pyx_t_45, __pyx_t_32, __pyx_t_29, __pyx_t_35, __pyx_t_28, __pyx_t_23, __pyx_t_12, __pyx_t_42, __pyx_t_31, __pyx_t_18, __pyx_t_13, __pyx_t_44, __pyx_t_41, __pyx_t_19, __pyx_t_8, __pyx_t_21, __pyx_t_10, __pyx_t_22, __pyx_t_27, __pyx_t_20, __pyx_t_33, __pyx_t_16, __pyx_t_11, __pyx_t_40) private(__pyx_filename, __pyx_lineno, __pyx_clineno) shared(__pyx_parallel_why, __pyx_parallel_exc_type, __pyx_parallel_exc_value, __pyx_parallel_exc_tb)
             #endif /* _OPENMP */
             {
                 #ifdef _OPENMP
@@ -3013,25 +3013,25 @@ static PyObject *__pyx_f_7spatial_4core_11categorical_22Categorical_Aggregator_a
                 if (1 == 0) abort();
                 {
                     int __pyx_parallel_temp0 = 0xbad0bad0;
-                    Py_ssize_t __pyx_parallel_temp1 = 0xbad0bad0;
-                    unsigned char __pyx_parallel_temp2 = '?';
-                    int __pyx_parallel_temp3 = 0xbad0bad0;
+                    unsigned char __pyx_parallel_temp1 = '?';
+                    int __pyx_parallel_temp2 = 0xbad0bad0;
+                    float __pyx_parallel_temp3 = __PYX_NAN();
                     int __pyx_parallel_temp4 = 0xbad0bad0;
-                    Py_ssize_t __pyx_parallel_temp5 = 0xbad0bad0;
-                    int __pyx_parallel_temp6 = 0xbad0bad0;
-                    unsigned char __pyx_parallel_temp7 = '?';
-                    Py_ssize_t __pyx_parallel_temp8 = 0xbad0bad0;
-                    int __pyx_parallel_temp9 = 0xbad0bad0;
-                    float __pyx_parallel_temp10 = __PYX_NAN();
+                    int __pyx_parallel_temp5 = 0xbad0bad0;
+                    Py_ssize_t __pyx_parallel_temp6 = 0xbad0bad0;
+                    int __pyx_parallel_temp7 = 0xbad0bad0;
+                    unsigned char __pyx_parallel_temp8 = '?';
+                    Py_ssize_t __pyx_parallel_temp9 = 0xbad0bad0;
+                    Py_ssize_t __pyx_parallel_temp10 = 0xbad0bad0;
                     int __pyx_parallel_temp11 = 0xbad0bad0;
                     Py_ssize_t __pyx_parallel_temp12 = 0xbad0bad0;
                     int __pyx_parallel_temp13 = 0xbad0bad0;
                     Py_ssize_t __pyx_parallel_temp14 = 0xbad0bad0;
-                    Py_ssize_t __pyx_parallel_temp15 = 0xbad0bad0;
+                    int __pyx_parallel_temp15 = 0xbad0bad0;
                     unsigned char __pyx_parallel_temp16 = '?';
-                    int __pyx_parallel_temp17 = 0xbad0bad0;
-                    Py_ssize_t __pyx_parallel_temp18 = 0xbad0bad0;
-                    int __pyx_parallel_temp19 = 0xbad0bad0;
+                    Py_ssize_t __pyx_parallel_temp17 = 0xbad0bad0;
+                    int __pyx_parallel_temp18 = 0xbad0bad0;
+                    Py_ssize_t __pyx_parallel_temp19 = 0xbad0bad0;
                     int __pyx_parallel_temp20 = 0xbad0bad0;
                     const char *__pyx_parallel_filename = NULL; int __pyx_parallel_lineno = 0, __pyx_parallel_clineno = 0;
                     PyObject *__pyx_parallel_exc_type = NULL, *__pyx_parallel_exc_value = NULL, *__pyx_parallel_exc_tb = NULL;
@@ -3041,32 +3041,32 @@ static PyObject *__pyx_f_7spatial_4core_11categorical_22Categorical_Aggregator_a
                     if (__pyx_t_11 > 0)
                     {
                         #ifdef _OPENMP
-                        #pragma omp for lastprivate(__pyx_v_yBelowGlobal) lastprivate(__pyx_v_yInGlobal) lastprivate(__pyx_v_catsOk) lastprivate(__pyx_v_xLeftGlobal) lastprivate(__pyx_v_yAboveGlobal) lastprivate(__pyx_v_xInGlobal) lastprivate(__pyx_v_xRightTile) lastprivate(__pyx_v_localValue) firstprivate(__pyx_v_yInTile) lastprivate(__pyx_v_yInTile) lastprivate(__pyx_v_xRightGlobal) lastprivate(__pyx_v_valuePos) lastprivate(__pyx_v_yOut) lastprivate(__pyx_v_errorCategory) lastprivate(__pyx_v_xInTile) lastprivate(__pyx_v_i) lastprivate(__pyx_v_nNeighbours) lastprivate(__pyx_v_xLeftTile) lastprivate(__pyx_v_xOut) lastprivate(__pyx_v_yAboveTile) lastprivate(__pyx_v_yBelowTile)
+                        #pragma omp for lastprivate(__pyx_v_xLeftGlobal) lastprivate(__pyx_v_nNeighbours) lastprivate(__pyx_v_yBelowGlobal) lastprivate(__pyx_v_xLeftTile) lastprivate(__pyx_v_yAboveGlobal) lastprivate(__pyx_v_i) lastprivate(__pyx_v_yBelowTile) lastprivate(__pyx_v_localValue) lastprivate(__pyx_v_xOut) lastprivate(__pyx_v_yInGlobal) lastprivate(__pyx_v_yAboveTile) lastprivate(__pyx_v_xInTile) lastprivate(__pyx_v_valuePos) lastprivate(__pyx_v_yOut) lastprivate(__pyx_v_xRightGlobal) lastprivate(__pyx_v_catsOk) firstprivate(__pyx_v_yInTile) lastprivate(__pyx_v_yInTile) lastprivate(__pyx_v_errorCategory) lastprivate(__pyx_v_xInGlobal) lastprivate(__pyx_v_xRightTile)
                         #endif /* _OPENMP */
                         for (__pyx_t_10 = 0; __pyx_t_10 < __pyx_t_11; __pyx_t_10++){
                             if (__pyx_parallel_why < 2)
                             {
                                 __pyx_v_yInTile = 0 + 1 * __pyx_t_10;
                                 /* Initialize private variables to invalid values */
-                                __pyx_v_yBelowGlobal = ((int)0xbad0bad0);
-                                __pyx_v_yInGlobal = ((Py_ssize_t)0xbad0bad0);
-                                __pyx_v_catsOk = ((unsigned char)'?');
                                 __pyx_v_xLeftGlobal = ((int)0xbad0bad0);
+                                __pyx_v_nNeighbours = ((unsigned char)'?');
+                                __pyx_v_yBelowGlobal = ((int)0xbad0bad0);
+                                __pyx_v_xLeftTile = ((int)0xbad0bad0);
                                 __pyx_v_yAboveGlobal = ((int)0xbad0bad0);
-                                __pyx_v_xInGlobal = ((Py_ssize_t)0xbad0bad0);
-                                __pyx_v_xRightTile = ((int)0xbad0bad0);
+                                __pyx_v_i = ((Py_ssize_t)0xbad0bad0);
+                                __pyx_v_yBelowTile = ((int)0xbad0bad0);
                                 __pyx_v_localValue = ((unsigned char)'?');
-                                __pyx_v_xRightGlobal = ((int)0xbad0bad0);
+                                __pyx_v_xOut = ((Py_ssize_t)0xbad0bad0);
+                                __pyx_v_yInGlobal = ((Py_ssize_t)0xbad0bad0);
+                                __pyx_v_yAboveTile = ((int)0xbad0bad0);
+                                __pyx_v_xInTile = ((Py_ssize_t)0xbad0bad0);
                                 __pyx_v_valuePos = ((int)0xbad0bad0);
                                 __pyx_v_yOut = ((Py_ssize_t)0xbad0bad0);
+                                __pyx_v_xRightGlobal = ((int)0xbad0bad0);
+                                __pyx_v_catsOk = ((unsigned char)'?');
                                 __pyx_v_errorCategory = ((int)0xbad0bad0);
-                                __pyx_v_xInTile = ((Py_ssize_t)0xbad0bad0);
-                                __pyx_v_i = ((Py_ssize_t)0xbad0bad0);
-                                __pyx_v_nNeighbours = ((unsigned char)'?');
-                                __pyx_v_xLeftTile = ((int)0xbad0bad0);
-                                __pyx_v_xOut = ((Py_ssize_t)0xbad0bad0);
-                                __pyx_v_yAboveTile = ((int)0xbad0bad0);
-                                __pyx_v_yBelowTile = ((int)0xbad0bad0);
+                                __pyx_v_xInGlobal = ((Py_ssize_t)0xbad0bad0);
+                                __pyx_v_xRightTile = ((int)0xbad0bad0);
 
                                 /* "spatial\core\categorical.pyx":191
  *             for yInTile in prange (tileYShapeIn):
@@ -4006,27 +4006,27 @@ static PyObject *__pyx_f_7spatial_4core_11categorical_22Categorical_Aggregator_a
                                 #pragma omp critical(__pyx_parallel_lastprivates0)
                                 #endif /* _OPENMP */
                                 {
-                                    __pyx_parallel_temp0 = __pyx_v_yBelowGlobal;
-                                    __pyx_parallel_temp1 = __pyx_v_yInGlobal;
-                                    __pyx_parallel_temp2 = __pyx_v_catsOk;
-                                    __pyx_parallel_temp3 = __pyx_v_xLeftGlobal;
-                                    __pyx_parallel_temp4 = __pyx_v_yAboveGlobal;
-                                    __pyx_parallel_temp5 = __pyx_v_xInGlobal;
-                                    __pyx_parallel_temp6 = __pyx_v_xRightTile;
-                                    __pyx_parallel_temp7 = __pyx_v_localValue;
-                                    __pyx_parallel_temp8 = __pyx_v_yInTile;
-                                    __pyx_parallel_temp9 = __pyx_v_xRightGlobal;
-                                    __pyx_parallel_temp10 = __pyx_v_likeAdjProp;
-                                    __pyx_parallel_temp11 = __pyx_v_valuePos;
-                                    __pyx_parallel_temp12 = __pyx_v_yOut;
-                                    __pyx_parallel_temp13 = __pyx_v_errorCategory;
-                                    __pyx_parallel_temp14 = __pyx_v_xInTile;
-                                    __pyx_parallel_temp15 = __pyx_v_i;
-                                    __pyx_parallel_temp16 = __pyx_v_nNeighbours;
-                                    __pyx_parallel_temp17 = __pyx_v_xLeftTile;
-                                    __pyx_parallel_temp18 = __pyx_v_xOut;
-                                    __pyx_parallel_temp19 = __pyx_v_yAboveTile;
-                                    __pyx_parallel_temp20 = __pyx_v_yBelowTile;
+                                    __pyx_parallel_temp0 = __pyx_v_xLeftGlobal;
+                                    __pyx_parallel_temp1 = __pyx_v_nNeighbours;
+                                    __pyx_parallel_temp2 = __pyx_v_yBelowGlobal;
+                                    __pyx_parallel_temp3 = __pyx_v_likeAdjProp;
+                                    __pyx_parallel_temp4 = __pyx_v_xLeftTile;
+                                    __pyx_parallel_temp5 = __pyx_v_yAboveGlobal;
+                                    __pyx_parallel_temp6 = __pyx_v_i;
+                                    __pyx_parallel_temp7 = __pyx_v_yBelowTile;
+                                    __pyx_parallel_temp8 = __pyx_v_localValue;
+                                    __pyx_parallel_temp9 = __pyx_v_xOut;
+                                    __pyx_parallel_temp10 = __pyx_v_yInGlobal;
+                                    __pyx_parallel_temp11 = __pyx_v_yAboveTile;
+                                    __pyx_parallel_temp12 = __pyx_v_xInTile;
+                                    __pyx_parallel_temp13 = __pyx_v_valuePos;
+                                    __pyx_parallel_temp14 = __pyx_v_yOut;
+                                    __pyx_parallel_temp15 = __pyx_v_xRightGlobal;
+                                    __pyx_parallel_temp16 = __pyx_v_catsOk;
+                                    __pyx_parallel_temp17 = __pyx_v_yInTile;
+                                    __pyx_parallel_temp18 = __pyx_v_errorCategory;
+                                    __pyx_parallel_temp19 = __pyx_v_xInGlobal;
+                                    __pyx_parallel_temp20 = __pyx_v_xRightTile;
                                 }
                                 __pyx_L52:;
                                 #ifdef _OPENMP
@@ -4040,27 +4040,27 @@ static PyObject *__pyx_f_7spatial_4core_11categorical_22Categorical_Aggregator_a
                       __pyx_parallel_why = 4;
                     }
                     if (__pyx_parallel_why) {
-                      __pyx_v_yBelowGlobal = __pyx_parallel_temp0;
-                      __pyx_v_yInGlobal = __pyx_parallel_temp1;
-                      __pyx_v_catsOk = __pyx_parallel_temp2;
-                      __pyx_v_xLeftGlobal = __pyx_parallel_temp3;
-                      __pyx_v_yAboveGlobal = __pyx_parallel_temp4;
-                      __pyx_v_xInGlobal = __pyx_parallel_temp5;
-                      __pyx_v_xRightTile = __pyx_parallel_temp6;
-                      __pyx_v_localValue = __pyx_parallel_temp7;
-                      __pyx_v_yInTile = __pyx_parallel_temp8;
-                      __pyx_v_xRightGlobal = __pyx_parallel_temp9;
-                      __pyx_v_likeAdjProp = __pyx_parallel_temp10;
-                      __pyx_v_valuePos = __pyx_parallel_temp11;
-                      __pyx_v_yOut = __pyx_parallel_temp12;
-                      __pyx_v_errorCategory = __pyx_parallel_temp13;
-                      __pyx_v_xInTile = __pyx_parallel_temp14;
-                      __pyx_v_i = __pyx_parallel_temp15;
-                      __pyx_v_nNeighbours = __pyx_parallel_temp16;
-                      __pyx_v_xLeftTile = __pyx_parallel_temp17;
-                      __pyx_v_xOut = __pyx_parallel_temp18;
-                      __pyx_v_yAboveTile = __pyx_parallel_temp19;
-                      __pyx_v_yBelowTile = __pyx_parallel_temp20;
+                      __pyx_v_xLeftGlobal = __pyx_parallel_temp0;
+                      __pyx_v_nNeighbours = __pyx_parallel_temp1;
+                      __pyx_v_yBelowGlobal = __pyx_parallel_temp2;
+                      __pyx_v_likeAdjProp = __pyx_parallel_temp3;
+                      __pyx_v_xLeftTile = __pyx_parallel_temp4;
+                      __pyx_v_yAboveGlobal = __pyx_parallel_temp5;
+                      __pyx_v_i = __pyx_parallel_temp6;
+                      __pyx_v_yBelowTile = __pyx_parallel_temp7;
+                      __pyx_v_localValue = __pyx_parallel_temp8;
+                      __pyx_v_xOut = __pyx_parallel_temp9;
+                      __pyx_v_yInGlobal = __pyx_parallel_temp10;
+                      __pyx_v_yAboveTile = __pyx_parallel_temp11;
+                      __pyx_v_xInTile = __pyx_parallel_temp12;
+                      __pyx_v_valuePos = __pyx_parallel_temp13;
+                      __pyx_v_yOut = __pyx_parallel_temp14;
+                      __pyx_v_xRightGlobal = __pyx_parallel_temp15;
+                      __pyx_v_catsOk = __pyx_parallel_temp16;
+                      __pyx_v_yInTile = __pyx_parallel_temp17;
+                      __pyx_v_errorCategory = __pyx_parallel_temp18;
+                      __pyx_v_xInGlobal = __pyx_parallel_temp19;
+                      __pyx_v_xRightTile = __pyx_parallel_temp20;
                       switch (__pyx_parallel_why) {
                             case 3: goto __pyx_L9_return;
                             case 4:
@@ -4806,7 +4806,7 @@ static PyObject *__pyx_f_7spatial_4core_11categorical_22Categorical_Aggregator_f
                   #define unlikely(x) (x)
               #endif
               #ifdef _OPENMP
-              #pragma omp parallel  private(__pyx_t_16, __pyx_t_19, __pyx_t_17, __pyx_t_15, __pyx_t_21, __pyx_t_6, __pyx_t_23, __pyx_t_22, __pyx_t_18, __pyx_t_20, __pyx_t_14, __pyx_t_12, __pyx_t_8, __pyx_t_13, __pyx_t_11, __pyx_t_7) private(__pyx_filename, __pyx_lineno, __pyx_clineno) shared(__pyx_parallel_why, __pyx_parallel_exc_type, __pyx_parallel_exc_value, __pyx_parallel_exc_tb)
+              #pragma omp parallel  private(__pyx_t_23, __pyx_t_22, __pyx_t_20, __pyx_t_18, __pyx_t_14, __pyx_t_12, __pyx_t_7, __pyx_t_13, __pyx_t_16, __pyx_t_11, __pyx_t_17, __pyx_t_15, __pyx_t_19, __pyx_t_21, __pyx_t_8, __pyx_t_6) private(__pyx_filename, __pyx_lineno, __pyx_clineno) shared(__pyx_parallel_why, __pyx_parallel_exc_type, __pyx_parallel_exc_value, __pyx_parallel_exc_tb)
               #endif /* _OPENMP */
               {
                   #ifdef _OPENMP
@@ -4837,15 +4837,15 @@ static PyObject *__pyx_f_7spatial_4core_11categorical_22Categorical_Aggregator_f
                       if (__pyx_t_11 > 0)
                       {
                           #ifdef _OPENMP
-                          #pragma omp for lastprivate(__pyx_v_xOut) lastprivate(__pyx_v_proportion) firstprivate(__pyx_v_yOut) lastprivate(__pyx_v_yOut)
+                          #pragma omp for firstprivate(__pyx_v_yOut) lastprivate(__pyx_v_yOut) lastprivate(__pyx_v_proportion) lastprivate(__pyx_v_xOut)
                           #endif /* _OPENMP */
                           for (__pyx_t_6 = 0; __pyx_t_6 < __pyx_t_11; __pyx_t_6++){
                               if (__pyx_parallel_why < 2)
                               {
                                   __pyx_v_yOut = 0 + 1 * __pyx_t_6;
                                   /* Initialize private variables to invalid values */
-                                  __pyx_v_xOut = ((Py_ssize_t)0xbad0bad0);
                                   __pyx_v_proportion = ((float)__PYX_NAN());
+                                  __pyx_v_xOut = ((Py_ssize_t)0xbad0bad0);
 
                                   /* "spatial\core\categorical.pyx":355
  *             with nogil, parallel():
@@ -4959,9 +4959,9 @@ static PyObject *__pyx_f_7spatial_4core_11categorical_22Categorical_Aggregator_f
                                   #pragma omp critical(__pyx_parallel_lastprivates1)
                                   #endif /* _OPENMP */
                                   {
-                                      __pyx_parallel_temp0 = __pyx_v_xOut;
+                                      __pyx_parallel_temp0 = __pyx_v_yOut;
                                       __pyx_parallel_temp1 = __pyx_v_proportion;
-                                      __pyx_parallel_temp2 = __pyx_v_yOut;
+                                      __pyx_parallel_temp2 = __pyx_v_xOut;
                                   }
                                   __pyx_L24:;
                                   #ifdef _OPENMP
@@ -4975,9 +4975,9 @@ static PyObject *__pyx_f_7spatial_4core_11categorical_22Categorical_Aggregator_f
                         __pyx_parallel_why = 4;
                       }
                       if (__pyx_parallel_why) {
-                        __pyx_v_xOut = __pyx_parallel_temp0;
+                        __pyx_v_yOut = __pyx_parallel_temp0;
                         __pyx_v_proportion = __pyx_parallel_temp1;
-                        __pyx_v_yOut = __pyx_parallel_temp2;
+                        __pyx_v_xOut = __pyx_parallel_temp2;
                         switch (__pyx_parallel_why) {
                               case 3: goto __pyx_L14_return;
                               case 4:
