@@ -220,6 +220,9 @@ class TemporalAggregator:
         sliceProj = None
         isFullFile = False
         for timeKey, timeFiles in self.filesDict.iteritems():
+            #for stat in self.stats:
+            #    filenameWillBe = self._fnGetter(str(timeKey), stat, where)
+
             logMessage(timeKey)
             for timeFile in timeFiles:
                 data, thisGT, thisProj, thisNdv = ReadAOI_PixelLims(timeFile, None, (top, bottom))

@@ -85,6 +85,6 @@ setup(
     ext_modules=extensions,
     cmdclass={'build_ext':build_ext},
     py_modules=['aggregation_values',
-                'spatial.spatial_aggregation_runner',
-                'temporal.temporal_aggregation_runner']
+                'spatial.SpatialAggregator',
+                'temporal.TemporalAggregator']
 )
