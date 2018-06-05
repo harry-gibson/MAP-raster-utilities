@@ -21,7 +21,6 @@ class SingleBandTiffFile:
             self._Properties = None
         self._cacheReads = shouldCache
         self._cachedData = None
-        # check it is a tiff, make folders, etc etc blah blah
 
     def log(self, msg):
         print(msg)
@@ -41,7 +40,7 @@ class SingleBandTiffFile:
         outDrv = gdal.GetDriverByName('GTiff')
         if cOpts is None:
             cOpts = ["TILED=YES", "SPARSE_OK=FALSE", "BIGTIFF=YES", "COMPRESS=LZW", "PREDICTOR=2",
-                 "NUM_THREADS=ALL_CPUS"]
+                "NUM_THREADS=ALL_CPUS"]
 
         outShape = (rProps.height, rProps.width)
         if data is not None:
@@ -50,12 +49,16 @@ class SingleBandTiffFile:
                 raise ValueError("Provided array shape does not match expected file shape - use SavePart to write subsets")
 
         outRaster = outDrv.Create(self._filePath, outShape[1], outShape[0], 1, rProps.datatype, cOpts)
-        outRaster.SetGeoTransform(rProps.gt)
-        outRaster.SetProjection(rProps.proj)
-        outBand = outRaster.GetRasterBand(1)
 
+        if rProps.gt is not None:
+            outRaster.SetGeoTransform(rProps.gt)
+        if rProps.proj is not None:
+            outRaster.SetProjection(rProps.proj)
+
+        outBand = outRaster.GetRasterBand(1)
         if rProps.ndv is not None:
             outBand.SetNoDataValue(rProps.ndv)
+
         if data is not None:
             outBand.WriteArray(data)
         else:
@@ -65,7 +68,7 @@ class SingleBandTiffFile:
         outRaster = None
         self._Exists = True
 
-    def SavePart(self, data, outOffsetYX):
+    def SavePart(self, data, outOffsetYX, cOpts=None):
 
         if self._Properties is None:
             raise ValueError("File properties must be set first using SetProperties(RasterProps)")
@@ -91,13 +94,24 @@ class SingleBandTiffFile:
                 Warning("Array has higher type than configured file output, values may be truncated")
 
             outDrv = gdal.GetDriverByName('GTiff')
-            cOpts = ["TILED=YES", "SPARSE_OK=FALSE", "BIGTIFF=YES", "COMPRESS=LZW", "PREDICTOR=2",
+            if cOpts is None:
+                cOpts = ["TILED=YES", "SPARSE_OK=FALSE", "BIGTIFF=YES", "COMPRESS=LZW", "PREDICTOR=2",
                          "NUM_THREADS=ALL_CPUS"]
+            ds = outDrv.Create(self._filePath, rProps.width, rProps.height, 1, rProps.datatype, cOpts)
+            if rProps.gt is not None:
+                ds.SetGeoTransform(rProps.gt)
+            if rProps.proj is not None:
+                ds.SetProjection(rProps.proj)
+            if rProps.ndv is not None:
+                outBand = ds.GetRasterBand(1)
+                outBand.SetNoDataValue(rProps.ndv)
+            self._Exists = True
 
-            # todo stuffs
+        outBand = ds.GetRasterBand(1)
+        outBand.WriteArray(data, outOffsetYX[1], outOffsetYX[0])
+        outBand.FlushCache()
+        ds = None
 
-
-        raise NotImplementedError("call back another time")
 
     def __tryGetExistingProperties(self, filePath):
         if not (self._Exists or os.path.exists(filePath)):
