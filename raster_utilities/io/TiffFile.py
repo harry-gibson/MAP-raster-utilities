@@ -137,6 +137,8 @@ class SingleBandTiffFile:
         ds = None
         return outObj
 
+    def Exists(self):
+        return self._Exists
 
     def ReadAll(self, readAsMasked=False):
         # we allow caching so that in situations where we want to read the same multiple times we can just
