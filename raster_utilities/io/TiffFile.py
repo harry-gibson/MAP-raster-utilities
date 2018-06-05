@@ -197,15 +197,17 @@ class SingleBandTiffFile:
             gdalDatasetIn = gdal.Open(self._filePath, gdal.GA_ReadOnly)
             assert isinstance(gdalDatasetIn, gdal.Dataset)
             inputBnd = gdalDatasetIn.GetRasterBand(1)
-            #inputBnd.ReadAsArray(xLims[0], yLims[0], xLims[1] - xLims[0], yLims[1] - yLims[0], buf_obj=dataBuffer)
-            inputArr = inputBnd.ReadAsArray(x0, y0, x1 - x0, y1 - y0)
-            if self._cacheReads and not hasLims:
-                self.log("Caching data for file " + self._filePath)
-                self._cachedData = (inputArr, clippedGT, dsProj, ndv)
-            if readAsMasked and ndv is not None:
-                return (np.ma.masked_equal(inputArr, ndv), clippedGT, dsProj, ndv)
+            if existingBuffer is not None:
+                inputBnd.ReadAsArray(xLims[0], yLims[0], xLims[1] - xLims[0], yLims[1] - yLims[0], buf_obj=existingBuffer)
             else:
-                return(inputArr, clippedGT, dsProj, ndv)
+                inputArr = inputBnd.ReadAsArray(x0, y0, x1 - x0, y1 - y0)
+                if self._cacheReads and not hasLims:
+                    self.log("Caching data for file " + self._filePath)
+                    self._cachedData = (inputArr, clippedGT, dsProj, ndv)
+                if readAsMasked and ndv is not None:
+                    return (np.ma.masked_equal(inputArr, ndv), clippedGT, dsProj, ndv)
+                else:
+                    return(inputArr, clippedGT, dsProj, ndv)
         else:
             # the cache can only be populated by a full read so we can just return a slice of it
             if readAsMasked and ndv is not None:
