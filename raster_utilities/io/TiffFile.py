@@ -81,7 +81,10 @@ class SingleBandTiffFile:
         currentShape = (rProps.height, rProps.width)
         if ((dataShape[0] + outOffsetYX[0]) > currentShape[0]) or ((dataShape[1] + outOffsetYX[1]) > currentShape[1]):
             raise ValueError("data + offset are larger than the specified image size")
-
+        if dataShape[0] == rProps.height and dataShape[1] == rProps.width:
+            isFull = True
+        else:
+            isFull = False
         if self._Exists:
             ds = gdal.Open(self._filePath, gdal.GA_Update)
 
@@ -95,8 +98,11 @@ class SingleBandTiffFile:
 
             outDrv = gdal.GetDriverByName('GTiff')
             if cOpts is None:
-                cOpts = ["TILED=YES", "SPARSE_OK=FALSE", "BIGTIFF=YES", "COMPRESS=LZW", "PREDICTOR=2",
-                         "NUM_THREADS=ALL_CPUS"]
+                cOpts = ["TILED=YES", "SPARSE_OK=FALSE", "BIGTIFF=YES", "COMPRESS=LZW", "PREDICTOR=2"]
+                if isFull:
+                    # seem to get corruption when writing subsets of files that seems to occur more when using multithreaded
+                    # writers, so use a single thread unless we are writing whole file
+                    cOpts.append("NUM_THREADS=ALL_CPUS")
             ds = outDrv.Create(self._filePath, rProps.width, rProps.height, 1, rProps.datatype, cOpts)
             if rProps.gt is not None:
                 ds.SetGeoTransform(rProps.gt)
@@ -199,6 +205,7 @@ class SingleBandTiffFile:
             inputBnd = gdalDatasetIn.GetRasterBand(1)
             if existingBuffer is not None:
                 inputBnd.ReadAsArray(xLims[0], yLims[0], xLims[1] - xLims[0], yLims[1] - yLims[0], buf_obj=existingBuffer)
+                return (None, clippedGT, dsProj, ndv)
             else:
                 inputArr = inputBnd.ReadAsArray(x0, y0, x1 - x0, y1 - y0)
                 if self._cacheReads and not hasLims:
