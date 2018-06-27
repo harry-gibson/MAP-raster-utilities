@@ -6,6 +6,32 @@ import numpy as np
 
 RasterProps = namedtuple("RasterProps", ["gt", "proj", "ndv", "width", "height", "res", "datatype"])
 
+class TemplateProps:
+    _EPSG4326 = 'GEOGCS["WGS 84",DATUM["WGS_1984",' \
+                'SPHEROID["WGS 84",6378137,298.257223563,AUTHORITY["EPSG","7030"]],' \
+                'AUTHORITY["EPSG","6326"]],' \
+                'PRIMEM["Greenwich",0],' \
+                'UNIT["degree",0.0174532925199433],' \
+                'AUTHORITY["EPSG","4326"]]'
+    GLOBAL_1K = RasterProps(gt=(-180.0, 0.008333333333333, 0.0, 90.0, 0.0, -0.008333333333333),
+                            proj=_EPSG4326,
+                            ndv=None, width=43200, height=21600, res='1km', datatype=6)
+    GLOBAL_5K = RasterProps(gt=(-180.0, 0.041666666666667, 0.0, 90.0, 0.0, -0.041666666666667),
+                            proj=_EPSG4326,
+                            ndv=None, width=8640, height=4320, res='5km', datatype=6)
+    GLOBAL_10K = RasterProps(gt=(-180.0, 0.08333333333333, 0.0, 90.0, 0.0, -0.08333333333333),
+                            proj=_EPSG4326,
+                            ndv=None, width=4320, height=2160, res='10km', datatype=6)
+    NOPOLAR_1K = RasterProps(gt=(-180.0, 0.008333333333333, 0.0, 85.0, 0.0, -0.008333333333333),
+                            proj=_EPSG4326,
+                            ndv=None, width=43200, height=17400, res='1km', datatype=6)
+    NOPOLAR_5K = RasterProps(gt=(-180.0, 0.041666666666667, 0.0, 85.0, 0.0, -0.041666666666667),
+                            proj=_EPSG4326,
+                            ndv=None, width=8640, height=3480, res='5km', datatype=6)
+    NOPOLAR_10K = RasterProps(gt=(-180.0, 0.08333333333333, 0.0, 90.0, 0.0, -0.08333333333333),
+                             proj=_EPSG4326,
+                             ndv=None, width=4320, height=1740, res='10km', datatype=6)
+
 
 class SingleBandTiffFile:
 

@@ -198,6 +198,49 @@ def CalculateClippedGeoTransform_RoundedRes(inGT, xPixelLims, yPixelLims):
     clippedGT = (topLeftLongOut, roundedResX, 0.0, topLeftLatOut, 0.0, roundedResY)
     return clippedGT
 
+def GetAlignedGeoTransform(inGT, doSnap=True):
+    assert isinstance(inGT, tuple) and len(inGT) == 6
+
+    def round_to_nearest(n, m):
+        r = n % m
+        return n + m - r if r + r >= m else n - r
+
+    xRes = inGT[1]
+    yRes = inGT[5]
+    assert round(xRes, 10) == -(round(yRes, 10))
+    xOrigin = inGT[0]
+    yOrigin = inGT[3]
+
+    intDiv = round(1.0 / xRes)
+    idealRes = round(1.0 / intDiv, 16)
+
+    new_xOrigin = xOrigin
+    new_yOrigin = yOrigin
+
+    if round(xRes, 16) == idealRes:
+        print ("cell size already ok")
+        # return None
+    else:
+        print ("cell size reset to " + str(idealRes))
+        if doSnap:
+            new_xOrigin = round_to_nearest(xOrigin, idealRes)
+            new_yOrigin = round_to_nearest(yOrigin, idealRes)
+
+            # if idealRes > xRes:
+            #      # the res was too small so the cells are slightly to the left
+            #      # and top of where they should be - so move them right / down
+            #      print "shifting right/down"
+            #      new_xOrigin =(xOrigin + idealRes) - (xOrigin % idealRes)
+            #      new_yOrigin =(yOrigin - idealRes) + (yOrigin % idealRes)
+            #  else:
+            #      # the res was too large so the cells are slightly to the right
+            #      # and below where they should be - so move them up / left
+            #      print "shifting up/left"
+            #      new_xOrigin = xOrigin - (xOrigin % idealRes)
+            #      new_yOrigin = yOrigin - (yOrigin % idealRes)
+
+    return (new_xOrigin, idealRes, 0, new_yOrigin, 0, -idealRes)
+
 def CalculatePixelLims_GlobalRef(inGT, longitudeLims, latitudeLims):
     '''Returns pixel coords of a given AOI in degrees, as they *would* be in a global image
 
