@@ -9,13 +9,14 @@ from ...utils.raster_tiling import getTiles
 
 
 class TemporalAggregator:
-    def __init__(self, filesDict, outFolder, outputNDV, stats, doSynoptic):
+    def __init__(self, filesDict, outFolder, outputNDV, stats, doSynoptic, bytesLimit=40e9):
         assert isinstance(filesDict, dict)
         self.filesDict = filesDict
         assert isinstance(outFolder, str)
         self.outFolder = outFolder
         self._tileFolder = os.path.join(outFolder, "aggregation_tiles")
         self.outputNDV = outputNDV
+        self._bytesLimit = bytesLimit
 
         assert isinstance(stats, list)
         mystats = []
@@ -111,7 +112,7 @@ class TemporalAggregator:
         h = self.InputProperties.height
         runHeight = h
         bytesFull = self._estimateTemporalAggregationMemory(runHeight)
-        while bytesFull > 40e9:
+        while bytesFull > self._bytesLimit:
             runHeight = runHeight // 2 # force integer division on python 2.x
             bytesFull = self._estimateTemporalAggregationMemory(runHeight)
         slices = sorted(list(set([s[1] for s in getTiles(w, h, runHeight)])))
