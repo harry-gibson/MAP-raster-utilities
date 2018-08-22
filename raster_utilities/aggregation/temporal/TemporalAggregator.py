@@ -219,20 +219,34 @@ class TemporalAggregator:
                                                      self.outputNDV, self.stats, runSynoptic)
         sliceGT = None
         sliceProj = None
-        isFullFile = False
+        isFullFile = sliceHeight == self.InputProperties.height
+        if isFullFile:
+            where = -1 # flag to exclude slice id from filenames
+        else:
+            where = top
+
         for timeKey, timeFiles in self.filesDict.iteritems():
             #for stat in self.stats:
             #    filenameWillBe = self._fnGetter(str(timeKey), stat, where)
 
             logMessage(timeKey)
+
+            allDone = True
+            for stat in self.stats:
+                fnWillBe = os.path.join(outFolder, self._fnGetter(str(timeKey), stat, where))
+                if not os.path.exists(fnWillBe):
+                    allDone = False
+            if allDone:
+                logMessage("All outputs for {0!s} already exist, skipping!".format(timeKey))
+                continue
+
             for timeFile in timeFiles:
                 data, thisGT, thisProj, thisNdv = ReadAOI_PixelLims(timeFile, None, (top, bottom))
                 if sliceGT is None:
                     # first file
                     sliceGT = thisGT
                     sliceProj = thisProj
-                    if sliceHeight == self.InputProperties.height:
-                        isFullFile = True
+
                 else:
                     if sliceGT != thisGT or sliceProj != thisProj:
                         raise ValueError("File " + timeFile +
@@ -243,12 +257,10 @@ class TemporalAggregator:
                 # to count each one once towards overall totals.
                 statsCalculator.addFile(data, thisNdv, timeFile)
             periodResults = statsCalculator.emitStep()
-            if isFullFile:
-                where = -1
-            else:
-                where = top
             for stat in self.stats:
-                SaveLZWTiff(periodResults[stat], self.outputNDV, sliceGT, sliceProj, outFolder,
+                fnWillBe = os.path.join(outFolder, self._fnGetter(str(timeKey), stat, where))
+                if not os.path.exists(fnWillBe):
+                    SaveLZWTiff(periodResults[stat], self.outputNDV, sliceGT, sliceProj, outFolder,
                             self._fnGetter(str(timeKey), stat, where))
         if runSynoptic:
             overallResults = statsCalculator.emitTotal()

@@ -268,17 +268,15 @@ class SpatialAggregator:
             xSize = tile[0][1] - xOff
             ySize = tile[1][1] - yOff
 
-            inArr = np.empty(shape=(ySize, xSize), dtype=npDataType)
-            ReadAOI_PixelLims_Inplace(filename,
-                                      (xOff, xOff+xSize),
-                                      (yOff, yOff+ySize),
-                                      inArr)
+            inArr, thisGT, thisProj, thisNdv = ReadAOI_PixelLims(filename,
+                                                                 (xOff, xOff+xSize),
+                                                                 (yOff, yOff+ySize))
             #inArr, x1, x2, x3 = ReadAOI_PixelLims(filename,
             #                                        (xOff, xOff+xSize),
             #                                        (yOff, yOff+ySize))
             # todo check the actual datatypes of the files here esp for categorical
             if self._mode == AggregationModes.CONTINUOUS:
-                aggregator.addTile(inArr.astype(np.float32), xOff, yOff, ndv_In)
+                aggregator.addTile(inArr.astype(np.float32), xOff, yOff, thisNdv)
             else:
                 aggregator.addTile(inArr#.astype(np.uint8)
                                    , xOff, yOff)

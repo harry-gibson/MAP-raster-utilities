@@ -3,6 +3,7 @@ from osgeo import gdal_array, gdal
 from ..utils.geotransform_calcs import CalculateClippedGeoTransform, CalculatePixelLims
 from collections import namedtuple
 import numpy as np
+import subprocess
 
 RasterProps = namedtuple("RasterProps", ["gt", "proj", "ndv", "width", "height", "res", "datatype"])
 
@@ -144,6 +145,25 @@ class SingleBandTiffFile:
         outBand.FlushCache()
         ds = None
 
+    def BuildPyramids(self):
+        ovTemplate = "gdaladdo -ro --config COMPRESS_OVERVIEW LZW --config USE_RRD NO " + \
+                    "--config TILED YES {0} 2 4 8 16 32 64 128 256 --config GDAL_CACHEMAX 8000"
+        ovrFile = self._filePath + ".ovr"
+        if self.Exists() and not os.path.exists(ovrFile):
+            ovCommand = ovTemplate.format(self._filePath)
+            try:
+                subprocess.check_output(ovCommand)
+            except subprocess.CalledProcessError as e:
+                self.log("Error occurred creating overviews: " + e.output)
+
+    def BuildStats(self):
+        statTemplate = "gdalinfo -stats {0}"
+        if self.Exists():
+            statCommand = statTemplate.format(self._filePath)
+            try:
+                subprocess.check_output(statCommand)
+            except subprocess.CalledProcessError as e:
+                self.log("Error occurred creating stats: " + e.output)
 
     def __tryGetExistingProperties(self, filePath):
         if not (self._Exists or os.path.exists(filePath)):
@@ -176,6 +196,7 @@ class SingleBandTiffFile:
         # we allow caching so that in situations where we want to read the same multiple times we can just
         # maintain the object associated with it and client code doesn't have to store the arrays etc explicitly
         return self.ReadForPixelLims(xLims=None, yLims=None, readAsMasked=readAsMasked)
+
 
     def ReadForPixelLims(self, xLims=None, yLims=None, readAsMasked=False, existingBuffer=None):
         ''' Read a subset of this 1-band dataset, specified by bounding x and y coordinates.
