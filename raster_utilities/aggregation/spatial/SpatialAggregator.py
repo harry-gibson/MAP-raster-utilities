@@ -241,7 +241,7 @@ class SpatialAggregator:
             logMessage("Incoming nodata value is "+str(ndv_In))
         else:
             logMessage("No NDV defined in input")
-            ndv_In = None
+            ndv_In = -np.inf
         if self._mode == AggregationModes.CONTINUOUS:
             aggregator = Continuous_Aggregator_Flt(inputProperties.width, inputProperties.height,
                                                outShape[1], outShape[0],
@@ -276,7 +276,7 @@ class SpatialAggregator:
             #                                        (yOff, yOff+ySize))
             # todo check the actual datatypes of the files here esp for categorical
             if self._mode == AggregationModes.CONTINUOUS:
-                aggregator.addTile(inArr.astype(np.float32), xOff, yOff, thisNdv)
+                aggregator.addTile(inArr.astype(np.float32), xOff, yOff, ndv_In)
             else:
                 aggregator.addTile(inArr#.astype(np.uint8)
                                    , xOff, yOff)
