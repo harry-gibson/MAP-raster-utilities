@@ -213,6 +213,15 @@ class SpatialAggregator:
                                                     self._aggFactor,
                                                     self._aggShape,
                                                    self._aggResolution)
+        allDone = True
+        for stat in self.stats:
+            fnWillBe = os.path.join(self.outFolder, self._fnGetter(os.path.basename(filename), stat))
+            if not os.path.exists(fnWillBe):
+                allDone = False
+        if allDone:
+            logMessage("All outputs for {0!s} already exist, skipping!".format(os.path.basename(filename)))
+            return
+
         # establish a tile size that can be done in 30GB memory +- wild estimation factor
         tileH = inputProperties.height
         tileW = inputProperties.width
