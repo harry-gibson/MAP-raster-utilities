@@ -526,7 +526,7 @@ struct __pyx_opt_args_18coastline_matching_MatchToCoastline_Float;
 struct __pyx_opt_args_18coastline_matching_MatchToCoastline_Population;
 
 /* "coastline_matching.pyx":9
- * # To do this simply run "python setup.py.old.bak build_ext --inplace" (assuming you have cython installed)
+ * # To do this simply run "python setup.py build_ext --inplace" (assuming you have cython installed)
  * 
  * cpdef MatchToCoastline_long(long long[:,::1] data, char[:,::1] landMask, long long _NDV = -9999,             # <<<<<<<<<<<<<<
  *                         char applyClip = 1, char applyFill = 1,
@@ -1442,7 +1442,7 @@ static PyObject *__pyx_tuple__57;
 static PyObject *__pyx_tuple__58;
 
 /* "coastline_matching.pyx":9
- * # To do this simply run "python setup.py.old.bak build_ext --inplace" (assuming you have cython installed)
+ * # To do this simply run "python setup.py build_ext --inplace" (assuming you have cython installed)
  * 
  * cpdef MatchToCoastline_long(long long[:,::1] data, char[:,::1] landMask, long long _NDV = -9999,             # <<<<<<<<<<<<<<
  *                         char applyClip = 1, char applyFill = 1,
@@ -2873,7 +2873,7 @@ static PyObject *__pyx_f_18coastline_matching_MatchToCoastline_long(__Pyx_memvie
   goto __pyx_L0;
 
   /* "coastline_matching.pyx":9
- * # To do this simply run "python setup.py.old.bak build_ext --inplace" (assuming you have cython installed)
+ * # To do this simply run "python setup.py build_ext --inplace" (assuming you have cython installed)
  * 
  * cpdef MatchToCoastline_long(long long[:,::1] data, char[:,::1] landMask, long long _NDV = -9999,             # <<<<<<<<<<<<<<
  *                         char applyClip = 1, char applyFill = 1,
