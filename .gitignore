@@ -217,3 +217,4 @@ pip-log.txt
 
 # ipython
 .ipynb_checkpoints/
+.git-old/

@@ -13,6 +13,10 @@ f() { gdaladdo -ro --config COMPRESS_OVERVIEW LZW --config USE_RRD NO --config T
 export -f f
 ls *Data.tif | x args -P 10 -n 1 -I{} bash -c f\ \{\}
 
+or on windows:
+dir /B *.tif|ppx2 -P 6 -I {} gdaladdo -ro --config COMPRESS_OVERVIEW LZW --config USE_RRD NO --config TILED YES {} 2 4 8 16 32 64 128
+where -P 6 specifies the number of processes to do at once and {} after -I means "replace this in the following command with the filename"
+
 Step 3:
 The same can be done for generating statistics. 
 The GDAL command for doing this is actually the gdalinfo command; asking it to report statistics will generate them 
