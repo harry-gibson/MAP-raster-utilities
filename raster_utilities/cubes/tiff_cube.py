@@ -266,14 +266,46 @@ class TiffCube:
         regardless of limits, and store the result - overwriting any previously cached file - before returning the
         subset requested.
         '''
-        rasterFilename = None
         if CubeLevel is None:
             CubeLevel = CubeLevels.STATIC
-        isAvail = self.CubeLevelIsAvailable(CubeLevel)
 
+        rasterFilename = self.GetFilenameForDate(CubeLevel, RequiredDate, useClosestAvailableYear)
+
+        if rasterFilename is not None:
+            if self.__CanCacheData and cacheThisRead:
+                # the cube object can optionally maintain one TiffFile object with caching enabled (any more would
+                # be memory prohibitive). An example use case would be if we know we're going to read the synoptic data
+                # more than once and also read multiple dynamic files all from the same cube; we could cache the
+                # synoptic one
+                if self.__DataCache["Filename"] == rasterFilename:
+                    thisTiff = self.__DataCache["FileObject"]
+                else:
+                    thisTiff = SingleBandTiffFile(rasterFilename, shouldCache=True)
+                    thisTiff.PopulateCache()
+                    self.__DataCache["Filename"] = rasterFilename
+                    self.__DataCache["FileObject"] = thisTiff
+            else:
+                thisTiff = SingleBandTiffFile(rasterFilename, shouldCache=False)
+
+            if latLims is None:
+                # currently neither or both of latLims and lonLims must be set
+                assert lonLims is None
+                self.log("Reading data from complete file " + rasterFilename)
+            else:
+                pass
+                self.log("Reading data from part of file " + rasterFilename)
+            return thisTiff.ReadForLatLonLims(lonLims=lonLims, latLims=latLims, readAsMasked=maskNoData)
+            #dataArr, subsetGT, _, _ = ReadAOI_PixelLims(rasterFilename, pixelLimsLon, pixelLimsLat, maskNoData=maskNoData)
+
+        else:
+            self.log("No matching filename found for {0!s} / {1!s} / {2!s}".format(CubeLevel, RequiredDate, self.MasterFolder))
+            return None
+
+    def GetFilenameForDate(self, CubeLevel, RequiredDate, useClosestAvailableYear):
+        isAvail = self.CubeLevelIsAvailable(CubeLevel)
         if not isAvail:
             raise ValueError("No files are present of the requested CubeLevel type")
-
+        rasterFilename = None
         if CubeLevel == CubeLevels.MONTHLY:
             reqYear = RequiredDate.year
             reqMonth = RequiredDate.month
@@ -323,35 +355,8 @@ class TiffCube:
         else:
             self.log("Unknown value for CubeLevel parameter")
 
-        if rasterFilename is not None:
-            if self.__CanCacheData and cacheThisRead:
-                # the cube object can optionally maintain one TiffFile object with caching enabled (any more would
-                # be memory prohibitive). An example use case would be if we know we're going to read the synoptic data
-                # more than once and also read multiple dynamic files all from the same cube; we could cache the
-                # synoptic one
-                if self.__DataCache["Filename"] == rasterFilename:
-                    thisTiff = self.__DataCache["FileObject"]
-                else:
-                    thisTiff = SingleBandTiffFile(rasterFilename, shouldCache=True)
-                    thisTiff.PopulateCache()
-                    self.__DataCache["Filename"] = rasterFilename
-                    self.__DataCache["FileObject"] = thisTiff
-            else:
-                thisTiff = SingleBandTiffFile(rasterFilename, shouldCache=False)
 
-            if latLims is None:
-                # currently neither or both of latLims and lonLims must be set
-                assert lonLims is None
-                self.log("Reading data from complete file " + rasterFilename)
-            else:
-                pass
-                self.log("Reading data from part of file " + rasterFilename)
-            return thisTiff.ReadForLatLonLims(lonLims=lonLims, latLims=latLims, readAsMasked=maskNoData)
-            #dataArr, subsetGT, _, _ = ReadAOI_PixelLims(rasterFilename, pixelLimsLon, pixelLimsLat, maskNoData=maskNoData)
-
-        else:
-            self.log("No matching filename found for {0!s} / {1!s} / {2!s}".format(CubeLevel, RequiredDate, self.MasterFolder))
-            return None
+        return rasterFilename
 
     def __isInt(self, s):
         try:
