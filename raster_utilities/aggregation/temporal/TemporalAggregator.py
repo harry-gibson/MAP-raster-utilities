@@ -49,8 +49,23 @@ class TemporalAggregator:
     def _timePoints(self):
         return sorted(self.filesDict.keys())
 
-    def _fnGetter(self, whatandwhen, stat, where):
-        statname = stat.value
+    def _fnGetter_MG(self, filename, newDatePart, temporalStat, where):
+        outNameTemplate = "{0!s}.{1!s}.{2!s}.{3!s}.{4!s}.tif"
+        temporalStatname = temporalStat.value
+        existingParts = os.path.basename(filename).split(".")
+        if len(existingParts)==7:
+            varTag = existingParts[0]
+            resTag = existingParts[4]
+            spatialStat = existingParts[5]
+            if where != -1:
+                spatialStat = spatialStat + "." + str(where)
+            outname = outNameTemplate.format(varTag, newDatePart, temporalStatname, resTag, spatialStat)
+            return outname
+        else:
+            raise ValueError("does not appear to be a valid 6-token filename")
+
+    def _fnGetter_Safe(self, whatandwhen, temporalStat, where):
+        statname = temporalStat.value
         if where == -1:
             return ".".join([str(whatandwhen), statname,
                              str(self.InputProperties.res), "tif"])
@@ -232,8 +247,29 @@ class TemporalAggregator:
             logMessage(timeKey)
 
             allDone = True
+
+            # see if we can use thet mastergrid filename generatore for these inputs, which relies on getting the
+            # output filename from the inputs, so they must all be the same; all this really does is check that all
+            # the inputs are the same except for in the 2nd and 3rd tokens
+            testFilename = None
+            useMGFilenameGenerator = True
+            for inputFile in timeFiles:
+                try:
+                    thisOutputFilename = self._fnGetter_MG(inputFile, timeKey, self.stats[0], -1)
+                    if testFilename is None:
+                        testFilename = thisOutputFilename
+                    elif testFilename != thisOutputFilename:
+                        useMGFilenameGenerator = False
+                        break
+                except ValueError:
+                    useMGFilenameGenerator = False
+                    break
+
             for stat in self.stats:
-                fnWillBe = os.path.join(outFolder, self._fnGetter(str(timeKey), stat, where))
+                if useMGFilenameGenerator:
+                    fnWillBe = os.path.join(outFolder, self._fnGetter_MG(timeFiles[0], timeKey, stat, where))
+                else:
+                    fnWillBe = os.path.join(outFolder, self._fnGetter_Safe(str(timeKey), stat, where))
                 if not os.path.exists(fnWillBe):
                     allDone = False
             if allDone:
@@ -258,10 +294,13 @@ class TemporalAggregator:
                 statsCalculator.addFile(data, thisNdv, timeFile)
             periodResults = statsCalculator.emitStep()
             for stat in self.stats:
-                fnWillBe = os.path.join(outFolder, self._fnGetter(str(timeKey), stat, where))
+                if useMGFilenameGenerator:
+                    fnWillBe = os.path.join(outFolder, self._fnGetter_MG(timeFiles[0], timeKey, stat, where))
+                else:
+                    fnWillBe = os.path.join(outFolder, self._fnGetter_Safe(str(timeKey), stat, where))
                 if not os.path.exists(fnWillBe):
                     SaveLZWTiff(periodResults[stat], self.outputNDV, sliceGT, sliceProj, outFolder,
-                            self._fnGetter(str(timeKey), stat, where))
+                            os.path.basename(fnWillBe))
         if runSynoptic:
             overallResults = statsCalculator.emitTotal()
             if isFullFile:
@@ -269,8 +308,13 @@ class TemporalAggregator:
             else:
                 where = top
             for stat in self.stats:
+                try:
+                    fnWillBe = os.path.join(outFolder, self._fnGetter_MG(timeFiles[0], timeKey, stat, where))
+                except:
+                    fnWillBe = os.path.join(outFolder, self._fnGetter_Safe(str(timeKey), stat, where))
                 SaveLZWTiff(overallResults[stat], self.outputNDV, sliceGT, sliceProj, outFolder,
-                            self._fnGetter("Overall", stat,  where))
+                            os.path.basename(fnWillBe))
+
 
 
 
