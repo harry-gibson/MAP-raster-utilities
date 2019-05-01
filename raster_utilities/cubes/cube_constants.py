@@ -22,3 +22,4 @@ class CubeLevels(Enum):
     SYNOPTIC_MONTHLY = "Synoptic"
     SYNOPTIC_OVERALL = "Synoptic_Overall" # the overall files will actually be stored in the "Synoptic" folder too
     STATIC = "Static"
+    N_DAILY = "*-Daily"
