@@ -1,8 +1,8 @@
 import os, glob
 from datetime import date
 from dateutil.relativedelta import relativedelta
-from collections import  defaultdict
-from cube_constants import  CubeResolutions, CubeLevels
+from collections import defaultdict
+from raster_utilities.cubes.cube_constants import CubeResolutions, CubeLevels
 from ..aggregation.aggregation_values import TemporalAggregationStats, ContinuousAggregationStats
 from ..io.TiffFile import SingleBandTiffFile
 
@@ -38,13 +38,13 @@ class TiffCube:
     '''
 
     def __init__(self, MasterFolder,
-                 cubelevel = None,
-                 resolution = CubeResolutions.ONE_K,
-                 variablename = "*", # for use in case there's multiple things in one folder tree differentiated in the first token
-                 temporalsummary = TemporalAggregationStats.RAWDATA,
-                 spatialsummary = ContinuousAggregationStats.RAWDATA,
-
-                 allowGlobalCache = True):
+                    resolution = CubeResolutions.ONE_K,
+                    temporalsummary = TemporalAggregationStats.RAWDATA,
+                    spatialsummary = ContinuousAggregationStats.RAWDATA,
+                    allowGlobalCache = True,
+                    cubelevel = None,
+                    variablename = "*",  # for use in case there's multiple things in one folder tree differentiated in the first token
+    ):
         self.MasterFolder = MasterFolder
         self.VariableName = variablename
         self.MonthlyDictionary = {}
@@ -71,7 +71,8 @@ class TiffCube:
         print(msg)
 
     def __InitialiseNDaily(self):
-
+        pass
+        
     def __InitialiseFiles(self):
         ''' Parse all the monthly, annual, and synoptic files for this cube
 
@@ -101,7 +102,7 @@ class TiffCube:
         # this cube object represents one of the (maybe) available resolutions
         resFolderPath = os.path.join(self.MasterFolder, res)
         filenameTemplate = "{0!s}.{1!s}.{2!s}.{3!s}.{4!s}.{5!s}.tif"
-
+        searchedPaths = []
         # this cube object can reflect various temporal summaries of the data, depending on what's avail.
         # Parse all that's available from the various cube levels as required
 
@@ -118,6 +119,7 @@ class TiffCube:
                                                             temporalsummary, res, spatialsummary)
                 dailyFilesWildcardPath = os.path.join(dailyWildcardFolderPath, dailyFileWildcard)
                 allNDailyFiles = glob.glob(dailyFilesWildcardPath)
+                searchedPaths.append(dailyFilesWildcardPath)
                 if len(allNDailyFiles) == 0:
                     dailyFileWildcard = filenameTemplate.format(self.VariableName, # variablename
                                                             "*", "*", # year and julian-day or mmdd
@@ -126,6 +128,7 @@ class TiffCube:
                                                             ContinuousAggregationStats.RAWDATA.value)
                     dailyFilesWildcardPath = os.path.join(dailyWildcardFolderPath, dailyFileWildcard)
                     allNDailyFiles = glob.glob(dailyFilesWildcardPath)
+                    searchedPaths.append(dailyFilesWildcardPath)
                 if len(allNDailyFiles) == 0:
                     self.__HasDaily = False
                 else:
@@ -161,6 +164,7 @@ class TiffCube:
                                                           temporalsummary, res, spatialsummary)
                 monthlyWildcardPath = os.path.join(monthlyFolderPath, monthlyWildcard)
                 monthlyFiles = glob.glob(monthlyWildcardPath)
+                searchedPaths.append(monthlyWildcardPath)
                 if len(monthlyFiles) == 0:
                     self.__HasMonthly = False
                     # self.log('No monthly files found with wildcard ' + monthlyWildcardPath)
@@ -188,6 +192,7 @@ class TiffCube:
                                                          temporalsummary, res, spatialsummary)
                 annualWildcardPath = os.path.join(annualFolderPath, annualWildcard)
                 annualFiles = glob.glob(annualWildcardPath)
+                searchedPaths.append(annualWildcardPath)
                 if len(annualFiles) == 0:
                     self.__HasAnnual = False # if for some reason the folder exists but empty, unflag
                     #self.log('No annual files found with wildcard ' + annualWildcardPath)
@@ -215,6 +220,7 @@ class TiffCube:
                                                            temporalsummary, res, spatialsummary)
                 synopticWildcardPath = os.path.join(synopticFolderPath, synopticWildcard)
                 synopticFiles = glob.glob(synopticWildcardPath)
+                searchedPaths.append(synopticWildcardPath)
                 if len(synopticFiles) == 0:
                     pass
                     #self.log('No synoptic files found with wildcard ' + synopticWildcardPath)
@@ -243,6 +249,7 @@ class TiffCube:
 
         if not (self.__HasAnnual or self.__HasMonthly or self.__HasSynoptic or self.__HasStatic or self.__HasDaily):
             self.log('No matching files of any type have been located: aborting')
+            self.log('Tried paths: ' + '\n'.join(searchedPaths))
             assert False
         #staticFolderPath = os.path.join(resFolderPath, CubeLevels.STATIC.value)
         #if os.path.isdir(staticFolderPath):
@@ -336,7 +343,8 @@ class TiffCube:
         if CubeLevel is None:
             CubeLevel = CubeLevels.STATIC
 
-        rasterFilename = self.GetFilenameForDate(CubeLevel, RequiredDate, useClosestAvailableYear)
+        rasterFilename = self.GetFilenameForDate(CubeLevel=CubeLevel, RequiredDate=RequiredDate,
+                                                 useClosestAlternateYear=useClosestAvailableYear)
 
         if rasterFilename is not None:
             if self.__CanCacheData and cacheThisRead:
