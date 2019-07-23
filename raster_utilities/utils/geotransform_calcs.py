@@ -1,8 +1,12 @@
 import math
-from ..utils.logger import logMessage
-from ..aggregation.aggregation_values import AggregationTypes
+from ..utils.logger import MessageLogger, LogLevels
+from ..aggregation.aggregation_values import AggregationTypes, SnapTypes
+
 def calcAggregatedProperties(method, inRasterProps,
-                             aggFactor=None, outShape=None, outResolution=None):
+                             aggregationSpecifier = None,
+                             inputSnapType = SnapTypes.NONE,
+                             outputSnapType = SnapTypes.NEAREST):
+                             #aggFactor=None, outShape=None, outResolution=None, snapType = SnapTypes.NONE):
     ''' Given an input raster, get the post-aggregation geotransform and dimensions
 
     method should be one of AggregationTypes.Factor, AggregationTypes.Size, or
@@ -38,35 +42,39 @@ def calcAggregatedProperties(method, inRasterProps,
     assert isinstance(inRasterProps, RasterProps)
     assert len(inRasterProps.gt) == 6
 
-    assert aggFactor is not None or outShape is not None or outResolution is not None
-
+    # assert aggFactor is not None or outShape is not None or outResolution is not None
+    logger = MessageLogger()
     if method == "factor" or method == AggregationTypes.FACTOR:
         # the simplest version, output is just n times coarser than before
         # if it's not a clean match then we will expand to get everything
         # Implies the same pixel shape as before just larger
-        assert isinstance(aggFactor, int) and aggFactor > 0
-        outXSize = int(math.ceil(1.0 * inRasterProps.width / aggFactor))
-        outYSize = int(math.ceil(1.0 * inRasterProps.height / aggFactor))
-        if inRasterProps.width % aggFactor != 0 or inRasterProps.height % aggFactor != 0:
+        if not (isinstance(aggregationSpecifier, int) and aggregationSpecifier > 0):
+            raise ValueError("For aggregation type 'factor' the specifier must be an integer factor > 0")
+        outXSize = int(math.ceil(1.0 * inRasterProps.width / aggregationSpecifier))
+        outYSize = int(math.ceil(1.0 * inRasterProps.height / aggregationSpecifier))
+        if inRasterProps.width % aggregationSpecifier != 0 or inRasterProps.height % aggregationSpecifier != 0:
             # this will tend to trigger with irrational cell sizes such as 1/120 so we should probably
             # put a tolerance on it
-            logMessage("warning, input size was not clean multiple of factor, "+
-                       "output will have 1 cell greater extent", "warning")
-        outputGT = (inRasterProps.gt[0], inRasterProps.gt[1] * aggFactor, 0.0,
-                    inRasterProps.gt[3], 0.0, inRasterProps.gt[5] * aggFactor)
+            logger.logMessage("warning, input size was not clean multiple of factor, "+
+                       "output will have 1 cell greater extent", LogLevels.WARNING)
+        outputGT = (inRasterProps.gt[0], inRasterProps.gt[1] * aggregationSpecifier, 0.0,
+                    inRasterProps.gt[3], 0.0, inRasterProps.gt[5] * aggregationSpecifier)
 
     elif method == "size" or method == AggregationTypes.SIZE:
         # we will specify the required pixel dimensions of the output: aspect ratio may change
         # this is generally the best method to use if we're working with non-integer cell resolutions
-        outXSize = outShape[1]
-        outYSize = outShape[0]
+        if not (isinstance(aggregationSpecifier, tuple) and len(aggregationSpecifier)==2
+                and isinstance(aggregationSpecifier[0], int) and isinstance(aggregationSpecifier[0], int)):
+            raise ValueError("For aggregation type 'size' the specifier must be a 2-tuple of ints (height, width)")
+        outXSize = aggregationSpecifier[1]
+        outYSize = aggregationSpecifier[0]
         # now we need to calculate the resolution this implies (for a maintained extent)
         inputHeightPx = inRasterProps.height
         inputWidthPx = inRasterProps.width
         if 1.0 * inputHeightPx / inputWidthPx != 1.0 * outYSize / outXSize:
             # the coverage in ground extent will be the same, so the pixels themselves must change shape
-            logMessage("warning, output size is different proportion to input, "+
-                       "cells will change shape", "warning")
+            logger.logMessage("warning, output size is different proportion to input, "+
+                       "cells will change shape", LogLevels.WARNING)
         inputXMin = inRasterProps.gt[0]
         inputYMax = inRasterProps.gt[3]
         inputXMax = inputXMin + inRasterProps.gt[1] * inputWidthPx
@@ -87,11 +95,13 @@ def calcAggregatedProperties(method, inRasterProps,
         xOrigin = inGT[0]
         yOrigin = inGT[3]
         if not inResY == -inResX:
-            logMessage("warning, input had non-square cells, "+
-                       "resolution mode creates square cells so they will change shape", "warning")
-        if isinstance(outResolution, str):
+            logger.logMessage("warning, input had non-square cells, "+
+                       "resolution mode creates square cells so they will change shape", LogLevels.WARNING)
+        if isinstance(aggregationSpecifier, str):
             # use the hardcoded resolutions for the 3 main MAP resolutions to avoid
             # cocking about with irrational numbers not multiplying / dividing cleanly
+            inResX = SanitiseResolution(inResX)
+            inResY = -(SanitiseResolution(-inResY))
             inResXRnd = round(inResX, 8)
             inResYRnd = round(inResY, 8)
             if inResXRnd == 0.00833333:
@@ -108,23 +118,24 @@ def calcAggregatedProperties(method, inRasterProps,
                 inResY = -1.0 / 12.0
             xExtent = inXSize * inResX
             yExtent = inYSize * -inResY
-            if outResolution.lower().startswith("1k"):
+            if aggregationSpecifier.lower().startswith("1k"):
                 outXSize = int(120 * xExtent)
                 outYSize = int(120 * yExtent)
-                outResolution = 0.008333333333333
-            elif outResolution.lower().startswith("5k"):
+                outResolution = 1.0/120
+            elif aggregationSpecifier.lower().startswith("5k"):
                 outXSize = int(24 * xExtent)
                 outYSize = int(24 * yExtent)
-                outResolution = 0.041666666666667
-            elif outResolution.lower().startswith("10k"):
+                outResolution = 1.0/24
+            elif aggregationSpecifier.lower().startswith("10k"):
                 outXSize = int(12 * xExtent)
                 outYSize = int(12 * yExtent)
-                outResolution = 0.08333333333333
+                outResolution = 1.0/12
             else:
-                logMessage("Unknown string resolution description!", "error")
+                logger.logMessage("Unknown string resolution description!", LogLevels.ERROR)
                 assert False
         else:
             # specify a desired output resolution, implies the same in both directions (square pixels)
+            outResolution = SanitiseResolution(aggregationSpecifier)
             xFactor = round(1.0 * outResolution / inGT[1], 8)
             yFactor = round(-1.0 * outResolution / inGT[5], 8)
             outX_exact = 1.0 * inXSize / xFactor
@@ -132,12 +143,12 @@ def calcAggregatedProperties(method, inRasterProps,
             outXSize = math.ceil(outX_exact)
             outYSize = math.ceil(outY_exact)
             if outX_exact != outXSize or outY_exact != outYSize:
-                logMessage("warning, specified resolution was not clean multiple of input, "+
-                           "output will have 1 cell greater extent", "warning")
+                logger.logMessage("warning, specified resolution was not clean multiple of input, "+
+                           "output will have 1 cell greater extent", LogLevels.WARNING)
         outputGT = (inGT[0], outResolution, 0.0, inGT[3], 0.0, -outResolution)
     else:
-        logMessage("Unknown aggregation type requested, valid values are 'size', 'resolution', 'factor'",
-                   "error")
+        logger.logMessage("Unknown aggregation type requested, valid values are 'size', 'resolution', 'factor'",
+                   LogLevels.ERROR)
         assert False
 
     return (
@@ -198,48 +209,102 @@ def CalculateClippedGeoTransform_RoundedRes(inGT, xPixelLims, yPixelLims):
     clippedGT = (topLeftLongOut, roundedResX, 0.0, topLeftLatOut, 0.0, roundedResY)
     return clippedGT
 
-def GetAlignedGeoTransform(inGT, doSnap=True):
+def SanitiseResolution(resolutionValue):
+    ''' Gets a "sanitised" version of the cell resolution.
+      If the resolution is less than 1 then it's assumed to be a erroneously-rounded decimal fraction, probably of a degree, as
+      will be the case with lat/lon grids. An "unrounded" version of this will be returned, e.g.
+      0.00833333 -> 0.00833333333333333333.
+      If the resolution is greater than 1 then it's assumed to be an erroneously-precise value that should be an integer,
+      as will be the case with a grid where something's not been set quite right in the extent calculation. In this case
+      it will just return the rounded int version of the passed resolution e.g. 30.00000103 -> 30'''
+    if resolutionValue < 1:
+        # round the number of cells per degree to the nearest integer
+        intDiv = round(1.0 / resolutionValue)
+        # then get a more accurate representation of that in degrees per cell,
+        # this will transform e.g. 0.00833333 to 0.0083333333333333
+        idealRes = round(1.0 / intDiv, 20)
+        return idealRes
+    return round(resolutionValue)
+
+def SnapAndAlignGeoTransform(inGT, fixResolution = True, snapType=SnapTypes.NEAREST):
+    ''' Makes up to two types of change to a geotransform to get it to align to the pixels of a global grid.
+
+    First the resolution may be "sanitised" such that the cell resolution is a rational fraction of 1 - so
+    assuming that the units are degrees, a resolution of 0.00833334 (imprecise specification of 30 arcsecond) would
+    be set to exactly 1/120
+
+    Second the origin point (top left corner) may be snapped to the location it would have if part of an entire global
+    grid of this resolution (after sanitising the resolution, if chosen), such that the grid will line up with global
+    ones'''
+
     assert isinstance(inGT, tuple) and len(inGT) == 6
 
     def round_to_nearest(n, m):
         r = n % m
+        # if it's more than half a cell from the origin round "up" i.e. away from origin
         return n + m - r if r + r >= m else n - r
+
+    def round_to_negative(n, m):
+        r = n % m
+        return n - r
+
+    def round_to_positive(n, m):
+        r = n % -m
+        return n - r
 
     xRes = inGT[1]
     yRes = inGT[5]
+    # we will only support square cells
     assert round(xRes, 10) == -(round(yRes, 10))
     xOrigin = inGT[0]
     yOrigin = inGT[3]
 
-    intDiv = round(1.0 / xRes)
-    idealRes = round(1.0 / intDiv, 16)
+    idealRes_X = SanitiseResolution(xRes)
+    # the function wants a value>0
+    idealRes_Y = -(SanitiseResolution(-yRes))
 
+    outRes_X = xRes
+    outRes_Y = yRes
     new_xOrigin = xOrigin
     new_yOrigin = yOrigin
+    logger = MessageLogger()
+    if fixResolution:
+        if outRes_X == idealRes_X and outRes_Y == idealRes_Y:
+            logger.logMessage("Cellsize already ok, not altering")
+            # return None
+        else:
+            logger.logMessage("Cellsize in (x,y): {}*{}, sanitised to cellsize out: {}*{}".format(xRes, yRes, idealRes_X, idealRes_Y))
+            outRes_X = idealRes_X
+            outRes_Y = idealRes_Y
+      #  elif xRes != idealRes_X or yRes != idealRes_Y:
+      #      logMessage("Cellsize in: {}*{}".format(xRes, yRes))
+      #      new_xOrigin = round_to_nearest(xOrigin, outRes_X)
+      #      new_yOrigin = round_to_nearest(yOrigin, -outRes_Y) # the rounding expects a +ve number to work
+        if snapType == SnapTypes.NONE:
+            new_xOrigin = xOrigin # redundant but left for clarity of working
+            new_yOrigin = yOrigin
 
-    if round(xRes, 16) == idealRes:
-        print ("cell size already ok")
-        # return None
-    else:
-        print ("cell size reset to " + str(idealRes))
-        if doSnap:
-            new_xOrigin = round_to_nearest(xOrigin, idealRes)
-            new_yOrigin = round_to_nearest(yOrigin, idealRes)
+        elif snapType == SnapTypes.TOWARDS_ORIGIN:
+            # for rounding to origin it differs in x and y direction, because y resolution is negative
+            # for longitude (x), always round towards more negative
+            # for latitude (y) always round towards more positive
+            new_xOrigin = round_to_negative(xOrigin, outRes_X)
+            new_yOrigin = round_to_positive(yOrigin, -outRes_Y) # the rounding expects a positive number to work
 
-            # if idealRes > xRes:
-            #      # the res was too small so the cells are slightly to the left
-            #      # and top of where they should be - so move them right / down
-            #      print "shifting right/down"
-            #      new_xOrigin =(xOrigin + idealRes) - (xOrigin % idealRes)
-            #      new_yOrigin =(yOrigin - idealRes) + (yOrigin % idealRes)
-            #  else:
-            #      # the res was too large so the cells are slightly to the right
-            #      # and below where they should be - so move them up / left
-            #      print "shifting up/left"
-            #      new_xOrigin = xOrigin - (xOrigin % idealRes)
-            #      new_yOrigin = yOrigin - (yOrigin % idealRes)
+        elif snapType == SnapTypes.NEAREST:
+            new_xOrigin = round_to_nearest(xOrigin, outRes_X)
+            new_yOrigin = round_to_nearest(yOrigin, -outRes_Y)
 
-    return (new_xOrigin, idealRes, 0, new_yOrigin, 0, -idealRes)
+        else:
+            raise ValueError("Unknown value of snapType parameter")
+
+        if snapType != SnapTypes.NONE:
+            if (new_yOrigin != yOrigin) or (new_xOrigin != xOrigin):
+                logger.logMessage("Snapped origin point from {} (x,y) to {} (x,y)".format((xOrigin, yOrigin), (new_xOrigin, new_yOrigin)))
+            else:
+                logger.logMessage("Origin point was already correctly aligned at {} (x,y)".format((xOrigin, yOrigin)))
+
+    return (new_xOrigin, outRes_X, 0, new_yOrigin, 0, outRes_Y)
 
 def CalculatePixelLims_GlobalRef(inGT, longitudeLims, latitudeLims):
     '''Returns pixel coords of a given AOI in degrees, as they *would* be in a global image

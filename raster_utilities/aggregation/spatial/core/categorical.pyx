@@ -14,7 +14,7 @@ import numpy as np
 cimport openmp
 from cython.parallel import parallel, prange
 from raster_utilities.aggregation.aggregation_values import CategoricalAggregationStats as catstats
-from ....utils.logger import logMessage
+from ....utils.logger import MessageLogger
 cdef class Categorical_Aggregator:
     ''' Aggregates a categorical raster grid to a coarser resolution (i.e. smaller pixel dimensions)
 
@@ -69,7 +69,9 @@ cdef class Categorical_Aggregator:
     cdef:
         Py_ssize_t xShapeOut, yShapeOut
         Py_ssize_t xShapeIn, yShapeIn, tileXShapeIn, tileYShapeIn
-        double xFact, yFact
+        Py_ssize_t xSubpixelOffsetIn, ySubpixelOffsetIn
+
+        double xFact, yFact, xFactCalc, yFactCalc
         float proportion
 
         Py_ssize_t xIn, yIn, xOut, yOut
@@ -94,6 +96,8 @@ cdef class Categorical_Aggregator:
     def __cinit__(self,
                   Py_ssize_t xSizeIn, Py_ssize_t ySizeIn,
                   Py_ssize_t xSizeOut, Py_ssize_t ySizeOut,
+                  Py_ssize_t ySubpixelOffsetIn, Py_ssize_t xSubpixelOffsetIn,
+                  double yFactor, double xFactor,
                   categories,
                   unsigned char doLikeAdjacency = 1,
                   float fltNdv = -9999, byteNdv = None):
@@ -104,9 +108,22 @@ cdef class Categorical_Aggregator:
         self.yShapeIn = ySizeIn
         self.xShapeOut = xSizeOut
         self.yShapeOut = ySizeOut
+        self.xFactCalc = <double>self.xShapeIn / self.xShapeOut
+        self.yFactCalc = <double>self.yShapeIn / self.yShapeOut
+        self.xFact = xFactor
+        self.yFact = yFactor
 
-        self.xFact = <double>self.xShapeIn / self.xShapeOut
-        self.yFact = <double>self.yShapeIn / self.yShapeOut
+        if xSubpixelOffsetIn < 0 or xSubpixelOffsetIn >= xFactor or ySubpixelOffsetIn < 0 or ySubpixelOffsetIn >= yFactor:
+            raise ValueError("sub-pixel offsets must be between zero and the cell aggregation factor")
+        self.xSubpixelOffsetIn = xSubpixelOffsetIn
+        self.ySubpixelOffsetIn = ySubpixelOffsetIn
+
+        xSizeCheck = (xSizeIn + xSubpixelOffsetIn) / xFactor
+        ySizeCheck = (ySizeIn + ySubpixelOffsetIn) / yFactor
+        if xSizeCheck > xSizeOut or ySizeCheck > ySizeOut:
+            raise ValueError("specified output size is too small")
+        if xSizeCheck < xSizeOut-1 or ySizeCheck < ySizeOut-1:
+            raise ValueError("specified output size is too big")
 
         self._fltNDV = fltNdv
         # categorical rasters often don't contain nodata, that's fine
@@ -116,6 +133,7 @@ cdef class Categorical_Aggregator:
         else:
             self._hasNDV = 0
 
+        logger = MessageLogger()
         # categories parameter can be an int number of categories, in which case we will derive them, or
         # a list / ndarray of the values, which must be between 0 and 255
         if (isinstance(categories,int)):
@@ -123,7 +141,7 @@ cdef class Categorical_Aggregator:
             self.nCategories = categories
             self.valueMap = np.zeros(shape = (categories), dtype = np.int32)
             self.valueMap[:] = -1
-            logMessage("Building category list, max expected number is "+str(categories))
+            logger.logMessage("Building category list, max expected number is "+str(categories))
         else:
             if isinstance(categories, list):
                 categories = np.asarray(categories)
@@ -133,7 +151,7 @@ cdef class Categorical_Aggregator:
             assert 255 >= categories.max()
             self.valueMap = categories
             self.gotCategories = 1
-            logMessage("Using provided category list of "+str(len(categories))+" values: "+str(categories))
+            logger.logMessage("Using provided category list of "+str(len(categories))+" values: "+str(categories))
 
         self.sortedValueMap = np.zeros(shape=(self.nCategories), dtype=np.int32)
         self.sortedValueMap[:] = -1
@@ -151,23 +169,26 @@ cdef class Categorical_Aggregator:
         self._countArr = np.zeros(shape = (self.yShapeOut, self.xShapeOut), dtype = np.int16)
 
         if self._hasNDV:
-            logMessage("Input nodata value is "+str(self._byteNDV))
+            logger.logMessage("Input nodata value is "+str(self._byteNDV))
         else:
-            logMessage("Nodata not defined")
+            logger.logMessage("Nodata not defined")
 
-    @cython.boundscheck(False)
+    @cython.boundscheck(True)
     @cython.cdivision(True)
     @cython.wraparound(False)
-    cpdef addTile(self, unsigned char[:,::1] data, Py_ssize_t xOffset, Py_ssize_t yOffset):
+    cpdef addTile(self, unsigned char[:,::1] data, Py_ssize_t xTileOffset, Py_ssize_t yTileOffset):
+        '''Add a tile of the input data to the aggregation. Provide the offset of the top left pixel.'''
         cdef:
             # shape of the data we receive
             Py_ssize_t tileYShapeIn, tileXShapeIn
+
             # coords of neighbours in global grid
             int yBelowGlobal, yAboveGlobal, xLeftGlobal, xRightGlobal
             # coords of neighbours in the received tile
             int yBelowTile, yAboveTile, xLeftTile, xRightTile
+
             # current pixel coords in global and tile coords
-            Py_ssize_t xInGlobal, xInTile, yInGlobal, yInTile
+            Py_ssize_t xInGlobal, xInTile, yInGlobal, yInTile, xSubCellOffset, ySubCellOffset
             unsigned char localValue, nNeighbours
             float likeAdjProp
             Py_ssize_t xOut, yOut
@@ -178,8 +199,8 @@ cdef class Categorical_Aggregator:
             int valuePos
             Py_ssize_t i
 
-        tileXShapeIn = data.shape[1]
         tileYShapeIn = data.shape[0]
+        tileXShapeIn = data.shape[1]
 
         # how much of an output cell does each input cell account for
         #proportion = 1.0 / (self.xFact * self.yFact)
@@ -188,7 +209,7 @@ cdef class Categorical_Aggregator:
         with nogil, parallel():
             for yInTile in prange (tileYShapeIn):
 
-                yInGlobal = yInTile + yOffset
+                yInGlobal = yInTile + yTileOffset
 
                 yAboveGlobal = yInGlobal - 1
                 if yInGlobal == 0:
@@ -204,7 +225,7 @@ cdef class Categorical_Aggregator:
                 if yInTile == tileYShapeIn - 1:
                     yBelowTile = -1
 
-                yOut = <int> (yInGlobal / self.yFact)
+                yOut = <int> ((yInGlobal + ySubCellOffset) / self.yFact)
                 # yeah i know that it's an unsigned char but we won't actually use this value,
                 # these assignments are to cause the cython converter to make these thread-local
                 localValue = -1
@@ -213,7 +234,7 @@ cdef class Categorical_Aggregator:
                 i = 0
 
                 for xInTile in range(tileXShapeIn):
-                    xInGlobal = xInTile + xOffset
+                    xInGlobal = xInTile + xTileOffset
                     # make these private by assignment
                     nNeighbours = 0
                     likeAdjProp = 0
@@ -232,7 +253,7 @@ cdef class Categorical_Aggregator:
                     if xInTile == tileXShapeIn - 1:
                         xRightTile = -1
 
-                    xOut = <int> (xInGlobal / self.xFact)
+                    xOut = <int> ((xInGlobal + xSubCellOffset) / self.xFact)
 
                     localValue = data[yInTile, xInTile]
 
@@ -340,7 +361,8 @@ cdef class Categorical_Aggregator:
         # here we check for errors that might have occurred. The potential risk is that the same value could have
         # been added to the valuemap twice. So check that the valuemap is in fact unique.
         vmNumpy = np.asarray(self.valueMap)
-        logMessage("Value map is "+str(vmNumpy))
+        logger = MessageLogger()
+        logger.logMessage("Value map is "+str(vmNumpy))
         vmNumpyExclBlank = vmNumpy[vmNumpy!=-1]
         if len(np.unique(vmNumpyExclBlank)) < len(vmNumpyExclBlank):
             raise ValueError("messed up the value map, that's an error. Please try re-running with the expected" 
@@ -429,7 +451,7 @@ cdef class Categorical_Aggregator:
                         self.outputMajorityArr[yOut, xOut] = 255
 
         if not iscomplete:
-            logMessage("Warning, cannot generate a result without \
+            logger.logMessage("Warning, cannot generate a result without \
             having received input data for full extent")
             return False
         return True

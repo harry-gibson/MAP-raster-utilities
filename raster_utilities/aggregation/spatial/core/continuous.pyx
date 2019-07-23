@@ -2,12 +2,12 @@ cimport cython
 import numpy as np
 from libc.math cimport sqrt
 from raster_utilities.aggregation.aggregation_values import ContinuousAggregationStats as contstats
-from ....utils.logger import logMessage
+from ....utils.logger import MessageLogger
 # This file contains Cython code so must be translated (to C) and compiled before it can be used in Python.
 # To do this simply run "python setup.py build_ext --inplace" (assuming you have cython installed)
 
 
-@cython.boundscheck(False)
+@cython.boundscheck(True)
 @cython.cdivision(True)
 @cython.wraparound(False)
 cdef class Continuous_Aggregator_Flt:
@@ -31,6 +31,7 @@ cdef class Continuous_Aggregator_Flt:
     cdef:
         Py_ssize_t xShapeOut, yShapeOut
         Py_ssize_t xShapeIn, yShapeIn, tileXShapeIn, tileYShapeIn
+        Py_ssize_t xSubpixelOffsetIn, ySubpixelOffsetIn
 
     cdef:
 
@@ -52,27 +53,37 @@ cdef class Continuous_Aggregator_Flt:
         char[:,::1] _coverageArr
 
         double variance
-        double xFact, yFact
+        double xFact, yFact, xFactCalc, yFactCalc
         # things we need to calculate
         unsigned char _doMean, _doSD, _doMin, _doMax, _doSum, _doRange
         # things we want to output - e.g. we may need to track mean for the SD calculation, 
         # but not want to output it
         unsigned char _outputMean, _outputMax, _outputMin, _outputSum
 
-    @cython.boundscheck(False)
+    @cython.boundscheck(True)
     @cython.cdivision(True)
     @cython.wraparound(False)
-    def __cinit__(self, xSizeIn, ySizeIn, xSizeOut, ySizeOut, _NDV, 
+    def __cinit__(self,
+                  Py_ssize_t ySizeIn, Py_ssize_t xSizeIn,
+                  Py_ssize_t ySizeOut, Py_ssize_t xSizeOut,
+                  Py_ssize_t ySubpixelOffsetIn, Py_ssize_t xSubpixelOffsetIn,
+                  double yFactor, double xFactor,
+                  _NDV,
         stats):
         '''
         Initialise an instance of the class for aggregating a float-type dataset.
 
-        xSizeIn: the overall x dimension of the input file being aggregated
         ySizeIn: the overall y dimension of the input file being aggregated
-        xSizeOut: the overall x dimension of the desired output file (ideally but not
-            necessarily a multiple of xSizeIn
+        xSizeIn: the overall x dimension of the input file being aggregated
         ySizeOut: the overall y dimension of the desired output file (ideally but not
             necessarily a multiple of ySizeIn)
+        xSizeOut: the overall x dimension of the desired output file (ideally but not
+            necessarily a multiple of xSizeIn
+        ySubpixelOffsetIn: how many input pixels from the left edge of the origin output pixel is the input origin
+        xSubpixelOffsetIn: how many input pixels from the top edge of the origin output pixel is the input origin
+            The output may be aligned e.g. to a "5km global" grid and the input coming from a "1k global" grid does
+            not necessarily originate at a point coincident with the edge of a 5km pixel. So we need to allow for this
+            to maintain proper alignment.
         '''
         assert xSizeIn > xSizeOut
         assert ySizeIn > ySizeOut
@@ -86,9 +97,26 @@ cdef class Continuous_Aggregator_Flt:
 
         # the factor can be non-integer, which means the output cells will have 
         # varying number of input cells
-        self.xFact = <double>self.xShapeIn / self.xShapeOut
-        self.yFact = <double>self.yShapeIn / self.yShapeOut
+        # If the input size is not a clean multiple of the user-requested factor then the output size will have
+        # been rounded up. Also if snapping has caused the extent to be less it will have been rounded up.
+        # So we can't correctly calculate the factor here and must use what is passed in.
+        self.xFactCalc = <double>self.xShapeIn / self.xShapeOut
+        self.yFactCalc = <double>self.yShapeIn / self.yShapeOut
 
+        self.xFact = xFactor
+        self.yFact = yFactor
+
+        if xSubpixelOffsetIn < 0 or xSubpixelOffsetIn >= xFactor or ySubpixelOffsetIn < 0 or ySubpixelOffsetIn >= yFactor:
+            raise ValueError("sub-pixel offsets must be between zero and the cell aggregation factor")
+        self.xSubpixelOffsetIn = xSubpixelOffsetIn
+        self.ySubpixelOffsetIn = ySubpixelOffsetIn
+
+        xSizeCheck = (xSizeIn + xSubpixelOffsetIn) / xFactor
+        ySizeCheck = (ySizeIn + ySubpixelOffsetIn) / yFactor
+        if xSizeCheck > xSizeOut or ySizeCheck > ySizeOut:
+            raise ValueError("specified output size is too small")
+        if xSizeCheck < xSizeOut-1 or ySizeCheck < ySizeOut-1:
+            raise ValueError("specified output size is too big")
         self._NDV = _NDV
 
         # initialise the output arrays
@@ -136,34 +164,35 @@ cdef class Continuous_Aggregator_Flt:
 
         #self.outputRangeArr = np.zeros(shape=(ySizeOut, xSizeOut), dtype = np.float32)
             
-    @cython.boundscheck(False)
+    @cython.boundscheck(True)
     @cython.cdivision(True)
     @cython.wraparound(False)
-    cpdef addTile(self, float[:,::1] data, Py_ssize_t xOffset, Py_ssize_t yOffset, float ndv_In):
+    cpdef addTile(self, float[:,::1] data, Py_ssize_t xTileOffset, Py_ssize_t yTileOffset, float ndv_In):
         ''' Add a tile of the input data to the aggregation. Provide the offset of the top-left pixel.
         float[:,::1] data, int xOffset, int yOffset
         '''
         cdef:
             Py_ssize_t tileYShapeIn, tileXShapeIn
-            Py_ssize_t xInGlobal, xInTile, yInGlobal, yInTile
+            Py_ssize_t xInGlobal, xInTile, yInGlobal, yInTile, xSubCellOffset, ySubCellOffset
             float localValue
             Py_ssize_t xOut, yOut
         tileYShapeIn = data.shape[0]
         tileXShapeIn = data.shape[1]
-
+        xSubCellOffset = self.xSubpixelOffsetIn
+        ySubCellOffset = self.ySubpixelOffsetIn
         # unlike the categorical aggregation, this code isn't parallelised because
         # most of the work (checking and updating for max / min etc) would need
         # to lock the arrays anyway
         for yInTile in range(tileYShapeIn):
-            yInGlobal = yInTile + yOffset
+            yInGlobal = yInTile + yTileOffset
             # cast to int, means round down, means output row is based on the top of the input cell
-            yOut = <int> (yInGlobal / self.yFact)
+            yOut = <int> ((yInGlobal + ySubCellOffset) / self.yFact)
             localValue=-1
             xOut = -1
             for xInTile in range(tileXShapeIn):
-                xInGlobal = xInTile + xOffset
+                xInGlobal = xInTile + xTileOffset
                 # output col is based on the left of the input cell
-                xOut = <int> (xInGlobal / self.xFact)
+                xOut = <int> ((xInGlobal+xSubCellOffset) / self.xFact)
 
                 self._coverageArr[yOut, xOut] = 1
 
@@ -206,7 +235,7 @@ cdef class Continuous_Aggregator_Flt:
                     if self._doSD:
                         self._oldSDArr[yOut, xOut] = self.outputSDArr[yOut, xOut]
 
-    @cython.boundscheck(False)
+    @cython.boundscheck(True)
     @cython.cdivision(True)
     @cython.wraparound(False)
     cdef finalise(self):
@@ -252,7 +281,8 @@ cdef class Continuous_Aggregator_Flt:
                         self.outputMeanArr[yOut, xOut] = (
                             self.outputSumArr[yOut, xOut] / self.outputCountArr[yOut, xOut])
         if not iscomplete:
-            logMessage("Warning, generating a result without having received input data for full extent")
+            logger = MessageLogger()
+            logger.logMessage("Warning, generating a result without having received input data for full extent")
 
     @cython.boundscheck(False)
     @cython.cdivision(True)
