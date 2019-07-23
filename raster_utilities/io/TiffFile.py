@@ -4,6 +4,7 @@ from ..utils.geotransform_calcs import CalculateClippedGeoTransform, CalculatePi
 from collections import namedtuple
 import numpy as np
 import subprocess
+from ..utils.logger import MessageLogger, LogLevels
 
 RasterProps = namedtuple("RasterProps", ["gt", "proj", "ndv", "width", "height", "res", "datatype"])
 
@@ -36,7 +37,7 @@ class TemplateProps:
 
 class SingleBandTiffFile:
 
-    def __init__(self, filePath, overwriteExisting=False, shouldCache=False):
+    def __init__(self, filePath, overwriteExisting=False, shouldCache=False, logLevel=LogLevels.INFO):
         self._filePath = filePath
         self._Exists = False
         propsOrNot = self.__tryGetExistingProperties(filePath)
@@ -48,9 +49,7 @@ class SingleBandTiffFile:
             self._Properties = None
         self._cacheReads = shouldCache
         self._cachedData = None
-
-    def log(self, msg):
-        print(msg)
+        self._Logger = MessageLogger(logLevel=logLevel)
 
     def Save(self, data, cOpts=None):
         if self._Exists:
@@ -89,7 +88,7 @@ class SingleBandTiffFile:
         if data is not None:
             outBand.WriteArray(data)
         else:
-            self.log("Created empty file")
+            self._Logger.logMessage("Created empty file", LogLevels.WARNING)
         outBand.FlushCache()
         del outBand
         outRaster = None
@@ -154,7 +153,7 @@ class SingleBandTiffFile:
             try:
                 subprocess.check_output(ovCommand)
             except subprocess.CalledProcessError as e:
-                self.log("Error occurred creating overviews: " + e.output)
+                self._Logger.logMessage("Error occurred creating overviews: " + e.output, LogLevels.ERROR)
 
     def BuildStats(self):
         statTemplate = "gdalinfo -stats {0}"
@@ -163,7 +162,7 @@ class SingleBandTiffFile:
             try:
                 subprocess.check_output(statCommand)
             except subprocess.CalledProcessError as e:
-                self.log("Error occurred creating stats: " + e.output)
+                self._Logger.logMessage("Error occurred creating stats: " + e.output, LogLevels.ERROR)
 
     def __tryGetExistingProperties(self, filePath):
         if not (self._Exists or os.path.exists(filePath)):
@@ -256,7 +255,7 @@ class SingleBandTiffFile:
             else:
                 inputArr = inputBnd.ReadAsArray(x0, y0, x1 - x0, y1 - y0)
                 if self._cacheReads and not hasLims:
-                    self.log("Caching data for file " + self._filePath)
+                    self._Logger.logMessage("Caching data for file " + self._filePath, LogLevels.INFO)
                     self._cachedData = (inputArr, clippedGT, dsProj, ndv)
                 if readAsMasked and ndv is not None:
                     return (np.ma.masked_equal(inputArr, ndv), clippedGT, dsProj, ndv)
@@ -279,9 +278,9 @@ class SingleBandTiffFile:
         Calls to ReadForPixelLims for subsets should then run faster.'''
 
         if not self._cacheReads:
-            self.log("This TiffFile has not been configured with caching, not populating cache")
+            self._Logger.logMessage("This TiffFile has not been configured with caching, not populating cache", LogLevels.WARNING)
         elif self._cachedData is not None:
-            self.log("Cache already populated")
+            self._Logger.logMessage("Cache already populated", LogLevels.WARNING)
         else:
             self.ReadForPixelLims()
 

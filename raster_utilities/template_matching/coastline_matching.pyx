@@ -1,7 +1,7 @@
 import numpy as np
 from libc.math cimport sqrt
 cimport cython
-from ..utils.logger import logMessage
+from ..utils.logger import MessageLogger, LogLevels
 
 # This file contains Cython code so must be translated (to C) and compiled before it can be used in Python.
 # To do this simply run "python setup.py build_ext --inplace" (assuming you have cython installed)
@@ -9,7 +9,8 @@ from ..utils.logger import logMessage
 cpdef MatchToCoastline_long(long long[:,::1] data, char[:,::1] landMask, long long _NDV = -9999,
                         char applyClip = 1, char applyFill = 1,
                         int useNearestNPixels=1,
-                        int searchPixelRadius = 10):
+                        int searchPixelRadius = 10,
+                        logLevel = LogLevels.INFO):
     '''
     Matches a data image to a mask image by removing and/or adding pixels from the data.
 
@@ -150,19 +151,20 @@ cpdef MatchToCoastline_long(long long[:,::1] data, char[:,::1] landMask, long lo
                 else:
                     failedFills += 1
                     failedLocs[yIn, xIn] = 1
-
-    logMessage ("Clipped {0!s} data cells that were outside provided limits".format(
-        clippedCells))
-    logMessage ("Filled {0!s} total cells within limits from nearby data".format(
-        filledCells))
-    logMessage ("Failed to fill {0!s} total cells within limits due to no data cells in range".format(
-        failedFills))
+    logger = MessageLogger(logLevel)
+    logger.logMessage ("Clipped {0!s} data cells that were outside provided limits".format(
+        clippedCells), LogLevels.DEBUG)
+    logger.logMessage ("Filled {0!s} total cells within limits from nearby data".format(
+        filledCells), LogLevels.DEBUG)
+    logger.logMessage ("Failed to fill {0!s} total cells within limits due to no data cells in range".format(
+        failedFills), LogLevels.DEBUG)
     return failedLocs
 
 cpdef MatchToCoastline_Float(float[:,::1] data, char[:,::1] landMask, float _NDV = -9999,
                         char applyClip = 1, char applyFill = 1,
                         int useNearestNPixels=1,
-                        int searchPixelRadius = 10):
+                        int searchPixelRadius = 10,
+                        logLevel = LogLevels.INFO):
     '''
     Matches a data image to a mask image by removing and/or adding pixels from the data.
     
@@ -303,12 +305,12 @@ cpdef MatchToCoastline_Float(float[:,::1] data, char[:,::1] landMask, float _NDV
                 else:
                     failedFills += 1
                     failedLocs[yIn, xIn] = 1
-
-    logMessage ("Clipped {0!s} data cells that were outside provided limits".format(
+    logger = MessageLogger(logLevel)
+    logger.logMessage ("Clipped {0!s} data cells that were outside provided limits".format(
         clippedCells))
-    logMessage ("Filled {0!s} total cells within limits from nearby data".format(
+    logger.logMessage ("Filled {0!s} total cells within limits from nearby data".format(
         filledCells))
-    logMessage ("Failed to fill {0!s} total cells within limits due to no data cells in range".format(
+    logger.logMessage ("Failed to fill {0!s} total cells within limits due to no data cells in range".format(
         failedFills))
     return failedLocs
 
@@ -317,7 +319,8 @@ cpdef MatchToCoastline_Population(float[:,::1] data, char[:,::1] landMask, float
                            char clipZerosAtSea = 1,
                            char fillLandWithZero = 1,
                            int searchPixelRadius = 100,
-                           char deleteDespiteFailure = 0):
+                           char deleteDespiteFailure = 0,
+                           logLevel = LogLevels.INFO):
     '''
     Reallocates data falling in masked area to nearest non-masked pixel
 
@@ -439,11 +442,11 @@ cpdef MatchToCoastline_Population(float[:,::1] data, char[:,::1] landMask, float
                 if deleteDespiteFailure:
                     data[yIn, xIn] = _NDV
                 failedLocs[yIn, xIn] = 1
-
-    logMessage ("Reallocated {0!s} total pop from {1!s} cells to nearby land cell".format(
+    logger = MessageLogger(logLevel)
+    logger.logMessage ("Reallocated {0!s} total pop from {1!s} cells to nearby land cell".format(
         reallocatedTotalPop,reallocatedCells))
-    logMessage ("Clipped (set to nodata) {0!s} zero-value cells in the sea".format(clippedZeros))
-    logMessage ("Failed to reallocate {0!s} total pop from {1!s} cells to nearby land cell".format(
+    logger.logMessage ("Clipped (set to nodata) {0!s} zero-value cells in the sea".format(clippedZeros))
+    logger.logMessage ("Failed to reallocate {0!s} total pop from {1!s} cells to nearby land cell".format(
         failedReallocationPop, failedReallocations))
     return np.asarray(failedLocs)
 

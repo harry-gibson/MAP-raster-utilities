@@ -5,6 +5,7 @@ from collections import defaultdict
 from raster_utilities.cubes.cube_constants import CubeResolutions, CubeLevels
 from ..aggregation.aggregation_values import TemporalAggregationStats, ContinuousAggregationStats
 from ..io.TiffFile import SingleBandTiffFile
+from ..utils.logger import MessageLogger, LogLevels
 
 class TiffCube:
     ''' Represents a view of a subset of a MAP mastergrids data cube folder for a single variable and
@@ -43,7 +44,8 @@ class TiffCube:
                     spatialsummary = ContinuousAggregationStats.RAWDATA,
                     allowGlobalCache = True,
                     cubelevel = None,
-                    variablename = "*",  # for use in case there's multiple things in one folder tree differentiated in the first token
+                    variablename = "*",
+                    logLevel=LogLevels.INFO# for use in case there's multiple things in one folder tree differentiated in the first token
     ):
         self.MasterFolder = MasterFolder
         self.VariableName = variablename
@@ -66,9 +68,7 @@ class TiffCube:
         self.TemporalSummary = temporalsummary
 
         self.__InitialiseFiles()
-
-    def log(self, msg):
-        print(msg)
+        self._Logger = MessageLogger(logLevel)
 
     def __InitialiseNDaily(self):
         pass
@@ -175,8 +175,8 @@ class TiffCube:
                         filedate = date(int(yearOrSynoptic), int(monthOrOverall), 1)
                         self.MonthlyDictionary[filedate] = f
                     else:
-                        self.log("File {0!s} is in monthly folder but filename does not match format"
-                                 .format(f))
+                        self._Logger.logMessage("File {0!s} is in monthly folder but filename does not match format"
+                                 .format(f), LogLevels.WARNING)
             else:
                 pass
                 # self.log("Monthly folder path of {0!s} not found".format(monthlyFolderPath))
@@ -203,8 +203,8 @@ class TiffCube:
                         self.AnnualDictionary[int(yearOrSynoptic)] = f
                         self.__HasAnnual = True
                     else:
-                        self.log("File {0!s} is in annual folder but filename does not match format"
-                                 .format(f))
+                        self._Logger.logMessage("File {0!s} is in annual folder but filename does not match format"
+                                 .format(f), LogLevels.WARNING)
             else:
                 pass
                 #self.log("Annual folder path of {0!s} not found".format(annualFolderPath))
@@ -232,8 +232,8 @@ class TiffCube:
                         self.SynopticDictionary[monthOrOverall.zfill(2)] = f
                         self.__HasSynoptic = True
                     else:
-                        self.log("File {0!s} is in synoptic folder but filename does not match format"
-                                 .format(f))
+                        self._Logger.logMessage("File {0!s} is in synoptic folder but filename does not match format"
+                                 .format(f), LogLevels.WARNING)
 
                 # if we have a synoptic.overall file but no others (synoptic or dynamic) then this counts as a
                 # static variable, not a synoptic one
@@ -248,8 +248,8 @@ class TiffCube:
                 #self.log("Synoptic/static folder path of {0!s} not found".format(synopticFolderPath))
 
         if not (self.__HasAnnual or self.__HasMonthly or self.__HasSynoptic or self.__HasStatic or self.__HasDaily):
-            self.log('No matching files of any type have been located: aborting')
-            self.log('Tried paths: ' + '\n'.join(searchedPaths))
+            self._Logger.logMessage('No matching files of any type have been located: aborting', LogLevels.ERROR)
+            self._Logger.logMessage('Tried paths: ' + '\n'.join(searchedPaths), LogLevels.ERROR)
             assert False
         #staticFolderPath = os.path.join(resFolderPath, CubeLevels.STATIC.value)
         #if os.path.isdir(staticFolderPath):
@@ -365,15 +365,17 @@ class TiffCube:
             if latLims is None:
                 # currently neither or both of latLims and lonLims must be set
                 assert lonLims is None
-                self.log("Reading data from complete file " + rasterFilename)
+                self._Logger.logMessage("Reading data from complete file " + rasterFilename, LogLevels.DEBUG)
             else:
                 pass
-                self.log("Reading data from part of file " + rasterFilename)
+                self._Logger.logMessage("Reading data from part of file " + rasterFilename, LogLevels.DEBUG)
             return thisTiff.ReadForLatLonLims(lonLims=lonLims, latLims=latLims, readAsMasked=maskNoData)
             #dataArr, subsetGT, _, _ = ReadAOI_PixelLims(rasterFilename, pixelLimsLon, pixelLimsLat, maskNoData=maskNoData)
 
         else:
-            self.log("No matching filename found for {0!s} / {1!s} / {2!s}".format(CubeLevel, RequiredDate, self.MasterFolder))
+            self._Logger.logMessage("No matching filename found for {0!s} / {1!s} / {2!s}".format(
+                CubeLevel, RequiredDate, self.MasterFolder),
+            LogLevels.ERROR)
             return None
 
     def nearest(self, items, pivot):
@@ -453,8 +455,9 @@ class TiffCube:
                 elif RequiredDate < min(availableOccurrencesOfThisMonth):
                     firstOfMonth = min(availableOccurrencesOfThisMonth)
                 rasterFilename = self.MonthlyDictionary[firstOfMonth]
-                self.log("Requested month of {0!s} unavailable, using alternate year of {1!s}"
-                         .format(RequiredDate, firstOfMonth))
+                self._Logger.logMessage("Requested month of {0!s} unavailable, using alternate year of {1!s}"
+                         .format(RequiredDate, firstOfMonth),
+                                        LogLevels.WARNING)
 
         elif CubeLevel == CubeLevels.ANNUAL:
             year = RequiredDate.year
@@ -467,8 +470,9 @@ class TiffCube:
                 elif year < years[0]:
                     year = years[0]
                 rasterFilename = self.AnnualDictionary[year]
-                self.log("Requested year of {0!s} unavailable, using alternate year of {1!s}"
-                         .format(RequiredDate, year))
+                self._Logger.logMessage("Requested year of {0!s} unavailable, using alternate year of {1!s}"
+                         .format(RequiredDate, year),
+                                        LogLevels.WARNING)
 
         elif CubeLevel == CubeLevels.SYNOPTIC_MONTHLY:
             if RequiredDate is None:
@@ -487,7 +491,7 @@ class TiffCube:
             rasterFilename = self.__StaticFilename
 
         else:
-            self.log("Unknown value for CubeLevel parameter")
+            self._Logger.logMessage("Unknown value for CubeLevel parameter", LogLevels.ERROR)
 
 
         return rasterFilename
