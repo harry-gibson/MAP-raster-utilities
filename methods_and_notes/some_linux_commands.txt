@@ -1,0 +1,13 @@
+iostat -xmt 1
+iostat -x -m -p sda 1
+ps -aux|grep python
+sudo killall -u harry python
+python setup.py build_ext --inplace
+sudo mount -t cifs //map-fs1.ndph.ox.ac.uk/map_data ~/zmount -o username=harry,uid=1007,gid=1007
+
+cat /proc/PID/cmdline
+
+# find all files in a folder tree matching a pattern 
+# -R = recursive, i = case insensitive, n = line num, -w whole word, -l just return filename
+# https://stackoverflow.com/a/16957078/4150190
+grep --include=\*.R -Rinwl . -e 'credible'

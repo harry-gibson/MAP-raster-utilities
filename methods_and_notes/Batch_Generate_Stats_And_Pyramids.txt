@@ -36,4 +36,6 @@ Note the -I % just tells XArgs to look for a % symbol and replace that with what
 
 find *.tif | xargs -n 1 -P 6 -I % gdal_translate -co "COMPRESS=LZW" -co "TILED=YES" -co "PREDICTOR=2" -co "BIGTIFF=YES" -co "INTERLEAVE=BAND" -co "SPARSE_OK=TRUE" % /srv/data/hsg/output_dir/%
 
+Or to translate 64  bit data to 32 bit - if the nodata is set to an extreme value that can't be represented in Float32 then we need to reset it, gdal_translate can't do this so use gdalwarp instead:
 
+find *.tif | xargs -n 1 -P 6 -I % gdalwarp -wo NUM_THREADS=4 -wo OPTIMIZE_SIZE=TRUE -co COMPRESS=LZW -co TILED=YES -co PREDICTOR=2 -co BIGTIFF=YES -dstnodata -9999 -ot Float32 % /srv/data_pit/hsg/output_dir/%
