@@ -1,6 +1,6 @@
 import os
 import numpy as np
-from TiffFile import RasterProps, SingleBandTiffFile
+from .TiffFile import RasterProps, SingleBandTiffFile
 from osgeo import gdal_array
 
 def SaveLZWTiff(data, _NDV, geotransform, projection, outDir, outName,
