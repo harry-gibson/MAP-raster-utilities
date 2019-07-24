@@ -31,11 +31,11 @@ def makeExtension(extName):
         [extPath],
         include_dirs=["."],
         # LINUX:
-        extra_compile_args=['-fopenmp', '-O3'],
-        extra_link_args=['-fopenmp']
+        #extra_compile_args=['-fopenmp', '-O3'],
+        #extra_link_args=['-fopenmp']
         # WINDOWS:
-        # extra_compile_args=['/openmp', '-O3'],
-        # extra_link_args=['/openmp']
+        extra_compile_args=['/openmp', '-O3'],
+        extra_link_args=['/openmp']
     )
 #
 # cythonexts = [

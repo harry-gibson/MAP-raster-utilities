@@ -95,12 +95,22 @@ class SpatialAggregator:
         if self._mode == AggregationModes.CATEGORICAL:
             if not aggregationArgs.has_key("categories"):
                 raise ValueError("If a categorical-type aggregation stat is requested, then a 'categories' parameter must "
-                             "be given which is a list of integer category values")
+                             "be given which is a list of integer category values or a dictionary of integer value:name")
             categories = aggregationArgs["categories"]
-            assert isinstance(categories, list)
-            assert len(categories) <= 256
-            assert max(categories) < 256
-            assert min(categories) >= 0
+            try:
+                if isinstance(categories, list):
+                    assert max(categories) < 256
+                    assert min(categories) >= 0
+                    assert len(categories) <= 256
+                elif isinstance(categories, dict):
+                    assert len(categories) <= 256
+                    assert max(categories.keys()) < 256
+                    assert min(categories.keys()) >= 0
+                else:
+                    assert False
+            except AssertionError:
+                raise ValueError("Categories argument must either be a list of integers or a dictionary of "+
+                                 "integer:string; in either case length must be <=256 and values must be 0<=v<256")
             self.nCategories = len(categories)
             self.categories = categories
 
@@ -186,7 +196,10 @@ class SpatialAggregator:
             # assert cat is not None
             if cat is None:
                 cat = ""
-            varTag = varTag + "-Class-" + str(cat)
+            if isinstance(self.categories, list) or cat == "":
+                varTag = varTag + "_Class-" + str(cat)
+            else:
+                varTag = varTag + "_Class-" + str(cat) + "_" + self.categories[cat]
         if yrTag is None or mthTag is None or temporalTag is None:
             outname = outNameTemplate_NonTemporal.format(varTag, self._resName, statname)
         else:
@@ -509,10 +522,13 @@ class SpatialAggregator:
                                                self.stats)
         else:
             doLikeAdjacency = catstats.LIKEADJACENCIES in self.stats
-            if self.categories is not None:
+            if self.categories is None:
+                catArg = self.nCategories
+            elif isinstance(self.categories, list):
                 catArg = self.categories
             else:
-                catArg = self.nCategories
+                catArg = self.categories.keys()
+
             aggregator = Categorical_Aggregator(inputProperties.height, inputProperties.width,
                                                 outShape[0], outShape[1],
                                                 outputOriginPixOffset_Y, outputOriginPixOffset_X,

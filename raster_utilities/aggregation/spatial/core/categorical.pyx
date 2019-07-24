@@ -174,7 +174,7 @@ cdef class Categorical_Aggregator:
         else:
             logger.logMessage("Nodata not defined")
 
-    @cython.boundscheck(True)
+    @cython.boundscheck(False)
     @cython.cdivision(True)
     @cython.wraparound(False)
     cpdef addTile(self, unsigned char[:,::1] data, Py_ssize_t xTileOffset, Py_ssize_t yTileOffset):
