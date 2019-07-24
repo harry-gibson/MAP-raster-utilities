@@ -94,8 +94,8 @@ cdef class Categorical_Aggregator:
         unsigned char _doFractions, _doLikeAdj
 
     def __cinit__(self,
-                  Py_ssize_t xSizeIn, Py_ssize_t ySizeIn,
-                  Py_ssize_t xSizeOut, Py_ssize_t ySizeOut,
+                  Py_ssize_t ySizeIn, Py_ssize_t xSizeIn,
+                  Py_ssize_t ySizeOut, Py_ssize_t xSizeOut,
                   Py_ssize_t ySubpixelOffsetIn, Py_ssize_t xSubpixelOffsetIn,
                   double yFactor, double xFactor,
                   categories,
@@ -151,6 +151,7 @@ cdef class Categorical_Aggregator:
             assert 255 >= categories.max()
             self.valueMap = categories
             self.gotCategories = 1
+            self.nCategories = len(categories)
             logger.logMessage("Using provided category list of "+str(len(categories))+" values: "+str(categories))
 
         self.sortedValueMap = np.zeros(shape=(self.nCategories), dtype=np.int32)
@@ -201,6 +202,8 @@ cdef class Categorical_Aggregator:
 
         tileYShapeIn = data.shape[0]
         tileXShapeIn = data.shape[1]
+        xSubCellOffset = self.xSubpixelOffsetIn
+        ySubCellOffset = self.ySubpixelOffsetIn
 
         # how much of an output cell does each input cell account for
         #proportion = 1.0 / (self.xFact * self.yFact)
@@ -342,7 +345,8 @@ cdef class Categorical_Aggregator:
 
         if catsOk == False:
             if self.gotCategories:
-                raise Exception("Encountered unexpected category value of "+str(errorCategory))
+                raise Exception("Encountered unexpected category value of {} - expected {} categories are {}".format(
+                    str(errorCategory), self.nCategories, str(np.asarray(self.valueMap))))
             else:
                 raise Exception("More category values were encountered than were specified. Cannot continue! "+
                             str(np.asarray(self.valueMap)))
