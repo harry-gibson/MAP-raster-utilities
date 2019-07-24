@@ -487,8 +487,12 @@ class SpatialAggregator:
         tiles = getTiles(inputProperties.width, inputProperties.height, tileMax)
         logMessage("Processing in {0!s} tiles of {1!s} pixels".format(len(tiles), tileMax), LogLevels.INFO)
         if inputProperties.ndv is  None:
-            logMessage("No NDV defined in input, assuming -np.inf", LogLevels.DEBUG)
-            ndv_In = -np.inf
+            if self._mode == AggregationModes.CONTINUOUS:
+                logMessage("No NDV defined in input, assuming -np.inf", LogLevels.DEBUG)
+                ndv_In = -np.inf
+            else:
+                logMessage("No NDV defined in input, proceeding with no ndv for categorical mode", LogLevels.DEBUG)
+                ndv_In = None
         elif np.isnan(inputProperties.ndv):
             logMessage("Incoming nodata value is " + str(inputProperties.ndv) + " - resetting to -np.inf for compatibility",
                        LogLevels.DEBUG)
