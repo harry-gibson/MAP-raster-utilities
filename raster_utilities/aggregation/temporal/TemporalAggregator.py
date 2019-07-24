@@ -57,7 +57,7 @@ class TemporalAggregator:
 
         self.doSynoptic = doSynoptic == True
         self.synopticFileSet = set()
-        aFilename = list(self.filesDict.items())[1][0]
+        aFilename = list(self.filesDict.items())[0][1][0]
         props = GetRasterProperties(aFilename)
         self.InputProperties = props
         self._logger.logMessage("Initialised aggregator with properties (geotranform and height) from {}".format(aFilename),
