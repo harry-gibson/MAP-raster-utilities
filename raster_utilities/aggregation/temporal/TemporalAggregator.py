@@ -151,7 +151,7 @@ class TemporalAggregator:
         per timestep - this doubles memory use. This has no effect if filesDict only has one item.
         '''
 
-        self._outputFilesTiles = {}
+        self._outputFilesTiles = defaultdict(list)
         w = self.InputProperties.width
         h = self.InputProperties.height
         runHeight = h
