@@ -176,7 +176,7 @@ class TemporalAggregator:
             self._stitchTiles(deleteIntermediateTiles)
 
         self._logger.logMessage("All done!", LogLevels.INFO)
-        if len(slices) > 1:
+        if len(slices) > 1 and not deleteIntermediateTiles:
             self._logger.logMessage("You can delete the tile files from the aggregation_tiles subfolder", LogLevels.INFO)
 
     def _stitchTiles(self, deleteTiles=False):
@@ -186,7 +186,7 @@ class TemporalAggregator:
                        "-co NUM_THREADS=ALL_CPUS --config GDAL_CACHEMAX 8000 {0} {1}"
         ovBuilder = "gdaladdo -ro --config COMPRESS_OVERVIEW LZW --config USE_RRD NO " + \
                     "--config TILED YES --config GDAL_CACHEMAX 8000 {0} 2 4 8 16 32 64 128 256 "
-        statBuilder = "gdalinfo -stats {0}>nul"
+        statBuilder = "gdalinfo -stats {0}"
         vrts = []
         tifs = []
         #for stat in self.stats:
@@ -206,15 +206,15 @@ class TemporalAggregator:
         #        subprocess.call(vrtCommand)
         for outname, tiles in self._outputFilesTiles.items():
             vrtFile = outname.replace(".tif", ".vrt")
-            vrtCommand = vrtBuilder.format(vrtFile, " ".join(tiles))
+            vrtPath = os.path.join(self.outFolder, vrtFile)
+            vrtCommand = vrtBuilder.format(vrtPath, " ".join(tiles))
             self._logger.logMessage("Building vrt " + vrtFile, LogLevels.INFO)
             self._logger.logMessage(vrtCommand, LogLevels.DEBUG)
-            vrts.append(vrtFile)
+            vrts.append(vrtPath)
             subprocess.call(vrtCommand)
 
         for vrt in vrts:
             tif = vrt.replace("vrt", "tif")
-            tif = os.path.join(self.outFolder, os.path.basename(tif))
             translateCommand = transBuilder.format(vrt, tif)
             self._logger.logMessage("Translating to output files {0!s}".format(tif), LogLevels.INFO)
             self._logger.logMessage(translateCommand, LogLevels.DEBUG)
@@ -366,8 +366,8 @@ class TemporalAggregator:
                 fullFnWillBe = self._fnGetter(timeKey, stat, -1)
                 if not os.path.exists(tileFNWillBe):
                     SaveLZWTiff(periodResults[stat], self.outputNDV, sliceGT, sliceProj, outFolder,
-                            os.path.basename(tileFNWillBe))
-                    self._outputFilesTiles[fullFnWillBe].append(tileFNWillBe)
+                            tileFNWillBe)
+                    self._outputFilesTiles[fullFnWillBe].append(os.path.join(outFolder,tileFNWillBe))
         if runSynoptic:
             overallResults = statsCalculator.emitTotal()
             if isFullFile:
