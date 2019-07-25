@@ -303,7 +303,12 @@ def SnapAndAlignGeoTransform(inGT, fixResolution = True, snapType=SnapTypes.NEAR
                 logger.logMessage("Snapped origin point from {} (x,y) to {} (x,y)".format((xOrigin, yOrigin), (new_xOrigin, new_yOrigin)))
             else:
                 logger.logMessage("Origin point was already correctly aligned at {} (x,y)".format((xOrigin, yOrigin)))
-
+    else:
+        if snapType != SnapTypes.NONE:
+            logger.logMessage("Does not make sense to snap geotransform without also sanitising resolution, output will be unchanged",
+                              LogLevels.WARNING)
+        else:
+            logger.logMessage("No correction to resolution or alignment was requested, output is unchanged", LogLevels.WARNING)
     return (new_xOrigin, outRes_X, 0, new_yOrigin, 0, outRes_Y)
 
 def CalculatePixelLims_GlobalRef(inGT, longitudeLims, latitudeLims):
