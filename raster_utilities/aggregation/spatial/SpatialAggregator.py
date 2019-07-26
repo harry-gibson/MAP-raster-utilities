@@ -553,12 +553,15 @@ class SpatialAggregator:
             #                                        (xOff, xOff+xSize),
             #                                        (yOff, yOff+ySize))
             # todo check the actual datatypes of the files here esp for categorical
+            #logMessage("Got ndv of {}".format(thisNdv))
             if self._mode == AggregationModes.CONTINUOUS:
-                if (np.isnan(thisNdv)):
+                if thisNdv is None:
+                    thisNdv = -np.inf
+                elif (np.isnan(float(thisNdv))):
                     # C does not have a nan so recode to something else
                     thisNdv = -np.inf
                     inArr[np.isnan(inArr)] = thisNdv
-                aggregator.addTile(inArr.astype(np.float32), xOff, yOff, ndv_In)
+                aggregator.addTile(inArr.astype(np.float32), xOff, yOff, thisNdv)
             else:
                 aggregator.addTile(inArr#.astype(np.uint8)
                                    , xOff, yOff)
