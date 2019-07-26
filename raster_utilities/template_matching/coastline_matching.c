@@ -539,9 +539,10 @@ struct __pyx_opt_args_18coastline_matching_MatchToCoastline_long {
   char applyFill;
   int useNearestNPixels;
   int searchPixelRadius;
+  PyObject *logLevel;
 };
 
-/* "coastline_matching.pyx":162
+/* "coastline_matching.pyx":163
  *     return failedLocs
  * 
  * cpdef MatchToCoastline_Float(float[:,::1] data, char[:,::1] landMask, float _NDV = -9999,             # <<<<<<<<<<<<<<
@@ -555,9 +556,10 @@ struct __pyx_opt_args_18coastline_matching_MatchToCoastline_Float {
   char applyFill;
   int useNearestNPixels;
   int searchPixelRadius;
+  PyObject *logLevel;
 };
 
-/* "coastline_matching.pyx":316
+/* "coastline_matching.pyx":318
  * 
  * 
  * cpdef MatchToCoastline_Population(float[:,::1] data, char[:,::1] landMask, float _NDV = -9999,             # <<<<<<<<<<<<<<
@@ -571,6 +573,7 @@ struct __pyx_opt_args_18coastline_matching_MatchToCoastline_Population {
   char fillLandWithZero;
   int searchPixelRadius;
   char deleteDespiteFailure;
+  PyObject *logLevel;
 };
 
 /* "View.MemoryView":99
@@ -1141,9 +1144,9 @@ static PyObject *__pyx_builtin_TypeError;
 static PyObject *__pyx_builtin_xrange;
 static PyObject *__pyx_builtin_id;
 static PyObject *__pyx_builtin_IndexError;
-static PyObject *__pyx_pf_18coastline_matching_MatchToCoastline_long(CYTHON_UNUSED PyObject *__pyx_self, __Pyx_memviewslice __pyx_v_data, __Pyx_memviewslice __pyx_v_landMask, PY_LONG_LONG __pyx_v__NDV, char __pyx_v_applyClip, char __pyx_v_applyFill, int __pyx_v_useNearestNPixels, int __pyx_v_searchPixelRadius); /* proto */
-static PyObject *__pyx_pf_18coastline_matching_2MatchToCoastline_Float(CYTHON_UNUSED PyObject *__pyx_self, __Pyx_memviewslice __pyx_v_data, __Pyx_memviewslice __pyx_v_landMask, float __pyx_v__NDV, char __pyx_v_applyClip, char __pyx_v_applyFill, int __pyx_v_useNearestNPixels, int __pyx_v_searchPixelRadius); /* proto */
-static PyObject *__pyx_pf_18coastline_matching_4MatchToCoastline_Population(CYTHON_UNUSED PyObject *__pyx_self, __Pyx_memviewslice __pyx_v_data, __Pyx_memviewslice __pyx_v_landMask, float __pyx_v__NDV, char __pyx_v_clipZerosAtSea, char __pyx_v_fillLandWithZero, int __pyx_v_searchPixelRadius, char __pyx_v_deleteDespiteFailure); /* proto */
+static PyObject *__pyx_pf_18coastline_matching_MatchToCoastline_long(CYTHON_UNUSED PyObject *__pyx_self, __Pyx_memviewslice __pyx_v_data, __Pyx_memviewslice __pyx_v_landMask, PY_LONG_LONG __pyx_v__NDV, char __pyx_v_applyClip, char __pyx_v_applyFill, int __pyx_v_useNearestNPixels, int __pyx_v_searchPixelRadius, PyObject *__pyx_v_logLevel); /* proto */
+static PyObject *__pyx_pf_18coastline_matching_2MatchToCoastline_Float(CYTHON_UNUSED PyObject *__pyx_self, __Pyx_memviewslice __pyx_v_data, __Pyx_memviewslice __pyx_v_landMask, float __pyx_v__NDV, char __pyx_v_applyClip, char __pyx_v_applyFill, int __pyx_v_useNearestNPixels, int __pyx_v_searchPixelRadius, PyObject *__pyx_v_logLevel); /* proto */
+static PyObject *__pyx_pf_18coastline_matching_4MatchToCoastline_Population(CYTHON_UNUSED PyObject *__pyx_self, __Pyx_memviewslice __pyx_v_data, __Pyx_memviewslice __pyx_v_landMask, float __pyx_v__NDV, char __pyx_v_clipZerosAtSea, char __pyx_v_fillLandWithZero, int __pyx_v_searchPixelRadius, char __pyx_v_deleteDespiteFailure, PyObject *__pyx_v_logLevel); /* proto */
 static int __pyx_array_MemoryView_5array___cinit__(struct __pyx_array_obj *__pyx_v_self, PyObject *__pyx_v_shape, Py_ssize_t __pyx_v_itemsize, PyObject *__pyx_v_format, PyObject *__pyx_v_mode, int __pyx_v_allocate_buffer); /* proto */
 static int __pyx_array_getbuffer_MemoryView_5array_2__getbuffer__(struct __pyx_array_obj *__pyx_v_self, Py_buffer *__pyx_v_info, int __pyx_v_flags); /* proto */
 static void __pyx_array_MemoryView_5array_4__dealloc__(struct __pyx_array_obj *__pyx_v_self); /* proto */
@@ -1188,6 +1191,7 @@ static char __pyx_k_np[] = "np";
 static char __pyx_k_NDV[] = "_NDV";
 static char __pyx_k_obj[] = "obj";
 static char __pyx_k_sum[] = "sum";
+static char __pyx_k_INFO[] = "INFO";
 static char __pyx_k_axis[] = "axis";
 static char __pyx_k_base[] = "base";
 static char __pyx_k_copy[] = "copy";
@@ -1203,6 +1207,7 @@ static char __pyx_k_step[] = "step";
 static char __pyx_k_stop[] = "stop";
 static char __pyx_k_take[] = "take";
 static char __pyx_k_test[] = "__test__";
+static char __pyx_k_DEBUG[] = "DEBUG";
 static char __pyx_k_class[] = "__class__";
 static char __pyx_k_error[] = "error";
 static char __pyx_k_flags[] = "flags";
@@ -1230,6 +1235,8 @@ static char __pyx_k_reshape[] = "reshape";
 static char __pyx_k_Ellipsis[] = "Ellipsis";
 static char __pyx_k_itemsize[] = "itemsize";
 static char __pyx_k_landMask[] = "landMask";
+static char __pyx_k_logLevel[] = "logLevel";
+static char __pyx_k_LogLevels[] = "LogLevels";
 static char __pyx_k_TypeError[] = "TypeError";
 static char __pyx_k_applyClip[] = "applyClip";
 static char __pyx_k_applyFill[] = "applyFill";
@@ -1241,6 +1248,7 @@ static char __pyx_k_pyx_vtable[] = "__pyx_vtable__";
 static char __pyx_k_zeros_like[] = "zeros_like";
 static char __pyx_k_MemoryError[] = "MemoryError";
 static char __pyx_k_utils_logger[] = "utils.logger";
+static char __pyx_k_MessageLogger[] = "MessageLogger";
 static char __pyx_k_pyx_getbuffer[] = "__pyx_getbuffer";
 static char __pyx_k_clipZerosAtSea[] = "clipZerosAtSea";
 static char __pyx_k_allocate_buffer[] = "allocate_buffer";
@@ -1286,18 +1294,22 @@ static PyObject *__pyx_kp_s_Can_only_create_a_buffer_that_is;
 static PyObject *__pyx_kp_s_Cannot_index_with_type_s;
 static PyObject *__pyx_kp_s_Clipped_0_s_data_cells_that_were;
 static PyObject *__pyx_kp_s_Clipped_set_to_nodata_0_s_zero_v;
+static PyObject *__pyx_n_s_DEBUG;
 static PyObject *__pyx_n_s_Ellipsis;
 static PyObject *__pyx_kp_s_Empty_shape_tuple_for_cython_arr;
 static PyObject *__pyx_kp_s_Failed_to_fill_0_s_total_cells_w;
 static PyObject *__pyx_kp_s_Failed_to_reallocate_0_s_total_p;
 static PyObject *__pyx_kp_s_Filled_0_s_total_cells_within_li;
+static PyObject *__pyx_n_s_INFO;
 static PyObject *__pyx_n_s_IndexError;
 static PyObject *__pyx_kp_s_Indirect_dimensions_not_supporte;
 static PyObject *__pyx_kp_s_Invalid_mode_expected_c_or_fortr;
 static PyObject *__pyx_kp_s_Invalid_shape_in_axis_d_d;
+static PyObject *__pyx_n_s_LogLevels;
 static PyObject *__pyx_n_s_MemoryError;
 static PyObject *__pyx_kp_s_MemoryView_of_r_at_0x_x;
 static PyObject *__pyx_kp_s_MemoryView_of_r_object;
+static PyObject *__pyx_n_s_MessageLogger;
 static PyObject *__pyx_n_s_NDV;
 static PyObject *__pyx_n_b_O;
 static PyObject *__pyx_kp_s_Out_of_bounds_on_buffer_access_a;
@@ -1340,6 +1352,7 @@ static PyObject *__pyx_n_s_itemsize;
 static PyObject *__pyx_kp_s_itemsize_0_for_cython_array;
 static PyObject *__pyx_n_s_landMask;
 static PyObject *__pyx_n_s_lexsort;
+static PyObject *__pyx_n_s_logLevel;
 static PyObject *__pyx_n_s_logMessage;
 static PyObject *__pyx_n_s_main;
 static PyObject *__pyx_n_s_memview;
@@ -1382,64 +1395,67 @@ static PyObject *__pyx_int_0;
 static PyObject *__pyx_int_1;
 static PyObject *__pyx_int_2;
 static PyObject *__pyx_int_neg_1;
-static PyObject *__pyx_tuple_;
-static PyObject *__pyx_slice__2;
-static PyObject *__pyx_slice__4;
-static PyObject *__pyx_slice__6;
-static PyObject *__pyx_slice__8;
-static PyObject *__pyx_tuple__3;
-static PyObject *__pyx_tuple__5;
-static PyObject *__pyx_tuple__7;
-static PyObject *__pyx_tuple__9;
-static PyObject *__pyx_slice__10;
-static PyObject *__pyx_slice__12;
+static PyObject *__pyx_k_;
+static PyObject *__pyx_k__16;
+static PyObject *__pyx_k__31;
+static PyObject *__pyx_slice__3;
+static PyObject *__pyx_slice__5;
+static PyObject *__pyx_slice__7;
+static PyObject *__pyx_slice__9;
+static PyObject *__pyx_tuple__2;
+static PyObject *__pyx_tuple__4;
+static PyObject *__pyx_tuple__6;
+static PyObject *__pyx_tuple__8;
+static PyObject *__pyx_slice__11;
 static PyObject *__pyx_slice__13;
-static PyObject *__pyx_slice__16;
+static PyObject *__pyx_slice__14;
 static PyObject *__pyx_slice__18;
 static PyObject *__pyx_slice__20;
 static PyObject *__pyx_slice__22;
 static PyObject *__pyx_slice__24;
 static PyObject *__pyx_slice__26;
-static PyObject *__pyx_slice__27;
-static PyObject *__pyx_slice__30;
-static PyObject *__pyx_slice__32;
-static PyObject *__pyx_slice__34;
-static PyObject *__pyx_slice__36;
-static PyObject *__pyx_slice__38;
-static PyObject *__pyx_slice__40;
+static PyObject *__pyx_slice__28;
+static PyObject *__pyx_slice__29;
+static PyObject *__pyx_slice__33;
+static PyObject *__pyx_slice__35;
+static PyObject *__pyx_slice__37;
+static PyObject *__pyx_slice__39;
 static PyObject *__pyx_slice__41;
-static PyObject *__pyx_slice__50;
-static PyObject *__pyx_slice__51;
-static PyObject *__pyx_slice__52;
-static PyObject *__pyx_tuple__11;
-static PyObject *__pyx_tuple__14;
+static PyObject *__pyx_slice__43;
+static PyObject *__pyx_slice__44;
+static PyObject *__pyx_slice__53;
+static PyObject *__pyx_slice__54;
+static PyObject *__pyx_slice__55;
+static PyObject *__pyx_tuple__10;
+static PyObject *__pyx_tuple__12;
 static PyObject *__pyx_tuple__15;
 static PyObject *__pyx_tuple__17;
 static PyObject *__pyx_tuple__19;
 static PyObject *__pyx_tuple__21;
 static PyObject *__pyx_tuple__23;
 static PyObject *__pyx_tuple__25;
-static PyObject *__pyx_tuple__28;
-static PyObject *__pyx_tuple__29;
-static PyObject *__pyx_tuple__31;
-static PyObject *__pyx_tuple__33;
-static PyObject *__pyx_tuple__35;
-static PyObject *__pyx_tuple__37;
-static PyObject *__pyx_tuple__39;
+static PyObject *__pyx_tuple__27;
+static PyObject *__pyx_tuple__30;
+static PyObject *__pyx_tuple__32;
+static PyObject *__pyx_tuple__34;
+static PyObject *__pyx_tuple__36;
+static PyObject *__pyx_tuple__38;
+static PyObject *__pyx_tuple__40;
 static PyObject *__pyx_tuple__42;
-static PyObject *__pyx_tuple__43;
-static PyObject *__pyx_tuple__44;
 static PyObject *__pyx_tuple__45;
 static PyObject *__pyx_tuple__46;
 static PyObject *__pyx_tuple__47;
 static PyObject *__pyx_tuple__48;
 static PyObject *__pyx_tuple__49;
-static PyObject *__pyx_tuple__53;
-static PyObject *__pyx_tuple__54;
-static PyObject *__pyx_tuple__55;
+static PyObject *__pyx_tuple__50;
+static PyObject *__pyx_tuple__51;
+static PyObject *__pyx_tuple__52;
 static PyObject *__pyx_tuple__56;
 static PyObject *__pyx_tuple__57;
 static PyObject *__pyx_tuple__58;
+static PyObject *__pyx_tuple__59;
+static PyObject *__pyx_tuple__60;
+static PyObject *__pyx_tuple__61;
 
 /* "coastline_matching.pyx":9
  * # To do this simply run "python setup.py build_ext --inplace" (assuming you have cython installed)
@@ -1456,6 +1472,7 @@ static PyObject *__pyx_f_18coastline_matching_MatchToCoastline_long(__Pyx_memvie
   char __pyx_v_applyFill = ((char)1);
   int __pyx_v_useNearestNPixels = ((int)1);
   int __pyx_v_searchPixelRadius = ((int)10);
+  PyObject *__pyx_v_logLevel = __pyx_k_;
   Py_ssize_t __pyx_v_xShapeIn;
   Py_ssize_t __pyx_v_yShapeIn;
   Py_ssize_t __pyx_v_xIn;
@@ -1478,6 +1495,7 @@ static PyObject *__pyx_f_18coastline_matching_MatchToCoastline_long(__Pyx_memvie
   PyObject *__pyx_v_npTmpTable = NULL;
   PyObject *__pyx_v_order = NULL;
   PyObject *__pyx_v_nbrTable = NULL;
+  PyObject *__pyx_v_logger = NULL;
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
@@ -1534,6 +1552,9 @@ static PyObject *__pyx_f_18coastline_matching_MatchToCoastline_long(__Pyx_memvie
             __pyx_v_useNearestNPixels = __pyx_optional_args->useNearestNPixels;
             if (__pyx_optional_args->__pyx_n > 4) {
               __pyx_v_searchPixelRadius = __pyx_optional_args->searchPixelRadius;
+              if (__pyx_optional_args->__pyx_n > 5) {
+                __pyx_v_logLevel = __pyx_optional_args->logLevel;
+              }
             }
           }
         }
@@ -1541,7 +1562,7 @@ static PyObject *__pyx_f_18coastline_matching_MatchToCoastline_long(__Pyx_memvie
     }
   }
 
-  /* "coastline_matching.pyx":67
+  /* "coastline_matching.pyx":68
  *         int reallocationCount_prv
  * 
  *     yShapeIn = data.shape[0]             # <<<<<<<<<<<<<<
@@ -1550,7 +1571,7 @@ static PyObject *__pyx_f_18coastline_matching_MatchToCoastline_long(__Pyx_memvie
  */
   __pyx_v_yShapeIn = (__pyx_v_data.shape[0]);
 
-  /* "coastline_matching.pyx":68
+  /* "coastline_matching.pyx":69
  * 
  *     yShapeIn = data.shape[0]
  *     xShapeIn = data.shape[1]             # <<<<<<<<<<<<<<
@@ -1559,7 +1580,7 @@ static PyObject *__pyx_f_18coastline_matching_MatchToCoastline_long(__Pyx_memvie
  */
   __pyx_v_xShapeIn = (__pyx_v_data.shape[1]);
 
-  /* "coastline_matching.pyx":69
+  /* "coastline_matching.pyx":70
  *     yShapeIn = data.shape[0]
  *     xShapeIn = data.shape[1]
  *     assert landMask.shape[0] == yShapeIn             # <<<<<<<<<<<<<<
@@ -1570,12 +1591,12 @@ static PyObject *__pyx_f_18coastline_matching_MatchToCoastline_long(__Pyx_memvie
   if (unlikely(!Py_OptimizeFlag)) {
     if (unlikely(!(((__pyx_v_landMask.shape[0]) == __pyx_v_yShapeIn) != 0))) {
       PyErr_SetNone(PyExc_AssertionError);
-      {__pyx_filename = __pyx_f[0]; __pyx_lineno = 69; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      {__pyx_filename = __pyx_f[0]; __pyx_lineno = 70; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     }
   }
   #endif
 
-  /* "coastline_matching.pyx":70
+  /* "coastline_matching.pyx":71
  *     xShapeIn = data.shape[1]
  *     assert landMask.shape[0] == yShapeIn
  *     assert landMask.shape[1] == xShapeIn             # <<<<<<<<<<<<<<
@@ -1586,36 +1607,36 @@ static PyObject *__pyx_f_18coastline_matching_MatchToCoastline_long(__Pyx_memvie
   if (unlikely(!Py_OptimizeFlag)) {
     if (unlikely(!(((__pyx_v_landMask.shape[1]) == __pyx_v_xShapeIn) != 0))) {
       PyErr_SetNone(PyExc_AssertionError);
-      {__pyx_filename = __pyx_f[0]; __pyx_lineno = 70; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      {__pyx_filename = __pyx_f[0]; __pyx_lineno = 71; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     }
   }
   #endif
 
-  /* "coastline_matching.pyx":74
+  /* "coastline_matching.pyx":75
  *     # Generate the table of coordinate pairs which, when followed in order,
  *     # specify the offsets for a spiral search pattern.
  *     diam = searchPixelRadius * 2 + 1             # <<<<<<<<<<<<<<
  *     inds = np.indices([diam,diam]) - searchPixelRadius
  *     distTmp = np.sqrt((inds ** 2).sum(0))
  */
-  __pyx_t_1 = __Pyx_PyInt_From_long(((__pyx_v_searchPixelRadius * 2) + 1)); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 74; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __Pyx_PyInt_From_long(((__pyx_v_searchPixelRadius * 2) + 1)); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 75; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_v_diam = __pyx_t_1;
   __pyx_t_1 = 0;
 
-  /* "coastline_matching.pyx":75
+  /* "coastline_matching.pyx":76
  *     # specify the offsets for a spiral search pattern.
  *     diam = searchPixelRadius * 2 + 1
  *     inds = np.indices([diam,diam]) - searchPixelRadius             # <<<<<<<<<<<<<<
  *     distTmp = np.sqrt((inds ** 2).sum(0))
  *     npTmpTable = ((inds.T).reshape(diam**2, 2))
  */
-  __pyx_t_2 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 75; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_2 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 76; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_indices); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 75; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_indices); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 76; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = PyList_New(2); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 75; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_2 = PyList_New(2); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 76; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_INCREF(__pyx_v_diam);
   PyList_SET_ITEM(__pyx_t_2, 0, __pyx_v_diam);
@@ -1634,48 +1655,48 @@ static PyObject *__pyx_f_18coastline_matching_MatchToCoastline_long(__Pyx_memvie
     }
   }
   if (!__pyx_t_4) {
-    __pyx_t_1 = __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_t_2); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 75; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_1 = __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_t_2); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 76; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
     __Pyx_GOTREF(__pyx_t_1);
   } else {
-    __pyx_t_5 = PyTuple_New(1+1); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 75; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_5 = PyTuple_New(1+1); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 76; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_5);
     PyTuple_SET_ITEM(__pyx_t_5, 0, __pyx_t_4); __Pyx_GIVEREF(__pyx_t_4); __pyx_t_4 = NULL;
     PyTuple_SET_ITEM(__pyx_t_5, 0+1, __pyx_t_2);
     __Pyx_GIVEREF(__pyx_t_2);
     __pyx_t_2 = 0;
-    __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_t_5, NULL); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 75; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_t_5, NULL); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 76; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
   }
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  __pyx_t_3 = __Pyx_PyInt_From_int(__pyx_v_searchPixelRadius); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 75; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_3 = __Pyx_PyInt_From_int(__pyx_v_searchPixelRadius); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 76; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_5 = PyNumber_Subtract(__pyx_t_1, __pyx_t_3); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 75; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_5 = PyNumber_Subtract(__pyx_t_1, __pyx_t_3); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 76; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_5);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __pyx_v_inds = __pyx_t_5;
   __pyx_t_5 = 0;
 
-  /* "coastline_matching.pyx":76
+  /* "coastline_matching.pyx":77
  *     diam = searchPixelRadius * 2 + 1
  *     inds = np.indices([diam,diam]) - searchPixelRadius
  *     distTmp = np.sqrt((inds ** 2).sum(0))             # <<<<<<<<<<<<<<
  *     npTmpTable = ((inds.T).reshape(diam**2, 2))
  *     npTmpTable = np.append(npTmpTable, distTmp.ravel()[:,None], axis=1)
  */
-  __pyx_t_3 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 76; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_3 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 77; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_sqrt); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 76; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_sqrt); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 77; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  __pyx_t_3 = PyNumber_Power(__pyx_v_inds, __pyx_int_2, Py_None); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 76; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_3 = PyNumber_Power(__pyx_v_inds, __pyx_int_2, Py_None); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 77; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_sum); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 76; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_sum); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 77; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  __pyx_t_3 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_tuple_, NULL); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 76; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_3 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_tuple__2, NULL); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 77; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __pyx_t_2 = NULL;
@@ -1689,17 +1710,17 @@ static PyObject *__pyx_f_18coastline_matching_MatchToCoastline_long(__Pyx_memvie
     }
   }
   if (!__pyx_t_2) {
-    __pyx_t_5 = __Pyx_PyObject_CallOneArg(__pyx_t_1, __pyx_t_3); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 76; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_5 = __Pyx_PyObject_CallOneArg(__pyx_t_1, __pyx_t_3); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 77; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
     __Pyx_GOTREF(__pyx_t_5);
   } else {
-    __pyx_t_4 = PyTuple_New(1+1); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 76; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_4 = PyTuple_New(1+1); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 77; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_4);
     PyTuple_SET_ITEM(__pyx_t_4, 0, __pyx_t_2); __Pyx_GIVEREF(__pyx_t_2); __pyx_t_2 = NULL;
     PyTuple_SET_ITEM(__pyx_t_4, 0+1, __pyx_t_3);
     __Pyx_GIVEREF(__pyx_t_3);
     __pyx_t_3 = 0;
-    __pyx_t_5 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_t_4, NULL); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 76; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_5 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_t_4, NULL); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 77; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_5);
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   }
@@ -1707,19 +1728,19 @@ static PyObject *__pyx_f_18coastline_matching_MatchToCoastline_long(__Pyx_memvie
   __pyx_v_distTmp = __pyx_t_5;
   __pyx_t_5 = 0;
 
-  /* "coastline_matching.pyx":77
+  /* "coastline_matching.pyx":78
  *     inds = np.indices([diam,diam]) - searchPixelRadius
  *     distTmp = np.sqrt((inds ** 2).sum(0))
  *     npTmpTable = ((inds.T).reshape(diam**2, 2))             # <<<<<<<<<<<<<<
  *     npTmpTable = np.append(npTmpTable, distTmp.ravel()[:,None], axis=1)
  *     # sort the table by distance then x then y (the arguments are last-sort-first)
  */
-  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_inds, __pyx_n_s_T); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 77; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_inds, __pyx_n_s_T); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 78; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_reshape); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 77; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_reshape); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 78; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_1 = PyNumber_Power(__pyx_v_diam, __pyx_int_2, Py_None); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 77; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = PyNumber_Power(__pyx_v_diam, __pyx_int_2, Py_None); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 78; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_t_3 = NULL;
   __pyx_t_6 = 0;
@@ -1733,7 +1754,7 @@ static PyObject *__pyx_f_18coastline_matching_MatchToCoastline_long(__Pyx_memvie
       __pyx_t_6 = 1;
     }
   }
-  __pyx_t_2 = PyTuple_New(2+__pyx_t_6); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 77; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_2 = PyTuple_New(2+__pyx_t_6); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 78; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_2);
   if (__pyx_t_3) {
     PyTuple_SET_ITEM(__pyx_t_2, 0, __pyx_t_3); __Pyx_GIVEREF(__pyx_t_3); __pyx_t_3 = NULL;
@@ -1744,26 +1765,26 @@ static PyObject *__pyx_f_18coastline_matching_MatchToCoastline_long(__Pyx_memvie
   PyTuple_SET_ITEM(__pyx_t_2, 1+__pyx_t_6, __pyx_int_2);
   __Pyx_GIVEREF(__pyx_int_2);
   __pyx_t_1 = 0;
-  __pyx_t_5 = __Pyx_PyObject_Call(__pyx_t_4, __pyx_t_2, NULL); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 77; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_5 = __Pyx_PyObject_Call(__pyx_t_4, __pyx_t_2, NULL); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 78; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_5);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   __pyx_v_npTmpTable = __pyx_t_5;
   __pyx_t_5 = 0;
 
-  /* "coastline_matching.pyx":78
+  /* "coastline_matching.pyx":79
  *     distTmp = np.sqrt((inds ** 2).sum(0))
  *     npTmpTable = ((inds.T).reshape(diam**2, 2))
  *     npTmpTable = np.append(npTmpTable, distTmp.ravel()[:,None], axis=1)             # <<<<<<<<<<<<<<
  *     # sort the table by distance then x then y (the arguments are last-sort-first)
  *     order = np.lexsort((npTmpTable[:,1], npTmpTable[:,0], npTmpTable[:,2]))
  */
-  __pyx_t_5 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 78; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_5 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 79; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_5);
-  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_5, __pyx_n_s_append); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 78; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_5, __pyx_n_s_append); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 79; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_distTmp, __pyx_n_s_ravel); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 78; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_distTmp, __pyx_n_s_ravel); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 79; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_2);
   __pyx_t_1 = NULL;
   if (CYTHON_COMPILING_IN_CPYTHON && likely(PyMethod_Check(__pyx_t_2))) {
@@ -1776,17 +1797,17 @@ static PyObject *__pyx_f_18coastline_matching_MatchToCoastline_long(__Pyx_memvie
     }
   }
   if (__pyx_t_1) {
-    __pyx_t_5 = __Pyx_PyObject_CallOneArg(__pyx_t_2, __pyx_t_1); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 78; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_5 = __Pyx_PyObject_CallOneArg(__pyx_t_2, __pyx_t_1); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 79; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   } else {
-    __pyx_t_5 = __Pyx_PyObject_CallNoArg(__pyx_t_2); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 78; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_5 = __Pyx_PyObject_CallNoArg(__pyx_t_2); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 79; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   }
   __Pyx_GOTREF(__pyx_t_5);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = PyObject_GetItem(__pyx_t_5, __pyx_tuple__3); if (unlikely(__pyx_t_2 == NULL)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 78; __pyx_clineno = __LINE__; goto __pyx_L1_error;};
+  __pyx_t_2 = PyObject_GetItem(__pyx_t_5, __pyx_tuple__4); if (unlikely(__pyx_t_2 == NULL)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 79; __pyx_clineno = __LINE__; goto __pyx_L1_error;};
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-  __pyx_t_5 = PyTuple_New(2); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 78; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_5 = PyTuple_New(2); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 79; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_5);
   __Pyx_INCREF(__pyx_v_npTmpTable);
   PyTuple_SET_ITEM(__pyx_t_5, 0, __pyx_v_npTmpTable);
@@ -1794,10 +1815,10 @@ static PyObject *__pyx_f_18coastline_matching_MatchToCoastline_long(__Pyx_memvie
   PyTuple_SET_ITEM(__pyx_t_5, 1, __pyx_t_2);
   __Pyx_GIVEREF(__pyx_t_2);
   __pyx_t_2 = 0;
-  __pyx_t_2 = PyDict_New(); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 78; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_2 = PyDict_New(); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 79; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_2);
-  if (PyDict_SetItem(__pyx_t_2, __pyx_n_s_axis, __pyx_int_1) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 78; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_4, __pyx_t_5, __pyx_t_2); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 78; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (PyDict_SetItem(__pyx_t_2, __pyx_n_s_axis, __pyx_int_1) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 79; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_4, __pyx_t_5, __pyx_t_2); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 79; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
@@ -1805,25 +1826,25 @@ static PyObject *__pyx_f_18coastline_matching_MatchToCoastline_long(__Pyx_memvie
   __Pyx_DECREF_SET(__pyx_v_npTmpTable, __pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "coastline_matching.pyx":80
+  /* "coastline_matching.pyx":81
  *     npTmpTable = np.append(npTmpTable, distTmp.ravel()[:,None], axis=1)
  *     # sort the table by distance then x then y (the arguments are last-sort-first)
  *     order = np.lexsort((npTmpTable[:,1], npTmpTable[:,0], npTmpTable[:,2]))             # <<<<<<<<<<<<<<
  * 
  *     # npTmpTable has shape ((radius*2+1)**2, 3) and represents the offset coordinates of all cells in
  */
-  __pyx_t_2 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 80; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_2 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 81; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_lexsort); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 80; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_lexsort); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 81; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_5);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = PyObject_GetItem(__pyx_v_npTmpTable, __pyx_tuple__5); if (unlikely(__pyx_t_2 == NULL)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 80; __pyx_clineno = __LINE__; goto __pyx_L1_error;};
+  __pyx_t_2 = PyObject_GetItem(__pyx_v_npTmpTable, __pyx_tuple__6); if (unlikely(__pyx_t_2 == NULL)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 81; __pyx_clineno = __LINE__; goto __pyx_L1_error;};
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_4 = PyObject_GetItem(__pyx_v_npTmpTable, __pyx_tuple__7); if (unlikely(__pyx_t_4 == NULL)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 80; __pyx_clineno = __LINE__; goto __pyx_L1_error;};
+  __pyx_t_4 = PyObject_GetItem(__pyx_v_npTmpTable, __pyx_tuple__8); if (unlikely(__pyx_t_4 == NULL)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 81; __pyx_clineno = __LINE__; goto __pyx_L1_error;};
   __Pyx_GOTREF(__pyx_t_4);
-  __pyx_t_3 = PyObject_GetItem(__pyx_v_npTmpTable, __pyx_tuple__9); if (unlikely(__pyx_t_3 == NULL)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 80; __pyx_clineno = __LINE__; goto __pyx_L1_error;};
+  __pyx_t_3 = PyObject_GetItem(__pyx_v_npTmpTable, __pyx_tuple__10); if (unlikely(__pyx_t_3 == NULL)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 81; __pyx_clineno = __LINE__; goto __pyx_L1_error;};
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_7 = PyTuple_New(3); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 80; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_7 = PyTuple_New(3); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 81; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_7);
   PyTuple_SET_ITEM(__pyx_t_7, 0, __pyx_t_2);
   __Pyx_GIVEREF(__pyx_t_2);
@@ -1845,17 +1866,17 @@ static PyObject *__pyx_f_18coastline_matching_MatchToCoastline_long(__Pyx_memvie
     }
   }
   if (!__pyx_t_3) {
-    __pyx_t_1 = __Pyx_PyObject_CallOneArg(__pyx_t_5, __pyx_t_7); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 80; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_1 = __Pyx_PyObject_CallOneArg(__pyx_t_5, __pyx_t_7); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 81; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
     __Pyx_GOTREF(__pyx_t_1);
   } else {
-    __pyx_t_4 = PyTuple_New(1+1); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 80; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_4 = PyTuple_New(1+1); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 81; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_4);
     PyTuple_SET_ITEM(__pyx_t_4, 0, __pyx_t_3); __Pyx_GIVEREF(__pyx_t_3); __pyx_t_3 = NULL;
     PyTuple_SET_ITEM(__pyx_t_4, 0+1, __pyx_t_7);
     __Pyx_GIVEREF(__pyx_t_7);
     __pyx_t_7 = 0;
-    __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_5, __pyx_t_4, NULL); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 80; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_5, __pyx_t_4, NULL); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 81; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   }
@@ -1863,19 +1884,19 @@ static PyObject *__pyx_f_18coastline_matching_MatchToCoastline_long(__Pyx_memvie
   __pyx_v_order = __pyx_t_1;
   __pyx_t_1 = 0;
 
-  /* "coastline_matching.pyx":86
+  /* "coastline_matching.pyx":87
  *     # npTmpTable[:,0] is x-offsets, npTmpTable[:,1] is y-offsets,
  *     # npTmpTable[:,2] is distance.
  *     npTmpTable = np.take(npTmpTable,order,axis=0)             # <<<<<<<<<<<<<<
  * 
  *     # Transpose this into an array in C-contiguous layout and with three rows and many columns,
  */
-  __pyx_t_1 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 86; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 87; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_take); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 86; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_take); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 87; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_5);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_1 = PyTuple_New(2); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 86; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = PyTuple_New(2); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 87; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_INCREF(__pyx_v_npTmpTable);
   PyTuple_SET_ITEM(__pyx_t_1, 0, __pyx_v_npTmpTable);
@@ -1883,10 +1904,10 @@ static PyObject *__pyx_f_18coastline_matching_MatchToCoastline_long(__Pyx_memvie
   __Pyx_INCREF(__pyx_v_order);
   PyTuple_SET_ITEM(__pyx_t_1, 1, __pyx_v_order);
   __Pyx_GIVEREF(__pyx_v_order);
-  __pyx_t_4 = PyDict_New(); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 86; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_4 = PyDict_New(); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 87; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_4);
-  if (PyDict_SetItem(__pyx_t_4, __pyx_n_s_axis, __pyx_int_0) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 86; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __pyx_t_7 = __Pyx_PyObject_Call(__pyx_t_5, __pyx_t_1, __pyx_t_4); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 86; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (PyDict_SetItem(__pyx_t_4, __pyx_n_s_axis, __pyx_int_0) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 87; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_7 = __Pyx_PyObject_Call(__pyx_t_5, __pyx_t_1, __pyx_t_4); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 87; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_7);
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
@@ -1894,40 +1915,40 @@ static PyObject *__pyx_f_18coastline_matching_MatchToCoastline_long(__Pyx_memvie
   __Pyx_DECREF_SET(__pyx_v_npTmpTable, __pyx_t_7);
   __pyx_t_7 = 0;
 
-  /* "coastline_matching.pyx":92
+  /* "coastline_matching.pyx":93
  *     # Only transfer the values relating to the cells within the desired radius (cut the corners
  *     # off the square to make a circle).
  *     nbrTable = np.copy((npTmpTable[npTmpTable[:,2] <= searchPixelRadius]).T, order='c')             # <<<<<<<<<<<<<<
  * 
  *     # transfer this numpy array to  to a native C object (memoryview)
  */
-  __pyx_t_7 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 92; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_7 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 93; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_7);
-  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_7, __pyx_n_s_copy); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 92; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_7, __pyx_n_s_copy); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 93; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
-  __pyx_t_7 = PyObject_GetItem(__pyx_v_npTmpTable, __pyx_tuple__11); if (unlikely(__pyx_t_7 == NULL)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 92; __pyx_clineno = __LINE__; goto __pyx_L1_error;};
+  __pyx_t_7 = PyObject_GetItem(__pyx_v_npTmpTable, __pyx_tuple__12); if (unlikely(__pyx_t_7 == NULL)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 93; __pyx_clineno = __LINE__; goto __pyx_L1_error;};
   __Pyx_GOTREF(__pyx_t_7);
-  __pyx_t_1 = __Pyx_PyInt_From_int(__pyx_v_searchPixelRadius); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 92; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __Pyx_PyInt_From_int(__pyx_v_searchPixelRadius); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 93; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_5 = PyObject_RichCompare(__pyx_t_7, __pyx_t_1, Py_LE); __Pyx_XGOTREF(__pyx_t_5); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 92; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_5 = PyObject_RichCompare(__pyx_t_7, __pyx_t_1, Py_LE); __Pyx_XGOTREF(__pyx_t_5); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 93; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_1 = PyObject_GetItem(__pyx_v_npTmpTable, __pyx_t_5); if (unlikely(__pyx_t_1 == NULL)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 92; __pyx_clineno = __LINE__; goto __pyx_L1_error;};
+  __pyx_t_1 = PyObject_GetItem(__pyx_v_npTmpTable, __pyx_t_5); if (unlikely(__pyx_t_1 == NULL)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 93; __pyx_clineno = __LINE__; goto __pyx_L1_error;};
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-  __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_T); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 92; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_T); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 93; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_5);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_1 = PyTuple_New(1); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 92; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = PyTuple_New(1); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 93; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
   PyTuple_SET_ITEM(__pyx_t_1, 0, __pyx_t_5);
   __Pyx_GIVEREF(__pyx_t_5);
   __pyx_t_5 = 0;
-  __pyx_t_5 = PyDict_New(); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 92; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_5 = PyDict_New(); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 93; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_5);
-  if (PyDict_SetItem(__pyx_t_5, __pyx_n_s_order, __pyx_n_s_c) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 92; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __pyx_t_7 = __Pyx_PyObject_Call(__pyx_t_4, __pyx_t_1, __pyx_t_5); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 92; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (PyDict_SetItem(__pyx_t_5, __pyx_n_s_order, __pyx_n_s_c) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 93; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_7 = __Pyx_PyObject_Call(__pyx_t_4, __pyx_t_1, __pyx_t_5); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 93; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_7);
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
@@ -1935,19 +1956,19 @@ static PyObject *__pyx_f_18coastline_matching_MatchToCoastline_long(__Pyx_memvie
   __pyx_v_nbrTable = __pyx_t_7;
   __pyx_t_7 = 0;
 
-  /* "coastline_matching.pyx":98
+  /* "coastline_matching.pyx":99
  *     # to int type once here. This saves a great deal of time compared to
  *     # casting repeatedly inside the inner loop
  *     nbrIntCoords = np.asarray(nbrTable[0:2,:]).astype(np.int32)             # <<<<<<<<<<<<<<
  *     _MAX_NEIGHBOURS_TO_CHECK = nbrIntCoords.shape[1]
  * 
  */
-  __pyx_t_1 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 98; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 99; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_asarray); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 98; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_asarray); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 99; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_1 = PyObject_GetItem(__pyx_v_nbrTable, __pyx_tuple__14); if (unlikely(__pyx_t_1 == NULL)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 98; __pyx_clineno = __LINE__; goto __pyx_L1_error;};
+  __pyx_t_1 = PyObject_GetItem(__pyx_v_nbrTable, __pyx_tuple__15); if (unlikely(__pyx_t_1 == NULL)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 99; __pyx_clineno = __LINE__; goto __pyx_L1_error;};
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_t_3 = NULL;
   if (CYTHON_COMPILING_IN_CPYTHON && unlikely(PyMethod_Check(__pyx_t_4))) {
@@ -1960,27 +1981,27 @@ static PyObject *__pyx_f_18coastline_matching_MatchToCoastline_long(__Pyx_memvie
     }
   }
   if (!__pyx_t_3) {
-    __pyx_t_5 = __Pyx_PyObject_CallOneArg(__pyx_t_4, __pyx_t_1); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 98; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_5 = __Pyx_PyObject_CallOneArg(__pyx_t_4, __pyx_t_1); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 99; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
     __Pyx_GOTREF(__pyx_t_5);
   } else {
-    __pyx_t_2 = PyTuple_New(1+1); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 98; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_2 = PyTuple_New(1+1); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 99; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_2);
     PyTuple_SET_ITEM(__pyx_t_2, 0, __pyx_t_3); __Pyx_GIVEREF(__pyx_t_3); __pyx_t_3 = NULL;
     PyTuple_SET_ITEM(__pyx_t_2, 0+1, __pyx_t_1);
     __Pyx_GIVEREF(__pyx_t_1);
     __pyx_t_1 = 0;
-    __pyx_t_5 = __Pyx_PyObject_Call(__pyx_t_4, __pyx_t_2, NULL); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 98; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_5 = __Pyx_PyObject_Call(__pyx_t_4, __pyx_t_2, NULL); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 99; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_5);
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   }
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_5, __pyx_n_s_astype); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 98; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_5, __pyx_n_s_astype); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 99; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-  __pyx_t_5 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 98; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_5 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 99; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_5);
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_5, __pyx_n_s_int32); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 98; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_5, __pyx_n_s_int32); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 99; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
   __pyx_t_5 = NULL;
@@ -1994,29 +2015,29 @@ static PyObject *__pyx_f_18coastline_matching_MatchToCoastline_long(__Pyx_memvie
     }
   }
   if (!__pyx_t_5) {
-    __pyx_t_7 = __Pyx_PyObject_CallOneArg(__pyx_t_4, __pyx_t_2); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 98; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_7 = __Pyx_PyObject_CallOneArg(__pyx_t_4, __pyx_t_2); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 99; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
     __Pyx_GOTREF(__pyx_t_7);
   } else {
-    __pyx_t_1 = PyTuple_New(1+1); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 98; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_1 = PyTuple_New(1+1); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 99; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_1);
     PyTuple_SET_ITEM(__pyx_t_1, 0, __pyx_t_5); __Pyx_GIVEREF(__pyx_t_5); __pyx_t_5 = NULL;
     PyTuple_SET_ITEM(__pyx_t_1, 0+1, __pyx_t_2);
     __Pyx_GIVEREF(__pyx_t_2);
     __pyx_t_2 = 0;
-    __pyx_t_7 = __Pyx_PyObject_Call(__pyx_t_4, __pyx_t_1, NULL); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 98; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_7 = __Pyx_PyObject_Call(__pyx_t_4, __pyx_t_1, NULL); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 99; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_7);
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   }
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   __pyx_t_8 = __Pyx_PyObject_to_MemoryviewSlice_d_dc_int(__pyx_t_7);
-  if (unlikely(!__pyx_t_8.memview)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 98; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (unlikely(!__pyx_t_8.memview)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 99; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
   __pyx_v_nbrIntCoords = __pyx_t_8;
   __pyx_t_8.memview = NULL;
   __pyx_t_8.data = NULL;
 
-  /* "coastline_matching.pyx":99
+  /* "coastline_matching.pyx":100
  *     # casting repeatedly inside the inner loop
  *     nbrIntCoords = np.asarray(nbrTable[0:2,:]).astype(np.int32)
  *     _MAX_NEIGHBOURS_TO_CHECK = nbrIntCoords.shape[1]             # <<<<<<<<<<<<<<
@@ -2025,7 +2046,7 @@ static PyObject *__pyx_f_18coastline_matching_MatchToCoastline_long(__Pyx_memvie
  */
   __pyx_v__MAX_NEIGHBOURS_TO_CHECK = (__pyx_v_nbrIntCoords.shape[1]);
 
-  /* "coastline_matching.pyx":101
+  /* "coastline_matching.pyx":102
  *     _MAX_NEIGHBOURS_TO_CHECK = nbrIntCoords.shape[1]
  * 
  *     filledCells = 0             # <<<<<<<<<<<<<<
@@ -2034,7 +2055,7 @@ static PyObject *__pyx_f_18coastline_matching_MatchToCoastline_long(__Pyx_memvie
  */
   __pyx_v_filledCells = 0;
 
-  /* "coastline_matching.pyx":102
+  /* "coastline_matching.pyx":103
  * 
  *     filledCells = 0
  *     failedFills = 0             # <<<<<<<<<<<<<<
@@ -2043,7 +2064,7 @@ static PyObject *__pyx_f_18coastline_matching_MatchToCoastline_long(__Pyx_memvie
  */
   __pyx_v_failedFills = 0;
 
-  /* "coastline_matching.pyx":103
+  /* "coastline_matching.pyx":104
  *     filledCells = 0
  *     failedFills = 0
  *     clippedCells = 0             # <<<<<<<<<<<<<<
@@ -2052,19 +2073,19 @@ static PyObject *__pyx_f_18coastline_matching_MatchToCoastline_long(__Pyx_memvie
  */
   __pyx_v_clippedCells = 0;
 
-  /* "coastline_matching.pyx":105
+  /* "coastline_matching.pyx":106
  *     clippedCells = 0
  * 
  *     failedLocs = np.zeros_like(landMask)             # <<<<<<<<<<<<<<
  * 
  *     # run the clip step, if required
  */
-  __pyx_t_4 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 105; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_4 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 106; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_4);
-  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_n_s_zeros_like); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 105; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_n_s_zeros_like); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 106; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  __pyx_t_4 = __pyx_memoryview_fromslice(__pyx_v_landMask, 2, (PyObject *(*)(char *)) __pyx_memview_get_char, (int (*)(char *, PyObject *)) __pyx_memview_set_char, 0);; if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 105; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_4 = __pyx_memoryview_fromslice(__pyx_v_landMask, 2, (PyObject *(*)(char *)) __pyx_memview_get_char, (int (*)(char *, PyObject *)) __pyx_memview_set_char, 0);; if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 106; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_4);
   __pyx_t_2 = NULL;
   if (CYTHON_COMPILING_IN_CPYTHON && unlikely(PyMethod_Check(__pyx_t_1))) {
@@ -2077,29 +2098,29 @@ static PyObject *__pyx_f_18coastline_matching_MatchToCoastline_long(__Pyx_memvie
     }
   }
   if (!__pyx_t_2) {
-    __pyx_t_7 = __Pyx_PyObject_CallOneArg(__pyx_t_1, __pyx_t_4); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 105; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_7 = __Pyx_PyObject_CallOneArg(__pyx_t_1, __pyx_t_4); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 106; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
     __Pyx_GOTREF(__pyx_t_7);
   } else {
-    __pyx_t_5 = PyTuple_New(1+1); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 105; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_5 = PyTuple_New(1+1); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 106; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_5);
     PyTuple_SET_ITEM(__pyx_t_5, 0, __pyx_t_2); __Pyx_GIVEREF(__pyx_t_2); __pyx_t_2 = NULL;
     PyTuple_SET_ITEM(__pyx_t_5, 0+1, __pyx_t_4);
     __Pyx_GIVEREF(__pyx_t_4);
     __pyx_t_4 = 0;
-    __pyx_t_7 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_t_5, NULL); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 105; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_7 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_t_5, NULL); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 106; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_7);
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
   }
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_t_9 = __Pyx_PyObject_to_MemoryviewSlice_d_dc_char(__pyx_t_7);
-  if (unlikely(!__pyx_t_9.memview)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 105; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (unlikely(!__pyx_t_9.memview)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 106; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
   __pyx_v_failedLocs = __pyx_t_9;
   __pyx_t_9.memview = NULL;
   __pyx_t_9.data = NULL;
 
-  /* "coastline_matching.pyx":108
+  /* "coastline_matching.pyx":109
  * 
  *     # run the clip step, if required
  *     if applyClip:             # <<<<<<<<<<<<<<
@@ -2109,7 +2130,7 @@ static PyObject *__pyx_f_18coastline_matching_MatchToCoastline_long(__Pyx_memvie
   __pyx_t_10 = (__pyx_v_applyClip != 0);
   if (__pyx_t_10) {
 
-    /* "coastline_matching.pyx":109
+    /* "coastline_matching.pyx":110
  *     # run the clip step, if required
  *     if applyClip:
  *         for yIn in range(yShapeIn):             # <<<<<<<<<<<<<<
@@ -2120,7 +2141,7 @@ static PyObject *__pyx_f_18coastline_matching_MatchToCoastline_long(__Pyx_memvie
     for (__pyx_t_11 = 0; __pyx_t_11 < __pyx_t_6; __pyx_t_11+=1) {
       __pyx_v_yIn = __pyx_t_11;
 
-      /* "coastline_matching.pyx":110
+      /* "coastline_matching.pyx":111
  *     if applyClip:
  *         for yIn in range(yShapeIn):
  *             for xIn in range(xShapeIn):             # <<<<<<<<<<<<<<
@@ -2131,7 +2152,7 @@ static PyObject *__pyx_f_18coastline_matching_MatchToCoastline_long(__Pyx_memvie
       for (__pyx_t_13 = 0; __pyx_t_13 < __pyx_t_12; __pyx_t_13+=1) {
         __pyx_v_xIn = __pyx_t_13;
 
-        /* "coastline_matching.pyx":111
+        /* "coastline_matching.pyx":112
  *         for yIn in range(yShapeIn):
  *             for xIn in range(xShapeIn):
  *                 if landMask[yIn, xIn] == 0:             # <<<<<<<<<<<<<<
@@ -2151,12 +2172,12 @@ static PyObject *__pyx_f_18coastline_matching_MatchToCoastline_long(__Pyx_memvie
         } else if (unlikely(__pyx_t_15 >= __pyx_v_landMask.shape[1])) __pyx_t_16 = 1;
         if (unlikely(__pyx_t_16 != -1)) {
           __Pyx_RaiseBufferIndexError(__pyx_t_16);
-          {__pyx_filename = __pyx_f[0]; __pyx_lineno = 111; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+          {__pyx_filename = __pyx_f[0]; __pyx_lineno = 112; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
         }
         __pyx_t_10 = (((*((char *) ( /* dim=1 */ ((char *) (((char *) ( /* dim=0 */ (__pyx_v_landMask.data + __pyx_t_14 * __pyx_v_landMask.strides[0]) )) + __pyx_t_15)) ))) == 0) != 0);
         if (__pyx_t_10) {
 
-          /* "coastline_matching.pyx":112
+          /* "coastline_matching.pyx":113
  *             for xIn in range(xShapeIn):
  *                 if landMask[yIn, xIn] == 0:
  *                     if data[yIn, xIn] != _NDV:             # <<<<<<<<<<<<<<
@@ -2176,12 +2197,12 @@ static PyObject *__pyx_f_18coastline_matching_MatchToCoastline_long(__Pyx_memvie
           } else if (unlikely(__pyx_t_18 >= __pyx_v_data.shape[1])) __pyx_t_16 = 1;
           if (unlikely(__pyx_t_16 != -1)) {
             __Pyx_RaiseBufferIndexError(__pyx_t_16);
-            {__pyx_filename = __pyx_f[0]; __pyx_lineno = 112; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+            {__pyx_filename = __pyx_f[0]; __pyx_lineno = 113; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
           }
           __pyx_t_10 = (((*((PY_LONG_LONG *) ( /* dim=1 */ ((char *) (((PY_LONG_LONG *) ( /* dim=0 */ (__pyx_v_data.data + __pyx_t_17 * __pyx_v_data.strides[0]) )) + __pyx_t_18)) ))) != __pyx_v__NDV) != 0);
           if (__pyx_t_10) {
 
-            /* "coastline_matching.pyx":113
+            /* "coastline_matching.pyx":114
  *                 if landMask[yIn, xIn] == 0:
  *                     if data[yIn, xIn] != _NDV:
  *                         clippedCells += 1             # <<<<<<<<<<<<<<
@@ -2190,7 +2211,7 @@ static PyObject *__pyx_f_18coastline_matching_MatchToCoastline_long(__Pyx_memvie
  */
             __pyx_v_clippedCells = (__pyx_v_clippedCells + 1);
 
-            /* "coastline_matching.pyx":114
+            /* "coastline_matching.pyx":115
  *                     if data[yIn, xIn] != _NDV:
  *                         clippedCells += 1
  *                         data[yIn, xIn] = _NDV             # <<<<<<<<<<<<<<
@@ -2210,7 +2231,7 @@ static PyObject *__pyx_f_18coastline_matching_MatchToCoastline_long(__Pyx_memvie
             } else if (unlikely(__pyx_t_20 >= __pyx_v_data.shape[1])) __pyx_t_16 = 1;
             if (unlikely(__pyx_t_16 != -1)) {
               __Pyx_RaiseBufferIndexError(__pyx_t_16);
-              {__pyx_filename = __pyx_f[0]; __pyx_lineno = 114; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+              {__pyx_filename = __pyx_f[0]; __pyx_lineno = 115; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
             }
             *((PY_LONG_LONG *) ( /* dim=1 */ ((char *) (((PY_LONG_LONG *) ( /* dim=0 */ (__pyx_v_data.data + __pyx_t_19 * __pyx_v_data.strides[0]) )) + __pyx_t_20)) )) = __pyx_v__NDV;
             goto __pyx_L9;
@@ -2225,7 +2246,7 @@ static PyObject *__pyx_f_18coastline_matching_MatchToCoastline_long(__Pyx_memvie
   }
   __pyx_L3:;
 
-  /* "coastline_matching.pyx":117
+  /* "coastline_matching.pyx":118
  * 
  *     # run the spread-and-fill step, if required
  *     if applyFill:             # <<<<<<<<<<<<<<
@@ -2235,7 +2256,7 @@ static PyObject *__pyx_f_18coastline_matching_MatchToCoastline_long(__Pyx_memvie
   __pyx_t_10 = (__pyx_v_applyFill != 0);
   if (__pyx_t_10) {
 
-    /* "coastline_matching.pyx":118
+    /* "coastline_matching.pyx":119
  *     # run the spread-and-fill step, if required
  *     if applyFill:
  *         for yIn in range(yShapeIn):             # <<<<<<<<<<<<<<
@@ -2246,7 +2267,7 @@ static PyObject *__pyx_f_18coastline_matching_MatchToCoastline_long(__Pyx_memvie
     for (__pyx_t_11 = 0; __pyx_t_11 < __pyx_t_6; __pyx_t_11+=1) {
       __pyx_v_yIn = __pyx_t_11;
 
-      /* "coastline_matching.pyx":119
+      /* "coastline_matching.pyx":120
  *     if applyFill:
  *         for yIn in range(yShapeIn):
  *             for xIn in range(xShapeIn):             # <<<<<<<<<<<<<<
@@ -2257,7 +2278,7 @@ static PyObject *__pyx_f_18coastline_matching_MatchToCoastline_long(__Pyx_memvie
       for (__pyx_t_13 = 0; __pyx_t_13 < __pyx_t_12; __pyx_t_13+=1) {
         __pyx_v_xIn = __pyx_t_13;
 
-        /* "coastline_matching.pyx":120
+        /* "coastline_matching.pyx":121
  *         for yIn in range(yShapeIn):
  *             for xIn in range(xShapeIn):
  *                 if landMask[yIn, xIn] == 0 or data[yIn, xIn] != _NDV:             # <<<<<<<<<<<<<<
@@ -2277,7 +2298,7 @@ static PyObject *__pyx_f_18coastline_matching_MatchToCoastline_long(__Pyx_memvie
         } else if (unlikely(__pyx_t_22 >= __pyx_v_landMask.shape[1])) __pyx_t_16 = 1;
         if (unlikely(__pyx_t_16 != -1)) {
           __Pyx_RaiseBufferIndexError(__pyx_t_16);
-          {__pyx_filename = __pyx_f[0]; __pyx_lineno = 120; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+          {__pyx_filename = __pyx_f[0]; __pyx_lineno = 121; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
         }
         __pyx_t_23 = (((*((char *) ( /* dim=1 */ ((char *) (((char *) ( /* dim=0 */ (__pyx_v_landMask.data + __pyx_t_21 * __pyx_v_landMask.strides[0]) )) + __pyx_t_22)) ))) == 0) != 0);
         if (!__pyx_t_23) {
@@ -2298,14 +2319,14 @@ static PyObject *__pyx_f_18coastline_matching_MatchToCoastline_long(__Pyx_memvie
         } else if (unlikely(__pyx_t_25 >= __pyx_v_data.shape[1])) __pyx_t_16 = 1;
         if (unlikely(__pyx_t_16 != -1)) {
           __Pyx_RaiseBufferIndexError(__pyx_t_16);
-          {__pyx_filename = __pyx_f[0]; __pyx_lineno = 120; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+          {__pyx_filename = __pyx_f[0]; __pyx_lineno = 121; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
         }
         __pyx_t_23 = (((*((PY_LONG_LONG *) ( /* dim=1 */ ((char *) (((PY_LONG_LONG *) ( /* dim=0 */ (__pyx_v_data.data + __pyx_t_24 * __pyx_v_data.strides[0]) )) + __pyx_t_25)) ))) != __pyx_v__NDV) != 0);
         __pyx_t_10 = __pyx_t_23;
         __pyx_L16_bool_binop_done:;
         if (__pyx_t_10) {
 
-          /* "coastline_matching.pyx":124
+          /* "coastline_matching.pyx":125
  *                     # data out of here was optionally done previously), or
  *                     # we are on land with good data
  *                     continue             # <<<<<<<<<<<<<<
@@ -2315,7 +2336,7 @@ static PyObject *__pyx_f_18coastline_matching_MatchToCoastline_long(__Pyx_memvie
           goto __pyx_L13_continue;
         }
 
-        /* "coastline_matching.pyx":126
+        /* "coastline_matching.pyx":127
  *                     continue
  *                 # otherwise, we are on land but have a nodata pixel: we need to fill it
  *                 reallocatedOK = 0             # <<<<<<<<<<<<<<
@@ -2324,7 +2345,7 @@ static PyObject *__pyx_f_18coastline_matching_MatchToCoastline_long(__Pyx_memvie
  */
         __pyx_v_reallocatedOK = 0;
 
-        /* "coastline_matching.pyx":127
+        /* "coastline_matching.pyx":128
  *                 # otherwise, we are on land but have a nodata pixel: we need to fill it
  *                 reallocatedOK = 0
  *                 reallocationCount_prv = 0             # <<<<<<<<<<<<<<
@@ -2333,7 +2354,7 @@ static PyObject *__pyx_f_18coastline_matching_MatchToCoastline_long(__Pyx_memvie
  */
         __pyx_v_reallocationCount_prv = 0;
 
-        /* "coastline_matching.pyx":128
+        /* "coastline_matching.pyx":129
  *                 reallocatedOK = 0
  *                 reallocationCount_prv = 0
  *                 reallocationSum_prv = 0             # <<<<<<<<<<<<<<
@@ -2342,7 +2363,7 @@ static PyObject *__pyx_f_18coastline_matching_MatchToCoastline_long(__Pyx_memvie
  */
         __pyx_v_reallocationSum_prv = 0;
 
-        /* "coastline_matching.pyx":129
+        /* "coastline_matching.pyx":130
  *                 reallocationCount_prv = 0
  *                 reallocationSum_prv = 0
  *                 for nbrIndex_prv in range(1, _MAX_NEIGHBOURS_TO_CHECK):             # <<<<<<<<<<<<<<
@@ -2353,7 +2374,7 @@ static PyObject *__pyx_f_18coastline_matching_MatchToCoastline_long(__Pyx_memvie
         for (__pyx_t_26 = 1; __pyx_t_26 < __pyx_t_16; __pyx_t_26+=1) {
           __pyx_v_nbrIndex_prv = __pyx_t_26;
 
-          /* "coastline_matching.pyx":130
+          /* "coastline_matching.pyx":131
  *                 reallocationSum_prv = 0
  *                 for nbrIndex_prv in range(1, _MAX_NEIGHBOURS_TO_CHECK):
  *                     if reallocationCount_prv == useNearestNPixels:             # <<<<<<<<<<<<<<
@@ -2363,7 +2384,7 @@ static PyObject *__pyx_f_18coastline_matching_MatchToCoastline_long(__Pyx_memvie
           __pyx_t_10 = ((__pyx_v_reallocationCount_prv == __pyx_v_useNearestNPixels) != 0);
           if (__pyx_t_10) {
 
-            /* "coastline_matching.pyx":131
+            /* "coastline_matching.pyx":132
  *                 for nbrIndex_prv in range(1, _MAX_NEIGHBOURS_TO_CHECK):
  *                     if reallocationCount_prv == useNearestNPixels:
  *                         break             # <<<<<<<<<<<<<<
@@ -2373,7 +2394,7 @@ static PyObject *__pyx_f_18coastline_matching_MatchToCoastline_long(__Pyx_memvie
             goto __pyx_L19_break;
           }
 
-          /* "coastline_matching.pyx":134
+          /* "coastline_matching.pyx":135
  * 
  *                     # use int-type coords array to avoid cast op in tight loop: yes this does become significant
  *                     xNbr = xIn + nbrIntCoords[0, nbrIndex_prv]             # <<<<<<<<<<<<<<
@@ -2393,11 +2414,11 @@ static PyObject *__pyx_f_18coastline_matching_MatchToCoastline_long(__Pyx_memvie
           } else if (unlikely(__pyx_t_28 >= __pyx_v_nbrIntCoords.shape[1])) __pyx_t_29 = 1;
           if (unlikely(__pyx_t_29 != -1)) {
             __Pyx_RaiseBufferIndexError(__pyx_t_29);
-            {__pyx_filename = __pyx_f[0]; __pyx_lineno = 134; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+            {__pyx_filename = __pyx_f[0]; __pyx_lineno = 135; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
           }
           __pyx_v_xNbr = (__pyx_v_xIn + (*((int *) ( /* dim=1 */ ((char *) (((int *) ( /* dim=0 */ (__pyx_v_nbrIntCoords.data + __pyx_t_27 * __pyx_v_nbrIntCoords.strides[0]) )) + __pyx_t_28)) ))));
 
-          /* "coastline_matching.pyx":135
+          /* "coastline_matching.pyx":136
  *                     # use int-type coords array to avoid cast op in tight loop: yes this does become significant
  *                     xNbr = xIn + nbrIntCoords[0, nbrIndex_prv]
  *                     yNbr = yIn + nbrIntCoords[1, nbrIndex_prv]             # <<<<<<<<<<<<<<
@@ -2417,11 +2438,11 @@ static PyObject *__pyx_f_18coastline_matching_MatchToCoastline_long(__Pyx_memvie
           } else if (unlikely(__pyx_t_31 >= __pyx_v_nbrIntCoords.shape[1])) __pyx_t_29 = 1;
           if (unlikely(__pyx_t_29 != -1)) {
             __Pyx_RaiseBufferIndexError(__pyx_t_29);
-            {__pyx_filename = __pyx_f[0]; __pyx_lineno = 135; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+            {__pyx_filename = __pyx_f[0]; __pyx_lineno = 136; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
           }
           __pyx_v_yNbr = (__pyx_v_yIn + (*((int *) ( /* dim=1 */ ((char *) (((int *) ( /* dim=0 */ (__pyx_v_nbrIntCoords.data + __pyx_t_30 * __pyx_v_nbrIntCoords.strides[0]) )) + __pyx_t_31)) ))));
 
-          /* "coastline_matching.pyx":136
+          /* "coastline_matching.pyx":137
  *                     xNbr = xIn + nbrIntCoords[0, nbrIndex_prv]
  *                     yNbr = yIn + nbrIntCoords[1, nbrIndex_prv]
  *                     if (xNbr >= 0 and xNbr < xShapeIn and             # <<<<<<<<<<<<<<
@@ -2441,7 +2462,7 @@ static PyObject *__pyx_f_18coastline_matching_MatchToCoastline_long(__Pyx_memvie
             goto __pyx_L22_bool_binop_done;
           }
 
-          /* "coastline_matching.pyx":137
+          /* "coastline_matching.pyx":138
  *                     yNbr = yIn + nbrIntCoords[1, nbrIndex_prv]
  *                     if (xNbr >= 0 and xNbr < xShapeIn and
  *                         yNbr >= 0 and yNbr < yShapeIn and             # <<<<<<<<<<<<<<
@@ -2461,7 +2482,7 @@ static PyObject *__pyx_f_18coastline_matching_MatchToCoastline_long(__Pyx_memvie
             goto __pyx_L22_bool_binop_done;
           }
 
-          /* "coastline_matching.pyx":138
+          /* "coastline_matching.pyx":139
  *                     if (xNbr >= 0 and xNbr < xShapeIn and
  *                         yNbr >= 0 and yNbr < yShapeIn and
  *                         data[yNbr, xNbr] != _NDV):             # <<<<<<<<<<<<<<
@@ -2481,14 +2502,14 @@ static PyObject *__pyx_f_18coastline_matching_MatchToCoastline_long(__Pyx_memvie
           } else if (unlikely(__pyx_t_33 >= __pyx_v_data.shape[1])) __pyx_t_29 = 1;
           if (unlikely(__pyx_t_29 != -1)) {
             __Pyx_RaiseBufferIndexError(__pyx_t_29);
-            {__pyx_filename = __pyx_f[0]; __pyx_lineno = 138; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+            {__pyx_filename = __pyx_f[0]; __pyx_lineno = 139; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
           }
           __pyx_t_23 = (((*((PY_LONG_LONG *) ( /* dim=1 */ ((char *) (((PY_LONG_LONG *) ( /* dim=0 */ (__pyx_v_data.data + __pyx_t_32 * __pyx_v_data.strides[0]) )) + __pyx_t_33)) ))) != __pyx_v__NDV) != 0);
           __pyx_t_10 = __pyx_t_23;
           __pyx_L22_bool_binop_done:;
           if (__pyx_t_10) {
 
-            /* "coastline_matching.pyx":141
+            /* "coastline_matching.pyx":142
  *                         # NB we allow a sea pixel with data to supply a fill value
  *                         # unless they have been clipped out previously
  *                         reallocationSum_prv += data[yNbr, xNbr]             # <<<<<<<<<<<<<<
@@ -2508,11 +2529,11 @@ static PyObject *__pyx_f_18coastline_matching_MatchToCoastline_long(__Pyx_memvie
             } else if (unlikely(__pyx_t_35 >= __pyx_v_data.shape[1])) __pyx_t_29 = 1;
             if (unlikely(__pyx_t_29 != -1)) {
               __Pyx_RaiseBufferIndexError(__pyx_t_29);
-              {__pyx_filename = __pyx_f[0]; __pyx_lineno = 141; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+              {__pyx_filename = __pyx_f[0]; __pyx_lineno = 142; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
             }
             __pyx_v_reallocationSum_prv = (__pyx_v_reallocationSum_prv + (*((PY_LONG_LONG *) ( /* dim=1 */ ((char *) (((PY_LONG_LONG *) ( /* dim=0 */ (__pyx_v_data.data + __pyx_t_34 * __pyx_v_data.strides[0]) )) + __pyx_t_35)) ))));
 
-            /* "coastline_matching.pyx":142
+            /* "coastline_matching.pyx":143
  *                         # unless they have been clipped out previously
  *                         reallocationSum_prv += data[yNbr, xNbr]
  *                         reallocationCount_prv += 1             # <<<<<<<<<<<<<<
@@ -2526,7 +2547,7 @@ static PyObject *__pyx_f_18coastline_matching_MatchToCoastline_long(__Pyx_memvie
         }
         __pyx_L19_break:;
 
-        /* "coastline_matching.pyx":143
+        /* "coastline_matching.pyx":144
  *                         reallocationSum_prv += data[yNbr, xNbr]
  *                         reallocationCount_prv += 1
  *                 if reallocationCount_prv > 0:             # <<<<<<<<<<<<<<
@@ -2536,7 +2557,7 @@ static PyObject *__pyx_f_18coastline_matching_MatchToCoastline_long(__Pyx_memvie
         __pyx_t_10 = ((__pyx_v_reallocationCount_prv > 0) != 0);
         if (__pyx_t_10) {
 
-          /* "coastline_matching.pyx":148
+          /* "coastline_matching.pyx":149
  *                     # to "smearing" of values in an easterly and southerly direction.
  *                     # Hence, not suitable for filling large areas!
  *                     data[yIn, xIn] = reallocationSum_prv / reallocationCount_prv             # <<<<<<<<<<<<<<
@@ -2551,7 +2572,7 @@ static PyObject *__pyx_f_18coastline_matching_MatchToCoastline_long(__Pyx_memvie
             #ifdef WITH_THREAD
             PyGILState_Release(__pyx_gilstate_save);
             #endif
-            {__pyx_filename = __pyx_f[0]; __pyx_lineno = 148; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+            {__pyx_filename = __pyx_f[0]; __pyx_lineno = 149; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
           }
           else if (sizeof(int) == sizeof(long) && (!(((int)-1) > 0)) && unlikely(__pyx_v_reallocationCount_prv == (int)-1)  && unlikely(UNARY_NEG_WOULD_OVERFLOW(__pyx_v_reallocationSum_prv))) {
             #ifdef WITH_THREAD
@@ -2561,7 +2582,7 @@ static PyObject *__pyx_f_18coastline_matching_MatchToCoastline_long(__Pyx_memvie
             #ifdef WITH_THREAD
             PyGILState_Release(__pyx_gilstate_save);
             #endif
-            {__pyx_filename = __pyx_f[0]; __pyx_lineno = 148; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+            {__pyx_filename = __pyx_f[0]; __pyx_lineno = 149; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
           }
           __pyx_t_26 = __pyx_v_yIn;
           __pyx_t_36 = __pyx_v_xIn;
@@ -2576,11 +2597,11 @@ static PyObject *__pyx_f_18coastline_matching_MatchToCoastline_long(__Pyx_memvie
           } else if (unlikely(__pyx_t_36 >= __pyx_v_data.shape[1])) __pyx_t_16 = 1;
           if (unlikely(__pyx_t_16 != -1)) {
             __Pyx_RaiseBufferIndexError(__pyx_t_16);
-            {__pyx_filename = __pyx_f[0]; __pyx_lineno = 148; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+            {__pyx_filename = __pyx_f[0]; __pyx_lineno = 149; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
           }
           *((PY_LONG_LONG *) ( /* dim=1 */ ((char *) (((PY_LONG_LONG *) ( /* dim=0 */ (__pyx_v_data.data + __pyx_t_26 * __pyx_v_data.strides[0]) )) + __pyx_t_36)) )) = __Pyx_div_int(__pyx_v_reallocationSum_prv, __pyx_v_reallocationCount_prv);
 
-          /* "coastline_matching.pyx":149
+          /* "coastline_matching.pyx":150
  *                     # Hence, not suitable for filling large areas!
  *                     data[yIn, xIn] = reallocationSum_prv / reallocationCount_prv
  *                     filledCells += 1             # <<<<<<<<<<<<<<
@@ -2592,21 +2613,21 @@ static PyObject *__pyx_f_18coastline_matching_MatchToCoastline_long(__Pyx_memvie
         }
         /*else*/ {
 
-          /* "coastline_matching.pyx":151
+          /* "coastline_matching.pyx":152
  *                     filledCells += 1
  *                 else:
  *                     failedFills += 1             # <<<<<<<<<<<<<<
  *                     failedLocs[yIn, xIn] = 1
- * 
+ *     logger = MessageLogger(logLevel)
  */
           __pyx_v_failedFills = (__pyx_v_failedFills + 1);
 
-          /* "coastline_matching.pyx":152
+          /* "coastline_matching.pyx":153
  *                 else:
  *                     failedFills += 1
  *                     failedLocs[yIn, xIn] = 1             # <<<<<<<<<<<<<<
- * 
- *     logMessage ("Clipped {0!s} data cells that were outside provided limits".format(
+ *     logger = MessageLogger(logLevel)
+ *     logger.logMessage ("Clipped {0!s} data cells that were outside provided limits".format(
  */
           __pyx_t_37 = __pyx_v_yIn;
           __pyx_t_38 = __pyx_v_xIn;
@@ -2621,7 +2642,7 @@ static PyObject *__pyx_f_18coastline_matching_MatchToCoastline_long(__Pyx_memvie
           } else if (unlikely(__pyx_t_38 >= __pyx_v_failedLocs.shape[1])) __pyx_t_16 = 1;
           if (unlikely(__pyx_t_16 != -1)) {
             __Pyx_RaiseBufferIndexError(__pyx_t_16);
-            {__pyx_filename = __pyx_f[0]; __pyx_lineno = 152; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+            {__pyx_filename = __pyx_f[0]; __pyx_lineno = 153; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
           }
           *((char *) ( /* dim=1 */ ((char *) (((char *) ( /* dim=0 */ (__pyx_v_failedLocs.data + __pyx_t_37 * __pyx_v_failedLocs.strides[0]) )) + __pyx_t_38)) )) = 1;
         }
@@ -2634,127 +2655,14 @@ static PyObject *__pyx_f_18coastline_matching_MatchToCoastline_long(__Pyx_memvie
   __pyx_L10:;
 
   /* "coastline_matching.pyx":154
+ *                     failedFills += 1
  *                     failedLocs[yIn, xIn] = 1
- * 
- *     logMessage ("Clipped {0!s} data cells that were outside provided limits".format(             # <<<<<<<<<<<<<<
- *         clippedCells))
- *     logMessage ("Filled {0!s} total cells within limits from nearby data".format(
+ *     logger = MessageLogger(logLevel)             # <<<<<<<<<<<<<<
+ *     logger.logMessage ("Clipped {0!s} data cells that were outside provided limits".format(
+ *         clippedCells), LogLevels.DEBUG)
  */
-  __pyx_t_1 = __Pyx_GetModuleGlobalName(__pyx_n_s_logMessage); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 154; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __Pyx_GetModuleGlobalName(__pyx_n_s_MessageLogger); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 154; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_kp_s_Clipped_0_s_data_cells_that_were, __pyx_n_s_format); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 154; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __Pyx_GOTREF(__pyx_t_4);
-
-  /* "coastline_matching.pyx":155
- * 
- *     logMessage ("Clipped {0!s} data cells that were outside provided limits".format(
- *         clippedCells))             # <<<<<<<<<<<<<<
- *     logMessage ("Filled {0!s} total cells within limits from nearby data".format(
- *         filledCells))
- */
-  __pyx_t_2 = __Pyx_PyInt_From_int(__pyx_v_clippedCells); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 155; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = NULL;
-  if (CYTHON_COMPILING_IN_CPYTHON && likely(PyMethod_Check(__pyx_t_4))) {
-    __pyx_t_3 = PyMethod_GET_SELF(__pyx_t_4);
-    if (likely(__pyx_t_3)) {
-      PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_4);
-      __Pyx_INCREF(__pyx_t_3);
-      __Pyx_INCREF(function);
-      __Pyx_DECREF_SET(__pyx_t_4, function);
-    }
-  }
-  if (!__pyx_t_3) {
-    __pyx_t_5 = __Pyx_PyObject_CallOneArg(__pyx_t_4, __pyx_t_2); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 154; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-    __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-    __Pyx_GOTREF(__pyx_t_5);
-  } else {
-    __pyx_t_39 = PyTuple_New(1+1); if (unlikely(!__pyx_t_39)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 154; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-    __Pyx_GOTREF(__pyx_t_39);
-    PyTuple_SET_ITEM(__pyx_t_39, 0, __pyx_t_3); __Pyx_GIVEREF(__pyx_t_3); __pyx_t_3 = NULL;
-    PyTuple_SET_ITEM(__pyx_t_39, 0+1, __pyx_t_2);
-    __Pyx_GIVEREF(__pyx_t_2);
-    __pyx_t_2 = 0;
-    __pyx_t_5 = __Pyx_PyObject_Call(__pyx_t_4, __pyx_t_39, NULL); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 154; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-    __Pyx_GOTREF(__pyx_t_5);
-    __Pyx_DECREF(__pyx_t_39); __pyx_t_39 = 0;
-  }
-  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  __pyx_t_4 = NULL;
-  if (CYTHON_COMPILING_IN_CPYTHON && unlikely(PyMethod_Check(__pyx_t_1))) {
-    __pyx_t_4 = PyMethod_GET_SELF(__pyx_t_1);
-    if (likely(__pyx_t_4)) {
-      PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_1);
-      __Pyx_INCREF(__pyx_t_4);
-      __Pyx_INCREF(function);
-      __Pyx_DECREF_SET(__pyx_t_1, function);
-    }
-  }
-  if (!__pyx_t_4) {
-    __pyx_t_7 = __Pyx_PyObject_CallOneArg(__pyx_t_1, __pyx_t_5); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 154; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-    __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-    __Pyx_GOTREF(__pyx_t_7);
-  } else {
-    __pyx_t_39 = PyTuple_New(1+1); if (unlikely(!__pyx_t_39)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 154; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-    __Pyx_GOTREF(__pyx_t_39);
-    PyTuple_SET_ITEM(__pyx_t_39, 0, __pyx_t_4); __Pyx_GIVEREF(__pyx_t_4); __pyx_t_4 = NULL;
-    PyTuple_SET_ITEM(__pyx_t_39, 0+1, __pyx_t_5);
-    __Pyx_GIVEREF(__pyx_t_5);
-    __pyx_t_5 = 0;
-    __pyx_t_7 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_t_39, NULL); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 154; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-    __Pyx_GOTREF(__pyx_t_7);
-    __Pyx_DECREF(__pyx_t_39); __pyx_t_39 = 0;
-  }
-  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
-
-  /* "coastline_matching.pyx":156
- *     logMessage ("Clipped {0!s} data cells that were outside provided limits".format(
- *         clippedCells))
- *     logMessage ("Filled {0!s} total cells within limits from nearby data".format(             # <<<<<<<<<<<<<<
- *         filledCells))
- *     logMessage ("Failed to fill {0!s} total cells within limits due to no data cells in range".format(
- */
-  __pyx_t_1 = __Pyx_GetModuleGlobalName(__pyx_n_s_logMessage); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 156; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_kp_s_Filled_0_s_total_cells_within_li, __pyx_n_s_format); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 156; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __Pyx_GOTREF(__pyx_t_5);
-
-  /* "coastline_matching.pyx":157
- *         clippedCells))
- *     logMessage ("Filled {0!s} total cells within limits from nearby data".format(
- *         filledCells))             # <<<<<<<<<<<<<<
- *     logMessage ("Failed to fill {0!s} total cells within limits due to no data cells in range".format(
- *         failedFills))
- */
-  __pyx_t_4 = __Pyx_PyInt_From_int(__pyx_v_filledCells); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 157; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __Pyx_GOTREF(__pyx_t_4);
-  __pyx_t_2 = NULL;
-  if (CYTHON_COMPILING_IN_CPYTHON && likely(PyMethod_Check(__pyx_t_5))) {
-    __pyx_t_2 = PyMethod_GET_SELF(__pyx_t_5);
-    if (likely(__pyx_t_2)) {
-      PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_5);
-      __Pyx_INCREF(__pyx_t_2);
-      __Pyx_INCREF(function);
-      __Pyx_DECREF_SET(__pyx_t_5, function);
-    }
-  }
-  if (!__pyx_t_2) {
-    __pyx_t_39 = __Pyx_PyObject_CallOneArg(__pyx_t_5, __pyx_t_4); if (unlikely(!__pyx_t_39)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 156; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-    __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-    __Pyx_GOTREF(__pyx_t_39);
-  } else {
-    __pyx_t_3 = PyTuple_New(1+1); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 156; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-    __Pyx_GOTREF(__pyx_t_3);
-    PyTuple_SET_ITEM(__pyx_t_3, 0, __pyx_t_2); __Pyx_GIVEREF(__pyx_t_2); __pyx_t_2 = NULL;
-    PyTuple_SET_ITEM(__pyx_t_3, 0+1, __pyx_t_4);
-    __Pyx_GIVEREF(__pyx_t_4);
-    __pyx_t_4 = 0;
-    __pyx_t_39 = __Pyx_PyObject_Call(__pyx_t_5, __pyx_t_3, NULL); if (unlikely(!__pyx_t_39)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 156; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-    __Pyx_GOTREF(__pyx_t_39);
-    __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  }
-  __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
   __pyx_t_5 = NULL;
   if (CYTHON_COMPILING_IN_CPYTHON && unlikely(PyMethod_Check(__pyx_t_1))) {
     __pyx_t_5 = PyMethod_GET_SELF(__pyx_t_1);
@@ -2766,107 +2674,275 @@ static PyObject *__pyx_f_18coastline_matching_MatchToCoastline_long(__Pyx_memvie
     }
   }
   if (!__pyx_t_5) {
-    __pyx_t_7 = __Pyx_PyObject_CallOneArg(__pyx_t_1, __pyx_t_39); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 156; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-    __Pyx_DECREF(__pyx_t_39); __pyx_t_39 = 0;
+    __pyx_t_7 = __Pyx_PyObject_CallOneArg(__pyx_t_1, __pyx_v_logLevel); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 154; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_7);
   } else {
-    __pyx_t_3 = PyTuple_New(1+1); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 156; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-    __Pyx_GOTREF(__pyx_t_3);
-    PyTuple_SET_ITEM(__pyx_t_3, 0, __pyx_t_5); __Pyx_GIVEREF(__pyx_t_5); __pyx_t_5 = NULL;
-    PyTuple_SET_ITEM(__pyx_t_3, 0+1, __pyx_t_39);
-    __Pyx_GIVEREF(__pyx_t_39);
-    __pyx_t_39 = 0;
-    __pyx_t_7 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_t_3, NULL); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 156; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_4 = PyTuple_New(1+1); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 154; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __Pyx_GOTREF(__pyx_t_4);
+    PyTuple_SET_ITEM(__pyx_t_4, 0, __pyx_t_5); __Pyx_GIVEREF(__pyx_t_5); __pyx_t_5 = NULL;
+    __Pyx_INCREF(__pyx_v_logLevel);
+    PyTuple_SET_ITEM(__pyx_t_4, 0+1, __pyx_v_logLevel);
+    __Pyx_GIVEREF(__pyx_v_logLevel);
+    __pyx_t_7 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_t_4, NULL); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 154; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_7);
-    __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+    __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   }
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+  __pyx_v_logger = __pyx_t_7;
+  __pyx_t_7 = 0;
+
+  /* "coastline_matching.pyx":155
+ *                     failedLocs[yIn, xIn] = 1
+ *     logger = MessageLogger(logLevel)
+ *     logger.logMessage ("Clipped {0!s} data cells that were outside provided limits".format(             # <<<<<<<<<<<<<<
+ *         clippedCells), LogLevels.DEBUG)
+ *     logger.logMessage ("Filled {0!s} total cells within limits from nearby data".format(
+ */
+  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_logger, __pyx_n_s_logMessage); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 155; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_t_1);
+  __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_kp_s_Clipped_0_s_data_cells_that_were, __pyx_n_s_format); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 155; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_t_5);
+
+  /* "coastline_matching.pyx":156
+ *     logger = MessageLogger(logLevel)
+ *     logger.logMessage ("Clipped {0!s} data cells that were outside provided limits".format(
+ *         clippedCells), LogLevels.DEBUG)             # <<<<<<<<<<<<<<
+ *     logger.logMessage ("Filled {0!s} total cells within limits from nearby data".format(
+ *         filledCells), LogLevels.DEBUG)
+ */
+  __pyx_t_2 = __Pyx_PyInt_From_int(__pyx_v_clippedCells); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 156; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_t_2);
+  __pyx_t_3 = NULL;
+  if (CYTHON_COMPILING_IN_CPYTHON && likely(PyMethod_Check(__pyx_t_5))) {
+    __pyx_t_3 = PyMethod_GET_SELF(__pyx_t_5);
+    if (likely(__pyx_t_3)) {
+      PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_5);
+      __Pyx_INCREF(__pyx_t_3);
+      __Pyx_INCREF(function);
+      __Pyx_DECREF_SET(__pyx_t_5, function);
+    }
+  }
+  if (!__pyx_t_3) {
+    __pyx_t_4 = __Pyx_PyObject_CallOneArg(__pyx_t_5, __pyx_t_2); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 155; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+    __Pyx_GOTREF(__pyx_t_4);
+  } else {
+    __pyx_t_39 = PyTuple_New(1+1); if (unlikely(!__pyx_t_39)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 155; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __Pyx_GOTREF(__pyx_t_39);
+    PyTuple_SET_ITEM(__pyx_t_39, 0, __pyx_t_3); __Pyx_GIVEREF(__pyx_t_3); __pyx_t_3 = NULL;
+    PyTuple_SET_ITEM(__pyx_t_39, 0+1, __pyx_t_2);
+    __Pyx_GIVEREF(__pyx_t_2);
+    __pyx_t_2 = 0;
+    __pyx_t_4 = __Pyx_PyObject_Call(__pyx_t_5, __pyx_t_39, NULL); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 155; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __Pyx_GOTREF(__pyx_t_4);
+    __Pyx_DECREF(__pyx_t_39); __pyx_t_39 = 0;
+  }
+  __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
+  __pyx_t_5 = __Pyx_GetModuleGlobalName(__pyx_n_s_LogLevels); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 156; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_t_5);
+  __pyx_t_39 = __Pyx_PyObject_GetAttrStr(__pyx_t_5, __pyx_n_s_DEBUG); if (unlikely(!__pyx_t_39)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 156; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_t_39);
+  __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
+  __pyx_t_5 = NULL;
+  __pyx_t_6 = 0;
+  if (CYTHON_COMPILING_IN_CPYTHON && likely(PyMethod_Check(__pyx_t_1))) {
+    __pyx_t_5 = PyMethod_GET_SELF(__pyx_t_1);
+    if (likely(__pyx_t_5)) {
+      PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_1);
+      __Pyx_INCREF(__pyx_t_5);
+      __Pyx_INCREF(function);
+      __Pyx_DECREF_SET(__pyx_t_1, function);
+      __pyx_t_6 = 1;
+    }
+  }
+  __pyx_t_2 = PyTuple_New(2+__pyx_t_6); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 155; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_t_2);
+  if (__pyx_t_5) {
+    PyTuple_SET_ITEM(__pyx_t_2, 0, __pyx_t_5); __Pyx_GIVEREF(__pyx_t_5); __pyx_t_5 = NULL;
+  }
+  PyTuple_SET_ITEM(__pyx_t_2, 0+__pyx_t_6, __pyx_t_4);
+  __Pyx_GIVEREF(__pyx_t_4);
+  PyTuple_SET_ITEM(__pyx_t_2, 1+__pyx_t_6, __pyx_t_39);
+  __Pyx_GIVEREF(__pyx_t_39);
+  __pyx_t_4 = 0;
+  __pyx_t_39 = 0;
+  __pyx_t_7 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_t_2, NULL); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 155; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_t_7);
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
 
-  /* "coastline_matching.pyx":158
- *     logMessage ("Filled {0!s} total cells within limits from nearby data".format(
- *         filledCells))
- *     logMessage ("Failed to fill {0!s} total cells within limits due to no data cells in range".format(             # <<<<<<<<<<<<<<
- *         failedFills))
- *     return failedLocs
+  /* "coastline_matching.pyx":157
+ *     logger.logMessage ("Clipped {0!s} data cells that were outside provided limits".format(
+ *         clippedCells), LogLevels.DEBUG)
+ *     logger.logMessage ("Filled {0!s} total cells within limits from nearby data".format(             # <<<<<<<<<<<<<<
+ *         filledCells), LogLevels.DEBUG)
+ *     logger.logMessage ("Failed to fill {0!s} total cells within limits due to no data cells in range".format(
  */
-  __pyx_t_1 = __Pyx_GetModuleGlobalName(__pyx_n_s_logMessage); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 158; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_logger, __pyx_n_s_logMessage); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 157; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_39 = __Pyx_PyObject_GetAttrStr(__pyx_kp_s_Failed_to_fill_0_s_total_cells_w, __pyx_n_s_format); if (unlikely(!__pyx_t_39)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 158; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_39 = __Pyx_PyObject_GetAttrStr(__pyx_kp_s_Filled_0_s_total_cells_within_li, __pyx_n_s_format); if (unlikely(!__pyx_t_39)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 157; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_39);
 
-  /* "coastline_matching.pyx":159
- *         filledCells))
- *     logMessage ("Failed to fill {0!s} total cells within limits due to no data cells in range".format(
- *         failedFills))             # <<<<<<<<<<<<<<
- *     return failedLocs
- * 
+  /* "coastline_matching.pyx":158
+ *         clippedCells), LogLevels.DEBUG)
+ *     logger.logMessage ("Filled {0!s} total cells within limits from nearby data".format(
+ *         filledCells), LogLevels.DEBUG)             # <<<<<<<<<<<<<<
+ *     logger.logMessage ("Failed to fill {0!s} total cells within limits due to no data cells in range".format(
+ *         failedFills), LogLevels.DEBUG)
  */
-  __pyx_t_5 = __Pyx_PyInt_From_int(__pyx_v_failedFills); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 159; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __Pyx_GOTREF(__pyx_t_5);
-  __pyx_t_4 = NULL;
+  __pyx_t_4 = __Pyx_PyInt_From_int(__pyx_v_filledCells); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 158; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_t_4);
+  __pyx_t_5 = NULL;
   if (CYTHON_COMPILING_IN_CPYTHON && likely(PyMethod_Check(__pyx_t_39))) {
-    __pyx_t_4 = PyMethod_GET_SELF(__pyx_t_39);
-    if (likely(__pyx_t_4)) {
+    __pyx_t_5 = PyMethod_GET_SELF(__pyx_t_39);
+    if (likely(__pyx_t_5)) {
       PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_39);
-      __Pyx_INCREF(__pyx_t_4);
+      __Pyx_INCREF(__pyx_t_5);
       __Pyx_INCREF(function);
       __Pyx_DECREF_SET(__pyx_t_39, function);
     }
   }
-  if (!__pyx_t_4) {
-    __pyx_t_3 = __Pyx_PyObject_CallOneArg(__pyx_t_39, __pyx_t_5); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 158; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-    __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-    __Pyx_GOTREF(__pyx_t_3);
-  } else {
-    __pyx_t_2 = PyTuple_New(1+1); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 158; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (!__pyx_t_5) {
+    __pyx_t_2 = __Pyx_PyObject_CallOneArg(__pyx_t_39, __pyx_t_4); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 157; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
     __Pyx_GOTREF(__pyx_t_2);
-    PyTuple_SET_ITEM(__pyx_t_2, 0, __pyx_t_4); __Pyx_GIVEREF(__pyx_t_4); __pyx_t_4 = NULL;
-    PyTuple_SET_ITEM(__pyx_t_2, 0+1, __pyx_t_5);
-    __Pyx_GIVEREF(__pyx_t_5);
-    __pyx_t_5 = 0;
-    __pyx_t_3 = __Pyx_PyObject_Call(__pyx_t_39, __pyx_t_2, NULL); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 158; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  } else {
+    __pyx_t_3 = PyTuple_New(1+1); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 157; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_3);
-    __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+    PyTuple_SET_ITEM(__pyx_t_3, 0, __pyx_t_5); __Pyx_GIVEREF(__pyx_t_5); __pyx_t_5 = NULL;
+    PyTuple_SET_ITEM(__pyx_t_3, 0+1, __pyx_t_4);
+    __Pyx_GIVEREF(__pyx_t_4);
+    __pyx_t_4 = 0;
+    __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_39, __pyx_t_3, NULL); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 157; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __Pyx_GOTREF(__pyx_t_2);
+    __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   }
   __Pyx_DECREF(__pyx_t_39); __pyx_t_39 = 0;
+  __pyx_t_39 = __Pyx_GetModuleGlobalName(__pyx_n_s_LogLevels); if (unlikely(!__pyx_t_39)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 158; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_t_39);
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_39, __pyx_n_s_DEBUG); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 158; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_t_3);
+  __Pyx_DECREF(__pyx_t_39); __pyx_t_39 = 0;
   __pyx_t_39 = NULL;
-  if (CYTHON_COMPILING_IN_CPYTHON && unlikely(PyMethod_Check(__pyx_t_1))) {
+  __pyx_t_6 = 0;
+  if (CYTHON_COMPILING_IN_CPYTHON && likely(PyMethod_Check(__pyx_t_1))) {
     __pyx_t_39 = PyMethod_GET_SELF(__pyx_t_1);
     if (likely(__pyx_t_39)) {
       PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_1);
       __Pyx_INCREF(__pyx_t_39);
       __Pyx_INCREF(function);
       __Pyx_DECREF_SET(__pyx_t_1, function);
+      __pyx_t_6 = 1;
     }
   }
-  if (!__pyx_t_39) {
-    __pyx_t_7 = __Pyx_PyObject_CallOneArg(__pyx_t_1, __pyx_t_3); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 158; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-    __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-    __Pyx_GOTREF(__pyx_t_7);
-  } else {
-    __pyx_t_2 = PyTuple_New(1+1); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 158; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-    __Pyx_GOTREF(__pyx_t_2);
-    PyTuple_SET_ITEM(__pyx_t_2, 0, __pyx_t_39); __Pyx_GIVEREF(__pyx_t_39); __pyx_t_39 = NULL;
-    PyTuple_SET_ITEM(__pyx_t_2, 0+1, __pyx_t_3);
-    __Pyx_GIVEREF(__pyx_t_3);
-    __pyx_t_3 = 0;
-    __pyx_t_7 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_t_2, NULL); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 158; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-    __Pyx_GOTREF(__pyx_t_7);
-    __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+  __pyx_t_4 = PyTuple_New(2+__pyx_t_6); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 157; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_t_4);
+  if (__pyx_t_39) {
+    PyTuple_SET_ITEM(__pyx_t_4, 0, __pyx_t_39); __Pyx_GIVEREF(__pyx_t_39); __pyx_t_39 = NULL;
   }
+  PyTuple_SET_ITEM(__pyx_t_4, 0+__pyx_t_6, __pyx_t_2);
+  __Pyx_GIVEREF(__pyx_t_2);
+  PyTuple_SET_ITEM(__pyx_t_4, 1+__pyx_t_6, __pyx_t_3);
+  __Pyx_GIVEREF(__pyx_t_3);
+  __pyx_t_2 = 0;
+  __pyx_t_3 = 0;
+  __pyx_t_7 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_t_4, NULL); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 157; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_t_7);
+  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
 
+  /* "coastline_matching.pyx":159
+ *     logger.logMessage ("Filled {0!s} total cells within limits from nearby data".format(
+ *         filledCells), LogLevels.DEBUG)
+ *     logger.logMessage ("Failed to fill {0!s} total cells within limits due to no data cells in range".format(             # <<<<<<<<<<<<<<
+ *         failedFills), LogLevels.DEBUG)
+ *     return failedLocs
+ */
+  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_logger, __pyx_n_s_logMessage); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 159; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_t_1);
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_kp_s_Failed_to_fill_0_s_total_cells_w, __pyx_n_s_format); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 159; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_t_3);
+
   /* "coastline_matching.pyx":160
- *     logMessage ("Failed to fill {0!s} total cells within limits due to no data cells in range".format(
- *         failedFills))
+ *         filledCells), LogLevels.DEBUG)
+ *     logger.logMessage ("Failed to fill {0!s} total cells within limits due to no data cells in range".format(
+ *         failedFills), LogLevels.DEBUG)             # <<<<<<<<<<<<<<
+ *     return failedLocs
+ * 
+ */
+  __pyx_t_2 = __Pyx_PyInt_From_int(__pyx_v_failedFills); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 160; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_t_2);
+  __pyx_t_39 = NULL;
+  if (CYTHON_COMPILING_IN_CPYTHON && likely(PyMethod_Check(__pyx_t_3))) {
+    __pyx_t_39 = PyMethod_GET_SELF(__pyx_t_3);
+    if (likely(__pyx_t_39)) {
+      PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_3);
+      __Pyx_INCREF(__pyx_t_39);
+      __Pyx_INCREF(function);
+      __Pyx_DECREF_SET(__pyx_t_3, function);
+    }
+  }
+  if (!__pyx_t_39) {
+    __pyx_t_4 = __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_t_2); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 159; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+    __Pyx_GOTREF(__pyx_t_4);
+  } else {
+    __pyx_t_5 = PyTuple_New(1+1); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 159; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __Pyx_GOTREF(__pyx_t_5);
+    PyTuple_SET_ITEM(__pyx_t_5, 0, __pyx_t_39); __Pyx_GIVEREF(__pyx_t_39); __pyx_t_39 = NULL;
+    PyTuple_SET_ITEM(__pyx_t_5, 0+1, __pyx_t_2);
+    __Pyx_GIVEREF(__pyx_t_2);
+    __pyx_t_2 = 0;
+    __pyx_t_4 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_t_5, NULL); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 159; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __Pyx_GOTREF(__pyx_t_4);
+    __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
+  }
+  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+  __pyx_t_3 = __Pyx_GetModuleGlobalName(__pyx_n_s_LogLevels); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 160; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_t_3);
+  __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_DEBUG); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 160; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_t_5);
+  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+  __pyx_t_3 = NULL;
+  __pyx_t_6 = 0;
+  if (CYTHON_COMPILING_IN_CPYTHON && likely(PyMethod_Check(__pyx_t_1))) {
+    __pyx_t_3 = PyMethod_GET_SELF(__pyx_t_1);
+    if (likely(__pyx_t_3)) {
+      PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_1);
+      __Pyx_INCREF(__pyx_t_3);
+      __Pyx_INCREF(function);
+      __Pyx_DECREF_SET(__pyx_t_1, function);
+      __pyx_t_6 = 1;
+    }
+  }
+  __pyx_t_2 = PyTuple_New(2+__pyx_t_6); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 159; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_t_2);
+  if (__pyx_t_3) {
+    PyTuple_SET_ITEM(__pyx_t_2, 0, __pyx_t_3); __Pyx_GIVEREF(__pyx_t_3); __pyx_t_3 = NULL;
+  }
+  PyTuple_SET_ITEM(__pyx_t_2, 0+__pyx_t_6, __pyx_t_4);
+  __Pyx_GIVEREF(__pyx_t_4);
+  PyTuple_SET_ITEM(__pyx_t_2, 1+__pyx_t_6, __pyx_t_5);
+  __Pyx_GIVEREF(__pyx_t_5);
+  __pyx_t_4 = 0;
+  __pyx_t_5 = 0;
+  __pyx_t_7 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_t_2, NULL); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 159; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_t_7);
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+  __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
+
+  /* "coastline_matching.pyx":161
+ *     logger.logMessage ("Failed to fill {0!s} total cells within limits due to no data cells in range".format(
+ *         failedFills), LogLevels.DEBUG)
  *     return failedLocs             # <<<<<<<<<<<<<<
  * 
  * cpdef MatchToCoastline_Float(float[:,::1] data, char[:,::1] landMask, float _NDV = -9999,
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_7 = __pyx_memoryview_fromslice(__pyx_v_failedLocs, 2, (PyObject *(*)(char *)) __pyx_memview_get_char, (int (*)(char *, PyObject *)) __pyx_memview_set_char, 0);; if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 160; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_7 = __pyx_memoryview_fromslice(__pyx_v_failedLocs, 2, (PyObject *(*)(char *)) __pyx_memview_get_char, (int (*)(char *, PyObject *)) __pyx_memview_set_char, 0);; if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 161; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_7);
   __pyx_r = __pyx_t_7;
   __pyx_t_7 = 0;
@@ -2902,6 +2978,7 @@ static PyObject *__pyx_f_18coastline_matching_MatchToCoastline_long(__Pyx_memvie
   __Pyx_XDECREF(__pyx_v_npTmpTable);
   __Pyx_XDECREF(__pyx_v_order);
   __Pyx_XDECREF(__pyx_v_nbrTable);
+  __Pyx_XDECREF(__pyx_v_logger);
   __Pyx_XGIVEREF(__pyx_r);
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
@@ -2918,6 +2995,7 @@ static PyObject *__pyx_pw_18coastline_matching_1MatchToCoastline_long(PyObject *
   char __pyx_v_applyFill;
   int __pyx_v_useNearestNPixels;
   int __pyx_v_searchPixelRadius;
+  PyObject *__pyx_v_logLevel = 0;
   int __pyx_lineno = 0;
   const char *__pyx_filename = NULL;
   int __pyx_clineno = 0;
@@ -2925,12 +3003,14 @@ static PyObject *__pyx_pw_18coastline_matching_1MatchToCoastline_long(PyObject *
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("MatchToCoastline_long (wrapper)", 0);
   {
-    static PyObject **__pyx_pyargnames[] = {&__pyx_n_s_data,&__pyx_n_s_landMask,&__pyx_n_s_NDV,&__pyx_n_s_applyClip,&__pyx_n_s_applyFill,&__pyx_n_s_useNearestNPixels,&__pyx_n_s_searchPixelRadius,0};
-    PyObject* values[7] = {0,0,0,0,0,0,0};
+    static PyObject **__pyx_pyargnames[] = {&__pyx_n_s_data,&__pyx_n_s_landMask,&__pyx_n_s_NDV,&__pyx_n_s_applyClip,&__pyx_n_s_applyFill,&__pyx_n_s_useNearestNPixels,&__pyx_n_s_searchPixelRadius,&__pyx_n_s_logLevel,0};
+    PyObject* values[8] = {0,0,0,0,0,0,0,0};
+    values[7] = __pyx_k_;
     if (unlikely(__pyx_kwds)) {
       Py_ssize_t kw_args;
       const Py_ssize_t pos_args = PyTuple_GET_SIZE(__pyx_args);
       switch (pos_args) {
+        case  8: values[7] = PyTuple_GET_ITEM(__pyx_args, 7);
         case  7: values[6] = PyTuple_GET_ITEM(__pyx_args, 6);
         case  6: values[5] = PyTuple_GET_ITEM(__pyx_args, 5);
         case  5: values[4] = PyTuple_GET_ITEM(__pyx_args, 4);
@@ -2949,7 +3029,7 @@ static PyObject *__pyx_pw_18coastline_matching_1MatchToCoastline_long(PyObject *
         case  1:
         if (likely((values[1] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_landMask)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("MatchToCoastline_long", 0, 2, 7, 1); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 9; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+          __Pyx_RaiseArgtupleInvalid("MatchToCoastline_long", 0, 2, 8, 1); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 9; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
         }
         case  2:
         if (kw_args > 0) {
@@ -2976,12 +3056,18 @@ static PyObject *__pyx_pw_18coastline_matching_1MatchToCoastline_long(PyObject *
           PyObject* value = PyDict_GetItem(__pyx_kwds, __pyx_n_s_searchPixelRadius);
           if (value) { values[6] = value; kw_args--; }
         }
+        case  7:
+        if (kw_args > 0) {
+          PyObject* value = PyDict_GetItem(__pyx_kwds, __pyx_n_s_logLevel);
+          if (value) { values[7] = value; kw_args--; }
+        }
       }
       if (unlikely(kw_args > 0)) {
         if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "MatchToCoastline_long") < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 9; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
       }
     } else {
       switch (PyTuple_GET_SIZE(__pyx_args)) {
+        case  8: values[7] = PyTuple_GET_ITEM(__pyx_args, 7);
         case  7: values[6] = PyTuple_GET_ITEM(__pyx_args, 6);
         case  6: values[5] = PyTuple_GET_ITEM(__pyx_args, 5);
         case  5: values[4] = PyTuple_GET_ITEM(__pyx_args, 4);
@@ -3020,23 +3106,24 @@ static PyObject *__pyx_pw_18coastline_matching_1MatchToCoastline_long(PyObject *
     } else {
       __pyx_v_searchPixelRadius = ((int)10);
     }
+    __pyx_v_logLevel = values[7];
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("MatchToCoastline_long", 0, 2, 7, PyTuple_GET_SIZE(__pyx_args)); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 9; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+  __Pyx_RaiseArgtupleInvalid("MatchToCoastline_long", 0, 2, 8, PyTuple_GET_SIZE(__pyx_args)); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 9; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
   __pyx_L3_error:;
   __Pyx_AddTraceback("coastline_matching.MatchToCoastline_long", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  __pyx_r = __pyx_pf_18coastline_matching_MatchToCoastline_long(__pyx_self, __pyx_v_data, __pyx_v_landMask, __pyx_v__NDV, __pyx_v_applyClip, __pyx_v_applyFill, __pyx_v_useNearestNPixels, __pyx_v_searchPixelRadius);
+  __pyx_r = __pyx_pf_18coastline_matching_MatchToCoastline_long(__pyx_self, __pyx_v_data, __pyx_v_landMask, __pyx_v__NDV, __pyx_v_applyClip, __pyx_v_applyFill, __pyx_v_useNearestNPixels, __pyx_v_searchPixelRadius, __pyx_v_logLevel);
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_18coastline_matching_MatchToCoastline_long(CYTHON_UNUSED PyObject *__pyx_self, __Pyx_memviewslice __pyx_v_data, __Pyx_memviewslice __pyx_v_landMask, PY_LONG_LONG __pyx_v__NDV, char __pyx_v_applyClip, char __pyx_v_applyFill, int __pyx_v_useNearestNPixels, int __pyx_v_searchPixelRadius) {
+static PyObject *__pyx_pf_18coastline_matching_MatchToCoastline_long(CYTHON_UNUSED PyObject *__pyx_self, __Pyx_memviewslice __pyx_v_data, __Pyx_memviewslice __pyx_v_landMask, PY_LONG_LONG __pyx_v__NDV, char __pyx_v_applyClip, char __pyx_v_applyFill, int __pyx_v_useNearestNPixels, int __pyx_v_searchPixelRadius, PyObject *__pyx_v_logLevel) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
@@ -3048,12 +3135,13 @@ static PyObject *__pyx_pf_18coastline_matching_MatchToCoastline_long(CYTHON_UNUS
   __Pyx_XDECREF(__pyx_r);
   if (unlikely(!__pyx_v_data.memview)) { __Pyx_RaiseUnboundLocalError("data"); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 9; __pyx_clineno = __LINE__; goto __pyx_L1_error;} }
   if (unlikely(!__pyx_v_landMask.memview)) { __Pyx_RaiseUnboundLocalError("landMask"); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 9; __pyx_clineno = __LINE__; goto __pyx_L1_error;} }
-  __pyx_t_2.__pyx_n = 5;
+  __pyx_t_2.__pyx_n = 6;
   __pyx_t_2._NDV = __pyx_v__NDV;
   __pyx_t_2.applyClip = __pyx_v_applyClip;
   __pyx_t_2.applyFill = __pyx_v_applyFill;
   __pyx_t_2.useNearestNPixels = __pyx_v_useNearestNPixels;
   __pyx_t_2.searchPixelRadius = __pyx_v_searchPixelRadius;
+  __pyx_t_2.logLevel = __pyx_v_logLevel;
   __pyx_t_1 = __pyx_f_18coastline_matching_MatchToCoastline_long(__pyx_v_data, __pyx_v_landMask, 0, &__pyx_t_2); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 9; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
@@ -3073,7 +3161,7 @@ static PyObject *__pyx_pf_18coastline_matching_MatchToCoastline_long(CYTHON_UNUS
   return __pyx_r;
 }
 
-/* "coastline_matching.pyx":162
+/* "coastline_matching.pyx":163
  *     return failedLocs
  * 
  * cpdef MatchToCoastline_Float(float[:,::1] data, char[:,::1] landMask, float _NDV = -9999,             # <<<<<<<<<<<<<<
@@ -3088,6 +3176,7 @@ static PyObject *__pyx_f_18coastline_matching_MatchToCoastline_Float(__Pyx_memvi
   char __pyx_v_applyFill = ((char)1);
   int __pyx_v_useNearestNPixels = ((int)1);
   int __pyx_v_searchPixelRadius = ((int)10);
+  PyObject *__pyx_v_logLevel = __pyx_k__16;
   Py_ssize_t __pyx_v_xShapeIn;
   Py_ssize_t __pyx_v_yShapeIn;
   Py_ssize_t __pyx_v_xIn;
@@ -3110,6 +3199,7 @@ static PyObject *__pyx_f_18coastline_matching_MatchToCoastline_Float(__Pyx_memvi
   PyObject *__pyx_v_npTmpTable = NULL;
   PyObject *__pyx_v_order = NULL;
   PyObject *__pyx_v_nbrTable = NULL;
+  PyObject *__pyx_v_logger = NULL;
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
@@ -3166,6 +3256,9 @@ static PyObject *__pyx_f_18coastline_matching_MatchToCoastline_Float(__Pyx_memvi
             __pyx_v_useNearestNPixels = __pyx_optional_args->useNearestNPixels;
             if (__pyx_optional_args->__pyx_n > 4) {
               __pyx_v_searchPixelRadius = __pyx_optional_args->searchPixelRadius;
+              if (__pyx_optional_args->__pyx_n > 5) {
+                __pyx_v_logLevel = __pyx_optional_args->logLevel;
+              }
             }
           }
         }
@@ -3173,7 +3266,7 @@ static PyObject *__pyx_f_18coastline_matching_MatchToCoastline_Float(__Pyx_memvi
     }
   }
 
-  /* "coastline_matching.pyx":220
+  /* "coastline_matching.pyx":222
  *         int reallocationCount_prv
  * 
  *     yShapeIn = data.shape[0]             # <<<<<<<<<<<<<<
@@ -3182,7 +3275,7 @@ static PyObject *__pyx_f_18coastline_matching_MatchToCoastline_Float(__Pyx_memvi
  */
   __pyx_v_yShapeIn = (__pyx_v_data.shape[0]);
 
-  /* "coastline_matching.pyx":221
+  /* "coastline_matching.pyx":223
  * 
  *     yShapeIn = data.shape[0]
  *     xShapeIn = data.shape[1]             # <<<<<<<<<<<<<<
@@ -3191,7 +3284,7 @@ static PyObject *__pyx_f_18coastline_matching_MatchToCoastline_Float(__Pyx_memvi
  */
   __pyx_v_xShapeIn = (__pyx_v_data.shape[1]);
 
-  /* "coastline_matching.pyx":222
+  /* "coastline_matching.pyx":224
  *     yShapeIn = data.shape[0]
  *     xShapeIn = data.shape[1]
  *     assert landMask.shape[0] == yShapeIn             # <<<<<<<<<<<<<<
@@ -3202,12 +3295,12 @@ static PyObject *__pyx_f_18coastline_matching_MatchToCoastline_Float(__Pyx_memvi
   if (unlikely(!Py_OptimizeFlag)) {
     if (unlikely(!(((__pyx_v_landMask.shape[0]) == __pyx_v_yShapeIn) != 0))) {
       PyErr_SetNone(PyExc_AssertionError);
-      {__pyx_filename = __pyx_f[0]; __pyx_lineno = 222; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      {__pyx_filename = __pyx_f[0]; __pyx_lineno = 224; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     }
   }
   #endif
 
-  /* "coastline_matching.pyx":223
+  /* "coastline_matching.pyx":225
  *     xShapeIn = data.shape[1]
  *     assert landMask.shape[0] == yShapeIn
  *     assert landMask.shape[1] == xShapeIn             # <<<<<<<<<<<<<<
@@ -3218,36 +3311,36 @@ static PyObject *__pyx_f_18coastline_matching_MatchToCoastline_Float(__Pyx_memvi
   if (unlikely(!Py_OptimizeFlag)) {
     if (unlikely(!(((__pyx_v_landMask.shape[1]) == __pyx_v_xShapeIn) != 0))) {
       PyErr_SetNone(PyExc_AssertionError);
-      {__pyx_filename = __pyx_f[0]; __pyx_lineno = 223; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      {__pyx_filename = __pyx_f[0]; __pyx_lineno = 225; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     }
   }
   #endif
 
-  /* "coastline_matching.pyx":227
+  /* "coastline_matching.pyx":229
  *     # Generate the table of coordinate pairs which when followed in order specify the offsets for a spiral
  *     # search pattern.
  *     diam = searchPixelRadius * 2 + 1             # <<<<<<<<<<<<<<
  *     inds = np.indices([diam,diam]) - searchPixelRadius
  *     distTmp = np.sqrt((inds ** 2).sum(0))
  */
-  __pyx_t_1 = __Pyx_PyInt_From_long(((__pyx_v_searchPixelRadius * 2) + 1)); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 227; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __Pyx_PyInt_From_long(((__pyx_v_searchPixelRadius * 2) + 1)); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 229; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_v_diam = __pyx_t_1;
   __pyx_t_1 = 0;
 
-  /* "coastline_matching.pyx":228
+  /* "coastline_matching.pyx":230
  *     # search pattern.
  *     diam = searchPixelRadius * 2 + 1
  *     inds = np.indices([diam,diam]) - searchPixelRadius             # <<<<<<<<<<<<<<
  *     distTmp = np.sqrt((inds ** 2).sum(0))
  *     npTmpTable = ((inds.T).reshape(diam**2, 2))
  */
-  __pyx_t_2 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 228; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_2 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 230; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_indices); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 228; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_indices); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 230; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = PyList_New(2); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 228; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_2 = PyList_New(2); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 230; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_INCREF(__pyx_v_diam);
   PyList_SET_ITEM(__pyx_t_2, 0, __pyx_v_diam);
@@ -3266,48 +3359,48 @@ static PyObject *__pyx_f_18coastline_matching_MatchToCoastline_Float(__Pyx_memvi
     }
   }
   if (!__pyx_t_4) {
-    __pyx_t_1 = __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_t_2); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 228; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_1 = __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_t_2); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 230; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
     __Pyx_GOTREF(__pyx_t_1);
   } else {
-    __pyx_t_5 = PyTuple_New(1+1); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 228; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_5 = PyTuple_New(1+1); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 230; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_5);
     PyTuple_SET_ITEM(__pyx_t_5, 0, __pyx_t_4); __Pyx_GIVEREF(__pyx_t_4); __pyx_t_4 = NULL;
     PyTuple_SET_ITEM(__pyx_t_5, 0+1, __pyx_t_2);
     __Pyx_GIVEREF(__pyx_t_2);
     __pyx_t_2 = 0;
-    __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_t_5, NULL); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 228; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_t_5, NULL); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 230; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
   }
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  __pyx_t_3 = __Pyx_PyInt_From_int(__pyx_v_searchPixelRadius); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 228; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_3 = __Pyx_PyInt_From_int(__pyx_v_searchPixelRadius); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 230; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_5 = PyNumber_Subtract(__pyx_t_1, __pyx_t_3); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 228; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_5 = PyNumber_Subtract(__pyx_t_1, __pyx_t_3); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 230; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_5);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __pyx_v_inds = __pyx_t_5;
   __pyx_t_5 = 0;
 
-  /* "coastline_matching.pyx":229
+  /* "coastline_matching.pyx":231
  *     diam = searchPixelRadius * 2 + 1
  *     inds = np.indices([diam,diam]) - searchPixelRadius
  *     distTmp = np.sqrt((inds ** 2).sum(0))             # <<<<<<<<<<<<<<
  *     npTmpTable = ((inds.T).reshape(diam**2, 2))
  *     npTmpTable = np.append(npTmpTable, distTmp.ravel()[:,None], axis=1)
  */
-  __pyx_t_3 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 229; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_3 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 231; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_sqrt); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 229; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_sqrt); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 231; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  __pyx_t_3 = PyNumber_Power(__pyx_v_inds, __pyx_int_2, Py_None); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 229; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_3 = PyNumber_Power(__pyx_v_inds, __pyx_int_2, Py_None); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 231; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_sum); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 229; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_sum); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 231; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  __pyx_t_3 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_tuple__15, NULL); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 229; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_3 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_tuple__17, NULL); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 231; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __pyx_t_2 = NULL;
@@ -3321,17 +3414,17 @@ static PyObject *__pyx_f_18coastline_matching_MatchToCoastline_Float(__Pyx_memvi
     }
   }
   if (!__pyx_t_2) {
-    __pyx_t_5 = __Pyx_PyObject_CallOneArg(__pyx_t_1, __pyx_t_3); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 229; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_5 = __Pyx_PyObject_CallOneArg(__pyx_t_1, __pyx_t_3); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 231; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
     __Pyx_GOTREF(__pyx_t_5);
   } else {
-    __pyx_t_4 = PyTuple_New(1+1); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 229; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_4 = PyTuple_New(1+1); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 231; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_4);
     PyTuple_SET_ITEM(__pyx_t_4, 0, __pyx_t_2); __Pyx_GIVEREF(__pyx_t_2); __pyx_t_2 = NULL;
     PyTuple_SET_ITEM(__pyx_t_4, 0+1, __pyx_t_3);
     __Pyx_GIVEREF(__pyx_t_3);
     __pyx_t_3 = 0;
-    __pyx_t_5 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_t_4, NULL); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 229; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_5 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_t_4, NULL); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 231; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_5);
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   }
@@ -3339,19 +3432,19 @@ static PyObject *__pyx_f_18coastline_matching_MatchToCoastline_Float(__Pyx_memvi
   __pyx_v_distTmp = __pyx_t_5;
   __pyx_t_5 = 0;
 
-  /* "coastline_matching.pyx":230
+  /* "coastline_matching.pyx":232
  *     inds = np.indices([diam,diam]) - searchPixelRadius
  *     distTmp = np.sqrt((inds ** 2).sum(0))
  *     npTmpTable = ((inds.T).reshape(diam**2, 2))             # <<<<<<<<<<<<<<
  *     npTmpTable = np.append(npTmpTable, distTmp.ravel()[:,None], axis=1)
  *     # sort the table by distance then x then y (the arguments are last-sort-first)
  */
-  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_inds, __pyx_n_s_T); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 230; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_inds, __pyx_n_s_T); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 232; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_reshape); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 230; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_reshape); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 232; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_1 = PyNumber_Power(__pyx_v_diam, __pyx_int_2, Py_None); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 230; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = PyNumber_Power(__pyx_v_diam, __pyx_int_2, Py_None); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 232; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_t_3 = NULL;
   __pyx_t_6 = 0;
@@ -3365,7 +3458,7 @@ static PyObject *__pyx_f_18coastline_matching_MatchToCoastline_Float(__Pyx_memvi
       __pyx_t_6 = 1;
     }
   }
-  __pyx_t_2 = PyTuple_New(2+__pyx_t_6); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 230; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_2 = PyTuple_New(2+__pyx_t_6); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 232; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_2);
   if (__pyx_t_3) {
     PyTuple_SET_ITEM(__pyx_t_2, 0, __pyx_t_3); __Pyx_GIVEREF(__pyx_t_3); __pyx_t_3 = NULL;
@@ -3376,26 +3469,26 @@ static PyObject *__pyx_f_18coastline_matching_MatchToCoastline_Float(__Pyx_memvi
   PyTuple_SET_ITEM(__pyx_t_2, 1+__pyx_t_6, __pyx_int_2);
   __Pyx_GIVEREF(__pyx_int_2);
   __pyx_t_1 = 0;
-  __pyx_t_5 = __Pyx_PyObject_Call(__pyx_t_4, __pyx_t_2, NULL); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 230; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_5 = __Pyx_PyObject_Call(__pyx_t_4, __pyx_t_2, NULL); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 232; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_5);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   __pyx_v_npTmpTable = __pyx_t_5;
   __pyx_t_5 = 0;
 
-  /* "coastline_matching.pyx":231
+  /* "coastline_matching.pyx":233
  *     distTmp = np.sqrt((inds ** 2).sum(0))
  *     npTmpTable = ((inds.T).reshape(diam**2, 2))
  *     npTmpTable = np.append(npTmpTable, distTmp.ravel()[:,None], axis=1)             # <<<<<<<<<<<<<<
  *     # sort the table by distance then x then y (the arguments are last-sort-first)
  *     order = np.lexsort((npTmpTable[:,1], npTmpTable[:,0], npTmpTable[:,2]))
  */
-  __pyx_t_5 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 231; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_5 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 233; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_5);
-  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_5, __pyx_n_s_append); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 231; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_5, __pyx_n_s_append); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 233; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_distTmp, __pyx_n_s_ravel); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 231; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_distTmp, __pyx_n_s_ravel); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 233; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_2);
   __pyx_t_1 = NULL;
   if (CYTHON_COMPILING_IN_CPYTHON && likely(PyMethod_Check(__pyx_t_2))) {
@@ -3408,17 +3501,17 @@ static PyObject *__pyx_f_18coastline_matching_MatchToCoastline_Float(__Pyx_memvi
     }
   }
   if (__pyx_t_1) {
-    __pyx_t_5 = __Pyx_PyObject_CallOneArg(__pyx_t_2, __pyx_t_1); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 231; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_5 = __Pyx_PyObject_CallOneArg(__pyx_t_2, __pyx_t_1); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 233; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   } else {
-    __pyx_t_5 = __Pyx_PyObject_CallNoArg(__pyx_t_2); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 231; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_5 = __Pyx_PyObject_CallNoArg(__pyx_t_2); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 233; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   }
   __Pyx_GOTREF(__pyx_t_5);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = PyObject_GetItem(__pyx_t_5, __pyx_tuple__17); if (unlikely(__pyx_t_2 == NULL)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 231; __pyx_clineno = __LINE__; goto __pyx_L1_error;};
+  __pyx_t_2 = PyObject_GetItem(__pyx_t_5, __pyx_tuple__19); if (unlikely(__pyx_t_2 == NULL)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 233; __pyx_clineno = __LINE__; goto __pyx_L1_error;};
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-  __pyx_t_5 = PyTuple_New(2); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 231; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_5 = PyTuple_New(2); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 233; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_5);
   __Pyx_INCREF(__pyx_v_npTmpTable);
   PyTuple_SET_ITEM(__pyx_t_5, 0, __pyx_v_npTmpTable);
@@ -3426,10 +3519,10 @@ static PyObject *__pyx_f_18coastline_matching_MatchToCoastline_Float(__Pyx_memvi
   PyTuple_SET_ITEM(__pyx_t_5, 1, __pyx_t_2);
   __Pyx_GIVEREF(__pyx_t_2);
   __pyx_t_2 = 0;
-  __pyx_t_2 = PyDict_New(); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 231; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_2 = PyDict_New(); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 233; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_2);
-  if (PyDict_SetItem(__pyx_t_2, __pyx_n_s_axis, __pyx_int_1) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 231; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_4, __pyx_t_5, __pyx_t_2); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 231; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (PyDict_SetItem(__pyx_t_2, __pyx_n_s_axis, __pyx_int_1) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 233; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_4, __pyx_t_5, __pyx_t_2); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 233; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
@@ -3437,25 +3530,25 @@ static PyObject *__pyx_f_18coastline_matching_MatchToCoastline_Float(__Pyx_memvi
   __Pyx_DECREF_SET(__pyx_v_npTmpTable, __pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "coastline_matching.pyx":233
+  /* "coastline_matching.pyx":235
  *     npTmpTable = np.append(npTmpTable, distTmp.ravel()[:,None], axis=1)
  *     # sort the table by distance then x then y (the arguments are last-sort-first)
  *     order = np.lexsort((npTmpTable[:,1], npTmpTable[:,0], npTmpTable[:,2]))             # <<<<<<<<<<<<<<
  * 
  *     # npTmpTable has shape ((radius*2+1)**2, 3) and represents the offset coordinates of all cells in
  */
-  __pyx_t_2 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 233; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_2 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 235; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_lexsort); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 233; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_lexsort); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 235; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_5);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = PyObject_GetItem(__pyx_v_npTmpTable, __pyx_tuple__19); if (unlikely(__pyx_t_2 == NULL)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 233; __pyx_clineno = __LINE__; goto __pyx_L1_error;};
+  __pyx_t_2 = PyObject_GetItem(__pyx_v_npTmpTable, __pyx_tuple__21); if (unlikely(__pyx_t_2 == NULL)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 235; __pyx_clineno = __LINE__; goto __pyx_L1_error;};
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_4 = PyObject_GetItem(__pyx_v_npTmpTable, __pyx_tuple__21); if (unlikely(__pyx_t_4 == NULL)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 233; __pyx_clineno = __LINE__; goto __pyx_L1_error;};
+  __pyx_t_4 = PyObject_GetItem(__pyx_v_npTmpTable, __pyx_tuple__23); if (unlikely(__pyx_t_4 == NULL)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 235; __pyx_clineno = __LINE__; goto __pyx_L1_error;};
   __Pyx_GOTREF(__pyx_t_4);
-  __pyx_t_3 = PyObject_GetItem(__pyx_v_npTmpTable, __pyx_tuple__23); if (unlikely(__pyx_t_3 == NULL)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 233; __pyx_clineno = __LINE__; goto __pyx_L1_error;};
+  __pyx_t_3 = PyObject_GetItem(__pyx_v_npTmpTable, __pyx_tuple__25); if (unlikely(__pyx_t_3 == NULL)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 235; __pyx_clineno = __LINE__; goto __pyx_L1_error;};
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_7 = PyTuple_New(3); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 233; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_7 = PyTuple_New(3); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 235; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_7);
   PyTuple_SET_ITEM(__pyx_t_7, 0, __pyx_t_2);
   __Pyx_GIVEREF(__pyx_t_2);
@@ -3477,17 +3570,17 @@ static PyObject *__pyx_f_18coastline_matching_MatchToCoastline_Float(__Pyx_memvi
     }
   }
   if (!__pyx_t_3) {
-    __pyx_t_1 = __Pyx_PyObject_CallOneArg(__pyx_t_5, __pyx_t_7); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 233; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_1 = __Pyx_PyObject_CallOneArg(__pyx_t_5, __pyx_t_7); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 235; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
     __Pyx_GOTREF(__pyx_t_1);
   } else {
-    __pyx_t_4 = PyTuple_New(1+1); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 233; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_4 = PyTuple_New(1+1); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 235; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_4);
     PyTuple_SET_ITEM(__pyx_t_4, 0, __pyx_t_3); __Pyx_GIVEREF(__pyx_t_3); __pyx_t_3 = NULL;
     PyTuple_SET_ITEM(__pyx_t_4, 0+1, __pyx_t_7);
     __Pyx_GIVEREF(__pyx_t_7);
     __pyx_t_7 = 0;
-    __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_5, __pyx_t_4, NULL); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 233; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_5, __pyx_t_4, NULL); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 235; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   }
@@ -3495,19 +3588,19 @@ static PyObject *__pyx_f_18coastline_matching_MatchToCoastline_Float(__Pyx_memvi
   __pyx_v_order = __pyx_t_1;
   __pyx_t_1 = 0;
 
-  /* "coastline_matching.pyx":239
+  /* "coastline_matching.pyx":241
  *     # npTmpTable[:,0] is x-offsets, npTmpTable[:,1] is y-offsets,
  *     # npTmpTable[:,2] is distance.
  *     npTmpTable = np.take(npTmpTable,order,axis=0)             # <<<<<<<<<<<<<<
  * 
  *     # Transpose this into an array in C-contiguous layout and with three rows and many columns,
  */
-  __pyx_t_1 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 239; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 241; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_take); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 239; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_take); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 241; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_5);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_1 = PyTuple_New(2); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 239; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = PyTuple_New(2); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 241; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_INCREF(__pyx_v_npTmpTable);
   PyTuple_SET_ITEM(__pyx_t_1, 0, __pyx_v_npTmpTable);
@@ -3515,10 +3608,10 @@ static PyObject *__pyx_f_18coastline_matching_MatchToCoastline_Float(__Pyx_memvi
   __Pyx_INCREF(__pyx_v_order);
   PyTuple_SET_ITEM(__pyx_t_1, 1, __pyx_v_order);
   __Pyx_GIVEREF(__pyx_v_order);
-  __pyx_t_4 = PyDict_New(); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 239; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_4 = PyDict_New(); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 241; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_4);
-  if (PyDict_SetItem(__pyx_t_4, __pyx_n_s_axis, __pyx_int_0) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 239; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __pyx_t_7 = __Pyx_PyObject_Call(__pyx_t_5, __pyx_t_1, __pyx_t_4); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 239; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (PyDict_SetItem(__pyx_t_4, __pyx_n_s_axis, __pyx_int_0) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 241; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_7 = __Pyx_PyObject_Call(__pyx_t_5, __pyx_t_1, __pyx_t_4); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 241; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_7);
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
@@ -3526,40 +3619,40 @@ static PyObject *__pyx_f_18coastline_matching_MatchToCoastline_Float(__Pyx_memvi
   __Pyx_DECREF_SET(__pyx_v_npTmpTable, __pyx_t_7);
   __pyx_t_7 = 0;
 
-  /* "coastline_matching.pyx":245
+  /* "coastline_matching.pyx":247
  *     # Only transfer the values relating to the cells within the desired radius (cut the corners
  *     # off the square to make a circle).
  *     nbrTable = np.copy((npTmpTable[npTmpTable[:,2] <= searchPixelRadius]).T, order='c')             # <<<<<<<<<<<<<<
  * 
  *     # transfer this numpy array to  to a native C object (memoryview)
  */
-  __pyx_t_7 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 245; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_7 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 247; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_7);
-  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_7, __pyx_n_s_copy); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 245; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_7, __pyx_n_s_copy); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 247; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
-  __pyx_t_7 = PyObject_GetItem(__pyx_v_npTmpTable, __pyx_tuple__25); if (unlikely(__pyx_t_7 == NULL)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 245; __pyx_clineno = __LINE__; goto __pyx_L1_error;};
+  __pyx_t_7 = PyObject_GetItem(__pyx_v_npTmpTable, __pyx_tuple__27); if (unlikely(__pyx_t_7 == NULL)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 247; __pyx_clineno = __LINE__; goto __pyx_L1_error;};
   __Pyx_GOTREF(__pyx_t_7);
-  __pyx_t_1 = __Pyx_PyInt_From_int(__pyx_v_searchPixelRadius); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 245; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __Pyx_PyInt_From_int(__pyx_v_searchPixelRadius); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 247; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_5 = PyObject_RichCompare(__pyx_t_7, __pyx_t_1, Py_LE); __Pyx_XGOTREF(__pyx_t_5); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 245; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_5 = PyObject_RichCompare(__pyx_t_7, __pyx_t_1, Py_LE); __Pyx_XGOTREF(__pyx_t_5); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 247; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_1 = PyObject_GetItem(__pyx_v_npTmpTable, __pyx_t_5); if (unlikely(__pyx_t_1 == NULL)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 245; __pyx_clineno = __LINE__; goto __pyx_L1_error;};
+  __pyx_t_1 = PyObject_GetItem(__pyx_v_npTmpTable, __pyx_t_5); if (unlikely(__pyx_t_1 == NULL)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 247; __pyx_clineno = __LINE__; goto __pyx_L1_error;};
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-  __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_T); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 245; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_T); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 247; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_5);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_1 = PyTuple_New(1); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 245; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = PyTuple_New(1); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 247; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
   PyTuple_SET_ITEM(__pyx_t_1, 0, __pyx_t_5);
   __Pyx_GIVEREF(__pyx_t_5);
   __pyx_t_5 = 0;
-  __pyx_t_5 = PyDict_New(); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 245; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_5 = PyDict_New(); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 247; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_5);
-  if (PyDict_SetItem(__pyx_t_5, __pyx_n_s_order, __pyx_n_s_c) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 245; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __pyx_t_7 = __Pyx_PyObject_Call(__pyx_t_4, __pyx_t_1, __pyx_t_5); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 245; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (PyDict_SetItem(__pyx_t_5, __pyx_n_s_order, __pyx_n_s_c) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 247; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_7 = __Pyx_PyObject_Call(__pyx_t_4, __pyx_t_1, __pyx_t_5); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 247; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_7);
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
@@ -3567,19 +3660,19 @@ static PyObject *__pyx_f_18coastline_matching_MatchToCoastline_Float(__Pyx_memvi
   __pyx_v_nbrTable = __pyx_t_7;
   __pyx_t_7 = 0;
 
-  /* "coastline_matching.pyx":251
+  /* "coastline_matching.pyx":253
  *     # to int type once here. This saves a great deal of time compared to
  *     # casting repeatedly inside the inner loop
  *     nbrIntCoords = np.asarray(nbrTable[0:2,:]).astype(np.int32)             # <<<<<<<<<<<<<<
  *     _MAX_NEIGHBOURS_TO_CHECK = nbrIntCoords.shape[1]
  * 
  */
-  __pyx_t_1 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 251; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 253; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_asarray); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 251; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_asarray); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 253; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_1 = PyObject_GetItem(__pyx_v_nbrTable, __pyx_tuple__28); if (unlikely(__pyx_t_1 == NULL)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 251; __pyx_clineno = __LINE__; goto __pyx_L1_error;};
+  __pyx_t_1 = PyObject_GetItem(__pyx_v_nbrTable, __pyx_tuple__30); if (unlikely(__pyx_t_1 == NULL)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 253; __pyx_clineno = __LINE__; goto __pyx_L1_error;};
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_t_3 = NULL;
   if (CYTHON_COMPILING_IN_CPYTHON && unlikely(PyMethod_Check(__pyx_t_4))) {
@@ -3592,27 +3685,27 @@ static PyObject *__pyx_f_18coastline_matching_MatchToCoastline_Float(__Pyx_memvi
     }
   }
   if (!__pyx_t_3) {
-    __pyx_t_5 = __Pyx_PyObject_CallOneArg(__pyx_t_4, __pyx_t_1); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 251; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_5 = __Pyx_PyObject_CallOneArg(__pyx_t_4, __pyx_t_1); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 253; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
     __Pyx_GOTREF(__pyx_t_5);
   } else {
-    __pyx_t_2 = PyTuple_New(1+1); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 251; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_2 = PyTuple_New(1+1); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 253; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_2);
     PyTuple_SET_ITEM(__pyx_t_2, 0, __pyx_t_3); __Pyx_GIVEREF(__pyx_t_3); __pyx_t_3 = NULL;
     PyTuple_SET_ITEM(__pyx_t_2, 0+1, __pyx_t_1);
     __Pyx_GIVEREF(__pyx_t_1);
     __pyx_t_1 = 0;
-    __pyx_t_5 = __Pyx_PyObject_Call(__pyx_t_4, __pyx_t_2, NULL); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 251; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_5 = __Pyx_PyObject_Call(__pyx_t_4, __pyx_t_2, NULL); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 253; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_5);
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   }
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_5, __pyx_n_s_astype); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 251; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_5, __pyx_n_s_astype); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 253; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-  __pyx_t_5 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 251; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_5 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 253; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_5);
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_5, __pyx_n_s_int32); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 251; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_5, __pyx_n_s_int32); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 253; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
   __pyx_t_5 = NULL;
@@ -3626,29 +3719,29 @@ static PyObject *__pyx_f_18coastline_matching_MatchToCoastline_Float(__Pyx_memvi
     }
   }
   if (!__pyx_t_5) {
-    __pyx_t_7 = __Pyx_PyObject_CallOneArg(__pyx_t_4, __pyx_t_2); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 251; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_7 = __Pyx_PyObject_CallOneArg(__pyx_t_4, __pyx_t_2); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 253; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
     __Pyx_GOTREF(__pyx_t_7);
   } else {
-    __pyx_t_1 = PyTuple_New(1+1); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 251; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_1 = PyTuple_New(1+1); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 253; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_1);
     PyTuple_SET_ITEM(__pyx_t_1, 0, __pyx_t_5); __Pyx_GIVEREF(__pyx_t_5); __pyx_t_5 = NULL;
     PyTuple_SET_ITEM(__pyx_t_1, 0+1, __pyx_t_2);
     __Pyx_GIVEREF(__pyx_t_2);
     __pyx_t_2 = 0;
-    __pyx_t_7 = __Pyx_PyObject_Call(__pyx_t_4, __pyx_t_1, NULL); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 251; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_7 = __Pyx_PyObject_Call(__pyx_t_4, __pyx_t_1, NULL); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 253; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_7);
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   }
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   __pyx_t_8 = __Pyx_PyObject_to_MemoryviewSlice_d_dc_int(__pyx_t_7);
-  if (unlikely(!__pyx_t_8.memview)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 251; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (unlikely(!__pyx_t_8.memview)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 253; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
   __pyx_v_nbrIntCoords = __pyx_t_8;
   __pyx_t_8.memview = NULL;
   __pyx_t_8.data = NULL;
 
-  /* "coastline_matching.pyx":252
+  /* "coastline_matching.pyx":254
  *     # casting repeatedly inside the inner loop
  *     nbrIntCoords = np.asarray(nbrTable[0:2,:]).astype(np.int32)
  *     _MAX_NEIGHBOURS_TO_CHECK = nbrIntCoords.shape[1]             # <<<<<<<<<<<<<<
@@ -3657,7 +3750,7 @@ static PyObject *__pyx_f_18coastline_matching_MatchToCoastline_Float(__Pyx_memvi
  */
   __pyx_v__MAX_NEIGHBOURS_TO_CHECK = (__pyx_v_nbrIntCoords.shape[1]);
 
-  /* "coastline_matching.pyx":254
+  /* "coastline_matching.pyx":256
  *     _MAX_NEIGHBOURS_TO_CHECK = nbrIntCoords.shape[1]
  * 
  *     filledCells = 0             # <<<<<<<<<<<<<<
@@ -3666,7 +3759,7 @@ static PyObject *__pyx_f_18coastline_matching_MatchToCoastline_Float(__Pyx_memvi
  */
   __pyx_v_filledCells = 0;
 
-  /* "coastline_matching.pyx":255
+  /* "coastline_matching.pyx":257
  * 
  *     filledCells = 0
  *     failedFills = 0             # <<<<<<<<<<<<<<
@@ -3675,7 +3768,7 @@ static PyObject *__pyx_f_18coastline_matching_MatchToCoastline_Float(__Pyx_memvi
  */
   __pyx_v_failedFills = 0;
 
-  /* "coastline_matching.pyx":256
+  /* "coastline_matching.pyx":258
  *     filledCells = 0
  *     failedFills = 0
  *     clippedCells = 0             # <<<<<<<<<<<<<<
@@ -3684,19 +3777,19 @@ static PyObject *__pyx_f_18coastline_matching_MatchToCoastline_Float(__Pyx_memvi
  */
   __pyx_v_clippedCells = 0;
 
-  /* "coastline_matching.pyx":258
+  /* "coastline_matching.pyx":260
  *     clippedCells = 0
  * 
  *     failedLocs = np.zeros_like(landMask)             # <<<<<<<<<<<<<<
  * 
  *     # run the clip step, if required
  */
-  __pyx_t_4 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 258; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_4 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 260; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_4);
-  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_n_s_zeros_like); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 258; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_n_s_zeros_like); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 260; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  __pyx_t_4 = __pyx_memoryview_fromslice(__pyx_v_landMask, 2, (PyObject *(*)(char *)) __pyx_memview_get_char, (int (*)(char *, PyObject *)) __pyx_memview_set_char, 0);; if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 258; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_4 = __pyx_memoryview_fromslice(__pyx_v_landMask, 2, (PyObject *(*)(char *)) __pyx_memview_get_char, (int (*)(char *, PyObject *)) __pyx_memview_set_char, 0);; if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 260; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_4);
   __pyx_t_2 = NULL;
   if (CYTHON_COMPILING_IN_CPYTHON && unlikely(PyMethod_Check(__pyx_t_1))) {
@@ -3709,29 +3802,29 @@ static PyObject *__pyx_f_18coastline_matching_MatchToCoastline_Float(__Pyx_memvi
     }
   }
   if (!__pyx_t_2) {
-    __pyx_t_7 = __Pyx_PyObject_CallOneArg(__pyx_t_1, __pyx_t_4); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 258; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_7 = __Pyx_PyObject_CallOneArg(__pyx_t_1, __pyx_t_4); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 260; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
     __Pyx_GOTREF(__pyx_t_7);
   } else {
-    __pyx_t_5 = PyTuple_New(1+1); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 258; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_5 = PyTuple_New(1+1); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 260; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_5);
     PyTuple_SET_ITEM(__pyx_t_5, 0, __pyx_t_2); __Pyx_GIVEREF(__pyx_t_2); __pyx_t_2 = NULL;
     PyTuple_SET_ITEM(__pyx_t_5, 0+1, __pyx_t_4);
     __Pyx_GIVEREF(__pyx_t_4);
     __pyx_t_4 = 0;
-    __pyx_t_7 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_t_5, NULL); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 258; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_7 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_t_5, NULL); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 260; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_7);
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
   }
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_t_9 = __Pyx_PyObject_to_MemoryviewSlice_d_dc_char(__pyx_t_7);
-  if (unlikely(!__pyx_t_9.memview)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 258; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (unlikely(!__pyx_t_9.memview)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 260; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
   __pyx_v_failedLocs = __pyx_t_9;
   __pyx_t_9.memview = NULL;
   __pyx_t_9.data = NULL;
 
-  /* "coastline_matching.pyx":261
+  /* "coastline_matching.pyx":263
  * 
  *     # run the clip step, if required
  *     if applyClip:             # <<<<<<<<<<<<<<
@@ -3741,7 +3834,7 @@ static PyObject *__pyx_f_18coastline_matching_MatchToCoastline_Float(__Pyx_memvi
   __pyx_t_10 = (__pyx_v_applyClip != 0);
   if (__pyx_t_10) {
 
-    /* "coastline_matching.pyx":262
+    /* "coastline_matching.pyx":264
  *     # run the clip step, if required
  *     if applyClip:
  *         for yIn in range(yShapeIn):             # <<<<<<<<<<<<<<
@@ -3752,7 +3845,7 @@ static PyObject *__pyx_f_18coastline_matching_MatchToCoastline_Float(__Pyx_memvi
     for (__pyx_t_11 = 0; __pyx_t_11 < __pyx_t_6; __pyx_t_11+=1) {
       __pyx_v_yIn = __pyx_t_11;
 
-      /* "coastline_matching.pyx":263
+      /* "coastline_matching.pyx":265
  *     if applyClip:
  *         for yIn in range(yShapeIn):
  *             for xIn in range(xShapeIn):             # <<<<<<<<<<<<<<
@@ -3763,7 +3856,7 @@ static PyObject *__pyx_f_18coastline_matching_MatchToCoastline_Float(__Pyx_memvi
       for (__pyx_t_13 = 0; __pyx_t_13 < __pyx_t_12; __pyx_t_13+=1) {
         __pyx_v_xIn = __pyx_t_13;
 
-        /* "coastline_matching.pyx":264
+        /* "coastline_matching.pyx":266
  *         for yIn in range(yShapeIn):
  *             for xIn in range(xShapeIn):
  *                 if landMask[yIn, xIn] == 0:             # <<<<<<<<<<<<<<
@@ -3783,12 +3876,12 @@ static PyObject *__pyx_f_18coastline_matching_MatchToCoastline_Float(__Pyx_memvi
         } else if (unlikely(__pyx_t_15 >= __pyx_v_landMask.shape[1])) __pyx_t_16 = 1;
         if (unlikely(__pyx_t_16 != -1)) {
           __Pyx_RaiseBufferIndexError(__pyx_t_16);
-          {__pyx_filename = __pyx_f[0]; __pyx_lineno = 264; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+          {__pyx_filename = __pyx_f[0]; __pyx_lineno = 266; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
         }
         __pyx_t_10 = (((*((char *) ( /* dim=1 */ ((char *) (((char *) ( /* dim=0 */ (__pyx_v_landMask.data + __pyx_t_14 * __pyx_v_landMask.strides[0]) )) + __pyx_t_15)) ))) == 0) != 0);
         if (__pyx_t_10) {
 
-          /* "coastline_matching.pyx":265
+          /* "coastline_matching.pyx":267
  *             for xIn in range(xShapeIn):
  *                 if landMask[yIn, xIn] == 0:
  *                     if data[yIn, xIn] != _NDV:             # <<<<<<<<<<<<<<
@@ -3808,12 +3901,12 @@ static PyObject *__pyx_f_18coastline_matching_MatchToCoastline_Float(__Pyx_memvi
           } else if (unlikely(__pyx_t_18 >= __pyx_v_data.shape[1])) __pyx_t_16 = 1;
           if (unlikely(__pyx_t_16 != -1)) {
             __Pyx_RaiseBufferIndexError(__pyx_t_16);
-            {__pyx_filename = __pyx_f[0]; __pyx_lineno = 265; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+            {__pyx_filename = __pyx_f[0]; __pyx_lineno = 267; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
           }
           __pyx_t_10 = (((*((float *) ( /* dim=1 */ ((char *) (((float *) ( /* dim=0 */ (__pyx_v_data.data + __pyx_t_17 * __pyx_v_data.strides[0]) )) + __pyx_t_18)) ))) != __pyx_v__NDV) != 0);
           if (__pyx_t_10) {
 
-            /* "coastline_matching.pyx":266
+            /* "coastline_matching.pyx":268
  *                 if landMask[yIn, xIn] == 0:
  *                     if data[yIn, xIn] != _NDV:
  *                         clippedCells += 1             # <<<<<<<<<<<<<<
@@ -3822,7 +3915,7 @@ static PyObject *__pyx_f_18coastline_matching_MatchToCoastline_Float(__Pyx_memvi
  */
             __pyx_v_clippedCells = (__pyx_v_clippedCells + 1);
 
-            /* "coastline_matching.pyx":267
+            /* "coastline_matching.pyx":269
  *                     if data[yIn, xIn] != _NDV:
  *                         clippedCells += 1
  *                         data[yIn, xIn] = _NDV             # <<<<<<<<<<<<<<
@@ -3842,7 +3935,7 @@ static PyObject *__pyx_f_18coastline_matching_MatchToCoastline_Float(__Pyx_memvi
             } else if (unlikely(__pyx_t_20 >= __pyx_v_data.shape[1])) __pyx_t_16 = 1;
             if (unlikely(__pyx_t_16 != -1)) {
               __Pyx_RaiseBufferIndexError(__pyx_t_16);
-              {__pyx_filename = __pyx_f[0]; __pyx_lineno = 267; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+              {__pyx_filename = __pyx_f[0]; __pyx_lineno = 269; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
             }
             *((float *) ( /* dim=1 */ ((char *) (((float *) ( /* dim=0 */ (__pyx_v_data.data + __pyx_t_19 * __pyx_v_data.strides[0]) )) + __pyx_t_20)) )) = __pyx_v__NDV;
             goto __pyx_L9;
@@ -3857,7 +3950,7 @@ static PyObject *__pyx_f_18coastline_matching_MatchToCoastline_Float(__Pyx_memvi
   }
   __pyx_L3:;
 
-  /* "coastline_matching.pyx":270
+  /* "coastline_matching.pyx":272
  * 
  *     # run the spread-and-fill step, if required
  *     if applyFill:             # <<<<<<<<<<<<<<
@@ -3867,7 +3960,7 @@ static PyObject *__pyx_f_18coastline_matching_MatchToCoastline_Float(__Pyx_memvi
   __pyx_t_10 = (__pyx_v_applyFill != 0);
   if (__pyx_t_10) {
 
-    /* "coastline_matching.pyx":271
+    /* "coastline_matching.pyx":273
  *     # run the spread-and-fill step, if required
  *     if applyFill:
  *         for yIn in range(yShapeIn):             # <<<<<<<<<<<<<<
@@ -3878,7 +3971,7 @@ static PyObject *__pyx_f_18coastline_matching_MatchToCoastline_Float(__Pyx_memvi
     for (__pyx_t_11 = 0; __pyx_t_11 < __pyx_t_6; __pyx_t_11+=1) {
       __pyx_v_yIn = __pyx_t_11;
 
-      /* "coastline_matching.pyx":272
+      /* "coastline_matching.pyx":274
  *     if applyFill:
  *         for yIn in range(yShapeIn):
  *             for xIn in range(xShapeIn):             # <<<<<<<<<<<<<<
@@ -3889,7 +3982,7 @@ static PyObject *__pyx_f_18coastline_matching_MatchToCoastline_Float(__Pyx_memvi
       for (__pyx_t_13 = 0; __pyx_t_13 < __pyx_t_12; __pyx_t_13+=1) {
         __pyx_v_xIn = __pyx_t_13;
 
-        /* "coastline_matching.pyx":273
+        /* "coastline_matching.pyx":275
  *         for yIn in range(yShapeIn):
  *             for xIn in range(xShapeIn):
  *                 if landMask[yIn, xIn] == 0 or data[yIn, xIn] != _NDV:             # <<<<<<<<<<<<<<
@@ -3909,7 +4002,7 @@ static PyObject *__pyx_f_18coastline_matching_MatchToCoastline_Float(__Pyx_memvi
         } else if (unlikely(__pyx_t_22 >= __pyx_v_landMask.shape[1])) __pyx_t_16 = 1;
         if (unlikely(__pyx_t_16 != -1)) {
           __Pyx_RaiseBufferIndexError(__pyx_t_16);
-          {__pyx_filename = __pyx_f[0]; __pyx_lineno = 273; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+          {__pyx_filename = __pyx_f[0]; __pyx_lineno = 275; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
         }
         __pyx_t_23 = (((*((char *) ( /* dim=1 */ ((char *) (((char *) ( /* dim=0 */ (__pyx_v_landMask.data + __pyx_t_21 * __pyx_v_landMask.strides[0]) )) + __pyx_t_22)) ))) == 0) != 0);
         if (!__pyx_t_23) {
@@ -3930,14 +4023,14 @@ static PyObject *__pyx_f_18coastline_matching_MatchToCoastline_Float(__Pyx_memvi
         } else if (unlikely(__pyx_t_25 >= __pyx_v_data.shape[1])) __pyx_t_16 = 1;
         if (unlikely(__pyx_t_16 != -1)) {
           __Pyx_RaiseBufferIndexError(__pyx_t_16);
-          {__pyx_filename = __pyx_f[0]; __pyx_lineno = 273; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+          {__pyx_filename = __pyx_f[0]; __pyx_lineno = 275; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
         }
         __pyx_t_23 = (((*((float *) ( /* dim=1 */ ((char *) (((float *) ( /* dim=0 */ (__pyx_v_data.data + __pyx_t_24 * __pyx_v_data.strides[0]) )) + __pyx_t_25)) ))) != __pyx_v__NDV) != 0);
         __pyx_t_10 = __pyx_t_23;
         __pyx_L16_bool_binop_done:;
         if (__pyx_t_10) {
 
-          /* "coastline_matching.pyx":277
+          /* "coastline_matching.pyx":279
  *                     # data out of here was optionally done previously), or
  *                     # we are on land with good data
  *                     continue             # <<<<<<<<<<<<<<
@@ -3947,7 +4040,7 @@ static PyObject *__pyx_f_18coastline_matching_MatchToCoastline_Float(__Pyx_memvi
           goto __pyx_L13_continue;
         }
 
-        /* "coastline_matching.pyx":279
+        /* "coastline_matching.pyx":281
  *                     continue
  *                 # otherwise, we are on land but have a nodata pixel: we need to fill it
  *                 reallocatedOK = 0             # <<<<<<<<<<<<<<
@@ -3956,7 +4049,7 @@ static PyObject *__pyx_f_18coastline_matching_MatchToCoastline_Float(__Pyx_memvi
  */
         __pyx_v_reallocatedOK = 0;
 
-        /* "coastline_matching.pyx":280
+        /* "coastline_matching.pyx":282
  *                 # otherwise, we are on land but have a nodata pixel: we need to fill it
  *                 reallocatedOK = 0
  *                 reallocationCount_prv = 0             # <<<<<<<<<<<<<<
@@ -3965,7 +4058,7 @@ static PyObject *__pyx_f_18coastline_matching_MatchToCoastline_Float(__Pyx_memvi
  */
         __pyx_v_reallocationCount_prv = 0;
 
-        /* "coastline_matching.pyx":281
+        /* "coastline_matching.pyx":283
  *                 reallocatedOK = 0
  *                 reallocationCount_prv = 0
  *                 reallocationSum_prv = 0             # <<<<<<<<<<<<<<
@@ -3974,7 +4067,7 @@ static PyObject *__pyx_f_18coastline_matching_MatchToCoastline_Float(__Pyx_memvi
  */
         __pyx_v_reallocationSum_prv = 0.0;
 
-        /* "coastline_matching.pyx":282
+        /* "coastline_matching.pyx":284
  *                 reallocationCount_prv = 0
  *                 reallocationSum_prv = 0
  *                 for nbrIndex_prv in range(1, _MAX_NEIGHBOURS_TO_CHECK):             # <<<<<<<<<<<<<<
@@ -3985,7 +4078,7 @@ static PyObject *__pyx_f_18coastline_matching_MatchToCoastline_Float(__Pyx_memvi
         for (__pyx_t_26 = 1; __pyx_t_26 < __pyx_t_16; __pyx_t_26+=1) {
           __pyx_v_nbrIndex_prv = __pyx_t_26;
 
-          /* "coastline_matching.pyx":283
+          /* "coastline_matching.pyx":285
  *                 reallocationSum_prv = 0
  *                 for nbrIndex_prv in range(1, _MAX_NEIGHBOURS_TO_CHECK):
  *                     if reallocationCount_prv == useNearestNPixels:             # <<<<<<<<<<<<<<
@@ -3995,7 +4088,7 @@ static PyObject *__pyx_f_18coastline_matching_MatchToCoastline_Float(__Pyx_memvi
           __pyx_t_10 = ((__pyx_v_reallocationCount_prv == __pyx_v_useNearestNPixels) != 0);
           if (__pyx_t_10) {
 
-            /* "coastline_matching.pyx":284
+            /* "coastline_matching.pyx":286
  *                 for nbrIndex_prv in range(1, _MAX_NEIGHBOURS_TO_CHECK):
  *                     if reallocationCount_prv == useNearestNPixels:
  *                         break             # <<<<<<<<<<<<<<
@@ -4005,7 +4098,7 @@ static PyObject *__pyx_f_18coastline_matching_MatchToCoastline_Float(__Pyx_memvi
             goto __pyx_L19_break;
           }
 
-          /* "coastline_matching.pyx":287
+          /* "coastline_matching.pyx":289
  * 
  *                     # use int-type coords array to avoid cast op in tight loop: yes this does become significant
  *                     xNbr = xIn + nbrIntCoords[0, nbrIndex_prv]             # <<<<<<<<<<<<<<
@@ -4025,11 +4118,11 @@ static PyObject *__pyx_f_18coastline_matching_MatchToCoastline_Float(__Pyx_memvi
           } else if (unlikely(__pyx_t_28 >= __pyx_v_nbrIntCoords.shape[1])) __pyx_t_29 = 1;
           if (unlikely(__pyx_t_29 != -1)) {
             __Pyx_RaiseBufferIndexError(__pyx_t_29);
-            {__pyx_filename = __pyx_f[0]; __pyx_lineno = 287; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+            {__pyx_filename = __pyx_f[0]; __pyx_lineno = 289; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
           }
           __pyx_v_xNbr = (__pyx_v_xIn + (*((int *) ( /* dim=1 */ ((char *) (((int *) ( /* dim=0 */ (__pyx_v_nbrIntCoords.data + __pyx_t_27 * __pyx_v_nbrIntCoords.strides[0]) )) + __pyx_t_28)) ))));
 
-          /* "coastline_matching.pyx":288
+          /* "coastline_matching.pyx":290
  *                     # use int-type coords array to avoid cast op in tight loop: yes this does become significant
  *                     xNbr = xIn + nbrIntCoords[0, nbrIndex_prv]
  *                     yNbr = yIn + nbrIntCoords[1, nbrIndex_prv]             # <<<<<<<<<<<<<<
@@ -4049,11 +4142,11 @@ static PyObject *__pyx_f_18coastline_matching_MatchToCoastline_Float(__Pyx_memvi
           } else if (unlikely(__pyx_t_31 >= __pyx_v_nbrIntCoords.shape[1])) __pyx_t_29 = 1;
           if (unlikely(__pyx_t_29 != -1)) {
             __Pyx_RaiseBufferIndexError(__pyx_t_29);
-            {__pyx_filename = __pyx_f[0]; __pyx_lineno = 288; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+            {__pyx_filename = __pyx_f[0]; __pyx_lineno = 290; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
           }
           __pyx_v_yNbr = (__pyx_v_yIn + (*((int *) ( /* dim=1 */ ((char *) (((int *) ( /* dim=0 */ (__pyx_v_nbrIntCoords.data + __pyx_t_30 * __pyx_v_nbrIntCoords.strides[0]) )) + __pyx_t_31)) ))));
 
-          /* "coastline_matching.pyx":289
+          /* "coastline_matching.pyx":291
  *                     xNbr = xIn + nbrIntCoords[0, nbrIndex_prv]
  *                     yNbr = yIn + nbrIntCoords[1, nbrIndex_prv]
  *                     if (xNbr >= 0 and xNbr < xShapeIn and             # <<<<<<<<<<<<<<
@@ -4073,7 +4166,7 @@ static PyObject *__pyx_f_18coastline_matching_MatchToCoastline_Float(__Pyx_memvi
             goto __pyx_L22_bool_binop_done;
           }
 
-          /* "coastline_matching.pyx":290
+          /* "coastline_matching.pyx":292
  *                     yNbr = yIn + nbrIntCoords[1, nbrIndex_prv]
  *                     if (xNbr >= 0 and xNbr < xShapeIn and
  *                         yNbr >= 0 and yNbr < yShapeIn and             # <<<<<<<<<<<<<<
@@ -4093,7 +4186,7 @@ static PyObject *__pyx_f_18coastline_matching_MatchToCoastline_Float(__Pyx_memvi
             goto __pyx_L22_bool_binop_done;
           }
 
-          /* "coastline_matching.pyx":291
+          /* "coastline_matching.pyx":293
  *                     if (xNbr >= 0 and xNbr < xShapeIn and
  *                         yNbr >= 0 and yNbr < yShapeIn and
  *                         data[yNbr, xNbr] != _NDV):             # <<<<<<<<<<<<<<
@@ -4113,14 +4206,14 @@ static PyObject *__pyx_f_18coastline_matching_MatchToCoastline_Float(__Pyx_memvi
           } else if (unlikely(__pyx_t_33 >= __pyx_v_data.shape[1])) __pyx_t_29 = 1;
           if (unlikely(__pyx_t_29 != -1)) {
             __Pyx_RaiseBufferIndexError(__pyx_t_29);
-            {__pyx_filename = __pyx_f[0]; __pyx_lineno = 291; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+            {__pyx_filename = __pyx_f[0]; __pyx_lineno = 293; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
           }
           __pyx_t_23 = (((*((float *) ( /* dim=1 */ ((char *) (((float *) ( /* dim=0 */ (__pyx_v_data.data + __pyx_t_32 * __pyx_v_data.strides[0]) )) + __pyx_t_33)) ))) != __pyx_v__NDV) != 0);
           __pyx_t_10 = __pyx_t_23;
           __pyx_L22_bool_binop_done:;
           if (__pyx_t_10) {
 
-            /* "coastline_matching.pyx":294
+            /* "coastline_matching.pyx":296
  *                         # NB we allow a sea pixel with data to supply a fill value
  *                         # unless they have been clipped out previously
  *                         reallocationSum_prv += data[yNbr, xNbr]             # <<<<<<<<<<<<<<
@@ -4140,11 +4233,11 @@ static PyObject *__pyx_f_18coastline_matching_MatchToCoastline_Float(__Pyx_memvi
             } else if (unlikely(__pyx_t_35 >= __pyx_v_data.shape[1])) __pyx_t_29 = 1;
             if (unlikely(__pyx_t_29 != -1)) {
               __Pyx_RaiseBufferIndexError(__pyx_t_29);
-              {__pyx_filename = __pyx_f[0]; __pyx_lineno = 294; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+              {__pyx_filename = __pyx_f[0]; __pyx_lineno = 296; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
             }
             __pyx_v_reallocationSum_prv = (__pyx_v_reallocationSum_prv + (*((float *) ( /* dim=1 */ ((char *) (((float *) ( /* dim=0 */ (__pyx_v_data.data + __pyx_t_34 * __pyx_v_data.strides[0]) )) + __pyx_t_35)) ))));
 
-            /* "coastline_matching.pyx":295
+            /* "coastline_matching.pyx":297
  *                         # unless they have been clipped out previously
  *                         reallocationSum_prv += data[yNbr, xNbr]
  *                         reallocationCount_prv += 1             # <<<<<<<<<<<<<<
@@ -4158,7 +4251,7 @@ static PyObject *__pyx_f_18coastline_matching_MatchToCoastline_Float(__Pyx_memvi
         }
         __pyx_L19_break:;
 
-        /* "coastline_matching.pyx":296
+        /* "coastline_matching.pyx":298
  *                         reallocationSum_prv += data[yNbr, xNbr]
  *                         reallocationCount_prv += 1
  *                 if reallocationCount_prv > 0:             # <<<<<<<<<<<<<<
@@ -4168,7 +4261,7 @@ static PyObject *__pyx_f_18coastline_matching_MatchToCoastline_Float(__Pyx_memvi
         __pyx_t_10 = ((__pyx_v_reallocationCount_prv > 0) != 0);
         if (__pyx_t_10) {
 
-          /* "coastline_matching.pyx":301
+          /* "coastline_matching.pyx":303
  *                     # to "smearing" of values in an easterly and southerly direction.
  *                     # Hence, not suitable for filling large areas!
  *                     data[yIn, xIn] = reallocationSum_prv / reallocationCount_prv             # <<<<<<<<<<<<<<
@@ -4183,7 +4276,7 @@ static PyObject *__pyx_f_18coastline_matching_MatchToCoastline_Float(__Pyx_memvi
             #ifdef WITH_THREAD
             PyGILState_Release(__pyx_gilstate_save);
             #endif
-            {__pyx_filename = __pyx_f[0]; __pyx_lineno = 301; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+            {__pyx_filename = __pyx_f[0]; __pyx_lineno = 303; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
           }
           __pyx_t_26 = __pyx_v_yIn;
           __pyx_t_36 = __pyx_v_xIn;
@@ -4198,11 +4291,11 @@ static PyObject *__pyx_f_18coastline_matching_MatchToCoastline_Float(__Pyx_memvi
           } else if (unlikely(__pyx_t_36 >= __pyx_v_data.shape[1])) __pyx_t_16 = 1;
           if (unlikely(__pyx_t_16 != -1)) {
             __Pyx_RaiseBufferIndexError(__pyx_t_16);
-            {__pyx_filename = __pyx_f[0]; __pyx_lineno = 301; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+            {__pyx_filename = __pyx_f[0]; __pyx_lineno = 303; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
           }
           *((float *) ( /* dim=1 */ ((char *) (((float *) ( /* dim=0 */ (__pyx_v_data.data + __pyx_t_26 * __pyx_v_data.strides[0]) )) + __pyx_t_36)) )) = (__pyx_v_reallocationSum_prv / __pyx_v_reallocationCount_prv);
 
-          /* "coastline_matching.pyx":302
+          /* "coastline_matching.pyx":304
  *                     # Hence, not suitable for filling large areas!
  *                     data[yIn, xIn] = reallocationSum_prv / reallocationCount_prv
  *                     filledCells += 1             # <<<<<<<<<<<<<<
@@ -4214,21 +4307,21 @@ static PyObject *__pyx_f_18coastline_matching_MatchToCoastline_Float(__Pyx_memvi
         }
         /*else*/ {
 
-          /* "coastline_matching.pyx":304
+          /* "coastline_matching.pyx":306
  *                     filledCells += 1
  *                 else:
  *                     failedFills += 1             # <<<<<<<<<<<<<<
  *                     failedLocs[yIn, xIn] = 1
- * 
+ *     logger = MessageLogger(logLevel)
  */
           __pyx_v_failedFills = (__pyx_v_failedFills + 1);
 
-          /* "coastline_matching.pyx":305
+          /* "coastline_matching.pyx":307
  *                 else:
  *                     failedFills += 1
  *                     failedLocs[yIn, xIn] = 1             # <<<<<<<<<<<<<<
- * 
- *     logMessage ("Clipped {0!s} data cells that were outside provided limits".format(
+ *     logger = MessageLogger(logLevel)
+ *     logger.logMessage ("Clipped {0!s} data cells that were outside provided limits".format(
  */
           __pyx_t_37 = __pyx_v_yIn;
           __pyx_t_38 = __pyx_v_xIn;
@@ -4243,7 +4336,7 @@ static PyObject *__pyx_f_18coastline_matching_MatchToCoastline_Float(__Pyx_memvi
           } else if (unlikely(__pyx_t_38 >= __pyx_v_failedLocs.shape[1])) __pyx_t_16 = 1;
           if (unlikely(__pyx_t_16 != -1)) {
             __Pyx_RaiseBufferIndexError(__pyx_t_16);
-            {__pyx_filename = __pyx_f[0]; __pyx_lineno = 305; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+            {__pyx_filename = __pyx_f[0]; __pyx_lineno = 307; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
           }
           *((char *) ( /* dim=1 */ ((char *) (((char *) ( /* dim=0 */ (__pyx_v_failedLocs.data + __pyx_t_37 * __pyx_v_failedLocs.strides[0]) )) + __pyx_t_38)) )) = 1;
         }
@@ -4255,128 +4348,15 @@ static PyObject *__pyx_f_18coastline_matching_MatchToCoastline_Float(__Pyx_memvi
   }
   __pyx_L10:;
 
-  /* "coastline_matching.pyx":307
- *                     failedLocs[yIn, xIn] = 1
- * 
- *     logMessage ("Clipped {0!s} data cells that were outside provided limits".format(             # <<<<<<<<<<<<<<
- *         clippedCells))
- *     logMessage ("Filled {0!s} total cells within limits from nearby data".format(
- */
-  __pyx_t_1 = __Pyx_GetModuleGlobalName(__pyx_n_s_logMessage); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 307; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_kp_s_Clipped_0_s_data_cells_that_were, __pyx_n_s_format); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 307; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __Pyx_GOTREF(__pyx_t_4);
-
   /* "coastline_matching.pyx":308
- * 
- *     logMessage ("Clipped {0!s} data cells that were outside provided limits".format(
- *         clippedCells))             # <<<<<<<<<<<<<<
- *     logMessage ("Filled {0!s} total cells within limits from nearby data".format(
- *         filledCells))
- */
-  __pyx_t_2 = __Pyx_PyInt_From_int(__pyx_v_clippedCells); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 308; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = NULL;
-  if (CYTHON_COMPILING_IN_CPYTHON && likely(PyMethod_Check(__pyx_t_4))) {
-    __pyx_t_3 = PyMethod_GET_SELF(__pyx_t_4);
-    if (likely(__pyx_t_3)) {
-      PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_4);
-      __Pyx_INCREF(__pyx_t_3);
-      __Pyx_INCREF(function);
-      __Pyx_DECREF_SET(__pyx_t_4, function);
-    }
-  }
-  if (!__pyx_t_3) {
-    __pyx_t_5 = __Pyx_PyObject_CallOneArg(__pyx_t_4, __pyx_t_2); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 307; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-    __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-    __Pyx_GOTREF(__pyx_t_5);
-  } else {
-    __pyx_t_39 = PyTuple_New(1+1); if (unlikely(!__pyx_t_39)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 307; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-    __Pyx_GOTREF(__pyx_t_39);
-    PyTuple_SET_ITEM(__pyx_t_39, 0, __pyx_t_3); __Pyx_GIVEREF(__pyx_t_3); __pyx_t_3 = NULL;
-    PyTuple_SET_ITEM(__pyx_t_39, 0+1, __pyx_t_2);
-    __Pyx_GIVEREF(__pyx_t_2);
-    __pyx_t_2 = 0;
-    __pyx_t_5 = __Pyx_PyObject_Call(__pyx_t_4, __pyx_t_39, NULL); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 307; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-    __Pyx_GOTREF(__pyx_t_5);
-    __Pyx_DECREF(__pyx_t_39); __pyx_t_39 = 0;
-  }
-  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  __pyx_t_4 = NULL;
-  if (CYTHON_COMPILING_IN_CPYTHON && unlikely(PyMethod_Check(__pyx_t_1))) {
-    __pyx_t_4 = PyMethod_GET_SELF(__pyx_t_1);
-    if (likely(__pyx_t_4)) {
-      PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_1);
-      __Pyx_INCREF(__pyx_t_4);
-      __Pyx_INCREF(function);
-      __Pyx_DECREF_SET(__pyx_t_1, function);
-    }
-  }
-  if (!__pyx_t_4) {
-    __pyx_t_7 = __Pyx_PyObject_CallOneArg(__pyx_t_1, __pyx_t_5); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 307; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-    __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-    __Pyx_GOTREF(__pyx_t_7);
-  } else {
-    __pyx_t_39 = PyTuple_New(1+1); if (unlikely(!__pyx_t_39)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 307; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-    __Pyx_GOTREF(__pyx_t_39);
-    PyTuple_SET_ITEM(__pyx_t_39, 0, __pyx_t_4); __Pyx_GIVEREF(__pyx_t_4); __pyx_t_4 = NULL;
-    PyTuple_SET_ITEM(__pyx_t_39, 0+1, __pyx_t_5);
-    __Pyx_GIVEREF(__pyx_t_5);
-    __pyx_t_5 = 0;
-    __pyx_t_7 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_t_39, NULL); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 307; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-    __Pyx_GOTREF(__pyx_t_7);
-    __Pyx_DECREF(__pyx_t_39); __pyx_t_39 = 0;
-  }
-  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
-
-  /* "coastline_matching.pyx":309
- *     logMessage ("Clipped {0!s} data cells that were outside provided limits".format(
+ *                     failedFills += 1
+ *                     failedLocs[yIn, xIn] = 1
+ *     logger = MessageLogger(logLevel)             # <<<<<<<<<<<<<<
+ *     logger.logMessage ("Clipped {0!s} data cells that were outside provided limits".format(
  *         clippedCells))
- *     logMessage ("Filled {0!s} total cells within limits from nearby data".format(             # <<<<<<<<<<<<<<
- *         filledCells))
- *     logMessage ("Failed to fill {0!s} total cells within limits due to no data cells in range".format(
  */
-  __pyx_t_1 = __Pyx_GetModuleGlobalName(__pyx_n_s_logMessage); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 309; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __Pyx_GetModuleGlobalName(__pyx_n_s_MessageLogger); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 308; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_kp_s_Filled_0_s_total_cells_within_li, __pyx_n_s_format); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 309; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __Pyx_GOTREF(__pyx_t_5);
-
-  /* "coastline_matching.pyx":310
- *         clippedCells))
- *     logMessage ("Filled {0!s} total cells within limits from nearby data".format(
- *         filledCells))             # <<<<<<<<<<<<<<
- *     logMessage ("Failed to fill {0!s} total cells within limits due to no data cells in range".format(
- *         failedFills))
- */
-  __pyx_t_4 = __Pyx_PyInt_From_int(__pyx_v_filledCells); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 310; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __Pyx_GOTREF(__pyx_t_4);
-  __pyx_t_2 = NULL;
-  if (CYTHON_COMPILING_IN_CPYTHON && likely(PyMethod_Check(__pyx_t_5))) {
-    __pyx_t_2 = PyMethod_GET_SELF(__pyx_t_5);
-    if (likely(__pyx_t_2)) {
-      PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_5);
-      __Pyx_INCREF(__pyx_t_2);
-      __Pyx_INCREF(function);
-      __Pyx_DECREF_SET(__pyx_t_5, function);
-    }
-  }
-  if (!__pyx_t_2) {
-    __pyx_t_39 = __Pyx_PyObject_CallOneArg(__pyx_t_5, __pyx_t_4); if (unlikely(!__pyx_t_39)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 309; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-    __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-    __Pyx_GOTREF(__pyx_t_39);
-  } else {
-    __pyx_t_3 = PyTuple_New(1+1); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 309; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-    __Pyx_GOTREF(__pyx_t_3);
-    PyTuple_SET_ITEM(__pyx_t_3, 0, __pyx_t_2); __Pyx_GIVEREF(__pyx_t_2); __pyx_t_2 = NULL;
-    PyTuple_SET_ITEM(__pyx_t_3, 0+1, __pyx_t_4);
-    __Pyx_GIVEREF(__pyx_t_4);
-    __pyx_t_4 = 0;
-    __pyx_t_39 = __Pyx_PyObject_Call(__pyx_t_5, __pyx_t_3, NULL); if (unlikely(!__pyx_t_39)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 309; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-    __Pyx_GOTREF(__pyx_t_39);
-    __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  }
-  __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
   __pyx_t_5 = NULL;
   if (CYTHON_COMPILING_IN_CPYTHON && unlikely(PyMethod_Check(__pyx_t_1))) {
     __pyx_t_5 = PyMethod_GET_SELF(__pyx_t_1);
@@ -4388,72 +4368,222 @@ static PyObject *__pyx_f_18coastline_matching_MatchToCoastline_Float(__Pyx_memvi
     }
   }
   if (!__pyx_t_5) {
-    __pyx_t_7 = __Pyx_PyObject_CallOneArg(__pyx_t_1, __pyx_t_39); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 309; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_7 = __Pyx_PyObject_CallOneArg(__pyx_t_1, __pyx_v_logLevel); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 308; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __Pyx_GOTREF(__pyx_t_7);
+  } else {
+    __pyx_t_4 = PyTuple_New(1+1); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 308; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __Pyx_GOTREF(__pyx_t_4);
+    PyTuple_SET_ITEM(__pyx_t_4, 0, __pyx_t_5); __Pyx_GIVEREF(__pyx_t_5); __pyx_t_5 = NULL;
+    __Pyx_INCREF(__pyx_v_logLevel);
+    PyTuple_SET_ITEM(__pyx_t_4, 0+1, __pyx_v_logLevel);
+    __Pyx_GIVEREF(__pyx_v_logLevel);
+    __pyx_t_7 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_t_4, NULL); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 308; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __Pyx_GOTREF(__pyx_t_7);
+    __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+  }
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+  __pyx_v_logger = __pyx_t_7;
+  __pyx_t_7 = 0;
+
+  /* "coastline_matching.pyx":309
+ *                     failedLocs[yIn, xIn] = 1
+ *     logger = MessageLogger(logLevel)
+ *     logger.logMessage ("Clipped {0!s} data cells that were outside provided limits".format(             # <<<<<<<<<<<<<<
+ *         clippedCells))
+ *     logger.logMessage ("Filled {0!s} total cells within limits from nearby data".format(
+ */
+  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_logger, __pyx_n_s_logMessage); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 309; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_t_1);
+  __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_kp_s_Clipped_0_s_data_cells_that_were, __pyx_n_s_format); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 309; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_t_5);
+
+  /* "coastline_matching.pyx":310
+ *     logger = MessageLogger(logLevel)
+ *     logger.logMessage ("Clipped {0!s} data cells that were outside provided limits".format(
+ *         clippedCells))             # <<<<<<<<<<<<<<
+ *     logger.logMessage ("Filled {0!s} total cells within limits from nearby data".format(
+ *         filledCells))
+ */
+  __pyx_t_2 = __Pyx_PyInt_From_int(__pyx_v_clippedCells); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 310; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_t_2);
+  __pyx_t_3 = NULL;
+  if (CYTHON_COMPILING_IN_CPYTHON && likely(PyMethod_Check(__pyx_t_5))) {
+    __pyx_t_3 = PyMethod_GET_SELF(__pyx_t_5);
+    if (likely(__pyx_t_3)) {
+      PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_5);
+      __Pyx_INCREF(__pyx_t_3);
+      __Pyx_INCREF(function);
+      __Pyx_DECREF_SET(__pyx_t_5, function);
+    }
+  }
+  if (!__pyx_t_3) {
+    __pyx_t_4 = __Pyx_PyObject_CallOneArg(__pyx_t_5, __pyx_t_2); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 309; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+    __Pyx_GOTREF(__pyx_t_4);
+  } else {
+    __pyx_t_39 = PyTuple_New(1+1); if (unlikely(!__pyx_t_39)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 309; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __Pyx_GOTREF(__pyx_t_39);
+    PyTuple_SET_ITEM(__pyx_t_39, 0, __pyx_t_3); __Pyx_GIVEREF(__pyx_t_3); __pyx_t_3 = NULL;
+    PyTuple_SET_ITEM(__pyx_t_39, 0+1, __pyx_t_2);
+    __Pyx_GIVEREF(__pyx_t_2);
+    __pyx_t_2 = 0;
+    __pyx_t_4 = __Pyx_PyObject_Call(__pyx_t_5, __pyx_t_39, NULL); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 309; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __Pyx_GOTREF(__pyx_t_4);
+    __Pyx_DECREF(__pyx_t_39); __pyx_t_39 = 0;
+  }
+  __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
+  __pyx_t_5 = NULL;
+  if (CYTHON_COMPILING_IN_CPYTHON && likely(PyMethod_Check(__pyx_t_1))) {
+    __pyx_t_5 = PyMethod_GET_SELF(__pyx_t_1);
+    if (likely(__pyx_t_5)) {
+      PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_1);
+      __Pyx_INCREF(__pyx_t_5);
+      __Pyx_INCREF(function);
+      __Pyx_DECREF_SET(__pyx_t_1, function);
+    }
+  }
+  if (!__pyx_t_5) {
+    __pyx_t_7 = __Pyx_PyObject_CallOneArg(__pyx_t_1, __pyx_t_4); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 309; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+    __Pyx_GOTREF(__pyx_t_7);
+  } else {
+    __pyx_t_39 = PyTuple_New(1+1); if (unlikely(!__pyx_t_39)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 309; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __Pyx_GOTREF(__pyx_t_39);
+    PyTuple_SET_ITEM(__pyx_t_39, 0, __pyx_t_5); __Pyx_GIVEREF(__pyx_t_5); __pyx_t_5 = NULL;
+    PyTuple_SET_ITEM(__pyx_t_39, 0+1, __pyx_t_4);
+    __Pyx_GIVEREF(__pyx_t_4);
+    __pyx_t_4 = 0;
+    __pyx_t_7 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_t_39, NULL); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 309; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __Pyx_GOTREF(__pyx_t_7);
+    __Pyx_DECREF(__pyx_t_39); __pyx_t_39 = 0;
+  }
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+  __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
+
+  /* "coastline_matching.pyx":311
+ *     logger.logMessage ("Clipped {0!s} data cells that were outside provided limits".format(
+ *         clippedCells))
+ *     logger.logMessage ("Filled {0!s} total cells within limits from nearby data".format(             # <<<<<<<<<<<<<<
+ *         filledCells))
+ *     logger.logMessage ("Failed to fill {0!s} total cells within limits due to no data cells in range".format(
+ */
+  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_logger, __pyx_n_s_logMessage); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 311; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_t_1);
+  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_kp_s_Filled_0_s_total_cells_within_li, __pyx_n_s_format); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 311; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_t_4);
+
+  /* "coastline_matching.pyx":312
+ *         clippedCells))
+ *     logger.logMessage ("Filled {0!s} total cells within limits from nearby data".format(
+ *         filledCells))             # <<<<<<<<<<<<<<
+ *     logger.logMessage ("Failed to fill {0!s} total cells within limits due to no data cells in range".format(
+ *         failedFills))
+ */
+  __pyx_t_5 = __Pyx_PyInt_From_int(__pyx_v_filledCells); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 312; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_t_5);
+  __pyx_t_2 = NULL;
+  if (CYTHON_COMPILING_IN_CPYTHON && likely(PyMethod_Check(__pyx_t_4))) {
+    __pyx_t_2 = PyMethod_GET_SELF(__pyx_t_4);
+    if (likely(__pyx_t_2)) {
+      PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_4);
+      __Pyx_INCREF(__pyx_t_2);
+      __Pyx_INCREF(function);
+      __Pyx_DECREF_SET(__pyx_t_4, function);
+    }
+  }
+  if (!__pyx_t_2) {
+    __pyx_t_39 = __Pyx_PyObject_CallOneArg(__pyx_t_4, __pyx_t_5); if (unlikely(!__pyx_t_39)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 311; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
+    __Pyx_GOTREF(__pyx_t_39);
+  } else {
+    __pyx_t_3 = PyTuple_New(1+1); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 311; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __Pyx_GOTREF(__pyx_t_3);
+    PyTuple_SET_ITEM(__pyx_t_3, 0, __pyx_t_2); __Pyx_GIVEREF(__pyx_t_2); __pyx_t_2 = NULL;
+    PyTuple_SET_ITEM(__pyx_t_3, 0+1, __pyx_t_5);
+    __Pyx_GIVEREF(__pyx_t_5);
+    __pyx_t_5 = 0;
+    __pyx_t_39 = __Pyx_PyObject_Call(__pyx_t_4, __pyx_t_3, NULL); if (unlikely(!__pyx_t_39)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 311; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __Pyx_GOTREF(__pyx_t_39);
+    __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+  }
+  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+  __pyx_t_4 = NULL;
+  if (CYTHON_COMPILING_IN_CPYTHON && likely(PyMethod_Check(__pyx_t_1))) {
+    __pyx_t_4 = PyMethod_GET_SELF(__pyx_t_1);
+    if (likely(__pyx_t_4)) {
+      PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_1);
+      __Pyx_INCREF(__pyx_t_4);
+      __Pyx_INCREF(function);
+      __Pyx_DECREF_SET(__pyx_t_1, function);
+    }
+  }
+  if (!__pyx_t_4) {
+    __pyx_t_7 = __Pyx_PyObject_CallOneArg(__pyx_t_1, __pyx_t_39); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 311; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_DECREF(__pyx_t_39); __pyx_t_39 = 0;
     __Pyx_GOTREF(__pyx_t_7);
   } else {
-    __pyx_t_3 = PyTuple_New(1+1); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 309; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_3 = PyTuple_New(1+1); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 311; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_3);
-    PyTuple_SET_ITEM(__pyx_t_3, 0, __pyx_t_5); __Pyx_GIVEREF(__pyx_t_5); __pyx_t_5 = NULL;
+    PyTuple_SET_ITEM(__pyx_t_3, 0, __pyx_t_4); __Pyx_GIVEREF(__pyx_t_4); __pyx_t_4 = NULL;
     PyTuple_SET_ITEM(__pyx_t_3, 0+1, __pyx_t_39);
     __Pyx_GIVEREF(__pyx_t_39);
     __pyx_t_39 = 0;
-    __pyx_t_7 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_t_3, NULL); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 309; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_7 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_t_3, NULL); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 311; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_7);
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   }
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
 
-  /* "coastline_matching.pyx":311
- *     logMessage ("Filled {0!s} total cells within limits from nearby data".format(
+  /* "coastline_matching.pyx":313
+ *     logger.logMessage ("Filled {0!s} total cells within limits from nearby data".format(
  *         filledCells))
- *     logMessage ("Failed to fill {0!s} total cells within limits due to no data cells in range".format(             # <<<<<<<<<<<<<<
+ *     logger.logMessage ("Failed to fill {0!s} total cells within limits due to no data cells in range".format(             # <<<<<<<<<<<<<<
  *         failedFills))
  *     return failedLocs
  */
-  __pyx_t_1 = __Pyx_GetModuleGlobalName(__pyx_n_s_logMessage); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 311; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_logger, __pyx_n_s_logMessage); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 313; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_39 = __Pyx_PyObject_GetAttrStr(__pyx_kp_s_Failed_to_fill_0_s_total_cells_w, __pyx_n_s_format); if (unlikely(!__pyx_t_39)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 311; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_39 = __Pyx_PyObject_GetAttrStr(__pyx_kp_s_Failed_to_fill_0_s_total_cells_w, __pyx_n_s_format); if (unlikely(!__pyx_t_39)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 313; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_39);
 
-  /* "coastline_matching.pyx":312
+  /* "coastline_matching.pyx":314
  *         filledCells))
- *     logMessage ("Failed to fill {0!s} total cells within limits due to no data cells in range".format(
+ *     logger.logMessage ("Failed to fill {0!s} total cells within limits due to no data cells in range".format(
  *         failedFills))             # <<<<<<<<<<<<<<
  *     return failedLocs
  * 
  */
-  __pyx_t_5 = __Pyx_PyInt_From_int(__pyx_v_failedFills); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 312; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __Pyx_GOTREF(__pyx_t_5);
-  __pyx_t_4 = NULL;
+  __pyx_t_4 = __Pyx_PyInt_From_int(__pyx_v_failedFills); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 314; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_t_4);
+  __pyx_t_5 = NULL;
   if (CYTHON_COMPILING_IN_CPYTHON && likely(PyMethod_Check(__pyx_t_39))) {
-    __pyx_t_4 = PyMethod_GET_SELF(__pyx_t_39);
-    if (likely(__pyx_t_4)) {
+    __pyx_t_5 = PyMethod_GET_SELF(__pyx_t_39);
+    if (likely(__pyx_t_5)) {
       PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_39);
-      __Pyx_INCREF(__pyx_t_4);
+      __Pyx_INCREF(__pyx_t_5);
       __Pyx_INCREF(function);
       __Pyx_DECREF_SET(__pyx_t_39, function);
     }
   }
-  if (!__pyx_t_4) {
-    __pyx_t_3 = __Pyx_PyObject_CallOneArg(__pyx_t_39, __pyx_t_5); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 311; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-    __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
+  if (!__pyx_t_5) {
+    __pyx_t_3 = __Pyx_PyObject_CallOneArg(__pyx_t_39, __pyx_t_4); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 313; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
     __Pyx_GOTREF(__pyx_t_3);
   } else {
-    __pyx_t_2 = PyTuple_New(1+1); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 311; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_2 = PyTuple_New(1+1); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 313; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_2);
-    PyTuple_SET_ITEM(__pyx_t_2, 0, __pyx_t_4); __Pyx_GIVEREF(__pyx_t_4); __pyx_t_4 = NULL;
-    PyTuple_SET_ITEM(__pyx_t_2, 0+1, __pyx_t_5);
-    __Pyx_GIVEREF(__pyx_t_5);
-    __pyx_t_5 = 0;
-    __pyx_t_3 = __Pyx_PyObject_Call(__pyx_t_39, __pyx_t_2, NULL); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 311; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    PyTuple_SET_ITEM(__pyx_t_2, 0, __pyx_t_5); __Pyx_GIVEREF(__pyx_t_5); __pyx_t_5 = NULL;
+    PyTuple_SET_ITEM(__pyx_t_2, 0+1, __pyx_t_4);
+    __Pyx_GIVEREF(__pyx_t_4);
+    __pyx_t_4 = 0;
+    __pyx_t_3 = __Pyx_PyObject_Call(__pyx_t_39, __pyx_t_2, NULL); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 313; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_3);
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   }
   __Pyx_DECREF(__pyx_t_39); __pyx_t_39 = 0;
   __pyx_t_39 = NULL;
-  if (CYTHON_COMPILING_IN_CPYTHON && unlikely(PyMethod_Check(__pyx_t_1))) {
+  if (CYTHON_COMPILING_IN_CPYTHON && likely(PyMethod_Check(__pyx_t_1))) {
     __pyx_t_39 = PyMethod_GET_SELF(__pyx_t_1);
     if (likely(__pyx_t_39)) {
       PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_1);
@@ -4463,38 +4593,38 @@ static PyObject *__pyx_f_18coastline_matching_MatchToCoastline_Float(__Pyx_memvi
     }
   }
   if (!__pyx_t_39) {
-    __pyx_t_7 = __Pyx_PyObject_CallOneArg(__pyx_t_1, __pyx_t_3); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 311; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_7 = __Pyx_PyObject_CallOneArg(__pyx_t_1, __pyx_t_3); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 313; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
     __Pyx_GOTREF(__pyx_t_7);
   } else {
-    __pyx_t_2 = PyTuple_New(1+1); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 311; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_2 = PyTuple_New(1+1); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 313; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_2);
     PyTuple_SET_ITEM(__pyx_t_2, 0, __pyx_t_39); __Pyx_GIVEREF(__pyx_t_39); __pyx_t_39 = NULL;
     PyTuple_SET_ITEM(__pyx_t_2, 0+1, __pyx_t_3);
     __Pyx_GIVEREF(__pyx_t_3);
     __pyx_t_3 = 0;
-    __pyx_t_7 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_t_2, NULL); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 311; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_7 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_t_2, NULL); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 313; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_7);
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   }
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
 
-  /* "coastline_matching.pyx":313
- *     logMessage ("Failed to fill {0!s} total cells within limits due to no data cells in range".format(
+  /* "coastline_matching.pyx":315
+ *     logger.logMessage ("Failed to fill {0!s} total cells within limits due to no data cells in range".format(
  *         failedFills))
  *     return failedLocs             # <<<<<<<<<<<<<<
  * 
  * 
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_7 = __pyx_memoryview_fromslice(__pyx_v_failedLocs, 2, (PyObject *(*)(char *)) __pyx_memview_get_char, (int (*)(char *, PyObject *)) __pyx_memview_set_char, 0);; if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 313; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_7 = __pyx_memoryview_fromslice(__pyx_v_failedLocs, 2, (PyObject *(*)(char *)) __pyx_memview_get_char, (int (*)(char *, PyObject *)) __pyx_memview_set_char, 0);; if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 315; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_7);
   __pyx_r = __pyx_t_7;
   __pyx_t_7 = 0;
   goto __pyx_L0;
 
-  /* "coastline_matching.pyx":162
+  /* "coastline_matching.pyx":163
  *     return failedLocs
  * 
  * cpdef MatchToCoastline_Float(float[:,::1] data, char[:,::1] landMask, float _NDV = -9999,             # <<<<<<<<<<<<<<
@@ -4524,6 +4654,7 @@ static PyObject *__pyx_f_18coastline_matching_MatchToCoastline_Float(__Pyx_memvi
   __Pyx_XDECREF(__pyx_v_npTmpTable);
   __Pyx_XDECREF(__pyx_v_order);
   __Pyx_XDECREF(__pyx_v_nbrTable);
+  __Pyx_XDECREF(__pyx_v_logger);
   __Pyx_XGIVEREF(__pyx_r);
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
@@ -4540,6 +4671,7 @@ static PyObject *__pyx_pw_18coastline_matching_3MatchToCoastline_Float(PyObject 
   char __pyx_v_applyFill;
   int __pyx_v_useNearestNPixels;
   int __pyx_v_searchPixelRadius;
+  PyObject *__pyx_v_logLevel = 0;
   int __pyx_lineno = 0;
   const char *__pyx_filename = NULL;
   int __pyx_clineno = 0;
@@ -4547,12 +4679,14 @@ static PyObject *__pyx_pw_18coastline_matching_3MatchToCoastline_Float(PyObject 
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("MatchToCoastline_Float (wrapper)", 0);
   {
-    static PyObject **__pyx_pyargnames[] = {&__pyx_n_s_data,&__pyx_n_s_landMask,&__pyx_n_s_NDV,&__pyx_n_s_applyClip,&__pyx_n_s_applyFill,&__pyx_n_s_useNearestNPixels,&__pyx_n_s_searchPixelRadius,0};
-    PyObject* values[7] = {0,0,0,0,0,0,0};
+    static PyObject **__pyx_pyargnames[] = {&__pyx_n_s_data,&__pyx_n_s_landMask,&__pyx_n_s_NDV,&__pyx_n_s_applyClip,&__pyx_n_s_applyFill,&__pyx_n_s_useNearestNPixels,&__pyx_n_s_searchPixelRadius,&__pyx_n_s_logLevel,0};
+    PyObject* values[8] = {0,0,0,0,0,0,0,0};
+    values[7] = __pyx_k__16;
     if (unlikely(__pyx_kwds)) {
       Py_ssize_t kw_args;
       const Py_ssize_t pos_args = PyTuple_GET_SIZE(__pyx_args);
       switch (pos_args) {
+        case  8: values[7] = PyTuple_GET_ITEM(__pyx_args, 7);
         case  7: values[6] = PyTuple_GET_ITEM(__pyx_args, 6);
         case  6: values[5] = PyTuple_GET_ITEM(__pyx_args, 5);
         case  5: values[4] = PyTuple_GET_ITEM(__pyx_args, 4);
@@ -4571,7 +4705,7 @@ static PyObject *__pyx_pw_18coastline_matching_3MatchToCoastline_Float(PyObject 
         case  1:
         if (likely((values[1] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_landMask)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("MatchToCoastline_Float", 0, 2, 7, 1); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 162; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+          __Pyx_RaiseArgtupleInvalid("MatchToCoastline_Float", 0, 2, 8, 1); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 163; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
         }
         case  2:
         if (kw_args > 0) {
@@ -4598,12 +4732,18 @@ static PyObject *__pyx_pw_18coastline_matching_3MatchToCoastline_Float(PyObject 
           PyObject* value = PyDict_GetItem(__pyx_kwds, __pyx_n_s_searchPixelRadius);
           if (value) { values[6] = value; kw_args--; }
         }
+        case  7:
+        if (kw_args > 0) {
+          PyObject* value = PyDict_GetItem(__pyx_kwds, __pyx_n_s_logLevel);
+          if (value) { values[7] = value; kw_args--; }
+        }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "MatchToCoastline_Float") < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 162; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "MatchToCoastline_Float") < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 163; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
       }
     } else {
       switch (PyTuple_GET_SIZE(__pyx_args)) {
+        case  8: values[7] = PyTuple_GET_ITEM(__pyx_args, 7);
         case  7: values[6] = PyTuple_GET_ITEM(__pyx_args, 6);
         case  6: values[5] = PyTuple_GET_ITEM(__pyx_args, 5);
         case  5: values[4] = PyTuple_GET_ITEM(__pyx_args, 4);
@@ -4615,50 +4755,51 @@ static PyObject *__pyx_pw_18coastline_matching_3MatchToCoastline_Float(PyObject 
         default: goto __pyx_L5_argtuple_error;
       }
     }
-    __pyx_v_data = __Pyx_PyObject_to_MemoryviewSlice_d_dc_float(values[0]); if (unlikely(!__pyx_v_data.memview)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 162; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
-    __pyx_v_landMask = __Pyx_PyObject_to_MemoryviewSlice_d_dc_char(values[1]); if (unlikely(!__pyx_v_landMask.memview)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 162; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+    __pyx_v_data = __Pyx_PyObject_to_MemoryviewSlice_d_dc_float(values[0]); if (unlikely(!__pyx_v_data.memview)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 163; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+    __pyx_v_landMask = __Pyx_PyObject_to_MemoryviewSlice_d_dc_char(values[1]); if (unlikely(!__pyx_v_landMask.memview)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 163; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
     if (values[2]) {
-      __pyx_v__NDV = __pyx_PyFloat_AsFloat(values[2]); if (unlikely((__pyx_v__NDV == (float)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 162; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+      __pyx_v__NDV = __pyx_PyFloat_AsFloat(values[2]); if (unlikely((__pyx_v__NDV == (float)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 163; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
     } else {
       __pyx_v__NDV = ((float)-9999.0);
     }
     if (values[3]) {
-      __pyx_v_applyClip = __Pyx_PyInt_As_char(values[3]); if (unlikely((__pyx_v_applyClip == (char)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 163; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+      __pyx_v_applyClip = __Pyx_PyInt_As_char(values[3]); if (unlikely((__pyx_v_applyClip == (char)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 164; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
     } else {
       __pyx_v_applyClip = ((char)1);
     }
     if (values[4]) {
-      __pyx_v_applyFill = __Pyx_PyInt_As_char(values[4]); if (unlikely((__pyx_v_applyFill == (char)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 163; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+      __pyx_v_applyFill = __Pyx_PyInt_As_char(values[4]); if (unlikely((__pyx_v_applyFill == (char)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 164; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
     } else {
       __pyx_v_applyFill = ((char)1);
     }
     if (values[5]) {
-      __pyx_v_useNearestNPixels = __Pyx_PyInt_As_int(values[5]); if (unlikely((__pyx_v_useNearestNPixels == (int)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 164; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+      __pyx_v_useNearestNPixels = __Pyx_PyInt_As_int(values[5]); if (unlikely((__pyx_v_useNearestNPixels == (int)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 165; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
     } else {
       __pyx_v_useNearestNPixels = ((int)1);
     }
     if (values[6]) {
-      __pyx_v_searchPixelRadius = __Pyx_PyInt_As_int(values[6]); if (unlikely((__pyx_v_searchPixelRadius == (int)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 165; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+      __pyx_v_searchPixelRadius = __Pyx_PyInt_As_int(values[6]); if (unlikely((__pyx_v_searchPixelRadius == (int)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 166; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
     } else {
       __pyx_v_searchPixelRadius = ((int)10);
     }
+    __pyx_v_logLevel = values[7];
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("MatchToCoastline_Float", 0, 2, 7, PyTuple_GET_SIZE(__pyx_args)); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 162; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+  __Pyx_RaiseArgtupleInvalid("MatchToCoastline_Float", 0, 2, 8, PyTuple_GET_SIZE(__pyx_args)); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 163; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
   __pyx_L3_error:;
   __Pyx_AddTraceback("coastline_matching.MatchToCoastline_Float", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  __pyx_r = __pyx_pf_18coastline_matching_2MatchToCoastline_Float(__pyx_self, __pyx_v_data, __pyx_v_landMask, __pyx_v__NDV, __pyx_v_applyClip, __pyx_v_applyFill, __pyx_v_useNearestNPixels, __pyx_v_searchPixelRadius);
+  __pyx_r = __pyx_pf_18coastline_matching_2MatchToCoastline_Float(__pyx_self, __pyx_v_data, __pyx_v_landMask, __pyx_v__NDV, __pyx_v_applyClip, __pyx_v_applyFill, __pyx_v_useNearestNPixels, __pyx_v_searchPixelRadius, __pyx_v_logLevel);
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_18coastline_matching_2MatchToCoastline_Float(CYTHON_UNUSED PyObject *__pyx_self, __Pyx_memviewslice __pyx_v_data, __Pyx_memviewslice __pyx_v_landMask, float __pyx_v__NDV, char __pyx_v_applyClip, char __pyx_v_applyFill, int __pyx_v_useNearestNPixels, int __pyx_v_searchPixelRadius) {
+static PyObject *__pyx_pf_18coastline_matching_2MatchToCoastline_Float(CYTHON_UNUSED PyObject *__pyx_self, __Pyx_memviewslice __pyx_v_data, __Pyx_memviewslice __pyx_v_landMask, float __pyx_v__NDV, char __pyx_v_applyClip, char __pyx_v_applyFill, int __pyx_v_useNearestNPixels, int __pyx_v_searchPixelRadius, PyObject *__pyx_v_logLevel) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
@@ -4668,15 +4809,16 @@ static PyObject *__pyx_pf_18coastline_matching_2MatchToCoastline_Float(CYTHON_UN
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("MatchToCoastline_Float", 0);
   __Pyx_XDECREF(__pyx_r);
-  if (unlikely(!__pyx_v_data.memview)) { __Pyx_RaiseUnboundLocalError("data"); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 162; __pyx_clineno = __LINE__; goto __pyx_L1_error;} }
-  if (unlikely(!__pyx_v_landMask.memview)) { __Pyx_RaiseUnboundLocalError("landMask"); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 162; __pyx_clineno = __LINE__; goto __pyx_L1_error;} }
-  __pyx_t_2.__pyx_n = 5;
+  if (unlikely(!__pyx_v_data.memview)) { __Pyx_RaiseUnboundLocalError("data"); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 163; __pyx_clineno = __LINE__; goto __pyx_L1_error;} }
+  if (unlikely(!__pyx_v_landMask.memview)) { __Pyx_RaiseUnboundLocalError("landMask"); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 163; __pyx_clineno = __LINE__; goto __pyx_L1_error;} }
+  __pyx_t_2.__pyx_n = 6;
   __pyx_t_2._NDV = __pyx_v__NDV;
   __pyx_t_2.applyClip = __pyx_v_applyClip;
   __pyx_t_2.applyFill = __pyx_v_applyFill;
   __pyx_t_2.useNearestNPixels = __pyx_v_useNearestNPixels;
   __pyx_t_2.searchPixelRadius = __pyx_v_searchPixelRadius;
-  __pyx_t_1 = __pyx_f_18coastline_matching_MatchToCoastline_Float(__pyx_v_data, __pyx_v_landMask, 0, &__pyx_t_2); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 162; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_2.logLevel = __pyx_v_logLevel;
+  __pyx_t_1 = __pyx_f_18coastline_matching_MatchToCoastline_Float(__pyx_v_data, __pyx_v_landMask, 0, &__pyx_t_2); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 163; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -4695,7 +4837,7 @@ static PyObject *__pyx_pf_18coastline_matching_2MatchToCoastline_Float(CYTHON_UN
   return __pyx_r;
 }
 
-/* "coastline_matching.pyx":316
+/* "coastline_matching.pyx":318
  * 
  * 
  * cpdef MatchToCoastline_Population(float[:,::1] data, char[:,::1] landMask, float _NDV = -9999,             # <<<<<<<<<<<<<<
@@ -4710,6 +4852,7 @@ static PyObject *__pyx_f_18coastline_matching_MatchToCoastline_Population(__Pyx_
   char __pyx_v_fillLandWithZero = ((char)1);
   int __pyx_v_searchPixelRadius = ((int)100);
   char __pyx_v_deleteDespiteFailure = ((char)0);
+  PyObject *__pyx_v_logLevel = __pyx_k__31;
   Py_ssize_t __pyx_v_xShapeIn;
   Py_ssize_t __pyx_v_yShapeIn;
   Py_ssize_t __pyx_v_xIn;
@@ -4732,6 +4875,7 @@ static PyObject *__pyx_f_18coastline_matching_MatchToCoastline_Population(__Pyx_
   PyObject *__pyx_v_npTmpTable = NULL;
   PyObject *__pyx_v_order = NULL;
   PyObject *__pyx_v_nbrTable = NULL;
+  PyObject *__pyx_v_logger = NULL;
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
@@ -4807,6 +4951,9 @@ static PyObject *__pyx_f_18coastline_matching_MatchToCoastline_Population(__Pyx_
             __pyx_v_searchPixelRadius = __pyx_optional_args->searchPixelRadius;
             if (__pyx_optional_args->__pyx_n > 4) {
               __pyx_v_deleteDespiteFailure = __pyx_optional_args->deleteDespiteFailure;
+              if (__pyx_optional_args->__pyx_n > 5) {
+                __pyx_v_logLevel = __pyx_optional_args->logLevel;
+              }
             }
           }
         }
@@ -4814,7 +4961,7 @@ static PyObject *__pyx_f_18coastline_matching_MatchToCoastline_Population(__Pyx_
     }
   }
 
-  /* "coastline_matching.pyx":355
+  /* "coastline_matching.pyx":358
  *         int _MAX_NEIGHBOURS_TO_CHECK
  * 
  *     yShapeIn = data.shape[0]             # <<<<<<<<<<<<<<
@@ -4823,7 +4970,7 @@ static PyObject *__pyx_f_18coastline_matching_MatchToCoastline_Population(__Pyx_
  */
   __pyx_v_yShapeIn = (__pyx_v_data.shape[0]);
 
-  /* "coastline_matching.pyx":356
+  /* "coastline_matching.pyx":359
  * 
  *     yShapeIn = data.shape[0]
  *     xShapeIn = data.shape[1]             # <<<<<<<<<<<<<<
@@ -4832,7 +4979,7 @@ static PyObject *__pyx_f_18coastline_matching_MatchToCoastline_Population(__Pyx_
  */
   __pyx_v_xShapeIn = (__pyx_v_data.shape[1]);
 
-  /* "coastline_matching.pyx":357
+  /* "coastline_matching.pyx":360
  *     yShapeIn = data.shape[0]
  *     xShapeIn = data.shape[1]
  *     assert landMask.shape[0] == yShapeIn             # <<<<<<<<<<<<<<
@@ -4843,12 +4990,12 @@ static PyObject *__pyx_f_18coastline_matching_MatchToCoastline_Population(__Pyx_
   if (unlikely(!Py_OptimizeFlag)) {
     if (unlikely(!(((__pyx_v_landMask.shape[0]) == __pyx_v_yShapeIn) != 0))) {
       PyErr_SetNone(PyExc_AssertionError);
-      {__pyx_filename = __pyx_f[0]; __pyx_lineno = 357; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      {__pyx_filename = __pyx_f[0]; __pyx_lineno = 360; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     }
   }
   #endif
 
-  /* "coastline_matching.pyx":358
+  /* "coastline_matching.pyx":361
  *     xShapeIn = data.shape[1]
  *     assert landMask.shape[0] == yShapeIn
  *     assert landMask.shape[1] == xShapeIn             # <<<<<<<<<<<<<<
@@ -4859,36 +5006,36 @@ static PyObject *__pyx_f_18coastline_matching_MatchToCoastline_Population(__Pyx_
   if (unlikely(!Py_OptimizeFlag)) {
     if (unlikely(!(((__pyx_v_landMask.shape[1]) == __pyx_v_xShapeIn) != 0))) {
       PyErr_SetNone(PyExc_AssertionError);
-      {__pyx_filename = __pyx_f[0]; __pyx_lineno = 358; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      {__pyx_filename = __pyx_f[0]; __pyx_lineno = 361; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     }
   }
   #endif
 
-  /* "coastline_matching.pyx":361
+  /* "coastline_matching.pyx":364
  * 
  *     # Generate the neighbour spiral search table out to "a bit" further than needed
  *     diam = searchPixelRadius * 2 + 1             # <<<<<<<<<<<<<<
  *     inds = np.indices([diam,diam]) - searchPixelRadius
  *     distTmp = np.sqrt((inds ** 2).sum(0))
  */
-  __pyx_t_1 = __Pyx_PyInt_From_long(((__pyx_v_searchPixelRadius * 2) + 1)); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 361; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __Pyx_PyInt_From_long(((__pyx_v_searchPixelRadius * 2) + 1)); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 364; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_v_diam = __pyx_t_1;
   __pyx_t_1 = 0;
 
-  /* "coastline_matching.pyx":362
+  /* "coastline_matching.pyx":365
  *     # Generate the neighbour spiral search table out to "a bit" further than needed
  *     diam = searchPixelRadius * 2 + 1
  *     inds = np.indices([diam,diam]) - searchPixelRadius             # <<<<<<<<<<<<<<
  *     distTmp = np.sqrt((inds ** 2).sum(0))
  *     npTmpTable = ((inds.T).reshape(diam**2, 2))
  */
-  __pyx_t_2 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 362; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_2 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 365; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_indices); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 362; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_indices); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 365; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = PyList_New(2); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 362; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_2 = PyList_New(2); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 365; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_INCREF(__pyx_v_diam);
   PyList_SET_ITEM(__pyx_t_2, 0, __pyx_v_diam);
@@ -4907,48 +5054,48 @@ static PyObject *__pyx_f_18coastline_matching_MatchToCoastline_Population(__Pyx_
     }
   }
   if (!__pyx_t_4) {
-    __pyx_t_1 = __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_t_2); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 362; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_1 = __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_t_2); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 365; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
     __Pyx_GOTREF(__pyx_t_1);
   } else {
-    __pyx_t_5 = PyTuple_New(1+1); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 362; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_5 = PyTuple_New(1+1); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 365; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_5);
     PyTuple_SET_ITEM(__pyx_t_5, 0, __pyx_t_4); __Pyx_GIVEREF(__pyx_t_4); __pyx_t_4 = NULL;
     PyTuple_SET_ITEM(__pyx_t_5, 0+1, __pyx_t_2);
     __Pyx_GIVEREF(__pyx_t_2);
     __pyx_t_2 = 0;
-    __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_t_5, NULL); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 362; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_t_5, NULL); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 365; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
   }
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  __pyx_t_3 = __Pyx_PyInt_From_int(__pyx_v_searchPixelRadius); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 362; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_3 = __Pyx_PyInt_From_int(__pyx_v_searchPixelRadius); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 365; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_5 = PyNumber_Subtract(__pyx_t_1, __pyx_t_3); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 362; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_5 = PyNumber_Subtract(__pyx_t_1, __pyx_t_3); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 365; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_5);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __pyx_v_inds = __pyx_t_5;
   __pyx_t_5 = 0;
 
-  /* "coastline_matching.pyx":363
+  /* "coastline_matching.pyx":366
  *     diam = searchPixelRadius * 2 + 1
  *     inds = np.indices([diam,diam]) - searchPixelRadius
  *     distTmp = np.sqrt((inds ** 2).sum(0))             # <<<<<<<<<<<<<<
  *     npTmpTable = ((inds.T).reshape(diam**2, 2))
  *     npTmpTable = np.append(npTmpTable, distTmp.ravel()[:,None], axis=1)
  */
-  __pyx_t_3 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 363; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_3 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 366; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_sqrt); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 363; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_sqrt); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 366; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  __pyx_t_3 = PyNumber_Power(__pyx_v_inds, __pyx_int_2, Py_None); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 363; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_3 = PyNumber_Power(__pyx_v_inds, __pyx_int_2, Py_None); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 366; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_sum); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 363; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_sum); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 366; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  __pyx_t_3 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_tuple__29, NULL); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 363; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_3 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_tuple__32, NULL); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 366; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __pyx_t_2 = NULL;
@@ -4962,17 +5109,17 @@ static PyObject *__pyx_f_18coastline_matching_MatchToCoastline_Population(__Pyx_
     }
   }
   if (!__pyx_t_2) {
-    __pyx_t_5 = __Pyx_PyObject_CallOneArg(__pyx_t_1, __pyx_t_3); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 363; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_5 = __Pyx_PyObject_CallOneArg(__pyx_t_1, __pyx_t_3); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 366; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
     __Pyx_GOTREF(__pyx_t_5);
   } else {
-    __pyx_t_4 = PyTuple_New(1+1); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 363; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_4 = PyTuple_New(1+1); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 366; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_4);
     PyTuple_SET_ITEM(__pyx_t_4, 0, __pyx_t_2); __Pyx_GIVEREF(__pyx_t_2); __pyx_t_2 = NULL;
     PyTuple_SET_ITEM(__pyx_t_4, 0+1, __pyx_t_3);
     __Pyx_GIVEREF(__pyx_t_3);
     __pyx_t_3 = 0;
-    __pyx_t_5 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_t_4, NULL); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 363; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_5 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_t_4, NULL); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 366; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_5);
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   }
@@ -4980,19 +5127,19 @@ static PyObject *__pyx_f_18coastline_matching_MatchToCoastline_Population(__Pyx_
   __pyx_v_distTmp = __pyx_t_5;
   __pyx_t_5 = 0;
 
-  /* "coastline_matching.pyx":364
+  /* "coastline_matching.pyx":367
  *     inds = np.indices([diam,diam]) - searchPixelRadius
  *     distTmp = np.sqrt((inds ** 2).sum(0))
  *     npTmpTable = ((inds.T).reshape(diam**2, 2))             # <<<<<<<<<<<<<<
  *     npTmpTable = np.append(npTmpTable, distTmp.ravel()[:,None], axis=1)
  *     # sort the table by distance then x then y (the arguments are last-sort-first)
  */
-  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_inds, __pyx_n_s_T); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 364; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_inds, __pyx_n_s_T); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 367; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_reshape); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 364; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_reshape); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 367; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_1 = PyNumber_Power(__pyx_v_diam, __pyx_int_2, Py_None); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 364; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = PyNumber_Power(__pyx_v_diam, __pyx_int_2, Py_None); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 367; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_t_3 = NULL;
   __pyx_t_6 = 0;
@@ -5006,7 +5153,7 @@ static PyObject *__pyx_f_18coastline_matching_MatchToCoastline_Population(__Pyx_
       __pyx_t_6 = 1;
     }
   }
-  __pyx_t_2 = PyTuple_New(2+__pyx_t_6); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 364; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_2 = PyTuple_New(2+__pyx_t_6); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 367; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_2);
   if (__pyx_t_3) {
     PyTuple_SET_ITEM(__pyx_t_2, 0, __pyx_t_3); __Pyx_GIVEREF(__pyx_t_3); __pyx_t_3 = NULL;
@@ -5017,26 +5164,26 @@ static PyObject *__pyx_f_18coastline_matching_MatchToCoastline_Population(__Pyx_
   PyTuple_SET_ITEM(__pyx_t_2, 1+__pyx_t_6, __pyx_int_2);
   __Pyx_GIVEREF(__pyx_int_2);
   __pyx_t_1 = 0;
-  __pyx_t_5 = __Pyx_PyObject_Call(__pyx_t_4, __pyx_t_2, NULL); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 364; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_5 = __Pyx_PyObject_Call(__pyx_t_4, __pyx_t_2, NULL); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 367; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_5);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   __pyx_v_npTmpTable = __pyx_t_5;
   __pyx_t_5 = 0;
 
-  /* "coastline_matching.pyx":365
+  /* "coastline_matching.pyx":368
  *     distTmp = np.sqrt((inds ** 2).sum(0))
  *     npTmpTable = ((inds.T).reshape(diam**2, 2))
  *     npTmpTable = np.append(npTmpTable, distTmp.ravel()[:,None], axis=1)             # <<<<<<<<<<<<<<
  *     # sort the table by distance then x then y (the arguments are last-sort-first)
  *     order = np.lexsort((npTmpTable[:,1],npTmpTable[:,0],npTmpTable[:,2]))
  */
-  __pyx_t_5 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 365; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_5 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 368; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_5);
-  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_5, __pyx_n_s_append); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 365; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_5, __pyx_n_s_append); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 368; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_distTmp, __pyx_n_s_ravel); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 365; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_distTmp, __pyx_n_s_ravel); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 368; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_2);
   __pyx_t_1 = NULL;
   if (CYTHON_COMPILING_IN_CPYTHON && likely(PyMethod_Check(__pyx_t_2))) {
@@ -5049,17 +5196,17 @@ static PyObject *__pyx_f_18coastline_matching_MatchToCoastline_Population(__Pyx_
     }
   }
   if (__pyx_t_1) {
-    __pyx_t_5 = __Pyx_PyObject_CallOneArg(__pyx_t_2, __pyx_t_1); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 365; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_5 = __Pyx_PyObject_CallOneArg(__pyx_t_2, __pyx_t_1); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 368; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   } else {
-    __pyx_t_5 = __Pyx_PyObject_CallNoArg(__pyx_t_2); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 365; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_5 = __Pyx_PyObject_CallNoArg(__pyx_t_2); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 368; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   }
   __Pyx_GOTREF(__pyx_t_5);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = PyObject_GetItem(__pyx_t_5, __pyx_tuple__31); if (unlikely(__pyx_t_2 == NULL)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 365; __pyx_clineno = __LINE__; goto __pyx_L1_error;};
+  __pyx_t_2 = PyObject_GetItem(__pyx_t_5, __pyx_tuple__34); if (unlikely(__pyx_t_2 == NULL)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 368; __pyx_clineno = __LINE__; goto __pyx_L1_error;};
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-  __pyx_t_5 = PyTuple_New(2); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 365; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_5 = PyTuple_New(2); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 368; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_5);
   __Pyx_INCREF(__pyx_v_npTmpTable);
   PyTuple_SET_ITEM(__pyx_t_5, 0, __pyx_v_npTmpTable);
@@ -5067,10 +5214,10 @@ static PyObject *__pyx_f_18coastline_matching_MatchToCoastline_Population(__Pyx_
   PyTuple_SET_ITEM(__pyx_t_5, 1, __pyx_t_2);
   __Pyx_GIVEREF(__pyx_t_2);
   __pyx_t_2 = 0;
-  __pyx_t_2 = PyDict_New(); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 365; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_2 = PyDict_New(); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 368; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_2);
-  if (PyDict_SetItem(__pyx_t_2, __pyx_n_s_axis, __pyx_int_1) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 365; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_4, __pyx_t_5, __pyx_t_2); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 365; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (PyDict_SetItem(__pyx_t_2, __pyx_n_s_axis, __pyx_int_1) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 368; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_4, __pyx_t_5, __pyx_t_2); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 368; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
@@ -5078,25 +5225,25 @@ static PyObject *__pyx_f_18coastline_matching_MatchToCoastline_Population(__Pyx_
   __Pyx_DECREF_SET(__pyx_v_npTmpTable, __pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "coastline_matching.pyx":367
+  /* "coastline_matching.pyx":370
  *     npTmpTable = np.append(npTmpTable, distTmp.ravel()[:,None], axis=1)
  *     # sort the table by distance then x then y (the arguments are last-sort-first)
  *     order = np.lexsort((npTmpTable[:,1],npTmpTable[:,0],npTmpTable[:,2]))             # <<<<<<<<<<<<<<
  * 
  *     # npTmpTable has shape ((radius*2+1)**2, 3) and represents the offset coordinates of all cells in
  */
-  __pyx_t_2 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 367; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_2 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 370; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_lexsort); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 367; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_lexsort); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 370; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_5);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = PyObject_GetItem(__pyx_v_npTmpTable, __pyx_tuple__33); if (unlikely(__pyx_t_2 == NULL)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 367; __pyx_clineno = __LINE__; goto __pyx_L1_error;};
+  __pyx_t_2 = PyObject_GetItem(__pyx_v_npTmpTable, __pyx_tuple__36); if (unlikely(__pyx_t_2 == NULL)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 370; __pyx_clineno = __LINE__; goto __pyx_L1_error;};
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_4 = PyObject_GetItem(__pyx_v_npTmpTable, __pyx_tuple__35); if (unlikely(__pyx_t_4 == NULL)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 367; __pyx_clineno = __LINE__; goto __pyx_L1_error;};
+  __pyx_t_4 = PyObject_GetItem(__pyx_v_npTmpTable, __pyx_tuple__38); if (unlikely(__pyx_t_4 == NULL)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 370; __pyx_clineno = __LINE__; goto __pyx_L1_error;};
   __Pyx_GOTREF(__pyx_t_4);
-  __pyx_t_3 = PyObject_GetItem(__pyx_v_npTmpTable, __pyx_tuple__37); if (unlikely(__pyx_t_3 == NULL)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 367; __pyx_clineno = __LINE__; goto __pyx_L1_error;};
+  __pyx_t_3 = PyObject_GetItem(__pyx_v_npTmpTable, __pyx_tuple__40); if (unlikely(__pyx_t_3 == NULL)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 370; __pyx_clineno = __LINE__; goto __pyx_L1_error;};
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_7 = PyTuple_New(3); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 367; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_7 = PyTuple_New(3); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 370; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_7);
   PyTuple_SET_ITEM(__pyx_t_7, 0, __pyx_t_2);
   __Pyx_GIVEREF(__pyx_t_2);
@@ -5118,17 +5265,17 @@ static PyObject *__pyx_f_18coastline_matching_MatchToCoastline_Population(__Pyx_
     }
   }
   if (!__pyx_t_3) {
-    __pyx_t_1 = __Pyx_PyObject_CallOneArg(__pyx_t_5, __pyx_t_7); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 367; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_1 = __Pyx_PyObject_CallOneArg(__pyx_t_5, __pyx_t_7); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 370; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
     __Pyx_GOTREF(__pyx_t_1);
   } else {
-    __pyx_t_4 = PyTuple_New(1+1); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 367; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_4 = PyTuple_New(1+1); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 370; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_4);
     PyTuple_SET_ITEM(__pyx_t_4, 0, __pyx_t_3); __Pyx_GIVEREF(__pyx_t_3); __pyx_t_3 = NULL;
     PyTuple_SET_ITEM(__pyx_t_4, 0+1, __pyx_t_7);
     __Pyx_GIVEREF(__pyx_t_7);
     __pyx_t_7 = 0;
-    __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_5, __pyx_t_4, NULL); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 367; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_5, __pyx_t_4, NULL); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 370; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   }
@@ -5136,19 +5283,19 @@ static PyObject *__pyx_f_18coastline_matching_MatchToCoastline_Population(__Pyx_
   __pyx_v_order = __pyx_t_1;
   __pyx_t_1 = 0;
 
-  /* "coastline_matching.pyx":373
+  /* "coastline_matching.pyx":376
  *     # npTmpTable[:,0] is x-offsets, npTmpTable[:,1] is y-offsets,
  *     # npTmpTable[:,2] is distance.
  *     npTmpTable = np.take(npTmpTable,order,axis=0)             # <<<<<<<<<<<<<<
  * 
  *      # Transpose this into an array in C-contiguous layout and with three rows and many columns,
  */
-  __pyx_t_1 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 373; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 376; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_take); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 373; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_take); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 376; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_5);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_1 = PyTuple_New(2); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 373; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = PyTuple_New(2); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 376; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_INCREF(__pyx_v_npTmpTable);
   PyTuple_SET_ITEM(__pyx_t_1, 0, __pyx_v_npTmpTable);
@@ -5156,10 +5303,10 @@ static PyObject *__pyx_f_18coastline_matching_MatchToCoastline_Population(__Pyx_
   __Pyx_INCREF(__pyx_v_order);
   PyTuple_SET_ITEM(__pyx_t_1, 1, __pyx_v_order);
   __Pyx_GIVEREF(__pyx_v_order);
-  __pyx_t_4 = PyDict_New(); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 373; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_4 = PyDict_New(); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 376; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_4);
-  if (PyDict_SetItem(__pyx_t_4, __pyx_n_s_axis, __pyx_int_0) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 373; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __pyx_t_7 = __Pyx_PyObject_Call(__pyx_t_5, __pyx_t_1, __pyx_t_4); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 373; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (PyDict_SetItem(__pyx_t_4, __pyx_n_s_axis, __pyx_int_0) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 376; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_7 = __Pyx_PyObject_Call(__pyx_t_5, __pyx_t_1, __pyx_t_4); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 376; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_7);
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
@@ -5167,40 +5314,40 @@ static PyObject *__pyx_f_18coastline_matching_MatchToCoastline_Population(__Pyx_
   __Pyx_DECREF_SET(__pyx_v_npTmpTable, __pyx_t_7);
   __pyx_t_7 = 0;
 
-  /* "coastline_matching.pyx":379
+  /* "coastline_matching.pyx":382
  *     # Only transfer the values relating to the cells within the desired radius (cut the corners
  *     # off the square to make a circle).
  *     nbrTable = np.copy((npTmpTable[npTmpTable[:,2] <= searchPixelRadius]).T,order='c')             # <<<<<<<<<<<<<<
  * 
  *     # transfer this numpy array to  to a native C object (memoryview)
  */
-  __pyx_t_7 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 379; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_7 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 382; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_7);
-  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_7, __pyx_n_s_copy); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 379; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_7, __pyx_n_s_copy); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 382; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
-  __pyx_t_7 = PyObject_GetItem(__pyx_v_npTmpTable, __pyx_tuple__39); if (unlikely(__pyx_t_7 == NULL)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 379; __pyx_clineno = __LINE__; goto __pyx_L1_error;};
+  __pyx_t_7 = PyObject_GetItem(__pyx_v_npTmpTable, __pyx_tuple__42); if (unlikely(__pyx_t_7 == NULL)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 382; __pyx_clineno = __LINE__; goto __pyx_L1_error;};
   __Pyx_GOTREF(__pyx_t_7);
-  __pyx_t_1 = __Pyx_PyInt_From_int(__pyx_v_searchPixelRadius); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 379; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __Pyx_PyInt_From_int(__pyx_v_searchPixelRadius); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 382; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_5 = PyObject_RichCompare(__pyx_t_7, __pyx_t_1, Py_LE); __Pyx_XGOTREF(__pyx_t_5); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 379; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_5 = PyObject_RichCompare(__pyx_t_7, __pyx_t_1, Py_LE); __Pyx_XGOTREF(__pyx_t_5); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 382; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_1 = PyObject_GetItem(__pyx_v_npTmpTable, __pyx_t_5); if (unlikely(__pyx_t_1 == NULL)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 379; __pyx_clineno = __LINE__; goto __pyx_L1_error;};
+  __pyx_t_1 = PyObject_GetItem(__pyx_v_npTmpTable, __pyx_t_5); if (unlikely(__pyx_t_1 == NULL)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 382; __pyx_clineno = __LINE__; goto __pyx_L1_error;};
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-  __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_T); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 379; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_T); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 382; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_5);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_1 = PyTuple_New(1); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 379; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = PyTuple_New(1); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 382; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
   PyTuple_SET_ITEM(__pyx_t_1, 0, __pyx_t_5);
   __Pyx_GIVEREF(__pyx_t_5);
   __pyx_t_5 = 0;
-  __pyx_t_5 = PyDict_New(); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 379; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_5 = PyDict_New(); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 382; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_5);
-  if (PyDict_SetItem(__pyx_t_5, __pyx_n_s_order, __pyx_n_s_c) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 379; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __pyx_t_7 = __Pyx_PyObject_Call(__pyx_t_4, __pyx_t_1, __pyx_t_5); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 379; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (PyDict_SetItem(__pyx_t_5, __pyx_n_s_order, __pyx_n_s_c) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 382; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_7 = __Pyx_PyObject_Call(__pyx_t_4, __pyx_t_1, __pyx_t_5); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 382; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_7);
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
@@ -5208,19 +5355,19 @@ static PyObject *__pyx_f_18coastline_matching_MatchToCoastline_Population(__Pyx_
   __pyx_v_nbrTable = __pyx_t_7;
   __pyx_t_7 = 0;
 
-  /* "coastline_matching.pyx":385
+  /* "coastline_matching.pyx":388
  *     # to int type once here. This saves a great deal of time compared to
  *     # casting repeatedly inside the inner loop
  *     nbrIntCoords = np.asarray(nbrTable[0:2,:]).astype(np.int32)             # <<<<<<<<<<<<<<
  *     _MAX_NEIGHBOURS_TO_CHECK = nbrIntCoords.shape[1]
  * 
  */
-  __pyx_t_1 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 385; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 388; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_asarray); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 385; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_asarray); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 388; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_1 = PyObject_GetItem(__pyx_v_nbrTable, __pyx_tuple__42); if (unlikely(__pyx_t_1 == NULL)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 385; __pyx_clineno = __LINE__; goto __pyx_L1_error;};
+  __pyx_t_1 = PyObject_GetItem(__pyx_v_nbrTable, __pyx_tuple__45); if (unlikely(__pyx_t_1 == NULL)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 388; __pyx_clineno = __LINE__; goto __pyx_L1_error;};
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_t_3 = NULL;
   if (CYTHON_COMPILING_IN_CPYTHON && unlikely(PyMethod_Check(__pyx_t_4))) {
@@ -5233,27 +5380,27 @@ static PyObject *__pyx_f_18coastline_matching_MatchToCoastline_Population(__Pyx_
     }
   }
   if (!__pyx_t_3) {
-    __pyx_t_5 = __Pyx_PyObject_CallOneArg(__pyx_t_4, __pyx_t_1); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 385; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_5 = __Pyx_PyObject_CallOneArg(__pyx_t_4, __pyx_t_1); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 388; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
     __Pyx_GOTREF(__pyx_t_5);
   } else {
-    __pyx_t_2 = PyTuple_New(1+1); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 385; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_2 = PyTuple_New(1+1); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 388; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_2);
     PyTuple_SET_ITEM(__pyx_t_2, 0, __pyx_t_3); __Pyx_GIVEREF(__pyx_t_3); __pyx_t_3 = NULL;
     PyTuple_SET_ITEM(__pyx_t_2, 0+1, __pyx_t_1);
     __Pyx_GIVEREF(__pyx_t_1);
     __pyx_t_1 = 0;
-    __pyx_t_5 = __Pyx_PyObject_Call(__pyx_t_4, __pyx_t_2, NULL); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 385; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_5 = __Pyx_PyObject_Call(__pyx_t_4, __pyx_t_2, NULL); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 388; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_5);
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   }
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_5, __pyx_n_s_astype); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 385; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_5, __pyx_n_s_astype); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 388; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-  __pyx_t_5 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 385; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_5 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 388; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_5);
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_5, __pyx_n_s_int32); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 385; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_5, __pyx_n_s_int32); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 388; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
   __pyx_t_5 = NULL;
@@ -5267,29 +5414,29 @@ static PyObject *__pyx_f_18coastline_matching_MatchToCoastline_Population(__Pyx_
     }
   }
   if (!__pyx_t_5) {
-    __pyx_t_7 = __Pyx_PyObject_CallOneArg(__pyx_t_4, __pyx_t_2); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 385; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_7 = __Pyx_PyObject_CallOneArg(__pyx_t_4, __pyx_t_2); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 388; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
     __Pyx_GOTREF(__pyx_t_7);
   } else {
-    __pyx_t_1 = PyTuple_New(1+1); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 385; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_1 = PyTuple_New(1+1); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 388; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_1);
     PyTuple_SET_ITEM(__pyx_t_1, 0, __pyx_t_5); __Pyx_GIVEREF(__pyx_t_5); __pyx_t_5 = NULL;
     PyTuple_SET_ITEM(__pyx_t_1, 0+1, __pyx_t_2);
     __Pyx_GIVEREF(__pyx_t_2);
     __pyx_t_2 = 0;
-    __pyx_t_7 = __Pyx_PyObject_Call(__pyx_t_4, __pyx_t_1, NULL); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 385; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_7 = __Pyx_PyObject_Call(__pyx_t_4, __pyx_t_1, NULL); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 388; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_7);
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   }
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   __pyx_t_8 = __Pyx_PyObject_to_MemoryviewSlice_d_dc_int(__pyx_t_7);
-  if (unlikely(!__pyx_t_8.memview)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 385; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (unlikely(!__pyx_t_8.memview)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 388; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
   __pyx_v_nbrIntCoords = __pyx_t_8;
   __pyx_t_8.memview = NULL;
   __pyx_t_8.data = NULL;
 
-  /* "coastline_matching.pyx":386
+  /* "coastline_matching.pyx":389
  *     # casting repeatedly inside the inner loop
  *     nbrIntCoords = np.asarray(nbrTable[0:2,:]).astype(np.int32)
  *     _MAX_NEIGHBOURS_TO_CHECK = nbrIntCoords.shape[1]             # <<<<<<<<<<<<<<
@@ -5298,7 +5445,7 @@ static PyObject *__pyx_f_18coastline_matching_MatchToCoastline_Population(__Pyx_
  */
   __pyx_v__MAX_NEIGHBOURS_TO_CHECK = (__pyx_v_nbrIntCoords.shape[1]);
 
-  /* "coastline_matching.pyx":388
+  /* "coastline_matching.pyx":391
  *     _MAX_NEIGHBOURS_TO_CHECK = nbrIntCoords.shape[1]
  * 
  *     reallocatedCells = 0             # <<<<<<<<<<<<<<
@@ -5307,7 +5454,7 @@ static PyObject *__pyx_f_18coastline_matching_MatchToCoastline_Population(__Pyx_
  */
   __pyx_v_reallocatedCells = 0;
 
-  /* "coastline_matching.pyx":389
+  /* "coastline_matching.pyx":392
  * 
  *     reallocatedCells = 0
  *     clippedZeros = 0             # <<<<<<<<<<<<<<
@@ -5316,7 +5463,7 @@ static PyObject *__pyx_f_18coastline_matching_MatchToCoastline_Population(__Pyx_
  */
   __pyx_v_clippedZeros = 0;
 
-  /* "coastline_matching.pyx":390
+  /* "coastline_matching.pyx":393
  *     reallocatedCells = 0
  *     clippedZeros = 0
  *     reallocatedTotalPop = 0             # <<<<<<<<<<<<<<
@@ -5325,7 +5472,7 @@ static PyObject *__pyx_f_18coastline_matching_MatchToCoastline_Population(__Pyx_
  */
   __pyx_v_reallocatedTotalPop = 0.0;
 
-  /* "coastline_matching.pyx":391
+  /* "coastline_matching.pyx":394
  *     clippedZeros = 0
  *     reallocatedTotalPop = 0
  *     failedReallocations = 0             # <<<<<<<<<<<<<<
@@ -5334,7 +5481,7 @@ static PyObject *__pyx_f_18coastline_matching_MatchToCoastline_Population(__Pyx_
  */
   __pyx_v_failedReallocations = 0;
 
-  /* "coastline_matching.pyx":392
+  /* "coastline_matching.pyx":395
  *     reallocatedTotalPop = 0
  *     failedReallocations = 0
  *     failedReallocationPop = 0             # <<<<<<<<<<<<<<
@@ -5343,19 +5490,19 @@ static PyObject *__pyx_f_18coastline_matching_MatchToCoastline_Population(__Pyx_
  */
   __pyx_v_failedReallocationPop = 0.0;
 
-  /* "coastline_matching.pyx":394
+  /* "coastline_matching.pyx":397
  *     failedReallocationPop = 0
  * 
  *     failedLocs = np.zeros_like(landMask)             # <<<<<<<<<<<<<<
  * 
  *     for yIn in range (yShapeIn):
  */
-  __pyx_t_4 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 394; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_4 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 397; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_4);
-  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_n_s_zeros_like); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 394; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_n_s_zeros_like); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 397; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  __pyx_t_4 = __pyx_memoryview_fromslice(__pyx_v_landMask, 2, (PyObject *(*)(char *)) __pyx_memview_get_char, (int (*)(char *, PyObject *)) __pyx_memview_set_char, 0);; if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 394; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_4 = __pyx_memoryview_fromslice(__pyx_v_landMask, 2, (PyObject *(*)(char *)) __pyx_memview_get_char, (int (*)(char *, PyObject *)) __pyx_memview_set_char, 0);; if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 397; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_4);
   __pyx_t_2 = NULL;
   if (CYTHON_COMPILING_IN_CPYTHON && unlikely(PyMethod_Check(__pyx_t_1))) {
@@ -5368,29 +5515,29 @@ static PyObject *__pyx_f_18coastline_matching_MatchToCoastline_Population(__Pyx_
     }
   }
   if (!__pyx_t_2) {
-    __pyx_t_7 = __Pyx_PyObject_CallOneArg(__pyx_t_1, __pyx_t_4); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 394; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_7 = __Pyx_PyObject_CallOneArg(__pyx_t_1, __pyx_t_4); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 397; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
     __Pyx_GOTREF(__pyx_t_7);
   } else {
-    __pyx_t_5 = PyTuple_New(1+1); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 394; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_5 = PyTuple_New(1+1); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 397; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_5);
     PyTuple_SET_ITEM(__pyx_t_5, 0, __pyx_t_2); __Pyx_GIVEREF(__pyx_t_2); __pyx_t_2 = NULL;
     PyTuple_SET_ITEM(__pyx_t_5, 0+1, __pyx_t_4);
     __Pyx_GIVEREF(__pyx_t_4);
     __pyx_t_4 = 0;
-    __pyx_t_7 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_t_5, NULL); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 394; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_7 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_t_5, NULL); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 397; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_7);
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
   }
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_t_9 = __Pyx_PyObject_to_MemoryviewSlice_d_dc_char(__pyx_t_7);
-  if (unlikely(!__pyx_t_9.memview)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 394; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (unlikely(!__pyx_t_9.memview)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 397; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
   __pyx_v_failedLocs = __pyx_t_9;
   __pyx_t_9.memview = NULL;
   __pyx_t_9.data = NULL;
 
-  /* "coastline_matching.pyx":396
+  /* "coastline_matching.pyx":399
  *     failedLocs = np.zeros_like(landMask)
  * 
  *     for yIn in range (yShapeIn):             # <<<<<<<<<<<<<<
@@ -5401,7 +5548,7 @@ static PyObject *__pyx_f_18coastline_matching_MatchToCoastline_Population(__Pyx_
   for (__pyx_t_10 = 0; __pyx_t_10 < __pyx_t_6; __pyx_t_10+=1) {
     __pyx_v_yIn = __pyx_t_10;
 
-    /* "coastline_matching.pyx":397
+    /* "coastline_matching.pyx":400
  * 
  *     for yIn in range (yShapeIn):
  *         for xIn in range(xShapeIn):             # <<<<<<<<<<<<<<
@@ -5412,7 +5559,7 @@ static PyObject *__pyx_f_18coastline_matching_MatchToCoastline_Population(__Pyx_
     for (__pyx_t_12 = 0; __pyx_t_12 < __pyx_t_11; __pyx_t_12+=1) {
       __pyx_v_xIn = __pyx_t_12;
 
-      /* "coastline_matching.pyx":398
+      /* "coastline_matching.pyx":401
  *     for yIn in range (yShapeIn):
  *         for xIn in range(xShapeIn):
  *             if landMask[yIn, xIn] == 1:             # <<<<<<<<<<<<<<
@@ -5432,12 +5579,12 @@ static PyObject *__pyx_f_18coastline_matching_MatchToCoastline_Population(__Pyx_
       } else if (unlikely(__pyx_t_14 >= __pyx_v_landMask.shape[1])) __pyx_t_15 = 1;
       if (unlikely(__pyx_t_15 != -1)) {
         __Pyx_RaiseBufferIndexError(__pyx_t_15);
-        {__pyx_filename = __pyx_f[0]; __pyx_lineno = 398; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+        {__pyx_filename = __pyx_f[0]; __pyx_lineno = 401; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       }
       __pyx_t_16 = (((*((char *) ( /* dim=1 */ ((char *) (((char *) ( /* dim=0 */ (__pyx_v_landMask.data + __pyx_t_13 * __pyx_v_landMask.strides[0]) )) + __pyx_t_14)) ))) == 1) != 0);
       if (__pyx_t_16) {
 
-        /* "coastline_matching.pyx":402
+        /* "coastline_matching.pyx":405
  *                 # however we might want to set it to zero to stop the R-boys getting
  *                 # stressed about seeing nodata inland
  *                 if data[yIn, xIn] == _NDV and fillLandWithZero:             # <<<<<<<<<<<<<<
@@ -5457,7 +5604,7 @@ static PyObject *__pyx_f_18coastline_matching_MatchToCoastline_Population(__Pyx_
         } else if (unlikely(__pyx_t_18 >= __pyx_v_data.shape[1])) __pyx_t_15 = 1;
         if (unlikely(__pyx_t_15 != -1)) {
           __Pyx_RaiseBufferIndexError(__pyx_t_15);
-          {__pyx_filename = __pyx_f[0]; __pyx_lineno = 402; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+          {__pyx_filename = __pyx_f[0]; __pyx_lineno = 405; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
         }
         __pyx_t_19 = (((*((float *) ( /* dim=1 */ ((char *) (((float *) ( /* dim=0 */ (__pyx_v_data.data + __pyx_t_17 * __pyx_v_data.strides[0]) )) + __pyx_t_18)) ))) == __pyx_v__NDV) != 0);
         if (__pyx_t_19) {
@@ -5470,7 +5617,7 @@ static PyObject *__pyx_f_18coastline_matching_MatchToCoastline_Population(__Pyx_
         __pyx_L9_bool_binop_done:;
         if (__pyx_t_16) {
 
-          /* "coastline_matching.pyx":403
+          /* "coastline_matching.pyx":406
  *                 # stressed about seeing nodata inland
  *                 if data[yIn, xIn] == _NDV and fillLandWithZero:
  *                     data[yIn, xIn] = 0             # <<<<<<<<<<<<<<
@@ -5490,14 +5637,14 @@ static PyObject *__pyx_f_18coastline_matching_MatchToCoastline_Population(__Pyx_
           } else if (unlikely(__pyx_t_21 >= __pyx_v_data.shape[1])) __pyx_t_15 = 1;
           if (unlikely(__pyx_t_15 != -1)) {
             __Pyx_RaiseBufferIndexError(__pyx_t_15);
-            {__pyx_filename = __pyx_f[0]; __pyx_lineno = 403; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+            {__pyx_filename = __pyx_f[0]; __pyx_lineno = 406; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
           }
           *((float *) ( /* dim=1 */ ((char *) (((float *) ( /* dim=0 */ (__pyx_v_data.data + __pyx_t_20 * __pyx_v_data.strides[0]) )) + __pyx_t_21)) )) = 0.0;
           goto __pyx_L8;
         }
         __pyx_L8:;
 
-        /* "coastline_matching.pyx":404
+        /* "coastline_matching.pyx":407
  *                 if data[yIn, xIn] == _NDV and fillLandWithZero:
  *                     data[yIn, xIn] = 0
  *                 continue             # <<<<<<<<<<<<<<
@@ -5507,7 +5654,7 @@ static PyObject *__pyx_f_18coastline_matching_MatchToCoastline_Population(__Pyx_
         goto __pyx_L5_continue;
       }
 
-      /* "coastline_matching.pyx":405
+      /* "coastline_matching.pyx":408
  *                     data[yIn, xIn] = 0
  *                 continue
  *             if data[yIn, xIn] == _NDV:             # <<<<<<<<<<<<<<
@@ -5527,12 +5674,12 @@ static PyObject *__pyx_f_18coastline_matching_MatchToCoastline_Population(__Pyx_
       } else if (unlikely(__pyx_t_23 >= __pyx_v_data.shape[1])) __pyx_t_15 = 1;
       if (unlikely(__pyx_t_15 != -1)) {
         __Pyx_RaiseBufferIndexError(__pyx_t_15);
-        {__pyx_filename = __pyx_f[0]; __pyx_lineno = 405; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+        {__pyx_filename = __pyx_f[0]; __pyx_lineno = 408; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       }
       __pyx_t_16 = (((*((float *) ( /* dim=1 */ ((char *) (((float *) ( /* dim=0 */ (__pyx_v_data.data + __pyx_t_22 * __pyx_v_data.strides[0]) )) + __pyx_t_23)) ))) == __pyx_v__NDV) != 0);
       if (__pyx_t_16) {
 
-        /* "coastline_matching.pyx":407
+        /* "coastline_matching.pyx":410
  *             if data[yIn, xIn] == _NDV:
  *                 # we're in the sea, but there's nothing to reallocate
  *                 continue             # <<<<<<<<<<<<<<
@@ -5542,7 +5689,7 @@ static PyObject *__pyx_f_18coastline_matching_MatchToCoastline_Population(__Pyx_
         goto __pyx_L5_continue;
       }
 
-      /* "coastline_matching.pyx":408
+      /* "coastline_matching.pyx":411
  *                 # we're in the sea, but there's nothing to reallocate
  *                 continue
  *             if data[yIn, xIn] == 0:             # <<<<<<<<<<<<<<
@@ -5562,12 +5709,12 @@ static PyObject *__pyx_f_18coastline_matching_MatchToCoastline_Population(__Pyx_
       } else if (unlikely(__pyx_t_25 >= __pyx_v_data.shape[1])) __pyx_t_15 = 1;
       if (unlikely(__pyx_t_15 != -1)) {
         __Pyx_RaiseBufferIndexError(__pyx_t_15);
-        {__pyx_filename = __pyx_f[0]; __pyx_lineno = 408; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+        {__pyx_filename = __pyx_f[0]; __pyx_lineno = 411; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       }
       __pyx_t_16 = (((*((float *) ( /* dim=1 */ ((char *) (((float *) ( /* dim=0 */ (__pyx_v_data.data + __pyx_t_24 * __pyx_v_data.strides[0]) )) + __pyx_t_25)) ))) == 0.0) != 0);
       if (__pyx_t_16) {
 
-        /* "coastline_matching.pyx":410
+        /* "coastline_matching.pyx":413
  *             if data[yIn, xIn] == 0:
  *                 # we're in the sea, and there's nothing to reallocate but...
  *                 if clipZerosAtSea:             # <<<<<<<<<<<<<<
@@ -5577,7 +5724,7 @@ static PyObject *__pyx_f_18coastline_matching_MatchToCoastline_Population(__Pyx_
         __pyx_t_16 = (__pyx_v_clipZerosAtSea != 0);
         if (__pyx_t_16) {
 
-          /* "coastline_matching.pyx":414
+          /* "coastline_matching.pyx":417
  *                     # getting stressed about seeing people at sea even though the number of
  *                     # people in question is zero
  *                     data[yIn, xIn] = _NDV             # <<<<<<<<<<<<<<
@@ -5597,11 +5744,11 @@ static PyObject *__pyx_f_18coastline_matching_MatchToCoastline_Population(__Pyx_
           } else if (unlikely(__pyx_t_27 >= __pyx_v_data.shape[1])) __pyx_t_15 = 1;
           if (unlikely(__pyx_t_15 != -1)) {
             __Pyx_RaiseBufferIndexError(__pyx_t_15);
-            {__pyx_filename = __pyx_f[0]; __pyx_lineno = 414; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+            {__pyx_filename = __pyx_f[0]; __pyx_lineno = 417; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
           }
           *((float *) ( /* dim=1 */ ((char *) (((float *) ( /* dim=0 */ (__pyx_v_data.data + __pyx_t_26 * __pyx_v_data.strides[0]) )) + __pyx_t_27)) )) = __pyx_v__NDV;
 
-          /* "coastline_matching.pyx":415
+          /* "coastline_matching.pyx":418
  *                     # people in question is zero
  *                     data[yIn, xIn] = _NDV
  *                     clippedZeros += 1             # <<<<<<<<<<<<<<
@@ -5613,7 +5760,7 @@ static PyObject *__pyx_f_18coastline_matching_MatchToCoastline_Population(__Pyx_
         }
         __pyx_L13:;
 
-        /* "coastline_matching.pyx":416
+        /* "coastline_matching.pyx":419
  *                     data[yIn, xIn] = _NDV
  *                     clippedZeros += 1
  *                 continue             # <<<<<<<<<<<<<<
@@ -5623,7 +5770,7 @@ static PyObject *__pyx_f_18coastline_matching_MatchToCoastline_Population(__Pyx_
         goto __pyx_L5_continue;
       }
 
-      /* "coastline_matching.pyx":418
+      /* "coastline_matching.pyx":421
  *                 continue
  *             # otherwise, we're at sea but have non-zero data. Find nearest land pixel to reallocate it to.
  *             reallocatedOK = 0             # <<<<<<<<<<<<<<
@@ -5632,7 +5779,7 @@ static PyObject *__pyx_f_18coastline_matching_MatchToCoastline_Population(__Pyx_
  */
       __pyx_v_reallocatedOK = 0;
 
-      /* "coastline_matching.pyx":419
+      /* "coastline_matching.pyx":422
  *             # otherwise, we're at sea but have non-zero data. Find nearest land pixel to reallocate it to.
  *             reallocatedOK = 0
  *             for nbrIndex_prv in range(1, _MAX_NEIGHBOURS_TO_CHECK):             # <<<<<<<<<<<<<<
@@ -5643,7 +5790,7 @@ static PyObject *__pyx_f_18coastline_matching_MatchToCoastline_Population(__Pyx_
       for (__pyx_t_28 = 1; __pyx_t_28 < __pyx_t_15; __pyx_t_28+=1) {
         __pyx_v_nbrIndex_prv = __pyx_t_28;
 
-        /* "coastline_matching.pyx":421
+        /* "coastline_matching.pyx":424
  *             for nbrIndex_prv in range(1, _MAX_NEIGHBOURS_TO_CHECK):
  *                 # use int-type coords array to avoid cast op in tight loop
  *                 xNbr = xIn + nbrIntCoords[0, nbrIndex_prv]             # <<<<<<<<<<<<<<
@@ -5663,11 +5810,11 @@ static PyObject *__pyx_f_18coastline_matching_MatchToCoastline_Population(__Pyx_
         } else if (unlikely(__pyx_t_30 >= __pyx_v_nbrIntCoords.shape[1])) __pyx_t_31 = 1;
         if (unlikely(__pyx_t_31 != -1)) {
           __Pyx_RaiseBufferIndexError(__pyx_t_31);
-          {__pyx_filename = __pyx_f[0]; __pyx_lineno = 421; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+          {__pyx_filename = __pyx_f[0]; __pyx_lineno = 424; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
         }
         __pyx_v_xNbr = (__pyx_v_xIn + (*((int *) ( /* dim=1 */ ((char *) (((int *) ( /* dim=0 */ (__pyx_v_nbrIntCoords.data + __pyx_t_29 * __pyx_v_nbrIntCoords.strides[0]) )) + __pyx_t_30)) ))));
 
-        /* "coastline_matching.pyx":422
+        /* "coastline_matching.pyx":425
  *                 # use int-type coords array to avoid cast op in tight loop
  *                 xNbr = xIn + nbrIntCoords[0, nbrIndex_prv]
  *                 yNbr = yIn + nbrIntCoords[1, nbrIndex_prv]             # <<<<<<<<<<<<<<
@@ -5687,11 +5834,11 @@ static PyObject *__pyx_f_18coastline_matching_MatchToCoastline_Population(__Pyx_
         } else if (unlikely(__pyx_t_33 >= __pyx_v_nbrIntCoords.shape[1])) __pyx_t_31 = 1;
         if (unlikely(__pyx_t_31 != -1)) {
           __Pyx_RaiseBufferIndexError(__pyx_t_31);
-          {__pyx_filename = __pyx_f[0]; __pyx_lineno = 422; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+          {__pyx_filename = __pyx_f[0]; __pyx_lineno = 425; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
         }
         __pyx_v_yNbr = (__pyx_v_yIn + (*((int *) ( /* dim=1 */ ((char *) (((int *) ( /* dim=0 */ (__pyx_v_nbrIntCoords.data + __pyx_t_32 * __pyx_v_nbrIntCoords.strides[0]) )) + __pyx_t_33)) ))));
 
-        /* "coastline_matching.pyx":423
+        /* "coastline_matching.pyx":426
  *                 xNbr = xIn + nbrIntCoords[0, nbrIndex_prv]
  *                 yNbr = yIn + nbrIntCoords[1, nbrIndex_prv]
  *                 if (xNbr >= 0 and xNbr < xShapeIn and             # <<<<<<<<<<<<<<
@@ -5711,7 +5858,7 @@ static PyObject *__pyx_f_18coastline_matching_MatchToCoastline_Population(__Pyx_
           goto __pyx_L17_bool_binop_done;
         }
 
-        /* "coastline_matching.pyx":424
+        /* "coastline_matching.pyx":427
  *                 yNbr = yIn + nbrIntCoords[1, nbrIndex_prv]
  *                 if (xNbr >= 0 and xNbr < xShapeIn and
  *                     yNbr >= 0 and yNbr < yShapeIn and             # <<<<<<<<<<<<<<
@@ -5731,7 +5878,7 @@ static PyObject *__pyx_f_18coastline_matching_MatchToCoastline_Population(__Pyx_
           goto __pyx_L17_bool_binop_done;
         }
 
-        /* "coastline_matching.pyx":425
+        /* "coastline_matching.pyx":428
  *                 if (xNbr >= 0 and xNbr < xShapeIn and
  *                     yNbr >= 0 and yNbr < yShapeIn and
  *                     landMask[yNbr, xNbr] == 1):             # <<<<<<<<<<<<<<
@@ -5751,14 +5898,14 @@ static PyObject *__pyx_f_18coastline_matching_MatchToCoastline_Population(__Pyx_
         } else if (unlikely(__pyx_t_35 >= __pyx_v_landMask.shape[1])) __pyx_t_31 = 1;
         if (unlikely(__pyx_t_31 != -1)) {
           __Pyx_RaiseBufferIndexError(__pyx_t_31);
-          {__pyx_filename = __pyx_f[0]; __pyx_lineno = 425; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+          {__pyx_filename = __pyx_f[0]; __pyx_lineno = 428; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
         }
         __pyx_t_19 = (((*((char *) ( /* dim=1 */ ((char *) (((char *) ( /* dim=0 */ (__pyx_v_landMask.data + __pyx_t_34 * __pyx_v_landMask.strides[0]) )) + __pyx_t_35)) ))) == 1) != 0);
         __pyx_t_16 = __pyx_t_19;
         __pyx_L17_bool_binop_done:;
         if (__pyx_t_16) {
 
-          /* "coastline_matching.pyx":427
+          /* "coastline_matching.pyx":430
  *                     landMask[yNbr, xNbr] == 1):
  *                     # we've found a land pixel, move the value from here to there
  *                     if data[yNbr, xNbr] == _NDV or data[yNbr, xNbr] < 0:             # <<<<<<<<<<<<<<
@@ -5778,7 +5925,7 @@ static PyObject *__pyx_f_18coastline_matching_MatchToCoastline_Population(__Pyx_
           } else if (unlikely(__pyx_t_37 >= __pyx_v_data.shape[1])) __pyx_t_31 = 1;
           if (unlikely(__pyx_t_31 != -1)) {
             __Pyx_RaiseBufferIndexError(__pyx_t_31);
-            {__pyx_filename = __pyx_f[0]; __pyx_lineno = 427; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+            {__pyx_filename = __pyx_f[0]; __pyx_lineno = 430; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
           }
           __pyx_t_19 = (((*((float *) ( /* dim=1 */ ((char *) (((float *) ( /* dim=0 */ (__pyx_v_data.data + __pyx_t_36 * __pyx_v_data.strides[0]) )) + __pyx_t_37)) ))) == __pyx_v__NDV) != 0);
           if (!__pyx_t_19) {
@@ -5799,14 +5946,14 @@ static PyObject *__pyx_f_18coastline_matching_MatchToCoastline_Population(__Pyx_
           } else if (unlikely(__pyx_t_39 >= __pyx_v_data.shape[1])) __pyx_t_31 = 1;
           if (unlikely(__pyx_t_31 != -1)) {
             __Pyx_RaiseBufferIndexError(__pyx_t_31);
-            {__pyx_filename = __pyx_f[0]; __pyx_lineno = 427; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+            {__pyx_filename = __pyx_f[0]; __pyx_lineno = 430; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
           }
           __pyx_t_19 = (((*((float *) ( /* dim=1 */ ((char *) (((float *) ( /* dim=0 */ (__pyx_v_data.data + __pyx_t_38 * __pyx_v_data.strides[0]) )) + __pyx_t_39)) ))) < 0.0) != 0);
           __pyx_t_16 = __pyx_t_19;
           __pyx_L23_bool_binop_done:;
           if (__pyx_t_16) {
 
-            /* "coastline_matching.pyx":428
+            /* "coastline_matching.pyx":431
  *                     # we've found a land pixel, move the value from here to there
  *                     if data[yNbr, xNbr] == _NDV or data[yNbr, xNbr] < 0:
  *                         data[yNbr, xNbr] = data[yIn, xIn]             # <<<<<<<<<<<<<<
@@ -5826,7 +5973,7 @@ static PyObject *__pyx_f_18coastline_matching_MatchToCoastline_Population(__Pyx_
             } else if (unlikely(__pyx_t_41 >= __pyx_v_data.shape[1])) __pyx_t_31 = 1;
             if (unlikely(__pyx_t_31 != -1)) {
               __Pyx_RaiseBufferIndexError(__pyx_t_31);
-              {__pyx_filename = __pyx_f[0]; __pyx_lineno = 428; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+              {__pyx_filename = __pyx_f[0]; __pyx_lineno = 431; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
             }
             __pyx_t_42 = __pyx_v_yNbr;
             __pyx_t_43 = __pyx_v_xNbr;
@@ -5841,14 +5988,14 @@ static PyObject *__pyx_f_18coastline_matching_MatchToCoastline_Population(__Pyx_
             } else if (unlikely(__pyx_t_43 >= __pyx_v_data.shape[1])) __pyx_t_31 = 1;
             if (unlikely(__pyx_t_31 != -1)) {
               __Pyx_RaiseBufferIndexError(__pyx_t_31);
-              {__pyx_filename = __pyx_f[0]; __pyx_lineno = 428; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+              {__pyx_filename = __pyx_f[0]; __pyx_lineno = 431; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
             }
             *((float *) ( /* dim=1 */ ((char *) (((float *) ( /* dim=0 */ (__pyx_v_data.data + __pyx_t_42 * __pyx_v_data.strides[0]) )) + __pyx_t_43)) )) = (*((float *) ( /* dim=1 */ ((char *) (((float *) ( /* dim=0 */ (__pyx_v_data.data + __pyx_t_40 * __pyx_v_data.strides[0]) )) + __pyx_t_41)) )));
             goto __pyx_L22;
           }
           /*else*/ {
 
-            /* "coastline_matching.pyx":430
+            /* "coastline_matching.pyx":433
  *                         data[yNbr, xNbr] = data[yIn, xIn]
  *                     else:
  *                         data[yNbr, xNbr] += data[yIn, xIn]             # <<<<<<<<<<<<<<
@@ -5868,7 +6015,7 @@ static PyObject *__pyx_f_18coastline_matching_MatchToCoastline_Population(__Pyx_
             } else if (unlikely(__pyx_t_45 >= __pyx_v_data.shape[1])) __pyx_t_31 = 1;
             if (unlikely(__pyx_t_31 != -1)) {
               __Pyx_RaiseBufferIndexError(__pyx_t_31);
-              {__pyx_filename = __pyx_f[0]; __pyx_lineno = 430; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+              {__pyx_filename = __pyx_f[0]; __pyx_lineno = 433; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
             }
             __pyx_t_46 = __pyx_v_yNbr;
             __pyx_t_47 = __pyx_v_xNbr;
@@ -5883,13 +6030,13 @@ static PyObject *__pyx_f_18coastline_matching_MatchToCoastline_Population(__Pyx_
             } else if (unlikely(__pyx_t_47 >= __pyx_v_data.shape[1])) __pyx_t_31 = 1;
             if (unlikely(__pyx_t_31 != -1)) {
               __Pyx_RaiseBufferIndexError(__pyx_t_31);
-              {__pyx_filename = __pyx_f[0]; __pyx_lineno = 430; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+              {__pyx_filename = __pyx_f[0]; __pyx_lineno = 433; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
             }
             *((float *) ( /* dim=1 */ ((char *) (((float *) ( /* dim=0 */ (__pyx_v_data.data + __pyx_t_46 * __pyx_v_data.strides[0]) )) + __pyx_t_47)) )) += (*((float *) ( /* dim=1 */ ((char *) (((float *) ( /* dim=0 */ (__pyx_v_data.data + __pyx_t_44 * __pyx_v_data.strides[0]) )) + __pyx_t_45)) )));
           }
           __pyx_L22:;
 
-          /* "coastline_matching.pyx":431
+          /* "coastline_matching.pyx":434
  *                     else:
  *                         data[yNbr, xNbr] += data[yIn, xIn]
  *                     data[yIn, xIn] = _NDV             # <<<<<<<<<<<<<<
@@ -5909,11 +6056,11 @@ static PyObject *__pyx_f_18coastline_matching_MatchToCoastline_Population(__Pyx_
           } else if (unlikely(__pyx_t_49 >= __pyx_v_data.shape[1])) __pyx_t_31 = 1;
           if (unlikely(__pyx_t_31 != -1)) {
             __Pyx_RaiseBufferIndexError(__pyx_t_31);
-            {__pyx_filename = __pyx_f[0]; __pyx_lineno = 431; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+            {__pyx_filename = __pyx_f[0]; __pyx_lineno = 434; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
           }
           *((float *) ( /* dim=1 */ ((char *) (((float *) ( /* dim=0 */ (__pyx_v_data.data + __pyx_t_48 * __pyx_v_data.strides[0]) )) + __pyx_t_49)) )) = __pyx_v__NDV;
 
-          /* "coastline_matching.pyx":432
+          /* "coastline_matching.pyx":435
  *                         data[yNbr, xNbr] += data[yIn, xIn]
  *                     data[yIn, xIn] = _NDV
  *                     reallocatedOK = 1             # <<<<<<<<<<<<<<
@@ -5922,7 +6069,7 @@ static PyObject *__pyx_f_18coastline_matching_MatchToCoastline_Population(__Pyx_
  */
           __pyx_v_reallocatedOK = 1;
 
-          /* "coastline_matching.pyx":433
+          /* "coastline_matching.pyx":436
  *                     data[yIn, xIn] = _NDV
  *                     reallocatedOK = 1
  *                     reallocatedCells += 1             # <<<<<<<<<<<<<<
@@ -5931,7 +6078,7 @@ static PyObject *__pyx_f_18coastline_matching_MatchToCoastline_Population(__Pyx_
  */
           __pyx_v_reallocatedCells = (__pyx_v_reallocatedCells + 1);
 
-          /* "coastline_matching.pyx":434
+          /* "coastline_matching.pyx":437
  *                     reallocatedOK = 1
  *                     reallocatedCells += 1
  *                     reallocatedTotalPop += data[yNbr, xNbr]             # <<<<<<<<<<<<<<
@@ -5951,11 +6098,11 @@ static PyObject *__pyx_f_18coastline_matching_MatchToCoastline_Population(__Pyx_
           } else if (unlikely(__pyx_t_51 >= __pyx_v_data.shape[1])) __pyx_t_31 = 1;
           if (unlikely(__pyx_t_31 != -1)) {
             __Pyx_RaiseBufferIndexError(__pyx_t_31);
-            {__pyx_filename = __pyx_f[0]; __pyx_lineno = 434; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+            {__pyx_filename = __pyx_f[0]; __pyx_lineno = 437; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
           }
           __pyx_v_reallocatedTotalPop = (__pyx_v_reallocatedTotalPop + (*((float *) ( /* dim=1 */ ((char *) (((float *) ( /* dim=0 */ (__pyx_v_data.data + __pyx_t_50 * __pyx_v_data.strides[0]) )) + __pyx_t_51)) ))));
 
-          /* "coastline_matching.pyx":435
+          /* "coastline_matching.pyx":438
  *                     reallocatedCells += 1
  *                     reallocatedTotalPop += data[yNbr, xNbr]
  *                     break             # <<<<<<<<<<<<<<
@@ -5967,7 +6114,7 @@ static PyObject *__pyx_f_18coastline_matching_MatchToCoastline_Population(__Pyx_
       }
       __pyx_L15_break:;
 
-      /* "coastline_matching.pyx":436
+      /* "coastline_matching.pyx":439
  *                     reallocatedTotalPop += data[yNbr, xNbr]
  *                     break
  *             if reallocatedOK == 0:             # <<<<<<<<<<<<<<
@@ -5977,7 +6124,7 @@ static PyObject *__pyx_f_18coastline_matching_MatchToCoastline_Population(__Pyx_
       __pyx_t_16 = ((__pyx_v_reallocatedOK == 0) != 0);
       if (__pyx_t_16) {
 
-        /* "coastline_matching.pyx":437
+        /* "coastline_matching.pyx":440
  *                     break
  *             if reallocatedOK == 0:
  *                 failedReallocations += 1             # <<<<<<<<<<<<<<
@@ -5986,7 +6133,7 @@ static PyObject *__pyx_f_18coastline_matching_MatchToCoastline_Population(__Pyx_
  */
         __pyx_v_failedReallocations = (__pyx_v_failedReallocations + 1);
 
-        /* "coastline_matching.pyx":438
+        /* "coastline_matching.pyx":441
  *             if reallocatedOK == 0:
  *                 failedReallocations += 1
  *                 failedReallocationPop += data[yIn, xIn]             # <<<<<<<<<<<<<<
@@ -6006,11 +6153,11 @@ static PyObject *__pyx_f_18coastline_matching_MatchToCoastline_Population(__Pyx_
         } else if (unlikely(__pyx_t_52 >= __pyx_v_data.shape[1])) __pyx_t_15 = 1;
         if (unlikely(__pyx_t_15 != -1)) {
           __Pyx_RaiseBufferIndexError(__pyx_t_15);
-          {__pyx_filename = __pyx_f[0]; __pyx_lineno = 438; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+          {__pyx_filename = __pyx_f[0]; __pyx_lineno = 441; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
         }
         __pyx_v_failedReallocationPop = (__pyx_v_failedReallocationPop + (*((float *) ( /* dim=1 */ ((char *) (((float *) ( /* dim=0 */ (__pyx_v_data.data + __pyx_t_28 * __pyx_v_data.strides[0]) )) + __pyx_t_52)) ))));
 
-        /* "coastline_matching.pyx":439
+        /* "coastline_matching.pyx":442
  *                 failedReallocations += 1
  *                 failedReallocationPop += data[yIn, xIn]
  *                 if deleteDespiteFailure:             # <<<<<<<<<<<<<<
@@ -6020,12 +6167,12 @@ static PyObject *__pyx_f_18coastline_matching_MatchToCoastline_Population(__Pyx_
         __pyx_t_16 = (__pyx_v_deleteDespiteFailure != 0);
         if (__pyx_t_16) {
 
-          /* "coastline_matching.pyx":440
+          /* "coastline_matching.pyx":443
  *                 failedReallocationPop += data[yIn, xIn]
  *                 if deleteDespiteFailure:
  *                     data[yIn, xIn] = _NDV             # <<<<<<<<<<<<<<
  *                 failedLocs[yIn, xIn] = 1
- * 
+ *     logger = MessageLogger(logLevel)
  */
           __pyx_t_53 = __pyx_v_yIn;
           __pyx_t_54 = __pyx_v_xIn;
@@ -6040,19 +6187,19 @@ static PyObject *__pyx_f_18coastline_matching_MatchToCoastline_Population(__Pyx_
           } else if (unlikely(__pyx_t_54 >= __pyx_v_data.shape[1])) __pyx_t_15 = 1;
           if (unlikely(__pyx_t_15 != -1)) {
             __Pyx_RaiseBufferIndexError(__pyx_t_15);
-            {__pyx_filename = __pyx_f[0]; __pyx_lineno = 440; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+            {__pyx_filename = __pyx_f[0]; __pyx_lineno = 443; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
           }
           *((float *) ( /* dim=1 */ ((char *) (((float *) ( /* dim=0 */ (__pyx_v_data.data + __pyx_t_53 * __pyx_v_data.strides[0]) )) + __pyx_t_54)) )) = __pyx_v__NDV;
           goto __pyx_L26;
         }
         __pyx_L26:;
 
-        /* "coastline_matching.pyx":441
+        /* "coastline_matching.pyx":444
  *                 if deleteDespiteFailure:
  *                     data[yIn, xIn] = _NDV
  *                 failedLocs[yIn, xIn] = 1             # <<<<<<<<<<<<<<
- * 
- *     logMessage ("Reallocated {0!s} total pop from {1!s} cells to nearby land cell".format(
+ *     logger = MessageLogger(logLevel)
+ *     logger.logMessage ("Reallocated {0!s} total pop from {1!s} cells to nearby land cell".format(
  */
         __pyx_t_55 = __pyx_v_yIn;
         __pyx_t_56 = __pyx_v_xIn;
@@ -6067,7 +6214,7 @@ static PyObject *__pyx_f_18coastline_matching_MatchToCoastline_Population(__Pyx_
         } else if (unlikely(__pyx_t_56 >= __pyx_v_failedLocs.shape[1])) __pyx_t_15 = 1;
         if (unlikely(__pyx_t_15 != -1)) {
           __Pyx_RaiseBufferIndexError(__pyx_t_15);
-          {__pyx_filename = __pyx_f[0]; __pyx_lineno = 441; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+          {__pyx_filename = __pyx_f[0]; __pyx_lineno = 444; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
         }
         *((char *) ( /* dim=1 */ ((char *) (((char *) ( /* dim=0 */ (__pyx_v_failedLocs.data + __pyx_t_55 * __pyx_v_failedLocs.strides[0]) )) + __pyx_t_56)) )) = 1;
         goto __pyx_L25;
@@ -6077,123 +6224,15 @@ static PyObject *__pyx_f_18coastline_matching_MatchToCoastline_Population(__Pyx_
     }
   }
 
-  /* "coastline_matching.pyx":443
- *                 failedLocs[yIn, xIn] = 1
- * 
- *     logMessage ("Reallocated {0!s} total pop from {1!s} cells to nearby land cell".format(             # <<<<<<<<<<<<<<
- *         reallocatedTotalPop,reallocatedCells))
- *     logMessage ("Clipped (set to nodata) {0!s} zero-value cells in the sea".format(clippedZeros))
- */
-  __pyx_t_1 = __Pyx_GetModuleGlobalName(__pyx_n_s_logMessage); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 443; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_kp_s_Reallocated_0_s_total_pop_from_1, __pyx_n_s_format); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 443; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __Pyx_GOTREF(__pyx_t_4);
-
-  /* "coastline_matching.pyx":444
- * 
- *     logMessage ("Reallocated {0!s} total pop from {1!s} cells to nearby land cell".format(
- *         reallocatedTotalPop,reallocatedCells))             # <<<<<<<<<<<<<<
- *     logMessage ("Clipped (set to nodata) {0!s} zero-value cells in the sea".format(clippedZeros))
- *     logMessage ("Failed to reallocate {0!s} total pop from {1!s} cells to nearby land cell".format(
- */
-  __pyx_t_2 = PyFloat_FromDouble(__pyx_v_reallocatedTotalPop); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 444; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyInt_From_int(__pyx_v_reallocatedCells); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 444; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_57 = NULL;
-  __pyx_t_6 = 0;
-  if (CYTHON_COMPILING_IN_CPYTHON && likely(PyMethod_Check(__pyx_t_4))) {
-    __pyx_t_57 = PyMethod_GET_SELF(__pyx_t_4);
-    if (likely(__pyx_t_57)) {
-      PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_4);
-      __Pyx_INCREF(__pyx_t_57);
-      __Pyx_INCREF(function);
-      __Pyx_DECREF_SET(__pyx_t_4, function);
-      __pyx_t_6 = 1;
-    }
-  }
-  __pyx_t_58 = PyTuple_New(2+__pyx_t_6); if (unlikely(!__pyx_t_58)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 443; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __Pyx_GOTREF(__pyx_t_58);
-  if (__pyx_t_57) {
-    PyTuple_SET_ITEM(__pyx_t_58, 0, __pyx_t_57); __Pyx_GIVEREF(__pyx_t_57); __pyx_t_57 = NULL;
-  }
-  PyTuple_SET_ITEM(__pyx_t_58, 0+__pyx_t_6, __pyx_t_2);
-  __Pyx_GIVEREF(__pyx_t_2);
-  PyTuple_SET_ITEM(__pyx_t_58, 1+__pyx_t_6, __pyx_t_3);
-  __Pyx_GIVEREF(__pyx_t_3);
-  __pyx_t_2 = 0;
-  __pyx_t_3 = 0;
-  __pyx_t_5 = __Pyx_PyObject_Call(__pyx_t_4, __pyx_t_58, NULL); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 443; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __Pyx_GOTREF(__pyx_t_5);
-  __Pyx_DECREF(__pyx_t_58); __pyx_t_58 = 0;
-  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  __pyx_t_4 = NULL;
-  if (CYTHON_COMPILING_IN_CPYTHON && unlikely(PyMethod_Check(__pyx_t_1))) {
-    __pyx_t_4 = PyMethod_GET_SELF(__pyx_t_1);
-    if (likely(__pyx_t_4)) {
-      PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_1);
-      __Pyx_INCREF(__pyx_t_4);
-      __Pyx_INCREF(function);
-      __Pyx_DECREF_SET(__pyx_t_1, function);
-    }
-  }
-  if (!__pyx_t_4) {
-    __pyx_t_7 = __Pyx_PyObject_CallOneArg(__pyx_t_1, __pyx_t_5); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 443; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-    __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-    __Pyx_GOTREF(__pyx_t_7);
-  } else {
-    __pyx_t_58 = PyTuple_New(1+1); if (unlikely(!__pyx_t_58)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 443; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-    __Pyx_GOTREF(__pyx_t_58);
-    PyTuple_SET_ITEM(__pyx_t_58, 0, __pyx_t_4); __Pyx_GIVEREF(__pyx_t_4); __pyx_t_4 = NULL;
-    PyTuple_SET_ITEM(__pyx_t_58, 0+1, __pyx_t_5);
-    __Pyx_GIVEREF(__pyx_t_5);
-    __pyx_t_5 = 0;
-    __pyx_t_7 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_t_58, NULL); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 443; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-    __Pyx_GOTREF(__pyx_t_7);
-    __Pyx_DECREF(__pyx_t_58); __pyx_t_58 = 0;
-  }
-  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
-
   /* "coastline_matching.pyx":445
- *     logMessage ("Reallocated {0!s} total pop from {1!s} cells to nearby land cell".format(
+ *                     data[yIn, xIn] = _NDV
+ *                 failedLocs[yIn, xIn] = 1
+ *     logger = MessageLogger(logLevel)             # <<<<<<<<<<<<<<
+ *     logger.logMessage ("Reallocated {0!s} total pop from {1!s} cells to nearby land cell".format(
  *         reallocatedTotalPop,reallocatedCells))
- *     logMessage ("Clipped (set to nodata) {0!s} zero-value cells in the sea".format(clippedZeros))             # <<<<<<<<<<<<<<
- *     logMessage ("Failed to reallocate {0!s} total pop from {1!s} cells to nearby land cell".format(
- *         failedReallocationPop, failedReallocations))
  */
-  __pyx_t_1 = __Pyx_GetModuleGlobalName(__pyx_n_s_logMessage); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 445; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __Pyx_GetModuleGlobalName(__pyx_n_s_MessageLogger); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 445; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_kp_s_Clipped_set_to_nodata_0_s_zero_v, __pyx_n_s_format); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 445; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __Pyx_GOTREF(__pyx_t_5);
-  __pyx_t_4 = __Pyx_PyInt_From_int(__pyx_v_clippedZeros); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 445; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __Pyx_GOTREF(__pyx_t_4);
-  __pyx_t_3 = NULL;
-  if (CYTHON_COMPILING_IN_CPYTHON && likely(PyMethod_Check(__pyx_t_5))) {
-    __pyx_t_3 = PyMethod_GET_SELF(__pyx_t_5);
-    if (likely(__pyx_t_3)) {
-      PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_5);
-      __Pyx_INCREF(__pyx_t_3);
-      __Pyx_INCREF(function);
-      __Pyx_DECREF_SET(__pyx_t_5, function);
-    }
-  }
-  if (!__pyx_t_3) {
-    __pyx_t_58 = __Pyx_PyObject_CallOneArg(__pyx_t_5, __pyx_t_4); if (unlikely(!__pyx_t_58)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 445; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-    __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-    __Pyx_GOTREF(__pyx_t_58);
-  } else {
-    __pyx_t_2 = PyTuple_New(1+1); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 445; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-    __Pyx_GOTREF(__pyx_t_2);
-    PyTuple_SET_ITEM(__pyx_t_2, 0, __pyx_t_3); __Pyx_GIVEREF(__pyx_t_3); __pyx_t_3 = NULL;
-    PyTuple_SET_ITEM(__pyx_t_2, 0+1, __pyx_t_4);
-    __Pyx_GIVEREF(__pyx_t_4);
-    __pyx_t_4 = 0;
-    __pyx_t_58 = __Pyx_PyObject_Call(__pyx_t_5, __pyx_t_2, NULL); if (unlikely(!__pyx_t_58)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 445; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-    __Pyx_GOTREF(__pyx_t_58);
-    __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  }
-  __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
   __pyx_t_5 = NULL;
   if (CYTHON_COMPILING_IN_CPYTHON && unlikely(PyMethod_Check(__pyx_t_1))) {
     __pyx_t_5 = PyMethod_GET_SELF(__pyx_t_1);
@@ -6205,46 +6244,191 @@ static PyObject *__pyx_f_18coastline_matching_MatchToCoastline_Population(__Pyx_
     }
   }
   if (!__pyx_t_5) {
-    __pyx_t_7 = __Pyx_PyObject_CallOneArg(__pyx_t_1, __pyx_t_58); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 445; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_7 = __Pyx_PyObject_CallOneArg(__pyx_t_1, __pyx_v_logLevel); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 445; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __Pyx_GOTREF(__pyx_t_7);
+  } else {
+    __pyx_t_4 = PyTuple_New(1+1); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 445; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __Pyx_GOTREF(__pyx_t_4);
+    PyTuple_SET_ITEM(__pyx_t_4, 0, __pyx_t_5); __Pyx_GIVEREF(__pyx_t_5); __pyx_t_5 = NULL;
+    __Pyx_INCREF(__pyx_v_logLevel);
+    PyTuple_SET_ITEM(__pyx_t_4, 0+1, __pyx_v_logLevel);
+    __Pyx_GIVEREF(__pyx_v_logLevel);
+    __pyx_t_7 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_t_4, NULL); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 445; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __Pyx_GOTREF(__pyx_t_7);
+    __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+  }
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+  __pyx_v_logger = __pyx_t_7;
+  __pyx_t_7 = 0;
+
+  /* "coastline_matching.pyx":446
+ *                 failedLocs[yIn, xIn] = 1
+ *     logger = MessageLogger(logLevel)
+ *     logger.logMessage ("Reallocated {0!s} total pop from {1!s} cells to nearby land cell".format(             # <<<<<<<<<<<<<<
+ *         reallocatedTotalPop,reallocatedCells))
+ *     logger.logMessage ("Clipped (set to nodata) {0!s} zero-value cells in the sea".format(clippedZeros))
+ */
+  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_logger, __pyx_n_s_logMessage); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 446; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_t_1);
+  __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_kp_s_Reallocated_0_s_total_pop_from_1, __pyx_n_s_format); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 446; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_t_5);
+
+  /* "coastline_matching.pyx":447
+ *     logger = MessageLogger(logLevel)
+ *     logger.logMessage ("Reallocated {0!s} total pop from {1!s} cells to nearby land cell".format(
+ *         reallocatedTotalPop,reallocatedCells))             # <<<<<<<<<<<<<<
+ *     logger.logMessage ("Clipped (set to nodata) {0!s} zero-value cells in the sea".format(clippedZeros))
+ *     logger.logMessage ("Failed to reallocate {0!s} total pop from {1!s} cells to nearby land cell".format(
+ */
+  __pyx_t_2 = PyFloat_FromDouble(__pyx_v_reallocatedTotalPop); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 447; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_t_2);
+  __pyx_t_3 = __Pyx_PyInt_From_int(__pyx_v_reallocatedCells); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 447; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_t_3);
+  __pyx_t_57 = NULL;
+  __pyx_t_6 = 0;
+  if (CYTHON_COMPILING_IN_CPYTHON && likely(PyMethod_Check(__pyx_t_5))) {
+    __pyx_t_57 = PyMethod_GET_SELF(__pyx_t_5);
+    if (likely(__pyx_t_57)) {
+      PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_5);
+      __Pyx_INCREF(__pyx_t_57);
+      __Pyx_INCREF(function);
+      __Pyx_DECREF_SET(__pyx_t_5, function);
+      __pyx_t_6 = 1;
+    }
+  }
+  __pyx_t_58 = PyTuple_New(2+__pyx_t_6); if (unlikely(!__pyx_t_58)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 446; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_t_58);
+  if (__pyx_t_57) {
+    PyTuple_SET_ITEM(__pyx_t_58, 0, __pyx_t_57); __Pyx_GIVEREF(__pyx_t_57); __pyx_t_57 = NULL;
+  }
+  PyTuple_SET_ITEM(__pyx_t_58, 0+__pyx_t_6, __pyx_t_2);
+  __Pyx_GIVEREF(__pyx_t_2);
+  PyTuple_SET_ITEM(__pyx_t_58, 1+__pyx_t_6, __pyx_t_3);
+  __Pyx_GIVEREF(__pyx_t_3);
+  __pyx_t_2 = 0;
+  __pyx_t_3 = 0;
+  __pyx_t_4 = __Pyx_PyObject_Call(__pyx_t_5, __pyx_t_58, NULL); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 446; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_t_4);
+  __Pyx_DECREF(__pyx_t_58); __pyx_t_58 = 0;
+  __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
+  __pyx_t_5 = NULL;
+  if (CYTHON_COMPILING_IN_CPYTHON && likely(PyMethod_Check(__pyx_t_1))) {
+    __pyx_t_5 = PyMethod_GET_SELF(__pyx_t_1);
+    if (likely(__pyx_t_5)) {
+      PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_1);
+      __Pyx_INCREF(__pyx_t_5);
+      __Pyx_INCREF(function);
+      __Pyx_DECREF_SET(__pyx_t_1, function);
+    }
+  }
+  if (!__pyx_t_5) {
+    __pyx_t_7 = __Pyx_PyObject_CallOneArg(__pyx_t_1, __pyx_t_4); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 446; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+    __Pyx_GOTREF(__pyx_t_7);
+  } else {
+    __pyx_t_58 = PyTuple_New(1+1); if (unlikely(!__pyx_t_58)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 446; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __Pyx_GOTREF(__pyx_t_58);
+    PyTuple_SET_ITEM(__pyx_t_58, 0, __pyx_t_5); __Pyx_GIVEREF(__pyx_t_5); __pyx_t_5 = NULL;
+    PyTuple_SET_ITEM(__pyx_t_58, 0+1, __pyx_t_4);
+    __Pyx_GIVEREF(__pyx_t_4);
+    __pyx_t_4 = 0;
+    __pyx_t_7 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_t_58, NULL); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 446; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __Pyx_GOTREF(__pyx_t_7);
+    __Pyx_DECREF(__pyx_t_58); __pyx_t_58 = 0;
+  }
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+  __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
+
+  /* "coastline_matching.pyx":448
+ *     logger.logMessage ("Reallocated {0!s} total pop from {1!s} cells to nearby land cell".format(
+ *         reallocatedTotalPop,reallocatedCells))
+ *     logger.logMessage ("Clipped (set to nodata) {0!s} zero-value cells in the sea".format(clippedZeros))             # <<<<<<<<<<<<<<
+ *     logger.logMessage ("Failed to reallocate {0!s} total pop from {1!s} cells to nearby land cell".format(
+ *         failedReallocationPop, failedReallocations))
+ */
+  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_logger, __pyx_n_s_logMessage); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 448; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_t_1);
+  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_kp_s_Clipped_set_to_nodata_0_s_zero_v, __pyx_n_s_format); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 448; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_t_4);
+  __pyx_t_5 = __Pyx_PyInt_From_int(__pyx_v_clippedZeros); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 448; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_t_5);
+  __pyx_t_3 = NULL;
+  if (CYTHON_COMPILING_IN_CPYTHON && likely(PyMethod_Check(__pyx_t_4))) {
+    __pyx_t_3 = PyMethod_GET_SELF(__pyx_t_4);
+    if (likely(__pyx_t_3)) {
+      PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_4);
+      __Pyx_INCREF(__pyx_t_3);
+      __Pyx_INCREF(function);
+      __Pyx_DECREF_SET(__pyx_t_4, function);
+    }
+  }
+  if (!__pyx_t_3) {
+    __pyx_t_58 = __Pyx_PyObject_CallOneArg(__pyx_t_4, __pyx_t_5); if (unlikely(!__pyx_t_58)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 448; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
+    __Pyx_GOTREF(__pyx_t_58);
+  } else {
+    __pyx_t_2 = PyTuple_New(1+1); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 448; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __Pyx_GOTREF(__pyx_t_2);
+    PyTuple_SET_ITEM(__pyx_t_2, 0, __pyx_t_3); __Pyx_GIVEREF(__pyx_t_3); __pyx_t_3 = NULL;
+    PyTuple_SET_ITEM(__pyx_t_2, 0+1, __pyx_t_5);
+    __Pyx_GIVEREF(__pyx_t_5);
+    __pyx_t_5 = 0;
+    __pyx_t_58 = __Pyx_PyObject_Call(__pyx_t_4, __pyx_t_2, NULL); if (unlikely(!__pyx_t_58)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 448; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __Pyx_GOTREF(__pyx_t_58);
+    __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+  }
+  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+  __pyx_t_4 = NULL;
+  if (CYTHON_COMPILING_IN_CPYTHON && likely(PyMethod_Check(__pyx_t_1))) {
+    __pyx_t_4 = PyMethod_GET_SELF(__pyx_t_1);
+    if (likely(__pyx_t_4)) {
+      PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_1);
+      __Pyx_INCREF(__pyx_t_4);
+      __Pyx_INCREF(function);
+      __Pyx_DECREF_SET(__pyx_t_1, function);
+    }
+  }
+  if (!__pyx_t_4) {
+    __pyx_t_7 = __Pyx_PyObject_CallOneArg(__pyx_t_1, __pyx_t_58); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 448; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_DECREF(__pyx_t_58); __pyx_t_58 = 0;
     __Pyx_GOTREF(__pyx_t_7);
   } else {
-    __pyx_t_2 = PyTuple_New(1+1); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 445; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_2 = PyTuple_New(1+1); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 448; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_2);
-    PyTuple_SET_ITEM(__pyx_t_2, 0, __pyx_t_5); __Pyx_GIVEREF(__pyx_t_5); __pyx_t_5 = NULL;
+    PyTuple_SET_ITEM(__pyx_t_2, 0, __pyx_t_4); __Pyx_GIVEREF(__pyx_t_4); __pyx_t_4 = NULL;
     PyTuple_SET_ITEM(__pyx_t_2, 0+1, __pyx_t_58);
     __Pyx_GIVEREF(__pyx_t_58);
     __pyx_t_58 = 0;
-    __pyx_t_7 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_t_2, NULL); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 445; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_7 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_t_2, NULL); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 448; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_7);
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   }
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
 
-  /* "coastline_matching.pyx":446
+  /* "coastline_matching.pyx":449
  *         reallocatedTotalPop,reallocatedCells))
- *     logMessage ("Clipped (set to nodata) {0!s} zero-value cells in the sea".format(clippedZeros))
- *     logMessage ("Failed to reallocate {0!s} total pop from {1!s} cells to nearby land cell".format(             # <<<<<<<<<<<<<<
+ *     logger.logMessage ("Clipped (set to nodata) {0!s} zero-value cells in the sea".format(clippedZeros))
+ *     logger.logMessage ("Failed to reallocate {0!s} total pop from {1!s} cells to nearby land cell".format(             # <<<<<<<<<<<<<<
  *         failedReallocationPop, failedReallocations))
  *     return np.asarray(failedLocs)
  */
-  __pyx_t_1 = __Pyx_GetModuleGlobalName(__pyx_n_s_logMessage); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 446; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_logger, __pyx_n_s_logMessage); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 449; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_58 = __Pyx_PyObject_GetAttrStr(__pyx_kp_s_Failed_to_reallocate_0_s_total_p, __pyx_n_s_format); if (unlikely(!__pyx_t_58)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 446; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_58 = __Pyx_PyObject_GetAttrStr(__pyx_kp_s_Failed_to_reallocate_0_s_total_p, __pyx_n_s_format); if (unlikely(!__pyx_t_58)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 449; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_58);
 
-  /* "coastline_matching.pyx":447
- *     logMessage ("Clipped (set to nodata) {0!s} zero-value cells in the sea".format(clippedZeros))
- *     logMessage ("Failed to reallocate {0!s} total pop from {1!s} cells to nearby land cell".format(
+  /* "coastline_matching.pyx":450
+ *     logger.logMessage ("Clipped (set to nodata) {0!s} zero-value cells in the sea".format(clippedZeros))
+ *     logger.logMessage ("Failed to reallocate {0!s} total pop from {1!s} cells to nearby land cell".format(
  *         failedReallocationPop, failedReallocations))             # <<<<<<<<<<<<<<
  *     return np.asarray(failedLocs)
  * 
  */
-  __pyx_t_5 = PyFloat_FromDouble(__pyx_v_failedReallocationPop); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 447; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __Pyx_GOTREF(__pyx_t_5);
-  __pyx_t_4 = __Pyx_PyInt_From_int(__pyx_v_failedReallocations); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 447; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_4 = PyFloat_FromDouble(__pyx_v_failedReallocationPop); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 450; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_4);
+  __pyx_t_5 = __Pyx_PyInt_From_int(__pyx_v_failedReallocations); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 450; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_t_5);
   __pyx_t_3 = NULL;
   __pyx_t_6 = 0;
   if (CYTHON_COMPILING_IN_CPYTHON && likely(PyMethod_Check(__pyx_t_58))) {
@@ -6257,23 +6441,23 @@ static PyObject *__pyx_f_18coastline_matching_MatchToCoastline_Population(__Pyx_
       __pyx_t_6 = 1;
     }
   }
-  __pyx_t_57 = PyTuple_New(2+__pyx_t_6); if (unlikely(!__pyx_t_57)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 446; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_57 = PyTuple_New(2+__pyx_t_6); if (unlikely(!__pyx_t_57)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 449; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_57);
   if (__pyx_t_3) {
     PyTuple_SET_ITEM(__pyx_t_57, 0, __pyx_t_3); __Pyx_GIVEREF(__pyx_t_3); __pyx_t_3 = NULL;
   }
-  PyTuple_SET_ITEM(__pyx_t_57, 0+__pyx_t_6, __pyx_t_5);
-  __Pyx_GIVEREF(__pyx_t_5);
-  PyTuple_SET_ITEM(__pyx_t_57, 1+__pyx_t_6, __pyx_t_4);
+  PyTuple_SET_ITEM(__pyx_t_57, 0+__pyx_t_6, __pyx_t_4);
   __Pyx_GIVEREF(__pyx_t_4);
-  __pyx_t_5 = 0;
+  PyTuple_SET_ITEM(__pyx_t_57, 1+__pyx_t_6, __pyx_t_5);
+  __Pyx_GIVEREF(__pyx_t_5);
   __pyx_t_4 = 0;
-  __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_58, __pyx_t_57, NULL); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 446; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_5 = 0;
+  __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_58, __pyx_t_57, NULL); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 449; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_57); __pyx_t_57 = 0;
   __Pyx_DECREF(__pyx_t_58); __pyx_t_58 = 0;
   __pyx_t_58 = NULL;
-  if (CYTHON_COMPILING_IN_CPYTHON && unlikely(PyMethod_Check(__pyx_t_1))) {
+  if (CYTHON_COMPILING_IN_CPYTHON && likely(PyMethod_Check(__pyx_t_1))) {
     __pyx_t_58 = PyMethod_GET_SELF(__pyx_t_1);
     if (likely(__pyx_t_58)) {
       PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_1);
@@ -6283,37 +6467,37 @@ static PyObject *__pyx_f_18coastline_matching_MatchToCoastline_Population(__Pyx_
     }
   }
   if (!__pyx_t_58) {
-    __pyx_t_7 = __Pyx_PyObject_CallOneArg(__pyx_t_1, __pyx_t_2); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 446; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_7 = __Pyx_PyObject_CallOneArg(__pyx_t_1, __pyx_t_2); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 449; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
     __Pyx_GOTREF(__pyx_t_7);
   } else {
-    __pyx_t_57 = PyTuple_New(1+1); if (unlikely(!__pyx_t_57)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 446; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_57 = PyTuple_New(1+1); if (unlikely(!__pyx_t_57)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 449; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_57);
     PyTuple_SET_ITEM(__pyx_t_57, 0, __pyx_t_58); __Pyx_GIVEREF(__pyx_t_58); __pyx_t_58 = NULL;
     PyTuple_SET_ITEM(__pyx_t_57, 0+1, __pyx_t_2);
     __Pyx_GIVEREF(__pyx_t_2);
     __pyx_t_2 = 0;
-    __pyx_t_7 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_t_57, NULL); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 446; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_7 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_t_57, NULL); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 449; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_7);
     __Pyx_DECREF(__pyx_t_57); __pyx_t_57 = 0;
   }
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
 
-  /* "coastline_matching.pyx":448
- *     logMessage ("Failed to reallocate {0!s} total pop from {1!s} cells to nearby land cell".format(
+  /* "coastline_matching.pyx":451
+ *     logger.logMessage ("Failed to reallocate {0!s} total pop from {1!s} cells to nearby land cell".format(
  *         failedReallocationPop, failedReallocations))
  *     return np.asarray(failedLocs)             # <<<<<<<<<<<<<<
  * 
  * 
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 448; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 451; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_57 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_asarray); if (unlikely(!__pyx_t_57)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 448; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_57 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_asarray); if (unlikely(!__pyx_t_57)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 451; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_57);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_1 = __pyx_memoryview_fromslice(__pyx_v_failedLocs, 2, (PyObject *(*)(char *)) __pyx_memview_get_char, (int (*)(char *, PyObject *)) __pyx_memview_set_char, 0);; if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 448; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __pyx_memoryview_fromslice(__pyx_v_failedLocs, 2, (PyObject *(*)(char *)) __pyx_memview_get_char, (int (*)(char *, PyObject *)) __pyx_memview_set_char, 0);; if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 451; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_t_2 = NULL;
   if (CYTHON_COMPILING_IN_CPYTHON && unlikely(PyMethod_Check(__pyx_t_57))) {
@@ -6326,17 +6510,17 @@ static PyObject *__pyx_f_18coastline_matching_MatchToCoastline_Population(__Pyx_
     }
   }
   if (!__pyx_t_2) {
-    __pyx_t_7 = __Pyx_PyObject_CallOneArg(__pyx_t_57, __pyx_t_1); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 448; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_7 = __Pyx_PyObject_CallOneArg(__pyx_t_57, __pyx_t_1); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 451; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
     __Pyx_GOTREF(__pyx_t_7);
   } else {
-    __pyx_t_58 = PyTuple_New(1+1); if (unlikely(!__pyx_t_58)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 448; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_58 = PyTuple_New(1+1); if (unlikely(!__pyx_t_58)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 451; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_58);
     PyTuple_SET_ITEM(__pyx_t_58, 0, __pyx_t_2); __Pyx_GIVEREF(__pyx_t_2); __pyx_t_2 = NULL;
     PyTuple_SET_ITEM(__pyx_t_58, 0+1, __pyx_t_1);
     __Pyx_GIVEREF(__pyx_t_1);
     __pyx_t_1 = 0;
-    __pyx_t_7 = __Pyx_PyObject_Call(__pyx_t_57, __pyx_t_58, NULL); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 448; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_7 = __Pyx_PyObject_Call(__pyx_t_57, __pyx_t_58, NULL); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 451; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_7);
     __Pyx_DECREF(__pyx_t_58); __pyx_t_58 = 0;
   }
@@ -6345,7 +6529,7 @@ static PyObject *__pyx_f_18coastline_matching_MatchToCoastline_Population(__Pyx_
   __pyx_t_7 = 0;
   goto __pyx_L0;
 
-  /* "coastline_matching.pyx":316
+  /* "coastline_matching.pyx":318
  * 
  * 
  * cpdef MatchToCoastline_Population(float[:,::1] data, char[:,::1] landMask, float _NDV = -9999,             # <<<<<<<<<<<<<<
@@ -6376,6 +6560,7 @@ static PyObject *__pyx_f_18coastline_matching_MatchToCoastline_Population(__Pyx_
   __Pyx_XDECREF(__pyx_v_npTmpTable);
   __Pyx_XDECREF(__pyx_v_order);
   __Pyx_XDECREF(__pyx_v_nbrTable);
+  __Pyx_XDECREF(__pyx_v_logger);
   __Pyx_XGIVEREF(__pyx_r);
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
@@ -6392,6 +6577,7 @@ static PyObject *__pyx_pw_18coastline_matching_5MatchToCoastline_Population(PyOb
   char __pyx_v_fillLandWithZero;
   int __pyx_v_searchPixelRadius;
   char __pyx_v_deleteDespiteFailure;
+  PyObject *__pyx_v_logLevel = 0;
   int __pyx_lineno = 0;
   const char *__pyx_filename = NULL;
   int __pyx_clineno = 0;
@@ -6399,12 +6585,14 @@ static PyObject *__pyx_pw_18coastline_matching_5MatchToCoastline_Population(PyOb
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("MatchToCoastline_Population (wrapper)", 0);
   {
-    static PyObject **__pyx_pyargnames[] = {&__pyx_n_s_data,&__pyx_n_s_landMask,&__pyx_n_s_NDV,&__pyx_n_s_clipZerosAtSea,&__pyx_n_s_fillLandWithZero,&__pyx_n_s_searchPixelRadius,&__pyx_n_s_deleteDespiteFailure,0};
-    PyObject* values[7] = {0,0,0,0,0,0,0};
+    static PyObject **__pyx_pyargnames[] = {&__pyx_n_s_data,&__pyx_n_s_landMask,&__pyx_n_s_NDV,&__pyx_n_s_clipZerosAtSea,&__pyx_n_s_fillLandWithZero,&__pyx_n_s_searchPixelRadius,&__pyx_n_s_deleteDespiteFailure,&__pyx_n_s_logLevel,0};
+    PyObject* values[8] = {0,0,0,0,0,0,0,0};
+    values[7] = __pyx_k__31;
     if (unlikely(__pyx_kwds)) {
       Py_ssize_t kw_args;
       const Py_ssize_t pos_args = PyTuple_GET_SIZE(__pyx_args);
       switch (pos_args) {
+        case  8: values[7] = PyTuple_GET_ITEM(__pyx_args, 7);
         case  7: values[6] = PyTuple_GET_ITEM(__pyx_args, 6);
         case  6: values[5] = PyTuple_GET_ITEM(__pyx_args, 5);
         case  5: values[4] = PyTuple_GET_ITEM(__pyx_args, 4);
@@ -6423,7 +6611,7 @@ static PyObject *__pyx_pw_18coastline_matching_5MatchToCoastline_Population(PyOb
         case  1:
         if (likely((values[1] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_landMask)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("MatchToCoastline_Population", 0, 2, 7, 1); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 316; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+          __Pyx_RaiseArgtupleInvalid("MatchToCoastline_Population", 0, 2, 8, 1); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 318; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
         }
         case  2:
         if (kw_args > 0) {
@@ -6450,12 +6638,18 @@ static PyObject *__pyx_pw_18coastline_matching_5MatchToCoastline_Population(PyOb
           PyObject* value = PyDict_GetItem(__pyx_kwds, __pyx_n_s_deleteDespiteFailure);
           if (value) { values[6] = value; kw_args--; }
         }
+        case  7:
+        if (kw_args > 0) {
+          PyObject* value = PyDict_GetItem(__pyx_kwds, __pyx_n_s_logLevel);
+          if (value) { values[7] = value; kw_args--; }
+        }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "MatchToCoastline_Population") < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 316; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "MatchToCoastline_Population") < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 318; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
       }
     } else {
       switch (PyTuple_GET_SIZE(__pyx_args)) {
+        case  8: values[7] = PyTuple_GET_ITEM(__pyx_args, 7);
         case  7: values[6] = PyTuple_GET_ITEM(__pyx_args, 6);
         case  6: values[5] = PyTuple_GET_ITEM(__pyx_args, 5);
         case  5: values[4] = PyTuple_GET_ITEM(__pyx_args, 4);
@@ -6467,50 +6661,51 @@ static PyObject *__pyx_pw_18coastline_matching_5MatchToCoastline_Population(PyOb
         default: goto __pyx_L5_argtuple_error;
       }
     }
-    __pyx_v_data = __Pyx_PyObject_to_MemoryviewSlice_d_dc_float(values[0]); if (unlikely(!__pyx_v_data.memview)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 316; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
-    __pyx_v_landMask = __Pyx_PyObject_to_MemoryviewSlice_d_dc_char(values[1]); if (unlikely(!__pyx_v_landMask.memview)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 316; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+    __pyx_v_data = __Pyx_PyObject_to_MemoryviewSlice_d_dc_float(values[0]); if (unlikely(!__pyx_v_data.memview)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 318; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+    __pyx_v_landMask = __Pyx_PyObject_to_MemoryviewSlice_d_dc_char(values[1]); if (unlikely(!__pyx_v_landMask.memview)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 318; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
     if (values[2]) {
-      __pyx_v__NDV = __pyx_PyFloat_AsFloat(values[2]); if (unlikely((__pyx_v__NDV == (float)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 316; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+      __pyx_v__NDV = __pyx_PyFloat_AsFloat(values[2]); if (unlikely((__pyx_v__NDV == (float)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 318; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
     } else {
       __pyx_v__NDV = ((float)-9999.0);
     }
     if (values[3]) {
-      __pyx_v_clipZerosAtSea = __Pyx_PyInt_As_char(values[3]); if (unlikely((__pyx_v_clipZerosAtSea == (char)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 317; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+      __pyx_v_clipZerosAtSea = __Pyx_PyInt_As_char(values[3]); if (unlikely((__pyx_v_clipZerosAtSea == (char)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 319; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
     } else {
       __pyx_v_clipZerosAtSea = ((char)1);
     }
     if (values[4]) {
-      __pyx_v_fillLandWithZero = __Pyx_PyInt_As_char(values[4]); if (unlikely((__pyx_v_fillLandWithZero == (char)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 318; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+      __pyx_v_fillLandWithZero = __Pyx_PyInt_As_char(values[4]); if (unlikely((__pyx_v_fillLandWithZero == (char)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 320; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
     } else {
       __pyx_v_fillLandWithZero = ((char)1);
     }
     if (values[5]) {
-      __pyx_v_searchPixelRadius = __Pyx_PyInt_As_int(values[5]); if (unlikely((__pyx_v_searchPixelRadius == (int)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 319; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+      __pyx_v_searchPixelRadius = __Pyx_PyInt_As_int(values[5]); if (unlikely((__pyx_v_searchPixelRadius == (int)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 321; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
     } else {
       __pyx_v_searchPixelRadius = ((int)100);
     }
     if (values[6]) {
-      __pyx_v_deleteDespiteFailure = __Pyx_PyInt_As_char(values[6]); if (unlikely((__pyx_v_deleteDespiteFailure == (char)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 320; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+      __pyx_v_deleteDespiteFailure = __Pyx_PyInt_As_char(values[6]); if (unlikely((__pyx_v_deleteDespiteFailure == (char)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 322; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
     } else {
       __pyx_v_deleteDespiteFailure = ((char)0);
     }
+    __pyx_v_logLevel = values[7];
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("MatchToCoastline_Population", 0, 2, 7, PyTuple_GET_SIZE(__pyx_args)); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 316; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+  __Pyx_RaiseArgtupleInvalid("MatchToCoastline_Population", 0, 2, 8, PyTuple_GET_SIZE(__pyx_args)); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 318; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
   __pyx_L3_error:;
   __Pyx_AddTraceback("coastline_matching.MatchToCoastline_Population", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  __pyx_r = __pyx_pf_18coastline_matching_4MatchToCoastline_Population(__pyx_self, __pyx_v_data, __pyx_v_landMask, __pyx_v__NDV, __pyx_v_clipZerosAtSea, __pyx_v_fillLandWithZero, __pyx_v_searchPixelRadius, __pyx_v_deleteDespiteFailure);
+  __pyx_r = __pyx_pf_18coastline_matching_4MatchToCoastline_Population(__pyx_self, __pyx_v_data, __pyx_v_landMask, __pyx_v__NDV, __pyx_v_clipZerosAtSea, __pyx_v_fillLandWithZero, __pyx_v_searchPixelRadius, __pyx_v_deleteDespiteFailure, __pyx_v_logLevel);
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_18coastline_matching_4MatchToCoastline_Population(CYTHON_UNUSED PyObject *__pyx_self, __Pyx_memviewslice __pyx_v_data, __Pyx_memviewslice __pyx_v_landMask, float __pyx_v__NDV, char __pyx_v_clipZerosAtSea, char __pyx_v_fillLandWithZero, int __pyx_v_searchPixelRadius, char __pyx_v_deleteDespiteFailure) {
+static PyObject *__pyx_pf_18coastline_matching_4MatchToCoastline_Population(CYTHON_UNUSED PyObject *__pyx_self, __Pyx_memviewslice __pyx_v_data, __Pyx_memviewslice __pyx_v_landMask, float __pyx_v__NDV, char __pyx_v_clipZerosAtSea, char __pyx_v_fillLandWithZero, int __pyx_v_searchPixelRadius, char __pyx_v_deleteDespiteFailure, PyObject *__pyx_v_logLevel) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
@@ -6520,15 +6715,16 @@ static PyObject *__pyx_pf_18coastline_matching_4MatchToCoastline_Population(CYTH
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("MatchToCoastline_Population", 0);
   __Pyx_XDECREF(__pyx_r);
-  if (unlikely(!__pyx_v_data.memview)) { __Pyx_RaiseUnboundLocalError("data"); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 316; __pyx_clineno = __LINE__; goto __pyx_L1_error;} }
-  if (unlikely(!__pyx_v_landMask.memview)) { __Pyx_RaiseUnboundLocalError("landMask"); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 316; __pyx_clineno = __LINE__; goto __pyx_L1_error;} }
-  __pyx_t_2.__pyx_n = 5;
+  if (unlikely(!__pyx_v_data.memview)) { __Pyx_RaiseUnboundLocalError("data"); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 318; __pyx_clineno = __LINE__; goto __pyx_L1_error;} }
+  if (unlikely(!__pyx_v_landMask.memview)) { __Pyx_RaiseUnboundLocalError("landMask"); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 318; __pyx_clineno = __LINE__; goto __pyx_L1_error;} }
+  __pyx_t_2.__pyx_n = 6;
   __pyx_t_2._NDV = __pyx_v__NDV;
   __pyx_t_2.clipZerosAtSea = __pyx_v_clipZerosAtSea;
   __pyx_t_2.fillLandWithZero = __pyx_v_fillLandWithZero;
   __pyx_t_2.searchPixelRadius = __pyx_v_searchPixelRadius;
   __pyx_t_2.deleteDespiteFailure = __pyx_v_deleteDespiteFailure;
-  __pyx_t_1 = __pyx_f_18coastline_matching_MatchToCoastline_Population(__pyx_v_data, __pyx_v_landMask, 0, &__pyx_t_2); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 316; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_2.logLevel = __pyx_v_logLevel;
+  __pyx_t_1 = __pyx_f_18coastline_matching_MatchToCoastline_Population(__pyx_v_data, __pyx_v_landMask, 0, &__pyx_t_2); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 318; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -6738,7 +6934,7 @@ static int __pyx_array_MemoryView_5array___cinit__(struct __pyx_array_obj *__pyx
  * 
  *         if itemsize <= 0:
  */
-    __pyx_t_3 = __Pyx_PyObject_Call(__pyx_builtin_ValueError, __pyx_tuple__43, NULL); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[1]; __pyx_lineno = 127; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_3 = __Pyx_PyObject_Call(__pyx_builtin_ValueError, __pyx_tuple__46, NULL); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[1]; __pyx_lineno = 127; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_3);
     __Pyx_Raise(__pyx_t_3, 0, 0, 0);
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
@@ -6762,7 +6958,7 @@ static int __pyx_array_MemoryView_5array___cinit__(struct __pyx_array_obj *__pyx
  * 
  *         if isinstance(format, unicode):
  */
-    __pyx_t_3 = __Pyx_PyObject_Call(__pyx_builtin_ValueError, __pyx_tuple__44, NULL); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[1]; __pyx_lineno = 130; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_3 = __Pyx_PyObject_Call(__pyx_builtin_ValueError, __pyx_tuple__47, NULL); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[1]; __pyx_lineno = 130; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_3);
     __Pyx_Raise(__pyx_t_3, 0, 0, 0);
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
@@ -6860,7 +7056,7 @@ static int __pyx_array_MemoryView_5array___cinit__(struct __pyx_array_obj *__pyx
  * 
  * 
  */
-    __pyx_t_3 = __Pyx_PyObject_Call(__pyx_builtin_MemoryError, __pyx_tuple__45, NULL); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[1]; __pyx_lineno = 142; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_3 = __Pyx_PyObject_Call(__pyx_builtin_MemoryError, __pyx_tuple__48, NULL); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[1]; __pyx_lineno = 142; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_3);
     __Pyx_Raise(__pyx_t_3, 0, 0, 0);
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
@@ -7111,7 +7307,7 @@ static int __pyx_array_MemoryView_5array___cinit__(struct __pyx_array_obj *__pyx
  * 
  *             if self.dtype_is_object:
  */
-      __pyx_t_3 = __Pyx_PyObject_Call(__pyx_builtin_MemoryError, __pyx_tuple__46, NULL); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[1]; __pyx_lineno = 170; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_3 = __Pyx_PyObject_Call(__pyx_builtin_MemoryError, __pyx_tuple__49, NULL); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[1]; __pyx_lineno = 170; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_3);
       __Pyx_Raise(__pyx_t_3, 0, 0, 0);
       __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
@@ -7329,7 +7525,7 @@ static int __pyx_array_getbuffer_MemoryView_5array_2__getbuffer__(struct __pyx_a
  *         info.buf = self.data
  *         info.len = self.len
  */
-    __pyx_t_3 = __Pyx_PyObject_Call(__pyx_builtin_ValueError, __pyx_tuple__47, NULL); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[1]; __pyx_lineno = 186; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_3 = __Pyx_PyObject_Call(__pyx_builtin_ValueError, __pyx_tuple__50, NULL); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[1]; __pyx_lineno = 186; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_3);
     __Pyx_Raise(__pyx_t_3, 0, 0, 0);
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
@@ -9922,7 +10118,7 @@ static PyObject *__pyx_memoryview_convert_item_to_object(struct __pyx_memoryview
  *         else:
  *             if len(self.view.format) == 1:
  */
-      __pyx_t_6 = __Pyx_PyObject_Call(__pyx_builtin_ValueError, __pyx_tuple__48, NULL); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[1]; __pyx_lineno = 445; __pyx_clineno = __LINE__; goto __pyx_L5_except_error;}
+      __pyx_t_6 = __Pyx_PyObject_Call(__pyx_builtin_ValueError, __pyx_tuple__51, NULL); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[1]; __pyx_lineno = 445; __pyx_clineno = __LINE__; goto __pyx_L5_except_error;}
       __Pyx_GOTREF(__pyx_t_6);
       __Pyx_Raise(__pyx_t_6, 0, 0, 0);
       __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
@@ -10701,7 +10897,7 @@ static PyObject *__pyx_memoryview_get_strides_MemoryView_10memoryview_7strides__
  * 
  *             return tuple([self.view.strides[i] for i in xrange(self.view.ndim)])
  */
-    __pyx_t_2 = __Pyx_PyObject_Call(__pyx_builtin_ValueError, __pyx_tuple__49, NULL); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[1]; __pyx_lineno = 521; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_2 = __Pyx_PyObject_Call(__pyx_builtin_ValueError, __pyx_tuple__52, NULL); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[1]; __pyx_lineno = 521; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_2);
     __Pyx_Raise(__pyx_t_2, 0, 0, 0);
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
@@ -12164,9 +12360,9 @@ static PyObject *_unellipsify(PyObject *__pyx_v_index, int __pyx_v_ndim) {
         __Pyx_GOTREF(__pyx_t_7);
         { Py_ssize_t __pyx_temp;
           for (__pyx_temp=0; __pyx_temp < ((__pyx_v_ndim - __pyx_t_8) + 1); __pyx_temp++) {
-            __Pyx_INCREF(__pyx_slice__50);
-            PyList_SET_ITEM(__pyx_t_7, __pyx_temp, __pyx_slice__50);
-            __Pyx_GIVEREF(__pyx_slice__50);
+            __Pyx_INCREF(__pyx_slice__53);
+            PyList_SET_ITEM(__pyx_t_7, __pyx_temp, __pyx_slice__53);
+            __Pyx_GIVEREF(__pyx_slice__53);
           }
         }
         __pyx_t_9 = __Pyx_PyList_Extend(__pyx_v_result, __pyx_t_7); if (unlikely(__pyx_t_9 == -1)) {__pyx_filename = __pyx_f[1]; __pyx_lineno = 638; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
@@ -12191,7 +12387,7 @@ static PyObject *_unellipsify(PyObject *__pyx_v_index, int __pyx_v_ndim) {
  *             have_slices = True
  *         else:
  */
-        __pyx_t_9 = __Pyx_PyList_Append(__pyx_v_result, __pyx_slice__51); if (unlikely(__pyx_t_9 == -1)) {__pyx_filename = __pyx_f[1]; __pyx_lineno = 641; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+        __pyx_t_9 = __Pyx_PyList_Append(__pyx_v_result, __pyx_slice__54); if (unlikely(__pyx_t_9 == -1)) {__pyx_filename = __pyx_f[1]; __pyx_lineno = 641; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       }
       __pyx_L7:;
 
@@ -12320,9 +12516,9 @@ static PyObject *_unellipsify(PyObject *__pyx_v_index, int __pyx_v_ndim) {
     __Pyx_GOTREF(__pyx_t_3);
     { Py_ssize_t __pyx_temp;
       for (__pyx_temp=0; __pyx_temp < __pyx_v_nslices; __pyx_temp++) {
-        __Pyx_INCREF(__pyx_slice__52);
-        PyList_SET_ITEM(__pyx_t_3, __pyx_temp, __pyx_slice__52);
-        __Pyx_GIVEREF(__pyx_slice__52);
+        __Pyx_INCREF(__pyx_slice__55);
+        PyList_SET_ITEM(__pyx_t_3, __pyx_temp, __pyx_slice__55);
+        __Pyx_GIVEREF(__pyx_slice__55);
       }
     }
     __pyx_t_9 = __Pyx_PyList_Extend(__pyx_v_result, __pyx_t_3); if (unlikely(__pyx_t_9 == -1)) {__pyx_filename = __pyx_f[1]; __pyx_lineno = 652; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
@@ -12441,7 +12637,7 @@ static PyObject *assert_direct_dimensions(Py_ssize_t *__pyx_v_suboffsets, int __
  * 
  * 
  */
-      __pyx_t_4 = __Pyx_PyObject_Call(__pyx_builtin_ValueError, __pyx_tuple__53, NULL); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[1]; __pyx_lineno = 660; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_4 = __Pyx_PyObject_Call(__pyx_builtin_ValueError, __pyx_tuple__56, NULL); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[1]; __pyx_lineno = 660; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_4);
       __Pyx_Raise(__pyx_t_4, 0, 0, 0);
       __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
@@ -17867,18 +18063,22 @@ static __Pyx_StringTabEntry __pyx_string_tab[] = {
   {&__pyx_kp_s_Cannot_index_with_type_s, __pyx_k_Cannot_index_with_type_s, sizeof(__pyx_k_Cannot_index_with_type_s), 0, 0, 1, 0},
   {&__pyx_kp_s_Clipped_0_s_data_cells_that_were, __pyx_k_Clipped_0_s_data_cells_that_were, sizeof(__pyx_k_Clipped_0_s_data_cells_that_were), 0, 0, 1, 0},
   {&__pyx_kp_s_Clipped_set_to_nodata_0_s_zero_v, __pyx_k_Clipped_set_to_nodata_0_s_zero_v, sizeof(__pyx_k_Clipped_set_to_nodata_0_s_zero_v), 0, 0, 1, 0},
+  {&__pyx_n_s_DEBUG, __pyx_k_DEBUG, sizeof(__pyx_k_DEBUG), 0, 0, 1, 1},
   {&__pyx_n_s_Ellipsis, __pyx_k_Ellipsis, sizeof(__pyx_k_Ellipsis), 0, 0, 1, 1},
   {&__pyx_kp_s_Empty_shape_tuple_for_cython_arr, __pyx_k_Empty_shape_tuple_for_cython_arr, sizeof(__pyx_k_Empty_shape_tuple_for_cython_arr), 0, 0, 1, 0},
   {&__pyx_kp_s_Failed_to_fill_0_s_total_cells_w, __pyx_k_Failed_to_fill_0_s_total_cells_w, sizeof(__pyx_k_Failed_to_fill_0_s_total_cells_w), 0, 0, 1, 0},
   {&__pyx_kp_s_Failed_to_reallocate_0_s_total_p, __pyx_k_Failed_to_reallocate_0_s_total_p, sizeof(__pyx_k_Failed_to_reallocate_0_s_total_p), 0, 0, 1, 0},
   {&__pyx_kp_s_Filled_0_s_total_cells_within_li, __pyx_k_Filled_0_s_total_cells_within_li, sizeof(__pyx_k_Filled_0_s_total_cells_within_li), 0, 0, 1, 0},
+  {&__pyx_n_s_INFO, __pyx_k_INFO, sizeof(__pyx_k_INFO), 0, 0, 1, 1},
   {&__pyx_n_s_IndexError, __pyx_k_IndexError, sizeof(__pyx_k_IndexError), 0, 0, 1, 1},
   {&__pyx_kp_s_Indirect_dimensions_not_supporte, __pyx_k_Indirect_dimensions_not_supporte, sizeof(__pyx_k_Indirect_dimensions_not_supporte), 0, 0, 1, 0},
   {&__pyx_kp_s_Invalid_mode_expected_c_or_fortr, __pyx_k_Invalid_mode_expected_c_or_fortr, sizeof(__pyx_k_Invalid_mode_expected_c_or_fortr), 0, 0, 1, 0},
   {&__pyx_kp_s_Invalid_shape_in_axis_d_d, __pyx_k_Invalid_shape_in_axis_d_d, sizeof(__pyx_k_Invalid_shape_in_axis_d_d), 0, 0, 1, 0},
+  {&__pyx_n_s_LogLevels, __pyx_k_LogLevels, sizeof(__pyx_k_LogLevels), 0, 0, 1, 1},
   {&__pyx_n_s_MemoryError, __pyx_k_MemoryError, sizeof(__pyx_k_MemoryError), 0, 0, 1, 1},
   {&__pyx_kp_s_MemoryView_of_r_at_0x_x, __pyx_k_MemoryView_of_r_at_0x_x, sizeof(__pyx_k_MemoryView_of_r_at_0x_x), 0, 0, 1, 0},
   {&__pyx_kp_s_MemoryView_of_r_object, __pyx_k_MemoryView_of_r_object, sizeof(__pyx_k_MemoryView_of_r_object), 0, 0, 1, 0},
+  {&__pyx_n_s_MessageLogger, __pyx_k_MessageLogger, sizeof(__pyx_k_MessageLogger), 0, 0, 1, 1},
   {&__pyx_n_s_NDV, __pyx_k_NDV, sizeof(__pyx_k_NDV), 0, 0, 1, 1},
   {&__pyx_n_b_O, __pyx_k_O, sizeof(__pyx_k_O), 0, 0, 0, 1},
   {&__pyx_kp_s_Out_of_bounds_on_buffer_access_a, __pyx_k_Out_of_bounds_on_buffer_access_a, sizeof(__pyx_k_Out_of_bounds_on_buffer_access_a), 0, 0, 1, 0},
@@ -17921,6 +18121,7 @@ static __Pyx_StringTabEntry __pyx_string_tab[] = {
   {&__pyx_kp_s_itemsize_0_for_cython_array, __pyx_k_itemsize_0_for_cython_array, sizeof(__pyx_k_itemsize_0_for_cython_array), 0, 0, 1, 0},
   {&__pyx_n_s_landMask, __pyx_k_landMask, sizeof(__pyx_k_landMask), 0, 0, 1, 1},
   {&__pyx_n_s_lexsort, __pyx_k_lexsort, sizeof(__pyx_k_lexsort), 0, 0, 1, 1},
+  {&__pyx_n_s_logLevel, __pyx_k_logLevel, sizeof(__pyx_k_logLevel), 0, 0, 1, 1},
   {&__pyx_n_s_logMessage, __pyx_k_logMessage, sizeof(__pyx_k_logMessage), 0, 0, 1, 1},
   {&__pyx_n_s_main, __pyx_k_main, sizeof(__pyx_k_main), 0, 0, 1, 1},
   {&__pyx_n_s_memview, __pyx_k_memview, sizeof(__pyx_k_memview), 0, 0, 1, 1},
@@ -17962,7 +18163,7 @@ static __Pyx_StringTabEntry __pyx_string_tab[] = {
   {0, 0, 0, 0, 0, 0, 0}
 };
 static int __Pyx_InitCachedBuiltins(void) {
-  __pyx_builtin_range = __Pyx_GetBuiltinName(__pyx_n_s_range); if (!__pyx_builtin_range) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 109; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_builtin_range = __Pyx_GetBuiltinName(__pyx_n_s_range); if (!__pyx_builtin_range) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 110; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __pyx_builtin_ValueError = __Pyx_GetBuiltinName(__pyx_n_s_ValueError); if (!__pyx_builtin_ValueError) {__pyx_filename = __pyx_f[1]; __pyx_lineno = 127; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __pyx_builtin_MemoryError = __Pyx_GetBuiltinName(__pyx_n_s_MemoryError); if (!__pyx_builtin_MemoryError) {__pyx_filename = __pyx_f[1]; __pyx_lineno = 142; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __pyx_builtin_enumerate = __Pyx_GetBuiltinName(__pyx_n_s_enumerate); if (!__pyx_builtin_enumerate) {__pyx_filename = __pyx_f[1]; __pyx_lineno = 145; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
@@ -17984,251 +18185,251 @@ static int __Pyx_InitCachedConstants(void) {
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("__Pyx_InitCachedConstants", 0);
 
-  /* "coastline_matching.pyx":76
+  /* "coastline_matching.pyx":77
  *     diam = searchPixelRadius * 2 + 1
  *     inds = np.indices([diam,diam]) - searchPixelRadius
  *     distTmp = np.sqrt((inds ** 2).sum(0))             # <<<<<<<<<<<<<<
  *     npTmpTable = ((inds.T).reshape(diam**2, 2))
  *     npTmpTable = np.append(npTmpTable, distTmp.ravel()[:,None], axis=1)
  */
-  __pyx_tuple_ = PyTuple_Pack(1, __pyx_int_0); if (unlikely(!__pyx_tuple_)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 76; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __Pyx_GOTREF(__pyx_tuple_);
-  __Pyx_GIVEREF(__pyx_tuple_);
+  __pyx_tuple__2 = PyTuple_Pack(1, __pyx_int_0); if (unlikely(!__pyx_tuple__2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 77; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_tuple__2);
+  __Pyx_GIVEREF(__pyx_tuple__2);
 
-  /* "coastline_matching.pyx":78
+  /* "coastline_matching.pyx":79
  *     distTmp = np.sqrt((inds ** 2).sum(0))
  *     npTmpTable = ((inds.T).reshape(diam**2, 2))
  *     npTmpTable = np.append(npTmpTable, distTmp.ravel()[:,None], axis=1)             # <<<<<<<<<<<<<<
  *     # sort the table by distance then x then y (the arguments are last-sort-first)
  *     order = np.lexsort((npTmpTable[:,1], npTmpTable[:,0], npTmpTable[:,2]))
  */
-  __pyx_slice__2 = PySlice_New(Py_None, Py_None, Py_None); if (unlikely(!__pyx_slice__2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 78; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __Pyx_GOTREF(__pyx_slice__2);
-  __Pyx_GIVEREF(__pyx_slice__2);
-  __pyx_tuple__3 = PyTuple_Pack(2, __pyx_slice__2, Py_None); if (unlikely(!__pyx_tuple__3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 78; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __Pyx_GOTREF(__pyx_tuple__3);
-  __Pyx_GIVEREF(__pyx_tuple__3);
+  __pyx_slice__3 = PySlice_New(Py_None, Py_None, Py_None); if (unlikely(!__pyx_slice__3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 79; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_slice__3);
+  __Pyx_GIVEREF(__pyx_slice__3);
+  __pyx_tuple__4 = PyTuple_Pack(2, __pyx_slice__3, Py_None); if (unlikely(!__pyx_tuple__4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 79; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_tuple__4);
+  __Pyx_GIVEREF(__pyx_tuple__4);
 
-  /* "coastline_matching.pyx":80
+  /* "coastline_matching.pyx":81
  *     npTmpTable = np.append(npTmpTable, distTmp.ravel()[:,None], axis=1)
  *     # sort the table by distance then x then y (the arguments are last-sort-first)
  *     order = np.lexsort((npTmpTable[:,1], npTmpTable[:,0], npTmpTable[:,2]))             # <<<<<<<<<<<<<<
  * 
  *     # npTmpTable has shape ((radius*2+1)**2, 3) and represents the offset coordinates of all cells in
  */
-  __pyx_slice__4 = PySlice_New(Py_None, Py_None, Py_None); if (unlikely(!__pyx_slice__4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 80; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __Pyx_GOTREF(__pyx_slice__4);
-  __Pyx_GIVEREF(__pyx_slice__4);
-  __pyx_tuple__5 = PyTuple_Pack(2, __pyx_slice__4, __pyx_int_1); if (unlikely(!__pyx_tuple__5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 80; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __Pyx_GOTREF(__pyx_tuple__5);
-  __Pyx_GIVEREF(__pyx_tuple__5);
-  __pyx_slice__6 = PySlice_New(Py_None, Py_None, Py_None); if (unlikely(!__pyx_slice__6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 80; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __Pyx_GOTREF(__pyx_slice__6);
-  __Pyx_GIVEREF(__pyx_slice__6);
-  __pyx_tuple__7 = PyTuple_Pack(2, __pyx_slice__6, __pyx_int_0); if (unlikely(!__pyx_tuple__7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 80; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __Pyx_GOTREF(__pyx_tuple__7);
-  __Pyx_GIVEREF(__pyx_tuple__7);
-  __pyx_slice__8 = PySlice_New(Py_None, Py_None, Py_None); if (unlikely(!__pyx_slice__8)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 80; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __Pyx_GOTREF(__pyx_slice__8);
-  __Pyx_GIVEREF(__pyx_slice__8);
-  __pyx_tuple__9 = PyTuple_Pack(2, __pyx_slice__8, __pyx_int_2); if (unlikely(!__pyx_tuple__9)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 80; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __Pyx_GOTREF(__pyx_tuple__9);
-  __Pyx_GIVEREF(__pyx_tuple__9);
+  __pyx_slice__5 = PySlice_New(Py_None, Py_None, Py_None); if (unlikely(!__pyx_slice__5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 81; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_slice__5);
+  __Pyx_GIVEREF(__pyx_slice__5);
+  __pyx_tuple__6 = PyTuple_Pack(2, __pyx_slice__5, __pyx_int_1); if (unlikely(!__pyx_tuple__6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 81; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_tuple__6);
+  __Pyx_GIVEREF(__pyx_tuple__6);
+  __pyx_slice__7 = PySlice_New(Py_None, Py_None, Py_None); if (unlikely(!__pyx_slice__7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 81; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_slice__7);
+  __Pyx_GIVEREF(__pyx_slice__7);
+  __pyx_tuple__8 = PyTuple_Pack(2, __pyx_slice__7, __pyx_int_0); if (unlikely(!__pyx_tuple__8)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 81; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_tuple__8);
+  __Pyx_GIVEREF(__pyx_tuple__8);
+  __pyx_slice__9 = PySlice_New(Py_None, Py_None, Py_None); if (unlikely(!__pyx_slice__9)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 81; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_slice__9);
+  __Pyx_GIVEREF(__pyx_slice__9);
+  __pyx_tuple__10 = PyTuple_Pack(2, __pyx_slice__9, __pyx_int_2); if (unlikely(!__pyx_tuple__10)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 81; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_tuple__10);
+  __Pyx_GIVEREF(__pyx_tuple__10);
 
-  /* "coastline_matching.pyx":92
+  /* "coastline_matching.pyx":93
  *     # Only transfer the values relating to the cells within the desired radius (cut the corners
  *     # off the square to make a circle).
  *     nbrTable = np.copy((npTmpTable[npTmpTable[:,2] <= searchPixelRadius]).T, order='c')             # <<<<<<<<<<<<<<
  * 
  *     # transfer this numpy array to  to a native C object (memoryview)
  */
-  __pyx_slice__10 = PySlice_New(Py_None, Py_None, Py_None); if (unlikely(!__pyx_slice__10)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 92; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __Pyx_GOTREF(__pyx_slice__10);
-  __Pyx_GIVEREF(__pyx_slice__10);
-  __pyx_tuple__11 = PyTuple_Pack(2, __pyx_slice__10, __pyx_int_2); if (unlikely(!__pyx_tuple__11)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 92; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __Pyx_GOTREF(__pyx_tuple__11);
-  __Pyx_GIVEREF(__pyx_tuple__11);
+  __pyx_slice__11 = PySlice_New(Py_None, Py_None, Py_None); if (unlikely(!__pyx_slice__11)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 93; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_slice__11);
+  __Pyx_GIVEREF(__pyx_slice__11);
+  __pyx_tuple__12 = PyTuple_Pack(2, __pyx_slice__11, __pyx_int_2); if (unlikely(!__pyx_tuple__12)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 93; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_tuple__12);
+  __Pyx_GIVEREF(__pyx_tuple__12);
 
-  /* "coastline_matching.pyx":98
+  /* "coastline_matching.pyx":99
  *     # to int type once here. This saves a great deal of time compared to
  *     # casting repeatedly inside the inner loop
  *     nbrIntCoords = np.asarray(nbrTable[0:2,:]).astype(np.int32)             # <<<<<<<<<<<<<<
  *     _MAX_NEIGHBOURS_TO_CHECK = nbrIntCoords.shape[1]
  * 
  */
-  __pyx_slice__12 = PySlice_New(__pyx_int_0, __pyx_int_2, Py_None); if (unlikely(!__pyx_slice__12)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 98; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __Pyx_GOTREF(__pyx_slice__12);
-  __Pyx_GIVEREF(__pyx_slice__12);
-  __pyx_slice__13 = PySlice_New(Py_None, Py_None, Py_None); if (unlikely(!__pyx_slice__13)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 98; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_slice__13 = PySlice_New(__pyx_int_0, __pyx_int_2, Py_None); if (unlikely(!__pyx_slice__13)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 99; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_slice__13);
   __Pyx_GIVEREF(__pyx_slice__13);
-  __pyx_tuple__14 = PyTuple_Pack(2, __pyx_slice__12, __pyx_slice__13); if (unlikely(!__pyx_tuple__14)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 98; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __Pyx_GOTREF(__pyx_tuple__14);
-  __Pyx_GIVEREF(__pyx_tuple__14);
-
-  /* "coastline_matching.pyx":229
- *     diam = searchPixelRadius * 2 + 1
- *     inds = np.indices([diam,diam]) - searchPixelRadius
- *     distTmp = np.sqrt((inds ** 2).sum(0))             # <<<<<<<<<<<<<<
- *     npTmpTable = ((inds.T).reshape(diam**2, 2))
- *     npTmpTable = np.append(npTmpTable, distTmp.ravel()[:,None], axis=1)
- */
-  __pyx_tuple__15 = PyTuple_Pack(1, __pyx_int_0); if (unlikely(!__pyx_tuple__15)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 229; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_slice__14 = PySlice_New(Py_None, Py_None, Py_None); if (unlikely(!__pyx_slice__14)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 99; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_slice__14);
+  __Pyx_GIVEREF(__pyx_slice__14);
+  __pyx_tuple__15 = PyTuple_Pack(2, __pyx_slice__13, __pyx_slice__14); if (unlikely(!__pyx_tuple__15)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 99; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_tuple__15);
   __Pyx_GIVEREF(__pyx_tuple__15);
 
   /* "coastline_matching.pyx":231
- *     distTmp = np.sqrt((inds ** 2).sum(0))
- *     npTmpTable = ((inds.T).reshape(diam**2, 2))
- *     npTmpTable = np.append(npTmpTable, distTmp.ravel()[:,None], axis=1)             # <<<<<<<<<<<<<<
- *     # sort the table by distance then x then y (the arguments are last-sort-first)
- *     order = np.lexsort((npTmpTable[:,1], npTmpTable[:,0], npTmpTable[:,2]))
- */
-  __pyx_slice__16 = PySlice_New(Py_None, Py_None, Py_None); if (unlikely(!__pyx_slice__16)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 231; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __Pyx_GOTREF(__pyx_slice__16);
-  __Pyx_GIVEREF(__pyx_slice__16);
-  __pyx_tuple__17 = PyTuple_Pack(2, __pyx_slice__16, Py_None); if (unlikely(!__pyx_tuple__17)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 231; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __Pyx_GOTREF(__pyx_tuple__17);
-  __Pyx_GIVEREF(__pyx_tuple__17);
-
-  /* "coastline_matching.pyx":233
- *     npTmpTable = np.append(npTmpTable, distTmp.ravel()[:,None], axis=1)
- *     # sort the table by distance then x then y (the arguments are last-sort-first)
- *     order = np.lexsort((npTmpTable[:,1], npTmpTable[:,0], npTmpTable[:,2]))             # <<<<<<<<<<<<<<
- * 
- *     # npTmpTable has shape ((radius*2+1)**2, 3) and represents the offset coordinates of all cells in
- */
-  __pyx_slice__18 = PySlice_New(Py_None, Py_None, Py_None); if (unlikely(!__pyx_slice__18)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 233; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __Pyx_GOTREF(__pyx_slice__18);
-  __Pyx_GIVEREF(__pyx_slice__18);
-  __pyx_tuple__19 = PyTuple_Pack(2, __pyx_slice__18, __pyx_int_1); if (unlikely(!__pyx_tuple__19)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 233; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __Pyx_GOTREF(__pyx_tuple__19);
-  __Pyx_GIVEREF(__pyx_tuple__19);
-  __pyx_slice__20 = PySlice_New(Py_None, Py_None, Py_None); if (unlikely(!__pyx_slice__20)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 233; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __Pyx_GOTREF(__pyx_slice__20);
-  __Pyx_GIVEREF(__pyx_slice__20);
-  __pyx_tuple__21 = PyTuple_Pack(2, __pyx_slice__20, __pyx_int_0); if (unlikely(!__pyx_tuple__21)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 233; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __Pyx_GOTREF(__pyx_tuple__21);
-  __Pyx_GIVEREF(__pyx_tuple__21);
-  __pyx_slice__22 = PySlice_New(Py_None, Py_None, Py_None); if (unlikely(!__pyx_slice__22)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 233; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __Pyx_GOTREF(__pyx_slice__22);
-  __Pyx_GIVEREF(__pyx_slice__22);
-  __pyx_tuple__23 = PyTuple_Pack(2, __pyx_slice__22, __pyx_int_2); if (unlikely(!__pyx_tuple__23)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 233; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __Pyx_GOTREF(__pyx_tuple__23);
-  __Pyx_GIVEREF(__pyx_tuple__23);
-
-  /* "coastline_matching.pyx":245
- *     # Only transfer the values relating to the cells within the desired radius (cut the corners
- *     # off the square to make a circle).
- *     nbrTable = np.copy((npTmpTable[npTmpTable[:,2] <= searchPixelRadius]).T, order='c')             # <<<<<<<<<<<<<<
- * 
- *     # transfer this numpy array to  to a native C object (memoryview)
- */
-  __pyx_slice__24 = PySlice_New(Py_None, Py_None, Py_None); if (unlikely(!__pyx_slice__24)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 245; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __Pyx_GOTREF(__pyx_slice__24);
-  __Pyx_GIVEREF(__pyx_slice__24);
-  __pyx_tuple__25 = PyTuple_Pack(2, __pyx_slice__24, __pyx_int_2); if (unlikely(!__pyx_tuple__25)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 245; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __Pyx_GOTREF(__pyx_tuple__25);
-  __Pyx_GIVEREF(__pyx_tuple__25);
-
-  /* "coastline_matching.pyx":251
- *     # to int type once here. This saves a great deal of time compared to
- *     # casting repeatedly inside the inner loop
- *     nbrIntCoords = np.asarray(nbrTable[0:2,:]).astype(np.int32)             # <<<<<<<<<<<<<<
- *     _MAX_NEIGHBOURS_TO_CHECK = nbrIntCoords.shape[1]
- * 
- */
-  __pyx_slice__26 = PySlice_New(__pyx_int_0, __pyx_int_2, Py_None); if (unlikely(!__pyx_slice__26)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 251; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __Pyx_GOTREF(__pyx_slice__26);
-  __Pyx_GIVEREF(__pyx_slice__26);
-  __pyx_slice__27 = PySlice_New(Py_None, Py_None, Py_None); if (unlikely(!__pyx_slice__27)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 251; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __Pyx_GOTREF(__pyx_slice__27);
-  __Pyx_GIVEREF(__pyx_slice__27);
-  __pyx_tuple__28 = PyTuple_Pack(2, __pyx_slice__26, __pyx_slice__27); if (unlikely(!__pyx_tuple__28)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 251; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __Pyx_GOTREF(__pyx_tuple__28);
-  __Pyx_GIVEREF(__pyx_tuple__28);
-
-  /* "coastline_matching.pyx":363
  *     diam = searchPixelRadius * 2 + 1
  *     inds = np.indices([diam,diam]) - searchPixelRadius
  *     distTmp = np.sqrt((inds ** 2).sum(0))             # <<<<<<<<<<<<<<
  *     npTmpTable = ((inds.T).reshape(diam**2, 2))
  *     npTmpTable = np.append(npTmpTable, distTmp.ravel()[:,None], axis=1)
  */
-  __pyx_tuple__29 = PyTuple_Pack(1, __pyx_int_0); if (unlikely(!__pyx_tuple__29)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 363; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __Pyx_GOTREF(__pyx_tuple__29);
-  __Pyx_GIVEREF(__pyx_tuple__29);
+  __pyx_tuple__17 = PyTuple_Pack(1, __pyx_int_0); if (unlikely(!__pyx_tuple__17)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 231; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_tuple__17);
+  __Pyx_GIVEREF(__pyx_tuple__17);
 
-  /* "coastline_matching.pyx":365
+  /* "coastline_matching.pyx":233
+ *     distTmp = np.sqrt((inds ** 2).sum(0))
+ *     npTmpTable = ((inds.T).reshape(diam**2, 2))
+ *     npTmpTable = np.append(npTmpTable, distTmp.ravel()[:,None], axis=1)             # <<<<<<<<<<<<<<
+ *     # sort the table by distance then x then y (the arguments are last-sort-first)
+ *     order = np.lexsort((npTmpTable[:,1], npTmpTable[:,0], npTmpTable[:,2]))
+ */
+  __pyx_slice__18 = PySlice_New(Py_None, Py_None, Py_None); if (unlikely(!__pyx_slice__18)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 233; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_slice__18);
+  __Pyx_GIVEREF(__pyx_slice__18);
+  __pyx_tuple__19 = PyTuple_Pack(2, __pyx_slice__18, Py_None); if (unlikely(!__pyx_tuple__19)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 233; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_tuple__19);
+  __Pyx_GIVEREF(__pyx_tuple__19);
+
+  /* "coastline_matching.pyx":235
+ *     npTmpTable = np.append(npTmpTable, distTmp.ravel()[:,None], axis=1)
+ *     # sort the table by distance then x then y (the arguments are last-sort-first)
+ *     order = np.lexsort((npTmpTable[:,1], npTmpTable[:,0], npTmpTable[:,2]))             # <<<<<<<<<<<<<<
+ * 
+ *     # npTmpTable has shape ((radius*2+1)**2, 3) and represents the offset coordinates of all cells in
+ */
+  __pyx_slice__20 = PySlice_New(Py_None, Py_None, Py_None); if (unlikely(!__pyx_slice__20)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 235; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_slice__20);
+  __Pyx_GIVEREF(__pyx_slice__20);
+  __pyx_tuple__21 = PyTuple_Pack(2, __pyx_slice__20, __pyx_int_1); if (unlikely(!__pyx_tuple__21)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 235; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_tuple__21);
+  __Pyx_GIVEREF(__pyx_tuple__21);
+  __pyx_slice__22 = PySlice_New(Py_None, Py_None, Py_None); if (unlikely(!__pyx_slice__22)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 235; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_slice__22);
+  __Pyx_GIVEREF(__pyx_slice__22);
+  __pyx_tuple__23 = PyTuple_Pack(2, __pyx_slice__22, __pyx_int_0); if (unlikely(!__pyx_tuple__23)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 235; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_tuple__23);
+  __Pyx_GIVEREF(__pyx_tuple__23);
+  __pyx_slice__24 = PySlice_New(Py_None, Py_None, Py_None); if (unlikely(!__pyx_slice__24)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 235; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_slice__24);
+  __Pyx_GIVEREF(__pyx_slice__24);
+  __pyx_tuple__25 = PyTuple_Pack(2, __pyx_slice__24, __pyx_int_2); if (unlikely(!__pyx_tuple__25)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 235; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_tuple__25);
+  __Pyx_GIVEREF(__pyx_tuple__25);
+
+  /* "coastline_matching.pyx":247
+ *     # Only transfer the values relating to the cells within the desired radius (cut the corners
+ *     # off the square to make a circle).
+ *     nbrTable = np.copy((npTmpTable[npTmpTable[:,2] <= searchPixelRadius]).T, order='c')             # <<<<<<<<<<<<<<
+ * 
+ *     # transfer this numpy array to  to a native C object (memoryview)
+ */
+  __pyx_slice__26 = PySlice_New(Py_None, Py_None, Py_None); if (unlikely(!__pyx_slice__26)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 247; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_slice__26);
+  __Pyx_GIVEREF(__pyx_slice__26);
+  __pyx_tuple__27 = PyTuple_Pack(2, __pyx_slice__26, __pyx_int_2); if (unlikely(!__pyx_tuple__27)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 247; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_tuple__27);
+  __Pyx_GIVEREF(__pyx_tuple__27);
+
+  /* "coastline_matching.pyx":253
+ *     # to int type once here. This saves a great deal of time compared to
+ *     # casting repeatedly inside the inner loop
+ *     nbrIntCoords = np.asarray(nbrTable[0:2,:]).astype(np.int32)             # <<<<<<<<<<<<<<
+ *     _MAX_NEIGHBOURS_TO_CHECK = nbrIntCoords.shape[1]
+ * 
+ */
+  __pyx_slice__28 = PySlice_New(__pyx_int_0, __pyx_int_2, Py_None); if (unlikely(!__pyx_slice__28)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 253; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_slice__28);
+  __Pyx_GIVEREF(__pyx_slice__28);
+  __pyx_slice__29 = PySlice_New(Py_None, Py_None, Py_None); if (unlikely(!__pyx_slice__29)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 253; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_slice__29);
+  __Pyx_GIVEREF(__pyx_slice__29);
+  __pyx_tuple__30 = PyTuple_Pack(2, __pyx_slice__28, __pyx_slice__29); if (unlikely(!__pyx_tuple__30)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 253; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_tuple__30);
+  __Pyx_GIVEREF(__pyx_tuple__30);
+
+  /* "coastline_matching.pyx":366
+ *     diam = searchPixelRadius * 2 + 1
+ *     inds = np.indices([diam,diam]) - searchPixelRadius
+ *     distTmp = np.sqrt((inds ** 2).sum(0))             # <<<<<<<<<<<<<<
+ *     npTmpTable = ((inds.T).reshape(diam**2, 2))
+ *     npTmpTable = np.append(npTmpTable, distTmp.ravel()[:,None], axis=1)
+ */
+  __pyx_tuple__32 = PyTuple_Pack(1, __pyx_int_0); if (unlikely(!__pyx_tuple__32)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 366; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_tuple__32);
+  __Pyx_GIVEREF(__pyx_tuple__32);
+
+  /* "coastline_matching.pyx":368
  *     distTmp = np.sqrt((inds ** 2).sum(0))
  *     npTmpTable = ((inds.T).reshape(diam**2, 2))
  *     npTmpTable = np.append(npTmpTable, distTmp.ravel()[:,None], axis=1)             # <<<<<<<<<<<<<<
  *     # sort the table by distance then x then y (the arguments are last-sort-first)
  *     order = np.lexsort((npTmpTable[:,1],npTmpTable[:,0],npTmpTable[:,2]))
  */
-  __pyx_slice__30 = PySlice_New(Py_None, Py_None, Py_None); if (unlikely(!__pyx_slice__30)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 365; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __Pyx_GOTREF(__pyx_slice__30);
-  __Pyx_GIVEREF(__pyx_slice__30);
-  __pyx_tuple__31 = PyTuple_Pack(2, __pyx_slice__30, Py_None); if (unlikely(!__pyx_tuple__31)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 365; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __Pyx_GOTREF(__pyx_tuple__31);
-  __Pyx_GIVEREF(__pyx_tuple__31);
+  __pyx_slice__33 = PySlice_New(Py_None, Py_None, Py_None); if (unlikely(!__pyx_slice__33)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 368; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_slice__33);
+  __Pyx_GIVEREF(__pyx_slice__33);
+  __pyx_tuple__34 = PyTuple_Pack(2, __pyx_slice__33, Py_None); if (unlikely(!__pyx_tuple__34)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 368; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_tuple__34);
+  __Pyx_GIVEREF(__pyx_tuple__34);
 
-  /* "coastline_matching.pyx":367
+  /* "coastline_matching.pyx":370
  *     npTmpTable = np.append(npTmpTable, distTmp.ravel()[:,None], axis=1)
  *     # sort the table by distance then x then y (the arguments are last-sort-first)
  *     order = np.lexsort((npTmpTable[:,1],npTmpTable[:,0],npTmpTable[:,2]))             # <<<<<<<<<<<<<<
  * 
  *     # npTmpTable has shape ((radius*2+1)**2, 3) and represents the offset coordinates of all cells in
  */
-  __pyx_slice__32 = PySlice_New(Py_None, Py_None, Py_None); if (unlikely(!__pyx_slice__32)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 367; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __Pyx_GOTREF(__pyx_slice__32);
-  __Pyx_GIVEREF(__pyx_slice__32);
-  __pyx_tuple__33 = PyTuple_Pack(2, __pyx_slice__32, __pyx_int_1); if (unlikely(!__pyx_tuple__33)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 367; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __Pyx_GOTREF(__pyx_tuple__33);
-  __Pyx_GIVEREF(__pyx_tuple__33);
-  __pyx_slice__34 = PySlice_New(Py_None, Py_None, Py_None); if (unlikely(!__pyx_slice__34)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 367; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __Pyx_GOTREF(__pyx_slice__34);
-  __Pyx_GIVEREF(__pyx_slice__34);
-  __pyx_tuple__35 = PyTuple_Pack(2, __pyx_slice__34, __pyx_int_0); if (unlikely(!__pyx_tuple__35)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 367; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __Pyx_GOTREF(__pyx_tuple__35);
-  __Pyx_GIVEREF(__pyx_tuple__35);
-  __pyx_slice__36 = PySlice_New(Py_None, Py_None, Py_None); if (unlikely(!__pyx_slice__36)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 367; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __Pyx_GOTREF(__pyx_slice__36);
-  __Pyx_GIVEREF(__pyx_slice__36);
-  __pyx_tuple__37 = PyTuple_Pack(2, __pyx_slice__36, __pyx_int_2); if (unlikely(!__pyx_tuple__37)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 367; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __Pyx_GOTREF(__pyx_tuple__37);
-  __Pyx_GIVEREF(__pyx_tuple__37);
+  __pyx_slice__35 = PySlice_New(Py_None, Py_None, Py_None); if (unlikely(!__pyx_slice__35)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 370; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_slice__35);
+  __Pyx_GIVEREF(__pyx_slice__35);
+  __pyx_tuple__36 = PyTuple_Pack(2, __pyx_slice__35, __pyx_int_1); if (unlikely(!__pyx_tuple__36)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 370; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_tuple__36);
+  __Pyx_GIVEREF(__pyx_tuple__36);
+  __pyx_slice__37 = PySlice_New(Py_None, Py_None, Py_None); if (unlikely(!__pyx_slice__37)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 370; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_slice__37);
+  __Pyx_GIVEREF(__pyx_slice__37);
+  __pyx_tuple__38 = PyTuple_Pack(2, __pyx_slice__37, __pyx_int_0); if (unlikely(!__pyx_tuple__38)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 370; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_tuple__38);
+  __Pyx_GIVEREF(__pyx_tuple__38);
+  __pyx_slice__39 = PySlice_New(Py_None, Py_None, Py_None); if (unlikely(!__pyx_slice__39)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 370; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_slice__39);
+  __Pyx_GIVEREF(__pyx_slice__39);
+  __pyx_tuple__40 = PyTuple_Pack(2, __pyx_slice__39, __pyx_int_2); if (unlikely(!__pyx_tuple__40)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 370; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_tuple__40);
+  __Pyx_GIVEREF(__pyx_tuple__40);
 
-  /* "coastline_matching.pyx":379
+  /* "coastline_matching.pyx":382
  *     # Only transfer the values relating to the cells within the desired radius (cut the corners
  *     # off the square to make a circle).
  *     nbrTable = np.copy((npTmpTable[npTmpTable[:,2] <= searchPixelRadius]).T,order='c')             # <<<<<<<<<<<<<<
  * 
  *     # transfer this numpy array to  to a native C object (memoryview)
  */
-  __pyx_slice__38 = PySlice_New(Py_None, Py_None, Py_None); if (unlikely(!__pyx_slice__38)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 379; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __Pyx_GOTREF(__pyx_slice__38);
-  __Pyx_GIVEREF(__pyx_slice__38);
-  __pyx_tuple__39 = PyTuple_Pack(2, __pyx_slice__38, __pyx_int_2); if (unlikely(!__pyx_tuple__39)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 379; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __Pyx_GOTREF(__pyx_tuple__39);
-  __Pyx_GIVEREF(__pyx_tuple__39);
+  __pyx_slice__41 = PySlice_New(Py_None, Py_None, Py_None); if (unlikely(!__pyx_slice__41)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 382; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_slice__41);
+  __Pyx_GIVEREF(__pyx_slice__41);
+  __pyx_tuple__42 = PyTuple_Pack(2, __pyx_slice__41, __pyx_int_2); if (unlikely(!__pyx_tuple__42)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 382; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_tuple__42);
+  __Pyx_GIVEREF(__pyx_tuple__42);
 
-  /* "coastline_matching.pyx":385
+  /* "coastline_matching.pyx":388
  *     # to int type once here. This saves a great deal of time compared to
  *     # casting repeatedly inside the inner loop
  *     nbrIntCoords = np.asarray(nbrTable[0:2,:]).astype(np.int32)             # <<<<<<<<<<<<<<
  *     _MAX_NEIGHBOURS_TO_CHECK = nbrIntCoords.shape[1]
  * 
  */
-  __pyx_slice__40 = PySlice_New(__pyx_int_0, __pyx_int_2, Py_None); if (unlikely(!__pyx_slice__40)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 385; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __Pyx_GOTREF(__pyx_slice__40);
-  __Pyx_GIVEREF(__pyx_slice__40);
-  __pyx_slice__41 = PySlice_New(Py_None, Py_None, Py_None); if (unlikely(!__pyx_slice__41)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 385; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __Pyx_GOTREF(__pyx_slice__41);
-  __Pyx_GIVEREF(__pyx_slice__41);
-  __pyx_tuple__42 = PyTuple_Pack(2, __pyx_slice__40, __pyx_slice__41); if (unlikely(!__pyx_tuple__42)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 385; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __Pyx_GOTREF(__pyx_tuple__42);
-  __Pyx_GIVEREF(__pyx_tuple__42);
+  __pyx_slice__43 = PySlice_New(__pyx_int_0, __pyx_int_2, Py_None); if (unlikely(!__pyx_slice__43)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 388; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_slice__43);
+  __Pyx_GIVEREF(__pyx_slice__43);
+  __pyx_slice__44 = PySlice_New(Py_None, Py_None, Py_None); if (unlikely(!__pyx_slice__44)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 388; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_slice__44);
+  __Pyx_GIVEREF(__pyx_slice__44);
+  __pyx_tuple__45 = PyTuple_Pack(2, __pyx_slice__43, __pyx_slice__44); if (unlikely(!__pyx_tuple__45)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 388; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_tuple__45);
+  __Pyx_GIVEREF(__pyx_tuple__45);
 
   /* "View.MemoryView":127
  * 
@@ -18237,9 +18438,9 @@ static int __Pyx_InitCachedConstants(void) {
  * 
  *         if itemsize <= 0:
  */
-  __pyx_tuple__43 = PyTuple_Pack(1, __pyx_kp_s_Empty_shape_tuple_for_cython_arr); if (unlikely(!__pyx_tuple__43)) {__pyx_filename = __pyx_f[1]; __pyx_lineno = 127; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __Pyx_GOTREF(__pyx_tuple__43);
-  __Pyx_GIVEREF(__pyx_tuple__43);
+  __pyx_tuple__46 = PyTuple_Pack(1, __pyx_kp_s_Empty_shape_tuple_for_cython_arr); if (unlikely(!__pyx_tuple__46)) {__pyx_filename = __pyx_f[1]; __pyx_lineno = 127; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_tuple__46);
+  __Pyx_GIVEREF(__pyx_tuple__46);
 
   /* "View.MemoryView":130
  * 
@@ -18248,9 +18449,9 @@ static int __Pyx_InitCachedConstants(void) {
  * 
  *         if isinstance(format, unicode):
  */
-  __pyx_tuple__44 = PyTuple_Pack(1, __pyx_kp_s_itemsize_0_for_cython_array); if (unlikely(!__pyx_tuple__44)) {__pyx_filename = __pyx_f[1]; __pyx_lineno = 130; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __Pyx_GOTREF(__pyx_tuple__44);
-  __Pyx_GIVEREF(__pyx_tuple__44);
+  __pyx_tuple__47 = PyTuple_Pack(1, __pyx_kp_s_itemsize_0_for_cython_array); if (unlikely(!__pyx_tuple__47)) {__pyx_filename = __pyx_f[1]; __pyx_lineno = 130; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_tuple__47);
+  __Pyx_GIVEREF(__pyx_tuple__47);
 
   /* "View.MemoryView":142
  * 
@@ -18259,9 +18460,9 @@ static int __Pyx_InitCachedConstants(void) {
  * 
  * 
  */
-  __pyx_tuple__45 = PyTuple_Pack(1, __pyx_kp_s_unable_to_allocate_shape_and_str); if (unlikely(!__pyx_tuple__45)) {__pyx_filename = __pyx_f[1]; __pyx_lineno = 142; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __Pyx_GOTREF(__pyx_tuple__45);
-  __Pyx_GIVEREF(__pyx_tuple__45);
+  __pyx_tuple__48 = PyTuple_Pack(1, __pyx_kp_s_unable_to_allocate_shape_and_str); if (unlikely(!__pyx_tuple__48)) {__pyx_filename = __pyx_f[1]; __pyx_lineno = 142; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_tuple__48);
+  __Pyx_GIVEREF(__pyx_tuple__48);
 
   /* "View.MemoryView":170
  *             self.data = <char *>malloc(self.len)
@@ -18270,9 +18471,9 @@ static int __Pyx_InitCachedConstants(void) {
  * 
  *             if self.dtype_is_object:
  */
-  __pyx_tuple__46 = PyTuple_Pack(1, __pyx_kp_s_unable_to_allocate_array_data); if (unlikely(!__pyx_tuple__46)) {__pyx_filename = __pyx_f[1]; __pyx_lineno = 170; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __Pyx_GOTREF(__pyx_tuple__46);
-  __Pyx_GIVEREF(__pyx_tuple__46);
+  __pyx_tuple__49 = PyTuple_Pack(1, __pyx_kp_s_unable_to_allocate_array_data); if (unlikely(!__pyx_tuple__49)) {__pyx_filename = __pyx_f[1]; __pyx_lineno = 170; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_tuple__49);
+  __Pyx_GIVEREF(__pyx_tuple__49);
 
   /* "View.MemoryView":186
  *             bufmode = PyBUF_F_CONTIGUOUS | PyBUF_ANY_CONTIGUOUS
@@ -18281,9 +18482,9 @@ static int __Pyx_InitCachedConstants(void) {
  *         info.buf = self.data
  *         info.len = self.len
  */
-  __pyx_tuple__47 = PyTuple_Pack(1, __pyx_kp_s_Can_only_create_a_buffer_that_is); if (unlikely(!__pyx_tuple__47)) {__pyx_filename = __pyx_f[1]; __pyx_lineno = 186; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __Pyx_GOTREF(__pyx_tuple__47);
-  __Pyx_GIVEREF(__pyx_tuple__47);
+  __pyx_tuple__50 = PyTuple_Pack(1, __pyx_kp_s_Can_only_create_a_buffer_that_is); if (unlikely(!__pyx_tuple__50)) {__pyx_filename = __pyx_f[1]; __pyx_lineno = 186; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_tuple__50);
+  __Pyx_GIVEREF(__pyx_tuple__50);
 
   /* "View.MemoryView":445
  *             result = struct.unpack(self.view.format, bytesitem)
@@ -18292,9 +18493,9 @@ static int __Pyx_InitCachedConstants(void) {
  *         else:
  *             if len(self.view.format) == 1:
  */
-  __pyx_tuple__48 = PyTuple_Pack(1, __pyx_kp_s_Unable_to_convert_item_to_object); if (unlikely(!__pyx_tuple__48)) {__pyx_filename = __pyx_f[1]; __pyx_lineno = 445; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __Pyx_GOTREF(__pyx_tuple__48);
-  __Pyx_GIVEREF(__pyx_tuple__48);
+  __pyx_tuple__51 = PyTuple_Pack(1, __pyx_kp_s_Unable_to_convert_item_to_object); if (unlikely(!__pyx_tuple__51)) {__pyx_filename = __pyx_f[1]; __pyx_lineno = 445; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_tuple__51);
+  __Pyx_GIVEREF(__pyx_tuple__51);
 
   /* "View.MemoryView":521
  *             if self.view.strides == NULL:
@@ -18303,9 +18504,9 @@ static int __Pyx_InitCachedConstants(void) {
  * 
  *             return tuple([self.view.strides[i] for i in xrange(self.view.ndim)])
  */
-  __pyx_tuple__49 = PyTuple_Pack(1, __pyx_kp_s_Buffer_view_does_not_expose_stri); if (unlikely(!__pyx_tuple__49)) {__pyx_filename = __pyx_f[1]; __pyx_lineno = 521; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __Pyx_GOTREF(__pyx_tuple__49);
-  __Pyx_GIVEREF(__pyx_tuple__49);
+  __pyx_tuple__52 = PyTuple_Pack(1, __pyx_kp_s_Buffer_view_does_not_expose_stri); if (unlikely(!__pyx_tuple__52)) {__pyx_filename = __pyx_f[1]; __pyx_lineno = 521; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_tuple__52);
+  __Pyx_GIVEREF(__pyx_tuple__52);
 
   /* "View.MemoryView":638
  *         if item is Ellipsis:
@@ -18314,9 +18515,9 @@ static int __Pyx_InitCachedConstants(void) {
  *                 seen_ellipsis = True
  *             else:
  */
-  __pyx_slice__50 = PySlice_New(Py_None, Py_None, Py_None); if (unlikely(!__pyx_slice__50)) {__pyx_filename = __pyx_f[1]; __pyx_lineno = 638; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __Pyx_GOTREF(__pyx_slice__50);
-  __Pyx_GIVEREF(__pyx_slice__50);
+  __pyx_slice__53 = PySlice_New(Py_None, Py_None, Py_None); if (unlikely(!__pyx_slice__53)) {__pyx_filename = __pyx_f[1]; __pyx_lineno = 638; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_slice__53);
+  __Pyx_GIVEREF(__pyx_slice__53);
 
   /* "View.MemoryView":641
  *                 seen_ellipsis = True
@@ -18325,9 +18526,9 @@ static int __Pyx_InitCachedConstants(void) {
  *             have_slices = True
  *         else:
  */
-  __pyx_slice__51 = PySlice_New(Py_None, Py_None, Py_None); if (unlikely(!__pyx_slice__51)) {__pyx_filename = __pyx_f[1]; __pyx_lineno = 641; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __Pyx_GOTREF(__pyx_slice__51);
-  __Pyx_GIVEREF(__pyx_slice__51);
+  __pyx_slice__54 = PySlice_New(Py_None, Py_None, Py_None); if (unlikely(!__pyx_slice__54)) {__pyx_filename = __pyx_f[1]; __pyx_lineno = 641; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_slice__54);
+  __Pyx_GIVEREF(__pyx_slice__54);
 
   /* "View.MemoryView":652
  *     nslices = ndim - len(result)
@@ -18336,9 +18537,9 @@ static int __Pyx_InitCachedConstants(void) {
  * 
  *     return have_slices or nslices, tuple(result)
  */
-  __pyx_slice__52 = PySlice_New(Py_None, Py_None, Py_None); if (unlikely(!__pyx_slice__52)) {__pyx_filename = __pyx_f[1]; __pyx_lineno = 652; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __Pyx_GOTREF(__pyx_slice__52);
-  __Pyx_GIVEREF(__pyx_slice__52);
+  __pyx_slice__55 = PySlice_New(Py_None, Py_None, Py_None); if (unlikely(!__pyx_slice__55)) {__pyx_filename = __pyx_f[1]; __pyx_lineno = 652; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_slice__55);
+  __Pyx_GIVEREF(__pyx_slice__55);
 
   /* "View.MemoryView":660
  *     for i in range(ndim):
@@ -18347,9 +18548,9 @@ static int __Pyx_InitCachedConstants(void) {
  * 
  * 
  */
-  __pyx_tuple__53 = PyTuple_Pack(1, __pyx_kp_s_Indirect_dimensions_not_supporte); if (unlikely(!__pyx_tuple__53)) {__pyx_filename = __pyx_f[1]; __pyx_lineno = 660; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __Pyx_GOTREF(__pyx_tuple__53);
-  __Pyx_GIVEREF(__pyx_tuple__53);
+  __pyx_tuple__56 = PyTuple_Pack(1, __pyx_kp_s_Indirect_dimensions_not_supporte); if (unlikely(!__pyx_tuple__56)) {__pyx_filename = __pyx_f[1]; __pyx_lineno = 660; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_tuple__56);
+  __Pyx_GIVEREF(__pyx_tuple__56);
 
   /* "View.MemoryView":276
  *         return self.name
@@ -18358,9 +18559,9 @@ static int __Pyx_InitCachedConstants(void) {
  * cdef strided = Enum("<strided and direct>") # default
  * cdef indirect = Enum("<strided and indirect>")
  */
-  __pyx_tuple__54 = PyTuple_Pack(1, __pyx_kp_s_strided_and_direct_or_indirect); if (unlikely(!__pyx_tuple__54)) {__pyx_filename = __pyx_f[1]; __pyx_lineno = 276; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __Pyx_GOTREF(__pyx_tuple__54);
-  __Pyx_GIVEREF(__pyx_tuple__54);
+  __pyx_tuple__57 = PyTuple_Pack(1, __pyx_kp_s_strided_and_direct_or_indirect); if (unlikely(!__pyx_tuple__57)) {__pyx_filename = __pyx_f[1]; __pyx_lineno = 276; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_tuple__57);
+  __Pyx_GIVEREF(__pyx_tuple__57);
 
   /* "View.MemoryView":277
  * 
@@ -18369,9 +18570,9 @@ static int __Pyx_InitCachedConstants(void) {
  * cdef indirect = Enum("<strided and indirect>")
  * 
  */
-  __pyx_tuple__55 = PyTuple_Pack(1, __pyx_kp_s_strided_and_direct); if (unlikely(!__pyx_tuple__55)) {__pyx_filename = __pyx_f[1]; __pyx_lineno = 277; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __Pyx_GOTREF(__pyx_tuple__55);
-  __Pyx_GIVEREF(__pyx_tuple__55);
+  __pyx_tuple__58 = PyTuple_Pack(1, __pyx_kp_s_strided_and_direct); if (unlikely(!__pyx_tuple__58)) {__pyx_filename = __pyx_f[1]; __pyx_lineno = 277; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_tuple__58);
+  __Pyx_GIVEREF(__pyx_tuple__58);
 
   /* "View.MemoryView":278
  * cdef generic = Enum("<strided and direct or indirect>")
@@ -18380,9 +18581,9 @@ static int __Pyx_InitCachedConstants(void) {
  * 
  * 
  */
-  __pyx_tuple__56 = PyTuple_Pack(1, __pyx_kp_s_strided_and_indirect); if (unlikely(!__pyx_tuple__56)) {__pyx_filename = __pyx_f[1]; __pyx_lineno = 278; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __Pyx_GOTREF(__pyx_tuple__56);
-  __Pyx_GIVEREF(__pyx_tuple__56);
+  __pyx_tuple__59 = PyTuple_Pack(1, __pyx_kp_s_strided_and_indirect); if (unlikely(!__pyx_tuple__59)) {__pyx_filename = __pyx_f[1]; __pyx_lineno = 278; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_tuple__59);
+  __Pyx_GIVEREF(__pyx_tuple__59);
 
   /* "View.MemoryView":281
  * 
@@ -18391,9 +18592,9 @@ static int __Pyx_InitCachedConstants(void) {
  * cdef indirect_contiguous = Enum("<contiguous and indirect>")
  * 
  */
-  __pyx_tuple__57 = PyTuple_Pack(1, __pyx_kp_s_contiguous_and_direct); if (unlikely(!__pyx_tuple__57)) {__pyx_filename = __pyx_f[1]; __pyx_lineno = 281; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __Pyx_GOTREF(__pyx_tuple__57);
-  __Pyx_GIVEREF(__pyx_tuple__57);
+  __pyx_tuple__60 = PyTuple_Pack(1, __pyx_kp_s_contiguous_and_direct); if (unlikely(!__pyx_tuple__60)) {__pyx_filename = __pyx_f[1]; __pyx_lineno = 281; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_tuple__60);
+  __Pyx_GIVEREF(__pyx_tuple__60);
 
   /* "View.MemoryView":282
  * 
@@ -18402,9 +18603,9 @@ static int __Pyx_InitCachedConstants(void) {
  * 
  * 
  */
-  __pyx_tuple__58 = PyTuple_Pack(1, __pyx_kp_s_contiguous_and_indirect); if (unlikely(!__pyx_tuple__58)) {__pyx_filename = __pyx_f[1]; __pyx_lineno = 282; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __Pyx_GOTREF(__pyx_tuple__58);
-  __Pyx_GIVEREF(__pyx_tuple__58);
+  __pyx_tuple__61 = PyTuple_Pack(1, __pyx_kp_s_contiguous_and_indirect); if (unlikely(!__pyx_tuple__61)) {__pyx_filename = __pyx_f[1]; __pyx_lineno = 282; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_tuple__61);
+  __Pyx_GIVEREF(__pyx_tuple__61);
   __Pyx_RefNannyFinishContext();
   return 0;
   __pyx_L1_error:;
@@ -18554,23 +18755,150 @@ PyMODINIT_FUNC PyInit_coastline_matching(void)
   /* "coastline_matching.pyx":4
  * from libc.math cimport sqrt
  * cimport cython
- * from ..utils.logger import logMessage             # <<<<<<<<<<<<<<
+ * from ..utils.logger import MessageLogger, LogLevels             # <<<<<<<<<<<<<<
  * 
  * # This file contains Cython code so must be translated (to C) and compiled before it can be used in Python.
  */
-  __pyx_t_1 = PyList_New(1); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 4; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = PyList_New(2); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 4; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
-  __Pyx_INCREF(__pyx_n_s_logMessage);
-  PyList_SET_ITEM(__pyx_t_1, 0, __pyx_n_s_logMessage);
-  __Pyx_GIVEREF(__pyx_n_s_logMessage);
+  __Pyx_INCREF(__pyx_n_s_MessageLogger);
+  PyList_SET_ITEM(__pyx_t_1, 0, __pyx_n_s_MessageLogger);
+  __Pyx_GIVEREF(__pyx_n_s_MessageLogger);
+  __Pyx_INCREF(__pyx_n_s_LogLevels);
+  PyList_SET_ITEM(__pyx_t_1, 1, __pyx_n_s_LogLevels);
+  __Pyx_GIVEREF(__pyx_n_s_LogLevels);
   __pyx_t_2 = __Pyx_Import(__pyx_n_s_utils_logger, __pyx_t_1, 2); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 4; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_1 = __Pyx_ImportFrom(__pyx_t_2, __pyx_n_s_logMessage); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 4; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __Pyx_ImportFrom(__pyx_t_2, __pyx_n_s_MessageLogger); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 4; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_logMessage, __pyx_t_1) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 4; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_MessageLogger, __pyx_t_1) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 4; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+  __pyx_t_1 = __Pyx_ImportFrom(__pyx_t_2, __pyx_n_s_LogLevels); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 4; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_t_1);
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_LogLevels, __pyx_t_1) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 4; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+
+  /* "coastline_matching.pyx":13
+ *                         int useNearestNPixels=1,
+ *                         int searchPixelRadius = 10,
+ *                         logLevel = LogLevels.INFO):             # <<<<<<<<<<<<<<
+ *     '''
+ *     Matches a data image to a mask image by removing and/or adding pixels from the data.
+ */
+  __pyx_t_2 = __Pyx_GetModuleGlobalName(__pyx_n_s_LogLevels); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 13; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_t_2);
+  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_INFO); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 13; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_t_1);
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+  __pyx_k_ = __pyx_t_1;
+  __Pyx_GIVEREF(__pyx_t_1);
+  __pyx_t_1 = 0;
+
+  /* "coastline_matching.pyx":9
+ * # To do this simply run "python setup.py build_ext --inplace" (assuming you have cython installed)
+ * 
+ * cpdef MatchToCoastline_long(long long[:,::1] data, char[:,::1] landMask, long long _NDV = -9999,             # <<<<<<<<<<<<<<
+ *                         char applyClip = 1, char applyFill = 1,
+ *                         int useNearestNPixels=1,
+ */
+  __pyx_t_1 = __Pyx_GetModuleGlobalName(__pyx_n_s_LogLevels); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 13; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_t_1);
+
+  /* "coastline_matching.pyx":13
+ *                         int useNearestNPixels=1,
+ *                         int searchPixelRadius = 10,
+ *                         logLevel = LogLevels.INFO):             # <<<<<<<<<<<<<<
+ *     '''
+ *     Matches a data image to a mask image by removing and/or adding pixels from the data.
+ */
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_INFO); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 13; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_t_2);
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+  __pyx_k_ = __pyx_t_2;
+  __Pyx_GIVEREF(__pyx_t_2);
+  __pyx_t_2 = 0;
+
+  /* "coastline_matching.pyx":167
+ *                         int useNearestNPixels=1,
+ *                         int searchPixelRadius = 10,
+ *                         logLevel = LogLevels.INFO):             # <<<<<<<<<<<<<<
+ *     '''
+ *     Matches a data image to a mask image by removing and/or adding pixels from the data.
+ */
+  __pyx_t_2 = __Pyx_GetModuleGlobalName(__pyx_n_s_LogLevels); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 167; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_t_2);
+  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_INFO); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 167; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_t_1);
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+  __pyx_k__16 = __pyx_t_1;
+  __Pyx_GIVEREF(__pyx_t_1);
+  __pyx_t_1 = 0;
+
+  /* "coastline_matching.pyx":163
+ *     return failedLocs
+ * 
+ * cpdef MatchToCoastline_Float(float[:,::1] data, char[:,::1] landMask, float _NDV = -9999,             # <<<<<<<<<<<<<<
+ *                         char applyClip = 1, char applyFill = 1,
+ *                         int useNearestNPixels=1,
+ */
+  __pyx_t_1 = __Pyx_GetModuleGlobalName(__pyx_n_s_LogLevels); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 167; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_t_1);
+
+  /* "coastline_matching.pyx":167
+ *                         int useNearestNPixels=1,
+ *                         int searchPixelRadius = 10,
+ *                         logLevel = LogLevels.INFO):             # <<<<<<<<<<<<<<
+ *     '''
+ *     Matches a data image to a mask image by removing and/or adding pixels from the data.
+ */
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_INFO); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 167; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_t_2);
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+  __pyx_k__16 = __pyx_t_2;
+  __Pyx_GIVEREF(__pyx_t_2);
+  __pyx_t_2 = 0;
+
+  /* "coastline_matching.pyx":323
+ *                            int searchPixelRadius = 100,
+ *                            char deleteDespiteFailure = 0,
+ *                            logLevel = LogLevels.INFO):             # <<<<<<<<<<<<<<
+ *     '''
+ *     Reallocates data falling in masked area to nearest non-masked pixel
+ */
+  __pyx_t_2 = __Pyx_GetModuleGlobalName(__pyx_n_s_LogLevels); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 323; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_t_2);
+  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_INFO); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 323; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_t_1);
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+  __pyx_k__31 = __pyx_t_1;
+  __Pyx_GIVEREF(__pyx_t_1);
+  __pyx_t_1 = 0;
+
+  /* "coastline_matching.pyx":318
+ * 
+ * 
+ * cpdef MatchToCoastline_Population(float[:,::1] data, char[:,::1] landMask, float _NDV = -9999,             # <<<<<<<<<<<<<<
+ *                            char clipZerosAtSea = 1,
+ *                            char fillLandWithZero = 1,
+ */
+  __pyx_t_1 = __Pyx_GetModuleGlobalName(__pyx_n_s_LogLevels); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 323; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_t_1);
+
+  /* "coastline_matching.pyx":323
+ *                            int searchPixelRadius = 100,
+ *                            char deleteDespiteFailure = 0,
+ *                            logLevel = LogLevels.INFO):             # <<<<<<<<<<<<<<
+ *     '''
+ *     Reallocates data falling in masked area to nearest non-masked pixel
+ */
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_INFO); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 323; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_t_2);
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+  __pyx_k__31 = __pyx_t_2;
+  __Pyx_GIVEREF(__pyx_t_2);
+  __pyx_t_2 = 0;
 
   /* "coastline_matching.pyx":1
  * import numpy as np             # <<<<<<<<<<<<<<
@@ -18602,7 +18930,7 @@ PyMODINIT_FUNC PyInit_coastline_matching(void)
  * cdef strided = Enum("<strided and direct>") # default
  * cdef indirect = Enum("<strided and indirect>")
  */
-  __pyx_t_2 = __Pyx_PyObject_Call(((PyObject *)((PyObject *)__pyx_MemviewEnum_type)), __pyx_tuple__54, NULL); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[1]; __pyx_lineno = 276; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_2 = __Pyx_PyObject_Call(((PyObject *)((PyObject *)__pyx_MemviewEnum_type)), __pyx_tuple__57, NULL); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[1]; __pyx_lineno = 276; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_XGOTREF(generic);
   __Pyx_DECREF_SET(generic, __pyx_t_2);
@@ -18616,7 +18944,7 @@ PyMODINIT_FUNC PyInit_coastline_matching(void)
  * cdef indirect = Enum("<strided and indirect>")
  * 
  */
-  __pyx_t_2 = __Pyx_PyObject_Call(((PyObject *)((PyObject *)__pyx_MemviewEnum_type)), __pyx_tuple__55, NULL); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[1]; __pyx_lineno = 277; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_2 = __Pyx_PyObject_Call(((PyObject *)((PyObject *)__pyx_MemviewEnum_type)), __pyx_tuple__58, NULL); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[1]; __pyx_lineno = 277; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_XGOTREF(strided);
   __Pyx_DECREF_SET(strided, __pyx_t_2);
@@ -18630,7 +18958,7 @@ PyMODINIT_FUNC PyInit_coastline_matching(void)
  * 
  * 
  */
-  __pyx_t_2 = __Pyx_PyObject_Call(((PyObject *)((PyObject *)__pyx_MemviewEnum_type)), __pyx_tuple__56, NULL); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[1]; __pyx_lineno = 278; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_2 = __Pyx_PyObject_Call(((PyObject *)((PyObject *)__pyx_MemviewEnum_type)), __pyx_tuple__59, NULL); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[1]; __pyx_lineno = 278; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_XGOTREF(indirect);
   __Pyx_DECREF_SET(indirect, __pyx_t_2);
@@ -18644,7 +18972,7 @@ PyMODINIT_FUNC PyInit_coastline_matching(void)
  * cdef indirect_contiguous = Enum("<contiguous and indirect>")
  * 
  */
-  __pyx_t_2 = __Pyx_PyObject_Call(((PyObject *)((PyObject *)__pyx_MemviewEnum_type)), __pyx_tuple__57, NULL); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[1]; __pyx_lineno = 281; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_2 = __Pyx_PyObject_Call(((PyObject *)((PyObject *)__pyx_MemviewEnum_type)), __pyx_tuple__60, NULL); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[1]; __pyx_lineno = 281; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_XGOTREF(contiguous);
   __Pyx_DECREF_SET(contiguous, __pyx_t_2);
@@ -18658,7 +18986,7 @@ PyMODINIT_FUNC PyInit_coastline_matching(void)
  * 
  * 
  */
-  __pyx_t_2 = __Pyx_PyObject_Call(((PyObject *)((PyObject *)__pyx_MemviewEnum_type)), __pyx_tuple__58, NULL); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[1]; __pyx_lineno = 282; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_2 = __Pyx_PyObject_Call(((PyObject *)((PyObject *)__pyx_MemviewEnum_type)), __pyx_tuple__61, NULL); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[1]; __pyx_lineno = 282; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_XGOTREF(indirect_contiguous);
   __Pyx_DECREF_SET(indirect_contiguous, __pyx_t_2);
