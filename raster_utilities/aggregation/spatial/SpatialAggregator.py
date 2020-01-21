@@ -93,7 +93,7 @@ class SpatialAggregator:
         self.stats = mystats
 
         if self._mode == AggregationModes.CATEGORICAL:
-            if not aggregationArgs.has_key("categories"):
+            if not "categories" in aggregationArgs:
                 raise ValueError("If a categorical-type aggregation stat is requested, then a 'categories' parameter must "
                              "be given which is a list of integer category values or a dictionary of integer value:name")
             categories = aggregationArgs["categories"]
@@ -114,10 +114,10 @@ class SpatialAggregator:
             self.nCategories = len(categories)
             self.categories = categories
 
-        if not aggregationArgs.has_key("aggregation_type"):
+        if not "aggregation_type" in aggregationArgs:
             raise ValueError("Aggregation arguments object must have a key 'aggregation_type' with value being a "
                              "member of the AggregationTypes enumeration")
-        if not aggregationArgs.has_key("aggregation_specifier"):
+        if not "aggregation_specifier" in aggregationArgs:
             raise ValueError("Aggregation arguments object must have a key 'aggregation_specifier' with value type "
                              "being dependent on the type of aggregation requested")
 
@@ -125,19 +125,19 @@ class SpatialAggregator:
         aggSpec = aggregationArgs['aggregation_specifier']
         self._aggregationType = aggType
 
-        if aggregationArgs.has_key("assume_correct_input"):
+        if "assume_correct_input" in aggregationArgs:
             self._AssumeCorrectInput = aggregationArgs["assume_correct_input"]
         else:
             self._AssumeCorrectInput = False
             logMessage("By default, input resolution / alignment will be pre-snapped", LogLevels.INFO)
 
-        if aggregationArgs.has_key("sanitise_resolution"):
+        if "sanitise_resolution" in aggregationArgs:
             self._SanitiseResolution = aggregationArgs["sanitise_resolution"]
         else:
             self._SanitiseResolution = True
             logMessage("By default, output resolution will be sanitised", LogLevels.INFO)
 
-        if aggregationArgs.has_key("snap_alignment"):
+        if "snap_alignment" in aggregationArgs:
             self._SnapType = aggregationArgs["snap_alignment"]
         else:
             self._SnapType = SnapTypes.NEAREST
@@ -164,12 +164,12 @@ class SpatialAggregator:
         else:
             raise ValueError("Aggregation type must be a member of the AggregationTypes enumeration")
 
-        if aggregationArgs.has_key("resolution_name"):
+        if "resolution_name" in aggregationArgs:
             self._resName = aggregationArgs["resolution_name"]
         else:
             self._resName = "Aggregated"
 
-        if aggregationArgs.has_key("mem_limit_gb"):
+        if "mem_limit_gb" in aggregationArgs:
             self._gbLimit = aggregationArgs["mem_limit_gb"]
         else:
             self._gbLimit = 30
