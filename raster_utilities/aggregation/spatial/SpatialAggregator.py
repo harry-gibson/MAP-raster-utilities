@@ -322,7 +322,7 @@ class SpatialAggregator:
                 # put a tolerance on it
                 logMessage("warning, input size of {},{} (x,y) was not clean multiple of factor {}; ".format(
                     inRasterProps.width, inRasterProps.height, aggSpec) +
-                           "output will have 1 cell greater extent", LogLevels.WARNING)
+                           "rounding up means that output will have 1 cell greater extent", LogLevels.WARNING)
             outputGT_raw = (inputGT[0], inputGT[1] * aggSpec, 0.0,
                         inputGT[3], 0.0, inputGT[5] * aggSpec)
             actualFactors = (aggSpec, aggSpec)
@@ -369,16 +369,16 @@ class SpatialAggregator:
                 xExtent = inputWidthPx * inResX
                 yExtent = inputHeightPx * -inResY
                 if aggSpec.lower().startswith("1k"):
-                    outXSize = int(120 * xExtent)
-                    outYSize = int(120 * yExtent)
+                    outXSize = math.ceil(120 * xExtent)
+                    outYSize = math.ceil(120 * yExtent)
                     outResolution = 1.0 / 120
                 elif aggSpec.lower().startswith("5k"):
-                    outXSize = int(24 * xExtent)
-                    outYSize = int(24 * yExtent)
+                    outXSize = math.ceil(24 * xExtent)
+                    outYSize = math.ceil(24 * yExtent)
                     outResolution = 1.0 / 24
                 elif aggSpec.lower().startswith("10k"):
-                    outXSize = int(12 * xExtent)
-                    outYSize = int(12 * yExtent)
+                    outXSize = math.ceil(12 * xExtent)
+                    outYSize = math.ceil(12 * yExtent)
                     outResolution = 1.0 / 12
                 else:
                     logMessage("Unknown string resolution description!", LogLevels.ERROR)
@@ -399,7 +399,8 @@ class SpatialAggregator:
                     logMessage("warning, specified resolution was not clean multiple of input, " +
                                "output will have 1 cell greater extent" +
                                "(x,y {},{}) to (x,y {}{})".format(outXSize, outX_exact, outYSize, outY_exact), LogLevels.WARNING)
-            actualFactors = (inputHeightPx / outYSize, inputWidthPx / outXSize)
+            #actualFactors = (inputHeightPx / outYSize, inputWidthPx / outXSize)
+            actualFactors = -outResolution / inResY, outResolution / inResX
             outputGT_raw = (inputGT[0], outResolution, 0.0, inputGT[3], 0.0, -outResolution)
         else:
             logMessage("Unknown aggregation type requested, valid values are 'size', 'resolution', 'factor'",
@@ -433,7 +434,7 @@ class SpatialAggregator:
         # calculation of which output cell each input should go into.
         # We also need to return the actual aggregation factor to use for passing to the core C code, because it isn't always
         # correct for the c code to just divide input size / output size, if the output has been expanded one pixel
-        outputOriginOffsetYX = (inputGT[3] - outputGT[3], inputGT[0] - outputGT[0])
+        outputOriginOffsetYX = (outputGT[3] - inputGT[3], inputGT[0] - outputGT[0])
         return (
             inputGT, # because it may have been changed (sanitised) from what was passed in
             outputGT,
@@ -457,12 +458,14 @@ class SpatialAggregator:
 
         inOrigin_X, inRes_X, _, inOrigin_Y, _, inRes_Y = inGT
         outOrigin_X, outRes_X, _, outOrigin_Y, _, outRes_Y = outGT
-        outputOriginCRSOffsetYX = (inOrigin_Y - outOrigin_Y, inOrigin_X - outOrigin_X)
+        outputOriginCRSOffsetYX = (inOrigin_Y-outOrigin_Y, inOrigin_X-outOrigin_X)
         outputOriginPixOffset_Y = int(round(outputOriginCRSOffsetYX[0] / inRes_Y))
         outputOriginPixOffset_X = int(round(outputOriginCRSOffsetYX[1] / inRes_X))
-        logMessage("Output shape will be {}(y,x) (input was {}, giving a factor of {}, {})".format(
+        logMessage(("Output shape will be {}(y,x) (input was {}, giving a precise factor of {}, {}, with "
+                   "effective factor of {}, {})").format(
             outShape, (inputProperties.height, inputProperties.width),
-            1.0*inputProperties.height / outShape[0], 1.0*inputProperties.width / outShape[1]
+            1.0*inputProperties.height / outShape[0], 1.0*inputProperties.width / outShape[1],
+                       aggFactors[0], aggFactors[1]
         ), LogLevels.INFO)
         logMessage("Subpixel offset (input pixels from origin of output) is {}(y),{}(x)".format(
             outputOriginPixOffset_Y, outputOriginPixOffset_X),

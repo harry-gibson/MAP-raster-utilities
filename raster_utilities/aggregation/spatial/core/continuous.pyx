@@ -31,7 +31,7 @@ cdef class Continuous_Aggregator_Flt:
     cdef:
         Py_ssize_t xShapeOut, yShapeOut
         Py_ssize_t xShapeIn, yShapeIn, tileXShapeIn, tileYShapeIn
-        Py_ssize_t xSubpixelOffsetIn, ySubpixelOffsetIn
+        int xSubpixelOffsetIn, ySubpixelOffsetIn
 
     cdef:
 
@@ -66,7 +66,7 @@ cdef class Continuous_Aggregator_Flt:
     def __cinit__(self,
                   Py_ssize_t ySizeIn, Py_ssize_t xSizeIn,
                   Py_ssize_t ySizeOut, Py_ssize_t xSizeOut,
-                  Py_ssize_t ySubpixelOffsetIn, Py_ssize_t xSubpixelOffsetIn,
+                  int ySubpixelOffsetIn, int xSubpixelOffsetIn,
                   double yFactor, double xFactor,
                   _NDV,
         stats):
@@ -106,13 +106,13 @@ cdef class Continuous_Aggregator_Flt:
         self.xFact = xFactor
         self.yFact = yFactor
 
-        if xSubpixelOffsetIn < 0 or xSubpixelOffsetIn >= xFactor or ySubpixelOffsetIn < 0 or ySubpixelOffsetIn >= yFactor:
-            raise ValueError("sub-pixel offsets must be between zero and the cell aggregation factor")
+        if xSubpixelOffsetIn >= xFactor or ySubpixelOffsetIn >= yFactor:
+            raise ValueError("sub-pixel offsets must be less than the cell aggregation factor")
         self.xSubpixelOffsetIn = xSubpixelOffsetIn
         self.ySubpixelOffsetIn = ySubpixelOffsetIn
 
-        xSizeCheck = (xSizeIn + xSubpixelOffsetIn) / xFactor
-        ySizeCheck = (ySizeIn + ySubpixelOffsetIn) / yFactor
+        xSizeCheck = int(((xSizeIn + xSubpixelOffsetIn) / xFactor)+0.5)
+        ySizeCheck = int(((ySizeIn + ySubpixelOffsetIn) / yFactor)+0.5)
         if xSizeCheck > xSizeOut or ySizeCheck > ySizeOut:
             raise ValueError("specified output size is too small")
         if xSizeCheck < xSizeOut-1 or ySizeCheck < ySizeOut-1:
@@ -173,7 +173,8 @@ cdef class Continuous_Aggregator_Flt:
         '''
         cdef:
             Py_ssize_t tileYShapeIn, tileXShapeIn
-            Py_ssize_t xInGlobal, xInTile, yInGlobal, yInTile, xSubCellOffset, ySubCellOffset
+            Py_ssize_t xInGlobal, xInTile, yInGlobal, yInTile
+            int xSubCellOffset, ySubCellOffset
             float localValue
             Py_ssize_t xOut, yOut
         tileYShapeIn = data.shape[0]
@@ -189,11 +190,15 @@ cdef class Continuous_Aggregator_Flt:
             yOut = <int> ((yInGlobal + ySubCellOffset) / self.yFact)
             localValue=-1
             xOut = -1
+            if yOut >= self.yShapeOut:
+                    raise ValueError("yOut is {}, yShape is {}".format(yOut, self.yShapeOut))
+
             for xInTile in range(tileXShapeIn):
                 xInGlobal = xInTile + xTileOffset
                 # output col is based on the left of the input cell
                 xOut = <int> ((xInGlobal+xSubCellOffset) / self.xFact)
-
+                if xOut >= self.xShapeOut:
+                    raise ValueError("xOut is {}, xShape is {}".format(xOut, self.xShapeOut))
                 self._coverageArr[yOut, xOut] = 1
 
                 localValue = data[yInTile, xInTile]
