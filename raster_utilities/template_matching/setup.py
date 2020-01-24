@@ -1,12 +1,12 @@
-try:
-    from setuptools import setup
-    from setuptools import Extension
-except ImportError:
-    from distutils.core import setup
-    from distutils.extension import  Extension
+import os, sys
+from distutils.core import setup
+from distutils.extension import Extension
 
-from Cython.Build import cythonize
-import os
+try:
+    from Cython.Distutils import build_ext
+except ImportError:
+    print("Cython does not seem to be installed")
+    sys.exit(1)
 
 # https://github.com/cython/cython/wiki/PackageHierarchy
 def scandir(dir, files=[]):
@@ -55,5 +55,5 @@ setup(
     packages=["template_matching"],
     #ext_modules = cythonize(cythonexts),
     ext_modules=extensions,
-
+    cmdclass={'build_ext':build_ext}
 )
