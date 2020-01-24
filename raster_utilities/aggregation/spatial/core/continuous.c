@@ -2539,37 +2539,37 @@ static int __pyx_pf_7spatial_4core_10continuous_25Continuous_Aggregator_Flt___ci
  *         self.xSubpixelOffsetIn = xSubpixelOffsetIn
  *         self.ySubpixelOffsetIn = ySubpixelOffsetIn             # <<<<<<<<<<<<<<
  * 
- *         xSizeCheck = int((xSizeIn + xSubpixelOffsetIn) / xFactor)
+ *         xSizeCheck = int(((xSizeIn + xSubpixelOffsetIn) / xFactor) + 0.5)
  */
   __pyx_v_self->ySubpixelOffsetIn = __pyx_v_ySubpixelOffsetIn;
 
   /* "spatial/core/continuous.pyx":114
  *         self.ySubpixelOffsetIn = ySubpixelOffsetIn
  * 
- *         xSizeCheck = int((xSizeIn + xSubpixelOffsetIn) / xFactor)             # <<<<<<<<<<<<<<
- *         ySizeCheck = int((ySizeIn + ySubpixelOffsetIn) / yFactor)
+ *         xSizeCheck = int(((xSizeIn + xSubpixelOffsetIn) / xFactor) + 0.5)             # <<<<<<<<<<<<<<
+ *         ySizeCheck = int(((ySizeIn + ySubpixelOffsetIn) / yFactor) + 0.5)
  *         if xSizeCheck > xSizeOut or ySizeCheck > ySizeOut:
  */
-  __pyx_t_2 = __Pyx_PyInt_FromDouble(((__pyx_v_xSizeIn + __pyx_v_xSubpixelOffsetIn) / __pyx_v_xFactor)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 114, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyInt_FromDouble((((__pyx_v_xSizeIn + __pyx_v_xSubpixelOffsetIn) / __pyx_v_xFactor) + 0.5)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 114, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __pyx_v_xSizeCheck = __pyx_t_2;
   __pyx_t_2 = 0;
 
   /* "spatial/core/continuous.pyx":115
  * 
- *         xSizeCheck = int((xSizeIn + xSubpixelOffsetIn) / xFactor)
- *         ySizeCheck = int((ySizeIn + ySubpixelOffsetIn) / yFactor)             # <<<<<<<<<<<<<<
+ *         xSizeCheck = int(((xSizeIn + xSubpixelOffsetIn) / xFactor) + 0.5)
+ *         ySizeCheck = int(((ySizeIn + ySubpixelOffsetIn) / yFactor) + 0.5)             # <<<<<<<<<<<<<<
  *         if xSizeCheck > xSizeOut or ySizeCheck > ySizeOut:
  *             raise ValueError("specified output size is too small")
  */
-  __pyx_t_2 = __Pyx_PyInt_FromDouble(((__pyx_v_ySizeIn + __pyx_v_ySubpixelOffsetIn) / __pyx_v_yFactor)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 115, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyInt_FromDouble((((__pyx_v_ySizeIn + __pyx_v_ySubpixelOffsetIn) / __pyx_v_yFactor) + 0.5)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 115, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __pyx_v_ySizeCheck = __pyx_t_2;
   __pyx_t_2 = 0;
 
   /* "spatial/core/continuous.pyx":116
- *         xSizeCheck = int((xSizeIn + xSubpixelOffsetIn) / xFactor)
- *         ySizeCheck = int((ySizeIn + ySubpixelOffsetIn) / yFactor)
+ *         xSizeCheck = int(((xSizeIn + xSubpixelOffsetIn) / xFactor) + 0.5)
+ *         ySizeCheck = int(((ySizeIn + ySubpixelOffsetIn) / yFactor) + 0.5)
  *         if xSizeCheck > xSizeOut or ySizeCheck > ySizeOut:             # <<<<<<<<<<<<<<
  *             raise ValueError("specified output size is too small")
  *         if xSizeCheck < xSizeOut-1 or ySizeCheck < ySizeOut-1:
@@ -2596,7 +2596,7 @@ static int __pyx_pf_7spatial_4core_10continuous_25Continuous_Aggregator_Flt___ci
   if (unlikely(__pyx_t_4)) {
 
     /* "spatial/core/continuous.pyx":117
- *         ySizeCheck = int((ySizeIn + ySubpixelOffsetIn) / yFactor)
+ *         ySizeCheck = int(((ySizeIn + ySubpixelOffsetIn) / yFactor) + 0.5)
  *         if xSizeCheck > xSizeOut or ySizeCheck > ySizeOut:
  *             raise ValueError("specified output size is too small")             # <<<<<<<<<<<<<<
  *         if xSizeCheck < xSizeOut-1 or ySizeCheck < ySizeOut-1:
@@ -2609,8 +2609,8 @@ static int __pyx_pf_7spatial_4core_10continuous_25Continuous_Aggregator_Flt___ci
     __PYX_ERR(0, 117, __pyx_L1_error)
 
     /* "spatial/core/continuous.pyx":116
- *         xSizeCheck = int((xSizeIn + xSubpixelOffsetIn) / xFactor)
- *         ySizeCheck = int((ySizeIn + ySubpixelOffsetIn) / yFactor)
+ *         xSizeCheck = int(((xSizeIn + xSubpixelOffsetIn) / xFactor) + 0.5)
+ *         ySizeCheck = int(((ySizeIn + ySubpixelOffsetIn) / yFactor) + 0.5)
  *         if xSizeCheck > xSizeOut or ySizeCheck > ySizeOut:             # <<<<<<<<<<<<<<
  *             raise ValueError("specified output size is too small")
  *         if xSizeCheck < xSizeOut-1 or ySizeCheck < ySizeOut-1:
@@ -20309,7 +20309,7 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
   __Pyx_GIVEREF(__pyx_tuple_);
 
   /* "spatial/core/continuous.pyx":117
- *         ySizeCheck = int((ySizeIn + ySubpixelOffsetIn) / yFactor)
+ *         ySizeCheck = int(((ySizeIn + ySubpixelOffsetIn) / yFactor) + 0.5)
  *         if xSizeCheck > xSizeOut or ySizeCheck > ySizeOut:
  *             raise ValueError("specified output size is too small")             # <<<<<<<<<<<<<<
  *         if xSizeCheck < xSizeOut-1 or ySizeCheck < ySizeOut-1:
