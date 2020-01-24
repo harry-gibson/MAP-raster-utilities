@@ -10,7 +10,6 @@ from ..aggregation_values import CategoricalAggregationStats as catstats, \
     ContinuousAggregationStats as contstats, AggregationModes, AggregationTypes, SnapTypes
 from ...io.tiff_management import GetRasterProperties, ReadAOI_PixelLims, SaveLZWTiff, RasterProps # ReadAOI_PixelLims_Inplace
 from ...utils.geotransform_calcs import SanitiseResolution, SnapAndAlignGeoTransform
-#from ...utils.geotransform_calcs import calcAggregatedProperties
 from ...utils.logger import MessageLogger, LogLevels
 from ...utils.raster_tiling import getTiles
 
