@@ -10,13 +10,13 @@ def SaveLZWTiff(data, _NDV, geotransform, projection, outDir, outName,
     '''
     Save a numpy array to a single-band LZW-compressed tiff file in the specified folder
 
-    Deprecated, provided as a convenience wrapper to the SingleBandTiffFile object for
+    Provided as a convenience wrapper to the SingleBandTiffFile object and for compatibility with
     existing code.
 
-    The file should not already exist.
+    The tiff file should not already exist.
 
     The data-type of the tiff file depends on the input array.
-    The file will be saved with LZW compression, predictor 2 , bigtiff yes.
+    The file will be saved with LZW compression, predictor 2 , bigtiff yes, internal tiels
     To over-ride this, provide cOpts as an array of creation option strings.
 
     GeoTransform should be a 6-tuple conforming to the GDAL geotransform spec. Projection
@@ -59,7 +59,7 @@ def ReadAOI_PixelLims(gdalDatasetName, xLims, yLims, useRoundedResolution=False,
     item 2 is the projection, and item 3 is the nodata value - items 1, 2, 3 can be used
     to save the data or another array representing same area/resolution to a tiff file
 
-    Deprecated, provided as a convenience wrapper for SingleBandTiffFile for compatibility with existing code'''
+    Provided as a convenience wrapper for SingleBandTiffFile and for compatibility with existing code'''
 
     f = SingleBandTiffFile(gdalDatasetName)
     if not f._Exists:
