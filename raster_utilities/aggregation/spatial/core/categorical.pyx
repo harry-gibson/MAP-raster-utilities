@@ -69,7 +69,7 @@ cdef class Categorical_Aggregator:
     cdef:
         Py_ssize_t xShapeOut, yShapeOut
         Py_ssize_t xShapeIn, yShapeIn, tileXShapeIn, tileYShapeIn
-        Py_ssize_t xSubpixelOffsetIn, ySubpixelOffsetIn
+        int xSubpixelOffsetIn, ySubpixelOffsetIn
 
         double xFact, yFact, xFactCalc, yFactCalc
         float proportion
@@ -96,11 +96,26 @@ cdef class Categorical_Aggregator:
     def __cinit__(self,
                   Py_ssize_t ySizeIn, Py_ssize_t xSizeIn,
                   Py_ssize_t ySizeOut, Py_ssize_t xSizeOut,
-                  Py_ssize_t ySubpixelOffsetIn, Py_ssize_t xSubpixelOffsetIn,
+                  int ySubpixelOffsetIn, int xSubpixelOffsetIn,
                   double yFactor, double xFactor,
                   categories,
                   unsigned char doLikeAdjacency = 1,
                   float fltNdv = -9999, byteNdv = None):
+        '''
+        Initialise an instance of the class for aggregating a categorical-type dataset.
+
+        ySizeIn: the overall y dimension of the input file being aggregated
+        xSizeIn: the overall x dimension of the input file being aggregated
+        ySizeOut: the overall y dimension of the desired output file (ideally but not
+            necessarily a multiple of ySizeIn)
+        xSizeOut: the overall x dimension of the desired output file (ideally but not
+            necessarily a multiple of xSizeIn
+        ySubpixelOffsetIn: how many input pixels from the left edge of the origin output pixel is the input origin
+        xSubpixelOffsetIn: how many input pixels from the top edge of the origin output pixel is the input origin
+            The output may be aligned e.g. to a "5km global" grid and the input coming from a "1k global" grid does
+            not necessarily originate at a point coincident with the edge of a 5km pixel. So we need to allow for this
+            to maintain proper alignment.
+        '''
         assert xSizeIn > xSizeOut
         assert ySizeIn > ySizeOut
 
@@ -108,18 +123,24 @@ cdef class Categorical_Aggregator:
         self.yShapeIn = ySizeIn
         self.xShapeOut = xSizeOut
         self.yShapeOut = ySizeOut
+
+        # the factor can be non-integer, which means the output cells will have
+        # varying number of input cells
+        # If the input size is not a clean multiple of the user-requested factor then the output size will have
+        # been rounded up. Also if snapping has caused the extent to be less it will have been rounded up.
+        # So we can't correctly calculate the factor here and must use what is passed in.
         self.xFactCalc = <double>self.xShapeIn / self.xShapeOut
         self.yFactCalc = <double>self.yShapeIn / self.yShapeOut
         self.xFact = xFactor
         self.yFact = yFactor
 
-        if xSubpixelOffsetIn < 0 or xSubpixelOffsetIn >= xFactor or ySubpixelOffsetIn < 0 or ySubpixelOffsetIn >= yFactor:
-            raise ValueError("sub-pixel offsets must be between zero and the cell aggregation factor")
+        if xSubpixelOffsetIn >= xFactor or ySubpixelOffsetIn >= yFactor:
+            raise ValueError("sub-pixel offsets must be less than the cell aggregation factor")
         self.xSubpixelOffsetIn = xSubpixelOffsetIn
         self.ySubpixelOffsetIn = ySubpixelOffsetIn
 
-        xSizeCheck = (xSizeIn + xSubpixelOffsetIn) / xFactor
-        ySizeCheck = (ySizeIn + ySubpixelOffsetIn) / yFactor
+        xSizeCheck = int(((xSizeIn + xSubpixelOffsetIn) / xFactor) + 0.5)
+        ySizeCheck = int(((ySizeIn + ySubpixelOffsetIn) / yFactor) + 0.5)
         if xSizeCheck > xSizeOut or ySizeCheck > ySizeOut:
             raise ValueError("specified output size is too small")
         if xSizeCheck < xSizeOut-1 or ySizeCheck < ySizeOut-1:
@@ -136,7 +157,7 @@ cdef class Categorical_Aggregator:
         logger = MessageLogger()
         # categories parameter can be an int number of categories, in which case we will derive them, or
         # a list / ndarray of the values, which must be between 0 and 255
-        if (isinstance(categories,int)):
+        if (isinstance(categories, int)):
             assert 0 < categories <= 255
             self.nCategories = categories
             self.valueMap = np.zeros(shape = (categories), dtype = np.int32)
@@ -174,7 +195,7 @@ cdef class Categorical_Aggregator:
         else:
             logger.logMessage("Nodata not defined")
 
-    @cython.boundscheck(False)
+    @cython.boundscheck(True)
     @cython.cdivision(True)
     @cython.wraparound(False)
     cpdef addTile(self, unsigned char[:,::1] data, Py_ssize_t xTileOffset, Py_ssize_t yTileOffset):
@@ -189,12 +210,13 @@ cdef class Categorical_Aggregator:
             int yBelowTile, yAboveTile, xLeftTile, xRightTile
 
             # current pixel coords in global and tile coords
-            Py_ssize_t xInGlobal, xInTile, yInGlobal, yInTile, xSubCellOffset, ySubCellOffset
+            Py_ssize_t xInGlobal, xInTile, yInGlobal, yInTile
+
+            int xSubCellOffset, ySubCellOffset
+
             unsigned char localValue, nNeighbours
             float likeAdjProp
             Py_ssize_t xOut, yOut
-            # how much of an output cell does each input cell account for
-            #float proportion
             unsigned char catsOk
             int errorCategory
             int valuePos
@@ -202,6 +224,7 @@ cdef class Categorical_Aggregator:
 
         tileYShapeIn = data.shape[0]
         tileXShapeIn = data.shape[1]
+        # we get a local reference to these class members, as access to them in the loop is faster this way
         xSubCellOffset = self.xSubpixelOffsetIn
         ySubCellOffset = self.ySubpixelOffsetIn
 
@@ -229,8 +252,10 @@ cdef class Categorical_Aggregator:
                     yBelowTile = -1
 
                 yOut = <int> ((yInGlobal + ySubCellOffset) / self.yFact)
+
                 # yeah i know that it's an unsigned char but we won't actually use this value,
-                # these assignments are to cause the cython converter to make these thread-local
+                # we are just making assignments of <something> here to cause the cython converter
+                # to make these thread-local
                 localValue = -1
                 xOut = -1
                 valuePos = -1
@@ -291,8 +316,10 @@ cdef class Categorical_Aggregator:
                         # add it to the next available position in valuemap
                         # todo think about whether this is truly safe. not sure - can we end up with valuemap
                         # inconsistent?
-                        # i.e. is the with gil sufficient to ensure consistent access to valueMap. I'm not sure it is
-                        # as threads can still be preempted. See the finalise method for a backstop check.
+                        # i.e. is the with gil sufficient to ensure consistent access to valueMap across the multiple
+                        # OMP threads? I'm not sure it is as threads can still be preempted at OS level, but have
+                        # never seen it to go wrong.
+                        # See the finalise method for a backstop check in case this is wrong.
                         with gil:
                             for i in range(self.nCategories):
                                 if self.valueMap[i] == -1:
@@ -313,7 +340,7 @@ cdef class Categorical_Aggregator:
                     # covered by this one. Track as a count and convert to a fraction afterwards
                     # once we know the overall count.
                     # reminder: inplace operator (+=) causes it to be treated as a reduction
-                    # (shared) variable by the cython translation
+                    # (shared) variable by the cython translation hence can be accessed from all threads
                     self.outputFracArr[valuePos, yOut, xOut] += 1
 
                     # the like adjacency contribution of a given incoming cell
@@ -361,18 +388,19 @@ cdef class Categorical_Aggregator:
             float proportion
             int i, catValue, catPosition
 
-        # because i'm not certain that we can validly build the valuemap from the data in a threadsafe way,
-        # here we check for errors that might have occurred. The potential risk is that the same value could have
-        # been added to the valuemap twice. So check that the valuemap is in fact unique.
+        # because i'm not certain that we can validly build the valuemap from the data in a threadsafe way (see
+        # comment in addTile method), here we check for errors that might have occurred.
+        # The potential risk is that the same value could have been added to the valuemap twice.
+        # So check that the valuemap is in fact unique.
         vmNumpy = np.asarray(self.valueMap)
         logger = MessageLogger()
-        logger.logMessage("Value map is "+str(vmNumpy))
+        logger.logMessage("Value map extracted from data is: "+str(vmNumpy))
         vmNumpyExclBlank = vmNumpy[vmNumpy!=-1]
         if len(np.unique(vmNumpyExclBlank)) < len(vmNumpyExclBlank):
             raise ValueError("messed up the value map, that's an error. Please try re-running with the expected" 
                              " value map passed as input. Produced: "+ str(np.asarray(self.valueMap)))
 
-        # normalise the fraction and like-adjacency arrays according to then number of data pixels
+        # normalise the fraction and like-adjacency arrays according to the number of data pixels
         # that went into each output location
         for i in range(self.nCategories):
             yOut = -1
@@ -396,12 +424,12 @@ cdef class Categorical_Aggregator:
             # order it is and pick the majority based on what we hit first, the output majority grid
             # can vary between repeated runs.
             # So we will always determine the majority output in sorted order, i.e. output the lowest
-            # one first.
+            # one first so at least the results will be deterministic.
             # the value to output
             catValue = self.sortedValueMap[i]
             if catValue == -1:
                 continue
-            # the position in thje stack
+            # the position in the stack
             catPosition = np.argwhere(vmNumpy==catValue)[0]
             # catNum here is actually just the position in the stack not the actual value
             yOut = -1

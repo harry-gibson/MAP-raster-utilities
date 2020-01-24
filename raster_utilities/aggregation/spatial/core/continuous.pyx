@@ -111,8 +111,8 @@ cdef class Continuous_Aggregator_Flt:
         self.xSubpixelOffsetIn = xSubpixelOffsetIn
         self.ySubpixelOffsetIn = ySubpixelOffsetIn
 
-        xSizeCheck = int(((xSizeIn + xSubpixelOffsetIn) / xFactor)+0.5)
-        ySizeCheck = int(((ySizeIn + ySubpixelOffsetIn) / yFactor)+0.5)
+        xSizeCheck = int(((xSizeIn + xSubpixelOffsetIn) / xFactor) + 0.5)
+        ySizeCheck = int(((ySizeIn + ySubpixelOffsetIn) / yFactor) + 0.5)
         if xSizeCheck > xSizeOut or ySizeCheck > ySizeOut:
             raise ValueError("specified output size is too small")
         if xSizeCheck < xSizeOut-1 or ySizeCheck < ySizeOut-1:

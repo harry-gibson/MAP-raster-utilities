@@ -424,10 +424,12 @@ class SpatialAggregator:
         outXMax = outputGT[0] + outputGT[1] * outXSize
         outYMin = outputGT[3] + outputGT[5] * outYSize
         if inputXMax > outXMax:
-            logMessage("Aligned output being expanded one pixel in X dimension to allow for snapping shift", LogLevels.DEBUG)
+            logMessage("Aligned output being expanded one pixel in X dimension as snapping the origin to the "
+                       "mastergrid means the X extent would otherwise not cover the input data", LogLevels.DEBUG)
             outXSize += 1
         if inputYMin < outYMin:
-            logMessage("Aligned output being expanded one pixel in Y dimension to allow for snapping shift", LogLevels.DEBUG)
+            logMessage("Aligned output being expanded one pixel in Y dimension as snapping the origin to the "
+                       "mastergrid means the Y exent would otherwise not cover the input data", LogLevels.DEBUG)
             outYSize += 1
 
         # because the output grid might have a different origin to the input we need to track the difference, for proper
@@ -458,6 +460,9 @@ class SpatialAggregator:
 
         inOrigin_X, inRes_X, _, inOrigin_Y, _, inRes_Y = inGT
         outOrigin_X, outRes_X, _, outOrigin_Y, _, outRes_Y = outGT
+
+        # work out the subpixel offset, i.e. how many input pixels the input origin is away from the output origin,
+        # given that the output origin may have been snapped to align to global mastergrids.
         outputOriginCRSOffsetYX = (inOrigin_Y-outOrigin_Y, inOrigin_X-outOrigin_X)
         outputOriginPixOffset_Y = int(round(outputOriginCRSOffsetYX[0] / inRes_Y))
         outputOriginPixOffset_X = int(round(outputOriginCRSOffsetYX[1] / inRes_X))
@@ -470,6 +475,7 @@ class SpatialAggregator:
         logMessage("Subpixel offset (input pixels from origin of output) is {}(y),{}(x)".format(
             outputOriginPixOffset_Y, outputOriginPixOffset_X),
             LogLevels.DEBUG)
+
         allDone = True
         for stat in self.stats:
             fnWillBe = os.path.join(self.outFolder, self._fnGetter(os.path.basename(filename), stat))
