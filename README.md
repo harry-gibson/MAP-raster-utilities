@@ -1,12 +1,14 @@
 Generic MAP raster processing code
 ----------------------------------
 
-Repository contains several ipython notebooks developed and used by Harry Gibson to process raster datasets in line with MAP requirements.
-Mostly just things that you might type at a command line, rather than structured code.
+Repository contains core raster-processing algorithms developed and used by Harry Gibson to process raster datasets in line with MAP requirements. These include:
+* Aggregation of continuous-type rasters (decreasing resolution, taking mean / min / max etc of input cells)
+* Aggregation of categorical-type rasters (decreasing resolution, taking majority / class fraction etc of input cells)
+* Extracting subsets of existing rasters
+* Matching categorical-type rasters (such as rasterised admin units) to a template (such as the MAP coastline template)
+* Matching continuous-type rasters (such as population grids) to a template (such as the MAP coastline template), whilst maintaining totals
+* Matching rasters (the outputs of these algorithms or anything else) to the MAP mastergrid lat/lon (EPSG:4326) templates (i.e. ensuring that cell size and alignment match)
 
-* Aggregate_Rasters.ipynb: Spatially aggregate (resample down) continuous or categorical rasters (to generate 5km cubes, landcover summaries, etc)
-* CalcMeanAndSD.ipynb: Calculate synoptic data from MODIS cubes, including from-daily and from-monthly outputs
-* DiurnalDifference.ipynb: Calculate difference between LST Day and LST Night images
-* Extract_And_Align_Rasters.ipynb: Extracts sub-images from global 1km MODIS imagery, optionally realigning geotransform to match the slightly inaccurate version used in other MAP datasets
-* Mean_Topographic_Correction.ipynb: Code for reprocessing mean / standard deviation dataset for BRDF imagery prior to gapfilling, to reduce the anomalies caused by severe topographic occlusion in mountainous areas
-* PopulationReallocator.ipynb: Provides land-sea clipping functionality for population data or any other data where totals must be maintained 
+Core processing algorithms are written in Cython, so this package needs to be built and installed. 
+
+Jupyter notebooks are provided in the root folder of the repository to demonstrate the use of all these core processing algorithms, it is envisaged that most use will be by taking a copy of one of these notebooks and just modifying file paths to suit.
