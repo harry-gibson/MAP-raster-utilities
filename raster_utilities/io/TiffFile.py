@@ -1,6 +1,6 @@
 import os
 from osgeo import gdal_array, gdal
-from ..utils.geotransform_calcs import CalculateClippedGeoTransform, CalculatePixelLims
+from ..utils.geotransform_calcs import CalculateClippedGeoTransform, CalculatePixelLims, SnapAndAlignGeoTransform
 from collections import namedtuple
 import numpy as np
 import subprocess
@@ -196,6 +196,16 @@ class SingleBandTiffFile:
         # maintain the object associated with it and client code doesn't have to store the arrays etc explicitly
         return self.ReadForPixelLims(xLims=None, yLims=None, readAsMasked=readAsMasked)
 
+    def PadOutsideExtent(self, data, padWith, xPadLeft, xPadRight, yPadTop, yPadBottom):
+        inShapeY, inShapeX = data.shape
+        outShapeX = inShapeX + xPadLeft + xPadRight
+        outShapeY = inShapeY + yPadTop + yPadBottom
+        if inShapeY == outShapeY and inShapeX == outShapeX:
+            return data
+        else:
+            outArray = np.full((outShapeY,outShapeX), padWith, data.dtype)
+            outArray[yPadTop:inShapeY+yPadTop, xPadLeft:inShapeX+xPadLeft] = data
+            return outArray
 
     def ReadForPixelLims(self, xLims=None, yLims=None, readAsMasked=False, existingBuffer=None):
         ''' Read a subset of this 1-band dataset, specified by bounding x and y coordinates.
@@ -241,7 +251,7 @@ class SingleBandTiffFile:
             y1 = int(y1)
             assert y1 == yLims[1]
 
-        clippedGT = CalculateClippedGeoTransform(self.GetGeoTransform(), (x0,x1), (y0,y1))
+        clippedGT = CalculateClippedGeoTransform(self.GetGeoTransform(True), (x0,x1), (y0,y1))
         dsProj = self.GetProjection()
         ndv = self.GetNdv()
 
@@ -271,6 +281,42 @@ class SingleBandTiffFile:
                     return(self._cachedData[0][y0:y1, x0:x1], clippedGT, dsProj, ndv)
                 else:
                     return self._cachedData # avoid making another copy with an explicit check to only do so if needed
+
+    def ReadForLatLonLims(self, lonLims, latLims, readIntoLonLims=None, readIntoLatLims=None, readAsMasked=False):
+        if lonLims is None or latLims is None:
+            return self.ReadAll(readAsMasked)
+        else:
+            xLims, yLims = CalculatePixelLims(self.GetGeoTransform(True), longitudeLims=lonLims,
+                                                                      latitudeLims=latLims)
+
+            leftPadPx = max(-xLims[0], 0)
+            rightPadPx = max(xLims[1] - self._Properties.width, 0)
+            topPadPx = max(-yLims[0], 0)
+            bottomPadPx = max(yLims[1] - self._Properties.height, 0)
+
+            readLeft = max(xLims[0], 0)
+            readRight = min(xLims[1], self._Properties.width)
+            readTop = max(yLims[0], 0)
+            readBottom = min(yLims[1], self._Properties.height)
+
+            arr, gt, proj, ndv = self.ReadForPixelLims(xLims=(readLeft, readRight), yLims=(readTop, readBottom),
+                                                    readAsMasked=readAsMasked)
+
+            needsPadding = (max(leftPadPx, rightPadPx, topPadPx, bottomPadPx) > 0)
+
+            if needsPadding:
+                self._Logger.logMessage("Data requested outside the extent of raster {}. \n " +
+                                        "Values will be padded with nodata", LogLevels.WARNING)
+                if ndv is None:
+                    ndv = np.nan
+                    self._Logger.logMessage("Padding with NaN as no nodata is set, this can have unintended effects!",
+                                            LogLevels.WARNING)
+                arr = self.PadOutsideExtent(arr, ndv, leftPadPx, rightPadPx, topPadPx, bottomPadPx)
+                gt = CalculateClippedGeoTransform(self.GetGeoTransform(True), xLims, yLims)
+            # todo - the padded area won't be masked, need to apply masking too
+            return (arr, gt, proj, ndv)
+            # # todo calculate output shape and window we are in
+            # return self.ReadForPixelLims(xLims=pixelLimsLonInput, yLims=pixelLimsLatInput, readAsMasked=readAsMasked)
 
     def PopulateCache(self):
         ''' convenience method to load the cache without returning the data
@@ -307,8 +353,11 @@ class SingleBandTiffFile:
             return self._Properties.ndv
         raise RuntimeError("Properties have not been set")
 
-    def GetGeoTransform(self):
+    def GetGeoTransform(self, forceAligned=False):
         if self._Properties is not None:
+            if forceAligned:
+                gt = SnapAndAlignGeoTransform(self._Properties.gt)
+                return gt
             return self._Properties.gt
         raise RuntimeError("Properties have not been set")
 
@@ -320,14 +369,6 @@ class SingleBandTiffFile:
     def GetExtent(self):
         pass
         #todo return extent as a lonlim latlims pair of tuples
-
-    def ReadForLatLonLims(self, lonLims, latLims, readIntoLonLims = None, readIntoLatLims = None, readAsMasked=False):
-        if lonLims is None or latLims is None:
-            return self.ReadAll(readAsMasked)
-        else:
-            pixelLimsLonInput, pixelLimsLatInput = CalculatePixelLims(self._Properties.gt, longitudeLims=lonLims, latitudeLims=latLims)
-            # todo calculate output shape and window we are in
-            return self.ReadForPixelLims(xLims=pixelLimsLonInput, yLims=pixelLimsLatInput, readAsMasked=readAsMasked)
 
 
 

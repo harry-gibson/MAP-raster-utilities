@@ -273,7 +273,7 @@ def SnapAndAlignGeoTransform(inGT, fixResolution = True, snapType=SnapTypes.NEAR
             logger.logMessage("Cellsize already ok, not altering")
             # return None
         else:
-            logger.logMessage("Cellsize in (x,y): {}*{}, sanitised to cellsize out: {}*{}".format(xRes, yRes, idealRes_X, idealRes_Y))
+            logger.logMessage("Cellsize input (x,y): {}*{}, sanitised to cellsize of: {}*{}".format(xRes, yRes, idealRes_X, idealRes_Y))
             outRes_X = idealRes_X
             outRes_Y = idealRes_Y
       #  elif xRes != idealRes_X or yRes != idealRes_Y:
